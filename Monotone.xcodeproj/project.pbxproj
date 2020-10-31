@@ -7,17 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1423A4DD254BA121009DEEA1 /* MTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423A4DC254BA121009DEEA1 /* MTViewController.swift */; };
 		14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8E9254A589D0021FE3E /* AppDelegate.swift */; };
 		14D5E8EC254A589D0021FE3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */; };
 		14D5E8EE254A589D0021FE3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8ED254A589D0021FE3E /* ViewController.swift */; };
 		14D5E8F1254A589D0021FE3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8EF254A589D0021FE3E /* Main.storyboard */; };
 		14D5E8F3254A589E0021FE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8F2254A589E0021FE3E /* Assets.xcassets */; };
 		14D5E8F6254A589E0021FE3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8F4254A589E0021FE3E /* LaunchScreen.storyboard */; };
+		14F36F91254D3AB80086B8CC /* MTColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F36F90254D3AB80086B8CC /* MTColorPalette.swift */; };
 		73CFE15CA67265ABCA3CC319 /* Pods_Monotone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0DE40B09FB07DB642D48B327 /* Pods-Monotone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.debug.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.debug.xcconfig"; sourceTree = "<group>"; };
+		1423A4DC254BA121009DEEA1 /* MTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTViewController.swift; sourceTree = "<group>"; };
 		14D5E8E6254A589D0021FE3E /* Monotone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monotone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D5E8E9254A589D0021FE3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		14D5E8F2254A589E0021FE3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14D5E8F5254A589E0021FE3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14D5E8F7254A589E0021FE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14F36F90254D3AB80086B8CC /* MTColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTColorPalette.swift; sourceTree = "<group>"; };
 		22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monotone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AF9737896258A142CECD23 /* Pods-Monotone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.release.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,10 +70,12 @@
 				14D5E8E9254A589D0021FE3E /* AppDelegate.swift */,
 				14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */,
 				14D5E8ED254A589D0021FE3E /* ViewController.swift */,
+				1423A4DC254BA121009DEEA1 /* MTViewController.swift */,
 				14D5E8EF254A589D0021FE3E /* Main.storyboard */,
 				14D5E8F2254A589E0021FE3E /* Assets.xcassets */,
 				14D5E8F4254A589E0021FE3E /* LaunchScreen.storyboard */,
 				14D5E8F7254A589E0021FE3E /* Info.plist */,
+				14F36F90254D3AB80086B8CC /* MTColorPalette.swift */,
 			);
 			path = Monotone;
 			sourceTree = "<group>";
@@ -80,7 +86,6 @@
 				0DE40B09FB07DB642D48B327 /* Pods-Monotone.debug.xcconfig */,
 				A1AF9737896258A142CECD23 /* Pods-Monotone.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -214,7 +219,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				14D5E8EE254A589D0021FE3E /* ViewController.swift in Sources */,
+				1423A4DD254BA121009DEEA1 /* MTViewController.swift in Sources */,
 				14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */,
+				14F36F91254D3AB80086B8CC /* MTColorPalette.swift in Sources */,
 				14D5E8EC254A589D0021FE3E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
