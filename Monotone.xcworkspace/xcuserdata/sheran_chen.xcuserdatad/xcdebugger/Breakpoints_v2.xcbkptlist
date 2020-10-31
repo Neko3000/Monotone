@@ -14,8 +14,8 @@
             filePath = "Monotone/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "buildSubviews()"
             landmarkType = "7">
          </BreakpointContent>
