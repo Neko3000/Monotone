@@ -6,8 +6,9 @@ target 'Monotone' do
   use_frameworks!
 
   # Pods for Monotone
-  pod 'SnapKit', '~> 5.0.0'
   pod 'Alamofire', '~> 5.2'
+  pod 'SwiftyJSON', '~> 4.0'
+  pod 'SnapKit', '~> 5.0.0'
   pod 'Hue'
 
 end
