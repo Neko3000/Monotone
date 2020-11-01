@@ -15,8 +15,22 @@
 		14D5E8F3254A589E0021FE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8F2254A589E0021FE3E /* Assets.xcassets */; };
 		14D5E8F6254A589E0021FE3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8F4254A589E0021FE3E /* LaunchScreen.storyboard */; };
 		14F36F91254D3AB80086B8CC /* MTColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F36F90254D3AB80086B8CC /* MTColorPalette.swift */; };
+		14F36FB0254D53940086B8CC /* MTNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F36FAF254D53940086B8CC /* MTNetworkManager.swift */; };
+		14F37071254EA14B0086B8CC /* api_keys_sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 14F37070254EA14B0086B8CC /* api_keys_sample.json */; };
 		73CFE15CA67265ABCA3CC319 /* Pods_Monotone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		14F36FB2254D55CE0086B8CC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0DE40B09FB07DB642D48B327 /* Pods-Monotone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.debug.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.debug.xcconfig"; sourceTree = "<group>"; };
@@ -30,6 +44,8 @@
 		14D5E8F5254A589E0021FE3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14D5E8F7254A589E0021FE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14F36F90254D3AB80086B8CC /* MTColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTColorPalette.swift; sourceTree = "<group>"; };
+		14F36FAF254D53940086B8CC /* MTNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTNetworkManager.swift; sourceTree = "<group>"; };
+		14F37070254EA14B0086B8CC /* api_keys_sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = api_keys_sample.json; sourceTree = SOURCE_ROOT; };
 		22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monotone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AF9737896258A142CECD23 /* Pods-Monotone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.release.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +83,7 @@
 		14D5E8E8254A589D0021FE3E /* Monotone */ = {
 			isa = PBXGroup;
 			children = (
+				14F37070254EA14B0086B8CC /* api_keys_sample.json */,
 				14D5E8E9254A589D0021FE3E /* AppDelegate.swift */,
 				14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */,
 				14D5E8ED254A589D0021FE3E /* ViewController.swift */,
@@ -76,6 +93,7 @@
 				14D5E8F4254A589E0021FE3E /* LaunchScreen.storyboard */,
 				14D5E8F7254A589E0021FE3E /* Info.plist */,
 				14F36F90254D3AB80086B8CC /* MTColorPalette.swift */,
+				14F36FAF254D53940086B8CC /* MTNetworkManager.swift */,
 			);
 			path = Monotone;
 			sourceTree = "<group>";
@@ -109,6 +127,8 @@
 				14D5E8E3254A589D0021FE3E /* Frameworks */,
 				14D5E8E4254A589D0021FE3E /* Resources */,
 				CEDF1C8637EF40323ABEBFB4 /* [CP] Embed Pods Frameworks */,
+				14F36FB2254D55CE0086B8CC /* CopyFiles */,
+				14F36FB7254D5ECA0086B8CC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -156,8 +176,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14D5E8F6254A589E0021FE3E /* LaunchScreen.storyboard in Resources */,
 				14D5E8F3254A589E0021FE3E /* Assets.xcassets in Resources */,
+				14D5E8F6254A589E0021FE3E /* LaunchScreen.storyboard in Resources */,
+				14F37071254EA14B0086B8CC /* api_keys_sample.json in Resources */,
 				14D5E8F1254A589D0021FE3E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +186,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		14F36FB7254D5ECA0086B8CC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n# Copy API keys\n# cp ${PROJECT_DIR}/APIKeys/api_keys_debug.json ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n\nCONFIG_FILE_BASE_NAME=\"api_keys\"\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}_debug.json\nCONFIG_FILE_PATH=${PROJECT_DIR}/$CONFIG_FILE_NAME\n\necho \"path is ${CONFIG_FILE_PATH}\"\n\nif [ -f \"${CONFIG_FILE_PATH}\" ]; then\n  cp -v \"${CONFIG_FILE_PATH}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\"\n  echo \"copy ${CONFIG_FILE_PATH} to ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app.\"\nelse\n  echo \"${CONFIG_FILE_PATH} does not exist.\"\nfi\n";
+		};
 		CEDF1C8637EF40323ABEBFB4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -225,6 +263,7 @@
 				14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */,
 				14F36F91254D3AB80086B8CC /* MTColorPalette.swift in Sources */,
 				14D5E8EC254A589D0021FE3E /* SceneDelegate.swift in Sources */,
+				14F36FB0254D53940086B8CC /* MTNetworkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
