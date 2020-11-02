@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 
+import SwiftyJSON
+
 class ViewController: MTViewController {
     
     private var logoImageView : UIImageView?
@@ -162,34 +164,20 @@ class ViewController: MTViewController {
             make.left.equalTo(self.noAccountLabel!.snp.right).offset(3.0)
             make.height.equalTo(18.0)
         }
-        
-        MTNetworkManager.shared.loadAPIKeys()
-        
-        
-        return
-        let path = Bundle.main.path(forResource: "api_keys_debug", ofType: ".json")
+                
+        let request = MTPhotoRequest()
+        MTNetworkManager.shared.request(request: request, method: MTHTTPMethod.get,success: { (result:JSON) in
+            print("success")
+        }, fail: { (error:JSON) in
+            print("error")
+        })
 
-        do{
-            let data = try Data(contentsOf: URL(fileURLWithPath: path!))
-            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-
-            print("ee")
-
-        }
-        catch{
-
-        }
+//        MTNetworkManager.shared.sendRequest(request: request, method: MTHTTPMethod.get, success:{
+//            (request:MTBaseRequest) -> Void in
+//        }, fail: {
+//            (error:Error) -> Void in
+//        } )
         
-        guard let filePath = Bundle.main.path(forResource: "api_keys_debug", ofType: "plist") else {
-          fatalError("Couldn't find file 'TMDB-Info.plist'.")
-        }
-        
-        // 2
-        let plist = NSDictionary(contentsOfFile: filePath)
-        guard let value = plist?.object(forKey: "API_KEY") as? String else {
-          fatalError("Couldn't find key 'API_KEY' in 'TMDB-Info.plist'.")
-        }
-        print("eee")
     }
 }
 

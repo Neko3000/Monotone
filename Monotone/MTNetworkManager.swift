@@ -7,44 +7,103 @@
 
 import Foundation
 
+import Alamofire
+import SwiftyJSON
+
 let debugKeyFileName: String = "api_keys_debug"
 let sampleKeyFileName: String = "api_keys_sample"
 
-class MTNetworkManager : NSObject{
+class MTNetworkManager{
     static let shared = MTNetworkManager()
     
-    private var accessKey : String?
-    private var secretKey : String?
-    
-    override init() {
-        super.init()
-        
-        // 
+    init() {
+        // Load API keys
         self.loadAPIKeys()
     }
     
-    public func loadAPIKeys(){
+    let domain: String = "https://api.unsplash.com/"
+    
+    /// API keys
+    public var accessKey : String{
+        get{ return _accessKey ?? "" }
+    }
+    
+    public var secretKey : String{
+        get{ return _secretKey ?? "" }
+    }
+    
+    private var _accessKey : String?
+    private var _secretKey : String?
+    
+    /// Header
+    private var headers : HTTPHeaders{
+        get{ return [
+            "Authorization" : "Client-ID \(self.secretKey)"
+        ] }
+    }
+    
+    
+    private func loadAPIKeys(){
         
         var keyFilePath: String? = nil
         keyFilePath = Bundle.main.path(forResource: sampleKeyFileName, ofType: "json") ?? keyFilePath
         keyFilePath = Bundle.main.path(forResource: debugKeyFileName, ofType: "json") ?? keyFilePath
         
         if(keyFilePath == nil){
-            fatalError("Api key file does not exist.")
+            fatalError("API key file does not exist.")
         }
         
         do{
             let data = try Data(contentsOf: URL(fileURLWithPath: keyFilePath!))
-            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+            let json = try JSON(data: data)
             
-            let apiKeys = json!["api_keys"] as? [String : Any]
-            self.accessKey = apiKeys!["access_key"] as? String
-            self.secretKey = apiKeys!["secret_key"] as? String
+            self._accessKey = json["api_keys"]["access_key"].string
+            self._secretKey = json["api_keys"]["secret_key"].string
             
         }
         catch{
-            fatalError("Can not read json file.")
+            fatalError("Could not read json format for API key file.")
         }
 
+    }
+    
+    public func request(request:MTBaseRequest, method:MTHTTPMethod, success:@escaping (JSON)->Void, fail:@escaping (JSON)->Void){
+        
+        let url = self.domain + request.api!
+            
+        AF.request(url, method: method.rawValue, parameters: request.json, headers: self.headers)
+            .response{ (response) in
+                
+            switch(response.result){
+            case .success(let data):
+                
+                if(response.response?.statusCode == 200){
+                    do{
+                        let json = try JSON(data: data!)
+                        success(json)
+                    }
+                    catch{
+                        print("Could not decode success result from \(url)")
+                    }
+                    
+                }
+                else{
+                    do{
+                        let json = try JSON(data: data!)
+                        fail(json)
+                    }
+                    catch{
+                        print("Could not decode failure errors from \(url)")
+                    }
+
+                }
+                break
+            
+            case .failure(let error):
+                print("\(error.localizedDescription)")
+                break
+                
+            }
+        }
     }
 }

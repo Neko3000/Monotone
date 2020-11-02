@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Hue
 
-class MTColorPalette: NSObject{
+class MTColorPalette{
     
     public static func colorWithDarkMode(darkColor:UIColor, lightColor:UIColor) -> UIColor{
         var color:UIColor?
