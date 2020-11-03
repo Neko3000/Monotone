@@ -10,5 +10,6 @@ target 'Monotone' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'SnapKit', '~> 5.0.0'
   pod 'Hue'
+  pod 'HMSegmentedControl', '1.5.6'
 
 end
