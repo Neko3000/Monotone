@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1423A4DD254BA121009DEEA1 /* MTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423A4DC254BA121009DEEA1 /* MTViewController.swift */; };
+		143F5678254FEA040038761D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F5677254FEA040038761D /* HomeViewController.swift */; };
+		143F567B254FEF320038761D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F567A254FEF320038761D /* HomeHeaderView.swift */; };
 		14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8E9254A589D0021FE3E /* AppDelegate.swift */; };
 		14D5E8EC254A589D0021FE3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */; };
-		14D5E8EE254A589D0021FE3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8ED254A589D0021FE3E /* ViewController.swift */; };
+		14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8ED254A589D0021FE3E /* LoginViewController.swift */; };
 		14D5E8F1254A589D0021FE3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8EF254A589D0021FE3E /* Main.storyboard */; };
 		14D5E8F3254A589E0021FE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8F2254A589E0021FE3E /* Assets.xcassets */; };
 		14D5E8F6254A589E0021FE3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8F4254A589E0021FE3E /* LaunchScreen.storyboard */; };
@@ -39,10 +41,12 @@
 /* Begin PBXFileReference section */
 		0DE40B09FB07DB642D48B327 /* Pods-Monotone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.debug.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.debug.xcconfig"; sourceTree = "<group>"; };
 		1423A4DC254BA121009DEEA1 /* MTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTViewController.swift; sourceTree = "<group>"; };
+		143F5677254FEA040038761D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		143F567A254FEF320038761D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		14D5E8E6254A589D0021FE3E /* Monotone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monotone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D5E8E9254A589D0021FE3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		14D5E8ED254A589D0021FE3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		14D5E8ED254A589D0021FE3E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		14D5E8F0254A589D0021FE3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14D5E8F2254A589E0021FE3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14D5E8F5254A589E0021FE3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -94,7 +98,7 @@
 				14F37070254EA14B0086B8CC /* api_keys_sample.json */,
 				14D5E8E9254A589D0021FE3E /* AppDelegate.swift */,
 				14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */,
-				14D5E8ED254A589D0021FE3E /* ViewController.swift */,
+				14D5E8ED254A589D0021FE3E /* LoginViewController.swift */,
 				1423A4DC254BA121009DEEA1 /* MTViewController.swift */,
 				14D5E8EF254A589D0021FE3E /* Main.storyboard */,
 				14D5E8F2254A589E0021FE3E /* Assets.xcassets */,
@@ -106,6 +110,8 @@
 				14F3707C254EABDA0086B8CC /* MTBaseResponse.swift */,
 				14F3707F254ECE6F0086B8CC /* MTHTTPMethod.swift */,
 				14F37082254ED2F60086B8CC /* MTPhotoRequest.swift */,
+				143F5677254FEA040038761D /* HomeViewController.swift */,
+				143F567A254FEF320038761D /* HomeHeaderView.swift */,
 			);
 			path = Monotone;
 			sourceTree = "<group>";
@@ -272,13 +278,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14D5E8EE254A589D0021FE3E /* ViewController.swift in Sources */,
+				143F567B254FEF320038761D /* HomeHeaderView.swift in Sources */,
+				14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */,
 				1423A4DD254BA121009DEEA1 /* MTViewController.swift in Sources */,
 				14F3707D254EABDA0086B8CC /* MTBaseResponse.swift in Sources */,
 				14F37080254ECE6F0086B8CC /* MTHTTPMethod.swift in Sources */,
 				14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */,
 				14F36F91254D3AB80086B8CC /* MTColorPalette.swift in Sources */,
 				14D5E8EC254A589D0021FE3E /* SceneDelegate.swift in Sources */,
+				143F5678254FEA040038761D /* HomeViewController.swift in Sources */,
 				14F36FB0254D53940086B8CC /* MTNetworkManager.swift in Sources */,
 				14F3707A254EA9300086B8CC /* MTBaseRequest.swift in Sources */,
 				14F37083254ED2F60086B8CC /* MTPhotoRequest.swift in Sources */,

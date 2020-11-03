@@ -10,7 +10,7 @@ import SnapKit
 
 import SwiftyJSON
 
-class ViewController: MTViewController {
+class LoginViewController: MTViewController {
     
     private var logoImageView : UIImageView?
     private var facebookLoginBtn : UIButton?
