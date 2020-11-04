@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Monotone
+
+  Created by Xueliang Chen on 2020/11/4.
+  
+*/
+
+"unsplash_home_title" = "Unsplash";
+"unsplash_home_description" = "Beautiful, free photos.\nGifted by the world’s most generous community of \nphotographers. 🎁";
+"unsplash_home_segment_editoral" = "Editoral";
+"unsplash_home_segment_following" = "Following";

@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: MTViewController {
     
+    private var homeHeaderView : HomeHeaderView?
     private var photoTableView : UITableView?
     
 
@@ -20,6 +21,12 @@ class HomeViewController: MTViewController {
     
     override func buildSubviews() {
         
+        self.homeHeaderView = HomeHeaderView()
+        self.view.addSubview(self.homeHeaderView!)
+        self.homeHeaderView!.snp.makeConstraints { (make) in
+            make.left.right.top.equalTo(self.view)
+            make.height.equalTo(256.0);
+        }
     }
 
     /*

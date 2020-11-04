@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1409A7972550EAAB0005B702 /* MTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409A7962550EAAB0005B702 /* MTView.swift */; };
 		1423A4DD254BA121009DEEA1 /* MTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423A4DC254BA121009DEEA1 /* MTViewController.swift */; };
 		143F5678254FEA040038761D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F5677254FEA040038761D /* HomeViewController.swift */; };
 		143F567B254FEF320038761D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F567A254FEF320038761D /* HomeHeaderView.swift */; };
+		148FF23B255237A600CADB4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 148FF23D255237A600CADB4C /* Localizable.strings */; };
 		14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8E9254A589D0021FE3E /* AppDelegate.swift */; };
 		14D5E8EC254A589D0021FE3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */; };
 		14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8ED254A589D0021FE3E /* LoginViewController.swift */; };
@@ -40,9 +42,16 @@
 
 /* Begin PBXFileReference section */
 		0DE40B09FB07DB642D48B327 /* Pods-Monotone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.debug.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.debug.xcconfig"; sourceTree = "<group>"; };
+		1409A7962550EAAB0005B702 /* MTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTView.swift; sourceTree = "<group>"; };
 		1423A4DC254BA121009DEEA1 /* MTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTViewController.swift; sourceTree = "<group>"; };
 		143F5677254FEA040038761D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		143F567A254FEF320038761D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		148FF2352552366500CADB4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		148FF2362552366500CADB4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		148FF23C255237A600CADB4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		148FF23F255237B000CADB4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		148FF241255237EA00CADB4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		148FF243255237F600CADB4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		14D5E8E6254A589D0021FE3E /* Monotone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monotone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D5E8E9254A589D0021FE3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +121,8 @@
 				14F37082254ED2F60086B8CC /* MTPhotoRequest.swift */,
 				143F5677254FEA040038761D /* HomeViewController.swift */,
 				143F567A254FEF320038761D /* HomeHeaderView.swift */,
+				1409A7962550EAAB0005B702 /* MTView.swift */,
+				148FF23D255237A600CADB4C /* Localizable.strings */,
 			);
 			path = Monotone;
 			sourceTree = "<group>";
@@ -178,6 +189,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 14D5E8DD254A589D0021FE3E;
 			productRefGroup = 14D5E8E7254A589D0021FE3E /* Products */;
@@ -194,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				148FF23B255237A600CADB4C /* Localizable.strings in Resources */,
 				14D5E8F3254A589E0021FE3E /* Assets.xcassets in Resources */,
 				14D5E8F6254A589E0021FE3E /* LaunchScreen.storyboard in Resources */,
 				14F37071254EA14B0086B8CC /* api_keys_sample.json in Resources */,
@@ -284,6 +297,7 @@
 				14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */,
 				1423A4DD254BA121009DEEA1 /* MTViewController.swift in Sources */,
 				14F3707D254EABDA0086B8CC /* MTBaseResponse.swift in Sources */,
+				1409A7972550EAAB0005B702 /* MTView.swift in Sources */,
 				14F37080254ECE6F0086B8CC /* MTHTTPMethod.swift in Sources */,
 				14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */,
 				14F36F91254D3AB80086B8CC /* MTColorPalette.swift in Sources */,
@@ -298,10 +312,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		148FF23D255237A600CADB4C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				148FF23C255237A600CADB4C /* en */,
+				148FF23F255237B000CADB4C /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		14D5E8EF254A589D0021FE3E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				14D5E8F0254A589D0021FE3E /* Base */,
+				148FF2352552366500CADB4C /* zh-Hans */,
+				148FF243255237F600CADB4C /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -310,6 +335,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				14D5E8F5254A589E0021FE3E /* Base */,
+				148FF2362552366500CADB4C /* zh-Hans */,
+				148FF241255237EA00CADB4C /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -321,6 +348,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -382,6 +410,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

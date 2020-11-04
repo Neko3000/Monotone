@@ -63,6 +63,11 @@ class MTColorPalette{
         return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#9b9b9b")
     }
     
+    public static var colorGrayNormal:UIColor{
+        // FIXME: waiting dark color
+        return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#999999")
+    }
+    
     
     // More
     public static var colorDenim:UIColor{
