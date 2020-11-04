@@ -8,6 +8,7 @@ target 'Monotone' do
   # Pods for Monotone
   pod 'Alamofire', '5.3.0'
   pod 'SwiftyJSON', '4.3.0'
+  pod 'MJRefresh', '3.5.0' 
   pod 'SnapKit', '5.0.1'
   pod 'Hue', '5.0.0'
   pod 'HMSegmentedControl', '1.5.6'
