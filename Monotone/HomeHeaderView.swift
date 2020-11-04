@@ -28,6 +28,7 @@ class HomeHeaderView: MTView {
     
     override func buildSubviews(){
         
+        // menuBtn.
         self.menuBtn = UIButton()
         self.menuBtn!.setImage(UIImage(named: "header-menu"), for: .normal)
         self.addSubview(self.menuBtn!)
@@ -37,6 +38,7 @@ class HomeHeaderView: MTView {
             make.width.height.equalTo(36.0)
         }
         
+        // searchBtn.
         self.searchBtn = UIButton()
         self.searchBtn!.setImage(UIImage(named: "header-search"), for: .normal)
         self.addSubview(self.searchBtn!)
@@ -46,6 +48,7 @@ class HomeHeaderView: MTView {
             make.width.height.equalTo(36.0)
         }
         
+        // titleLabel.
         self.titleLabel = UILabel()
         self.titleLabel!.text = NSLocalizedString("unsplash_home_title", comment: "Unsplash")
         self.titleLabel!.textColor = MTColorPalette.colorBlack
@@ -56,6 +59,7 @@ class HomeHeaderView: MTView {
             make.top.equalTo(self).offset(91.0)
         }
         
+        // descriptionLabel.
         let attributedDescription = NSMutableAttributedString(string: NSLocalizedString("unsplash_home_description", comment: "Beautiful, free photos.\nGifted by the world’s most generous community of \nphotographers. 🎁"))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6.0
@@ -75,6 +79,7 @@ class HomeHeaderView: MTView {
             make.bottom.equalTo(self).offset(-60.0)
         }
         
+        // segmentedControl.
         self.segmentedControl = HMSegmentedControl(sectionTitles: [
             NSLocalizedString("unsplash_home_segment_editoral", comment: "Editoral"),
             NSLocalizedString("unsplash_home_segment_following", comment: "Follwing")
@@ -90,14 +95,12 @@ class HomeHeaderView: MTView {
         self.segmentedControl!.selectionIndicatorColor = MTColorPalette.colorBlack
         self.segmentedControl!.selectionIndicatorHeight = 1.0
         self.segmentedControl!.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.dynamic
-
         self.addSubview(self.segmentedControl!)
         self.segmentedControl!.snp.makeConstraints { (make) in
             make.right.bottom.equalTo(self)
             make.height.equalTo(38.0)
             make.width.equalTo(self).multipliedBy(1.0/3)
         }
-        
     }
     
 }
