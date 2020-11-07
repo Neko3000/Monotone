@@ -3,6 +3,12 @@ PODS:
   - HMSegmentedControl (1.5.6)
   - Hue (5.0.0)
   - MJRefresh (3.5.0)
+  - RxCocoa (6.0.0-rc.1):
+    - RxRelay (= 6.0.0-rc.1)
+    - RxSwift (= 6.0.0-rc.1)
+  - RxRelay (6.0.0-rc.1):
+    - RxSwift (= 6.0.0-rc.1)
+  - RxSwift (6.0.0-rc.1)
   - SnapKit (5.0.1)
   - SwiftyJSON (4.3.0)
 
@@ -11,6 +17,8 @@ DEPENDENCIES:
   - HMSegmentedControl (= 1.5.6)
   - Hue (= 5.0.0)
   - MJRefresh (= 3.5.0)
+  - RxCocoa (= 6.0.0-rc.1)
+  - RxSwift (= 6.0.0-rc.1)
   - SnapKit (= 5.0.1)
   - SwiftyJSON (= 4.3.0)
 
@@ -20,6 +28,9 @@ SPEC REPOS:
     - HMSegmentedControl
     - Hue
     - MJRefresh
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SnapKit
     - SwiftyJSON
 
@@ -28,9 +39,12 @@ SPEC CHECKSUMS:
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
   Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  RxCocoa: a28d75145c07b7547b85faf1e1ad8b25af88a752
+  RxRelay: 56abad6d32f73567858506d08735fdb341935b9a
+  RxSwift: dae1a32c48148897494b9e2a6b00a68b40694236
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: d23f6f956af02bdb83de016a23e1ce807bbbb3b1
+PODFILE CHECKSUM: 3ae4090a2718e042198328f1a4dd6740f09d5ba6
 
 COCOAPODS: 1.6.1
