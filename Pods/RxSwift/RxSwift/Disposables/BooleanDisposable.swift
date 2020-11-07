@@ -10,7 +10,7 @@
 public final class BooleanDisposable : Cancelable {
 
     internal static let BooleanDisposableTrue = BooleanDisposable(isDisposed: true)
-    private var disposed = false
+    private var _isDisposed = false
     
     /// Initializes a new instance of the `BooleanDisposable` class
     public init() {
@@ -18,16 +18,16 @@ public final class BooleanDisposable : Cancelable {
     
     /// Initializes a new instance of the `BooleanDisposable` class with given value
     public init(isDisposed: Bool) {
-        self.disposed = isDisposed
+        self._isDisposed = isDisposed
     }
     
     /// - returns: Was resource disposed.
     public var isDisposed: Bool {
-        self.disposed
+        return self._isDisposed
     }
     
     /// Sets the status to disposed, which can be observer through the `isDisposed` property.
     public func dispose() {
-        self.disposed = true
+        self._isDisposed = true
     }
 }

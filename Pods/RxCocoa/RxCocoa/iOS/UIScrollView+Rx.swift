@@ -33,6 +33,13 @@
             return ControlProperty(values: proxy.contentOffsetBehaviorSubject, valueSink: bindingObserver)
         }
 
+        /// Bindable sink for `scrollEnabled` property.
+        public var isScrollEnabled: Binder<Bool> {
+            return Binder(self.base) { scrollView, scrollEnabled in
+                scrollView.isScrollEnabled = scrollEnabled
+            }
+        }
+
         /// Reactive wrapper for delegate method `scrollViewDidScroll`
         public var didScroll: ControlEvent<Void> {
             let source = RxScrollViewDelegateProxy.proxy(for: base).contentOffsetPublishSubject

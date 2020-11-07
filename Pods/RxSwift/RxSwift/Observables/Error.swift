@@ -15,19 +15,19 @@ extension ObservableType {
      - returns: The observable sequence that terminates with specified error.
      */
     public static func error(_ error: Swift.Error) -> Observable<Element> {
-        ErrorProducer(error: error)
+        return ErrorProducer(error: error)
     }
 }
 
 final private class ErrorProducer<Element>: Producer<Element> {
-    private let error: Swift.Error
+    private let _error: Swift.Error
     
     init(error: Swift.Error) {
-        self.error = error
+        self._error = error
     }
     
     override func subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Observer.Element == Element {
-        observer.on(.error(self.error))
+        observer.on(.error(self._error))
         return Disposables.create()
     }
 }

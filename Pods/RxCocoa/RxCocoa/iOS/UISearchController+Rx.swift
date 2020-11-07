@@ -11,6 +11,7 @@
     import RxSwift
     import UIKit
     
+    @available(iOS 8.0, *)
     extension Reactive where Base: UISearchController {
         /// Reactive wrapper for `delegate`.
         /// For more information take a look at `DelegateProxyType` protocol documentation.

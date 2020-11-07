@@ -14,7 +14,7 @@ import UIKit
 extension Reactive where Base: UIDatePicker {
     /// Reactive wrapper for `date` property.
     public var date: ControlProperty<Date> {
-        value
+        return value
     }
 
     /// Reactive wrapper for `date` property.

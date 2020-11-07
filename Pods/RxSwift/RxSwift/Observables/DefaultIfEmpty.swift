@@ -17,31 +17,31 @@ extension ObservableType {
      - returns: An observable sequence which emits default element end completes in case the original sequence is empty
      */
     public func ifEmpty(default: Element) -> Observable<Element> {
-        DefaultIfEmpty(source: self.asObservable(), default: `default`)
+        return DefaultIfEmpty(source: self.asObservable(), default: `default`)
     }
 }
 
 final private class DefaultIfEmptySink<Observer: ObserverType>: Sink<Observer>, ObserverType {
     typealias Element = Observer.Element 
-    private let `default`: Element
-    private var isEmpty = true
+    private let _default: Element
+    private var _isEmpty = true
     
     init(default: Element, observer: Observer, cancel: Cancelable) {
-        self.default = `default`
+        self._default = `default`
         super.init(observer: observer, cancel: cancel)
     }
     
     func on(_ event: Event<Element>) {
         switch event {
         case .next:
-            self.isEmpty = false
+            self._isEmpty = false
             self.forwardOn(event)
         case .error:
             self.forwardOn(event)
             self.dispose()
         case .completed:
-            if self.isEmpty {
-                self.forwardOn(.next(self.default))
+            if self._isEmpty {
+                self.forwardOn(.next(self._default))
             }
             self.forwardOn(.completed)
             self.dispose()
@@ -50,17 +50,17 @@ final private class DefaultIfEmptySink<Observer: ObserverType>: Sink<Observer>, 
 }
 
 final private class DefaultIfEmpty<SourceType>: Producer<SourceType> {
-    private let source: Observable<SourceType>
-    private let `default`: SourceType
+    private let _source: Observable<SourceType>
+    private let _default: SourceType
     
     init(source: Observable<SourceType>, `default`: SourceType) {
-        self.source = source
-        self.default = `default`
+        self._source = source
+        self._default = `default`
     }
     
     override func run<Observer: ObserverType>(_ observer: Observer, cancel: Cancelable) -> (sink: Disposable, subscription: Disposable) where Observer.Element == SourceType {
-        let sink = DefaultIfEmptySink(default: self.default, observer: observer, cancel: cancel)
-        let subscription = self.source.subscribe(sink)
+        let sink = DefaultIfEmptySink(default: self._default, observer: observer, cancel: cancel)
+        let subscription = self._source.subscribe(sink)
         return (sink: sink, subscription: subscription)
     }
 }

@@ -10,7 +10,7 @@
 ///
 /// Sequence grammar: 
 /// **next\* (error | completed)**
-@frozen public enum Event<Element> {
+public enum Event<Element> {
     /// Next element is produced.
     case next(Element)
 
@@ -94,11 +94,16 @@ public protocol EventConvertible {
     /// Type of element in event
     associatedtype Element
 
+    @available(*, deprecated, renamed: "Element")
+    typealias ElementType = Element
+
     /// Event representation of this instance
     var event: Event<Element> { get }
 }
 
 extension Event: EventConvertible {
     /// Event representation of this instance
-    public var event: Event<Element> { self }
+    public var event: Event<Element> {
+        return self
+    }
 }

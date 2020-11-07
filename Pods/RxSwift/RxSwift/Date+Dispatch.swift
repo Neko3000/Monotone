@@ -6,8 +6,9 @@
 //  Copyright © 2019 Krunoslav Zaher. All rights reserved.
 //
 
-import Dispatch
-import Foundation
+import struct Foundation.Date
+import struct Foundation.TimeInterval
+import enum Dispatch.DispatchTimeInterval
 
 extension DispatchTimeInterval {
     var convertToSecondsFactor: Double {

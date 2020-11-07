@@ -65,7 +65,7 @@ extension Reactive where Base: UIGestureRecognizer {
             }
             
             return observer
-        }.take(until: deallocated)
+        }.takeUntil(deallocated)
         
         return ControlEvent(events: source)
     }

@@ -15,7 +15,7 @@ extension Reactive where Base: NSButton {
     
     /// Reactive wrapper for control event.
     public var tap: ControlEvent<Void> {
-        self.controlEvent
+        return self.controlEvent
     }
     
     /// Reactive wrapper for `state` property`.

@@ -16,6 +16,6 @@ extension DispatchQueue {
     }()
 
     static var isMain: Bool {
-        DispatchQueue.getSpecific(key: token) != nil
+        return DispatchQueue.getSpecific(key: token) != nil
     }
 }

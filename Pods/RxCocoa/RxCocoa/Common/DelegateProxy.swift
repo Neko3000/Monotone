@@ -274,7 +274,7 @@
             self.result = dispatcher
                 .do(onSubscribed: { weakDelegateProxy?.checkSelectorIsObservable(selector); weakDelegateProxy?.reset() }, onDispose: { weakDelegateProxy?.reset() })
                 .share()
-                .subscribe(on: mainScheduler)
+                .subscribeOn(mainScheduler)
         }
 
         var on: (Event<[Any]>) -> Void {

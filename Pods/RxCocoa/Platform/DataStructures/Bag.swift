@@ -135,7 +135,7 @@ struct Bag<T> : CustomDebugStringConvertible {
 extension Bag {
     /// A textual representation of `self`, suitable for debugging.
     var debugDescription : String {
-        "\(self.count) elements in Bag"
+        return "\(self.count) elements in Bag"
     }
 }
 
@@ -177,5 +177,5 @@ extension BagKey: Hashable {
 }
 
 func ==(lhs: BagKey, rhs: BagKey) -> Bool {
-    lhs.rawValue == rhs.rawValue
+    return lhs.rawValue == rhs.rawValue
 }

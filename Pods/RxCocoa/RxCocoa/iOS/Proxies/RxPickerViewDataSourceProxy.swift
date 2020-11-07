@@ -19,11 +19,11 @@ private let pickerViewDataSourceNotSet = PickerViewDataSourceNotSet()
 
 final private class PickerViewDataSourceNotSet: NSObject, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        0
+        return 0
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        0
+        return 0
     }
 }
 
@@ -53,12 +53,12 @@ public class RxPickerViewDataSourceProxy
 
     /// Required delegate method implementation.
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        (_requiredMethodsDataSource ?? pickerViewDataSourceNotSet).numberOfComponents(in: pickerView)
+        return (_requiredMethodsDataSource ?? pickerViewDataSourceNotSet).numberOfComponents(in: pickerView)
     }
 
     /// Required delegate method implementation.
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        (_requiredMethodsDataSource ?? pickerViewDataSourceNotSet).pickerView(pickerView, numberOfRowsInComponent: component)
+        return (_requiredMethodsDataSource ?? pickerViewDataSourceNotSet).pickerView(pickerView, numberOfRowsInComponent: component)
     }
     
     /// For more information take a look at `DelegateProxyType`.

@@ -15,15 +15,11 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
 
      In this form it's equivalent to `subscribe` method, but it communicates intent better.
 
-     - parameter to: Observers that receives events.
+     - parameter to: Observer that receives events.
      - returns: Disposable object that can be used to unsubscribe the observer from the subject.
      */
-    public func emit<Observer: ObserverType>(to observers: Observer...) -> Disposable where Observer.Element == Element {
-        return self.asSharedSequence()
-                   .asObservable()
-                   .subscribe { event in
-                    observers.forEach { $0.on(event) }
-                   }
+    public func emit<Observer: ObserverType>(to observer: Observer) -> Disposable where Observer.Element == Element {
+        return self.asSharedSequence().asObservable().subscribe(observer)
     }
 
     /**
@@ -31,85 +27,56 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
 
      In this form it's equivalent to `subscribe` method, but it communicates intent better.
 
-     - parameter to: Observers that receives events.
+     - parameter to: Observer that receives events.
      - returns: Disposable object that can be used to unsubscribe the observer from the subject.
      */
-    public func emit<Observer: ObserverType>(to observers: Observer...) -> Disposable where Observer.Element == Element? {
-        return self.asSharedSequence()
-                   .asObservable()
-                   .map { $0 as Element? }
-                   .subscribe { event in
-                       observers.forEach { $0.on(event) }
-                   }
+    public func emit<Observer: ObserverType>(to observer: Observer) -> Disposable where Observer.Element == Element? {
+        return self.asSharedSequence().asObservable().map { $0 as Element? }.subscribe(observer)
     }
 
     /**
      Creates new subscription and sends elements to `BehaviorRelay`.
-     - parameter to: Target relays for sequence elements.
+     - parameter relay: Target relay for sequence elements.
      - returns: Disposable object that can be used to unsubscribe the observer from the relay.
      */
-    public func emit(to relays: BehaviorRelay<Element>...) -> Disposable {
+    public func emit(to relay: BehaviorRelay<Element>) -> Disposable {
         return self.emit(onNext: { e in
-            relays.forEach { $0.accept(e) }
+            relay.accept(e)
         })
     }
     
     /**
      Creates new subscription and sends elements to `BehaviorRelay`.
-     - parameter to: Target relays for sequence elements.
+     - parameter relay: Target relay for sequence elements.
      - returns: Disposable object that can be used to unsubscribe the observer from the relay.
      */
-    public func emit(to relays: BehaviorRelay<Element?>...) -> Disposable {
+    public func emit(to relay: BehaviorRelay<Element?>) -> Disposable {
         return self.emit(onNext: { e in
-            relays.forEach { $0.accept(e) }
+            relay.accept(e)
         })
     }
     
     /**
-     Creates new subscription and sends elements to `PublishRelay`.
+     Creates new subscription and sends elements to relay.
 
-     - parameter to: Target relays for sequence elements.
+     - parameter relay: Target relay for sequence elements.
      - returns: Disposable object that can be used to unsubscribe the observer from the relay.
      */
-    public func emit(to relays: PublishRelay<Element>...) -> Disposable {
+    public func emit(to relay: PublishRelay<Element>) -> Disposable {
         return self.emit(onNext: { e in
-            relays.forEach { $0.accept(e) }
+            relay.accept(e)
         })
     }
 
     /**
-     Creates new subscription and sends elements to `PublishRelay`.
+     Creates new subscription and sends elements to relay.
 
      - parameter to: Target relay for sequence elements.
      - returns: Disposable object that can be used to unsubscribe the observer from the relay.
      */
-    public func emit(to relays: PublishRelay<Element?>...) -> Disposable {
+    public func emit(to relay: PublishRelay<Element?>) -> Disposable {
         return self.emit(onNext: { e in
-            relays.forEach { $0.accept(e) }
-        })
-    }
-
-    /**
-     Creates new subscription and sends elements to `ReplayRelay`.
-
-     - parameter to: Target relays for sequence elements.
-     - returns: Disposable object that can be used to unsubscribe the observer from the relay.
-     */
-    public func emit(to relays: ReplayRelay<Element>...) -> Disposable {
-        return self.emit(onNext: { e in
-            relays.forEach { $0.accept(e) }
-        })
-    }
-
-    /**
-     Creates new subscription and sends elements to `ReplayRelay`.
-
-     - parameter to: Target relay for sequence elements.
-     - returns: Disposable object that can be used to unsubscribe the observer from the relay.
-     */
-    public func emit(to relays: ReplayRelay<Element?>...) -> Disposable {
-        return self.emit(onNext: { e in
-            relays.forEach { $0.accept(e) }
+            relay.accept(e)
         })
     }
 
@@ -126,18 +93,9 @@ extension SharedSequenceConvertibleType where SharingStrategy == SignalSharingSt
      - returns: Subscription object used to unsubscribe from the observable sequence.
      */
     public func emit(onNext: ((Element) -> Void)? = nil, onCompleted: (() -> Void)? = nil, onDisposed: (() -> Void)? = nil) -> Disposable {
-        self.asObservable().subscribe(onNext: onNext, onCompleted: onCompleted, onDisposed: onDisposed)
-    }
-
-    /**
-    Subscribes to this `Signal` with a no-op.
-    This method can be only called from `MainThread`.
-
-    - note: This is an alias of `emit(onNext: nil, onCompleted: nil, onDisposed: nil)` used to fix an ambiguity bug in Swift: https://bugs.swift.org/browse/SR-13657
-
-    - returns: Subscription object used to unsubscribe from the observable sequence.
-    */
-    public func emit() -> Disposable {
-        emit(onNext: nil, onCompleted: nil, onDisposed: nil)
+        return self.asObservable().subscribe(onNext: onNext, onCompleted: onCompleted, onDisposed: onDisposed)
     }
 }
+
+
+

@@ -26,5 +26,7 @@ extension Disposables {
     /**
      Creates a disposable that does nothing on disposal.
      */
-    static public func create() -> Disposable { NopDisposable.noOp }
+    static public func create() -> Disposable {
+        return NopDisposable.noOp
+    }
 }

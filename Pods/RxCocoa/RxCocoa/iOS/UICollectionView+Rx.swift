@@ -166,7 +166,7 @@ extension Reactive where Base: UICollectionView {
     ///
     /// For more information take a look at `DelegateProxyType` protocol documentation.
     public var dataSource: DelegateProxy<UICollectionView, UICollectionViewDataSource> {
-        RxCollectionViewDataSourceProxy.proxy(for: base)
+        return RxCollectionViewDataSourceProxy.proxy(for: base)
     }
     
     /// Installs data source as forwarding delegate on `rx.dataSource`.
@@ -178,7 +178,7 @@ extension Reactive where Base: UICollectionView {
     /// - returns: Disposable object that can be used to unbind the data source.
     public func setDataSource(_ dataSource: UICollectionViewDataSource)
         -> Disposable {
-        RxCollectionViewDataSourceProxy.installForwardDelegate(dataSource, retainDelegate: false, onProxyForObject: self.base)
+        return RxCollectionViewDataSourceProxy.installForwardDelegate(dataSource, retainDelegate: false, onProxyForObject: self.base)
     }
    
     /// Reactive wrapper for `delegate` message `collectionView(_:didSelectItemAtIndexPath:)`.
@@ -324,7 +324,7 @@ extension Reactive where Base: UICollectionView {
     ///
     /// For more information take a look at `DelegateProxyType` protocol documentation.
     public var prefetchDataSource: DelegateProxy<UICollectionView, UICollectionViewDataSourcePrefetching> {
-        RxCollectionViewDataSourcePrefetchingProxy.proxy(for: base)
+        return RxCollectionViewDataSourcePrefetchingProxy.proxy(for: base)
     }
 
     /**

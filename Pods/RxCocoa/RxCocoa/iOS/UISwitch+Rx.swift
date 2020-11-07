@@ -15,7 +15,7 @@ extension Reactive where Base: UISwitch {
 
     /// Reactive wrapper for `isOn` property.
     public var isOn: ControlProperty<Bool> {
-        value
+        return value
     }
 
     /// Reactive wrapper for `isOn` property.

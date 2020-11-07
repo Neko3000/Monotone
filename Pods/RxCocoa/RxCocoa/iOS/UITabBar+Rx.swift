@@ -74,7 +74,7 @@ extension Reactive where Base: UITabBar {
     ///
     /// For more information take a look at `DelegateProxyType` protocol documentation.
     public var delegate: DelegateProxy<UITabBar, UITabBarDelegate> {
-        RxTabBarDelegateProxy.proxy(for: base)
+        return RxTabBarDelegateProxy.proxy(for: base)
     }
 
     /// Reactive wrapper for `delegate` message `tabBar(_:didSelect:)`.

@@ -37,7 +37,7 @@ open class RxTabBarDelegateProxy
 
     /// For more information take a look at `DelegateProxyType`.
     open class func currentDelegate(for object: ParentObject) -> UITabBarDelegate? {
-        object.delegate
+        return object.delegate
     }
 
     /// For more information take a look at `DelegateProxyType`.

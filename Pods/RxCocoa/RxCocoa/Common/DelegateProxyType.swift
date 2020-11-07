@@ -8,7 +8,9 @@
 
 #if !os(Linux)
 
-    import Foundation
+    import func Foundation.objc_getAssociatedObject
+    import func Foundation.objc_setAssociatedObject
+
     import RxSwift
 
 /**
@@ -129,19 +131,19 @@ extension DelegateProxyType {
 // workaround of Delegate: class
 extension DelegateProxyType {
     static func _currentDelegate(for object: ParentObject) -> AnyObject? {
-        currentDelegate(for: object).map { $0 as AnyObject }
+        return currentDelegate(for: object).map { $0 as AnyObject }
     }
     
     static func _setCurrentDelegate(_ delegate: AnyObject?, to object: ParentObject) {
-        setCurrentDelegate(castOptionalOrFatalError(delegate), to: object)
+        return setCurrentDelegate(castOptionalOrFatalError(delegate), to: object)
     }
     
     func _forwardToDelegate() -> AnyObject? {
-        self.forwardToDelegate().map { $0 as AnyObject }
+        return self.forwardToDelegate().map { $0 as AnyObject }
     }
     
     func _setForwardToDelegate(_ forwardToDelegate: AnyObject?, retainDelegate: Bool) {
-        self.setForwardToDelegate(castOptionalOrFatalError(forwardToDelegate), retainDelegate: retainDelegate)
+        return self.setForwardToDelegate(castOptionalOrFatalError(forwardToDelegate), retainDelegate: retainDelegate)
     }
 }
 
@@ -158,7 +160,7 @@ extension DelegateProxyType {
     /// Creates new proxy for target object.
     /// Should not call this function directory, use 'DelegateProxy.proxy(for:)'
     public static func createProxy(for object: AnyObject) -> Self {
-        castOrFatalError(factory.createProxy(for: object))
+        return castOrFatalError(factory.createProxy(for: object))
     }
 
     /// Returns existing proxy for object or installs new instance of delegate proxy.
@@ -241,7 +243,7 @@ extension DelegateProxyType {
 // private extensions
 extension DelegateProxyType {
     private static var factory: DelegateProxyFactory {
-        DelegateProxyFactory.sharedFactory(for: self)
+        return DelegateProxyFactory.sharedFactory(for: self)
     }
 
     private static func assignedProxy(for object: ParentObject) -> AnyObject? {
@@ -265,7 +267,7 @@ public protocol HasDelegate: AnyObject {
 
 extension DelegateProxyType where ParentObject: HasDelegate, Self.Delegate == ParentObject.Delegate {
     public static func currentDelegate(for object: ParentObject) -> Delegate? {
-        object.delegate
+        return object.delegate
     }
 
     public static func setCurrentDelegate(_ delegate: Delegate?, to object: ParentObject) {
@@ -284,7 +286,7 @@ public protocol HasDataSource: AnyObject {
 
 extension DelegateProxyType where ParentObject: HasDataSource, Self.Delegate == ParentObject.DataSource {
     public static func currentDelegate(for object: ParentObject) -> Delegate? {
-        object.dataSource
+        return object.dataSource
     }
 
     public static func setCurrentDelegate(_ delegate: Delegate?, to object: ParentObject) {
@@ -305,7 +307,7 @@ public protocol HasPrefetchDataSource: AnyObject {
 @available(iOS 10.0, tvOS 10.0, *)
 extension DelegateProxyType where ParentObject: HasPrefetchDataSource, Self.Delegate == ParentObject.PrefetchDataSource {
     public static func currentDelegate(for object: ParentObject) -> Delegate? {
-        object.prefetchDataSource
+        return object.prefetchDataSource
     }
 
     public static func setCurrentDelegate(_ delegate: Delegate?, to object: ParentObject) {
@@ -323,22 +325,18 @@ extension DelegateProxyType where ParentObject: HasPrefetchDataSource, Self.Dele
                 , DelegateProxy.Delegate: AnyObject {
                 let proxy = DelegateProxy.proxy(for: object)
                 let unregisterDelegate = DelegateProxy.installForwardDelegate(dataSource, retainDelegate: retainDataSource, onProxyForObject: object)
-
-                // Do not perform layoutIfNeeded if the object is still not in the view heirarchy
-                if object.window != nil {
-                    // this is needed to flush any delayed old state (https://github.com/RxSwiftCommunity/RxDataSources/pull/75)
-                    object.layoutIfNeeded()
-                }
+                // this is needed to flush any delayed old state (https://github.com/RxSwiftCommunity/RxDataSources/pull/75)
+                object.layoutIfNeeded()
 
                 let subscription = self.asObservable()
-                    .observe(on:MainScheduler())
-                    .catch { error in
+                    .observeOn(MainScheduler())
+                    .catchError { error in
                         bindingError(error)
                         return Observable.empty()
                     }
                     // source can never end, otherwise it would release the subscriber, and deallocate the data source
                     .concat(Observable.never())
-                    .take(until: object.rx.deallocated)
+                    .takeUntil(object.rx.deallocated)
                     .subscribe { [weak object] (event: Event<Element>) in
 
                         if let object = object {
@@ -360,11 +358,7 @@ extension DelegateProxyType where ParentObject: HasPrefetchDataSource, Self.Dele
                     
                 return Disposables.create { [weak object] in
                     subscription.dispose()
-
-                    if object?.window != nil {
-                        object?.layoutIfNeeded()
-                    }
-
+                    object?.layoutIfNeeded()
                     unregisterDelegate.dispose()
                 }
             }

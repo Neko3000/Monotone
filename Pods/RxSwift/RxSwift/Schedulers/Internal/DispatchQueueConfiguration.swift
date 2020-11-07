@@ -7,7 +7,7 @@
 //
 
 import Dispatch
-import Foundation
+import struct Foundation.TimeInterval
 
 struct DispatchQueueConfiguration {
     let queue: DispatchQueue

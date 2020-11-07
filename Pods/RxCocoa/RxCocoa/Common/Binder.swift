@@ -1,10 +1,12 @@
 //
 //  Binder.swift
-//  RxSwift
+//  RxCocoa
 //
 //  Created by Krunoslav Zaher on 9/17/17.
 //  Copyright © 2017 Krunoslav Zaher. All rights reserved.
 //
+
+import RxSwift
 
 /**
  Observer that enforces interface binding rules:
@@ -18,7 +20,7 @@
 public struct Binder<Value>: ObserverType {
     public typealias Element = Value
     
-    private let binding: (Event<Value>) -> Void
+    private let _binding: (Event<Value>) -> Void
 
     /// Initializes `Binder`
     ///
@@ -28,7 +30,7 @@ public struct Binder<Value>: ObserverType {
     public init<Target: AnyObject>(_ target: Target, scheduler: ImmediateSchedulerType = MainScheduler(), binding: @escaping (Target, Value) -> Void) {
         weak var weakTarget = target
 
-        self.binding = { event in
+        self._binding = { event in
             switch event {
             case .next(let element):
                 _ = scheduler.schedule(element) { element in
@@ -38,7 +40,7 @@ public struct Binder<Value>: ObserverType {
                     return Disposables.create()
                 }
             case .error(let error):
-                rxFatalErrorInDebug("Binding error: \(error)")
+                bindingError(error)
             case .completed:
                 break
             }
@@ -47,13 +49,13 @@ public struct Binder<Value>: ObserverType {
 
     /// Binds next element to owner view as described in `binding`.
     public func on(_ event: Event<Value>) {
-        self.binding(event)
+        self._binding(event)
     }
 
     /// Erases type of observer.
     ///
     /// - returns: type erased observer.
     public func asObserver() -> AnyObserver<Value> {
-        AnyObserver(eventHandler: self.on)
+        return AnyObserver(eventHandler: self.on)
     }
 }

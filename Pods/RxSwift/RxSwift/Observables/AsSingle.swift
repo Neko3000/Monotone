@@ -9,22 +9,22 @@
 private final class AsSingleSink<Observer: ObserverType> : Sink<Observer>, ObserverType {
     typealias Element = Observer.Element
 
-    private var element: Event<Element>?
+    private var _element: Event<Element>?
 
     func on(_ event: Event<Element>) {
         switch event {
         case .next:
-            if self.element != nil {
+            if self._element != nil {
                 self.forwardOn(.error(RxError.moreThanOneElement))
                 self.dispose()
             }
 
-            self.element = event
+            self._element = event
         case .error:
             self.forwardOn(event)
             self.dispose()
         case .completed:
-            if let element = self.element {
+            if let element = self._element {
                 self.forwardOn(element)
                 self.forwardOn(.completed)
             }
@@ -37,15 +37,15 @@ private final class AsSingleSink<Observer: ObserverType> : Sink<Observer>, Obser
 }
 
 final class AsSingle<Element>: Producer<Element> {
-    private let source: Observable<Element>
+    private let _source: Observable<Element>
 
     init(source: Observable<Element>) {
-        self.source = source
+        self._source = source
     }
 
     override func run<Observer: ObserverType>(_ observer: Observer, cancel: Cancelable) -> (sink: Disposable, subscription: Disposable) where Observer.Element == Element {
         let sink = AsSingleSink(observer: observer, cancel: cancel)
-        let subscription = self.source.subscribe(sink)
+        let subscription = self._source.subscribe(sink)
         return (sink: sink, subscription: subscription)
     }
 }

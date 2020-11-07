@@ -6,8 +6,9 @@ target 'Monotone' do
   use_frameworks!
 
   # Pods for Monotone
-  pod 'RxSwift', '6.0.0-rc.1'
-  pod 'RxCocoa', '6.0.0-rc.1'
+  pod 'RxSwift', '5.1.1'
+  pod 'RxCocoa', '5.1.1'
+  pod 'Action', '4.2.0' # iOS8.0+
   pod 'Alamofire', '5.3.0'
   pod 'SwiftyJSON', '4.3.0'
   pod 'MJRefresh', '3.5.0' 

@@ -22,12 +22,12 @@ final class AsyncLock<I: InvocableType>
     , SynchronizedDisposeType {
     typealias Action = () -> Void
     
-    private var _lock = SpinLock()
+    var _lock = SpinLock()
     
-    private var queue: Queue<I> = Queue(capacity: 0)
+    private var _queue: Queue<I> = Queue(capacity: 0)
 
-    private var isExecuting: Bool = false
-    private var hasFaulted: Bool = false
+    private var _isExecuting: Bool = false
+    private var _hasFaulted: Bool = false
 
     // lock {
     func lock() {
@@ -40,30 +40,32 @@ final class AsyncLock<I: InvocableType>
     // }
 
     private func enqueue(_ action: I) -> I? {
-        self.lock(); defer { self.unlock() }
-        if self.hasFaulted {
-            return nil
-        }
-        
-        if self.isExecuting {
-            self.queue.enqueue(action)
-            return nil
-        }
-        
-        self.isExecuting = true
-        
-        return action
+        self._lock.lock(); defer { self._lock.unlock() } // {
+            if self._hasFaulted {
+                return nil
+            }
+
+            if self._isExecuting {
+                self._queue.enqueue(action)
+                return nil
+            }
+
+            self._isExecuting = true
+
+            return action
+        // }
     }
 
     private func dequeue() -> I? {
-        self.lock(); defer { self.unlock() }
-        if !self.queue.isEmpty {
-            return self.queue.dequeue()
-        }
-        else {
-            self.isExecuting = false
-            return nil
-        }
+        self._lock.lock(); defer { self._lock.unlock() } // {
+            if !self._queue.isEmpty {
+                return self._queue.dequeue()
+            }
+            else {
+                self._isExecuting = false
+                return nil
+            }
+        // }
     }
 
     func invoke(_ action: I) {
@@ -93,8 +95,8 @@ final class AsyncLock<I: InvocableType>
         self.synchronizedDispose()
     }
 
-    func synchronized_dispose() {
-        self.queue = Queue(capacity: 0)
-        self.hasFaulted = true
+    func _synchronized_dispose() {
+        self._queue = Queue(capacity: 0)
+        self._hasFaulted = true
     }
 }

@@ -31,6 +31,12 @@ extension SharedSequenceConvertibleType {
     /**
      Projects each element of an observable sequence into an optional form and filters all optional results.
      
+     Equivalent to:
+     
+     func compactMap<Result>(_ transform: @escaping (Self.E) -> Result?) -> SharedSequence<SharingStrategy, Result> {
+         return self.map(transform).filter { $0 != nil }.map { $0! }
+     }
+     
      - parameter transform: A transform function to apply to each source element and which returns an element or nil.
      - returns: An observable sequence whose elements are the result of filtering the transform function for each element of the source.
      
@@ -60,7 +66,7 @@ extension SharedSequenceConvertibleType {
 }
 
 // MARK: switchLatest
-extension SharedSequenceConvertibleType where Element: SharedSequenceConvertibleType {
+extension SharedSequenceConvertibleType where Element : SharedSequenceConvertibleType {
     
     /**
     Transforms an observable sequence of observable sequences into an observable sequence
@@ -279,7 +285,7 @@ extension SharedSequenceConvertibleType {
 }
 
 // MARK: merge
-extension SharedSequenceConvertibleType where Element: SharedSequenceConvertibleType {
+extension SharedSequenceConvertibleType where Element : SharedSequenceConvertibleType {
     /**
     Merges elements from all observable sequences in the given enumerable sequence into a single observable sequence.
     

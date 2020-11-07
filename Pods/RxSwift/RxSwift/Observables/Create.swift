@@ -18,7 +18,7 @@ extension ObservableType {
      - returns: The observable sequence with the specified implementation for the `subscribe` method.
      */
     public static func create(_ subscribe: @escaping (AnyObserver<Element>) -> Disposable) -> Observable<Element> {
-        AnonymousObservable(subscribe)
+        return AnonymousObservable(subscribe)
     }
 }
 
@@ -27,10 +27,10 @@ final private class AnonymousObservableSink<Observer: ObserverType>: Sink<Observ
     typealias Parent = AnonymousObservable<Element>
 
     // state
-    private let isStopped = AtomicInt(0)
+    private let _isStopped = AtomicInt(0)
 
     #if DEBUG
-        private let synchronizationTracker = SynchronizationTracker()
+        private let _synchronizationTracker = SynchronizationTracker()
     #endif
 
     override init(observer: Observer, cancel: Cancelable) {
@@ -39,17 +39,17 @@ final private class AnonymousObservableSink<Observer: ObserverType>: Sink<Observ
 
     func on(_ event: Event<Element>) {
         #if DEBUG
-            self.synchronizationTracker.register(synchronizationErrorMessage: .default)
-            defer { self.synchronizationTracker.unregister() }
+            self._synchronizationTracker.register(synchronizationErrorMessage: .default)
+            defer { self._synchronizationTracker.unregister() }
         #endif
         switch event {
         case .next:
-            if load(self.isStopped) == 1 {
+            if load(self._isStopped) == 1 {
                 return
             }
             self.forwardOn(event)
         case .error, .completed:
-            if fetchOr(self.isStopped, 1) == 0 {
+            if fetchOr(self._isStopped, 1) == 0 {
                 self.forwardOn(event)
                 self.dispose()
             }
@@ -57,17 +57,17 @@ final private class AnonymousObservableSink<Observer: ObserverType>: Sink<Observ
     }
 
     func run(_ parent: Parent) -> Disposable {
-        parent.subscribeHandler(AnyObserver(self))
+        return parent._subscribeHandler(AnyObserver(self))
     }
 }
 
 final private class AnonymousObservable<Element>: Producer<Element> {
     typealias SubscribeHandler = (AnyObserver<Element>) -> Disposable
 
-    let subscribeHandler: SubscribeHandler
+    let _subscribeHandler: SubscribeHandler
 
     init(_ subscribeHandler: @escaping SubscribeHandler) {
-        self.subscribeHandler = subscribeHandler
+        self._subscribeHandler = subscribeHandler
     }
 
     override func run<Observer: ObserverType>(_ observer: Observer, cancel: Cancelable) -> (sink: Disposable, subscription: Disposable) where Observer.Element == Element {

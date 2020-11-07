@@ -60,7 +60,7 @@ extension ObservableType {
     - returns: A connectable observable sequence that shares a single subscription to the underlying sequence.
     */
     public func publish() -> ConnectableObservable<Element> {
-        self.multicast { PublishSubject() }
+        return self.multicast { PublishSubject() }
     }
 }
 
@@ -78,7 +78,7 @@ extension ObservableType {
      */
     public func replay(_ bufferSize: Int)
         -> ConnectableObservable<Element> {
-        self.multicast { ReplaySubject.create(bufferSize: bufferSize) }
+        return self.multicast { ReplaySubject.create(bufferSize: bufferSize) }
     }
 
     /**
@@ -92,7 +92,7 @@ extension ObservableType {
      */
     public func replayAll()
         -> ConnectableObservable<Element> {
-        self.multicast { ReplaySubject.createUnbounded() }
+        return self.multicast { ReplaySubject.createUnbounded() }
     }
 }
 
@@ -106,7 +106,7 @@ extension ConnectableObservableType {
     - returns: An observable sequence that stays connected to the source as long as there is at least one subscription to the observable sequence.
     */
     public func refCount() -> Observable<Element> {
-        RefCount(source: self)
+        return RefCount(source: self)
     }
 }
 
@@ -126,7 +126,7 @@ extension ObservableType {
      */
     public func multicast<Subject: SubjectType>(_ subject: Subject)
         -> ConnectableObservable<Subject.Element> where Subject.Observer.Element == Element {
-        ConnectableObservableAdapter(source: self.asObservable(), makeSubject: { subject })
+        return ConnectableObservableAdapter(source: self.asObservable(), makeSubject: { subject })
     }
 
     /**
@@ -143,53 +143,54 @@ extension ObservableType {
      */
     public func multicast<Subject: SubjectType>(makeSubject: @escaping () -> Subject)
         -> ConnectableObservable<Subject.Element> where Subject.Observer.Element == Element {
-        ConnectableObservableAdapter(source: self.asObservable(), makeSubject: makeSubject)
+        return ConnectableObservableAdapter(source: self.asObservable(), makeSubject: makeSubject)
     }
 }
 
 final private class Connection<Subject: SubjectType>: ObserverType, Disposable {
     typealias Element = Subject.Observer.Element
 
-    private var lock: RecursiveLock
+    private var _lock: RecursiveLock
     // state
-    private var parent: ConnectableObservableAdapter<Subject>?
-    private var subscription : Disposable?
-    private var subjectObserver: Subject.Observer
+    private var _parent: ConnectableObservableAdapter<Subject>?
+    private var _subscription : Disposable?
+    private var _subjectObserver: Subject.Observer
 
-    private let disposed = AtomicInt(0)
+    private let _disposed = AtomicInt(0)
 
     init(parent: ConnectableObservableAdapter<Subject>, subjectObserver: Subject.Observer, lock: RecursiveLock, subscription: Disposable) {
-        self.parent = parent
-        self.subscription = subscription
-        self.lock = lock
-        self.subjectObserver = subjectObserver
+        self._parent = parent
+        self._subscription = subscription
+        self._lock = lock
+        self._subjectObserver = subjectObserver
     }
 
     func on(_ event: Event<Subject.Observer.Element>) {
-        if isFlagSet(self.disposed, 1) {
+        if isFlagSet(self._disposed, 1) {
             return
         }
         if event.isStopEvent {
             self.dispose()
         }
-        self.subjectObserver.on(event)
+        self._subjectObserver.on(event)
     }
 
     func dispose() {
-        lock.lock(); defer { lock.unlock() }
-        fetchOr(self.disposed, 1)
-        guard let parent = self.parent else {
+        _lock.lock(); defer { _lock.unlock() } // {
+        fetchOr(self._disposed, 1)
+        guard let parent = _parent else {
             return
         }
 
-        if parent.connection === self {
-            parent.connection = nil
-            parent.subject = nil
+        if parent._connection === self {
+            parent._connection = nil
+            parent._subject = nil
         }
-        self.parent = nil
+        self._parent = nil
 
-        self.subscription?.dispose()
-        self.subscription = nil
+        self._subscription?.dispose()
+        self._subscription = nil
+        // }
     }
 }
 
@@ -197,49 +198,49 @@ final private class ConnectableObservableAdapter<Subject: SubjectType>
     : ConnectableObservable<Subject.Element> {
     typealias ConnectionType = Connection<Subject>
 
-    private let source: Observable<Subject.Observer.Element>
-    private let makeSubject: () -> Subject
+    private let _source: Observable<Subject.Observer.Element>
+    private let _makeSubject: () -> Subject
 
-    fileprivate let lock = RecursiveLock()
-    fileprivate var subject: Subject?
+    fileprivate let _lock = RecursiveLock()
+    fileprivate var _subject: Subject?
 
     // state
-    fileprivate var connection: ConnectionType?
+    fileprivate var _connection: ConnectionType?
 
     init(source: Observable<Subject.Observer.Element>, makeSubject: @escaping () -> Subject) {
-        self.source = source
-        self.makeSubject = makeSubject
-        self.subject = nil
-        self.connection = nil
+        self._source = source
+        self._makeSubject = makeSubject
+        self._subject = nil
+        self._connection = nil
     }
 
     override func connect() -> Disposable {
-        return self.lock.performLocked {
-            if let connection = self.connection {
+        return self._lock.calculateLocked {
+            if let connection = self._connection {
                 return connection
             }
 
             let singleAssignmentDisposable = SingleAssignmentDisposable()
-            let connection = Connection(parent: self, subjectObserver: self.lazySubject.asObserver(), lock: self.lock, subscription: singleAssignmentDisposable)
-            self.connection = connection
-            let subscription = self.source.subscribe(connection)
+            let connection = Connection(parent: self, subjectObserver: self.lazySubject.asObserver(), lock: self._lock, subscription: singleAssignmentDisposable)
+            self._connection = connection
+            let subscription = self._source.subscribe(connection)
             singleAssignmentDisposable.setDisposable(subscription)
             return connection
         }
     }
 
     private var lazySubject: Subject {
-        if let subject = self.subject {
+        if let subject = self._subject {
             return subject
         }
 
-        let subject = self.makeSubject()
-        self.subject = subject
+        let subject = self._makeSubject()
+        self._subject = subject
         return subject
     }
 
     override func subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Observer.Element == Subject.Element {
-        self.lazySubject.subscribe(observer)
+        return self.lazySubject.subscribe(observer)
     }
 }
 
@@ -249,54 +250,56 @@ final private class RefCountSink<ConnectableSource: ConnectableObservableType, O
     typealias Element = Observer.Element 
     typealias Parent = RefCount<ConnectableSource>
 
-    private let parent: Parent
+    private let _parent: Parent
 
-    private var connectionIdSnapshot: Int64 = -1
+    private var _connectionIdSnapshot: Int64 = -1
 
     init(parent: Parent, observer: Observer, cancel: Cancelable) {
-        self.parent = parent
+        self._parent = parent
         super.init(observer: observer, cancel: cancel)
     }
 
     func run() -> Disposable {
-        let subscription = self.parent.source.subscribe(self)
-        self.parent.lock.lock(); defer { self.parent.lock.unlock() }
+        let subscription = self._parent._source.subscribe(self)
+        self._parent._lock.lock(); defer { self._parent._lock.unlock() } // {
 
-        self.connectionIdSnapshot = self.parent.connectionId
+        self._connectionIdSnapshot = self._parent._connectionId
 
-        if self.isDisposed {
+        if self.disposed {
             return Disposables.create()
         }
 
-        if self.parent.count == 0 {
-            self.parent.count = 1
-            self.parent.connectableSubscription = self.parent.source.connect()
+        if self._parent._count == 0 {
+            self._parent._count = 1
+            self._parent._connectableSubscription = self._parent._source.connect()
         }
         else {
-            self.parent.count += 1
+            self._parent._count += 1
         }
+        // }
 
         return Disposables.create {
             subscription.dispose()
-            self.parent.lock.lock(); defer { self.parent.lock.unlock() }
-            if self.parent.connectionId != self.connectionIdSnapshot {
+            self._parent._lock.lock(); defer { self._parent._lock.unlock() } // {
+            if self._parent._connectionId != self._connectionIdSnapshot {
                 return
             }
-            if self.parent.count == 1 {
-                self.parent.count = 0
-                guard let connectableSubscription = self.parent.connectableSubscription else {
+            if self._parent._count == 1 {
+                self._parent._count = 0
+                guard let connectableSubscription = self._parent._connectableSubscription else {
                     return
                 }
 
                 connectableSubscription.dispose()
-                self.parent.connectableSubscription = nil
+                self._parent._connectableSubscription = nil
             }
-            else if self.parent.count > 1 {
-                self.parent.count -= 1
+            else if self._parent._count > 1 {
+                self._parent._count -= 1
             }
             else {
                 rxFatalError("Something went wrong with RefCount disposing mechanism")
             }
+            // }
         }
     }
 
@@ -305,15 +308,16 @@ final private class RefCountSink<ConnectableSource: ConnectableObservableType, O
         case .next:
             self.forwardOn(event)
         case .error, .completed:
-            self.parent.lock.lock()
-            if self.parent.connectionId == self.connectionIdSnapshot {
-                let connection = self.parent.connectableSubscription
-                defer { connection?.dispose() }
-                self.parent.count = 0
-                self.parent.connectionId = self.parent.connectionId &+ 1
-                self.parent.connectableSubscription = nil
-            }
-            self.parent.lock.unlock()
+            self._parent._lock.lock() // {
+                if self._parent._connectionId == self._connectionIdSnapshot {
+                    let connection = self._parent._connectableSubscription
+                    defer { connection?.dispose() }
+                    self._parent._count = 0
+                    self._parent._connectionId = self._parent._connectionId &+ 1
+                    self._parent._connectableSubscription = nil
+                }
+            // }
+            self._parent._lock.unlock()
             self.forwardOn(event)
             self.dispose()
         }
@@ -321,17 +325,17 @@ final private class RefCountSink<ConnectableSource: ConnectableObservableType, O
 }
 
 final private class RefCount<ConnectableSource: ConnectableObservableType>: Producer<ConnectableSource.Element> {
-    fileprivate let lock = RecursiveLock()
+    fileprivate let _lock = RecursiveLock()
 
     // state
-    fileprivate var count = 0
-    fileprivate var connectionId: Int64 = 0
-    fileprivate var connectableSubscription = nil as Disposable?
+    fileprivate var _count = 0
+    fileprivate var _connectionId: Int64 = 0
+    fileprivate var _connectableSubscription = nil as Disposable?
 
-    fileprivate let source: ConnectableSource
+    fileprivate let _source: ConnectableSource
 
     init(source: ConnectableSource) {
-        self.source = source
+        self._source = source
     }
 
     override func run<Observer: ObserverType>(_ observer: Observer, cancel: Cancelable) -> (sink: Disposable, subscription: Disposable)
@@ -347,19 +351,19 @@ final private class MulticastSink<Subject: SubjectType, Observer: ObserverType>:
     typealias ResultType = Element
     typealias MutlicastType = Multicast<Subject, Observer.Element>
 
-    private let parent: MutlicastType
+    private let _parent: MutlicastType
 
     init(parent: MutlicastType, observer: Observer, cancel: Cancelable) {
-        self.parent = parent
+        self._parent = parent
         super.init(observer: observer, cancel: cancel)
     }
 
     func run() -> Disposable {
         do {
-            let subject = try self.parent.subjectSelector()
-            let connectable = ConnectableObservableAdapter(source: self.parent.source, makeSubject: { subject })
+            let subject = try self._parent._subjectSelector()
+            let connectable = ConnectableObservableAdapter(source: self._parent._source, makeSubject: { subject })
 
-            let observable = try self.parent.selector(connectable)
+            let observable = try self._parent._selector(connectable)
 
             let subscription = observable.subscribe(self)
             let connection = connectable.connect()
@@ -387,14 +391,14 @@ final private class Multicast<Subject: SubjectType, Result>: Producer<Result> {
     typealias SubjectSelectorType = () throws -> Subject
     typealias SelectorType = (Observable<Subject.Element>) throws -> Observable<Result>
 
-    fileprivate let source: Observable<Subject.Observer.Element>
-    fileprivate let subjectSelector: SubjectSelectorType
-    fileprivate let selector: SelectorType
+    fileprivate let _source: Observable<Subject.Observer.Element>
+    fileprivate let _subjectSelector: SubjectSelectorType
+    fileprivate let _selector: SelectorType
 
     init(source: Observable<Subject.Observer.Element>, subjectSelector: @escaping SubjectSelectorType, selector: @escaping SelectorType) {
-        self.source = source
-        self.subjectSelector = subjectSelector
-        self.selector = selector
+        self._source = source
+        self._subjectSelector = subjectSelector
+        self._selector = selector
     }
 
     override func run<Observer: ObserverType>(_ observer: Observer, cancel: Cancelable) -> (sink: Disposable, subscription: Disposable) where Observer.Element == Result {

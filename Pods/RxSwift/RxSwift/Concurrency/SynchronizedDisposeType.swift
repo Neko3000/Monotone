@@ -7,12 +7,12 @@
 //
 
 protocol SynchronizedDisposeType : class, Disposable, Lock {
-    func synchronized_dispose()
+    func _synchronized_dispose()
 }
 
 extension SynchronizedDisposeType {
     func synchronizedDispose() {
         self.lock(); defer { self.unlock() }
-        self.synchronized_dispose()
+        self._synchronized_dispose()
     }
 }

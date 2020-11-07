@@ -17,15 +17,15 @@ class _RxTableViewReactiveArrayDataSource
     , UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        return 1
     }
    
     func _tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+        return 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        _tableView(tableView, numberOfRowsInSection: section)
+        return _tableView(tableView, numberOfRowsInSection: section)
     }
 
     fileprivate func _tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,7 +33,7 @@ class _RxTableViewReactiveArrayDataSource
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        _tableView(tableView, cellForRowAt: indexPath)
+        return _tableView(tableView, cellForRowAt: indexPath)
     }
 }
 
@@ -64,7 +64,7 @@ class RxTableViewReactiveArrayDataSource<Element>
     var itemModels: [Element]?
     
     func modelAtIndex(_ index: Int) -> Element? {
-        itemModels?[index]
+        return itemModels?[index]
     }
 
     func model(at indexPath: IndexPath) throws -> Any {
@@ -82,11 +82,11 @@ class RxTableViewReactiveArrayDataSource<Element>
     }
     
     override func _tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        itemModels?.count ?? 0
+        return itemModels?.count ?? 0
     }
     
     override func _tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        cellFactory(tableView, indexPath.item, itemModels![indexPath.row])
+        return cellFactory(tableView, indexPath.item, itemModels![indexPath.row])
     }
     
     // reactive

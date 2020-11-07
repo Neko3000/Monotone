@@ -6,7 +6,7 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-import Foundation
+import class Foundation.NSNull
 
 // Importing RxCocoa also imports RxRelay
 @_exported import RxRelay

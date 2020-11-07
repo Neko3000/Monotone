@@ -55,7 +55,7 @@ open class RxTextViewDelegateProxy: DelegateProxy<NSTextView, NSTextViewDelegate
 
     /// For more information take a look at `DelegateProxyType`.
     open class func currentDelegate(for object: ParentObject) -> NSTextViewDelegate? {
-        object.delegate
+        return object.delegate
     }
 
     /// For more information take a look at `DelegateProxyType`.
@@ -71,7 +71,7 @@ extension Reactive where Base: NSTextView {
     ///
     /// For more information take a look at `DelegateProxyType` protocol documentation.
     public var delegate: DelegateProxy<NSTextView, NSTextViewDelegate> {
-        RxTextViewDelegateProxy.proxy(for: self.base)
+        return RxTextViewDelegateProxy.proxy(for: self.base)
     }
 
     /// Reactive wrapper for `string` property.
@@ -80,7 +80,7 @@ extension Reactive where Base: NSTextView {
 
         let source = Observable.deferred { [weak textView = self.base] in
             delegate.textSubject.startWith(textView?.string ?? "")
-        }.take(until: self.deallocated)
+        }.takeUntil(self.deallocated)
 
         let observer = Binder(self.base) { control, value in
             control.string = value

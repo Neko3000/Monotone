@@ -8,15 +8,15 @@
 
 /// Represents a disposable resource whose underlying disposable resource can be replaced by another disposable resource, causing automatic disposal of the previous underlying disposable resource.
 public final class SerialDisposable : DisposeBase, Cancelable {
-    private var lock = SpinLock()
+    private var _lock = SpinLock()
     
     // state
-    private var current = nil as Disposable?
-    private var disposed = false
+    private var _current = nil as Disposable?
+    private var _isDisposed = false
     
     /// - returns: Was resource disposed.
     public var isDisposed: Bool {
-        self.disposed
+        return self._isDisposed
     }
     
     /// Initializes a new instance of the `SerialDisposable`.
@@ -33,18 +33,18 @@ public final class SerialDisposable : DisposeBase, Cancelable {
     */
     public var disposable: Disposable {
         get {
-            self.lock.performLocked {
-                self.current ?? Disposables.create()
+            return self._lock.calculateLocked {
+                return self._current ?? Disposables.create()
             }
         }
         set (newDisposable) {
-            let disposable: Disposable? = self.lock.performLocked {
-                if self.isDisposed {
+            let disposable: Disposable? = self._lock.calculateLocked {
+                if self._isDisposed {
                     return newDisposable
                 }
                 else {
-                    let toDispose = self.current
-                    self.current = newDisposable
+                    let toDispose = self._current
+                    self._current = newDisposable
                     return toDispose
                 }
             }
@@ -61,12 +61,14 @@ public final class SerialDisposable : DisposeBase, Cancelable {
     }
 
     private func _dispose() -> Disposable? {
-        self.lock.performLocked {
-            guard !self.isDisposed else { return nil }
-
-            self.disposed = true
-            let current = self.current
-            self.current = nil
+        self._lock.lock(); defer { self._lock.unlock() }
+        if self._isDisposed {
+            return nil
+        }
+        else {
+            self._isDisposed = true
+            let current = self._current
+            self._current = nil
             return current
         }
     }

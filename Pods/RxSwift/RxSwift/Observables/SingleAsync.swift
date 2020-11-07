@@ -18,7 +18,7 @@ extension ObservableType {
      */
     public func single()
         -> Observable<Element> {
-        SingleAsync(source: self.asObservable())
+        return SingleAsync(source: self.asObservable())
     }
 
     /**
@@ -32,7 +32,7 @@ extension ObservableType {
      */
     public func single(_ predicate: @escaping (Element) throws -> Bool)
         -> Observable<Element> {
-        SingleAsync(source: self.asObservable(), predicate: predicate)
+        return SingleAsync(source: self.asObservable(), predicate: predicate)
     }
 }
 
@@ -40,11 +40,11 @@ private final class SingleAsyncSink<Observer: ObserverType> : Sink<Observer>, Ob
     typealias Element = Observer.Element
     typealias Parent = SingleAsync<Element>
     
-    private let parent: Parent
-    private var seenValue: Bool = false
+    private let _parent: Parent
+    private var _seenValue: Bool = false
     
     init(parent: Parent, observer: Observer, cancel: Cancelable) {
-        self.parent = parent
+        self._parent = parent
         super.init(observer: observer, cancel: cancel)
     }
     
@@ -52,7 +52,7 @@ private final class SingleAsyncSink<Observer: ObserverType> : Sink<Observer>, Ob
         switch event {
         case .next(let value):
             do {
-                let forward = try self.parent.predicate?(value) ?? true
+                let forward = try self._parent._predicate?(value) ?? true
                 if !forward {
                     return
                 }
@@ -63,19 +63,19 @@ private final class SingleAsyncSink<Observer: ObserverType> : Sink<Observer>, Ob
                 return
             }
 
-            if self.seenValue {
+            if self._seenValue {
                 self.forwardOn(.error(RxError.moreThanOneElement))
                 self.dispose()
                 return
             }
 
-            self.seenValue = true
+            self._seenValue = true
             self.forwardOn(.next(value))
         case .error:
             self.forwardOn(event)
             self.dispose()
         case .completed:
-            if self.seenValue {
+            if self._seenValue {
                 self.forwardOn(.completed)
             } else {
                 self.forwardOn(.error(RxError.noElements))
@@ -88,17 +88,17 @@ private final class SingleAsyncSink<Observer: ObserverType> : Sink<Observer>, Ob
 final class SingleAsync<Element>: Producer<Element> {
     typealias Predicate = (Element) throws -> Bool
     
-    private let source: Observable<Element>
-    fileprivate let predicate: Predicate?
+    private let _source: Observable<Element>
+    fileprivate let _predicate: Predicate?
     
     init(source: Observable<Element>, predicate: Predicate? = nil) {
-        self.source = source
-        self.predicate = predicate
+        self._source = source
+        self._predicate = predicate
     }
     
     override func run<Observer: ObserverType>(_ observer: Observer, cancel: Cancelable) -> (sink: Disposable, subscription: Disposable) where Observer.Element == Element {
         let sink = SingleAsyncSink(parent: self, observer: observer, cancel: cancel)
-        let subscription = self.source.subscribe(sink)
+        let subscription = self._source.subscribe(sink)
         return (sink: sink, subscription: subscription)
     }
 }

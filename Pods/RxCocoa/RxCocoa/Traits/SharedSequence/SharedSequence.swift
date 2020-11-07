@@ -19,15 +19,15 @@ import RxSwift
 
     To find out more about units and how to use them, please visit `Documentation/Traits.md`.
 */
-public struct SharedSequence<SharingStrategy: SharingStrategyProtocol, Element> : SharedSequenceConvertibleType, ObservableConvertibleType {
-    let source: Observable<Element>
+public struct SharedSequence<SharingStrategy: SharingStrategyProtocol, Element> : SharedSequenceConvertibleType {
+    let _source: Observable<Element>
 
     init(_ source: Observable<Element>) {
-        self.source = SharingStrategy.share(source)
+        self._source = SharingStrategy.share(source)
     }
 
     init(raw: Observable<Element>) {
-        self.source = raw
+        self._source = raw
     }
 
     #if EXPANDABLE_SHARED_SEQUENCE
@@ -38,7 +38,7 @@ public struct SharedSequence<SharingStrategy: SharingStrategyProtocol, Element> 
      properties are preserved after extension.
     */
     public static func createUnsafe<Source: ObservableType>(source: Source) -> SharedSequence<SharingStrategy, Source.Element> {
-        SharedSequence<SharingStrategy, Source.Element>(raw: source.asObservable())
+        return SharedSequence<SharingStrategy, Source.Element>(raw: source.asObservable())
     }
     #endif
 
@@ -46,14 +46,14 @@ public struct SharedSequence<SharingStrategy: SharingStrategyProtocol, Element> 
     - returns: Built observable sequence.
     */
     public func asObservable() -> Observable<Element> {
-        self.source
+        return self._source
     }
 
     /**
     - returns: `self`
     */
     public func asSharedSequence() -> SharedSequence<SharingStrategy, Element> {
-        self
+        return self
     }
 }
 
@@ -90,7 +90,7 @@ public protocol SharedSequenceConvertibleType : ObservableConvertibleType {
 
 extension SharedSequenceConvertibleType {
     public func asObservable() -> Observable<Element> {
-        self.asSharedSequence().asObservable()
+        return self.asSharedSequence().asObservable()
     }
 }
 
@@ -103,7 +103,7 @@ extension SharedSequence {
     - returns: An observable sequence with no elements.
     */
     public static func empty() -> SharedSequence<SharingStrategy, Element> {
-        SharedSequence(raw: Observable.empty().subscribe(on: SharingStrategy.scheduler))
+        return SharedSequence(raw: Observable.empty().subscribeOn(SharingStrategy.scheduler))
     }
 
     /**
@@ -112,7 +112,7 @@ extension SharedSequence {
     - returns: An observable sequence whose observers will never get called.
     */
     public static func never() -> SharedSequence<SharingStrategy, Element> {
-        SharedSequence(raw: Observable.never())
+        return SharedSequence(raw: Observable.never())
     }
 
     /**
@@ -122,7 +122,7 @@ extension SharedSequence {
     - returns: An observable sequence containing the single specified element.
     */
     public static func just(_ element: Element) -> SharedSequence<SharingStrategy, Element> {
-        SharedSequence(raw: Observable.just(element).subscribe(on: SharingStrategy.scheduler))
+        return SharedSequence(raw: Observable.just(element).subscribeOn(SharingStrategy.scheduler))
     }
 
     /**
@@ -133,7 +133,7 @@ extension SharedSequence {
      */
     public static func deferred(_ observableFactory: @escaping () -> SharedSequence<SharingStrategy, Element>)
         -> SharedSequence<SharingStrategy, Element> {
-        SharedSequence(Observable.deferred { observableFactory().asObservable() })
+        return SharedSequence(Observable.deferred { observableFactory().asObservable() })
     }
 
     /**
@@ -191,7 +191,7 @@ extension SharedSequence {
     }
 }
 
-extension SharedSequence where Element: RxAbstractInteger {
+extension SharedSequence where Element : RxAbstractInteger {
     /**
      Returns an observable sequence that produces a value after each period, using the specified scheduler to run timers and to send out observer messages.
 
@@ -202,7 +202,7 @@ extension SharedSequence where Element: RxAbstractInteger {
      */
     public static func interval(_ period: RxTimeInterval)
         -> SharedSequence<SharingStrategy, Element> {
-        SharedSequence(Observable.interval(period, scheduler: SharingStrategy.scheduler))
+        return SharedSequence(Observable.interval(period, scheduler: SharingStrategy.scheduler))
     }
 }
 
@@ -220,7 +220,7 @@ extension SharedSequence where Element: RxAbstractInteger {
      */
     public static func timer(_ dueTime: RxTimeInterval, period: RxTimeInterval)
         -> SharedSequence<SharingStrategy, Element> {
-        SharedSequence(Observable.timer(dueTime, period: period, scheduler: SharingStrategy.scheduler))
+        return SharedSequence(Observable.timer(dueTime, period: period, scheduler: SharingStrategy.scheduler))
     }
 }
 

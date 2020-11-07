@@ -22,31 +22,34 @@ public final class BehaviorSubject<Element>
     
     /// Indicates whether the subject has any observers
     public var hasObservers: Bool {
-        self.lock.performLocked { self.observers.count > 0 }
+        self._lock.lock()
+        let value = self._observers.count > 0
+        self._lock.unlock()
+        return value
     }
     
-    let lock = RecursiveLock()
+    let _lock = RecursiveLock()
     
     // state
-    private var disposed = false
-    private var element: Element
-    private var observers = Observers()
-    private var stoppedEvent: Event<Element>?
+    private var _isDisposed = false
+    private var _element: Element
+    private var _observers = Observers()
+    private var _stoppedEvent: Event<Element>?
 
     #if DEBUG
-        private let synchronizationTracker = SynchronizationTracker()
+        private let _synchronizationTracker = SynchronizationTracker()
     #endif
 
     /// Indicates whether the subject has been disposed.
     public var isDisposed: Bool {
-        self.disposed
+        return self._isDisposed
     }
  
     /// Initializes a new instance of the subject that caches its last value and starts with the specified value.
     ///
     /// - parameter value: Initial value sent to observers when no other value has been received by the subject yet.
     public init(value: Element) {
-        self.element = value
+        self._element = value
 
         #if TRACE_RESOURCES
             _ = Resources.incrementTotal()
@@ -57,18 +60,19 @@ public final class BehaviorSubject<Element>
     ///
     /// - returns: Latest value.
     public func value() throws -> Element {
-        self.lock.lock(); defer { self.lock.unlock() }
-        if self.isDisposed {
-            throw RxError.disposed(object: self)
-        }
-        
-        if let error = self.stoppedEvent?.error {
-            // intentionally throw exception
-            throw error
-        }
-        else {
-            return self.element
-        }
+        self._lock.lock(); defer { self._lock.unlock() } // {
+            if self._isDisposed {
+                throw RxError.disposed(object: self)
+            }
+            
+            if let error = self._stoppedEvent?.error {
+                // intentionally throw exception
+                throw error
+            }
+            else {
+                return self._element
+            }
+        //}
     }
     
     /// Notifies all subscribed observers about next event.
@@ -76,26 +80,26 @@ public final class BehaviorSubject<Element>
     /// - parameter event: Event to send to the observers.
     public func on(_ event: Event<Element>) {
         #if DEBUG
-            self.synchronizationTracker.register(synchronizationErrorMessage: .default)
-            defer { self.synchronizationTracker.unregister() }
+            self._synchronizationTracker.register(synchronizationErrorMessage: .default)
+            defer { self._synchronizationTracker.unregister() }
         #endif
-        dispatch(self.synchronized_on(event), event)
+        dispatch(self._synchronized_on(event), event)
     }
 
-    func synchronized_on(_ event: Event<Element>) -> Observers {
-        self.lock.lock(); defer { self.lock.unlock() }
-        if self.stoppedEvent != nil || self.isDisposed {
+    func _synchronized_on(_ event: Event<Element>) -> Observers {
+        self._lock.lock(); defer { self._lock.unlock() }
+        if self._stoppedEvent != nil || self._isDisposed {
             return Observers()
         }
         
         switch event {
         case .next(let element):
-            self.element = element
+            self._element = element
         case .error, .completed:
-            self.stoppedEvent = event
+            self._stoppedEvent = event
         }
         
-        return self.observers
+        return self._observers
     }
     
     /// Subscribes an observer to the subject.
@@ -103,50 +107,55 @@ public final class BehaviorSubject<Element>
     /// - parameter observer: Observer to subscribe to the subject.
     /// - returns: Disposable object that can be used to unsubscribe the observer from the subject.
     public override func subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Observer.Element == Element {
-        self.lock.performLocked { self.synchronized_subscribe(observer) }
+        self._lock.lock()
+        let subscription = self._synchronized_subscribe(observer)
+        self._lock.unlock()
+        return subscription
     }
 
-    func synchronized_subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Observer.Element == Element {
-        if self.isDisposed {
+    func _synchronized_subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Observer.Element == Element {
+        if self._isDisposed {
             observer.on(.error(RxError.disposed(object: self)))
             return Disposables.create()
         }
         
-        if let stoppedEvent = self.stoppedEvent {
+        if let stoppedEvent = self._stoppedEvent {
             observer.on(stoppedEvent)
             return Disposables.create()
         }
         
-        let key = self.observers.insert(observer.on)
-        observer.on(.next(self.element))
+        let key = self._observers.insert(observer.on)
+        observer.on(.next(self._element))
     
         return SubscriptionDisposable(owner: self, key: key)
     }
 
     func synchronizedUnsubscribe(_ disposeKey: DisposeKey) {
-        self.lock.performLocked { self.synchronized_unsubscribe(disposeKey) }
+        self._lock.lock()
+        self._synchronized_unsubscribe(disposeKey)
+        self._lock.unlock()
     }
 
-    func synchronized_unsubscribe(_ disposeKey: DisposeKey) {
-        if self.isDisposed {
+    func _synchronized_unsubscribe(_ disposeKey: DisposeKey) {
+        if self._isDisposed {
             return
         }
 
-        _ = self.observers.removeKey(disposeKey)
+        _ = self._observers.removeKey(disposeKey)
     }
 
     /// Returns observer interface for subject.
     public func asObserver() -> BehaviorSubject<Element> {
-        self
+        return self
     }
 
     /// Unsubscribe all observers and release resources.
     public func dispose() {
-        self.lock.performLocked {
-            self.disposed = true
-            self.observers.removeAll()
-            self.stoppedEvent = nil
-        }
+        self._lock.lock()
+        self._isDisposed = true
+        self._observers.removeAll()
+        self._stoppedEvent = nil
+        self._lock.unlock()
     }
 
     #if TRACE_RESOURCES

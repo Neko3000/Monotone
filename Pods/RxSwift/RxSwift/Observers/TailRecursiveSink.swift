@@ -23,23 +23,23 @@ class TailRecursiveSink<Sequence: Swift.Sequence, Observer: ObserverType>
     typealias Element = Observer.Element 
     typealias SequenceGenerator = (generator: Sequence.Iterator, remaining: IntMax?)
 
-    var generators: [SequenceGenerator] = []
-    var disposed = false
-    var subscription = SerialDisposable()
+    var _generators: [SequenceGenerator] = []
+    var _isDisposed = false
+    var _subscription = SerialDisposable()
 
     // this is thread safe object
-    var gate = AsyncLock<InvocableScheduledItem<TailRecursiveSink<Sequence, Observer>>>()
+    var _gate = AsyncLock<InvocableScheduledItem<TailRecursiveSink<Sequence, Observer>>>()
 
     override init(observer: Observer, cancel: Cancelable) {
         super.init(observer: observer, cancel: cancel)
     }
 
     func run(_ sources: SequenceGenerator) -> Disposable {
-        self.generators.append(sources)
+        self._generators.append(sources)
 
         self.schedule(.moveNext)
 
-        return self.subscription
+        return self._subscription
     }
 
     func invoke(_ command: TailRecursiveSinkCommand) {
@@ -53,7 +53,7 @@ class TailRecursiveSink<Sequence: Swift.Sequence, Observer: ObserverType>
 
     // simple implementation for now
     func schedule(_ command: TailRecursiveSinkCommand) {
-        self.gate.invoke(InvocableScheduledItem(invocable: self, state: command))
+        self._gate.invoke(InvocableScheduledItem(invocable: self, state: command))
     }
 
     func done() {
@@ -71,15 +71,15 @@ class TailRecursiveSink<Sequence: Swift.Sequence, Observer: ObserverType>
         var next: Observable<Element>?
 
         repeat {
-            guard let (g, left) = self.generators.last else {
+            guard let (g, left) = self._generators.last else {
                 break
             }
             
-            if self.isDisposed {
+            if self._isDisposed {
                 return
             }
 
-            self.generators.removeLast()
+            self._generators.removeLast()
             
             var e = g
 
@@ -98,20 +98,20 @@ class TailRecursiveSink<Sequence: Swift.Sequence, Observer: ObserverType>
             if let knownOriginalLeft = left {
                 // `- 1` because generator.next() has just been called
                 if knownOriginalLeft - 1 >= 1 {
-                    self.generators.append((e, knownOriginalLeft - 1))
+                    self._generators.append((e, knownOriginalLeft - 1))
                 }
             }
             else {
-                self.generators.append((e, nil))
+                self._generators.append((e, nil))
             }
 
             let nextGenerator = self.extract(nextCandidate)
 
             if let nextGenerator = nextGenerator {
-                self.generators.append(nextGenerator)
+                self._generators.append(nextGenerator)
                 #if DEBUG || TRACE_RESOURCES
-                    if maxTailRecursiveSinkStackSize < self.generators.count {
-                        maxTailRecursiveSinkStackSize = self.generators.count
+                    if maxTailRecursiveSinkStackSize < self._generators.count {
+                        maxTailRecursiveSinkStackSize = self._generators.count
                     }
                 #endif
             }
@@ -126,7 +126,7 @@ class TailRecursiveSink<Sequence: Swift.Sequence, Observer: ObserverType>
         }
 
         let disposable = SingleAssignmentDisposable()
-        self.subscription.disposable = disposable
+        self._subscription.disposable = disposable
         disposable.setDisposable(self.subscribeToNext(existingNext))
     }
 
@@ -135,15 +135,15 @@ class TailRecursiveSink<Sequence: Swift.Sequence, Observer: ObserverType>
     }
 
     func disposeCommand() {
-        self.disposed = true
-        self.generators.removeAll(keepingCapacity: false)
+        self._isDisposed = true
+        self._generators.removeAll(keepingCapacity: false)
     }
 
     override func dispose() {
         super.dispose()
         
-        self.subscription.dispose()
-        self.gate.dispose()
+        self._subscription.dispose()
+        self._gate.dispose()
         
         self.schedule(.dispose)
     }

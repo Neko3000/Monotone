@@ -6,7 +6,7 @@
 //  Copyright © 2018 Krunoslav Zaher. All rights reserved.
 //
 
-import Foundation
+import class Foundation.NSLock
 
 final class AtomicInt: NSLock {
     fileprivate var value: Int32
@@ -56,16 +56,16 @@ func load(_ this: AtomicInt) -> Int32 {
 @discardableResult
 @inline(__always)
 func increment(_ this: AtomicInt) -> Int32 {
-    add(this, 1)
+    return add(this, 1)
 }
 
 @discardableResult
 @inline(__always)
 func decrement(_ this: AtomicInt) -> Int32 {
-    sub(this, 1)
+    return sub(this, 1)
 }
 
 @inline(__always)
 func isFlagSet(_ this: AtomicInt, _ mask: Int32) -> Bool {
-    (load(this) & mask) != 0
+    return (load(this) & mask) != 0
 }

@@ -13,6 +13,6 @@ public typealias RxAbstractInteger = FixedWidthInteger
 
 extension SignedInteger {
     func toIntMax() -> IntMax {
-        IntMax(self)
+        return IntMax(self)
     }
 }

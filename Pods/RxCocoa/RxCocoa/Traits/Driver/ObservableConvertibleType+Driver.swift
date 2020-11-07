@@ -18,8 +18,8 @@ extension ObservableConvertibleType {
     public func asDriver(onErrorJustReturn: Element) -> Driver<Element> {
         let source = self
             .asObservable()
-            .observe(on:DriverSharingStrategy.scheduler)
-            .catchAndReturn(onErrorJustReturn)
+            .observeOn(DriverSharingStrategy.scheduler)
+            .catchErrorJustReturn(onErrorJustReturn)
         return Driver(source)
     }
     
@@ -32,8 +32,8 @@ extension ObservableConvertibleType {
     public func asDriver(onErrorDriveWith: Driver<Element>) -> Driver<Element> {
         let source = self
             .asObservable()
-            .observe(on:DriverSharingStrategy.scheduler)
-            .catch { _ in
+            .observeOn(DriverSharingStrategy.scheduler)
+            .catchError { _ in
                 onErrorDriveWith.asObservable()
             }
         return Driver(source)
@@ -48,8 +48,8 @@ extension ObservableConvertibleType {
     public func asDriver(onErrorRecover: @escaping (_ error: Swift.Error) -> Driver<Element>) -> Driver<Element> {
         let source = self
             .asObservable()
-            .observe(on:DriverSharingStrategy.scheduler)
-            .catch { error in
+            .observeOn(DriverSharingStrategy.scheduler)
+            .catchError { error in
                 onErrorRecover(error).asObservable()
             }
         return Driver(source)

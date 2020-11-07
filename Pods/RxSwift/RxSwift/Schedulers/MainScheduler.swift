@@ -23,14 +23,14 @@ operator please use `ConcurrentMainScheduler` because it is more optimized for t
 */
 public final class MainScheduler : SerialDispatchQueueScheduler {
 
-    private let mainQueue: DispatchQueue
+    private let _mainQueue: DispatchQueue
 
     let numberEnqueued = AtomicInt(0)
 
     /// Initializes new instance of `MainScheduler`.
     public init() {
-        self.mainQueue = DispatchQueue.main
-        super.init(serialQueue: self.mainQueue)
+        self._mainQueue = DispatchQueue.main
+        super.init(serialQueue: self._mainQueue)
     }
 
     /// Singleton instance of `MainScheduler`
@@ -67,9 +67,9 @@ public final class MainScheduler : SerialDispatchQueueScheduler {
 
         let cancel = SingleAssignmentDisposable()
 
-        self.mainQueue.async {
+        self._mainQueue.async {
             if !cancel.isDisposed {
-                cancel.setDisposable(action(state))
+                _ = action(state)
             }
 
             decrement(self.numberEnqueued)
