@@ -8,11 +8,13 @@
 import Foundation
 
 protocol MJBaseRequestProtocol {
-    var api : String?{ get }
-    var json : [String : Any]?{ get }
+    var api : String? { get }
+    var json : [String : Any]? { get }
+    var params : [String : Any]? { get }
 }
 
 class MTBaseRequest : MJBaseRequestProtocol{
-    var api: String?{ get{ return "" } }
-    var json: [String : Any]?{ get{ return nil }}
+    var api: String? { get{ return "" } }
+    var json: [String : Any]? { get{ return nil }}
+    var params: [String : Any]? { get{ return nil}}
 }

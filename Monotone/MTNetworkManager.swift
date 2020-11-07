@@ -67,11 +67,11 @@ class MTNetworkManager{
 
     }
     
-    public func request(request:MTBaseRequest, method:MTHTTPMethod, success:@escaping (JSON)->Void, fail:@escaping (JSON)->Void){
+    public func request(request:MTBaseRequest, method:HTTPMethod, success:@escaping (JSON)->Void, fail:@escaping (JSON)->Void){
         
         let url = self.domain + request.api!
             
-        AF.request(url, method: method.rawValue, parameters: request.json, headers: self.headers)
+        AF.request(url, method: method, parameters: request.json, headers: self.headers)
             .response{ (response) in
                 
             switch(response.result){
