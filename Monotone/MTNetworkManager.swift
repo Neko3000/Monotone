@@ -38,7 +38,7 @@ class MTNetworkManager{
     /// Header
     private var headers : HTTPHeaders{
         get{ return [
-            "Authorization" : "Client-ID \(self.secretKey)"
+            "Authorization" : "Client-ID \(self.accessKey)"
         ] }
     }
     
@@ -71,7 +71,7 @@ class MTNetworkManager{
         
         let url = self.domain + request.api!
             
-        AF.request(url, method: method, parameters: request.json, headers: self.headers)
+        AF.request(url, method: method, parameters: request.toParams(), headers: self.headers)
             .response{ (response) in
                 
             switch(response.result){

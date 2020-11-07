@@ -27,23 +27,23 @@ class SearchPhotosViewModel: ViewModelProtocol{
         var loadMoreAction: Action<Void, Void>?
         var reloadAction: Action<Void, Void>?
     }
-    public let input:Input
+    public let input:Input = Input()
     
     /// MARK: Output
     struct Output {
         var photos: BehaviorSubject<[NSObject]>?
         var loading: BehaviorSubject<Bool>?
     }
-    public let output: Output
+    public let output: Output = Output()
     
     /// MARK: Private
     let currentPage:Int = 1
     
     init() {
-        self.input.query = BehaviorSubject<String>(value: "")
-        self.input.loadMoreAction = Action<Void, Void>(workFactory: { [weak self] in
-            <#code#>
-        })
+//        self.input.query = BehaviorSubject<String>(value: "")
+//        self.input.loadMoreAction = Action<Void, Void>(workFactory: { [weak self] in
+//
+//        })
     }
     
     func transform(input:Input) -> Output {

@@ -8,6 +8,8 @@
 import UIKit
 import MJRefresh
 
+import ObjectMapper
+
 class HomeViewController: MTViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
 
     private var homeHeaderView : HomeHeaderView?
@@ -44,6 +46,9 @@ class HomeViewController: MTViewController,UICollectionViewDelegate,UICollection
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.homeHeaderView!.snp.bottom)
         }
+        
+        
+        UnsplashPhotoService.searchPhotos(query:"penguin")
     }
     
     // MARK: CollectionViewDelegate

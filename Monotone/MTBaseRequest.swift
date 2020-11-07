@@ -6,15 +6,29 @@
 //
 
 import Foundation
+import ObjectMapper
 
 protocol MJBaseRequestProtocol {
     var api : String? { get }
-    var json : [String : Any]? { get }
-    var params : [String : Any]? { get }
+    func toParams() -> [String : Any]
 }
 
-class MTBaseRequest : MJBaseRequestProtocol{
+class MTBaseRequest : Mappable, MJBaseRequestProtocol{
+    init() {
+        // Implemented by subclass
+    }
+    
+    required init?(map: Map) {
+        // Implemented by subclass
+    }
+    
+    func mapping(map: Map) {
+        // Implemented by subclass
+    }
+    
     var api: String? { get{ return "" } }
-    var json: [String : Any]? { get{ return nil }}
-    var params: [String : Any]? { get{ return nil}}
+    
+    public func toParams() -> [String : Any] {
+        return Mapper().toJSON(self)
+    }
 }

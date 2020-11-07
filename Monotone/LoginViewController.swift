@@ -165,12 +165,12 @@ class LoginViewController: MTViewController {
             make.height.equalTo(18.0)
         }
                 
-        let request = SearchPhotosRequest()
-        MTNetworkManager.shared.request(request: request, method: MTHTTPMethod.get,success: { (result:JSON) in
-            print("success")
-        }, fail: { (error:JSON) in
-            print("error")
-        })
+//        let request = SearchPhotosRequest()
+//        MTNetworkManager.shared.request(request: request, method: .get,success: { (result:JSON) in
+//            print("success")
+//        }, fail: { (error:JSON) in
+//            print("error")
+//        })
 
 //        MTNetworkManager.shared.sendRequest(request: request, method: MTHTTPMethod.get, success:{
 //            (request:MTBaseRequest) -> Void in

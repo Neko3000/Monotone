@@ -7,6 +7,8 @@
 
 import Foundation
 
+import ObjectMapper
+
 class SearchPhotosRequest: MTBaseRequest {
         
     override var api: String?{
@@ -24,12 +26,14 @@ class SearchPhotosRequest: MTBaseRequest {
     public var color: String?
     public var oritentation: String?
     
-    override var params: [String : Any]{
-        get{
-            if(self.query != nil){
-                
-            }
-        }
+    override func mapping(map: Map) {
+        query           <- map["query"]
+        page            <- map["page"]
+        perPage         <- map["per_page"]
+        orderBy         <- map["order_by"]
+        collections     <- map["query"]
+        contentFilter   <- map["content_filter"]
+        color           <- map["color"]
+        oritentation    <- map["oritentation"]
     }
-    
 }

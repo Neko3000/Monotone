@@ -6,21 +6,27 @@
 //
 
 import Foundation
+import ObjectMapper
 
 class UnsplashPhotoService: NetworkServiceProtocol{
-    func searchPhotos(query:String,
-                      page:Int?,
-                      perPage:Int?,
-                      orderBy:String?,
-                      collections:[String]?,
-                      contentFilter:String?,
-                      color:String?,
-                      oritentation:String?){
+    static func searchPhotos(query:String,
+                      page:Int? = 1,
+                      perPage:Int? = 10,
+                      orderBy:String? = "relevant",
+                      collections:[String]? = [],
+                      contentFilter:String? = "low",
+                      color:String? = "",
+                      oritentation:String? = ""){
         
         let request: SearchPhotosRequest = SearchPhotosRequest()
-        request
-        
-        MTNetworkManager.shared.request(request: <#T##MTBaseRequest#>, method: <#T##MTHTTPMethod#>, success: <#T##(JSON) -> Void#>, fail: <#T##(JSON) -> Void#>)
+        request.query = "penguin"
+
+        MTNetworkManager.shared.request(request: request, method: .get) { (json) in
+            print(json)
+        } fail: { (json) in
+            print(json)
+        }
+
         
     }
 }
