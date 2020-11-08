@@ -9,6 +9,7 @@ import Foundation
 
 import Alamofire
 import SwiftyJSON
+import RxSwift
 
 let debugKeyFileName: String = "api_keys_debug"
 let sampleKeyFileName: String = "api_keys_sample"
@@ -67,43 +68,48 @@ class MTNetworkManager{
 
     }
     
-    public func request(request:MTBaseRequest, method:HTTPMethod, success:@escaping ([String: Any])->Void, fail:@escaping ([String: Any])->Void){
+    public func request(request:MTBaseRequest, method:HTTPMethod) -> Observable<[String: Any]>{
         
         let url = self.domain + request.api!
-            
-        AF.request(url, method: method, parameters: request.toParams(), headers: self.headers)
-            .response{ (response) in
-                
-            switch(response.result){
-            case .success(let data):
-                
-                if(response.response?.statusCode == 200){
-                    do{
-                        let json = try JSON(data: data!)
-                        success(json.dictionaryObject!)
-                    }
-                    catch{
-                        print("Could not decode success result from \(url)")
-                    }
+        
+        return Observable.create { (observer) -> Disposable in
+            AF.request(url, method: method, parameters: request.toParams(), headers: self.headers)
+                .response{ (response) in
                     
-                }
-                else{
-                    do{
-                        let json = try JSON(data: data!)
-                        fail(json.dictionaryObject!)
+                switch(response.result){
+                case .success(let data):
+                    
+                    if(response.response?.statusCode == 200){
+                        do{
+                            let json = try JSON(data: data!)
+                            observer.onNext(json.dictionaryObject!)
+                        }
+                        catch{
+                            print("Could not decode success result from \(url)")
+                        }
+                        
                     }
-                    catch{
-                        print("Could not decode failure errors from \(url)")
-                    }
+                    else{
+                        do{
+                            let json = try JSON(data: data!)
+                            let error = UnsplashNetworkError(errorStrs: json.arrayObject as! [String])
+                            observer.onError(error)
+                        }
+                        catch{
+                            print("Could not decode failure errors from \(url)")
+                        }
 
-                }
-                break
-            
-            case .failure(let error):
-                print("\(error.localizedDescription)")
-                break
+                    }
+                    break
                 
+                case .failure(let error):
+                    print("\(error.localizedDescription)")
+                    observer.onError(error)
+                    break
+                }
             }
+            
+            return Disposables.create()
         }
     }
 }

@@ -117,7 +117,7 @@ class Photo: Mappable{
     
     func mapping(map: Map) {
         self.id             <- map["id"]
-        self.createAt       <- (map["created_at"], DateTransform())
+        self.createAt       <- (map["created_at"], ISO8601DateTransform())
         self.width          <- map["width"]
         self.height         <- map["height"]
         self.color          <- map["color"]

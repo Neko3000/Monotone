@@ -21,12 +21,15 @@ class UnsplashPhotoService: NetworkServiceProtocol{
         let request: SearchPhotosRequest = SearchPhotosRequest()
         request.query = "penguin"
 
-        MTNetworkManager.shared.request(request: request, method: .get) { (json) in
+        MTNetworkManager.shared.request(request: request, method: .get).subscribe { (json) in
             let response = SearchPhotosResponse(JSON: json)
-            print(json)
-        } fail: { (json) in
-            print(json)
-        }
+            print("sucess")
+            
+            
+        } onError: { (error) in
+            print(error.localizedDescription)
+        }.dispose()
+
 
         
     }
