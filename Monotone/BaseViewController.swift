@@ -1,5 +1,5 @@
 //
-//  MTViewController.swift
+//  BaseViewController.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/10/30.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MTViewController: UIViewController {
+class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,5 +1,5 @@
 //
-//  MTNetworkManager.swift
+//  NetworkManager.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/10/31.
@@ -14,8 +14,8 @@ import RxSwift
 let debugKeyFileName: String = "api_keys_debug"
 let sampleKeyFileName: String = "api_keys_sample"
 
-class MTNetworkManager{
-    static let shared = MTNetworkManager()
+class NetworkManager{
+    static let shared = NetworkManager()
     
     init() {
         // Load API keys
@@ -68,7 +68,7 @@ class MTNetworkManager{
 
     }
     
-    public func request(request:MTBaseRequest, method:HTTPMethod) -> Observable<[String: Any]>{
+    public func request(request:BaseRequest, method:HTTPMethod) -> Observable<[String: Any]>{
         
         let url = self.domain + request.api!
         
@@ -78,7 +78,7 @@ class MTNetworkManager{
                     
                 switch(response.result){
                 case .success(let data):
-                    
+
                     if(response.response?.statusCode == 200){
                         do{
                             let json = try JSON(data: data!)
@@ -87,7 +87,6 @@ class MTNetworkManager{
                         catch{
                             print("Could not decode success result from \(url)")
                         }
-                        
                     }
                     else{
                         do{
@@ -98,11 +97,13 @@ class MTNetworkManager{
                         catch{
                             print("Could not decode failure errors from \(url)")
                         }
-
                     }
+                    
+                    observer.onCompleted()
                     break
                 
                 case .failure(let error):
+                    
                     print("\(error.localizedDescription)")
                     observer.onError(error)
                     break

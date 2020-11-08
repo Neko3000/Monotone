@@ -10,7 +10,7 @@ import MJRefresh
 
 import ObjectMapper
 
-class HomeViewController: MTViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
+class HomeViewController: BaseViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
 
     private var homeHeaderView : HomeHeaderView?
     private var collectionView: UICollectionView?

@@ -1,5 +1,5 @@
 //
-//  MTBaseRequest.swift
+//  BaseRequest.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/1.
@@ -8,12 +8,12 @@
 import Foundation
 import ObjectMapper
 
-protocol MJBaseRequestProtocol {
+protocol BaseRequestProtocol {
     var api : String? { get }
     func toParams() -> [String : Any]
 }
 
-class MTBaseRequest : Mappable, MJBaseRequestProtocol{
+class BaseRequest : Mappable, BaseRequestProtocol{
     init() {
         // Implemented by subclass
     }

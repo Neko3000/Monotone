@@ -10,7 +10,7 @@ import SnapKit
 
 import SwiftyJSON
 
-class LoginViewController: MTViewController {
+class LoginViewController: BaseViewController {
     
     private var logoImageView : UIImageView?
     private var facebookLoginBtn : UIButton?
@@ -38,10 +38,10 @@ class LoginViewController: MTViewController {
         // usernameTextField.
         self.usernameTextField = UITextField()
         self.usernameTextField!.placeholder = "Username or email"
-        self.usernameTextField!.textColor = MTColorPalette.colorGrayLight
+        self.usernameTextField!.textColor = ColorPalette.colorGrayLight
         self.usernameTextField!.font = UIFont.systemFont(ofSize: 14)
         self.usernameTextField!.textAlignment = .center
-        self.usernameTextField!.backgroundColor = MTColorPalette.colorGrayLighter
+        self.usernameTextField!.backgroundColor = ColorPalette.colorGrayLighter
         self.usernameTextField!.layer.cornerRadius = 20.0
         self.usernameTextField!.layer.masksToBounds = true
         self.view.addSubview(self.usernameTextField!)
@@ -55,10 +55,10 @@ class LoginViewController: MTViewController {
         // passwordTextField.
         self.passwordTextField = UITextField()
         self.passwordTextField!.placeholder = "Password"
-        self.passwordTextField!.textColor = MTColorPalette.colorGrayLight
+        self.passwordTextField!.textColor = ColorPalette.colorGrayLight
         self.passwordTextField!.font = UIFont.systemFont(ofSize: 14)
         self.passwordTextField!.textAlignment = .center
-        self.passwordTextField!.backgroundColor = MTColorPalette.colorGrayLighter
+        self.passwordTextField!.backgroundColor = ColorPalette.colorGrayLighter
         self.passwordTextField!.layer.cornerRadius = 20.0
         self.passwordTextField!.layer.masksToBounds = true
         self.view.addSubview(self.passwordTextField!)
@@ -72,7 +72,7 @@ class LoginViewController: MTViewController {
         // orLabel.
         self.orLabel = UILabel()
         self.orLabel!.text = "or";
-        self.orLabel!.textColor = MTColorPalette.colorGrayLight
+        self.orLabel!.textColor = ColorPalette.colorGrayLight
         self.orLabel!.font = UIFont.systemFont(ofSize: 14)
         self.view.addSubview(self.orLabel!)
         self.orLabel!.snp.makeConstraints { (make) in
@@ -85,7 +85,7 @@ class LoginViewController: MTViewController {
         self.facebookLoginBtn!.setTitle("Login with Facebook", for: .normal)
         self.facebookLoginBtn!.setTitleColor(UIColor.white, for: .normal)
         self.facebookLoginBtn!.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        self.facebookLoginBtn!.backgroundColor = MTColorPalette.colorDenim
+        self.facebookLoginBtn!.backgroundColor = ColorPalette.colorDenim
         self.facebookLoginBtn!.layer.cornerRadius = 24.0
         self.facebookLoginBtn!.layer.masksToBounds = true
         self.view.addSubview(self.facebookLoginBtn!)
@@ -124,7 +124,7 @@ class LoginViewController: MTViewController {
         // forgetPasswordBtn.
         self.forgetPasswordBtn = UIButton()
         self.forgetPasswordBtn!.setTitle("Forgot Password?", for: .normal)
-        self.forgetPasswordBtn!.setTitleColor(MTColorPalette.colorGrayLight, for: .normal)
+        self.forgetPasswordBtn!.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
         self.forgetPasswordBtn!.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         self.forgetPasswordBtn!.backgroundColor = UIColor.clear
         self.view.addSubview(self.forgetPasswordBtn!)
@@ -144,7 +144,7 @@ class LoginViewController: MTViewController {
         // noAccountLabel.
         self.noAccountLabel = UILabel()
         self.noAccountLabel!.text = "Don't have an account?";
-        self.noAccountLabel!.textColor = MTColorPalette.colorGrayLight
+        self.noAccountLabel!.textColor = ColorPalette.colorGrayLight
         self.noAccountLabel!.font = UIFont.systemFont(ofSize: 14)
         self.centerView!.addSubview(self.noAccountLabel!)
         self.noAccountLabel!.snp.makeConstraints { (make) in
@@ -166,14 +166,14 @@ class LoginViewController: MTViewController {
         }
                 
 //        let request = SearchPhotosRequest()
-//        MTNetworkManager.shared.request(request: request, method: .get,success: { (result:JSON) in
+//        NetworkManager.shared.request(request: request, method: .get,success: { (result:JSON) in
 //            print("success")
 //        }, fail: { (error:JSON) in
 //            print("error")
 //        })
 
-//        MTNetworkManager.shared.sendRequest(request: request, method: MTHTTPMethod.get, success:{
-//            (request:MTBaseRequest) -> Void in
+//        NetworkManager.shared.sendRequest(request: request, method: MTHTTPMethod.get, success:{
+//            (request:BaseRequest) -> Void in
 //        }, fail: {
 //            (error:Error) -> Void in
 //        } )

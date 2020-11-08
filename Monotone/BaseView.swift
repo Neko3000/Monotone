@@ -1,5 +1,5 @@
 //
-//  MTView.swift
+//  BaseView.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/3.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MTView: UIView {
+class BaseView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.

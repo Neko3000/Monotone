@@ -1,5 +1,5 @@
 //
-//  MTBaseResponse.swift
+//  BaseResponse.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/1.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol MTBaseResponsePtotocol {
+protocol BaseResponseProtocol {
     // FIXME: to add.
 }
 
-class MTBaseResponse : MTBaseResponsePtotocol{
+class BaseResponse : BaseResponseProtocol{
     // FIXME: to add.
 }
 

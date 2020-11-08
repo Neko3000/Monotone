@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-class SearchPhotosResponse: MTBaseResponse, Mappable{
+class SearchPhotosResponse: BaseResponse, Mappable{
     public var total: Int?
     public var totalPages: Int?
     public var results: [Photo]?

@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-class SearchPhotosRequest: MTBaseRequest {
+class SearchPhotosRequest: BaseRequest {
         
     override var api: String?{
         get{

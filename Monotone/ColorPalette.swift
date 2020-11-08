@@ -1,5 +1,5 @@
 //
-//  MTColorPalette.swift
+//  ColorPalette.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/10/31.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Hue
 
-class MTColorPalette{
+class ColorPalette{
     
     public static func colorWithDarkMode(darkColor:UIColor, lightColor:UIColor) -> UIColor{
         var color:UIColor?

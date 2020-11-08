@@ -10,7 +10,7 @@ import UIKit
 import HMSegmentedControl
 import SnapKit
 
-class HomeHeaderView: MTView {
+class HomeHeaderView: BaseView {
     
     private var menuBtn: UIButton?
     private var searchBtn: UIButton?
@@ -51,7 +51,7 @@ class HomeHeaderView: MTView {
         // titleLabel.
         self.titleLabel = UILabel()
         self.titleLabel!.text = NSLocalizedString("unsplash_home_title", comment: "Unsplash")
-        self.titleLabel!.textColor = MTColorPalette.colorBlack
+        self.titleLabel!.textColor = ColorPalette.colorBlack
         self.titleLabel!.font = UIFont.boldSystemFont(ofSize: 36)
         self.addSubview(self.titleLabel!)
         self.titleLabel!.snp.makeConstraints { (make) in
@@ -68,7 +68,7 @@ class HomeHeaderView: MTView {
 
         self.descriptionLabel = UILabel()
         self.descriptionLabel!.attributedText = attributedDescription
-        self.descriptionLabel!.textColor = MTColorPalette.colorGrayNormal
+        self.descriptionLabel!.textColor = ColorPalette.colorGrayNormal
         self.descriptionLabel!.font = UIFont.systemFont(ofSize: 12)
         self.descriptionLabel!.numberOfLines = 0
         self.addSubview(self.descriptionLabel!)
@@ -86,13 +86,13 @@ class HomeHeaderView: MTView {
         ])
         self.segmentedControl!.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
-            NSAttributedString.Key.foregroundColor : MTColorPalette.colorGrayNormal
+            NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal
         ]
         self.segmentedControl!.selectedTitleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : MTColorPalette.colorBlack
+            NSAttributedString.Key.foregroundColor : ColorPalette.colorBlack
         ]
         self.segmentedControl!.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.top
-        self.segmentedControl!.selectionIndicatorColor = MTColorPalette.colorBlack
+        self.segmentedControl!.selectionIndicatorColor = ColorPalette.colorBlack
         self.segmentedControl!.selectionIndicatorHeight = 1.0
         self.segmentedControl!.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.dynamic
         self.addSubview(self.segmentedControl!)
