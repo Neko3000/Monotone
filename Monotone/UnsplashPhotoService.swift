@@ -22,6 +22,7 @@ class UnsplashPhotoService: NetworkServiceProtocol{
         request.query = "penguin"
 
         MTNetworkManager.shared.request(request: request, method: .get) { (json) in
+            let response = SearchPhotosResponse(JSON: json)
             print(json)
         } fail: { (json) in
             print(json)

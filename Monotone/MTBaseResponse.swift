@@ -8,13 +8,11 @@
 import Foundation
 
 protocol MTBaseResponsePtotocol {
-    init(json:[String:Any])
+    // FIXME: to add.
 }
 
 class MTBaseResponse : MTBaseResponsePtotocol{
-    required init(json: [String : Any]) {
-        
-    }
+    // FIXME: to add.
 }
 
 

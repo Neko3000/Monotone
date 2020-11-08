@@ -6,14 +6,13 @@
 //
 
 import Foundation
-
 import ObjectMapper
 
 class SearchPhotosRequest: MTBaseRequest {
         
     override var api: String?{
         get{
-            return "photos/"
+            return "search/photos/"
         }
     }
     

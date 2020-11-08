@@ -67,7 +67,7 @@ class MTNetworkManager{
 
     }
     
-    public func request(request:MTBaseRequest, method:HTTPMethod, success:@escaping (JSON)->Void, fail:@escaping (JSON)->Void){
+    public func request(request:MTBaseRequest, method:HTTPMethod, success:@escaping ([String: Any])->Void, fail:@escaping ([String: Any])->Void){
         
         let url = self.domain + request.api!
             
@@ -80,7 +80,7 @@ class MTNetworkManager{
                 if(response.response?.statusCode == 200){
                     do{
                         let json = try JSON(data: data!)
-                        success(json)
+                        success(json.dictionaryObject!)
                     }
                     catch{
                         print("Could not decode success result from \(url)")
@@ -90,7 +90,7 @@ class MTNetworkManager{
                 else{
                     do{
                         let json = try JSON(data: data!)
-                        fail(json)
+                        fail(json.dictionaryObject!)
                     }
                     catch{
                         print("Could not decode failure errors from \(url)")
