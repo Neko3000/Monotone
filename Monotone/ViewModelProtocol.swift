@@ -10,44 +10,75 @@ import Foundation
 import RxSwift
 import Action
 
-protocol ViewModelProtocol {
+protocol ViewModelIOProtocol {
     associatedtype Input
     associatedtype Output
     
     var input:Input { get }
     var output:Output { get }
-    func transform(input:Input)->Output
 }
 
-class SearchPhotosViewModel: ViewModelProtocol{
+protocol ViewModelBindProtocol {
+    func bind()
+}
+
+class ViewModel: ViewModelBindProtocol{
+    var service: NetworkService?
+    let disposeBag: DisposeBag = DisposeBag()
+    
+    init(service: NetworkService) {
+        self.service = service
+        self.bind()
+    }
+    
+    internal func bind() {
+        // Implementated by subclass.
+    }
+}
+
+class SearchPhotosViewModel: ViewModel, ViewModelIOProtocol{
     
     /// MARK: Input
     struct Input {
-        var query: BehaviorSubject<String>?
-        var loadMoreAction: Action<Void, Void>?
+        var query: PublishSubject<String> = PublishSubject<String>()
+        var loadMoreAction: Action<Void, [Photo]>?
         var reloadAction: Action<Void, Void>?
     }
-    public let input:Input = Input()
+    public var input:Input = Input()
     
     /// MARK: Output
     struct Output {
-        var photos: BehaviorSubject<[NSObject]>?
-        var loading: BehaviorSubject<Bool>?
+        var photos: BehaviorSubject<[Photo]> = BehaviorSubject<[Photo]>(value: [])
+        var loading: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
     }
-    public let output: Output = Output()
+    public var output: Output = Output()
     
     /// MARK: Private
-    let currentPage:Int = 1
+    let currentPage: Int = 1
     
-    init() {
-//        self.input.query = BehaviorSubject<String>(value: "")
-//        self.input.loadMoreAction = Action<Void, Void>(workFactory: { [weak self] in
-//
-//        })
-    }
-    
-    func transform(input:Input) -> Output {
-        return Output()
+    /// MARK: Bind
+    override func bind() {
+        let photoService = self.service as! PhotoService
         
+        self.output.photos = BehaviorSubject<[Photo]>(value: [Photo()])
+        
+        self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
+            return photoService.searchPhotos(query: "penguin", page: self.currentPage)
+            // return Observable.empty()
+        })
+        
+        self.input.loadMoreAction?.elements
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (photos: [Photo]) in
+                if let value = try? self.output.photos.value(){
+                    self.output.photos.onNext(value + photos)
+                }
+            }, onError: { (error) in
+                // FIXME: cancel loading state.
+            }).disposed(by: self.disposeBag)
+        
+        self.input.loadMoreAction?.execute()
     }
+    
+    
 }

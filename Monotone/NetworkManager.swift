@@ -24,7 +24,7 @@ class NetworkManager{
     
     let domain: String = "https://api.unsplash.com/"
     
-    /// API keys
+    // MARK: API keys
     public var accessKey : String{
         get{ return _accessKey ?? "" }
     }
@@ -36,13 +36,12 @@ class NetworkManager{
     private var _accessKey : String?
     private var _secretKey : String?
     
-    /// Header
+    // MARK: Header
     private var headers : HTTPHeaders{
         get{ return [
             "Authorization" : "Client-ID \(self.accessKey)"
         ] }
     }
-    
     
     private func loadAPIKeys(){
         
@@ -73,7 +72,7 @@ class NetworkManager{
         let url = self.domain + request.api!
         
         return Observable.create { (observer) -> Disposable in
-            AF.request(url, method: method, parameters: request.toParams(), headers: self.headers)
+            let request = AF.request(url, method: method, parameters: request.toParams(), headers: self.headers)
                 .response{ (response) in
                     
                 switch(response.result){
@@ -85,7 +84,7 @@ class NetworkManager{
                             observer.onNext(json.dictionaryObject!)
                         }
                         catch{
-                            print("Could not decode success result from \(url)")
+                            print("Could not decode success result from \(url), the error is \(error.localizedDescription)")
                         }
                     }
                     else{
@@ -95,7 +94,7 @@ class NetworkManager{
                             observer.onError(error)
                         }
                         catch{
-                            print("Could not decode failure errors from \(url)")
+                            print("Could not decode failure errors from \(url), the error is \(error.localizedDescription)")
                         }
                     }
                     
@@ -110,7 +109,9 @@ class NetworkManager{
                 }
             }
             
-            return Disposables.create()
+            return Disposables.create {
+                request.cancel()
+            }
         }
     }
 }

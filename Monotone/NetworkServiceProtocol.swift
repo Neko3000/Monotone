@@ -6,7 +6,12 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol NetworkServiceProtocol {
-    // FIXME: to add.
+    var disposeBag: DisposeBag  { get }
+}
+
+class NetworkService: NetworkServiceProtocol{
+    internal let disposeBag: DisposeBag = DisposeBag()
 }

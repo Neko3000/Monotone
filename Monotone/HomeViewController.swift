@@ -47,8 +47,8 @@ class HomeViewController: BaseViewController,UICollectionViewDelegate,UICollecti
             make.top.equalTo(self.homeHeaderView!.snp.bottom)
         }
         
-        
-        UnsplashPhotoService.searchPhotos(query:"penguin")
+        let service = PhotoService()
+        let viewModel = SearchPhotosViewModel(service: service)
     }
     
     // MARK: CollectionViewDelegate

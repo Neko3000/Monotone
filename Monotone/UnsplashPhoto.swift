@@ -111,6 +111,10 @@ class Photo: Mappable{
     public var urls: Urls?
     public var links: Links?
     
+    init(){
+        
+    }
+    
     required init?(map: Map) {
         
     }
