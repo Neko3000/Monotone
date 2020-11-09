@@ -8,15 +8,20 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.buildSubviews()
+        self.buildLogic()
         // Do any additional setup after loading the view.
     }
     
     internal func buildSubviews() {
+        
+    }
+    
+    internal func buildLogic() {
         
     }
     

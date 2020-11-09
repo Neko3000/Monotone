@@ -9,11 +9,15 @@ import UIKit
 import MJRefresh
 
 import ObjectMapper
+import RxSwift
 
-class HomeViewController: BaseViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
-
+class HomeViewController: BaseViewController,UICollectionViewDelegateFlowLayout  {
+    
+    private var viewModel : SearchPhotosViewModel?
+    private let disposeBag : DisposeBag = DisposeBag()
+    
     private var homeHeaderView : HomeHeaderView?
-    private var collectionView: UICollectionView?
+    private var collectionView : UICollectionView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,27 +42,38 @@ class HomeViewController: BaseViewController,UICollectionViewDelegate,UICollecti
         flowLayout.scrollDirection = .vertical
         
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "UICollectionViewCell")
+        self.collectionView!.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
         self.collectionView!.delegate = self
-        self.collectionView!.dataSource = self
         self.view.addSubview(self.collectionView!)
         self.collectionView!.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.homeHeaderView!.snp.bottom)
         }
         
-        let service = PhotoService()
-        let viewModel = SearchPhotosViewModel(service: service)
+    }
+    
+    override func buildLogic() {
+        self.viewModel = SearchPhotosViewModel(service: PhotoService())
+        
+        //
+        self.viewModel!.output.photos.bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
+            (row, element, cell) in
+            
+            let pcell: PhotoCollectionViewCell = cell as! PhotoCollectionViewCell
+            pcell.photoImageView!.image = nil
+        }.disposed(by: self.disposeBag)
+        
+        
     }
     
     // MARK: CollectionViewDelegate
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return 10
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if(indexPath.row % 3 == 0){
@@ -69,21 +84,21 @@ class HomeViewController: BaseViewController,UICollectionViewDelegate,UICollecti
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "UICollectionViewCell", for: indexPath)
-        
-        if(indexPath.row % 3 == 0){
-            cell.backgroundColor = UIColor.purple
-        }
-        else if(indexPath.row % 2 == 0){
-            cell.backgroundColor = UIColor.magenta
-        }
-        else{
-            cell.backgroundColor = UIColor.orange
-        }
-        
-        return cell
-    }
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "UICollectionViewCell", for: indexPath)
+//
+//        if(indexPath.row % 3 == 0){
+//            cell.backgroundColor = UIColor.purple
+//        }
+//        else if(indexPath.row % 2 == 0){
+//            cell.backgroundColor = UIColor.magenta
+//        }
+//        else{
+//            cell.backgroundColor = UIColor.orange
+//        }
+//
+//        return cell
+//    }
     
     
 
