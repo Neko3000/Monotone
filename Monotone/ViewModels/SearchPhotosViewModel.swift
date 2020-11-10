@@ -1,40 +1,14 @@
 //
-//  ViewModelProtocol.swift
+//  SearchPhotosViewModel.swift
 //  Monotone
 //
-//  Created by Xueliang Chen on 2020/11/7.
+//  Created by Xueliang Chen on 2020/11/10.
 //
 
 import Foundation
 
 import RxSwift
 import Action
-
-protocol ViewModelIOProtocol {
-    associatedtype Input
-    associatedtype Output
-    
-    var input:Input { get }
-    var output:Output { get }
-}
-
-protocol ViewModelBindProtocol {
-    func bind()
-}
-
-class ViewModel: ViewModelBindProtocol{
-    var service: NetworkService?
-    let disposeBag: DisposeBag = DisposeBag()
-    
-    init(service: NetworkService) {
-        self.service = service
-        self.bind()
-    }
-    
-    internal func bind() {
-        // Implementated by subclass.
-    }
-}
 
 class SearchPhotosViewModel: ViewModel, ViewModelIOProtocol{
     
@@ -55,7 +29,7 @@ class SearchPhotosViewModel: ViewModel, ViewModelIOProtocol{
     public var output: Output = Output()
     
     /// MARK: Private
-    private var currentPage: Int = 1
+    private var nextLoadPage: Int = 1
     
     /// MARK: Bind
     override func bind() {
@@ -67,15 +41,15 @@ class SearchPhotosViewModel: ViewModel, ViewModelIOProtocol{
             self.output.loadingMore.onNext(true)
             
             guard  let query = try? self.input.query.value() else { return .empty() }
-            return photoService.searchPhotos(query: query , page: self.currentPage + 1)
+            return photoService.searchPhotos(query: query , page: self.nextLoadPage + 1)
         })
         
         self.input.loadMoreAction?.elements
             .subscribe(onNext: { (photos: [Photo]) in
-                
+
                 if let value = try? self.output.photos.value(){
                     self.output.photos.onNext(value + photos)
-                    self.currentPage += 1
+                    self.nextLoadPage += 1
                 }
                 
                 self.output.loadingMore.onNext(false)
@@ -86,22 +60,16 @@ class SearchPhotosViewModel: ViewModel, ViewModelIOProtocol{
         
         // Reload.
         self.input.reloadAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
-            self.output.reloading.onNext(true)
-            
-            guard  let query = try? self.input.query.value() else { return .empty() }
-            return photoService.searchPhotos(query: query , page: 1)
+            self.nextLoadPage = 1
+            return self.input.loadMoreAction!.execute()
         })
         
         self.input.reloadAction?.elements
             .subscribe(onNext: { (photos: [Photo]) in
                 self.output.photos.onNext(photos)
-                
                 self.output.reloading.onNext(false)
             }, onError: { (error) in
-                
                 self.output.reloading.onNext(false)
             }).disposed(by: self.disposeBag)
     }
-    
-    
 }

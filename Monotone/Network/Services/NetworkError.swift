@@ -1,5 +1,5 @@
 //
-//  UnsplashError.swift
+//  NetworkError.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/8.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UnsplashNetworkError: LocalizedError{
+class NetworkError: LocalizedError{
     let errorStrs: [String]
     
     init(errorStrs: [String]) {
