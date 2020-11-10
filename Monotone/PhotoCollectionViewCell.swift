@@ -25,6 +25,8 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         
         // photoImageView.
         self.photoImageView = UIImageView()
+        self.photoImageView!.contentMode = .scaleAspectFill
+        self.photoImageView!.layer.masksToBounds = true
         self.contentView.addSubview(self.photoImageView!)
         self.photoImageView!.snp.makeConstraints { (make) in
             make.top.right.bottom.left.equalTo(self.contentView)

@@ -22,7 +22,8 @@ class PhotoService: NetworkService {
                       oritentation:String? = "") -> Observable<[Photo]>{
         
         let request: SearchPhotosRequest = SearchPhotosRequest()
-        request.query = "penguin"
+        request.query = query
+        request.page = page
         
         return Observable.create { (observer) -> Disposable in
             

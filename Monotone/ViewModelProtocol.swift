@@ -72,6 +72,7 @@ class SearchPhotosViewModel: ViewModel, ViewModelIOProtocol{
         
         self.input.loadMoreAction?.elements
             .subscribe(onNext: { (photos: [Photo]) in
+                
                 if let value = try? self.output.photos.value(){
                     self.output.photos.onNext(value + photos)
                     self.currentPage += 1
@@ -79,6 +80,7 @@ class SearchPhotosViewModel: ViewModel, ViewModelIOProtocol{
                 
                 self.output.loadingMore.onNext(false)
             }, onError: { (error) in
+                
                 self.output.loadingMore.onNext(false)
             }).disposed(by: self.disposeBag)
         
@@ -96,6 +98,7 @@ class SearchPhotosViewModel: ViewModel, ViewModelIOProtocol{
                 
                 self.output.reloading.onNext(false)
             }, onError: { (error) in
+                
                 self.output.reloading.onNext(false)
             }).disposed(by: self.disposeBag)
     }

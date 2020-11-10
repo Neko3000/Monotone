@@ -9,6 +9,7 @@ import UIKit
 import MJRefresh
 
 import ObjectMapper
+import Kingfisher
 import RxSwift
 
 class HomeViewController: BaseViewController,UICollectionViewDelegateFlowLayout  {
@@ -42,8 +43,9 @@ class HomeViewController: BaseViewController,UICollectionViewDelegateFlowLayout 
         flowLayout.scrollDirection = .vertical
         
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+        self.collectionView!.backgroundColor = UIColor.clear
         self.collectionView!.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
-        self.collectionView!.delegate = self
+        self.collectionView!.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.collectionView!)
         self.collectionView!.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(self.view)
@@ -55,26 +57,46 @@ class HomeViewController: BaseViewController,UICollectionViewDelegateFlowLayout 
     override func buildLogic() {
         self.viewModel = SearchPhotosViewModel(service: PhotoService())
         
-        //
+        // ViewModel Bind.
         self.viewModel!.output.photos.bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
             (row, element, cell) in
             
             let pcell: PhotoCollectionViewCell = cell as! PhotoCollectionViewCell
-            pcell.photoImageView!.image = nil
+            pcell.photoImageView!.kf.setImage(with: URL(string: element.urls?.regular ?? ""))
+            
         }.disposed(by: self.disposeBag)
         
+        // CollectionView MJRefresh.
+        self.collectionView?.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+            self.viewModel?.input.reloadAction?.execute()
+        })
+            
+        self.collectionView?.mj_footer = MJRefreshAutoNormalFooter.init(refreshingBlock: {
+            self.viewModel?.input.loadMoreAction?.execute()
+        })
         
+        self.viewModel?.output.reloading.subscribe(onNext: { (reloading) in
+            if(!reloading){
+                self.collectionView?.mj_header?.endRefreshing()
+            }
+        }, onError: { (error) in
+            print("error!")
+        }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.output.loadingMore.subscribe(onNext: { (loadingMore) in
+            if(!loadingMore){
+                self.collectionView?.mj_footer?.endRefreshing()
+            }
+        }, onError: { (error) in
+            print("error!")
+        }).disposed(by: self.disposeBag)
+        
+        // FiXME: Query
+        self.viewModel?.input.query.onNext("penguin")
+        self.viewModel?.input.loadMoreAction?.execute()
     }
     
     // MARK: CollectionViewDelegate
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 10
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if(indexPath.row % 3 == 0){
             return CGSize(width: self.collectionView!.frame.width, height: 300.0)
@@ -83,24 +105,6 @@ class HomeViewController: BaseViewController,UICollectionViewDelegateFlowLayout 
             return CGSize(width: self.collectionView!.frame.width / 2.0, height: 300.0)
         }
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "UICollectionViewCell", for: indexPath)
-//
-//        if(indexPath.row % 3 == 0){
-//            cell.backgroundColor = UIColor.purple
-//        }
-//        else if(indexPath.row % 2 == 0){
-//            cell.backgroundColor = UIColor.magenta
-//        }
-//        else{
-//            cell.backgroundColor = UIColor.orange
-//        }
-//
-//        return cell
-//    }
-    
-    
 
     /*
     // MARK: - Navigation

@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import RxSwift
 
 class BaseViewController: UIViewController {
+    
+    // MARK: Variables
+    //
         
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
