@@ -12,6 +12,7 @@ target 'Monotone' do
   pod 'Alamofire', '5.3.0'
   pod 'SwiftyJSON', '4.3.0'
   pod 'ObjectMapper', '4.2.0'
+  pod 'Kingfisher', '5.15.7'
   pod 'MJRefresh', '3.5.0' 
   pod 'SnapKit', '5.0.1'
   pod 'Hue', '5.0.0'
