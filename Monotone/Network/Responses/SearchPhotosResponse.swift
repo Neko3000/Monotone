@@ -8,16 +8,12 @@
 import Foundation
 import ObjectMapper
 
-class SearchPhotosResponse: BaseResponse, Mappable{
+class SearchPhotosResponse: BaseResponse{
     public var total: Int?
     public var totalPages: Int?
     public var results: [Photo]?
     
-    required init?(map: Map) {
-        
-    }
-    
-    func mapping(map: Map) {
+    override func mapping(map: Map) {
         self.total      <- map["total"]
         self.totalPages <- map["total_pages"]
         self.results    <- map["results"]

@@ -72,7 +72,7 @@ class NetworkManager{
         let url = self.domain + request.api!
         
         return Observable.create { (observer) -> Disposable in
-            let request = AF.request(url, method: method, parameters: request.toParams(), headers: self.headers)
+            let request = AF.request(url, method: method, parameters: request.toJSON(), headers: self.headers)
                 .response{ (response) in
                     
                 switch(response.result){
@@ -80,8 +80,12 @@ class NetworkManager{
 
                     if(response.response?.statusCode == 200){
                         do{
-                            let json = try JSON(data: data!)
-                            observer.onNext(json.dictionaryObject!)
+                            var json = try JSON(data: data!)
+                        
+                            if(json.arrayObject != nil){
+                                json = JSON(["results": json.arrayObject])
+                            }
+                            observer.onNext(json.dictionaryObject ?? [String :Any]())
                         }
                         catch{
                             print("Could not decode success result from \(url), the error is \(error.localizedDescription)")

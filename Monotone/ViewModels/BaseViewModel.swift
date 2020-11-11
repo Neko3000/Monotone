@@ -1,5 +1,5 @@
 //
-//  ViewModelProtocol.swift
+//  BaseViewModel.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/7.
@@ -22,7 +22,7 @@ protocol ViewModelBindProtocol {
     func bind()
 }
 
-class ViewModel: ViewModelBindProtocol{
+class BaseViewModel: ViewModelBindProtocol{
     var service: NetworkService?
     let disposeBag: DisposeBag = DisposeBag()
     

@@ -14,7 +14,7 @@ import RxSwift
 
 class HomeViewController: BaseViewController,UICollectionViewDelegateFlowLayout  {
     
-    private var viewModel : SearchPhotosViewModel?
+    private var viewModel : ListPhotosViewModel?
     private let disposeBag : DisposeBag = DisposeBag()
     
     private var homeHeaderView : HomeHeaderView?
@@ -52,10 +52,20 @@ class HomeViewController: BaseViewController,UICollectionViewDelegateFlowLayout 
             make.top.equalTo(self.homeHeaderView!.snp.bottom)
         }
         
+        let header = MJRefreshNormalHeader.init()
+        header.stateLabel!.font = UIFont.systemFont(ofSize: 12)
+        header.lastUpdatedTimeLabel!.font = UIFont.systemFont(ofSize: 10)
+        self.collectionView!.mj_header = header
+        
+        let footer = MJRefreshAutoNormalFooter.init()
+        footer.stateLabel!.font = UIFont.systemFont(ofSize: 12)
+        self.collectionView!.mj_footer = footer
     }
     
     override func buildLogic() {
-        self.viewModel = SearchPhotosViewModel(service: PhotoService())
+        
+        // ViewModel.
+        self.viewModel = ListPhotosViewModel(service: PhotoService())
         
         // ViewModel Bind.
         self.viewModel!.output.photos.bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
@@ -67,32 +77,33 @@ class HomeViewController: BaseViewController,UICollectionViewDelegateFlowLayout 
         }.disposed(by: self.disposeBag)
         
         // CollectionView MJRefresh.
-        self.collectionView?.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+        self.collectionView!.mj_header!.refreshingBlock = {
             self.viewModel?.input.reloadAction?.execute()
-        })
+        }
             
-        self.collectionView?.mj_footer = MJRefreshAutoNormalFooter.init(refreshingBlock: {
+        self.collectionView!.mj_footer!.refreshingBlock = {
             self.viewModel?.input.loadMoreAction?.execute()
-        })
+        }
         
-        self.viewModel?.output.reloading.subscribe(onNext: { (reloading) in
+        // MJRefresh style.
+        self.viewModel!.output.reloading.subscribe(onNext: { (reloading) in
             if(!reloading){
-                self.collectionView?.mj_header?.endRefreshing()
+                self.collectionView!.mj_header!.endRefreshing()
             }
         }, onError: { (error) in
             print("error!")
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.output.loadingMore.subscribe(onNext: { (loadingMore) in
+        self.viewModel!.output.loadingMore.subscribe(onNext: { (loadingMore) in
             if(!loadingMore){
-                self.collectionView?.mj_footer?.endRefreshing()
+                self.collectionView!.mj_footer!.endRefreshing()
             }
         }, onError: { (error) in
             print("error!")
         }).disposed(by: self.disposeBag)
         
-        // FiXME: Query
-        self.viewModel?.input.query.onNext("penguin")
+        // FiXME: Query.
+        self.viewModel?.input.orderBy.onNext("popular")
         self.viewModel?.input.loadMoreAction?.execute()
     }
     

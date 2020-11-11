@@ -10,7 +10,6 @@ import ObjectMapper
 
 protocol BaseRequestProtocol {
     var api : String? { get }
-    func toParams() -> [String : Any]
 }
 
 class BaseRequest : Mappable, BaseRequestProtocol{
@@ -27,8 +26,4 @@ class BaseRequest : Mappable, BaseRequestProtocol{
     }
     
     var api: String? { get{ return "" } }
-    
-    public func toParams() -> [String : Any] {
-        return Mapper().toJSON(self)
-    }
 }

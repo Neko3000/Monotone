@@ -10,11 +10,11 @@ import Foundation
 import RxSwift
 import Action
 
-class SearchPhotosViewModel: BaseViewModel, ViewModelIOProtocol{
+class ListPhotosViewModel: BaseViewModel, ViewModelIOProtocol{
     
     /// MARK: Input
     struct Input {
-        var query: BehaviorSubject<String> = BehaviorSubject<String>(value:"")
+        var orderBy: BehaviorSubject<String> = BehaviorSubject<String>(value:"")
         var loadMoreAction: Action<Void, [Photo]>?
         var reloadAction: Action<Void, [Photo]>?
     }
@@ -40,8 +40,8 @@ class SearchPhotosViewModel: BaseViewModel, ViewModelIOProtocol{
         self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
             self.output.loadingMore.onNext(true)
             
-            guard let query = try? self.input.query.value() else { return .empty() }
-            return photoService.searchPhotos(query: query , page: self.nextLoadPage + 1)
+            guard let orderBy = try? self.input.orderBy.value() else { return .empty() }
+            return photoService.listPhotos(page: self.nextLoadPage, orderBy: orderBy)
         })
         
         self.input.loadMoreAction?.elements
