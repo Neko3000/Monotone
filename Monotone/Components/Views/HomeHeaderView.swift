@@ -10,7 +10,12 @@ import UIKit
 import HMSegmentedControl
 import SnapKit
 
+import RxSwift
+
 class HomeHeaderView: BaseView {
+    
+    public let searchQuery: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
+    public let segmentStr: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
     
     private var menuBtn: UIButton?
     private var searchBtn: UIButton?
@@ -81,8 +86,8 @@ class HomeHeaderView: BaseView {
         
         // segmentedControl.
         self.segmentedControl = HMSegmentedControl(sectionTitles: [
-            NSLocalizedString("unsplash_home_segment_editoral", comment: "Editoral"),
-            NSLocalizedString("unsplash_home_segment_following", comment: "Follwing")
+            NSLocalizedString("unsplash_home_segment_popular", comment: "Popular"),
+            NSLocalizedString("unsplash_home_segment_lastest", comment: "Lastest")
         ])
         self.segmentedControl!.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
@@ -95,12 +100,21 @@ class HomeHeaderView: BaseView {
         self.segmentedControl!.selectionIndicatorColor = ColorPalette.colorBlack
         self.segmentedControl!.selectionIndicatorHeight = 1.0
         self.segmentedControl!.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.dynamic
+        self.segmentedControl!.addTarget(self, action: #selector(segmentedControlChangedValue(segmentedControl:)), for: .valueChanged)
         self.addSubview(self.segmentedControl!)
         self.segmentedControl!.snp.makeConstraints { (make) in
             make.right.bottom.equalTo(self)
             make.height.equalTo(38.0)
             make.width.equalTo(self).multipliedBy(1.0/3)
         }
+    }
+    
+    @objc private func segmentedControlChangedValue(segmentedControl: HMSegmentedControl){
+        
+        let index = Int(segmentedControl.selectedSegmentIndex)
+        let title = segmentedControl.sectionTitles![index]
+
+        self.segmentStr.onNext(title)
     }
     
 }

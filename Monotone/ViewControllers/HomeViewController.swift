@@ -12,13 +12,17 @@ import ObjectMapper
 import Kingfisher
 import RxSwift
 
-class HomeViewController: BaseViewController,UICollectionViewDelegateFlowLayout  {
+class HomeViewController: BaseViewController, ViewControllerBindProtocol, UICollectionViewDelegateFlowLayout  {
     
-    private var viewModel : ListPhotosViewModel?
+    internal var viewModel : ListPhotosViewModel?
     private let disposeBag : DisposeBag = DisposeBag()
     
     private var homeHeaderView : HomeHeaderView?
     private var collectionView : UICollectionView?
+    
+    public func bind(to viewModel: ListPhotosViewModel) {
+        self.viewModel = viewModel
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +72,8 @@ class HomeViewController: BaseViewController,UICollectionViewDelegateFlowLayout 
         self.viewModel = ListPhotosViewModel(service: PhotoService())
         
         // ViewModel Bind.
+        self.homeHeaderView!.segmentStr.bind(to: self.viewModel!.input.orderBy).disposed(by: self.disposeBag)
+        
         self.viewModel!.output.photos.bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
             (row, element, cell) in
             
@@ -76,6 +82,23 @@ class HomeViewController: BaseViewController,UICollectionViewDelegateFlowLayout 
             
         }.disposed(by: self.disposeBag)
         
+        self.collectionView!.rx.itemSelected.subscribe { (indexPath) in
+            let homeVC = HomeViewController()
+            
+            let nav = UINavigationController(rootViewController: homeVC)
+            nav.modalPresentationStyle = .fullScreen
+            
+            let vc1 = PhotoDetailsViewController()
+            nav.pushViewController(vc1, animated: true)
+            
+            let vc2 = PhotoDetailsViewController()
+            nav.pushViewController(vc2, animated: true)
+            
+            UIApplication.shared.keyWindow?.rootViewController = nav
+//            self.present(nav, animated: true, completion: nil)
+        }.disposed(by: self.disposeBag)
+
+                
         // CollectionView MJRefresh.
         self.collectionView!.mj_header!.refreshingBlock = {
             self.viewModel?.input.reloadAction?.execute()

@@ -10,3 +10,6 @@
 "unsplash_home_description" = "Beautiful, free photos.\nGifted by the world’s most generous community of \nphotographers. 🎁";
 "unsplash_home_segment_editoral" = "Editoral";
 "unsplash_home_segment_following" = "Following";
+"unsplash_home_segment_popular" = "Popular";
+"unsplash_home_segment_lastest" = "Lastest";
+

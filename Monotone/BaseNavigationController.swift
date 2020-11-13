@@ -1,22 +1,14 @@
 //
-//  BaseViewController.swift
+//  BaseNavigationController.swift
 //  Monotone
 //
-//  Created by Xueliang Chen on 2020/10/30.
+//  Created by Xueliang Chen on 2020/11/12.
 //
 
 import UIKit
-import RxSwift
 
-protocol ViewControllerBindProtocol{
-    associatedtype ViewModelType
-    var viewModel: ViewModelType? { get }
-    
-    func bind(to viewModel: ViewModelType)
-}
+class BaseNavigationController: UINavigationController {
 
-class BaseViewController: UIViewController {
-    
     // MARK: Variables
     //
         

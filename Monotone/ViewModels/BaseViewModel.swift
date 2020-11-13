@@ -11,11 +11,11 @@ import RxSwift
 import Action
 
 protocol ViewModelIOProtocol {
-    associatedtype Input
-    associatedtype Output
+    associatedtype InputType
+    associatedtype OutputType
     
-    var input:Input { get }
-    var output:Output { get }
+    var input: InputType { get }
+    var output: OutputType { get }
 }
 
 protocol ViewModelBindProtocol {

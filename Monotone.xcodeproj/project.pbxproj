@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1409A7972550EAAB0005B702 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409A7962550EAAB0005B702 /* BaseView.swift */; };
+		14104916255D34AE003312BC /* PhotoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14104915255D34AE003312BC /* PhotoDetailsViewController.swift */; };
+		1410491C255D3686003312BC /* SceneTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1410491B255D3686003312BC /* SceneTransition.swift */; };
+		14104920255D4944003312BC /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1410491F255D4944003312BC /* BaseNavigationController.swift */; };
+		14104925255D49A5003312BC /* MTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14104924255D49A5003312BC /* MTNavigationController.swift */; };
 		1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423A4DC254BA121009DEEA1 /* BaseViewController.swift */; };
 		143114C1255A788D00991676 /* SearchPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114C0255A788D00991676 /* SearchPhotosViewModel.swift */; };
 		143114CC255A794600991676 /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114CB255A794600991676 /* Links.swift */; };
@@ -21,6 +25,7 @@
 		143FB14F255BAD2D00D24248 /* ListPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB14E255BAD2D00D24248 /* ListPhotosViewModel.swift */; };
 		148ED1E925591DBF0000146E /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED1E825591DBF0000146E /* PhotoCollectionViewCell.swift */; };
 		148FF23B255237A600CADB4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 148FF23D255237A600CADB4C /* Localizable.strings */; };
+		14956D32255CC72B0057A4A6 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14956D31255CC72B0057A4A6 /* SceneCoordinator.swift */; };
 		14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8E9254A589D0021FE3E /* AppDelegate.swift */; };
 		14D5E8EC254A589D0021FE3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */; };
 		14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8ED254A589D0021FE3E /* LoginViewController.swift */; };
@@ -57,6 +62,10 @@
 /* Begin PBXFileReference section */
 		0DE40B09FB07DB642D48B327 /* Pods-Monotone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.debug.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.debug.xcconfig"; sourceTree = "<group>"; };
 		1409A7962550EAAB0005B702 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		14104915255D34AE003312BC /* PhotoDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewController.swift; sourceTree = "<group>"; };
+		1410491B255D3686003312BC /* SceneTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTransition.swift; sourceTree = "<group>"; };
+		1410491F255D4944003312BC /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		14104924255D49A5003312BC /* MTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTNavigationController.swift; sourceTree = "<group>"; };
 		1423A4DC254BA121009DEEA1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		143114C0255A788D00991676 /* SearchPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosViewModel.swift; sourceTree = "<group>"; };
 		143114CB255A794600991676 /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
@@ -75,6 +84,7 @@
 		148FF23F255237B000CADB4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		148FF241255237EA00CADB4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		148FF243255237F600CADB4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		14956D31255CC72B0057A4A6 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		14D5E8E6254A589D0021FE3E /* Monotone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monotone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D5E8E9254A589D0021FE3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +127,7 @@
 				1423A4DC254BA121009DEEA1 /* BaseViewController.swift */,
 				14D5E8ED254A589D0021FE3E /* LoginViewController.swift */,
 				143F5677254FEA040038761D /* HomeViewController.swift */,
+				14104915255D34AE003312BC /* PhotoDetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -269,6 +280,10 @@
 				14D5E8F7254A589E0021FE3E /* Info.plist */,
 				148FF23D255237A600CADB4C /* Localizable.strings */,
 				14F37070254EA14B0086B8CC /* api_keys_sample.json */,
+				14956D31255CC72B0057A4A6 /* SceneCoordinator.swift */,
+				1410491B255D3686003312BC /* SceneTransition.swift */,
+				1410491F255D4944003312BC /* BaseNavigationController.swift */,
+				14104924255D49A5003312BC /* MTNavigationController.swift */,
 			);
 			path = Monotone;
 			sourceTree = "<group>";
@@ -454,8 +469,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				143F567B254FEF320038761D /* HomeHeaderView.swift in Sources */,
+				1410491C255D3686003312BC /* SceneTransition.swift in Sources */,
 				14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */,
 				1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */,
+				14104916255D34AE003312BC /* PhotoDetailsViewController.swift in Sources */,
 				143114DF255AA6D400991676 /* ListPhotosRequest.swift in Sources */,
 				143114D8255A79D000991676 /* Urls.swift in Sources */,
 				14F3707D254EABDA0086B8CC /* BaseResponse.swift in Sources */,
@@ -463,6 +480,7 @@
 				148ED1E925591DBF0000146E /* PhotoCollectionViewCell.swift in Sources */,
 				14E59E312556A0E200F1FB60 /* NetworkService.swift in Sources */,
 				143FB13F255B859F00D24248 /* ListPhotosResponse.swift in Sources */,
+				14104925255D49A5003312BC /* MTNavigationController.swift in Sources */,
 				1409A7972550EAAB0005B702 /* BaseView.swift in Sources */,
 				143FB14F255BAD2D00D24248 /* ListPhotosViewModel.swift in Sources */,
 				14E59DCD2556716400F1FB60 /* BaseViewModel.swift in Sources */,
@@ -473,10 +491,12 @@
 				14E59E912557FC5000F1FB60 /* NetworkError.swift in Sources */,
 				14F36F91254D3AB80086B8CC /* ColorPalette.swift in Sources */,
 				14D5E8EC254A589D0021FE3E /* SceneDelegate.swift in Sources */,
+				14956D32255CC72B0057A4A6 /* SceneCoordinator.swift in Sources */,
 				143F5678254FEA040038761D /* HomeViewController.swift in Sources */,
 				14F36FB0254D53940086B8CC /* NetworkManager.swift in Sources */,
 				14F3707A254EA9300086B8CC /* BaseRequest.swift in Sources */,
 				143114D1255A797A00991676 /* ProfileImage.swift in Sources */,
+				14104920255D4944003312BC /* BaseNavigationController.swift in Sources */,
 				14E59E2E2556A0CA00F1FB60 /* PhotoService.swift in Sources */,
 				14F37083254ED2F60086B8CC /* SearchPhotosRequest.swift in Sources */,
 				143114D5255A799A00991676 /* User.swift in Sources */,

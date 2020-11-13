@@ -82,9 +82,11 @@ class NetworkManager{
                         do{
                             var json = try JSON(data: data!)
                         
+                            // If the json is a root array without any keys, put the root array into result key.
                             if(json.arrayObject != nil){
                                 json = JSON(["results": json.arrayObject])
                             }
+                            
                             observer.onNext(json.dictionaryObject ?? [String :Any]())
                         }
                         catch{
