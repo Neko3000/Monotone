@@ -10,20 +10,20 @@ import UIKit
 
 import RxSwift
 
-protocol CoordinatorProtocol {
-    var childCoordinators : [Coordinator] { get set }
-    func start()
-    func transite(to: SceneProtocol)
+protocol Coordinator {
+    var childCoordinators : [CoordinatorProtocol] { get set }
+    func transition()
 }
 
-protocol FactoryCoordinatorProtocol {
+protocol FactoryCoordinator {
     associatedtype sceneType
+    associatedtype sceneContentType
     
-    func viewController(scene: sceneType) -> BaseViewController
-    func viewModel(viewModelType: AnyClass, userInfo: [String: Any]) -> BaseViewModel
+    func viewController(scene: sceneType) -> BaseViewController?
+    func viewModel(sceneContent: sceneContentType) -> BaseViewModel?
 }
 
-class BaseCoordinator: CoordinatorProtocol {
+class BaseCoordinator: Coordinator {
 
     var childCoordinators: [Coordinator] = [Coordinator]()
     
@@ -37,30 +37,29 @@ class BaseCoordinator: CoordinatorProtocol {
         self.navigationViewController = UINavigationController()
     }
     
-    func start() {
-        
+    func transition() {
+        // Implemented by subclass.
     }
-    
-    func transite(to: SceneProtocol) {
-        
-    }
-    
 }
 
 class SceneCoordinator: BaseCoordinator{
-    enum Scene: SceneProtocol {
-        case Home([String: Any])
-        case PhotoDetails([String: Any])
+    enum Scene {
+        case home([String: Any])
+        case photoDetails([String: Any])
     }
     
-    enum ViewModel {
-        case ListPhotosViewModel()
+    enum SceneContent {
+        case listPhotos([String: Any])
+        case searchPhotos([String: Any])
+        case empty
     }
     
     public func transition(to: Scene, userInfo: [String: Any], type: SceneTransition) -> Observable<Void>{
         let subject = PublishSubject<Void>()
         
-        return subject.take(1)
+        
+        
+        return subject.asObserver().take(1)
     }
     
 
@@ -69,61 +68,35 @@ class SceneCoordinator: BaseCoordinator{
 
 extension SceneCoordinator: FactoryCoordinator{
     typealias sceneType = Scene
+    typealias sceneContentType = SceneContent
     
     // MARK: ViewController Factory
-    internal func viewController(scene: Scene) -> BaseViewController{
-        
+    internal func viewController(scene: Scene) -> BaseViewController?{
         
         switch scene {
-        case let .Home(userInfo):
+        case let .home(userInfo):
             let vc = HomeViewController()
-            let vm = self.viewModel(viewModelType: ListPhotosViewModel.self, userInfo: userInfo) as! ListPhotosViewModel
-            vc.bind(to: vm)
+            let vm = self.viewModel(sceneContent:.searchPhotos(userInfo))
+            vc.bind(to: vm as! ListPhotosViewModel)
 
             return vc
         default:
-            return BaseViewController()
-            break
+            return nil
         }
     }
     
     // MARK: ViewModel Factory
-    internal func viewModel(viewModelType: AnyClass, userInfo: [String: Any]) -> BaseViewModel{
-        return ListPhotosViewModel(service: PhotoService())
-    }
-}
-
-protocol SceneProtocol {
-    
-}
-
-
-class PhotoCoordinator: BaseCoordinator {
-    enum Scene: SceneProtocol {
-        case Home(ListPhotosViewModel)
-        case PhotoDetails
-    }
-    
-    override func start() {
+    internal func viewModel(sceneContent: SceneContent) -> BaseViewModel?{
         
-    }
-    
-    override func transite(to targetScene: SceneProtocol) {
-        let scene = targetScene as! Scene
-        
-        switch scene {
-        case let .Home(viewModel):
-            var vc = HomeViewController()
-            vc.bind(to: viewModel)
-            
-            break
-        case let .PhotoDetails:
-            var vc = PhotoDetailsViewController()
+        switch sceneContent {
+        case let .listPhotos(userInfo):
+            var vm: 
             
             
         default:
-            break
+            <#code#>
         }
+        
+        return ListPhotosViewModel(service: PhotoService())
     }
-    
 }

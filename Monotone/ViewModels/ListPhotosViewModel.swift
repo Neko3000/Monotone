@@ -12,6 +12,17 @@ import Action
 
 class ListPhotosViewModel: BaseViewModel, ViewModelIOProtocol{
     
+    override init(service:NetworkService){
+        super.init(service: service)
+    }
+    
+    convenience init(service:NetworkService, userInfo: [String: Any]){
+        self.init(service: service)
+        
+        // userInfo.
+        
+    }
+    
     /// MARK: Input
     struct Input {
         var orderBy: BehaviorSubject<String> = BehaviorSubject<String>(value:"")
