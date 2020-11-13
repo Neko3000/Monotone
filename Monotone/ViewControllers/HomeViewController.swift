@@ -12,7 +12,7 @@ import ObjectMapper
 import Kingfisher
 import RxSwift
 
-class HomeViewController: BaseViewController, ViewControllerBindProtocol, UICollectionViewDelegateFlowLayout  {
+class HomeViewController: BaseViewController, ViewControllerBindable, UICollectionViewDelegateFlowLayout  {
     
     internal var viewModel : ListPhotosViewModel?
     private let disposeBag : DisposeBag = DisposeBag()

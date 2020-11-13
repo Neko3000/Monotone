@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import Action
 
-class SearchPhotosViewModel: BaseViewModel, ViewModelIOProtocol{
+class SearchPhotosViewModel: BaseViewModel, ViewModelStreamable{
     
     /// MARK: Input
     struct Input {

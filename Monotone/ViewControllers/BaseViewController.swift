@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-protocol ViewControllerBindProtocol{
+protocol ViewControllerBindable{
     associatedtype ViewModelType
     var viewModel: ViewModelType? { get }
     

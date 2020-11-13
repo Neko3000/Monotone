@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import Action
 
-protocol ViewModelIOProtocol {
+protocol ViewModelStreamable {
     associatedtype InputType
     associatedtype OutputType
     
@@ -18,11 +18,11 @@ protocol ViewModelIOProtocol {
     var output: OutputType { get }
 }
 
-protocol ViewModelBindProtocol {
+protocol ViewModelBindable {
     func bind()
 }
 
-class BaseViewModel: ViewModelBindProtocol{
+class BaseViewModel: ViewModelBindable{
     var service: NetworkService?
     let disposeBag: DisposeBag = DisposeBag()
     

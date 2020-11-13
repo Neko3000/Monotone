@@ -8,10 +8,6 @@
 import Foundation
 import RxSwift
 
-protocol NetworkServiceProtocol {
-    var disposeBag: DisposeBag  { get }
-}
-
-class NetworkService: NetworkServiceProtocol{
+class NetworkService {
     internal let disposeBag: DisposeBag = DisposeBag()
 }

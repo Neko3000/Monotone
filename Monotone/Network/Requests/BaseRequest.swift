@@ -8,11 +8,11 @@
 import Foundation
 import ObjectMapper
 
-protocol BaseRequestProtocol {
+protocol Requestable {
     var api : String? { get }
 }
 
-class BaseRequest : Mappable, BaseRequestProtocol{
+class BaseRequest : Mappable, Requestable{
     init() {
         // Implemented by subclass
     }

@@ -8,11 +8,11 @@
 import Foundation
 import ObjectMapper
 
-protocol BaseResponseProtocol {
+protocol Responsible {
     // FIXME: to add.
 }
 
-class BaseResponse : Mappable, BaseResponseProtocol{
+class BaseResponse : Mappable, Responsible{
     init() {
         // Implemented by subclass
     }

@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import Action
 
-class ListPhotosViewModel: BaseViewModel, ViewModelIOProtocol{
+class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
     
     override init(service:NetworkService){
         super.init(service: service)
