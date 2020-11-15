@@ -12,6 +12,7 @@
 		1410491C255D3686003312BC /* SceneTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1410491B255D3686003312BC /* SceneTransition.swift */; };
 		14104920255D4944003312BC /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1410491F255D4944003312BC /* BaseNavigationController.swift */; };
 		14104925255D49A5003312BC /* MTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14104924255D49A5003312BC /* MTNavigationController.swift */; };
+		141591D0255E53FE00179ED5 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141591CF255E53FE00179ED5 /* BaseCoordinator.swift */; };
 		1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423A4DC254BA121009DEEA1 /* BaseViewController.swift */; };
 		143114C1255A788D00991676 /* SearchPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114C0255A788D00991676 /* SearchPhotosViewModel.swift */; };
 		143114CC255A794600991676 /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114CB255A794600991676 /* Links.swift */; };
@@ -66,6 +67,7 @@
 		1410491B255D3686003312BC /* SceneTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTransition.swift; sourceTree = "<group>"; };
 		1410491F255D4944003312BC /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		14104924255D49A5003312BC /* MTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTNavigationController.swift; sourceTree = "<group>"; };
+		141591CF255E53FE00179ED5 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		1423A4DC254BA121009DEEA1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		143114C0255A788D00991676 /* SearchPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosViewModel.swift; sourceTree = "<group>"; };
 		143114CB255A794600991676 /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
@@ -121,6 +123,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		141591D8255E576600179ED5 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				1410491B255D3686003312BC /* SceneTransition.swift */,
+				141591CF255E53FE00179ED5 /* BaseCoordinator.swift */,
+				14956D31255CC72B0057A4A6 /* SceneCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		141591DA255E579D00179ED5 /* NavigationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1410491F255D4944003312BC /* BaseNavigationController.swift */,
+				14104924255D49A5003312BC /* MTNavigationController.swift */,
+			);
+			path = NavigationControllers;
+			sourceTree = "<group>";
+		};
 		143114B8255A778D00991676 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +176,7 @@
 		143114BB255A77CC00991676 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				141591DA255E579D00179ED5 /* NavigationControllers */,
 				143FB157255BAE2D00D24248 /* Views */,
 				143FB158255BAE3400D24248 /* Cells */,
 			);
@@ -272,6 +294,7 @@
 				143114B9255A77B000991676 /* ViewModels */,
 				143114B8255A778D00991676 /* ViewControllers */,
 				143114C9255A790700991676 /* Models */,
+				141591D8255E576600179ED5 /* Coordinators */,
 				14D5E8E9254A589D0021FE3E /* AppDelegate.swift */,
 				14D5E8EB254A589D0021FE3E /* SceneDelegate.swift */,
 				14D5E8F4254A589E0021FE3E /* LaunchScreen.storyboard */,
@@ -280,10 +303,6 @@
 				14D5E8F7254A589E0021FE3E /* Info.plist */,
 				148FF23D255237A600CADB4C /* Localizable.strings */,
 				14F37070254EA14B0086B8CC /* api_keys_sample.json */,
-				14956D31255CC72B0057A4A6 /* SceneCoordinator.swift */,
-				1410491B255D3686003312BC /* SceneTransition.swift */,
-				1410491F255D4944003312BC /* BaseNavigationController.swift */,
-				14104924255D49A5003312BC /* MTNavigationController.swift */,
 			);
 			path = Monotone;
 			sourceTree = "<group>";
@@ -499,6 +518,7 @@
 				14104920255D4944003312BC /* BaseNavigationController.swift in Sources */,
 				14E59E2E2556A0CA00F1FB60 /* PhotoService.swift in Sources */,
 				14F37083254ED2F60086B8CC /* SearchPhotosRequest.swift in Sources */,
+				141591D0255E53FE00179ED5 /* BaseCoordinator.swift in Sources */,
 				143114D5255A799A00991676 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,7 +20,7 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
     private var homeHeaderView : HomeHeaderView?
     private var collectionView : UICollectionView?
     
-    public func bind(to viewModel: ListPhotosViewModel) {
+    public func bind(to viewModel: ListPhotosViewModel?) {
         self.viewModel = viewModel
     }
     

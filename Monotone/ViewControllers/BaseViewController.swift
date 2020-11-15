@@ -10,9 +10,9 @@ import RxSwift
 
 protocol ViewControllerBindable{
     associatedtype ViewModelType
-    var viewModel: ViewModelType? { get }
     
-    func bind(to viewModel: ViewModelType)
+    var viewModel: ViewModelType? { get }
+    func bind(to viewModel: ViewModelType?)
 }
 
 class BaseViewController: UIViewController {

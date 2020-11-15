@@ -12,20 +12,15 @@ import Action
 
 class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
     
-    override init(service:NetworkService){
-        super.init(service: service)
-    }
-    
-    convenience init(service:NetworkService, userInfo: [String: Any]){
-        self.init(service: service)
-        
-        // userInfo.
-        
+    override func inject(args: [String : Any]?) {
+        if(args?["orderBy"] != nil){
+            self.input.orderBy = BehaviorSubject<String>(value: args!["orderBy"] as? String ?? "")
+        }
     }
     
     /// MARK: Input
     struct Input {
-        var orderBy: BehaviorSubject<String> = BehaviorSubject<String>(value:"")
+        var orderBy: BehaviorSubject<String>?
         var loadMoreAction: Action<Void, [Photo]>?
         var reloadAction: Action<Void, [Photo]>?
     }
@@ -51,7 +46,7 @@ class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
         self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
             self.output.loadingMore.onNext(true)
             
-            guard let orderBy = try? self.input.orderBy.value() else { return .empty() }
+            guard let orderBy = try? self.input.orderBy!.value() else { return .empty() }
             return photoService.listPhotos(page: self.nextLoadPage, orderBy: orderBy)
         })
         
