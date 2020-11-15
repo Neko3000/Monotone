@@ -14,11 +14,13 @@ import RxSwift
 
 class HomeViewController: BaseViewController, ViewControllerBindable, UICollectionViewDelegateFlowLayout  {
     
-    internal var viewModel : ListPhotosViewModel?
-    private let disposeBag : DisposeBag = DisposeBag()
+    internal var viewModel: ListPhotosViewModel?
+    private let disposeBag: DisposeBag = DisposeBag()
     
-    private var homeJumbotronView : HomeJumbotronView?
-    private var collectionView : UICollectionView?
+    private var homeJumbotronView: HomeJumbotronView?
+    private var homeHeaderView: HomeHeaderView?
+    
+    private var collectionView: UICollectionView?
     
     public func bind(to viewModel: ListPhotosViewModel?) {
         self.viewModel = viewModel
@@ -38,6 +40,14 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         self.homeJumbotronView!.snp.makeConstraints { (make) in
             make.left.right.top.equalTo(self.view)
             make.height.equalTo(256.0);
+        }
+        
+        // homeHeaderView.
+        self.homeHeaderView = HomeHeaderView()
+        self.view.addSubview(self.homeHeaderView!)
+        self.homeHeaderView!.snp.makeConstraints { (make) in
+            make.left.right.top.equalTo(self.view)
+            make.height.equalTo(140.0);
         }
         
         // collectionView.
@@ -71,7 +81,7 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         // ViewModel.
         self.viewModel = ListPhotosViewModel(service: PhotoService())
         
-        // ViewModel Bind.
+        // CollectionView.
         self.homeJumbotronView!.segmentStr.bind(to: self.viewModel!.input.orderBy).disposed(by: self.disposeBag)
         
         self.viewModel!.output.photos.bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
@@ -98,7 +108,6 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
 //            self.present(nav, animated: true, completion: nil)
         }.disposed(by: self.disposeBag)
 
-                
         // CollectionView MJRefresh.
         self.collectionView!.mj_header!.refreshingBlock = {
             self.viewModel?.input.reloadAction?.execute()
@@ -125,6 +134,23 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
             print("error!")
         }).disposed(by: self.disposeBag)
         
+        // Animation for homeJumbotronView & homeHeaderView
+        self.collectionView!.rx.contentOffset.flatMap({ (contentOffset) -> Observable<Bool> in
+            return Observable.just( contentOffset.y <= InterfaceGlobalValue.showHeaderContentOffset )
+        })
+        .distinctUntilChanged()
+        .subscribe(onNext: { (toShowHeader) in
+            self.switchTopView(toShowHeader: toShowHeader)
+        }, onError: { (error) in
+            // nothing
+        })
+        .disposed(by: self.disposeBag)
+        
+        self.collectionView!.rx.contentOffset.flatMap({ (contentOffset) -> Observable<Bool> in
+            return Observable.just( contentOffset.y > InterfaceGlobalValue.showHeaderContentOffset )
+        }).bind(to: self.homeJumbotronView!.rx.isHidden)
+        .disposed(by: self.disposeBag)
+        
         // FiXME: Query.
         self.viewModel?.input.orderBy.onNext("popular")
         self.viewModel?.input.loadMoreAction?.execute()
@@ -137,6 +163,16 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         }
         else{
             return CGSize(width: self.collectionView!.frame.width / 2.0, height: 300.0)
+        }
+    }
+    
+    // MARK: Animation for homeJumbotronView & homeHeaderView
+    func switchTopView(toShowHeader: Bool){
+        if(toShowHeader){
+            
+        }
+        else{
+            
         }
     }
 

@@ -21,6 +21,7 @@
 		143114D8255A79D000991676 /* Urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114D7255A79D000991676 /* Urls.swift */; };
 		143114DF255AA6D400991676 /* ListPhotosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114DE255AA6D300991676 /* ListPhotosRequest.swift */; };
 		1433B8E32561190100FE9B1D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433B8E22561190100FE9B1D /* HomeHeaderView.swift */; };
+		1433B8E92561270700FE9B1D /* InterfaceGlobalValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433B8E82561270700FE9B1D /* InterfaceGlobalValue.swift */; };
 		143F5678254FEA040038761D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F5677254FEA040038761D /* HomeViewController.swift */; };
 		143F567B254FEF320038761D /* HomeJumbotronView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F567A254FEF320038761D /* HomeJumbotronView.swift */; };
 		143FB13F255B859F00D24248 /* ListPhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB13E255B859F00D24248 /* ListPhotosResponse.swift */; };
@@ -77,6 +78,7 @@
 		143114D7255A79D000991676 /* Urls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Urls.swift; sourceTree = "<group>"; };
 		143114DE255AA6D300991676 /* ListPhotosRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPhotosRequest.swift; sourceTree = "<group>"; };
 		1433B8E22561190100FE9B1D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		1433B8E82561270700FE9B1D /* InterfaceGlobalValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceGlobalValue.swift; sourceTree = "<group>"; };
 		143F5677254FEA040038761D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		143F567A254FEF320038761D /* HomeJumbotronView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeJumbotronView.swift; sourceTree = "<group>"; };
 		143FB13E255B859F00D24248 /* ListPhotosResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPhotosResponse.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				14D5E8F7254A589E0021FE3E /* Info.plist */,
 				148FF23D255237A600CADB4C /* Localizable.strings */,
 				14F37070254EA14B0086B8CC /* api_keys_sample.json */,
+				1433B8E82561270700FE9B1D /* InterfaceGlobalValue.swift */,
 			);
 			path = Monotone;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				14E59E912557FC5000F1FB60 /* NetworkError.swift in Sources */,
 				14F36F91254D3AB80086B8CC /* ColorPalette.swift in Sources */,
 				14D5E8EC254A589D0021FE3E /* SceneDelegate.swift in Sources */,
+				1433B8E92561270700FE9B1D /* InterfaceGlobalValue.swift in Sources */,
 				14956D32255CC72B0057A4A6 /* SceneCoordinator.swift in Sources */,
 				143F5678254FEA040038761D /* HomeViewController.swift in Sources */,
 				14F36FB0254D53940086B8CC /* NetworkManager.swift in Sources */,

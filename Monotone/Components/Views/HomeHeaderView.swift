@@ -38,7 +38,6 @@ class HomeHeaderView: BaseView {
             make.left.equalTo(self).offset(16.0)
             make.right.equalTo(self).offset(-16.0)
             make.top.equalTo(self).offset(50.0)
-            make.bottom.equalTo(self).offset(-50.0)
             make.height.equalTo(36.0)
         })
         
