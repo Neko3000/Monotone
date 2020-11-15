@@ -20,7 +20,7 @@ class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
     
     /// MARK: Input
     struct Input {
-        var orderBy: BehaviorSubject<String>?
+        var orderBy: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
         var loadMoreAction: Action<Void, [Photo]>?
         var reloadAction: Action<Void, [Photo]>?
     }
@@ -46,7 +46,7 @@ class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
         self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
             self.output.loadingMore.onNext(true)
             
-            guard let orderBy = try? self.input.orderBy!.value() else { return .empty() }
+            guard let orderBy = try? self.input.orderBy.value() else { return .empty() }
             return photoService.listPhotos(page: self.nextLoadPage, orderBy: orderBy)
         })
         

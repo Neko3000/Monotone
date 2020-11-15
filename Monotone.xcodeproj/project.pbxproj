@@ -20,8 +20,9 @@
 		143114D5255A799A00991676 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114D4255A799A00991676 /* User.swift */; };
 		143114D8255A79D000991676 /* Urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114D7255A79D000991676 /* Urls.swift */; };
 		143114DF255AA6D400991676 /* ListPhotosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114DE255AA6D300991676 /* ListPhotosRequest.swift */; };
+		1433B8E32561190100FE9B1D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433B8E22561190100FE9B1D /* HomeHeaderView.swift */; };
 		143F5678254FEA040038761D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F5677254FEA040038761D /* HomeViewController.swift */; };
-		143F567B254FEF320038761D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F567A254FEF320038761D /* HomeHeaderView.swift */; };
+		143F567B254FEF320038761D /* HomeJumbotronView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F567A254FEF320038761D /* HomeJumbotronView.swift */; };
 		143FB13F255B859F00D24248 /* ListPhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB13E255B859F00D24248 /* ListPhotosResponse.swift */; };
 		143FB14F255BAD2D00D24248 /* ListPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB14E255BAD2D00D24248 /* ListPhotosViewModel.swift */; };
 		148ED1E925591DBF0000146E /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED1E825591DBF0000146E /* PhotoCollectionViewCell.swift */; };
@@ -75,8 +76,9 @@
 		143114D4255A799A00991676 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		143114D7255A79D000991676 /* Urls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Urls.swift; sourceTree = "<group>"; };
 		143114DE255AA6D300991676 /* ListPhotosRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPhotosRequest.swift; sourceTree = "<group>"; };
+		1433B8E22561190100FE9B1D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		143F5677254FEA040038761D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		143F567A254FEF320038761D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		143F567A254FEF320038761D /* HomeJumbotronView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeJumbotronView.swift; sourceTree = "<group>"; };
 		143FB13E255B859F00D24248 /* ListPhotosResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPhotosResponse.swift; sourceTree = "<group>"; };
 		143FB14E255BAD2D00D24248 /* ListPhotosViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPhotosViewModel.swift; sourceTree = "<group>"; };
 		148ED1E825591DBF0000146E /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -254,7 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				1409A7962550EAAB0005B702 /* BaseView.swift */,
-				143F567A254FEF320038761D /* HomeHeaderView.swift */,
+				143F567A254FEF320038761D /* HomeJumbotronView.swift */,
+				1433B8E22561190100FE9B1D /* HomeHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -487,7 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				143F567B254FEF320038761D /* HomeHeaderView.swift in Sources */,
+				143F567B254FEF320038761D /* HomeJumbotronView.swift in Sources */,
 				1410491C255D3686003312BC /* SceneTransition.swift in Sources */,
 				14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */,
 				1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */,
@@ -501,6 +504,7 @@
 				143FB13F255B859F00D24248 /* ListPhotosResponse.swift in Sources */,
 				14104925255D49A5003312BC /* MTNavigationController.swift in Sources */,
 				1409A7972550EAAB0005B702 /* BaseView.swift in Sources */,
+				1433B8E32561190100FE9B1D /* HomeHeaderView.swift in Sources */,
 				143FB14F255BAD2D00D24248 /* ListPhotosViewModel.swift in Sources */,
 				14E59DCD2556716400F1FB60 /* BaseViewModel.swift in Sources */,
 				14E59E462557C5F700F1FB60 /* SearchPhotosResponse.swift in Sources */,

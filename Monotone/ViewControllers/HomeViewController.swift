@@ -17,7 +17,7 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
     internal var viewModel : ListPhotosViewModel?
     private let disposeBag : DisposeBag = DisposeBag()
     
-    private var homeHeaderView : HomeHeaderView?
+    private var homeJumbotronView : HomeJumbotronView?
     private var collectionView : UICollectionView?
     
     public func bind(to viewModel: ListPhotosViewModel?) {
@@ -32,10 +32,10 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
     
     override func buildSubviews() {
         
-        // homeHeaderView.
-        self.homeHeaderView = HomeHeaderView()
-        self.view.addSubview(self.homeHeaderView!)
-        self.homeHeaderView!.snp.makeConstraints { (make) in
+        // homeJumbotronView.
+        self.homeJumbotronView = HomeJumbotronView()
+        self.view.addSubview(self.homeJumbotronView!)
+        self.homeJumbotronView!.snp.makeConstraints { (make) in
             make.left.right.top.equalTo(self.view)
             make.height.equalTo(256.0);
         }
@@ -53,7 +53,7 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         self.view.addSubview(self.collectionView!)
         self.collectionView!.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(self.view)
-            make.top.equalTo(self.homeHeaderView!.snp.bottom)
+            make.top.equalTo(self.homeJumbotronView!.snp.bottom)
         }
         
         let header = MJRefreshNormalHeader.init()
@@ -72,7 +72,7 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         self.viewModel = ListPhotosViewModel(service: PhotoService())
         
         // ViewModel Bind.
-        self.homeHeaderView!.segmentStr.bind(to: self.viewModel!.input.orderBy).disposed(by: self.disposeBag)
+        self.homeJumbotronView!.segmentStr.bind(to: self.viewModel!.input.orderBy).disposed(by: self.disposeBag)
         
         self.viewModel!.output.photos.bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
             (row, element, cell) in
