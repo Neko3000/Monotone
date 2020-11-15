@@ -6,11 +6,11 @@
 //
 
 import UIKit
-import MJRefresh
 
-import ObjectMapper
-import Kingfisher
 import RxSwift
+import MJRefresh
+import Kingfisher
+import LSAnimator
 
 class HomeViewController: BaseViewController, ViewControllerBindable, UICollectionViewDelegateFlowLayout  {
     
@@ -46,8 +46,9 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         self.homeHeaderView = HomeHeaderView()
         self.view.addSubview(self.homeHeaderView!)
         self.homeHeaderView!.snp.makeConstraints { (make) in
-            make.left.right.top.equalTo(self.view)
+            make.left.right.equalTo(self.view)
             make.height.equalTo(140.0);
+            make.bottom.equalTo(self.view.snp.top)
         }
         
         // collectionView.
@@ -84,29 +85,31 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         // CollectionView.
         self.homeJumbotronView!.segmentStr.bind(to: self.viewModel!.input.orderBy).disposed(by: self.disposeBag)
         
-        self.viewModel!.output.photos.bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
-            (row, element, cell) in
+        self.viewModel!.output.photos
+            .bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
+                (row, element, cell) in
+                
+                let pcell: PhotoCollectionViewCell = cell as! PhotoCollectionViewCell
+                pcell.photoImageView!.kf.setImage(with: URL(string: element.urls?.regular ?? ""))
             
-            let pcell: PhotoCollectionViewCell = cell as! PhotoCollectionViewCell
-            pcell.photoImageView!.kf.setImage(with: URL(string: element.urls?.regular ?? ""))
-            
-        }.disposed(by: self.disposeBag)
+            }.disposed(by: self.disposeBag)
         
-        self.collectionView!.rx.itemSelected.subscribe { (indexPath) in
-            let homeVC = HomeViewController()
-            
-            let nav = UINavigationController(rootViewController: homeVC)
-            nav.modalPresentationStyle = .fullScreen
-            
-            let vc1 = PhotoDetailsViewController()
-            nav.pushViewController(vc1, animated: true)
-            
-            let vc2 = PhotoDetailsViewController()
-            nav.pushViewController(vc2, animated: true)
-            
-            UIApplication.shared.keyWindow?.rootViewController = nav
-//            self.present(nav, animated: true, completion: nil)
-        }.disposed(by: self.disposeBag)
+        self.collectionView!.rx.itemSelected
+            .subscribe { (indexPath) in
+                let homeVC = HomeViewController()
+                
+                let nav = UINavigationController(rootViewController: homeVC)
+                nav.modalPresentationStyle = .fullScreen
+                
+                let vc1 = PhotoDetailsViewController()
+                nav.pushViewController(vc1, animated: true)
+                
+                let vc2 = PhotoDetailsViewController()
+                nav.pushViewController(vc2, animated: true)
+                
+                UIApplication.shared.keyWindow?.rootViewController = nav
+    //            self.present(nav, animated: true, completion: nil)
+            }.disposed(by: self.disposeBag)
 
         // CollectionView MJRefresh.
         self.collectionView!.mj_header!.refreshingBlock = {
@@ -118,38 +121,37 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         }
         
         // MJRefresh style.
-        self.viewModel!.output.reloading.subscribe(onNext: { (reloading) in
+        self.viewModel!.output.reloading
+            .subscribe(onNext: { (reloading) in
             if(!reloading){
                 self.collectionView!.mj_header!.endRefreshing()
             }
-        }, onError: { (error) in
-            print("error!")
-        }).disposed(by: self.disposeBag)
+            }, onError: { (error) in
+                print("error!")
+            })
+            .disposed(by: self.disposeBag)
         
-        self.viewModel!.output.loadingMore.subscribe(onNext: { (loadingMore) in
-            if(!loadingMore){
-                self.collectionView!.mj_footer!.endRefreshing()
-            }
-        }, onError: { (error) in
-            print("error!")
-        }).disposed(by: self.disposeBag)
+        self.viewModel!.output.loadingMore
+            .subscribe(onNext: { (loadingMore) in
+                if(!loadingMore){
+                    self.collectionView!.mj_footer!.endRefreshing()
+                }
+            }, onError: { (error) in
+                print("error!")
+            })
+            .disposed(by: self.disposeBag)
         
         // Animation for homeJumbotronView & homeHeaderView
-        self.collectionView!.rx.contentOffset.flatMap({ (contentOffset) -> Observable<Bool> in
-            return Observable.just( contentOffset.y <= InterfaceGlobalValue.showHeaderContentOffset )
-        })
-        .distinctUntilChanged()
-        .subscribe(onNext: { (toShowHeader) in
-            self.switchTopView(toShowHeader: toShowHeader)
-        }, onError: { (error) in
-            // nothing
-        })
-        .disposed(by: self.disposeBag)
-        
-        self.collectionView!.rx.contentOffset.flatMap({ (contentOffset) -> Observable<Bool> in
-            return Observable.just( contentOffset.y > InterfaceGlobalValue.showHeaderContentOffset )
-        }).bind(to: self.homeJumbotronView!.rx.isHidden)
-        .disposed(by: self.disposeBag)
+        self.collectionView!.rx.contentOffset
+            .flatMap({ (contentOffset) -> Observable<Bool> in
+                return Observable.just( contentOffset.y >= InterfaceGlobalValue.showHeaderContentOffset )
+            })
+            .skipWhile({ $0 == false })
+            .distinctUntilChanged()
+            .subscribe(onNext: { (toShowHeader) in
+                self.switchTopView(toShowHeader: toShowHeader)
+            })
+            .disposed(by: self.disposeBag)
         
         // FiXME: Query.
         self.viewModel?.input.orderBy.onNext("popular")
@@ -168,11 +170,16 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
     
     // MARK: Animation for homeJumbotronView & homeHeaderView
     func switchTopView(toShowHeader: Bool){
+        let jumbotronViewAnimator = LSAnimator(view: self.homeJumbotronView!)
+        let headerViewAnimator = LSAnimator(view: self.homeHeaderView!)
+        
         if(toShowHeader){
-            
+            jumbotronViewAnimator.transformY(-self.homeJumbotronView!.frame.height)!.easeInOut().animate(0.2)
+            headerViewAnimator.transformY(self.homeHeaderView!.frame.height)!.easeInOut().animate(0.2)
         }
         else{
-            
+            jumbotronViewAnimator.transformY(self.homeJumbotronView!.frame.height)!.easeInOut().animate(0.2)
+            headerViewAnimator.transformY(-self.homeHeaderView!.frame.height)!.easeInOut().animate(0.2)
         }
     }
 
