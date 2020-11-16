@@ -21,6 +21,7 @@ class BaseView: UIView {
         super.init(frame: frame)
         
         self.buildSubviews()
+        self.buildLogic()
     }
     
     required init?(coder: NSCoder) {
@@ -31,4 +32,7 @@ class BaseView: UIView {
         
     }
     
+    internal func buildLogic(){
+        
+    }
 }

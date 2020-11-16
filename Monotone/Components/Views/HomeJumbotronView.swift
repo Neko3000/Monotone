@@ -14,7 +14,6 @@ import RxSwift
 
 class HomeJumbotronView: BaseView {
     
-    public let searchQuery: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
     public let segmentStr: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
     
     private var menuBtn: UIButton?
@@ -33,6 +32,7 @@ class HomeJumbotronView: BaseView {
     
     override func buildSubviews(){
         
+        // 
         self.backgroundColor = ColorPalette.colorWhite
         
         // menuBtn.

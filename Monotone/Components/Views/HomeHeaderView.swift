@@ -14,6 +14,8 @@ import RxSwift
 
 class HomeHeaderView: BaseView {
     
+    private let disposeBag: DisposeBag = DisposeBag()
+    
     public let searchQuery: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
     public let segmentStr: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
     
@@ -22,6 +24,7 @@ class HomeHeaderView: BaseView {
     
     override func buildSubviews() {
         
+        // 
         self.backgroundColor = ColorPalette.colorWhite
         
         // searchTextField.
@@ -72,6 +75,15 @@ class HomeHeaderView: BaseView {
             make.bottom.equalTo(self)
             make.height.equalTo(40.0)
         }
+    }
+    
+    override func buildLogic() {
+        
+        // searchTextField
+        self.searchTextField!.rx.text
+            .orEmpty
+            .bind(to: self.searchQuery)
+            .disposed(by: self.disposeBag)
     }
 
     @objc private func segmentedControlChangedValue(segmentedControl: HMSegmentedControl){

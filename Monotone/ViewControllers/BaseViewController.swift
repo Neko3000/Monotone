@@ -9,13 +9,14 @@ import UIKit
 import RxSwift
 
 protocol ViewControllerBindable{
-    associatedtype ViewModelType
     
-    var viewModel: ViewModelType? { get }
-    func bind(to viewModel: ViewModelType?)
+    var viewModels: [BaseViewModel]? { get }
+    
+    func bind(to viewModels: [BaseViewModel]?)
+    func viewModel<T:BaseViewModel>()->T?
 }
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, ViewControllerBindable {
     
     // MARK: Variables
     //
@@ -35,6 +36,26 @@ class BaseViewController: UIViewController {
     
     internal func buildLogic() {
         
+    }
+    
+    // MARK: ViewControllerBindable
+    var viewModels: [BaseViewModel]?
+    
+    func bind(to viewModels: [BaseViewModel]?) {
+        self.viewModels = viewModels
+    }
+    
+    func viewModel<T:BaseViewModel>() -> T? {
+        
+        if let vm = self.viewModels?.first(where: { (vm) -> Bool in
+            vm.self === T.self
+        }){
+            return vm as? T
+        }
+        else{
+            print("Could not find ViewModel of type: '\(String(describing: T.self))'")
+            return nil
+        }
     }
     
 

@@ -13,21 +13,18 @@ import RxSwift
 import Kingfisher
 import anim
 
-class HomeViewController: BaseViewController, ViewControllerBindable {
+class HomeViewController: BaseViewController {
     
+    // MARK: ViewModel
     internal var viewModel: ListPhotosViewModel?
     private let disposeBag: DisposeBag = DisposeBag()
     
+    // MARK: Controls
     private var homeJumbotronView: HomeJumbotronView?
     private var homeHeaderView: HomeHeaderView?
         
     private var collectionView: UICollectionView?
-    
-    private var homeJumbotronViewTopConstraint: NSLayoutConstraint?
-    private var collectionViewTopConstraint: NSLayoutConstraint?
-    
-//    private var
-    
+        
     public func bind(to viewModel: ListPhotosViewModel?) {
         self.viewModel = viewModel
     }

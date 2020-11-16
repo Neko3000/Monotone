@@ -12,7 +12,7 @@ import Action
 
 class SearchPhotosViewModel: BaseViewModel, ViewModelStreamable{
     
-    /// MARK: Input
+    // MARK: Input
     struct Input {
         var query: BehaviorSubject<String> = BehaviorSubject<String>(value:"")
         var loadMoreAction: Action<Void, [Photo]>?
@@ -20,7 +20,7 @@ class SearchPhotosViewModel: BaseViewModel, ViewModelStreamable{
     }
     public var input:Input = Input()
     
-    /// MARK: Output
+    // MARK: Output
     struct Output {
         var photos: BehaviorSubject<[Photo]> = BehaviorSubject<[Photo]>(value: [])
         var loadingMore: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
@@ -28,12 +28,13 @@ class SearchPhotosViewModel: BaseViewModel, ViewModelStreamable{
     }
     public var output: Output = Output()
     
-    /// MARK: Private
+    // MARK: Private
     private var nextLoadPage: Int = 1
     
-    /// MARK: Bind
+    // MARK: Bind
     override func bind() {
-        // Specify Service.
+        
+        // Service.
         let photoService = self.service as! PhotoService
                 
         // LoadMore.
