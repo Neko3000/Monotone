@@ -7,12 +7,13 @@
 
 import UIKit
 
-import RxSwift
+import SnapKit
 import MJRefresh
+import RxSwift
 import Kingfisher
-import LSAnimator
+import anim
 
-class HomeViewController: BaseViewController, ViewControllerBindable, UICollectionViewDelegateFlowLayout  {
+class HomeViewController: BaseViewController, ViewControllerBindable {
     
     internal var viewModel: ListPhotosViewModel?
     private let disposeBag: DisposeBag = DisposeBag()
@@ -43,17 +44,18 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         self.homeHeaderView = HomeHeaderView()
         self.view.addSubview(self.homeHeaderView!)
         self.homeHeaderView!.snp.makeConstraints { (make) in
-            make.left.right.top.equalTo(self.view)
+            make.left.right.equalTo(self.view)
             make.height.equalTo(140.0)
+            make.top.equalTo(self.view)
         }
         
         // homeJumbotronView.
         self.homeJumbotronView = HomeJumbotronView()
         self.view.addSubview(self.homeJumbotronView!)
         self.homeJumbotronView!.snp.makeConstraints { (make) in
-            make.left.right.top.equalTo(self.view)
+            make.left.right.equalTo(self.view)
             make.height.equalTo(256.0)
-            let homeJumbotronViewTop = make.top.equalTo(self.view)
+            make.top.equalTo(self.view)
         }
         
         // collectionView.
@@ -163,41 +165,59 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         self.viewModel?.input.loadMoreAction?.execute()
     }
     
-    // MARK: CollectionViewDelegate
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if(indexPath.row % 3 == 0){
-            return CGSize(width: self.collectionView!.frame.width, height: 300.0)
-        }
-        else{
-            return CGSize(width: self.collectionView!.frame.width / 2.0, height: 300.0)
-        }
-    }
-    
     // MARK: Animation for homeJumbotronView & homeHeaderView
     func animateTopView(toShowHeader: Bool){
-        let jumbotronViewAnimator = LSAnimator(view: self.homeJumbotronView!)
-        let collectionViewAnimator = LSAnimator(view: self.collectionView!)
         
         if(toShowHeader){
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
                 
-            } completion: { (finished) in
-            
+                return {
+                    self.homeJumbotronView!.alpha = 0
+                }
             }
-
             
-            
-            jumbotronViewAnimator.makeOpacity(0)!.transformY(-self.homeJumbotronView!.frame.height)!.easeInOut().animateWithCompletion(0.2,{
-                self.homeJumbotronView!.isHidden = true
-            })
-            collectionViewAnimator.transformY(-116.0)!.easeInOut().animate(0.2)
+            anim(constraintParent: self.view) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.homeJumbotronView!.snp.updateConstraints({ (make) in
+                        make.top.equalTo(self.view).offset(-100.0)
+                    })
+                    
+                    self.collectionView!.snp.updateConstraints { (make) in
+                        make.top.equalTo(self.view).offset(140.0)
+                    }
+                }
+            }
             
         }
         else{
-            self.homeJumbotronView!.isHidden = false
-            jumbotronViewAnimator.makeOpacity(1)!.transformY(self.homeJumbotronView!.frame.height)!.easeInOut().animateWithCompletion(0.2,{
-            })
-            collectionViewAnimator.transformY(116.0)!.easeInOut().animate(0.2)
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.homeJumbotronView!.alpha = 1
+                }
+            }
+            
+            anim(constraintParent: self.view) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.homeJumbotronView!.snp.updateConstraints({ (make) in
+                        make.top.equalTo(self.view)
+                    })
+                    
+                    self.collectionView!.snp.updateConstraints { (make) in
+                        make.top.equalTo(self.view).offset(256.0)
+                    }
+                }
+            }
         }
     }
 
@@ -211,4 +231,17 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
     }
     */
 
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout{
+    
+    // MARK: CollectionViewDelegate
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if(indexPath.row % 3 == 0){
+            return CGSize(width: self.collectionView!.frame.width, height: 300.0)
+        }
+        else{
+            return CGSize(width: self.collectionView!.frame.width / 2.0, height: 300.0)
+        }
+    }
 }
