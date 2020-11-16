@@ -17,6 +17,6 @@ target 'Monotone' do
   pod 'SnapKit', '5.0.1'
   pod 'Hue', '5.0.0'
   pod 'HMSegmentedControl', '1.5.6'
-  pod 'LSAnimator', '2.1.4'
+  pod 'anim', '1.2.10'
 
 end
