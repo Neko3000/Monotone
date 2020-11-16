@@ -33,6 +33,8 @@ class HomeJumbotronView: BaseView {
     
     override func buildSubviews(){
         
+        self.backgroundColor = ColorPalette.colorWhite
+        
         // menuBtn.
         self.menuBtn = UIButton()
         self.menuBtn!.setImage(UIImage(named: "header-menu"), for: .normal)

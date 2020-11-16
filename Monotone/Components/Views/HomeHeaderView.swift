@@ -22,13 +22,18 @@ class HomeHeaderView: BaseView {
     
     override func buildSubviews() {
         
+        self.backgroundColor = ColorPalette.colorWhite
+        
         // searchTextField.
         let searchImageView: UIImageView = UIImageView()
         searchImageView.image = UIImage(named: "header-input-search")
         
-        self.searchTextField = UITextField()
+        let attributedSearch = NSAttributedString(string: NSLocalizedString("unsplash_home_search", comment: "Search"), attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)])
+        
+        self.searchTextField = MTTextField()
         self.searchTextField!.backgroundColor = ColorPalette.colorGrayLighter
         self.searchTextField!.placeholder = "Search"
+        self.searchTextField!.attributedPlaceholder = attributedSearch
         self.searchTextField!.leftView = searchImageView
         self.searchTextField!.leftViewMode = .unlessEditing
         self.searchTextField!.layer.cornerRadius = 4.0
@@ -54,15 +59,18 @@ class HomeHeaderView: BaseView {
         self.segmentedControl!.selectedTitleTextAttributes = [
             NSAttributedString.Key.foregroundColor : ColorPalette.colorBlack
         ]
-        self.segmentedControl!.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.top
+        self.segmentedControl!.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.bottom
         self.segmentedControl!.selectionIndicatorColor = ColorPalette.colorBlack
-        self.segmentedControl!.selectionIndicatorHeight = 1.0
+        self.segmentedControl!.selectionIndicatorHeight = 2.0
+        self.segmentedControl!.segmentEdgeInset = UIEdgeInsets(top: 0, left: 8.0, bottom: 0, right: 8.0)
         self.segmentedControl!.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.dynamic
         self.segmentedControl!.addTarget(self, action: #selector(segmentedControlChangedValue(segmentedControl:)), for: .valueChanged)
         self.addSubview(self.segmentedControl!)
         self.segmentedControl!.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalTo(self)
-            make.height.equalTo(50.0)
+            make.left.equalTo(self).offset(15.0)
+            make.right.equalTo(self).offset(-15.0)
+            make.bottom.equalTo(self)
+            make.height.equalTo(40.0)
         }
     }
 

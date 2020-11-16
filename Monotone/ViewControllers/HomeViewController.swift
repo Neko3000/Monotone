@@ -19,8 +19,13 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
     
     private var homeJumbotronView: HomeJumbotronView?
     private var homeHeaderView: HomeHeaderView?
-    
+        
     private var collectionView: UICollectionView?
+    
+    private var homeJumbotronViewTopConstraint: NSLayoutConstraint?
+    private var collectionViewTopConstraint: NSLayoutConstraint?
+    
+//    private var
     
     public func bind(to viewModel: ListPhotosViewModel?) {
         self.viewModel = viewModel
@@ -34,21 +39,21 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
     
     override func buildSubviews() {
         
+        // homeHeaderView.
+        self.homeHeaderView = HomeHeaderView()
+        self.view.addSubview(self.homeHeaderView!)
+        self.homeHeaderView!.snp.makeConstraints { (make) in
+            make.left.right.top.equalTo(self.view)
+            make.height.equalTo(140.0)
+        }
+        
         // homeJumbotronView.
         self.homeJumbotronView = HomeJumbotronView()
         self.view.addSubview(self.homeJumbotronView!)
         self.homeJumbotronView!.snp.makeConstraints { (make) in
             make.left.right.top.equalTo(self.view)
-            make.height.equalTo(256.0);
-        }
-        
-        // homeHeaderView.
-        self.homeHeaderView = HomeHeaderView()
-        self.view.addSubview(self.homeHeaderView!)
-        self.homeHeaderView!.snp.makeConstraints { (make) in
-            make.left.right.equalTo(self.view)
-            make.height.equalTo(140.0);
-            make.bottom.equalTo(self.view.snp.top)
+            make.height.equalTo(256.0)
+            let homeJumbotronViewTop = make.top.equalTo(self.view)
         }
         
         // collectionView.
@@ -64,7 +69,7 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         self.view.addSubview(self.collectionView!)
         self.collectionView!.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(self.view)
-            make.top.equalTo(self.homeJumbotronView!.snp.bottom)
+            make.top.equalTo(self.view).offset(256.0)
         }
         
         let header = MJRefreshNormalHeader.init()
@@ -144,12 +149,12 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
         // Animation for homeJumbotronView & homeHeaderView
         self.collectionView!.rx.contentOffset
             .flatMap({ (contentOffset) -> Observable<Bool> in
-                return Observable.just( contentOffset.y >= InterfaceGlobalValue.showHeaderContentOffset )
+                return Observable.just( contentOffset.y >= InterfaceGlobalValue.showTopContentOffset )
             })
             .skipWhile({ $0 == false })
             .distinctUntilChanged()
             .subscribe(onNext: { (toShowHeader) in
-                self.switchTopView(toShowHeader: toShowHeader)
+                self.animateTopView(toShowHeader: toShowHeader)
             })
             .disposed(by: self.disposeBag)
         
@@ -169,17 +174,30 @@ class HomeViewController: BaseViewController, ViewControllerBindable, UICollecti
     }
     
     // MARK: Animation for homeJumbotronView & homeHeaderView
-    func switchTopView(toShowHeader: Bool){
+    func animateTopView(toShowHeader: Bool){
         let jumbotronViewAnimator = LSAnimator(view: self.homeJumbotronView!)
-        let headerViewAnimator = LSAnimator(view: self.homeHeaderView!)
+        let collectionViewAnimator = LSAnimator(view: self.collectionView!)
         
         if(toShowHeader){
-            jumbotronViewAnimator.transformY(-self.homeJumbotronView!.frame.height)!.easeInOut().animate(0.2)
-            headerViewAnimator.transformY(self.homeHeaderView!.frame.height)!.easeInOut().animate(0.2)
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+                
+            } completion: { (finished) in
+            
+            }
+
+            
+            
+            jumbotronViewAnimator.makeOpacity(0)!.transformY(-self.homeJumbotronView!.frame.height)!.easeInOut().animateWithCompletion(0.2,{
+                self.homeJumbotronView!.isHidden = true
+            })
+            collectionViewAnimator.transformY(-116.0)!.easeInOut().animate(0.2)
+            
         }
         else{
-            jumbotronViewAnimator.transformY(self.homeJumbotronView!.frame.height)!.easeInOut().animate(0.2)
-            headerViewAnimator.transformY(-self.homeHeaderView!.frame.height)!.easeInOut().animate(0.2)
+            self.homeJumbotronView!.isHidden = false
+            jumbotronViewAnimator.makeOpacity(1)!.transformY(self.homeJumbotronView!.frame.height)!.easeInOut().animateWithCompletion(0.2,{
+            })
+            collectionViewAnimator.transformY(116.0)!.easeInOut().animate(0.2)
         }
     }
 

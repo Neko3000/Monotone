@@ -12,6 +12,7 @@
 		1410491C255D3686003312BC /* SceneTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1410491B255D3686003312BC /* SceneTransition.swift */; };
 		14104920255D4944003312BC /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1410491F255D4944003312BC /* BaseNavigationController.swift */; };
 		14104925255D49A5003312BC /* MTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14104924255D49A5003312BC /* MTNavigationController.swift */; };
+		14109A9D25620B150094BDA7 /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14109A9C25620B150094BDA7 /* MTTextField.swift */; };
 		141591D0255E53FE00179ED5 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141591CF255E53FE00179ED5 /* BaseCoordinator.swift */; };
 		1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423A4DC254BA121009DEEA1 /* BaseViewController.swift */; };
 		143114C1255A788D00991676 /* SearchPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114C0255A788D00991676 /* SearchPhotosViewModel.swift */; };
@@ -69,6 +70,7 @@
 		1410491B255D3686003312BC /* SceneTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTransition.swift; sourceTree = "<group>"; };
 		1410491F255D4944003312BC /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		14104924255D49A5003312BC /* MTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTNavigationController.swift; sourceTree = "<group>"; };
+		14109A9C25620B150094BDA7 /* MTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTextField.swift; sourceTree = "<group>"; };
 		141591CF255E53FE00179ED5 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		1423A4DC254BA121009DEEA1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		143114C0255A788D00991676 /* SearchPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosViewModel.swift; sourceTree = "<group>"; };
@@ -127,6 +129,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14109A9725620AF80094BDA7 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				14109A9C25620B150094BDA7 /* MTTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
 		141591D8255E576600179ED5 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +190,7 @@
 		143114BB255A77CC00991676 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				14109A9725620AF80094BDA7 /* TextFields */,
 				141591DA255E579D00179ED5 /* NavigationControllers */,
 				143FB157255BAE2D00D24248 /* Views */,
 				143FB158255BAE3400D24248 /* Cells */,
@@ -500,6 +511,7 @@
 				14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */,
 				1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */,
 				14104916255D34AE003312BC /* PhotoDetailsViewController.swift in Sources */,
+				14109A9D25620B150094BDA7 /* MTTextField.swift in Sources */,
 				143114DF255AA6D400991676 /* ListPhotosRequest.swift in Sources */,
 				143114D8255A79D000991676 /* Urls.swift in Sources */,
 				14F3707D254EABDA0086B8CC /* BaseResponse.swift in Sources */,

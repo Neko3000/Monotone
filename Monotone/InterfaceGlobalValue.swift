@@ -8,5 +8,5 @@
 import UIKit
 
 class InterfaceGlobalValue{
-    public static let showHeaderContentOffset: CGFloat = 50.0
+    public static let showTopContentOffset: CGFloat = 50.0
 }
