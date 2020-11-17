@@ -13,13 +13,13 @@ import RxSwift
 class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     
     enum Scene {
-        case home([String: Any])
+        case home
         case photoDetails([String: Any])
     }
     
     enum SceneContent {
-        case listPhotos([String: Any])
-        case searchPhotos([String: Any])
+        case listPhotos([String: Any]?)
+        case searchPhotos([String: Any]?)
         case empty
     }
     
@@ -40,10 +40,11 @@ extension SceneCoordinator: FactoryCoordinator{
     internal func viewController(scene: Scene) -> BaseViewController?{
         
         switch scene {
-        case let .home(args):
+        case .home:
             let vc = HomeViewController()
-            let vm = self.viewModel(sceneContent:.searchPhotos(args))
-            vc.bind(to: vm as? ListPhotosViewModel)
+            let listPhotosVM = self.viewModel(sceneContent:.listPhotos(nil))!
+            let searchPhotosVM = self.viewModel(sceneContent:.searchPhotos(nil))!
+            vc.bind(to: [listPhotosVM, searchPhotosVM])
 
             return vc
         default:
@@ -58,7 +59,9 @@ extension SceneCoordinator: FactoryCoordinator{
         case let .listPhotos(args):
             let vm: ListPhotosViewModel = ListPhotosViewModel(service: PhotoService(), args: args)
             return vm
-            
+        case let .searchPhotos(args):
+            let vm: SearchPhotosViewModel = SearchPhotosViewModel(service: PhotoService(), args: args)
+            return vm
         default:
             return nil
         }        

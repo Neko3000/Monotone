@@ -15,8 +15,8 @@ import anim
 
 class HomeViewController: BaseViewController {
     
-    // MARK: ViewModel
-    internal var viewModel: ListPhotosViewModel?
+    // MARK: Priavte
+    private var searchingPhotos: Bool = false
     private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: Controls
@@ -24,10 +24,6 @@ class HomeViewController: BaseViewController {
     private var homeHeaderView: HomeHeaderView?
         
     private var collectionView: UICollectionView?
-        
-    public func bind(to viewModel: ListPhotosViewModel?) {
-        self.viewModel = viewModel
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,12 +80,17 @@ class HomeViewController: BaseViewController {
     override func buildLogic() {
         
         // ViewModel.
-        self.viewModel = ListPhotosViewModel(service: PhotoService())
-        
+        let listPhotosViewModel = self.viewModel(type:ListPhotosViewModel.self) as! ListPhotosViewModel
+        let searchPhotosViewModel = self.viewModel(type:SearchPhotosViewModel.self) as! SearchPhotosViewModel
+
         // CollectionView.
-        self.homeJumbotronView!.segmentStr.bind(to: self.viewModel!.input.orderBy).disposed(by: self.disposeBag)
+        self.homeJumbotronView!.segmentStr
+            .bind(to: listPhotosViewModel.input.orderBy)
+            .disposed(by: self.disposeBag)
+//        self.homeHeaderView!.segmentStr.bind(to: searchPhotoViewModel.input)
         
-        self.viewModel!.output.photos
+        Observable.of(listPhotosViewModel.output.photos, searchPhotosViewModel.output.photos)
+            .merge()
             .bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
                 (row, element, cell) in
                 
@@ -100,49 +101,60 @@ class HomeViewController: BaseViewController {
         
         self.collectionView!.rx.itemSelected
             .subscribe { (indexPath) in
-                let homeVC = HomeViewController()
-                
-                let nav = UINavigationController(rootViewController: homeVC)
-                nav.modalPresentationStyle = .fullScreen
-                
-                let vc1 = PhotoDetailsViewController()
-                nav.pushViewController(vc1, animated: true)
-                
-                let vc2 = PhotoDetailsViewController()
-                nav.pushViewController(vc2, animated: true)
-                
-                UIApplication.shared.keyWindow?.rootViewController = nav
-    //            self.present(nav, animated: true, completion: nil)
+//                let homeVC = HomeViewController()
+//
+//                let nav = UINavigationController(rootViewController: homeVC)
+//                nav.modalPresentationStyle = .fullScreen
+//
+//                let vc1 = PhotoDetailsViewController()
+//                nav.pushViewController(vc1, animated: true)
+//
+//                let vc2 = PhotoDetailsViewController()
+//                nav.pushViewController(vc2, animated: true)
+//
+//                UIApplication.shared.keyWindow?.rootViewController = nav
+//    //            self.present(nav, animated: true, completion: nil)
             }.disposed(by: self.disposeBag)
 
         // CollectionView MJRefresh.
         self.collectionView!.mj_header!.refreshingBlock = {
-            self.viewModel?.input.reloadAction?.execute()
+            if(self.searchingPhotos){
+                searchPhotosViewModel.input.reloadAction?.execute()
+            }
+            else{
+                listPhotosViewModel.input.reloadAction?.execute()
+            }
         }
             
         self.collectionView!.mj_footer!.refreshingBlock = {
-            self.viewModel?.input.loadMoreAction?.execute()
+            if(self.searchingPhotos){
+                searchPhotosViewModel.input.loadMoreAction?.execute()
+            }
+            else{
+                listPhotosViewModel.input.loadMoreAction?.execute()
+            }
         }
         
         // MJRefresh style.
-        self.viewModel!.output.reloading
-            .subscribe(onNext: { (reloading) in
-            if(!reloading){
+        Observable.of(listPhotosViewModel.output.reloading, searchPhotosViewModel.output.reloading)
+            .merge()
+            .skipWhile({ $0 == true })
+            .subscribe { (_) in
                 self.collectionView!.mj_header!.endRefreshing()
+            } onError: { (error) in
+                print("error")
             }
-            }, onError: { (error) in
-                print("error!")
-            })
             .disposed(by: self.disposeBag)
+
         
-        self.viewModel!.output.loadingMore
-            .subscribe(onNext: { (loadingMore) in
-                if(!loadingMore){
-                    self.collectionView!.mj_footer!.endRefreshing()
-                }
-            }, onError: { (error) in
-                print("error!")
-            })
+        Observable.of(listPhotosViewModel.output.loadingMore, searchPhotosViewModel.output.loadingMore)
+            .merge()
+            .skipWhile({ $0 == true })
+            .subscribe { (_) in
+                self.collectionView!.mj_footer!.endRefreshing()
+            } onError: { (error) in
+                print("error")
+            }
             .disposed(by: self.disposeBag)
         
         // Animation for homeJumbotronView & homeHeaderView
@@ -158,8 +170,8 @@ class HomeViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // FiXME: Query.
-        self.viewModel?.input.orderBy.onNext("popular")
-        self.viewModel?.input.loadMoreAction?.execute()
+        listPhotosViewModel.input.orderBy.onNext("popular")
+        listPhotosViewModel.input.loadMoreAction?.execute()
     }
     
     // MARK: Animation for homeJumbotronView & homeHeaderView

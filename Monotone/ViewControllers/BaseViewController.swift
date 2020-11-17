@@ -13,13 +13,10 @@ protocol ViewControllerBindable{
     var viewModels: [BaseViewModel]? { get }
     
     func bind(to viewModels: [BaseViewModel]?)
-    func viewModel<T:BaseViewModel>()->T?
+    func viewModel(type: AnyClass) -> BaseViewModel?
 }
 
 class BaseViewController: UIViewController, ViewControllerBindable {
-    
-    // MARK: Variables
-    //
         
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -45,15 +42,15 @@ class BaseViewController: UIViewController, ViewControllerBindable {
         self.viewModels = viewModels
     }
     
-    func viewModel<T:BaseViewModel>() -> T? {
+    func viewModel(type: AnyClass) -> BaseViewModel? {
         
         if let vm = self.viewModels?.first(where: { (vm) -> Bool in
-            vm.self === T.self
+            return String(describing: vm.self).components(separatedBy: ".").last! == String(describing: type)
         }){
-            return vm as? T
+            return vm
         }
         else{
-            print("Could not find ViewModel of type: '\(String(describing: T.self))'")
+            print("Could not find ViewModel of type: '\(String(describing: type))'")
             return nil
         }
     }
