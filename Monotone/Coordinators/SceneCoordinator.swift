@@ -23,6 +23,12 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
         case empty
     }
     
+    override var firstViewController: UIViewController {
+        get{
+            return self.viewController(scene: .home)!
+        }
+    }
+    
     func transition(to scene: Scene?, with args: [String : Any]?, type: SceneTransition?) -> Observable<Void> {
         let subject = PublishSubject<Void>()
         

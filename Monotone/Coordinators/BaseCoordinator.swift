@@ -6,11 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
 import RxSwift
 
 protocol Coordinator {
-    var childCoordinators : [Coordinator] { get set }
+    var childCoordinators: [Coordinator] { get set }
+    var firstViewController: UIViewController { get }
+    
+    func start()
 }
 
 protocol FactoryCoordinator {
@@ -30,14 +34,20 @@ protocol CoordinatorTransitionable {
 class BaseCoordinator: Coordinator {
 
     var childCoordinators: [Coordinator] = [Coordinator]()
-    
-    private var navigationViewController: UINavigationController?
-    
-    init(navigationViewController: UINavigationController) {
-        self.navigationViewController = navigationViewController
+    var firstViewController: UIViewController{
+        get {
+           return UIViewController()
+        }
     }
     
-    init() {
-        self.navigationViewController = UINavigationController()
+    var window: UIWindow?
+    
+    init(window: UIWindow){
+        self.window = window
+    }
+    
+    func start(){
+        self.window!.rootViewController = self.firstViewController
+        self.window!.makeKeyAndVisible()
     }
 }
