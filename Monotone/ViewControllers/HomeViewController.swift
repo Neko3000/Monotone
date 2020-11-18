@@ -83,12 +83,29 @@ class HomeViewController: BaseViewController {
         let listPhotosViewModel = self.viewModel(type:ListPhotosViewModel.self) as! ListPhotosViewModel
         let searchPhotosViewModel = self.viewModel(type:SearchPhotosViewModel.self) as! SearchPhotosViewModel
 
-        // CollectionView.
+        // homeJumbotronView & homeHeaderView
         self.homeJumbotronView!.segmentStr
+            .bind(to: homeHeaderView!.segmentStr)
+            .disposed(by: self.disposeBag)
+        
+        self.homeHeaderView!.segmentStr
+            .subscribe { (value) in
+                self.homeJumbotronView?.segmentStr.onNext(value)
+            } onError: { (error) in
+                print("error")
+            }
+            .disposed(by: self.disposeBag)
+        
+        Observable.of(self.homeJumbotronView!.segmentStr, self.homeHeaderView!.segmentStr)
+            .merge()
             .bind(to: listPhotosViewModel.input.orderBy)
             .disposed(by: self.disposeBag)
-//        self.homeHeaderView!.segmentStr.bind(to: searchPhotoViewModel.input)
         
+        self.homeHeaderView!.searchQuery
+            .bind(to: searchPhotosViewModel.input.query)
+            .disposed(by: self.disposeBag)
+                
+        // CollectionView.
         Observable.of(listPhotosViewModel.output.photos, searchPhotosViewModel.output.photos)
             .merge()
             .bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){

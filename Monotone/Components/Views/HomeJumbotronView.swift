@@ -14,6 +14,8 @@ import RxSwift
 
 class HomeJumbotronView: BaseView {
     
+    private let disposeBag: DisposeBag = DisposeBag()
+    
     public let segmentStr: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
     
     private var menuBtn: UIButton?
@@ -109,6 +111,20 @@ class HomeJumbotronView: BaseView {
             make.height.equalTo(38.0)
             make.width.equalTo(self).multipliedBy(1.0/3)
         }
+    }
+    
+    override func buildLogic() {
+        
+        // segmentedControl
+        self.segmentStr
+            .flatMap { (segmentStr) -> Observable<Int> in
+                let index = self.segmentedControl!.sectionTitles!.firstIndex(of: segmentStr) ?? 0
+                return Observable.just(index)
+            }
+            .subscribe { (index) in
+                self.segmentedControl!.setSelectedSegmentIndex(UInt(index), animated: false)
+            }
+            .disposed(by: self.disposeBag)
     }
     
     @objc private func segmentedControlChangedValue(segmentedControl: HMSegmentedControl){

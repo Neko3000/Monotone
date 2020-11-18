@@ -41,6 +41,7 @@ class HomeHeaderView: BaseView {
         self.searchTextField!.leftViewMode = .unlessEditing
         self.searchTextField!.layer.cornerRadius = 4.0
         self.searchTextField!.layer.masksToBounds = true
+        self.searchTextField!.returnKeyType = .search
         self.addSubview(self.searchTextField!)
         self.searchTextField!.snp.makeConstraints({ (make) in
             make.left.equalTo(self).offset(16.0)
@@ -80,9 +81,21 @@ class HomeHeaderView: BaseView {
     override func buildLogic() {
         
         // searchTextField
-        self.searchTextField!.rx.text
-            .orEmpty
-            .bind(to: self.searchQuery)
+        self.searchTextField!.rx.controlEvent(.editingDidEnd)
+            .subscribe(onNext: { (_) in
+                self.searchQuery.onNext(self.searchTextField!.text ?? "")
+            })
+            .disposed(by: self.disposeBag)
+        
+        // segmentedControl
+        self.segmentStr
+            .flatMap { (segmentStr) -> Observable<Int> in
+                let index = self.segmentedControl!.sectionTitles!.firstIndex(of: segmentStr) ?? 0
+                return Observable.just(index)
+            }
+            .subscribe { (index) in
+                self.segmentedControl!.setSelectedSegmentIndex(UInt(index), animated: false)
+            }
             .disposed(by: self.disposeBag)
     }
 

@@ -9,7 +9,7 @@ import Foundation
 import ObjectMapper
 
 class ListPhotosRequest: BaseRequest {
-        
+
     override var api: String?{
         get{
             return "photos/"
