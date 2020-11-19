@@ -30,6 +30,7 @@ DEPENDENCIES:
   - MJRefresh (= 3.5.0)
   - ObjectMapper (= 4.2.0)
   - RxCocoa (= 5.1.1)
+  - RxRelay (= 5.1.1)
   - RxSwift (= 5.1.1)
   - SnapKit (= 5.0.1)
   - SwiftyJSON (= 4.3.0)
@@ -65,6 +66,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 53b4a9079eb5c3663541fb6da3c2a442dada6471
+PODFILE CHECKSUM: c59fd23de84dc8f90a4fabf8ef2e580e4502162d
 
 COCOAPODS: 1.6.1

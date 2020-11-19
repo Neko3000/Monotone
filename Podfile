@@ -7,6 +7,7 @@ target 'Monotone' do
 
   # Pods for Monotone
   pod 'RxSwift', '5.1.1'
+  pod 'RxRelay', '5.1.1'
   pod 'RxCocoa', '5.1.1'
   pod 'Action', '4.2.0' # iOS8.0+
   pod 'Alamofire', '5.3.0'
