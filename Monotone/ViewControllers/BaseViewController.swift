@@ -13,12 +13,26 @@ protocol ViewControllerBindable{
     var viewModels: [BaseViewModel]? { get }
     
     func bind(to viewModels: [BaseViewModel]?)
-    func viewModel(type: AnyClass) -> BaseViewModel?
+    func viewModel<T: BaseViewModel>(type: T.Type) -> T?
+}
+
+extension ViewControllerBindable where Self: BaseViewController{
+    
+    func bind(to viewModels: [BaseViewModel]?) {
+        self.viewModels = viewModels
+    }
+    
+    func viewModel<T>(type: T.Type) -> T? where T : BaseViewModel {
+        self.viewModels?.find(by: type)
+    }
 }
 
 class BaseViewController: UIViewController, ViewControllerBindable {
-        
-    // MARK: LifeCycle
+    
+    // MARK: ViewControllerBindable
+    var viewModels: [BaseViewModel]?
+
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,32 +41,12 @@ class BaseViewController: UIViewController, ViewControllerBindable {
         // Do any additional setup after loading the view.
     }
     
-    internal func buildSubviews() {
+    func buildSubviews() {
         
     }
     
-    internal func buildLogic() {
+    func buildLogic() {
         
-    }
-    
-    // MARK: ViewControllerBindable
-    var viewModels: [BaseViewModel]?
-    
-    func bind(to viewModels: [BaseViewModel]?) {
-        self.viewModels = viewModels
-    }
-    
-    func viewModel(type: AnyClass) -> BaseViewModel? {
-        
-        if let vm = self.viewModels?.first(where: { (vm) -> Bool in
-            return String(describing: vm.self).components(separatedBy: ".").last! == String(describing: type)
-        }){
-            return vm
-        }
-        else{
-            print("Could not find ViewModel of type: '\(String(describing: type))'")
-            return nil
-        }
     }
     
 

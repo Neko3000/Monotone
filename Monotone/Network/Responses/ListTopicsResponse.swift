@@ -8,6 +8,6 @@
 import Foundation
 import ObjectMapper
 
-class ListTopicsResponse: BaseResponse{
-    public var 
-}
+//class ListTopicsResponse: BaseResponse{
+//    public var
+//}

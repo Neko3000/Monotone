@@ -11,7 +11,7 @@
 		14071B0E256549F000D418C8 /* Exif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14071B0D256549F000D418C8 /* Exif.swift */; };
 		14071B1125654A4900D418C8 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14071B1025654A4900D418C8 /* Location.swift */; };
 		14071B1425654AF500D418C8 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14071B1325654AF500D418C8 /* Position.swift */; };
-		14071B182565FD1C00D418C8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14071B172565FD1C00D418C8 /* HomeViewController.swift */; };
+		14071B182565FD1C00D418C8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14071B172565FD1C00D418C8 /* HomeViewModel.swift */; };
 		1409A7972550EAAB0005B702 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409A7962550EAAB0005B702 /* BaseView.swift */; };
 		14104916255D34AE003312BC /* PhotoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14104915255D34AE003312BC /* PhotoDetailsViewController.swift */; };
 		1410491C255D3686003312BC /* SceneTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1410491B255D3686003312BC /* SceneTransition.swift */; };
@@ -24,6 +24,7 @@
 		142840372564BACE004C06DF /* ListTopicsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142840362564BACE004C06DF /* ListTopicsRequest.swift */; };
 		1428403A2564BBB1004C06DF /* ListTopicsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142840392564BBB1004C06DF /* ListTopicsResponse.swift */; };
 		1428403E2564BC56004C06DF /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428403D2564BC56004C06DF /* Topic.swift */; };
+		142BCC982566374C00B7FB06 /* Array+Find.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BCC972566374C00B7FB06 /* Array+Find.swift */; };
 		143114C1255A788D00991676 /* SearchPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114C0255A788D00991676 /* SearchPhotosViewModel.swift */; };
 		143114CC255A794600991676 /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114CB255A794600991676 /* Links.swift */; };
 		143114D1255A797A00991676 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114D0255A797A00991676 /* ProfileImage.swift */; };
@@ -78,7 +79,7 @@
 		14071B0D256549F000D418C8 /* Exif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exif.swift; sourceTree = "<group>"; };
 		14071B1025654A4900D418C8 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		14071B1325654AF500D418C8 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
-		14071B172565FD1C00D418C8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		14071B172565FD1C00D418C8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1409A7962550EAAB0005B702 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		14104915255D34AE003312BC /* PhotoDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewController.swift; sourceTree = "<group>"; };
 		1410491B255D3686003312BC /* SceneTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTransition.swift; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 		142840362564BACE004C06DF /* ListTopicsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicsRequest.swift; sourceTree = "<group>"; };
 		142840392564BBB1004C06DF /* ListTopicsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicsResponse.swift; sourceTree = "<group>"; };
 		1428403D2564BC56004C06DF /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		142BCC972566374C00B7FB06 /* Array+Find.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Find.swift"; sourceTree = "<group>"; };
 		143114C0255A788D00991676 /* SearchPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosViewModel.swift; sourceTree = "<group>"; };
 		143114CB255A794600991676 /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		143114D0255A797A00991676 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
@@ -200,7 +202,7 @@
 				14E59DCC2556716400F1FB60 /* BaseViewModel.swift */,
 				143114C0255A788D00991676 /* SearchPhotosViewModel.swift */,
 				143FB14E255BAD2D00D24248 /* ListPhotosViewModel.swift */,
-				14071B172565FD1C00D418C8 /* HomeViewController.swift */,
+				14071B172565FD1C00D418C8 /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -363,6 +365,7 @@
 		14FCE26A2563973E00B98130 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				142BCC972566374C00B7FB06 /* Array+Find.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -554,7 +557,7 @@
 				14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */,
 				1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */,
 				14071AFB2564CB2100D418C8 /* PreviewPhoto.swift in Sources */,
-				14071B182565FD1C00D418C8 /* HomeViewController.swift in Sources */,
+				14071B182565FD1C00D418C8 /* HomeViewModel.swift in Sources */,
 				14104916255D34AE003312BC /* PhotoDetailsViewController.swift in Sources */,
 				14109A9D25620B150094BDA7 /* MTTextField.swift in Sources */,
 				143114DF255AA6D400991676 /* ListPhotosRequest.swift in Sources */,
@@ -582,6 +585,7 @@
 				14E59E912557FC5000F1FB60 /* NetworkError.swift in Sources */,
 				14F36F91254D3AB80086B8CC /* ColorPalette.swift in Sources */,
 				1433B8E92561270700FE9B1D /* InterfaceGlobalValue.swift in Sources */,
+				142BCC982566374C00B7FB06 /* Array+Find.swift in Sources */,
 				14956D32255CC72B0057A4A6 /* SceneCoordinator.swift in Sources */,
 				143F5678254FEA040038761D /* HomeViewController.swift in Sources */,
 				14F36FB0254D53940086B8CC /* NetworkManager.swift in Sources */,

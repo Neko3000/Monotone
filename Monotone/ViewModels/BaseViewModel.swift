@@ -8,42 +8,51 @@
 import Foundation
 
 import RxSwift
-import Action
 
-protocol ViewModelBindable {
-    func bind()
+// MARK: ViewModelServable
+protocol ViewModelServable {
+    init(services: [NetworkService]?, args: [String: Any]?)
+    
+    var services: [NetworkService]? { get }
+    func service<T: NetworkService>(type: T.Type) -> T?
 }
 
+extension ViewModelServable where Self: BaseViewModel{
+    
+    func service<T>(type: T.Type) -> T? where T : NetworkService {
+        return self.services?.find(by: type)
+    }
+}
+
+// MARK: ViewModelStreamble
 protocol ViewModelStreamable {
     associatedtype InputType
     associatedtype OutputType
     
     var input: InputType { get }
     var output: OutputType { get }
+    
+    func bind()
 }
 
-class BaseViewModel: ViewModelBindable {
-    var service: NetworkService?
+extension ViewModelStreamable where Self: BaseViewModel{
+    
+}
+
+// MARK: BaseViewModel
+class BaseViewModel: ViewModelServable {
+    
     let disposeBag: DisposeBag = DisposeBag()
     
-    init(service: NetworkService) {
-        self.service = service
-        
-        self.bind()
+    // MARK: ViewModelServable
+    var services: [NetworkService]?
+    
+    required init(services: [NetworkService]?, args: [String: Any]? ) {
+        self.services = services
+        self.inject(args: args)
     }
     
-    convenience init(service: NetworkService, args: [String: Any]?) {
-        self.init(service: service)
-        
-        self.inject(args:args)
-        self.bind()
-    }
-    
-    internal func inject(args: [String: Any]?) {
-        // Implementated by subclass.
-    }
-    
-    internal func bind() {
+    func inject(args: [String: Any]?) {
         // Implementated by subclass.
     }
 }

@@ -39,16 +39,17 @@ class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
     }
     
     // MARK: Bind
-    override func bind() {
-        // Specify Service.
-        let photoService = self.service as! PhotoService
+    func bind() {
+        
+        // Service.
+        let photoService = self.service(type: PhotoService.self)
                 
         // LoadMore.
         self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
             self.output.loadingMore.onNext(true)
             
             guard let orderBy = try? self.input.orderBy.value() else { return .empty() }
-            return photoService.listPhotos(page: self.nextLoadPage, orderBy: orderBy)
+            return photoService!.listPhotos(page: self.nextLoadPage, orderBy: orderBy)
         })
         
         self.input.loadMoreAction?.elements

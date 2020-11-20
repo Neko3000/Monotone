@@ -32,17 +32,17 @@ class SearchPhotosViewModel: BaseViewModel, ViewModelStreamable{
     private var nextLoadPage: Int = 1
     
     // MARK: Bind
-    override func bind() {
+    func bind() {
         
         // Service.
-        let photoService = self.service as! PhotoService
+        let photoService = self.service(type: PhotoService.self)
                 
         // LoadMore.
         self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
             self.output.loadingMore.onNext(true)
             
             guard let query = try? self.input.query.value() else { return .empty() }
-            return photoService.searchPhotos(query: query , page: self.nextLoadPage + 1)
+            return photoService!.searchPhotos(query: query , page: self.nextLoadPage + 1)
         })
         
         self.input.loadMoreAction?.elements
