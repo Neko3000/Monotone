@@ -28,11 +28,11 @@ class BaseView: UIView {
         super.init(coder: coder)
     }
     
-    internal func buildSubviews(){
+    func buildSubviews(){
         
     }
     
-    internal func buildLogic(){
+    func buildLogic(){
         
     }
 }

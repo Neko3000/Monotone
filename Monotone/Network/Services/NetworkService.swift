@@ -9,5 +9,5 @@ import Foundation
 import RxSwift
 
 class NetworkService {
-    internal let disposeBag: DisposeBag = DisposeBag()
+    let disposeBag: DisposeBag = DisposeBag()
 }

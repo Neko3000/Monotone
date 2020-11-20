@@ -15,7 +15,7 @@ class MTNavigationController: BaseNavigationController {
         // Do any additional setup after loading the view.
     }
     
-    override internal func buildSubviews() {
+    override func buildSubviews() {
         
         self.configureNavigationBar(transparent: true)
     }

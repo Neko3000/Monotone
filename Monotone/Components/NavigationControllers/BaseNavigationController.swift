@@ -21,11 +21,11 @@ class BaseNavigationController: UINavigationController {
         // Do any additional setup after loading the view.
     }
     
-    internal func buildSubviews() {
+    func buildSubviews() {
         
     }
     
-    internal func buildLogic() {
+    func buildLogic() {
         
     }
     

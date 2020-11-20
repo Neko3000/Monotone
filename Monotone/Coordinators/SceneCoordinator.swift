@@ -43,7 +43,7 @@ extension SceneCoordinator: FactoryCoordinator{
     typealias sceneContentType = SceneContent
     
     // MARK: ViewController Factory
-    internal func viewController(scene: Scene) -> BaseViewController?{
+    func viewController(scene: Scene) -> BaseViewController?{
         
         switch scene {
         case .home:
@@ -59,7 +59,7 @@ extension SceneCoordinator: FactoryCoordinator{
     }
     
     // MARK: ViewModel Factory
-    internal func viewModel(sceneContent: SceneContent) -> BaseViewModel?{
+    func viewModel(sceneContent: SceneContent) -> BaseViewModel?{
         
         switch sceneContent {
         case let .listPhotos(args):
