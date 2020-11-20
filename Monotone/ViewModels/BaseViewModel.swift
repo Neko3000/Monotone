@@ -31,12 +31,10 @@ protocol ViewModelStreamable {
     
     var input: InputType { get }
     var output: OutputType { get }
-    
-    func bind()
 }
 
 extension ViewModelStreamable where Self: BaseViewModel{
-    
+
 }
 
 // MARK: BaseViewModel
@@ -49,10 +47,16 @@ class BaseViewModel: ViewModelServable {
     
     required init(services: [NetworkService]?, args: [String: Any]? ) {
         self.services = services
+        
         self.inject(args: args)
+        self.bind()
     }
     
     func inject(args: [String: Any]?) {
+        // Implementated by subclass.
+    }
+    
+    func bind(){
         // Implementated by subclass.
     }
 }

@@ -18,6 +18,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     }
     
     enum SceneContent {
+        case home
         case listPhotos([String: Any]?)
         case searchPhotos([String: Any]?)
         case empty
@@ -48,9 +49,8 @@ extension SceneCoordinator: FactoryCoordinator{
         switch scene {
         case .home:
             let vc = HomeViewController()
-            let listPhotosVM = self.viewModel(sceneContent:.listPhotos(nil))!
-            let searchPhotosVM = self.viewModel(sceneContent:.searchPhotos(nil))!
-            vc.bind(to: [listPhotosVM, searchPhotosVM])
+            let homeVM = self.viewModel(sceneContent:.home)!
+            vc.bind(to: [homeVM])
 
             return vc
         default:
@@ -62,13 +62,14 @@ extension SceneCoordinator: FactoryCoordinator{
     func viewModel(sceneContent: SceneContent) -> BaseViewModel?{
         
         switch sceneContent {
+        case .home:
+            let vm: HomeViewModel = HomeViewModel(services: [PhotoService()], args: nil)
+            return vm
         case let .listPhotos(args):
             let vm: ListPhotosViewModel = ListPhotosViewModel(services: [PhotoService()], args: args)
-            
             return vm
         case let .searchPhotos(args):
             let vm: SearchPhotosViewModel = SearchPhotosViewModel(services: [PhotoService()], args: args)
-            
             return vm
         default:
             return nil

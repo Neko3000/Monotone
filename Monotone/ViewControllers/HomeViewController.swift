@@ -16,7 +16,6 @@ import anim
 class HomeViewController: BaseViewController {
     
     // MARK: Priavte
-    private var searchingPhotos: Bool = false
     private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: Controls
@@ -32,6 +31,8 @@ class HomeViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        
+        self.view.backgroundColor = ColorPalette.colorWhite
         
         // homeHeaderView.
         self.homeHeaderView = HomeHeaderView()
@@ -80,34 +81,26 @@ class HomeViewController: BaseViewController {
     override func buildLogic() {
         
         // ViewModel.
-        let listPhotosViewModel = self.viewModel(type:ListPhotosViewModel.self) as! ListPhotosViewModel
-        let searchPhotosViewModel = self.viewModel(type:SearchPhotosViewModel.self) as! SearchPhotosViewModel
+        let homeViewModel = self.viewModel(type:HomeViewModel.self)
 
         // homeJumbotronView & homeHeaderView
         self.homeJumbotronView!.segmentStr
-            .bind(to: homeHeaderView!.segmentStr)
+            .bind(to: homeViewModel!.input.orderBy)
             .disposed(by: self.disposeBag)
-        
+                
         self.homeHeaderView!.segmentStr
-            .subscribe { (value) in
-                self.homeJumbotronView?.segmentStr.onNext(value)
-            } onError: { (error) in
-                print("error")
-            }
+            .bind(to: homeViewModel!.input.orderBy)
             .disposed(by: self.disposeBag)
         
-        Observable.of(self.homeJumbotronView!.segmentStr, self.homeHeaderView!.segmentStr)
-            .merge()
-            .bind(to: listPhotosViewModel.input.orderBy)
-            .disposed(by: self.disposeBag)
+        (self.homeJumbotronView!.segmentStr <-> self.homeHeaderView!.segmentStr)
+            .disposed(by:self.disposeBag)
         
         self.homeHeaderView!.searchQuery
-            .bind(to: searchPhotosViewModel.input.query)
+            .bind(to: homeViewModel!.input.searchQuery)
             .disposed(by: self.disposeBag)
                 
         // CollectionView.
-        Observable.of(listPhotosViewModel.output.photos, searchPhotosViewModel.output.photos)
-            .merge()
+        homeViewModel!.output.photos
             .bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
                 (row, element, cell) in
                 
@@ -135,42 +128,26 @@ class HomeViewController: BaseViewController {
 
         // CollectionView MJRefresh.
         self.collectionView!.mj_header!.refreshingBlock = {
-            if(self.searchingPhotos){
-                searchPhotosViewModel.input.reloadAction?.execute()
-            }
-            else{
-                listPhotosViewModel.input.reloadAction?.execute()
-            }
+            homeViewModel!.input.reloadAction?.execute()
         }
             
         self.collectionView!.mj_footer!.refreshingBlock = {
-            if(self.searchingPhotos){
-                searchPhotosViewModel.input.loadMoreAction?.execute()
-            }
-            else{
-                listPhotosViewModel.input.loadMoreAction?.execute()
-            }
+            homeViewModel!.input.loadMoreAction?.execute()
         }
         
         // MJRefresh style.
-        Observable.of(listPhotosViewModel.output.reloading, searchPhotosViewModel.output.reloading)
-            .merge()
+        homeViewModel!.output.reloading
             .skipWhile({ $0 == true })
             .subscribe { (_) in
                 self.collectionView!.mj_header!.endRefreshing()
-            } onError: { (error) in
-                print("error")
             }
             .disposed(by: self.disposeBag)
 
         
-        Observable.of(listPhotosViewModel.output.loadingMore, searchPhotosViewModel.output.loadingMore)
-            .merge()
+        homeViewModel!.output.loadingMore
             .skipWhile({ $0 == true })
             .subscribe { (_) in
                 self.collectionView!.mj_footer!.endRefreshing()
-            } onError: { (error) in
-                print("error")
             }
             .disposed(by: self.disposeBag)
         
@@ -187,8 +164,8 @@ class HomeViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // FiXME: Query.
-        listPhotosViewModel.input.orderBy.onNext("popular")
-        listPhotosViewModel.input.loadMoreAction?.execute()
+        homeViewModel!.input.orderBy.accept("popular")
+        homeViewModel!.input.loadMoreAction?.execute()
     }
     
     // MARK: Animation for homeJumbotronView & homeHeaderView
@@ -210,7 +187,7 @@ class HomeViewController: BaseViewController {
                 
                 return {
                     self.homeJumbotronView!.snp.updateConstraints({ (make) in
-                        make.top.equalTo(self.view).offset(-100.0)
+                        make.height.equalTo(140.0)
                     })
                     
                     self.collectionView!.snp.updateConstraints { (make) in
@@ -236,7 +213,7 @@ class HomeViewController: BaseViewController {
                 
                 return {
                     self.homeJumbotronView!.snp.updateConstraints({ (make) in
-                        make.top.equalTo(self.view)
+                        make.height.equalTo(256.0)
                     })
                     
                     self.collectionView!.snp.updateConstraints { (make) in

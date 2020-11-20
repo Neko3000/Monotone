@@ -39,7 +39,7 @@ class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
     }
     
     // MARK: Bind
-    func bind() {
+    override func bind() {
         
         // Service.
         let photoService = self.service(type: PhotoService.self)

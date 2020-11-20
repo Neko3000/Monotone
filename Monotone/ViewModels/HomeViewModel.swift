@@ -24,9 +24,9 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: Output
     struct Output {
-        var photos: BehaviorSubject<[Photo]> = BehaviorSubject<[Photo]>(value: [])
-        var loadingMore: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
-        var reloading: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
+        var photos: BehaviorRelay<[Photo]> = BehaviorRelay<[Photo]>(value: [])
+        var loadingMore: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+        var reloading: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     }
     public var output: Output = Output()
     
@@ -35,11 +35,88 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: Inject
     override func inject(args: [String : Any]?) {
-        
+        if(args?["searchQuery"] != nil){
+            self.input.searchQuery = BehaviorRelay(value: args!["searchQuery"] as! String)
+        }
+        if(args?["orderBy"] != nil){
+            self.input.orderBy = BehaviorRelay(value: args!["orderBy"] as! String)
+        }
     }
     
     // MARK: Bind
-    func bind() {
+    override func bind() {
+        
+        // Service
+        let photoService = self.service(type: PhotoService.self)
+        
+        // Binding
+        // LoadMore.
+        self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
+            self.output.loadingMore.accept(true)
+            
+            if(self.input.orderBy.value != ""){
+                return photoService!.listPhotos(page: self.nextLoadPage, orderBy: self.input.orderBy.value)
+            }
+            else if(self.input.searchQuery.value != ""){
+                return photoService!.searchPhotos(query: self.input.searchQuery.value , page: self.nextLoadPage)
+            }
+            else{
+                self.output.loadingMore.accept(false)
+            }
+            
+            return Observable.empty()
+        })
+        
+        self.input.loadMoreAction?.elements
+            .subscribe(onNext: { (photos: [Photo]) in
+                
+                self.output.photos.accept(self.nextLoadPage == 1 ? photos : self.output.photos.value + photos)
+                self.nextLoadPage += 1
+                
+                self.output.loadingMore.accept(false)
+            }, onError: { (error) in
+                
+                self.output.loadingMore.accept(false)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // Reload.
+        self.input.reloadAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
+            self.nextLoadPage = 1
+            return self.input.loadMoreAction!.execute()
+        })
+        
+        self.input.reloadAction?.elements
+            .subscribe(onNext: { (photos: [Photo]) in
+                
+                self.output.photos.accept(photos)
+                self.output.reloading.accept(false)
+            }, onError: { (error) in
+                
+                self.output.reloading.accept(false)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // Order by.
+        self.input.orderBy
+            .distinctUntilChanged()
+            .filter({ $0 != "" })
+            .subscribe { (_) in
+                self.input.searchQuery.accept("")
+                self.input.reloadAction?.execute()
+            }
+            .disposed(by: self.disposeBag)
+        
+        // Search query.
+        self.input.searchQuery
+            .distinctUntilChanged()
+            .filter({ $0 != "" })
+            .subscribe { (_) in
+                self.input.orderBy.accept("")
+                self.input.reloadAction?.execute()
+            }
+            .disposed(by: self.disposeBag)
+    
         
     }
     

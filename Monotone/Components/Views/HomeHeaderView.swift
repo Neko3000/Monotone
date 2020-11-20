@@ -11,16 +11,17 @@ import SnapKit
 import HMSegmentedControl
 
 import RxSwift
+import RxCocoa
 
 class HomeHeaderView: BaseView {
     
-    private let disposeBag: DisposeBag = DisposeBag()
-    
-    public let searchQuery: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
-    public let segmentStr: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
-    
+    public let segmentStr: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
+    public let searchQuery: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
+
     private var searchTextField: UITextField?
     private var segmentedControl: HMSegmentedControl?
+    
+    private let disposeBag: DisposeBag = DisposeBag()
     
     override func buildSubviews() {
         
@@ -81,9 +82,9 @@ class HomeHeaderView: BaseView {
     override func buildLogic() {
         
         // searchTextField
-        self.searchTextField!.rx.controlEvent(.editingDidEnd)
+        self.searchTextField!.rx.controlEvent(.editingDidEndOnExit)
             .subscribe(onNext: { (_) in
-                self.searchQuery.onNext(self.searchTextField!.text ?? "")
+                self.searchQuery.accept(self.searchTextField!.text ?? "")
             })
             .disposed(by: self.disposeBag)
         
@@ -104,6 +105,6 @@ class HomeHeaderView: BaseView {
         let index = Int(segmentedControl.selectedSegmentIndex)
         let title = segmentedControl.sectionTitles![index]
 
-        self.segmentStr.onNext(title)
+        self.segmentStr.accept(title)
     }
 }

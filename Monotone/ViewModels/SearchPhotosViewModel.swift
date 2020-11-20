@@ -31,8 +31,15 @@ class SearchPhotosViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: Private
     private var nextLoadPage: Int = 1
     
+    // MARK: Inject
+    override func inject(args: [String : Any]?) {
+        if(args?["query"] != nil){
+            self.input.query = BehaviorSubject<String>(value: args!["query"] as! String)
+        }
+    }
+    
     // MARK: Bind
-    func bind() {
+    override func bind() {
         
         // Service.
         let photoService = self.service(type: PhotoService.self)

@@ -11,18 +11,19 @@ import HMSegmentedControl
 import SnapKit
 
 import RxSwift
+import RxRelay
 
 class HomeJumbotronView: BaseView {
     
-    private let disposeBag: DisposeBag = DisposeBag()
-    
-    public let segmentStr: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
+    public let segmentStr: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
     
     private var menuBtn: UIButton?
     private var searchBtn: UIButton?
     private var titleLabel: UILabel?
     private var descriptionLabel: UILabel?
     private var segmentedControl: HMSegmentedControl?
+    
+    private let disposeBag: DisposeBag = DisposeBag()
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -132,7 +133,7 @@ class HomeJumbotronView: BaseView {
         let index = Int(segmentedControl.selectedSegmentIndex)
         let title = segmentedControl.sectionTitles![index]
 
-        self.segmentStr.onNext(title)
+        self.segmentStr.accept(title)
     }
     
 }
