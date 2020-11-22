@@ -14,6 +14,10 @@ class Urls: Mappable{
     public var regular: String?
     public var small: String?
     public var thumb: String?
+    
+    init() {
+        
+    }
 
     required init?(map: Map) {
         

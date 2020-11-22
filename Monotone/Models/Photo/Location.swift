@@ -14,6 +14,10 @@ class Location: Mappable {
     var country: String?
     var position: Position?
     var title: String?
+    
+    init() {
+        
+    }
 
     required init?(map: Map) {
         

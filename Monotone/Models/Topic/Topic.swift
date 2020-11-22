@@ -28,6 +28,10 @@ class Topic: Mappable{
     public var coverPhoto: Photo?
     public var previewPhotos: [PreviewPhoto]?
     
+    init() {
+        
+    }
+    
     required init?(map: Map) {
         
     }

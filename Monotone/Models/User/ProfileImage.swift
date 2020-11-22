@@ -13,6 +13,10 @@ class ProfileImage: Mappable{
     public var medium: String?
     public var large: String?
     
+    init() {
+        
+    }
+    
     required init?(map: Map) {
         
     }

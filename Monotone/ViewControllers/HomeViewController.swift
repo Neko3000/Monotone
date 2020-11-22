@@ -97,7 +97,7 @@ class HomeViewController: BaseViewController {
         
         self.homeHeaderView!.searchQuery
             .bind(to: homeViewModel!.input.searchQuery)
-            .disposed(by: self.disposeBag)
+            .disposed(by: self.disposeBag)    
                 
         // CollectionView.
         homeViewModel!.output.photos
@@ -105,7 +105,9 @@ class HomeViewController: BaseViewController {
                 (row, element, cell) in
                 
                 let pcell: PhotoCollectionViewCell = cell as! PhotoCollectionViewCell
-                pcell.photoImageView!.kf.setImage(with: URL(string: element.urls?.regular ?? ""))
+                pcell.photoImageView!.kf.setImage(with: URL(string: element.urls?.regular ?? ""),
+                                                  placeholder: UIImage(blurHash: element.blurHash ?? "", size: CGSize(width: 10, height: 10)),
+                                                  options: [.transition(.fade(1.0)), .originalCache(.default)])
             
             }.disposed(by: self.disposeBag)
         
@@ -240,7 +242,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
     
     // MARK: CollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if(indexPath.row % 3 == 0){
+        
+        if(indexPath.row % 4 == 0 || indexPath.row % 4 == 3 ){
             return CGSize(width: self.collectionView!.frame.width, height: 300.0)
         }
         else{

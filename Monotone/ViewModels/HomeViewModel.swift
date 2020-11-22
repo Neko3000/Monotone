@@ -32,6 +32,7 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: Private
     private var nextLoadPage: Int = 1
+    private var emptyPhotos: [Photo] = Array.init(repeating: Photo(), count: 10)
     
     // MARK: Inject
     override func inject(args: [String : Any]?) {
@@ -54,11 +55,14 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
             self.output.loadingMore.accept(true)
             
+            // Before the request returns.
+            self.output.photos.accept(self.output.photos.value + self.emptyPhotos)
+            
             if(self.input.orderBy.value != ""){
-                return photoService!.listPhotos(page: self.nextLoadPage, orderBy: self.input.orderBy.value)
+                return photoService!.listPhotos(page: self.nextLoadPage, perPage: 20, orderBy: self.input.orderBy.value)
             }
             else if(self.input.searchQuery.value != ""){
-                return photoService!.searchPhotos(query: self.input.searchQuery.value , page: self.nextLoadPage)
+                return photoService!.searchPhotos(query: self.input.searchQuery.value , page: self.nextLoadPage, perPage: 20)
             }
             else{
                 self.output.loadingMore.accept(false)
@@ -69,12 +73,18 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         
         self.input.loadMoreAction?.elements
             .subscribe(onNext: { (photos: [Photo]) in
-                
-                self.output.photos.accept(self.nextLoadPage == 1 ? photos : self.output.photos.value + photos)
+                                
+                self.output.photos.accept(self.nextLoadPage == 1 ? photos : self.output.photos.value.filter({ (photo) -> Bool in
+                    !self.emptyPhotos.contains(photo)
+                }) + photos)
                 self.nextLoadPage += 1
                 
                 self.output.loadingMore.accept(false)
             }, onError: { (error) in
+                
+                self.output.photos.accept(self.output.photos.value.filter({ (photo) -> Bool in
+                    !self.emptyPhotos.contains(photo)
+                }))
                 
                 self.output.loadingMore.accept(false)
             })
@@ -83,6 +93,10 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         // Reload.
         self.input.reloadAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
             self.nextLoadPage = 1
+            
+            // Before the request returns.
+            self.output.photos.accept(self.emptyPhotos)
+            
             return self.input.loadMoreAction!.execute()
         })
         

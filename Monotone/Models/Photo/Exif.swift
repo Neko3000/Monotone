@@ -16,6 +16,10 @@ class Exif: Mappable {
     var focalLength: String?
     var exposureTime: String?
     var make: String?
+    
+    init() {
+        
+    }
 
     required init?(map: Map) {
         

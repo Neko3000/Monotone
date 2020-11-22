@@ -14,6 +14,10 @@ class Links: Mappable{
     public var photos: String?
     public var likes: String?
     public var download: String?
+    
+    init() {
+        
+    }
 
     required init?(map: Map) {
         

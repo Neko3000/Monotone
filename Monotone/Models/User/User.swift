@@ -38,6 +38,10 @@ class User: Mappable{
     public var downloads: Int?
 //    public var meta?
     
+    init() {
+        
+    }
+    
     required init?(map: Map) {
         
     }

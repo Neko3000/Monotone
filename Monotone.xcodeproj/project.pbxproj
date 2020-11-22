@@ -58,6 +58,8 @@
 		14F3707A254EA9300086B8CC /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F37079254EA9300086B8CC /* BaseRequest.swift */; };
 		14F3707D254EABDA0086B8CC /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F3707C254EABDA0086B8CC /* BaseResponse.swift */; };
 		14F37083254ED2F60086B8CC /* SearchPhotosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F37082254ED2F60086B8CC /* SearchPhotosRequest.swift */; };
+		14FD83CA2567F7CD00D5B575 /* BlurHashDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD83C82567F7CD00D5B575 /* BlurHashDecode.swift */; };
+		14FD83CB2567F7CD00D5B575 /* BlurHashEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD83C92567F7CD00D5B575 /* BlurHashEncode.swift */; };
 		73CFE15CA67265ABCA3CC319 /* Pods_Monotone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +135,8 @@
 		14F37079254EA9300086B8CC /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		14F3707C254EABDA0086B8CC /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		14F37082254ED2F60086B8CC /* SearchPhotosRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosRequest.swift; sourceTree = "<group>"; };
+		14FD83C82567F7CD00D5B575 /* BlurHashDecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurHashDecode.swift; sourceTree = "<group>"; };
+		14FD83C92567F7CD00D5B575 /* BlurHashEncode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurHashEncode.swift; sourceTree = "<group>"; };
 		22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monotone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AF9737896258A142CECD23 /* Pods-Monotone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.release.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -265,6 +269,7 @@
 		143114C7255A78D000991676 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				14FD83C72567F7B000D5B575 /* BlurHash */,
 				14F36F90254D3AB80086B8CC /* ColorPalette.swift */,
 				14F016B22567981400F60C99 /* RxOpeartors.swift */,
 			);
@@ -343,8 +348,8 @@
 			isa = PBXGroup;
 			children = (
 				143114C7255A78D000991676 /* Utils */,
-				143114BE255A780800991676 /* Network */,
 				14FCE26A2563973E00B98130 /* Extensions */,
+				143114BE255A780800991676 /* Network */,
 				143114BB255A77CC00991676 /* Components */,
 				143114B9255A77B000991676 /* ViewModels */,
 				143114B8255A778D00991676 /* ViewControllers */,
@@ -368,6 +373,15 @@
 				142BCC972566374C00B7FB06 /* Array+Find.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		14FD83C72567F7B000D5B575 /* BlurHash */ = {
+			isa = PBXGroup;
+			children = (
+				14FD83C82567F7CD00D5B575 /* BlurHashDecode.swift */,
+				14FD83C92567F7CD00D5B575 /* BlurHashEncode.swift */,
+			);
+			path = BlurHash;
 			sourceTree = "<group>";
 		};
 		D0810F2CBBB1D36C0AB83B79 /* Pods */ = {
@@ -570,9 +584,11 @@
 				14E59E312556A0E200F1FB60 /* NetworkService.swift in Sources */,
 				143FB13F255B859F00D24248 /* ListPhotosResponse.swift in Sources */,
 				14104925255D49A5003312BC /* MTNavigationController.swift in Sources */,
+				14FD83CA2567F7CD00D5B575 /* BlurHashDecode.swift in Sources */,
 				1409A7972550EAAB0005B702 /* BaseView.swift in Sources */,
 				1433B8E32561190100FE9B1D /* HomeHeaderView.swift in Sources */,
 				143FB14F255BAD2D00D24248 /* ListPhotosViewModel.swift in Sources */,
+				14FD83CB2567F7CD00D5B575 /* BlurHashEncode.swift in Sources */,
 				1428403A2564BBB1004C06DF /* ListTopicsResponse.swift in Sources */,
 				14E59DCD2556716400F1FB60 /* BaseViewModel.swift in Sources */,
 				14E59E462557C5F700F1FB60 /* SearchPhotosResponse.swift in Sources */,

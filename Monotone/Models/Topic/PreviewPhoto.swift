@@ -13,6 +13,10 @@ class PreviewPhoto: Mappable{
     var createdAt: String?
     var urls: Urls?
     var id: String?
+    
+    init() {
+        
+    }
 
     required init?(map: Map) {
         

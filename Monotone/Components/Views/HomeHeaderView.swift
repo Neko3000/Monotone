@@ -91,12 +91,14 @@ class HomeHeaderView: BaseView {
         // segmentedControl
         self.segmentStr
             .flatMap { (segmentStr) -> Observable<Int> in
-                let index = self.segmentedControl!.sectionTitles!.firstIndex(of: segmentStr) ?? 0
+                let index = self.segmentedControl!.sectionTitles!.firstIndex(of: segmentStr) ?? -1
                 return Observable.just(index)
             }
-            .subscribe { (index) in
-                self.segmentedControl!.setSelectedSegmentIndex(UInt(index), animated: false)
-            }
+            .subscribe(onNext: { (index) in
+                if(index != -1){
+                    self.segmentedControl!.setSelectedSegmentIndex(UInt(index), animated: false)
+                }
+            })
             .disposed(by: self.disposeBag)
     }
 

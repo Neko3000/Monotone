@@ -12,6 +12,10 @@ class Position: Mappable {
 
     var latitude: String?
     var longitude: String?
+    
+    init() {
+        
+    }
 
     required init?(map: Map) {
         

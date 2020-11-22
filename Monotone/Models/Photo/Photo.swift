@@ -8,7 +8,8 @@
 import Foundation
 import ObjectMapper
 
-class Photo: Mappable{
+class Photo: Equatable, Mappable{
+    
     public var id: String?
     public var createdAt: Date?
     public var updatedAt: Date?
@@ -31,6 +32,10 @@ class Photo: Mappable{
     public var location: Location?
 //    public var meta:?
 //    public var tags:?
+    
+    init() {
+        
+    }
 
     required init?(map: Map) {
         
@@ -55,6 +60,10 @@ class Photo: Mappable{
         user           <- map["user"]
         exif           <- map["exif"]
         location       <- map["location"]
+    }
+    
+    static func == (lhs: Photo, rhs: Photo) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 
