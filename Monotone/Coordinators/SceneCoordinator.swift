@@ -63,7 +63,7 @@ extension SceneCoordinator: FactoryCoordinator{
         
         switch sceneContent {
         case .home:
-            let vm: HomeViewModel = HomeViewModel(services: [PhotoService()], args: nil)
+            let vm: HomeViewModel = HomeViewModel(services: [PhotoService(),TopicService()], args: nil)
             return vm
         case let .listPhotos(args):
             let vm: ListPhotosViewModel = ListPhotosViewModel(services: [PhotoService()], args: args)

@@ -40,6 +40,8 @@
 		148ED1E925591DBF0000146E /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED1E825591DBF0000146E /* PhotoCollectionViewCell.swift */; };
 		148FF23B255237A600CADB4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 148FF23D255237A600CADB4C /* Localizable.strings */; };
 		14956D32255CC72B0057A4A6 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14956D31255CC72B0057A4A6 /* SceneCoordinator.swift */; };
+		14BE99FE256A623400B0DB39 /* GetTopicPhotosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */; };
+		14BE9A01256A637C00B0DB39 /* GetTopicPhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BE9A00256A637C00B0DB39 /* GetTopicPhotosResponse.swift */; };
 		14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8E9254A589D0021FE3E /* AppDelegate.swift */; };
 		14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8ED254A589D0021FE3E /* LoginViewController.swift */; };
 		14D5E8F1254A589D0021FE3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8EF254A589D0021FE3E /* Main.storyboard */; };
@@ -115,6 +117,8 @@
 		148FF241255237EA00CADB4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		148FF243255237F600CADB4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		14956D31255CC72B0057A4A6 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
+		14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTopicPhotosRequest.swift; sourceTree = "<group>"; };
+		14BE9A00256A637C00B0DB39 /* GetTopicPhotosResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTopicPhotosResponse.swift; sourceTree = "<group>"; };
 		14D5E8E6254A589D0021FE3E /* Monotone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monotone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D5E8E9254A589D0021FE3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14D5E8ED254A589D0021FE3E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 				14F37082254ED2F60086B8CC /* SearchPhotosRequest.swift */,
 				143114DE255AA6D300991676 /* ListPhotosRequest.swift */,
 				142840362564BACE004C06DF /* ListTopicsRequest.swift */,
+				14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				14E59E452557C5F700F1FB60 /* SearchPhotosResponse.swift */,
 				143FB13E255B859F00D24248 /* ListPhotosResponse.swift */,
 				142840392564BBB1004C06DF /* ListTopicsResponse.swift */,
+				14BE9A00256A637C00B0DB39 /* GetTopicPhotosResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -582,6 +588,7 @@
 				143114CC255A794600991676 /* Links.swift in Sources */,
 				148ED1E925591DBF0000146E /* PhotoCollectionViewCell.swift in Sources */,
 				14E59E312556A0E200F1FB60 /* NetworkService.swift in Sources */,
+				14BE9A01256A637C00B0DB39 /* GetTopicPhotosResponse.swift in Sources */,
 				143FB13F255B859F00D24248 /* ListPhotosResponse.swift in Sources */,
 				14104925255D49A5003312BC /* MTNavigationController.swift in Sources */,
 				14FD83CA2567F7CD00D5B575 /* BlurHashDecode.swift in Sources */,
@@ -606,6 +613,7 @@
 				143F5678254FEA040038761D /* HomeViewController.swift in Sources */,
 				14F36FB0254D53940086B8CC /* NetworkManager.swift in Sources */,
 				14071B1125654A4900D418C8 /* Location.swift in Sources */,
+				14BE99FE256A623400B0DB39 /* GetTopicPhotosRequest.swift in Sources */,
 				14F3707A254EA9300086B8CC /* BaseRequest.swift in Sources */,
 				143114D1255A797A00991676 /* ProfileImage.swift in Sources */,
 				14104920255D4944003312BC /* BaseNavigationController.swift in Sources */,

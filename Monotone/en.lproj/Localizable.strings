@@ -12,5 +12,15 @@
 "unsplash_home_segment_following" = "Following";
 "unsplash_home_segment_popular" = "Popular";
 "unsplash_home_segment_lastest" = "Lastest";
+"unsplash_home_segment_nature" = "Nature";
+"unsplash_home_segment_people" = "People";
+"unsplash_home_segment_street_photography" = "Street Photography";
+"unsplash_home_segment_arts_culture" = "Arts & Culture";
+"unsplash_home_segment_architecture" = "Architecture";
+"unsplash_home_segment_travel" = "Travel";
+"unsplash_home_segment_technology" = "Technology";
+"unsplash_home_segment_animals" =  "Animals";
+"unsplash_home_segment_food_drink" = "Food & Drink";
+"unsplash_home_segment_sustainability" = "Sustainability";
 "unsplash_home_search" = "Search";
 

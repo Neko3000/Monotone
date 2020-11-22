@@ -16,7 +16,8 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: Input
     struct Input {
         var searchQuery: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
-        var orderBy: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
+        var listOrderBy: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
+        var topic: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
         var loadMoreAction: Action<Void, [Photo]>?
         var reloadAction: Action<Void, [Photo]>?
     }
@@ -39,8 +40,8 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         if(args?["searchQuery"] != nil){
             self.input.searchQuery = BehaviorRelay(value: args!["searchQuery"] as! String)
         }
-        if(args?["orderBy"] != nil){
-            self.input.orderBy = BehaviorRelay(value: args!["orderBy"] as! String)
+        if(args?["listOrderBy"] != nil){
+            self.input.listOrderBy = BehaviorRelay(value: args!["listOrderBy"] as! String)
         }
     }
     
@@ -49,6 +50,7 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         
         // Service
         let photoService = self.service(type: PhotoService.self)
+        let topicService = self.service(type: TopicService.self)
         
         // Binding
         // LoadMore.
@@ -58,11 +60,14 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
             // Before the request returns.
             self.output.photos.accept(self.output.photos.value + self.emptyPhotos)
             
-            if(self.input.orderBy.value != ""){
-                return photoService!.listPhotos(page: self.nextLoadPage, perPage: 20, orderBy: self.input.orderBy.value)
+            if(self.input.listOrderBy.value != ""){
+                return photoService!.listPhotos(page: self.nextLoadPage, perPage: 20, orderBy: self.input.listOrderBy.value)
             }
             else if(self.input.searchQuery.value != ""){
                 return photoService!.searchPhotos(query: self.input.searchQuery.value , page: self.nextLoadPage, perPage: 20)
+            }
+            else if(self.input.topic.value != ""){
+                return topicService!.getTopicPhotos(idOrSlug: self.input.topic.value, page: self.nextLoadPage, perPage: 20)
             }
             else{
                 self.output.loadingMore.accept(false)
@@ -111,27 +116,40 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
             })
             .disposed(by: self.disposeBag)
         
-        // Order by.
-        self.input.orderBy
-            .distinctUntilChanged()
-            .filter({ $0 != "" })
-            .subscribe { (_) in
-                self.input.searchQuery.accept("")
-                self.input.reloadAction?.execute()
-            }
-            .disposed(by: self.disposeBag)
-        
         // Search query.
         self.input.searchQuery
             .distinctUntilChanged()
             .filter({ $0 != "" })
             .subscribe { (_) in
-                self.input.orderBy.accept("")
+                self.input.listOrderBy.accept("")
+                self.input.topic.accept("")
                 self.input.reloadAction?.execute()
             }
             .disposed(by: self.disposeBag)
-    
         
+        // Order by.
+        self.input.listOrderBy
+            .distinctUntilChanged()
+            .filter({
+                        $0 != ""
+            })
+            .subscribe { (_) in
+                self.input.searchQuery.accept("")
+                self.input.topic.accept("")
+                self.input.reloadAction?.execute()
+            }
+            .disposed(by: self.disposeBag)
+        
+        // Topic.
+        self.input.topic
+            .distinctUntilChanged()
+            .filter({ $0 != "" })
+            .subscribe { (_) in
+                self.input.searchQuery.accept("")
+                self.input.listOrderBy.accept("")
+                self.input.reloadAction?.execute()
+            }
+            .disposed(by: self.disposeBag)
     }
     
     

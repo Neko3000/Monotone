@@ -3,4 +3,69 @@
    uuid = "BBDA255D-0520-414E-AE53-16EED0AD9C21"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9503402F-F6E7-47BD-8C82-D09C9693ABF1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Monotone/Components/Views/HomeHeaderView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "buildLogic()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9503402F-F6E7-47BD-8C82-D09C9693ABF1 - 91a7e13768f7628c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Swift.String) -&gt; RxSwift.Observable&lt;Swift.Int&gt; in Monotone.HomeHeaderView.buildLogic() -&gt; ()"
+                  moduleName = "Monotone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Components/Views/HomeHeaderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "66">
+               </Location>
+               <Location
+                  uuid = "9503402F-F6E7-47BD-8C82-D09C9693ABF1 - 2bd40dfdb78ff67a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((key: Swift.String, value: Swift.String)) -&gt; Swift.String in closure #3 (Swift.String) -&gt; RxSwift.Observable&lt;Swift.Int&gt; in Monotone.HomeHeaderView.buildLogic() -&gt; ()"
+                  moduleName = "Monotone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Components/Views/HomeHeaderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "39">
+               </Location>
+               <Location
+                  uuid = "9503402F-F6E7-47BD-8C82-D09C9693ABF1 - 7ae62c136351c7b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 ((key: Swift.String, value: Swift.String)) -&gt; Swift.String in closure #3 (Swift.String) -&gt; RxSwift.Observable&lt;Swift.Int&gt; in Monotone.HomeHeaderView.buildLogic() -&gt; ()"
+                  moduleName = "Monotone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Components/Views/HomeHeaderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

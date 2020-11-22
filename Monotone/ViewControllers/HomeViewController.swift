@@ -84,20 +84,24 @@ class HomeViewController: BaseViewController {
         let homeViewModel = self.viewModel(type:HomeViewModel.self)
 
         // homeJumbotronView & homeHeaderView
-        self.homeJumbotronView!.segmentStr
-            .bind(to: homeViewModel!.input.orderBy)
+        self.homeJumbotronView!.listOrderBy
+            .bind(to: homeViewModel!.input.listOrderBy)
             .disposed(by: self.disposeBag)
                 
-        self.homeHeaderView!.segmentStr
-            .bind(to: homeViewModel!.input.orderBy)
+        self.homeHeaderView!.listOrderBy
+            .bind(to: homeViewModel!.input.listOrderBy)
             .disposed(by: self.disposeBag)
         
-        (self.homeJumbotronView!.segmentStr <-> self.homeHeaderView!.segmentStr)
+        (self.homeJumbotronView!.listOrderBy <-> self.homeHeaderView!.listOrderBy)
             .disposed(by:self.disposeBag)
         
         self.homeHeaderView!.searchQuery
             .bind(to: homeViewModel!.input.searchQuery)
-            .disposed(by: self.disposeBag)    
+            .disposed(by: self.disposeBag)
+        
+        self.homeHeaderView!.topic
+            .bind(to: homeViewModel!.input.topic)
+            .disposed(by: self.disposeBag)
                 
         // CollectionView.
         homeViewModel!.output.photos
@@ -166,8 +170,7 @@ class HomeViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // FiXME: Query.
-        homeViewModel!.input.orderBy.accept("popular")
-        homeViewModel!.input.loadMoreAction?.execute()
+        self.homeJumbotronView!.listOrderBy.accept("popular")
     }
     
     // MARK: Animation for homeJumbotronView & homeHeaderView

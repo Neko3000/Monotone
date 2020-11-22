@@ -19,4 +19,34 @@ class TopicService: NetworkService{
         
         
     }
+    
+    public func getTopicPhotos(idOrSlug: String,
+                               page: Int? = 1,
+                               perPage: Int? = 10,
+                               oritentation: String? = "",
+                               orderBy: String? = "latest")  -> Observable<[Photo]>{
+        
+        let request = GetTopicPhotosRequest()
+        request.idOrSlug = idOrSlug
+        request.page = page
+        request.perPage = perPage
+        request.oritentation = oritentation
+        request.orderBy = orderBy
+                
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request, method: .get).subscribe { (json) in
+                let response = GetTopicPhotosResponse(JSON: json)
+                
+                observer.onNext(response!.results!)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
 }

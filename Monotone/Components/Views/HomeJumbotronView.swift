@@ -15,13 +15,20 @@ import RxRelay
 
 class HomeJumbotronView: BaseView {
     
-    public let segmentStr: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
-    
+    public let listOrderBy: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
+
     private var menuBtn: UIButton?
     private var searchBtn: UIButton?
     private var titleLabel: UILabel?
     private var descriptionLabel: UILabel?
+    
     private var segmentedControl: HMSegmentedControl?
+    private var listOrderByContent: KeyValuePairs<String, String> {
+        return [
+            "popular" :  NSLocalizedString("unsplash_home_segment_popular", comment: "Popular"),
+            "lastest" : NSLocalizedString("unsplash_home_segment_lastest", comment: "Lastest"),
+        ]
+    }
     
     private let disposeBag: DisposeBag = DisposeBag()
 
@@ -90,10 +97,7 @@ class HomeJumbotronView: BaseView {
         }
         
         // segmentedControl.
-        self.segmentedControl = HMSegmentedControl(sectionTitles: [
-            NSLocalizedString("unsplash_home_segment_popular", comment: "Popular"),
-            NSLocalizedString("unsplash_home_segment_lastest", comment: "Lastest")
-        ])
+        self.segmentedControl = HMSegmentedControl(sectionTitles: Array(self.listOrderByContent.map({ $1 })))
         self.segmentedControl!.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
             NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal
@@ -117,15 +121,16 @@ class HomeJumbotronView: BaseView {
     override func buildLogic() {
         
         // segmentedControl
-        self.segmentStr
-            .flatMap { (segmentStr) -> Observable<Int> in
-                let index = self.segmentedControl!.sectionTitles!.firstIndex(of: segmentStr) ?? -1
+        self.listOrderBy
+            .flatMap { (key) -> Observable<Int> in
+                let segmentedKeys = Array(self.listOrderByContent.map({ $0.key }))
+                let index = segmentedKeys.firstIndex { $0 == key } ?? -1
+                
                 return Observable.just(index)
             }
+            .filter({ NSDecimalNumber(value: $0) !=  NSDecimalNumber(value: self.segmentedControl!.selectedSegmentIndex) })
             .subscribe(onNext: { (index) in
-                if(index != -1){
-                    self.segmentedControl!.setSelectedSegmentIndex(UInt(index), animated: false)
-                }
+                self.segmentedControl!.setSelectedSegmentIndex(index == -1 ? HMSegmentedControlNoSegment : UInt(index), animated: false)
             })
             .disposed(by: self.disposeBag)
     }
@@ -133,9 +138,15 @@ class HomeJumbotronView: BaseView {
     @objc private func segmentedControlChangedValue(segmentedControl: HMSegmentedControl){
         
         let index = Int(segmentedControl.selectedSegmentIndex)
-        let title = segmentedControl.sectionTitles![index]
 
-        self.segmentStr.accept(title)
+        switch index {
+        case 0..<self.listOrderByContent.count:
+            self.listOrderBy.accept(self.listOrderByContent[index].key)
+            break
+
+        default:
+            break
+        }
     }
     
 }

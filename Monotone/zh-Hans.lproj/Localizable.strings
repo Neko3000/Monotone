@@ -12,4 +12,14 @@
 "unsplash_home_segment_following" = "关注";
 "unsplash_home_segment_popular" = "注目";
 "unsplash_home_segment_lastest" = "最新";
+"unsplash_home_segment_nature" = "自然";
+"unsplash_home_segment_people" = "人物";
+"unsplash_home_segment_street_photography" = "街头摄影";
+"unsplash_home_segment_arts_culture" = "艺术 & 文化";
+"unsplash_home_segment_architecture" = "建筑";
+"unsplash_home_segment_travel" = "旅行";
+"unsplash_home_segment_technology" = "技术";
+"unsplash_home_segment_animals" =  "动物";
+"unsplash_home_segment_food_drink" = "食物 & 饮品";
+"unsplash_home_segment_sustainability" = "可持续发展";
 "unsplash_home_search" = "搜索";

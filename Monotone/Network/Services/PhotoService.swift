@@ -44,7 +44,7 @@ class PhotoService: NetworkService {
     
     public func listPhotos(page:Int? = 1,
                            perPage:Int? = 10,
-                           orderBy:String? = "lastest")->Observable<[Photo]>{
+                           orderBy:String? = "lastest") -> Observable<[Photo]>{
         
         let request: ListPhotosRequest = ListPhotosRequest()
         request.page = page
