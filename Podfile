@@ -19,5 +19,5 @@ target 'Monotone' do
   pod 'Hue', '5.0.0'
   pod 'HMSegmentedControl', '1.5.6'
   pod 'anim', '1.2.10'
-
+  pod 'ViewAnimator', '3.0.1'
 end

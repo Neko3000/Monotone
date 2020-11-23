@@ -19,6 +19,7 @@ PODS:
   - RxSwift (5.1.1)
   - SnapKit (5.0.1)
   - SwiftyJSON (4.3.0)
+  - ViewAnimator (3.0.1)
 
 DEPENDENCIES:
   - Action (= 4.2.0)
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - RxSwift (= 5.1.1)
   - SnapKit (= 5.0.1)
   - SwiftyJSON (= 4.3.0)
+  - ViewAnimator (= 3.0.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -50,6 +52,7 @@ SPEC REPOS:
     - RxSwift
     - SnapKit
     - SwiftyJSON
+    - ViewAnimator
 
 SPEC CHECKSUMS:
   Action: 5dc2194f7a0b77857c82a677b0da655f197c005f
@@ -65,7 +68,8 @@ SPEC CHECKSUMS:
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  ViewAnimator: dd18d2f5c1e472f78d0065ff92750fe56cbd2f39
 
-PODFILE CHECKSUM: c59fd23de84dc8f90a4fabf8ef2e580e4502162d
+PODFILE CHECKSUM: 830c1fcd8139c01ef64e2ecf0648d726c9711b27
 
 COCOAPODS: 1.6.1

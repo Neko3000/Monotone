@@ -12,6 +12,7 @@ import MJRefresh
 import RxSwift
 import Kingfisher
 import anim
+import ViewAnimator
 
 class HomeViewController: BaseViewController {
     
@@ -28,6 +29,14 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+//        let animation = AnimationType.zoom(scale: 0.2)
+//        UIView.animate(views: self.collectionView!.visibleCells, animations: [animation], reversed: false, initialAlpha: 0, finalAlpha: 1.0, delay: 1.0, animationInterval: 0.8, duration: 0.8, options: .curveEaseInOut, completion: nil)
     }
     
     override func buildSubviews() {
