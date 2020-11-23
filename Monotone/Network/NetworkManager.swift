@@ -96,7 +96,7 @@ class NetworkManager{
                     else{
                         do{
                             let json = try JSON(data: data!)
-                            let error = NetworkError(errorStrs: json.arrayObject as! [String])
+                            let error = NetworkError(errorStrs: json["errors"].arrayObject as! [String])
                             observer.onError(error)
                         }
                         catch{

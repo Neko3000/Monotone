@@ -11,8 +11,8 @@ import RxSwift
 import RxRelay
 
 // MARK: 2-way binding
-infix operator <-> : DefaultPrecedence
-func <-> <T: Equatable>(observableA: BehaviorRelay<T>, observableB: BehaviorRelay<T>) -> Disposable {
+infix operator <=> : DefaultPrecedence
+func <=> <T: Equatable>(observableA: BehaviorRelay<T>, observableB: BehaviorRelay<T>) -> Disposable {
 
     let a2bDispose = observableA.bind(to: observableB)
     let b2aDispose = observableB

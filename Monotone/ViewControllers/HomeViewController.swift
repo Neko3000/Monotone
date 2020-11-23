@@ -84,24 +84,18 @@ class HomeViewController: BaseViewController {
         let homeViewModel = self.viewModel(type:HomeViewModel.self)
 
         // homeJumbotronView & homeHeaderView
-        self.homeJumbotronView!.listOrderBy
-            .bind(to: homeViewModel!.input.listOrderBy)
-            .disposed(by: self.disposeBag)
-                
-        self.homeHeaderView!.listOrderBy
-            .bind(to: homeViewModel!.input.listOrderBy)
-            .disposed(by: self.disposeBag)
-        
-        (self.homeJumbotronView!.listOrderBy <-> self.homeHeaderView!.listOrderBy)
+        (self.homeJumbotronView!.listOrderBy <=> homeViewModel!.input.listOrderBy)
             .disposed(by:self.disposeBag)
         
-        self.homeHeaderView!.searchQuery
-            .bind(to: homeViewModel!.input.searchQuery)
-            .disposed(by: self.disposeBag)
+        (self.homeHeaderView!.listOrderBy <=> homeViewModel!.input.listOrderBy)
+            .disposed(by:self.disposeBag)
         
-        self.homeHeaderView!.topic
-            .bind(to: homeViewModel!.input.topic)
-            .disposed(by: self.disposeBag)
+        (self.homeHeaderView!.searchQuery <=> homeViewModel!.input.searchQuery)
+            .disposed(by:self.disposeBag)
+        
+        (self.homeHeaderView!.topic <=> homeViewModel!.input.topic)
+            .disposed(by:self.disposeBag)
+        
                 
         // CollectionView.
         homeViewModel!.output.photos

@@ -97,6 +97,9 @@ class HomeJumbotronView: BaseView {
         }
         
         // segmentedControl.
+        let text: String = self.listOrderByContent.map { $0.value }.joined()
+        let textSize = text.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.0)])
+        
         self.segmentedControl = HMSegmentedControl(sectionTitles: Array(self.listOrderByContent.map({ $1 })))
         self.segmentedControl!.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
@@ -114,7 +117,7 @@ class HomeJumbotronView: BaseView {
         self.segmentedControl!.snp.makeConstraints { (make) in
             make.right.bottom.equalTo(self)
             make.height.equalTo(38.0)
-            make.width.equalTo(self).multipliedBy(1.0/3)
+            make.width.equalTo(textSize.width + 50.0)
         }
     }
     

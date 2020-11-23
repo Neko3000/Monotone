@@ -106,6 +106,10 @@ class HomeHeaderView: BaseView {
             })
             .disposed(by: self.disposeBag)
         
+        self.searchQuery
+            .bind(to: self.searchTextField!.rx.text.orEmpty)
+            .disposed(by: self.disposeBag)
+        
         // segmentedControl
         Observable.of(self.listOrderBy, self.topic)
             .merge()
