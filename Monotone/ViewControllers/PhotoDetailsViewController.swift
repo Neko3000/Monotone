@@ -7,14 +7,28 @@
 
 import UIKit
 
-class PhotoDetailsViewController: UIViewController {
+import SnapKit
+import RxSwift
+import Kingfisher
+import anim
 
+class PhotoDetailsViewController: BaseViewController {
+    
+    // MARK: Priavte
+    private let disposeBag: DisposeBag = DisposeBag()
+    
+    // MARK: Controls
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.orange
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func buildSubviews() {
+        
     }
     
 

@@ -7,11 +7,13 @@
 */
 
 "unsplash_home_title" = "Unsplash";
-"unsplash_home_description" = "内容漂亮并形式自由，\n来见见这些来自世界上那些极具天赋的摄影师们送上的\n独一无二的礼物。🎁";
+"unsplash_home_description" = "自由并惊艳，\n来见见这些极具天赋的摄影师们为您送上的\n独一无二的礼物。🎁";
+
 "unsplash_home_segment_editoral" = "精选";
 "unsplash_home_segment_following" = "关注";
-"unsplash_home_segment_popular" = "注目";
+"unsplash_home_segment_popular" = "人气";
 "unsplash_home_segment_latest" = "最新";
+
 "unsplash_home_segment_nature" = "自然";
 "unsplash_home_segment_people" = "人物";
 "unsplash_home_segment_street_photography" = "街头摄影";
@@ -22,4 +24,5 @@
 "unsplash_home_segment_animals" =  "动物";
 "unsplash_home_segment_food_drink" = "食物 & 饮品";
 "unsplash_home_segment_sustainability" = "可持续发展";
+
 "unsplash_home_search" = "搜索";

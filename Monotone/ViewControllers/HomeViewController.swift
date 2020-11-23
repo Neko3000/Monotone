@@ -95,7 +95,6 @@ class HomeViewController: BaseViewController {
         
         (self.homeHeaderView!.topic <=> homeViewModel!.input.topic)
             .disposed(by:self.disposeBag)
-        
                 
         // CollectionView.
         homeViewModel!.output.photos
@@ -163,8 +162,8 @@ class HomeViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
-        // FiXME: Query.
-        self.homeJumbotronView!.listOrderBy.accept("popular")
+        // First Loading - Latest.
+        self.homeJumbotronView!.listOrderBy.accept("latest")
     }
     
     // MARK: Animation for homeJumbotronView & homeHeaderView
