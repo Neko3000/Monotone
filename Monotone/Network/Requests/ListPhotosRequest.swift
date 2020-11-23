@@ -12,7 +12,7 @@ class ListPhotosRequest: BaseRequest {
 
     override var api: String?{
         get{
-            return "photos/"
+            return "photos"
         }
     }
     

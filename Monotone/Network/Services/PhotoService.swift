@@ -24,6 +24,7 @@ class PhotoService: NetworkService {
         let request: SearchPhotosRequest = SearchPhotosRequest()
         request.query = query
         request.page = page
+        request.perPage = perPage
         
         return Observable.create { (observer) -> Disposable in
             
@@ -44,11 +45,12 @@ class PhotoService: NetworkService {
     
     public func listPhotos(page:Int? = 1,
                            perPage:Int? = 10,
-                           orderBy:String? = "lastest") -> Observable<[Photo]>{
+                           orderBy:String? = "latest") -> Observable<[Photo]>{
         
         let request: ListPhotosRequest = ListPhotosRequest()
         request.page = page
         request.orderBy = orderBy
+        request.perPage = perPage
         
         return Observable.create { (observer) -> Disposable in
             

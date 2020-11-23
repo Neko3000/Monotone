@@ -25,7 +25,7 @@ class HomeHeaderView: BaseView {
     private var listOrderByContent: KeyValuePairs<String, String> {
         return [
             "popular" : NSLocalizedString("unsplash_home_segment_popular", comment: "Popular"),
-            "lastest" : NSLocalizedString("unsplash_home_segment_lastest", comment: "Lastest")
+            "latest" : NSLocalizedString("unsplash_home_segment_latest", comment: "latest")
         ]
     }
     private var topicContent: KeyValuePairs<String, String> {
