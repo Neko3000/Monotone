@@ -29,8 +29,8 @@ protocol FactoryCoordinator {
 
 // MARK: CoordinatorTransitionable
 protocol CoordinatorTransitionable {
-    func transition(type: SceneTransition, with args: [String : Any]?) -> Observable<Void>
-    func pop() -> Observable<Void>
+    @discardableResult func transition(type: SceneTransition, with args: [String : Any]?, animated: Bool) -> Observable<Void>
+    @discardableResult func pop(animated: Bool) -> Observable<Void>
 }
 
 // MARK: BaseCoordinator

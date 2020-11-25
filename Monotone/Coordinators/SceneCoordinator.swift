@@ -50,7 +50,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     }
     
     @discardableResult
-    func transition(type: SceneTransition, with args: [String : Any]?) -> Observable<Void> {
+    func transition(type: SceneTransition, with args: [String : Any]?, animated: Bool = false) -> Observable<Void> {
         let subject = PublishSubject<Void>()
         
         switch type {
@@ -67,7 +67,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
                 .map({ _ in return () })
                 .bind(to: subject)
                 
-            navigationController.pushViewController(SceneCoordinator.actualViewController(for: targetVC), animated: true)
+            navigationController.pushViewController(SceneCoordinator.actualViewController(for: targetVC), animated: animated)
             
             break
         
@@ -87,7 +87,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             let targetVC = self.viewController(scene: scene)!
             targetVC.modalPresentationStyle = presetationStyle
         
-            currentViewController?.present(targetVC, animated: true, completion: {
+            currentViewController?.present(targetVC, animated: animated, completion: {
                 subject.onCompleted()
             })
             
@@ -104,7 +104,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     }
     
     @discardableResult
-    func pop() -> Observable<Void>{
+    func pop(animated: Bool = false) -> Observable<Void>{
         let subject = PublishSubject<Void>()
 
         if let presentingViewController = self.currentViewController?.presentingViewController{
@@ -121,7 +121,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
                 .map({ _ in return () })
                 .bind(to: subject)
             
-            guard navigationController.popViewController(animated: true) != nil else{
+            guard navigationController.popViewController(animated: animated) != nil else{
                 fatalError("Could not navigate back from current view controller.")
             }
         }

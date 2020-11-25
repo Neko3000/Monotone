@@ -38,9 +38,11 @@ class NetworkManager{
     
     // MARK: Header
     private var headers : HTTPHeaders{
-        get{ return [
+        get{
+            return [
             "Authorization" : "Client-ID \(self.accessKey)"
-        ] }
+            ]
+        }
     }
     
     private func loadAPIKeys(){

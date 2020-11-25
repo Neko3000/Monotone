@@ -33,9 +33,7 @@ class PhotoDetailsViewController: BaseViewController, UIScrollViewDelegate {
     override func buildSubviews() {
         
         self.view.backgroundColor = UIColor.orange
-        
-        return
-        
+                
         // scrollView.
         self.scrollView = UIScrollView()
         self.scrollView.maximumZoomScale = 5.0
@@ -62,9 +60,7 @@ class PhotoDetailsViewController: BaseViewController, UIScrollViewDelegate {
     }
     
     override func buildLogic() {
-        
-        return
-        
+                
         // ViewModel.
         let photoDetailsViewModel = self.viewModel(type:PhotoDetailsViewModel.self)
         
