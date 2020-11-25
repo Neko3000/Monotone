@@ -9,8 +9,8 @@ import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     
-    public var photoImageView: UIImageView?
-    public var defaultImageView: UIImageView?
+    public var photoImageView: UIImageView!
+    public var defaultImageView: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,19 +26,19 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         
         // defaultImageView.
         self.defaultImageView = UIImageView()
-        self.defaultImageView!.image = UIImage(named: "unsplash-logo")
-        self.contentView.addSubview(self.defaultImageView!)
-        self.defaultImageView!.snp.makeConstraints({ (make) in
+        self.defaultImageView.image = UIImage(named: "unsplash-logo")
+        self.contentView.addSubview(self.defaultImageView)
+        self.defaultImageView.snp.makeConstraints({ (make) in
             make.center.equalTo(self.contentView)
             make.width.height.equalTo(30.0)
         })
         
         // photoImageView.
         self.photoImageView = UIImageView()
-        self.photoImageView!.contentMode = .scaleAspectFill
-        self.photoImageView!.layer.masksToBounds = true
-        self.contentView.addSubview(self.photoImageView!)
-        self.photoImageView!.snp.makeConstraints { (make) in
+        self.photoImageView.contentMode = .scaleAspectFill
+        self.photoImageView.layer.masksToBounds = true
+        self.contentView.addSubview(self.photoImageView)
+        self.photoImageView.snp.makeConstraints { (make) in
             make.top.right.bottom.left.equalTo(self.contentView)
         }
         

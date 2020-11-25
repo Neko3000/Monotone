@@ -20,10 +20,10 @@ class HomeViewController: BaseViewController {
     private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: Controls
-    private var homeJumbotronView: HomeJumbotronView?
-    private var homeHeaderView: HomeHeaderView?
+    private var homeJumbotronView: HomeJumbotronView!
+    private var homeHeaderView: HomeHeaderView!
         
-    private var collectionView: UICollectionView?
+    private var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,7 @@ class HomeViewController: BaseViewController {
         
         
 //        let animation = AnimationType.zoom(scale: 0.2)
-//        UIView.animate(views: self.collectionView!.visibleCells, animations: [animation], reversed: false, initialAlpha: 0, finalAlpha: 1.0, delay: 1.0, animationInterval: 0.8, duration: 0.8, options: .curveEaseInOut, completion: nil)
+//        UIView.animate(views: self.collectionView.visibleCells, animations: [animation], reversed: false, initialAlpha: 0, finalAlpha: 1.0, delay: 1.0, animationInterval: 0.8, duration: 0.8, options: .curveEaseInOut, completion: nil)
     }
     
     override func buildSubviews() {
@@ -45,8 +45,8 @@ class HomeViewController: BaseViewController {
         
         // homeHeaderView.
         self.homeHeaderView = HomeHeaderView()
-        self.view.addSubview(self.homeHeaderView!)
-        self.homeHeaderView!.snp.makeConstraints { (make) in
+        self.view.addSubview(self.homeHeaderView)
+        self.homeHeaderView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self.view)
             make.height.equalTo(140.0)
             make.top.equalTo(self.view)
@@ -54,8 +54,8 @@ class HomeViewController: BaseViewController {
         
         // homeJumbotronView.
         self.homeJumbotronView = HomeJumbotronView()
-        self.view.addSubview(self.homeJumbotronView!)
-        self.homeJumbotronView!.snp.makeConstraints { (make) in
+        self.view.addSubview(self.homeJumbotronView)
+        self.homeJumbotronView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self.view)
             make.height.equalTo(256.0)
             make.top.equalTo(self.view)
@@ -68,11 +68,11 @@ class HomeViewController: BaseViewController {
         flowLayout.scrollDirection = .vertical
         
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
-        self.collectionView!.backgroundColor = UIColor.clear
-        self.collectionView!.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
-        self.collectionView!.rx.setDelegate(self).disposed(by: self.disposeBag)
-        self.view.addSubview(self.collectionView!)
-        self.collectionView!.snp.makeConstraints { (make) in
+        self.collectionView.backgroundColor = UIColor.clear
+        self.collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
+        self.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
+        self.view.addSubview(self.collectionView)
+        self.collectionView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.view).offset(256.0)
         }
@@ -80,11 +80,11 @@ class HomeViewController: BaseViewController {
         let header = MJRefreshNormalHeader.init()
         header.stateLabel!.font = UIFont.systemFont(ofSize: 12)
         header.lastUpdatedTimeLabel!.font = UIFont.systemFont(ofSize: 10)
-        self.collectionView!.mj_header = header
+        self.collectionView.mj_header = header
         
         let footer = MJRefreshAutoNormalFooter.init()
         footer.stateLabel!.font = UIFont.systemFont(ofSize: 12)
-        self.collectionView!.mj_footer = footer
+        self.collectionView.mj_footer = footer
     }
     
     override func buildLogic() {
@@ -93,21 +93,21 @@ class HomeViewController: BaseViewController {
         let homeViewModel = self.viewModel(type:HomeViewModel.self)
 
         // homeJumbotronView & homeHeaderView
-        (self.homeJumbotronView!.listOrderBy <=> homeViewModel!.input.listOrderBy)
+        (self.homeJumbotronView.listOrderBy <=> homeViewModel!.input.listOrderBy)
             .disposed(by:self.disposeBag)
         
-        (self.homeHeaderView!.listOrderBy <=> homeViewModel!.input.listOrderBy)
+        (self.homeHeaderView.listOrderBy <=> homeViewModel!.input.listOrderBy)
             .disposed(by:self.disposeBag)
         
-        (self.homeHeaderView!.searchQuery <=> homeViewModel!.input.searchQuery)
+        (self.homeHeaderView.searchQuery <=> homeViewModel!.input.searchQuery)
             .disposed(by:self.disposeBag)
         
-        (self.homeHeaderView!.topic <=> homeViewModel!.input.topic)
+        (self.homeHeaderView.topic <=> homeViewModel!.input.topic)
             .disposed(by:self.disposeBag)
                 
         // CollectionView.
         homeViewModel!.output.photos
-            .bind(to: self.collectionView!.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
+            .bind(to: self.collectionView.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
                 (row, element, cell) in
                 
                 let pcell: PhotoCollectionViewCell = cell as! PhotoCollectionViewCell
@@ -117,7 +117,7 @@ class HomeViewController: BaseViewController {
             
             }.disposed(by: self.disposeBag)
         
-        self.collectionView!.rx.itemSelected
+        self.collectionView.rx.itemSelected
             .subscribe { (indexPath) in
                 
                 self.transition(type: .present(.photoDetails(nil), .fullScreen), with: nil)
@@ -125,11 +125,11 @@ class HomeViewController: BaseViewController {
             }.disposed(by: self.disposeBag)
 
         // CollectionView MJRefresh.
-        self.collectionView!.mj_header!.refreshingBlock = {
+        self.collectionView.mj_header!.refreshingBlock = {
             homeViewModel!.input.reloadAction?.execute()
         }
             
-        self.collectionView!.mj_footer!.refreshingBlock = {
+        self.collectionView.mj_footer!.refreshingBlock = {
             homeViewModel!.input.loadMoreAction?.execute()
         }
         
@@ -137,7 +137,7 @@ class HomeViewController: BaseViewController {
         homeViewModel!.output.reloading
             .skipWhile({ $0 == true })
             .subscribe { (_) in
-                self.collectionView!.mj_header!.endRefreshing()
+                self.collectionView.mj_header!.endRefreshing()
             }
             .disposed(by: self.disposeBag)
 
@@ -145,12 +145,12 @@ class HomeViewController: BaseViewController {
         homeViewModel!.output.loadingMore
             .skipWhile({ $0 == true })
             .subscribe { (_) in
-                self.collectionView!.mj_footer!.endRefreshing()
+                self.collectionView.mj_footer!.endRefreshing()
             }
             .disposed(by: self.disposeBag)
         
         // Animation for homeJumbotronView & homeHeaderView
-        self.collectionView!.rx.contentOffset
+        self.collectionView.rx.contentOffset
             .flatMap({ (contentOffset) -> Observable<Bool> in
                 return Observable.just( contentOffset.y >= InterfaceGlobalValue.showTopContentOffset )
             })
@@ -162,7 +162,7 @@ class HomeViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // First Loading - Latest.
-        self.homeJumbotronView!.listOrderBy.accept("latest")
+        self.homeJumbotronView.listOrderBy.accept("latest")
     }
     
     // MARK: Animation for homeJumbotronView & homeHeaderView
@@ -174,7 +174,7 @@ class HomeViewController: BaseViewController {
                 animSettings.ease = .easeInOutQuart
                 
                 return {
-                    self.homeJumbotronView!.alpha = 0
+                    self.homeJumbotronView.alpha = 0
                 }
             }
             
@@ -183,11 +183,11 @@ class HomeViewController: BaseViewController {
                 animSettings.ease = .easeInOutQuart
                 
                 return {
-                    self.homeJumbotronView!.snp.updateConstraints({ (make) in
+                    self.homeJumbotronView.snp.updateConstraints({ (make) in
                         make.height.equalTo(140.0)
                     })
                     
-                    self.collectionView!.snp.updateConstraints { (make) in
+                    self.collectionView.snp.updateConstraints { (make) in
                         make.top.equalTo(self.view).offset(140.0)
                     }
                 }
@@ -200,7 +200,7 @@ class HomeViewController: BaseViewController {
                 animSettings.ease = .easeInOutQuart
                 
                 return {
-                    self.homeJumbotronView!.alpha = 1
+                    self.homeJumbotronView.alpha = 1
                 }
             }
             
@@ -209,11 +209,11 @@ class HomeViewController: BaseViewController {
                 animSettings.ease = .easeInOutQuart
                 
                 return {
-                    self.homeJumbotronView!.snp.updateConstraints({ (make) in
+                    self.homeJumbotronView.snp.updateConstraints({ (make) in
                         make.height.equalTo(256.0)
                     })
                     
-                    self.collectionView!.snp.updateConstraints { (make) in
+                    self.collectionView.snp.updateConstraints { (make) in
                         make.top.equalTo(self.view).offset(256.0)
                     }
                 }
@@ -239,10 +239,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if(indexPath.row % 4 == 0 || indexPath.row % 4 == 3 ){
-            return CGSize(width: self.collectionView!.frame.width, height: 300.0)
+            return CGSize(width: self.collectionView.frame.width, height: 300.0)
         }
         else{
-            return CGSize(width: self.collectionView!.frame.width / 2.0, height: 300.0)
+            return CGSize(width: self.collectionView.frame.width / 2.0, height: 300.0)
         }
     }
 }

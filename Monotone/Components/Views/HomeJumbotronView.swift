@@ -17,12 +17,12 @@ class HomeJumbotronView: BaseView {
     
     public let listOrderBy: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
 
-    private var menuBtn: UIButton?
-    private var searchBtn: UIButton?
-    private var titleLabel: UILabel?
-    private var descriptionLabel: UILabel?
+    private var menuBtn: UIButton!
+    private var searchBtn: UIButton!
+    private var titleLabel: UILabel!
+    private var descriptionLabel: UILabel!
     
-    private var segmentedControl: HMSegmentedControl?
+    private var segmentedControl: HMSegmentedControl!
     private var listOrderByContent: KeyValuePairs<String, String> {
         return [
             "popular" :  NSLocalizedString("unsplash_home_segment_popular", comment: "Popular"),
@@ -47,9 +47,9 @@ class HomeJumbotronView: BaseView {
         
         // menuBtn.
         self.menuBtn = UIButton()
-        self.menuBtn!.setImage(UIImage(named: "header-menu"), for: .normal)
-        self.addSubview(self.menuBtn!)
-        self.menuBtn!.snp.makeConstraints { (make) in
+        self.menuBtn.setImage(UIImage(named: "header-menu"), for: .normal)
+        self.addSubview(self.menuBtn)
+        self.menuBtn.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(20.0);
             make.top.equalTo(self).offset(40.0);
             make.width.height.equalTo(36.0)
@@ -57,9 +57,9 @@ class HomeJumbotronView: BaseView {
         
         // searchBtn.
         self.searchBtn = UIButton()
-        self.searchBtn!.setImage(UIImage(named: "header-search"), for: .normal)
-        self.addSubview(self.searchBtn!)
-        self.searchBtn!.snp.makeConstraints { (make) in
+        self.searchBtn.setImage(UIImage(named: "header-search"), for: .normal)
+        self.addSubview(self.searchBtn)
+        self.searchBtn.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(-20.0);
             make.top.equalTo(self).offset(40.0);
             make.width.height.equalTo(36.0)
@@ -67,11 +67,11 @@ class HomeJumbotronView: BaseView {
         
         // titleLabel.
         self.titleLabel = UILabel()
-        self.titleLabel!.text = NSLocalizedString("unsplash_home_title", comment: "Unsplash")
-        self.titleLabel!.textColor = ColorPalette.colorBlack
-        self.titleLabel!.font = UIFont.boldSystemFont(ofSize: 36)
-        self.addSubview(self.titleLabel!)
-        self.titleLabel!.snp.makeConstraints { (make) in
+        self.titleLabel.text = NSLocalizedString("unsplash_home_title", comment: "Unsplash")
+        self.titleLabel.textColor = ColorPalette.colorBlack
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
+        self.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(18.0)
             make.top.equalTo(self).offset(91.0)
         }
@@ -84,15 +84,15 @@ class HomeJumbotronView: BaseView {
         attributedDescription.addAttribute(NSAttributedString.Key.paragraphStyle,value: paragraphStyle, range: NSMakeRange(0, attributedDescription.length))
 
         self.descriptionLabel = UILabel()
-        self.descriptionLabel!.attributedText = attributedDescription
-        self.descriptionLabel!.textColor = ColorPalette.colorGrayNormal
-        self.descriptionLabel!.font = UIFont.systemFont(ofSize: 12)
-        self.descriptionLabel!.numberOfLines = 0
-        self.addSubview(self.descriptionLabel!)
-        self.descriptionLabel!.snp.makeConstraints { (make) in
+        self.descriptionLabel.attributedText = attributedDescription
+        self.descriptionLabel.textColor = ColorPalette.colorGrayNormal
+        self.descriptionLabel.font = UIFont.systemFont(ofSize: 12)
+        self.descriptionLabel.numberOfLines = 0
+        self.addSubview(self.descriptionLabel)
+        self.descriptionLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(18.0)
             make.right.equalTo(self).offset(-18.0)
-            make.top.equalTo(self.titleLabel!.snp.bottom).offset(5.0)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(5.0)
             make.bottom.equalTo(self).offset(-60.0)
         }
         
@@ -101,20 +101,20 @@ class HomeJumbotronView: BaseView {
         let textSize = text.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.0)])
         
         self.segmentedControl = HMSegmentedControl(sectionTitles: Array(self.listOrderByContent.map({ $1 })))
-        self.segmentedControl!.titleTextAttributes = [
+        self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
             NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal
         ]
-        self.segmentedControl!.selectedTitleTextAttributes = [
+        self.segmentedControl.selectedTitleTextAttributes = [
             NSAttributedString.Key.foregroundColor : ColorPalette.colorBlack
         ]
-        self.segmentedControl!.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.top
-        self.segmentedControl!.selectionIndicatorColor = ColorPalette.colorBlack
-        self.segmentedControl!.selectionIndicatorHeight = 1.0
-        self.segmentedControl!.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.dynamic
-        self.segmentedControl!.addTarget(self, action: #selector(segmentedControlChangedValue(segmentedControl:)), for: .valueChanged)
-        self.addSubview(self.segmentedControl!)
-        self.segmentedControl!.snp.makeConstraints { (make) in
+        self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.top
+        self.segmentedControl.selectionIndicatorColor = ColorPalette.colorBlack
+        self.segmentedControl.selectionIndicatorHeight = 1.0
+        self.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.dynamic
+        self.segmentedControl.addTarget(self, action: #selector(segmentedControlChangedValue(segmentedControl:)), for: .valueChanged)
+        self.addSubview(self.segmentedControl)
+        self.segmentedControl.snp.makeConstraints { (make) in
             make.right.bottom.equalTo(self)
             make.height.equalTo(38.0)
             make.width.equalTo(textSize.width + 50.0)
@@ -131,9 +131,9 @@ class HomeJumbotronView: BaseView {
                 
                 return Observable.just(index)
             }
-            .filter({ NSDecimalNumber(value: $0) !=  NSDecimalNumber(value: self.segmentedControl!.selectedSegmentIndex) })
+            .filter({ NSDecimalNumber(value: $0) !=  NSDecimalNumber(value: self.segmentedControl.selectedSegmentIndex) })
             .subscribe(onNext: { (index) in
-                self.segmentedControl!.setSelectedSegmentIndex(index == -1 ? HMSegmentedControlNoSegment : UInt(index), animated: false)
+                self.segmentedControl.setSelectedSegmentIndex(index == -1 ? HMSegmentedControlNoSegment : UInt(index), animated: false)
             })
             .disposed(by: self.disposeBag)
     }

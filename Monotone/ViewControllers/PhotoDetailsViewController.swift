@@ -18,10 +18,10 @@ class PhotoDetailsViewController: BaseViewController, UIScrollViewDelegate {
     private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: Controls
-    private var photoDetailsOpeartionView: PhotoDetailsOpeartionView?
+    private var photoDetailsOpeartionView: PhotoDetailsOpeartionView!
     
-    private var photoImageView: UIImageView?
-    private var scrollView: UIScrollView?
+    private var photoImageView: UIImageView!
+    private var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,24 +38,23 @@ class PhotoDetailsViewController: BaseViewController, UIScrollViewDelegate {
         
         // scrollView.
         self.scrollView = UIScrollView()
-        self.scrollView!.maximumZoomScale = 5.0
-        self.scrollView!.minimumZoomScale = 1.0
-        self.scrollView!.delegate = self
-        self.view.addSubview(self.scrollView!)
-        self.scrollView!.snp.makeConstraints({ (make) in
+        self.scrollView.maximumZoomScale = 5.0
+        self.scrollView.minimumZoomScale = 1.0
+        self.scrollView.delegate = self
+        self.view.addSubview(self.scrollView)
+        self.scrollView.snp.makeConstraints({ (make) in
             make.top.right.bottom.left.equalTo(self.view)
         })
         
         // photoImageView.
         self.photoImageView = UIImageView()
-        self.photoImageView!.kf.setImage(with: URL(string: "https://images.unsplash.com/photo-1606064979325-2ef27740a089?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjE3ODkzOX0"))
-        self.view.addSubview(self.photoImageView!)
-        self.scrollView!.addSubview(self.photoImageView!)
+        self.photoImageView.kf.setImage(with: URL(string: "https://images.unsplash.com/photo-1606064979325-2ef27740a089?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjE3ODkzOX0"))
+        self.scrollView.addSubview(self.photoImageView)
         
         // photoDetailsOpeartionView.
         self.photoDetailsOpeartionView = PhotoDetailsOpeartionView()
-        self.view.addSubview(self.photoDetailsOpeartionView!)
-        self.photoDetailsOpeartionView!.snp.makeConstraints { (make) in
+        self.view.addSubview(self.photoDetailsOpeartionView)
+        self.photoDetailsOpeartionView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self.view)
             make.bottom.equalTo(self.view)
         }
@@ -79,13 +78,13 @@ class PhotoDetailsViewController: BaseViewController, UIScrollViewDelegate {
         let photoRatio = photoHeight / photoWidth
         
         if(photoRatio >= screenRatio){
-            self.photoImageView!.frame.size = CGSize(width: photoRatio * photoWidth, height: screenHeight)
+            self.photoImageView.frame.size = CGSize(width: photoRatio * photoWidth, height: screenHeight)
         }
         else{
-            self.photoImageView!.frame.size = CGSize(width: photoWidth, height: photoHeight / photoRatio)
+            self.photoImageView.frame.size = CGSize(width: photoWidth, height: photoHeight / photoRatio)
         }
         
-        self.photoImageView!.center = self.scrollView!.convert(self.scrollView!.center, to: self.view)
+        self.photoImageView.center = self.scrollView.convert(self.scrollView.center, to: self.view)
         
         
     }
