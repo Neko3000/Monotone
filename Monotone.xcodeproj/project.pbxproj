@@ -42,6 +42,8 @@
 		14956D32255CC72B0057A4A6 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14956D31255CC72B0057A4A6 /* SceneCoordinator.swift */; };
 		14BE99FE256A623400B0DB39 /* GetTopicPhotosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */; };
 		14BE9A01256A637C00B0DB39 /* GetTopicPhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BE9A00256A637C00B0DB39 /* GetTopicPhotosResponse.swift */; };
+		14BE9CF1256BAA8500B0DB39 /* PhotoDetailsOpeartionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BE9CF0256BAA8500B0DB39 /* PhotoDetailsOpeartionView.swift */; };
+		14BE9F8D256BD8CC00B0DB39 /* PhotoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BE9F8C256BD8CC00B0DB39 /* PhotoDetailsViewModel.swift */; };
 		14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8E9254A589D0021FE3E /* AppDelegate.swift */; };
 		14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E8ED254A589D0021FE3E /* LoginViewController.swift */; };
 		14D5E8F1254A589D0021FE3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8EF254A589D0021FE3E /* Main.storyboard */; };
@@ -119,6 +121,8 @@
 		14956D31255CC72B0057A4A6 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTopicPhotosRequest.swift; sourceTree = "<group>"; };
 		14BE9A00256A637C00B0DB39 /* GetTopicPhotosResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTopicPhotosResponse.swift; sourceTree = "<group>"; };
+		14BE9CF0256BAA8500B0DB39 /* PhotoDetailsOpeartionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsOpeartionView.swift; sourceTree = "<group>"; };
+		14BE9F8C256BD8CC00B0DB39 /* PhotoDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewModel.swift; sourceTree = "<group>"; };
 		14D5E8E6254A589D0021FE3E /* Monotone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monotone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D5E8E9254A589D0021FE3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14D5E8ED254A589D0021FE3E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 				143114C0255A788D00991676 /* SearchPhotosViewModel.swift */,
 				143FB14E255BAD2D00D24248 /* ListPhotosViewModel.swift */,
 				14071B172565FD1C00D418C8 /* HomeViewModel.swift */,
+				14BE9F8C256BD8CC00B0DB39 /* PhotoDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				1409A7962550EAAB0005B702 /* BaseView.swift */,
 				143F567A254FEF320038761D /* HomeJumbotronView.swift */,
 				1433B8E22561190100FE9B1D /* HomeHeaderView.swift */,
+				14BE9CF0256BAA8500B0DB39 /* PhotoDetailsOpeartionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -591,6 +597,7 @@
 				14F3707D254EABDA0086B8CC /* BaseResponse.swift in Sources */,
 				143114CC255A794600991676 /* Links.swift in Sources */,
 				148ED1E925591DBF0000146E /* PhotoCollectionViewCell.swift in Sources */,
+				14BE9CF1256BAA8500B0DB39 /* PhotoDetailsOpeartionView.swift in Sources */,
 				14E59E312556A0E200F1FB60 /* NetworkService.swift in Sources */,
 				14BE9A01256A637C00B0DB39 /* GetTopicPhotosResponse.swift in Sources */,
 				143FB13F255B859F00D24248 /* ListPhotosResponse.swift in Sources */,
@@ -625,6 +632,7 @@
 				14F37083254ED2F60086B8CC /* SearchPhotosRequest.swift in Sources */,
 				141591D0255E53FE00179ED5 /* BaseCoordinator.swift in Sources */,
 				143114D5255A799A00991676 /* User.swift in Sources */,
+				14BE9F8D256BD8CC00B0DB39 /* PhotoDetailsViewModel.swift in Sources */,
 				142840372564BACE004C06DF /* ListTopicsRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

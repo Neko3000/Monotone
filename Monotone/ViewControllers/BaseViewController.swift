@@ -27,7 +27,24 @@ extension ViewControllerBindable where Self: BaseViewController{
     }
 }
 
-class BaseViewController: UIViewController, ViewControllerBindable {
+protocol ViewControllerTransitionable {
+    @discardableResult func transition(type: SceneTransition, with args: [String : Any]?) -> Observable<Void>
+    @discardableResult func pop() -> Observable<Void>
+}
+
+extension ViewControllerTransitionable where Self: BaseViewController{
+    @discardableResult
+    func transition(type: SceneTransition, with args: [String : Any]?) -> Observable<Void>{
+        return SceneCoordinator.shared.transition(type: type, with: args)
+    }
+    
+    @discardableResult
+    func pop() ->  Observable<Void>{
+        return SceneCoordinator.shared.pop()
+    }
+}
+
+class BaseViewController: UIViewController, ViewControllerBindable, ViewControllerTransitionable {
     
     // MARK: ViewControllerBindable
     var viewModels: [BaseViewModel]?

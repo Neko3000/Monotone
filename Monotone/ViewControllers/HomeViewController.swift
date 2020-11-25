@@ -119,19 +119,9 @@ class HomeViewController: BaseViewController {
         
         self.collectionView!.rx.itemSelected
             .subscribe { (indexPath) in
-//                let homeVC = HomeViewController()
-//
-//                let nav = UINavigationController(rootViewController: homeVC)
-//                nav.modalPresentationStyle = .fullScreen
-//
-//                let vc1 = PhotoDetailsViewController()
-//                nav.pushViewController(vc1, animated: true)
-//
-//                let vc2 = PhotoDetailsViewController()
-//                nav.pushViewController(vc2, animated: true)
-//
-//                UIApplication.shared.keyWindow?.rootViewController = nav
-//    //            self.present(nav, animated: true, completion: nil)
+                
+                self.transition(type: .present(.photoDetails(nil), .fullScreen), with: nil)
+                
             }.disposed(by: self.disposeBag)
 
         // CollectionView MJRefresh.

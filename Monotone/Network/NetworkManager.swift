@@ -69,7 +69,7 @@ class NetworkManager{
     
     public func request(request:BaseRequest, method:HTTPMethod) -> Observable<[String: Any]>{
         
-        let url = self.domain + request.api!
+        let url = self.domain + (request.api ?? "")
         
         return Observable.create { (observer) -> Disposable in
             let request = AF.request(url, method: method, parameters: request.toJSON(), headers: self.headers)

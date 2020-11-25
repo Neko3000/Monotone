@@ -9,9 +9,7 @@ import Foundation
 import UIKit
 
 enum SceneTransition{
-    case root(UIViewController)
-    case push(UIViewController)
-    case present(UIViewController)
-    case alert(UIViewController)
-    case tabbar(UITabBarController)
+    case root(Scene)
+    case push(Scene)
+    case present(Scene, UIModalPresentationStyle)
 }
