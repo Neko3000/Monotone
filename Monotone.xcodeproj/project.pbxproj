@@ -12,6 +12,7 @@
 		14071B1125654A4900D418C8 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14071B1025654A4900D418C8 /* Location.swift */; };
 		14071B1425654AF500D418C8 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14071B1325654AF500D418C8 /* Position.swift */; };
 		14071B182565FD1C00D418C8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14071B172565FD1C00D418C8 /* HomeViewModel.swift */; };
+		140912FC2571333800EEC157 /* BaseScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140912FB2571333800EEC157 /* BaseScrollView.swift */; };
 		1409A7972550EAAB0005B702 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409A7962550EAAB0005B702 /* BaseView.swift */; };
 		14104916255D34AE003312BC /* PhotoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14104915255D34AE003312BC /* PhotoDetailsViewController.swift */; };
 		1410491C255D3686003312BC /* SceneTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1410491B255D3686003312BC /* SceneTransition.swift */; };
@@ -62,7 +63,7 @@
 		14F3707A254EA9300086B8CC /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F37079254EA9300086B8CC /* BaseRequest.swift */; };
 		14F3707D254EABDA0086B8CC /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F3707C254EABDA0086B8CC /* BaseResponse.swift */; };
 		14F37083254ED2F60086B8CC /* SearchPhotosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F37082254ED2F60086B8CC /* SearchPhotosRequest.swift */; };
-		14F9936125709E9600BF2D57 /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F9936025709E9600BF2D57 /* ZoomableScrollView.swift */; };
+		14F9936125709E9600BF2D57 /* PhotoZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F9936025709E9600BF2D57 /* PhotoZoomableScrollView.swift */; };
 		14FD83CA2567F7CD00D5B575 /* BlurHashDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD83C82567F7CD00D5B575 /* BlurHashDecode.swift */; };
 		14FD83CB2567F7CD00D5B575 /* BlurHashEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD83C92567F7CD00D5B575 /* BlurHashEncode.swift */; };
 		73CFE15CA67265ABCA3CC319 /* Pods_Monotone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */; };
@@ -87,6 +88,7 @@
 		14071B1025654A4900D418C8 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		14071B1325654AF500D418C8 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		14071B172565FD1C00D418C8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		140912FB2571333800EEC157 /* BaseScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseScrollView.swift; sourceTree = "<group>"; };
 		1409A7962550EAAB0005B702 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		14104915255D34AE003312BC /* PhotoDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewController.swift; sourceTree = "<group>"; };
 		1410491B255D3686003312BC /* SceneTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTransition.swift; sourceTree = "<group>"; };
@@ -144,7 +146,7 @@
 		14F37079254EA9300086B8CC /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		14F3707C254EABDA0086B8CC /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		14F37082254ED2F60086B8CC /* SearchPhotosRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosRequest.swift; sourceTree = "<group>"; };
-		14F9936025709E9600BF2D57 /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
+		14F9936025709E9600BF2D57 /* PhotoZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoZoomableScrollView.swift; sourceTree = "<group>"; };
 		14FD83C82567F7CD00D5B575 /* BlurHashDecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurHashDecode.swift; sourceTree = "<group>"; };
 		14FD83C92567F7CD00D5B575 /* BlurHashEncode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurHashEncode.swift; sourceTree = "<group>"; };
 		22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monotone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -385,7 +387,8 @@
 		14F9936325709E9F00BF2D57 /* ScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				14F9936025709E9600BF2D57 /* ZoomableScrollView.swift */,
+				140912FB2571333800EEC157 /* BaseScrollView.swift */,
+				14F9936025709E9600BF2D57 /* PhotoZoomableScrollView.swift */,
 			);
 			path = ScrollView;
 			sourceTree = "<group>";
@@ -616,7 +619,7 @@
 				14FD83CA2567F7CD00D5B575 /* BlurHashDecode.swift in Sources */,
 				1409A7972550EAAB0005B702 /* BaseView.swift in Sources */,
 				1433B8E32561190100FE9B1D /* HomeHeaderView.swift in Sources */,
-				14F9936125709E9600BF2D57 /* ZoomableScrollView.swift in Sources */,
+				14F9936125709E9600BF2D57 /* PhotoZoomableScrollView.swift in Sources */,
 				143FB14F255BAD2D00D24248 /* ListPhotosViewModel.swift in Sources */,
 				14FD83CB2567F7CD00D5B575 /* BlurHashEncode.swift in Sources */,
 				1428403A2564BBB1004C06DF /* ListTopicsResponse.swift in Sources */,
@@ -635,6 +638,7 @@
 				14956D32255CC72B0057A4A6 /* SceneCoordinator.swift in Sources */,
 				143F5678254FEA040038761D /* HomeViewController.swift in Sources */,
 				14F36FB0254D53940086B8CC /* NetworkManager.swift in Sources */,
+				140912FC2571333800EEC157 /* BaseScrollView.swift in Sources */,
 				14071B1125654A4900D418C8 /* Location.swift in Sources */,
 				14BE99FE256A623400B0DB39 /* GetTopicPhotosRequest.swift in Sources */,
 				14F3707A254EA9300086B8CC /* BaseRequest.swift in Sources */,
