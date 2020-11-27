@@ -14,8 +14,8 @@
             filePath = "Monotone/ViewControllers/PhotoDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "buildLogic()"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,49 +23,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A4F018AC-B450-4726-BFA5-F987FB51B707"
-            shouldBeEnabled = "No"
+            uuid = "DEA539BA-E235-4B01-83D1-86839F95A77A"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Monotone/ViewControllers/PhotoDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "buildLogic()"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "scrollViewDidZoom(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A4F018AC-B450-4726-BFA5-F987FB51B707 - 48a327327037f39b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Monotone.PhotoDetailsViewController.buildLogic() -&gt; ()"
-                  moduleName = "Monotone"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/ViewControllers/PhotoDetailsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "1896">
-               </Location>
-               <Location
-                  uuid = "A4F018AC-B450-4726-BFA5-F987FB51B707 - 6275f819a7229e93"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Monotone.Photo) -&gt; () in Monotone.PhotoDetailsViewController.buildLogic() -&gt; ()"
-                  moduleName = "Monotone"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/ViewControllers/PhotoDetailsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "160">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "800C3F85-258E-4F21-BF50-D0C543BB750E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Monotone/ViewControllers/PhotoDetailsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "PhotoDetailsViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
