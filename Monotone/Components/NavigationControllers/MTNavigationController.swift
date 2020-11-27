@@ -8,6 +8,9 @@
 import UIKit
 
 class MTNavigationController: BaseNavigationController {
+    
+    public var navbarHidden: Bool = false
+    public var navbarTransparent: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,7 @@ class MTNavigationController: BaseNavigationController {
     
     public func configureNavigationBar(transparent: Bool){
         
+        // Background.
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.isTranslucent = true
@@ -30,7 +34,19 @@ class MTNavigationController: BaseNavigationController {
         if(!transparent){
             self.navigationBar.barTintColor = ColorPalette.colorWhite
         }
+        
+        // Left items.
+        self.navigationBar.backIndicatorImage = UIImage(named: "navi-btn-back")
+        
 
+    }
+    
+    public func updateNavgationBar(){
+        if(self.viewControllers.count <= 1){
+            
+        }else{
+            
+        }
     }
     
     private func configureNavigationItems() {

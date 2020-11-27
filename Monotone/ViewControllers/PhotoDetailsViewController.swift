@@ -48,6 +48,9 @@ class PhotoDetailsViewController: BaseViewController, UIScrollViewDelegate {
         self.photoImageView = UIImageView()
         self.photoImageView.kf.setImage(with: URL(string: "https://images.unsplash.com/photo-1606064979325-2ef27740a089?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjE3ODkzOX0"))
         self.scrollView.addSubview(self.photoImageView)
+        self.photoImageView.snp.makeConstraints { (make) in
+            make.center.equalTo(self.scrollView)
+        }
         
         // photoDetailsOpeartionView.
         self.photoDetailsOpeartionView = PhotoDetailsOpeartionView()
@@ -74,14 +77,20 @@ class PhotoDetailsViewController: BaseViewController, UIScrollViewDelegate {
         let photoRatio = photoHeight / photoWidth
         
         if(photoRatio >= screenRatio){
-            self.photoImageView.frame.size = CGSize(width: photoRatio * photoWidth, height: screenHeight)
+            self.photoImageView.frame.size = CGSize(width: (screenWidth / photoWidth) * photoHeight, height: screenHeight)
         }
         else{
-            self.photoImageView.frame.size = CGSize(width: photoWidth, height: photoHeight / photoRatio)
+            self.photoImageView.frame.size = CGSize(width: screenWidth, height: (screenWidth / photoWidth) * photoHeight)
         }
         
         self.photoImageView.center = self.scrollView.convert(self.scrollView.center, to: self.view)
         
+        photoDetailsViewModel?.output.photo.subscribe(onNext: { (photo) in
+            self.photoImageView.kf.setImage(with: URL(string: photo.urls?.full ?? ""),
+                                              placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
+                                              options: [.transition(.fade(1.0)), .originalCache(.default)])
+        })
+        .disposed(by: self.disposeBag)
         
     }
     

@@ -58,17 +58,30 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             
             let targetVC = self.viewController(scene: scene)!
             
-            guard let navigationController = currentViewController!.navigationController else{
-                fatalError("Could not push a view controller without navigation controller.")
-            }
-            
-            _ = navigationController.rx.delegate
-                .sentMessage(#selector(navigationController(_:didShow:animated:)))
-                .map({ _ in return () })
-                .bind(to: subject)
+            if(self.currentViewController!.navigationController != nil){
+                let navigationController = self.currentViewController!.navigationController!
                 
-            navigationController.pushViewController(SceneCoordinator.actualViewController(for: targetVC), animated: animated)
-            
+                _ = navigationController.rx.delegate
+                    .sentMessage(#selector(navigationController(_:didShow:animated:)))
+                    .map({ _ in return () })
+                    .bind(to: subject)
+                
+                navigationController.pushViewController(SceneCoordinator.actualViewController(for: targetVC), animated: animated)
+            }
+            else{
+                let navigationController = UINavigationController(rootViewController: targetVC)
+                
+                _ = navigationController.rx.delegate
+                    .sentMessage(#selector(navigationController(_:didShow:animated:)))
+                    .map({ _ in return () })
+                    .bind(to: subject)
+                
+                currentViewController!.present(navigationController, animated: animated, completion: {
+                    subject.onCompleted()
+                })
+                
+                self.currentViewController = SceneCoordinator.actualViewController(for: targetVC)
+            }
             break
         
         case let .root(scene):
@@ -195,6 +208,10 @@ extension SceneCoordinator: UITabBarControllerDelegate{
 extension SceneCoordinator: UINavigationControllerDelegate{
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         self.currentViewController = SceneCoordinator.actualViewController(for: viewController)
+        
+        if let navVC = navigationController as? MTNavigationController{
+            
+        }
     }
 }
 

@@ -41,7 +41,7 @@ class PhotoDetailsViewModel: BaseViewModel, ViewModelStreamable{
         // Service.
         
         // Binding.
-        (self.output.photo <=> self.input.photo)
+        (self.input.photo <=> self.output.photo)
             .disposed(by: self.disposeBag)
     }
     

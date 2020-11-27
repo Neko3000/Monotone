@@ -117,10 +117,15 @@ class HomeViewController: BaseViewController {
             
             }.disposed(by: self.disposeBag)
         
-        self.collectionView.rx.itemSelected
-            .subscribe { (indexPath) in
+        self.collectionView.rx.modelSelected(Photo.self)
+            .subscribe { (controlEvent) in
+                let photo = controlEvent.element!
                 
-                self.transition(type: .present(.photoDetails(nil), .fullScreen), with: nil)
+                let args = [
+                    "photo" : photo
+                ]
+                
+                self.transition(type: .present(.photoDetails(args), .fullScreen), with: nil)
                 
             }.disposed(by: self.disposeBag)
 
