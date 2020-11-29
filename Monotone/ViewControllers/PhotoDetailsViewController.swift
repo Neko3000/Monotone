@@ -93,7 +93,7 @@ class PhotoDetailsViewController: BaseViewController {
         
         // photoZoomableScrollView
         photoDetailsViewModel?.output.photo.subscribe(onNext: { (photo) in
-            self.photoZoomableScrollView.photo.accept(photo)
+            self.photoZoomableScrollView.photo = photo
         })
         .disposed(by: self.disposeBag)
         

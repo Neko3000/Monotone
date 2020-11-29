@@ -12,11 +12,13 @@ import RxRelay
 import Kingfisher
 
 class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
-    
-    private let disposeBag: DisposeBag = DisposeBag()
-    
+        
     // MARK: Public
-    public var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
+    public var photo: Photo?{
+        didSet{
+            self.updatePhoto()
+        }
+    }
     
     // MARK: Private
     private var photoUpdated: Bool = false
@@ -36,36 +38,17 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
     
     override func buildLogic(){
         
-        // photo.
-        self.photo
-            .filter({ $0 != nil})
-            .subscribe(onNext: { photo in
-                self.photoImageView.kf.setImage(with: URL(string: photo!.urls?.regular ?? ""),
-                                                placeholder: UIImage(blurHash: photo!.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                                options: [.transition(.fade(1.0)), .originalCache(.default)])
-                
-                self.updatePhotoSize()
-                self.updatePhotoPosition()
-                self.photoUpdated = true
-            })
-            .disposed(by: self.disposeBag)
+        //
+    }
+    
+    func updatePhoto(){
+        self.photoImageView.kf.setImage(with: URL(string: photo!.urls?.regular ?? ""),
+                                        placeholder: UIImage(blurHash: photo!.blurHash ?? "", size: CGSize(width: 10, height: 10)),
+                                        options: [.transition(.fade(1.0)), .originalCache(.default)])
         
-        // didZoom.
-        self.rx.didZoom
-            .subscribe(onNext: { _ in
-                self.updatePhotoPosition()
-            })
-            .disposed(by: self.disposeBag)
-        
-        // layoutSubviews.
-        self.rx.sentMessage(#selector(layoutSubviews))
-            .filter({ _ in self.photo.value != nil && self.photoUpdated == true })
-            .subscribe { (_) in
-                
-            self.updatePhotoSize()
-            self.photoUpdated = false
-        }
-        .disposed(by: self.disposeBag)
+        self.updatePhotoSize()
+        self.updatePhotoPosition()
+        self.photoUpdated = true
     }
     
     func updatePhotoSize(){
@@ -73,8 +56,8 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
         let boundsHeight = self.bounds.size.height
         let boundsRatio =  boundsHeight / boundsWidth
 
-        let photoHeight = CGFloat(self.photo.value!.height!)
-        let photoWidth = CGFloat(self.photo.value!.width!)
+        let photoHeight = CGFloat(self.photo!.height!)
+        let photoWidth = CGFloat(self.photo!.width!)
         let photoRatio = photoHeight / photoWidth
         
         if(photoRatio >= boundsRatio){
@@ -97,6 +80,19 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
         let centerY = contentHeight > boundsHeight ? contentHeight / 2.0 : boundsHeight / 2.0 + self.bounds.origin.y;
         
         self.photoImageView.center = CGPoint(x: centerX, y: centerY)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if(self.photoUpdated){
+            self.updatePhotoSize()
+            self.photoUpdated = false
+        }
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        self.updatePhotoPosition()
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {

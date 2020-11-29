@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C62E980-ADF1-43F5-BB4E-60C53F36B997"
+            uuid = "4F82B405-472C-4BB4-96A6-5533D6701C3E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Monotone/Components/ScrollView/PhotoZoomableScrollView.swift"
+            filePath = "Monotone/Components/NavigationControllers/MTNavigationController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "updatePhotoPosition()"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "configureNavigationBar(transparent:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
