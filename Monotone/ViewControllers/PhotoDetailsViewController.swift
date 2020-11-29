@@ -11,6 +11,7 @@ import SnapKit
 import RxSwift
 import Kingfisher
 import anim
+import Hero
 
 class PhotoDetailsViewController: BaseViewController {
     
@@ -19,9 +20,7 @@ class PhotoDetailsViewController: BaseViewController {
     
     // MARK: Controls
     private var photoDetailsOpeartionView: PhotoDetailsOpeartionView!
-    
-    private var photoImageView: UIImageView!
-    private var scrollView: PhotoZoomableScrollView!
+    private var photoZoomableScrollView: PhotoZoomableScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +32,12 @@ class PhotoDetailsViewController: BaseViewController {
     override func buildSubviews() {
         self.view.backgroundColor = UIColor.black
                 
-        // scrollView.
-        self.scrollView = PhotoZoomableScrollView()
-        self.scrollView.maximumZoomScale = 10.0
-        self.scrollView.minimumZoomScale = 1.0
-        self.view.addSubview(self.scrollView)
-        self.scrollView.snp.makeConstraints({ (make) in
+        // photoZoomableScrollView.
+        self.photoZoomableScrollView = PhotoZoomableScrollView()
+        self.photoZoomableScrollView.maximumZoomScale = 10.0
+        self.photoZoomableScrollView.minimumZoomScale = 1.0
+        self.view.addSubview(self.photoZoomableScrollView)
+        self.photoZoomableScrollView.snp.makeConstraints({ (make) in
             make.top.right.bottom.left.equalTo(self.view)
         })
         
@@ -50,6 +49,10 @@ class PhotoDetailsViewController: BaseViewController {
             make.bottom.equalTo(self.view)
         }
         
+        self.hero.isEnabled = true
+        self.navigationController?.hero.isEnabled = true
+        self.photoZoomableScrollView.photoImageView.hero.isEnabledForSubviews = true
+        self.photoZoomableScrollView.photoImageView.hero.id =  "selectedPhoto"
     }
     
     override func buildLogic() {
@@ -57,8 +60,9 @@ class PhotoDetailsViewController: BaseViewController {
         // ViewModel.
         let photoDetailsViewModel = self.viewModel(type:PhotoDetailsViewModel.self)
         
+        // photoZoomableScrollView
         photoDetailsViewModel?.output.photo.subscribe(onNext: { (photo) in
-            self.scrollView.photo = photo
+            self.photoZoomableScrollView.photo.accept(photo)
         })
         .disposed(by: self.disposeBag)
         

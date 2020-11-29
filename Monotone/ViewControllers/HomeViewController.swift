@@ -13,6 +13,7 @@ import RxSwift
 import Kingfisher
 import anim
 import ViewAnimator
+import Hero
 
 class HomeViewController: BaseViewController {
     
@@ -117,17 +118,32 @@ class HomeViewController: BaseViewController {
             
             }.disposed(by: self.disposeBag)
         
-        self.collectionView.rx.modelSelected(Photo.self)
-            .subscribe { (controlEvent) in
-                let photo = controlEvent.element!
+        self.collectionView.rx.itemSelected
+            .subscribe(onNext:{ indexPath in
+                let cell = self.collectionView.cellForItem(at: indexPath)
+                cell?.hero.id = "selectedPhoto"
                 
+                let photo = homeViewModel?.output.photos.value[indexPath.row]
+
                 let args = [
                     "photo" : photo
                 ]
-                
-                self.transition(type: .present(.photoDetails(args), .fullScreen), with: nil)
-                
-            }.disposed(by: self.disposeBag)
+
+                self.transition(type: .present(.photoDetails(args as [String : Any]), .fullScreen), with: nil, animated: true)
+            })
+            .disposed(by: self.disposeBag)
+        
+//        self.collectionView.rx.modelSelected(Photo.self)
+//            .subscribe { (controlEvent) in
+//                let photo = controlEvent.element!
+//
+//                let args = [
+//                    "photo" : photo
+//                ]
+//
+//                self.transition(type: .present(.photoDetails(args), .fullScreen), with: nil)
+//
+//            }.disposed(by: self.disposeBag)
 
         // CollectionView MJRefresh.
         self.collectionView.mj_header!.refreshingBlock = {
@@ -156,74 +172,19 @@ class HomeViewController: BaseViewController {
         
         // Animation for homeJumbotronView & homeHeaderView
         self.collectionView.rx.contentOffset
-            .flatMap({ (contentOffset) -> Observable<Bool> in
-                return Observable.just( contentOffset.y >= InterfaceGlobalValue.showTopContentOffset )
+            .flatMap({ (contentOffset) -> Observable<AnimationState> in
+                let animationState: AnimationState = contentOffset.y >= InterfaceGlobalValue.showTopContentOffset ? .showHeaderView : .showJumbotronView
+                return Observable.just(animationState)
             })
-            .skipWhile({ $0 == false })
+            .skipWhile({ $0 == .showJumbotronView })
             .distinctUntilChanged()
-            .subscribe(onNext: { (toShowHeader) in
-                self.animateTopView(toShowHeader: toShowHeader)
+            .subscribe(onNext: { (animationState) in
+                self.animation(animationState: animationState)
             })
             .disposed(by: self.disposeBag)
         
         // First Loading - Latest.
         self.homeJumbotronView.listOrderBy.accept("latest")
-    }
-    
-    // MARK: Animation for homeJumbotronView & homeHeaderView
-    func animateTopView(toShowHeader: Bool){
-        
-        if(toShowHeader){
-            anim { (animSettings) -> (animClosure) in
-                animSettings.duration = 0.5
-                animSettings.ease = .easeInOutQuart
-                
-                return {
-                    self.homeJumbotronView.alpha = 0
-                }
-            }
-            
-            anim(constraintParent: self.view) { (animSettings) -> animClosure in
-                animSettings.duration = 0.5
-                animSettings.ease = .easeInOutQuart
-                
-                return {
-                    self.homeJumbotronView.snp.updateConstraints({ (make) in
-                        make.height.equalTo(140.0)
-                    })
-                    
-                    self.collectionView.snp.updateConstraints { (make) in
-                        make.top.equalTo(self.view).offset(140.0)
-                    }
-                }
-            }
-            
-        }
-        else{
-            anim { (animSettings) -> (animClosure) in
-                animSettings.duration = 0.5
-                animSettings.ease = .easeInOutQuart
-                
-                return {
-                    self.homeJumbotronView.alpha = 1
-                }
-            }
-            
-            anim(constraintParent: self.view) { (animSettings) -> animClosure in
-                animSettings.duration = 0.5
-                animSettings.ease = .easeInOutQuart
-                
-                return {
-                    self.homeJumbotronView.snp.updateConstraints({ (make) in
-                        make.height.equalTo(256.0)
-                    })
-                    
-                    self.collectionView.snp.updateConstraints { (make) in
-                        make.top.equalTo(self.view).offset(256.0)
-                    }
-                }
-            }
-        }
     }
 
     /*
@@ -248,6 +209,73 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
         }
         else{
             return CGSize(width: self.collectionView.frame.width / 2.0, height: 300.0)
+        }
+    }
+}
+
+extension HomeViewController: ViewControllerAnimatable{
+    enum AnimationState {
+        case showJumbotronView
+        case showHeaderView
+    }
+    
+    // MARK: Animation for homeJumbotronView & homeHeaderView
+    func animation(animationState: AnimationState) {
+        switch animationState {
+        case .showHeaderView:
+            
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.homeJumbotronView.alpha = 0
+                }
+            }
+            
+            anim(constraintParent: self.view) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.homeJumbotronView.snp.updateConstraints({ (make) in
+                        make.height.equalTo(140.0)
+                    })
+                    
+                    self.collectionView.snp.updateConstraints { (make) in
+                        make.top.equalTo(self.view).offset(140.0)
+                    }
+                }
+            }
+            
+            break
+        case .showJumbotronView:
+            
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.homeJumbotronView.alpha = 1
+                }
+            }
+            
+            anim(constraintParent: self.view) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.homeJumbotronView.snp.updateConstraints({ (make) in
+                        make.height.equalTo(256.0)
+                    })
+                    
+                    self.collectionView.snp.updateConstraints { (make) in
+                        make.top.equalTo(self.view).offset(256.0)
+                    }
+                }
+            }
+            
+            break
         }
     }
 }

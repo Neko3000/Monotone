@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 
+// MARK: ViewControllerBindable
 protocol ViewControllerBindable{
     
     var viewModels: [BaseViewModel]? { get }
@@ -27,15 +28,16 @@ extension ViewControllerBindable where Self: BaseViewController{
     }
 }
 
+// MARK: ViewControllerTransitionable
 protocol ViewControllerTransitionable {
-    @discardableResult func transition(type: SceneTransition, with args: [String : Any]?) -> Observable<Void>
+    @discardableResult func transition(type: SceneTransition, with args: [String : Any]?, animated: Bool) -> Observable<Void>
     @discardableResult func pop() -> Observable<Void>
 }
 
 extension ViewControllerTransitionable where Self: BaseViewController{
     @discardableResult
-    func transition(type: SceneTransition, with args: [String : Any]?) -> Observable<Void>{
-        return SceneCoordinator.shared.transition(type: type, with: args)
+    func transition(type: SceneTransition, with args: [String : Any]?, animated: Bool = false) -> Observable<Void>{
+        return SceneCoordinator.shared.transition(type: type, with: args, animated: animated)
     }
     
     @discardableResult
@@ -44,6 +46,14 @@ extension ViewControllerTransitionable where Self: BaseViewController{
     }
 }
 
+// MARK: ViewControllerAnimatable
+protocol ViewControllerAnimatable {
+    associatedtype AnimationStateType
+    
+    func animation(animationState: AnimationStateType)
+}
+
+// MARK: BaseViewController
 class BaseViewController: UIViewController, ViewControllerBindable, ViewControllerTransitionable {
     
     // MARK: ViewControllerBindable

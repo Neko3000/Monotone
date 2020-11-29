@@ -8,7 +8,7 @@
 import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
-    
+        
     public var photoImageView: UIImageView!
     public var defaultImageView: UIImageView!
     
