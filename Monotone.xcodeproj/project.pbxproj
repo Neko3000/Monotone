@@ -50,6 +50,8 @@
 		14D5E8F1254A589D0021FE3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8EF254A589D0021FE3E /* Main.storyboard */; };
 		14D5E8F3254A589E0021FE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8F2254A589E0021FE3E /* Assets.xcassets */; };
 		14D5E8F6254A589E0021FE3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8F4254A589E0021FE3E /* LaunchScreen.storyboard */; };
+		14E3ACCF257383F4000297CF /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3ACCE257383F4000297CF /* CapsuleButton.swift */; };
+		14E3ACD325738413000297CF /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3ACD225738413000297CF /* BaseButton.swift */; };
 		14E59DCD2556716400F1FB60 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E59DCC2556716400F1FB60 /* BaseViewModel.swift */; };
 		14E59E2E2556A0CA00F1FB60 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E59E2D2556A0CA00F1FB60 /* PhotoService.swift */; };
 		14E59E312556A0E200F1FB60 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E59E302556A0E200F1FB60 /* NetworkService.swift */; };
@@ -133,6 +135,8 @@
 		14D5E8F2254A589E0021FE3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14D5E8F5254A589E0021FE3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14D5E8F7254A589E0021FE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14E3ACCE257383F4000297CF /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
+		14E3ACD225738413000297CF /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		14E59DCC2556716400F1FB60 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		14E59E2D2556A0CA00F1FB60 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		14E59E302556A0E200F1FB60 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 		143114BB255A77CC00991676 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				14E3ACD1257383FC000297CF /* Buttons */,
 				14F9936325709E9F00BF2D57 /* ScrollView */,
 				14109A9725620AF80094BDA7 /* TextFields */,
 				141591DA255E579D00179ED5 /* NavigationControllers */,
@@ -382,6 +387,15 @@
 				1433B8E82561270700FE9B1D /* InterfaceGlobalValue.swift */,
 			);
 			path = Monotone;
+			sourceTree = "<group>";
+		};
+		14E3ACD1257383FC000297CF /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				14E3ACD225738413000297CF /* BaseButton.swift */,
+				14E3ACCE257383F4000297CF /* CapsuleButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		14F9936325709E9F00BF2D57 /* ScrollView */ = {
@@ -604,7 +618,9 @@
 				14F016B32567981400F60C99 /* RxOpeartors.swift in Sources */,
 				14071B182565FD1C00D418C8 /* HomeViewModel.swift in Sources */,
 				14104916255D34AE003312BC /* PhotoDetailsViewController.swift in Sources */,
+				14E3ACCF257383F4000297CF /* CapsuleButton.swift in Sources */,
 				14109A9D25620B150094BDA7 /* MTTextField.swift in Sources */,
+				14E3ACD325738413000297CF /* BaseButton.swift in Sources */,
 				143114DF255AA6D400991676 /* ListPhotosRequest.swift in Sources */,
 				14071B1425654AF500D418C8 /* Position.swift in Sources */,
 				143114D8255A79D000991676 /* Urls.swift in Sources */,

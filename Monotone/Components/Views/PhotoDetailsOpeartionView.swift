@@ -33,6 +33,8 @@ class PhotoDetailsOpeartionView: BaseView {
         // avatarImageView
         self.avatarImageView = UIImageView()
         self.avatarImageView.backgroundColor = UIColor.red
+        self.avatarImageView.layer.cornerRadius = 14.0
+        self.avatarImageView.layer.masksToBounds = true
         self.addSubview(self.avatarImageView)
         self.avatarImageView.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(17.0)
@@ -42,9 +44,12 @@ class PhotoDetailsOpeartionView: BaseView {
         // usernameLabel.
         self.usernameLabel = UILabel()
         self.usernameLabel.text = "Terry Crews"
+        self.usernameLabel.textColor = UIColor.white
+        self.usernameLabel.font = UIFont.systemFont(ofSize: 12.0)
         self.addSubview(self.usernameLabel)
         self.usernameLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.avatarImageView!.snp.right).offset(10.0)
+            make.left.equalTo(self.avatarImageView.snp.right).offset(10.0)
+            make.centerY.equalTo(self.avatarImageView)
         }
         
         // stackView.
@@ -52,6 +57,9 @@ class PhotoDetailsOpeartionView: BaseView {
         self.stackView.distribution = .equalSpacing
         self.stackView.axis = .horizontal
         self.stackView.semanticContentAttribute = .forceRightToLeft
+        self.stackView.spacing = 26.0
+        self.stackView.layoutMargins = UIEdgeInsets(top: 0, left: 15.0, bottom: 0, right: 15.0)
+        self.stackView.isLayoutMarginsRelativeArrangement = true
         self.addSubview(self.stackView)
         self.stackView.snp.makeConstraints { (make) in
             make.right.equalTo(self)

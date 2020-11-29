@@ -49,6 +49,11 @@ class ColorPalette{
         return color!
     }
     
+    public static func colorWithUserInterfaceStyle(color: UIColor, with userInterfaceStyle: UIUserInterfaceStyle) -> UIColor{
+        let traitCollection: UITraitCollection = UITraitCollection.init(userInterfaceStyle: userInterfaceStyle)
+        return color.resolvedColor(with: traitCollection)
+    }
+    
     public static var colorBlack:UIColor{
         return self.colorWithDarkMode(darkColorHex: "#ffffff", lightColorHex: "#000000")
     }

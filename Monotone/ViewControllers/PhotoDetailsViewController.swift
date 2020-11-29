@@ -21,6 +21,10 @@ class PhotoDetailsViewController: BaseViewController {
     private var photoDetailsOpeartionView: PhotoDetailsOpeartionView!
     private var photoZoomableScrollView: PhotoZoomableScrollView!
     
+    private var likeBtn: CapsuleButton!
+    private var collectBtn: CapsuleButton!
+    private var expandBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,8 +49,38 @@ class PhotoDetailsViewController: BaseViewController {
         self.view.addSubview(self.photoDetailsOpeartionView)
         self.photoDetailsOpeartionView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self.view)
-            make.bottom.equalTo(self.view)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            make.height.equalTo(30.0)
         }
+        
+        self.likeBtn = CapsuleButton()
+        self.likeBtn.setTitle("20", for: .normal)
+        self.likeBtn.setImage(UIImage(named: "details-btn-like"), for: .normal)
+        self.likeBtn.backgroundStyle = .blur
+        self.view.addSubview(self.likeBtn)
+        self.likeBtn.snp.makeConstraints { (make) in
+            make.left.equalTo(self.view).offset(17.0)
+            make.bottom.equalTo(self.photoDetailsOpeartionView.snp.top).offset(-40)
+        }
+        
+        self.collectBtn = CapsuleButton()
+        self.collectBtn.setTitle("Collect", for: .normal)
+        self.collectBtn.setImage(UIImage(named: "details-btn-collect"), for: .normal)
+        self.collectBtn.backgroundStyle = .blur
+        self.view.addSubview(self.collectBtn)
+        self.collectBtn.snp.makeConstraints { (make) in
+            make.left.equalTo(self.likeBtn.snp.right).offset(10.0)
+            make.centerY.equalTo(self.likeBtn)
+        }
+        
+        self.expandBtn = UIButton()
+        self.expandBtn.setImage(UIImage(named: "details-btn-expand"), for: .normal)
+        self.view.addSubview(self.expandBtn)
+        self.expandBtn.snp.makeConstraints { (make) in
+            make.right.equalTo(self.view).offset(-17.0)
+            make.centerY.equalTo(self.likeBtn)
+        }
+        
     }
     
     override func buildLogic() {
