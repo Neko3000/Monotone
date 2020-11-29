@@ -11,7 +11,6 @@ import SnapKit
 import RxSwift
 import Kingfisher
 import anim
-import Hero
 
 class PhotoDetailsViewController: BaseViewController {
     
@@ -48,11 +47,6 @@ class PhotoDetailsViewController: BaseViewController {
             make.left.right.equalTo(self.view)
             make.bottom.equalTo(self.view)
         }
-        
-        self.hero.isEnabled = true
-        self.navigationController?.hero.isEnabled = true
-        self.photoZoomableScrollView.photoImageView.hero.isEnabledForSubviews = true
-        self.photoZoomableScrollView.photoImageView.hero.id =  "selectedPhoto"
     }
     
     override func buildLogic() {

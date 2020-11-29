@@ -13,7 +13,6 @@ import RxSwift
 import Kingfisher
 import anim
 import ViewAnimator
-import Hero
 
 class HomeViewController: BaseViewController {
     
@@ -118,32 +117,17 @@ class HomeViewController: BaseViewController {
             
             }.disposed(by: self.disposeBag)
         
-        self.collectionView.rx.itemSelected
-            .subscribe(onNext:{ indexPath in
-                let cell = self.collectionView.cellForItem(at: indexPath)
-                cell?.hero.id = "selectedPhoto"
-                
-                let photo = homeViewModel?.output.photos.value[indexPath.row]
+        self.collectionView.rx.modelSelected(Photo.self)
+            .subscribe { (controlEvent) in
+                let photo = controlEvent.element!
 
                 let args = [
                     "photo" : photo
                 ]
 
-                self.transition(type: .present(.photoDetails(args as [String : Any]), .fullScreen), with: nil, animated: true)
-            })
-            .disposed(by: self.disposeBag)
-        
-//        self.collectionView.rx.modelSelected(Photo.self)
-//            .subscribe { (controlEvent) in
-//                let photo = controlEvent.element!
-//
-//                let args = [
-//                    "photo" : photo
-//                ]
-//
-//                self.transition(type: .present(.photoDetails(args), .fullScreen), with: nil)
-//
-//            }.disposed(by: self.disposeBag)
+                self.transition(type: .present(.photoDetails(args), .fullScreen), with: nil)
+
+            }.disposed(by: self.disposeBag)
 
         // CollectionView MJRefresh.
         self.collectionView.mj_header!.refreshingBlock = {
