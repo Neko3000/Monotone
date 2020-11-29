@@ -45,6 +45,7 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
                                                 options: [.transition(.fade(1.0)), .originalCache(.default)])
                 
                 self.updatePhotoSize()
+                self.updatePhotoPosition()
                 self.photoUpdated = true
             })
             .disposed(by: self.disposeBag)
@@ -82,14 +83,6 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
         else{
             self.photoImageView.frame.size = CGSize(width: boundsWidth, height: (boundsWidth / photoWidth) * photoHeight)
         }
-        
-        let contentWidth = self.contentSize.width
-        let contentHeight = self.contentSize.height
-        
-        let centerX = contentWidth > boundsWidth ? contentWidth / 2.0 : boundsWidth / 2.0;
-        let centerY = contentHeight > boundsHeight ? contentHeight / 2.0 : boundsHeight / 2.0;
-        
-        self.photoImageView.center = CGPoint(x: centerX, y: centerY)
     }
     
     func updatePhotoPosition(){
@@ -99,8 +92,9 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
         let contentWidth = self.contentSize.width
         let contentHeight = self.contentSize.height
         
-        let centerX = contentWidth > boundsWidth ? contentWidth / 2.0 : boundsWidth / 2.0;
-        let centerY = contentHeight > boundsHeight ? contentHeight / 2.0 : boundsHeight / 2.0;
+        // FIX: Bounds is not always equal to zero.
+        let centerX = contentWidth > boundsWidth ? contentWidth / 2.0 : boundsWidth / 2.0 + self.bounds.origin.x;
+        let centerY = contentHeight > boundsHeight ? contentHeight / 2.0 : boundsHeight / 2.0 + self.bounds.origin.y;
         
         self.photoImageView.center = CGPoint(x: centerX, y: centerY)
     }

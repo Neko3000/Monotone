@@ -43,7 +43,7 @@ class MTNavigationController: BaseNavigationController {
     
     public func updateNavgationBar(){
         if(self.viewControllers.count <= 1){
-            
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "unsplash-logo"), style: .plain, target: nil, action: nil)
         }else{
             
         }

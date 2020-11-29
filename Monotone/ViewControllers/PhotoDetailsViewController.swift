@@ -53,6 +53,7 @@ class PhotoDetailsViewController: BaseViewController {
             make.height.equalTo(30.0)
         }
         
+        // likeBtn.
         self.likeBtn = CapsuleButton()
         self.likeBtn.setTitle("20", for: .normal)
         self.likeBtn.setImage(UIImage(named: "details-btn-like"), for: .normal)
@@ -63,6 +64,7 @@ class PhotoDetailsViewController: BaseViewController {
             make.bottom.equalTo(self.photoDetailsOpeartionView.snp.top).offset(-40)
         }
         
+        // collectBtn.
         self.collectBtn = CapsuleButton()
         self.collectBtn.setTitle("Collect", for: .normal)
         self.collectBtn.setImage(UIImage(named: "details-btn-collect"), for: .normal)
@@ -73,6 +75,7 @@ class PhotoDetailsViewController: BaseViewController {
             make.centerY.equalTo(self.likeBtn)
         }
         
+        // expandBtn.
         self.expandBtn = UIButton()
         self.expandBtn.setImage(UIImage(named: "details-btn-expand"), for: .normal)
         self.view.addSubview(self.expandBtn)
