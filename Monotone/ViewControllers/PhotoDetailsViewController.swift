@@ -86,6 +86,14 @@ class PhotoDetailsViewController: BaseViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "unsplash-logo"), style: .plain, target: nil, action: nil)
+//        
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "unsplash-logo"), style: .plain, target: nil, action: nil)
+    }
+    
     override func buildLogic() {
                 
         // ViewModel.

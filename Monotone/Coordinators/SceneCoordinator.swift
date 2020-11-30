@@ -69,7 +69,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
                 navigationController.pushViewController(SceneCoordinator.actualViewController(for: targetVC), animated: animated)
             }
             else{
-                let navigationController = UINavigationController(rootViewController: targetVC)
+                let navigationController = MTNavigationController(rootViewController: targetVC)
                 navigationController.modalPresentationStyle = .fullScreen
                 
                 _ = navigationController.rx.delegate

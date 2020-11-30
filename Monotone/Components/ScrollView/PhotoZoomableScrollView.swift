@@ -87,6 +87,7 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
         
         if(self.photoUpdated){
             self.updatePhotoSize()
+            self.updatePhotoPosition()
             self.photoUpdated = false
         }
     }
