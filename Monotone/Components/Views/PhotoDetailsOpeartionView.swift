@@ -10,14 +10,12 @@ import UIKit
 import SnapKit
 
 class PhotoDetailsOpeartionView: BaseView {
-    
-    private var avatarImageView: UIImageView!
-    private var usernameLabel: UILabel!
+        
+    public var downloadBtn: UIButton!
+    public var shareBtn: UIButton!
+    public var infoBtn: UIButton!
     
     private var stackView: UIStackView!
-    private var downloadBtn: UIButton!
-    private var shareBtn: UIButton!
-    private var infoBtn: UIButton!
     
 
     /*
@@ -29,28 +27,6 @@ class PhotoDetailsOpeartionView: BaseView {
     */
     
     override func buildSubviews() {
-        
-        // avatarImageView
-        self.avatarImageView = UIImageView()
-        self.avatarImageView.backgroundColor = UIColor.red
-        self.avatarImageView.layer.cornerRadius = 14.0
-        self.avatarImageView.layer.masksToBounds = true
-        self.addSubview(self.avatarImageView)
-        self.avatarImageView.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(17.0)
-            make.width.height.equalTo(28.0)
-        }
-        
-        // usernameLabel.
-        self.usernameLabel = UILabel()
-        self.usernameLabel.text = "Terry Crews"
-        self.usernameLabel.textColor = UIColor.white
-        self.usernameLabel.font = UIFont.systemFont(ofSize: 12.0)
-        self.addSubview(self.usernameLabel)
-        self.usernameLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.avatarImageView.snp.right).offset(10.0)
-            make.centerY.equalTo(self.avatarImageView)
-        }
         
         // stackView.
         self.stackView = UIStackView()

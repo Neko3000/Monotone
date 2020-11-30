@@ -34,7 +34,7 @@ class CapsuleButton: BaseButton {
         self.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         
         self.contentEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 25.0)
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10.0, bottom: 0, right: 0)
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10.0, bottom: 0, right: -10)
         
         // blurBackgroundView.
         let blurEffect = UIBlurEffect(style: .light)

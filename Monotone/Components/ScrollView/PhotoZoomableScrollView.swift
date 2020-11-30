@@ -98,6 +98,28 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
         self.photoImageView.center = CGPoint(x: centerX, y: centerY)
     }
     
+    public func adjustZoomScale(scaleToFill: Bool, animated: Bool){
+        let boundsWidth = self.bounds.size.width
+        let boundsHeight = self.bounds.size.height
+        let boundsRatio =  boundsHeight / boundsWidth
+
+        let photoHeight = CGFloat(self.photo!.height!)
+        let photoWidth = CGFloat(self.photo!.width!)
+        let photoRatio = photoHeight / photoWidth
+        
+        if(scaleToFill){
+            if(photoRatio >= boundsRatio){
+                self.setZoomScale(boundsWidth * photoRatio / boundsHeight, animated: animated)
+            }
+            else{
+                self.setZoomScale(boundsHeight / (boundsWidth * photoRatio), animated: animated)
+            }
+        }
+        else{
+            self.setZoomScale(1.0, animated: animated)
+        }
+    }
+    
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         self.updatePhotoPosition()
     }

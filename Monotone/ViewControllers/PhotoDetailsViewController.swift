@@ -18,11 +18,12 @@ class PhotoDetailsViewController: BaseViewController {
     private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: Controls
-    private var photoDetailsOpeartionView: PhotoDetailsOpeartionView!
-    private var photoZoomableScrollView: PhotoZoomableScrollView!
+    private var userCapsuleBtn: CapsuleButton!
+    private var opeartionView: PhotoDetailsOpeartionView!
+    private var scrollView: PhotoZoomableScrollView!
     
-    private var likeBtn: CapsuleButton!
-    private var collectBtn: CapsuleButton!
+    private var likeCapsuleBtn: CapsuleButton!
+    private var collectCapsuleBtn: CapsuleButton!
     private var expandBtn: UIButton!
     
     override func viewDidLoad() {
@@ -39,63 +40,69 @@ class PhotoDetailsViewController: BaseViewController {
         self.navBarTransparent = true
         self.navBarHidden = true
                 
-        // photoZoomableScrollView.
-        self.photoZoomableScrollView = PhotoZoomableScrollView()
-        self.photoZoomableScrollView.maximumZoomScale = 10.0
-        self.photoZoomableScrollView.minimumZoomScale = 1.0
-        self.view.addSubview(self.photoZoomableScrollView)
-        self.photoZoomableScrollView.snp.makeConstraints({ (make) in
+        // scrollView.
+        self.scrollView = PhotoZoomableScrollView()
+        self.scrollView.maximumZoomScale = 10.0
+        self.scrollView.minimumZoomScale = 1.0
+        self.view.addSubview(self.scrollView)
+        self.scrollView.snp.makeConstraints({ (make) in
             make.top.right.bottom.left.equalTo(self.view)
         })
         
-        // photoDetailsOpeartionView.
-        self.photoDetailsOpeartionView = PhotoDetailsOpeartionView()
-        self.view.addSubview(self.photoDetailsOpeartionView)
-        self.photoDetailsOpeartionView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(self.view)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-            make.height.equalTo(30.0)
-        }
-        
-        // likeBtn.
-        self.likeBtn = CapsuleButton()
-        self.likeBtn.setTitle("20", for: .normal)
-        self.likeBtn.setImage(UIImage(named: "details-btn-like"), for: .normal)
-        self.likeBtn.backgroundStyle = .blur
-        self.view.addSubview(self.likeBtn)
-        self.likeBtn.snp.makeConstraints { (make) in
+        // userCapsuleBtn.
+        self.userCapsuleBtn = CapsuleButton()
+        self.userCapsuleBtn.setTitle("Terry Crews", for: .normal)
+        self.userCapsuleBtn.setImage(UIImage(named: "details-btn-like"), for: .normal)
+        self.userCapsuleBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12.0)
+        self.userCapsuleBtn.backgroundStyle = .normal
+        self.userCapsuleBtn.backgroundColor = UIColor.clear
+        self.view.addSubview(self.userCapsuleBtn)
+        self.userCapsuleBtn.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(17.0)
-            make.bottom.equalTo(self.photoDetailsOpeartionView.snp.top).offset(-40)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
         
-        // collectBtn.
-        self.collectBtn = CapsuleButton()
-        self.collectBtn.setTitle("Collect", for: .normal)
-        self.collectBtn.setImage(UIImage(named: "details-btn-collect"), for: .normal)
-        self.collectBtn.backgroundStyle = .blur
-        self.view.addSubview(self.collectBtn)
-        self.collectBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(self.likeBtn.snp.right).offset(10.0)
-            make.centerY.equalTo(self.likeBtn)
+        // opeartionView.
+        self.opeartionView = PhotoDetailsOpeartionView()
+        self.view.addSubview(self.opeartionView)
+        self.opeartionView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(self.view)
+            make.height.equalTo(30.0)
+            make.centerY.equalTo(self.userCapsuleBtn)
+        }
+        
+        // likeCapsuleBtn.
+        self.likeCapsuleBtn = CapsuleButton()
+        self.likeCapsuleBtn.setTitle("20", for: .normal)
+        self.likeCapsuleBtn.setImage(UIImage(named: "details-btn-like"), for: .normal)
+        self.likeCapsuleBtn.backgroundStyle = .blur
+        self.view.addSubview(self.likeCapsuleBtn)
+        self.likeCapsuleBtn.snp.makeConstraints { (make) in
+            make.left.equalTo(self.view).offset(17.0)
+            make.bottom.equalTo(self.view).offset(-68.0)
+        }
+        
+        // collectCapsuleBtn.
+        self.collectCapsuleBtn = CapsuleButton()
+        self.collectCapsuleBtn.setTitle("Collect", for: .normal)
+        self.collectCapsuleBtn.setImage(UIImage(named: "details-btn-collect"), for: .normal)
+        self.collectCapsuleBtn.backgroundStyle = .blur
+        self.view.addSubview(self.collectCapsuleBtn)
+        self.collectCapsuleBtn.snp.makeConstraints { (make) in
+            make.left.equalTo(self.likeCapsuleBtn.snp.right).offset(10.0)
+            make.centerY.equalTo(self.likeCapsuleBtn)
         }
         
         // expandBtn.
         self.expandBtn = UIButton()
         self.expandBtn.setImage(UIImage(named: "details-btn-expand"), for: .normal)
+        self.expandBtn.setImage(UIImage(named: "details-btn-collapse"), for: .selected)
         self.view.addSubview(self.expandBtn)
         self.expandBtn.snp.makeConstraints { (make) in
             make.right.equalTo(self.view).offset(-17.0)
-            make.centerY.equalTo(self.likeBtn)
+            make.centerY.equalTo(self.likeCapsuleBtn)
         }
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "unsplash-logo"), style: .plain, target: nil, action: nil)
-//        
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "unsplash-logo"), style: .plain, target: nil, action: nil)
     }
     
     override func buildLogic() {
@@ -103,11 +110,21 @@ class PhotoDetailsViewController: BaseViewController {
         // ViewModel.
         let photoDetailsViewModel = self.viewModel(type:PhotoDetailsViewModel.self)
         
-        // photoZoomableScrollView
+        // scrollView.
         photoDetailsViewModel?.output.photo.subscribe(onNext: { (photo) in
-            self.photoZoomableScrollView.photo = photo
+            self.scrollView.photo = photo
         })
         .disposed(by: self.disposeBag)
+        
+        // expandBtn.
+        self.expandBtn.rx.tap
+            .subscribe(onNext: { _ in
+                self.expandBtn.isSelected = !self.expandBtn.isSelected
+                
+                self.animation(animationState: self.expandBtn.isSelected ? .expanded: .normal)
+                self.scrollView.adjustZoomScale(scaleToFill: self.expandBtn.isSelected, animated: true)
+            })
+            .disposed(by: self.disposeBag)
         
     }
 
@@ -121,4 +138,80 @@ class PhotoDetailsViewController: BaseViewController {
     }
     */
 
+}
+
+extension PhotoDetailsViewController: ViewControllerAnimatable{
+    enum AnimationState{
+        case normal
+        case expanded
+    }
+    
+    func animation(animationState: AnimationState) {
+        switch animationState {
+        case .normal:
+            
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.likeCapsuleBtn.alpha = 1.0
+                    self.collectCapsuleBtn.alpha = 1.0
+                }
+            }
+            
+            anim(constraintParent: self.view) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.expandBtn.snp.remakeConstraints { (make) in
+                        make.right.equalTo(self.view).offset(-17.0)
+                        make.centerY.equalTo(self.likeCapsuleBtn)
+                    }
+                    
+                    self.opeartionView.snp.makeConstraints { (make) in
+                        make.left.right.equalTo(self.view)
+                        make.height.equalTo(30.0)
+                        make.centerY.equalTo(self.userCapsuleBtn)
+                    }
+                }
+            }
+            
+            
+            break
+        case .expanded:
+            
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.likeCapsuleBtn.alpha = 0
+                    self.collectCapsuleBtn.alpha = 0
+                }
+            }
+            
+            anim(constraintParent: self.view) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.expandBtn.snp.remakeConstraints { (make) in
+                        make.right.equalTo(self.view).offset(-17.0)
+                        make.centerY.equalTo(self.userCapsuleBtn)
+                    }
+                    
+                    self.opeartionView.snp.remakeConstraints { (make) in
+                        make.left.right.equalTo(self.view)
+                        make.height.equalTo(30.0)
+                        make.bottom.equalTo(self.view.snp.bottom).offset(self.opeartionView.frame.size.height)
+                    }
+                }
+            }
+            
+            break
+
+        }
+    }
 }
