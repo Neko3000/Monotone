@@ -29,6 +29,19 @@ class BaseNavigationController: UINavigationController {
         
     }
     
+    // MARK: Nav
+    func updateNavBarTransparent(transparent: Bool) {
+        
+    }
+    
+    func updateNavBarHidden(hidden: Bool) {
+        
+    }
+    
+    func updateNavItems() {
+        
+    }
+    
 
     /*
     // MARK: - Navigation

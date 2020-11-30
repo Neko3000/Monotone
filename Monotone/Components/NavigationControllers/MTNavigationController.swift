@@ -9,9 +9,6 @@ import UIKit
 
 class MTNavigationController: BaseNavigationController {
     
-    public var navbarHidden: Bool = false
-    public var navbarTransparent: Bool = false
-    
     private var logoBtn: UIButton!
     private var backBtn: UIButton!
     private var closeBtn: UIButton!
@@ -28,8 +25,11 @@ class MTNavigationController: BaseNavigationController {
     
     override func buildSubviews() {
         
-        self.configureNavigationBar(transparent: false)
-        
+        // configure.
+        self.updateNavBarTransparent(transparent: false)
+        self.updateNavBarHidden(hidden: false)
+
+        // logoBtn.
         self.logoBtn = UIButton()
         self.logoBtn.setImage(UIImage(named: "unsplash-logo")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.logoBtn.tintColor = ColorPalette.colorBlack
@@ -38,16 +38,18 @@ class MTNavigationController: BaseNavigationController {
         }
         self.logoBarButtonItem = UIBarButtonItem(customView: self.logoBtn)
         
+        // backBtn.
         self.backBtn = UIButton()
-        self.backBtn.setImage(UIImage(named: "navi-btn-back")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.backBtn.setImage(UIImage(named: "nav-btn-back")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.backBtn.tintColor = ColorPalette.colorBlack
         self.backBtn.snp.makeConstraints { (make) in
             make.width.height.equalTo(20.0)
         }
         self.backBarButtonItem = UIBarButtonItem(customView: self.backBtn)
         
+        // closeBtn.
         self.closeBtn = UIButton()
-        self.closeBtn.setImage(UIImage(named: "navi-btn-back")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.closeBtn.setImage(UIImage(named: "nav-btn-close")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeBtn.tintColor = ColorPalette.colorBlack
         self.closeBtn.snp.makeConstraints { (make) in
             make.width.height.equalTo(20.0)
@@ -55,8 +57,7 @@ class MTNavigationController: BaseNavigationController {
         self.closeBarButtonItem = UIBarButtonItem(customView: self.closeBtn)
     }
     
-    public func configureNavigationBar(transparent: Bool){
-        self.navigationBar.tintColor = ColorPalette.colorBlack
+    override public func updateNavBarTransparent(transparent: Bool){
         
         if(transparent){
             self.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -67,27 +68,23 @@ class MTNavigationController: BaseNavigationController {
         }
         else{
             self.navigationBar.barTintColor = ColorPalette.colorWhite
+            self.navigationBar.tintColor = ColorPalette.colorBlack
 
             self.navigationBar.isTranslucent = false
         }
-        
-//        // Background.
-//        self.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        self.navigationBar.shadowImage = UIImage()
-//        self.navigationBar.isTranslucent = true
-//        self.view.backgroundColor = .clear
-//
-//        if(!transparent){
-//            self.navigationBar.barTintColor = ColorPalette.colorWhite
-//        }
-//
-//        // Left items.
-//        self.navigationBar.backIndicatorImage = UIImage(named: "navi-btn-back")
-        
-
     }
     
-    public func updateNavgationItems(){
+    override public func updateNavBarHidden(hidden: Bool){
+        
+        if(hidden){
+            self.setNavigationBarHidden(true, animated: false)
+        }
+        else{
+            self.setNavigationBarHidden(false, animated: false)
+        }
+    }
+    
+    override public func updateNavItems(){
         
         if(self.viewControllers.count <= 1){
             self.topViewController!.navigationItem.leftBarButtonItems = [self.logoBarButtonItem]
@@ -98,17 +95,7 @@ class MTNavigationController: BaseNavigationController {
             self.topViewController!.navigationItem.rightBarButtonItems = [self.logoBarButtonItem]
         }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.updateNavgationItems()
-    }
-    
-    private func configureNavigationItems() {
-//        let closeNavigationItem = UIBarButtonItem(image: <#T##UIImage?#>, style: <#T##UIBarButtonItem.Style#>, target: <#T##Any?#>, action: <#T##Selector?#>)
-    }
-    
+
     /*
     // MARK: - Navigation
 

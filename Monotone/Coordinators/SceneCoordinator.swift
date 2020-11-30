@@ -210,8 +210,10 @@ extension SceneCoordinator: UINavigationControllerDelegate{
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         self.currentViewController = SceneCoordinator.actualViewController(for: viewController)
         
-        if let navVC = navigationController as? MTNavigationController{
-            
+        if let topVC = viewController as? BaseViewController,
+           let navVC = navigationController as? BaseNavigationController{
+            navVC.updateNavBarTransparent(transparent:topVC.navBarTransparent)
+            navVC.updateNavBarHidden(hidden:topVC.navBarHidden)
         }
     }
 }

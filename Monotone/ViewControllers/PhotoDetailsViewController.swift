@@ -34,6 +34,10 @@ class PhotoDetailsViewController: BaseViewController {
     
     override func buildSubviews() {
         self.view.backgroundColor = UIColor.black
+        
+        // navBar.
+        self.navBarTransparent = true
+        self.navBarHidden = true
                 
         // photoZoomableScrollView.
         self.photoZoomableScrollView = PhotoZoomableScrollView()

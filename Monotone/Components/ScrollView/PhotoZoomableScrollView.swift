@@ -12,6 +12,8 @@ import RxRelay
 import Kingfisher
 
 class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
+    
+    private let disposeBag: DisposeBag = DisposeBag()
         
     // MARK: Public
     public var photo: Photo?{
@@ -39,6 +41,20 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
     override func buildLogic(){
         
         //
+        
+        self.rx.observe(CGRect.self, #keyPath(UIView.bounds))
+            .filter({ (rect) -> Bool in
+                return rect != CGRect.zero
+            })
+            .distinctUntilChanged({ (rectA, rectB) -> Bool in
+                return rectA?.size == rectB?.size
+            })
+            .subscribe(onNext: { _ in
+
+                self.updatePhotoSize()
+                self.updatePhotoPosition()
+            })
+            .disposed(by: self.disposeBag)
     }
     
     func updatePhoto(){
@@ -80,16 +96,6 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
         let centerY = contentHeight > boundsHeight ? contentHeight / 2.0 : boundsHeight / 2.0 + self.bounds.origin.y;
         
         self.photoImageView.center = CGPoint(x: centerX, y: centerY)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if(self.photoUpdated){
-            self.updatePhotoSize()
-            self.updatePhotoPosition()
-            self.photoUpdated = false
-        }
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {

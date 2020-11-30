@@ -56,6 +56,9 @@ protocol ViewControllerAnimatable {
 // MARK: BaseViewController
 class BaseViewController: UIViewController, ViewControllerBindable, ViewControllerTransitionable {
     
+    var navBarTransparent: Bool = false
+    var navBarHidden: Bool = false
+    
     // MARK: ViewControllerBindable
     var viewModels: [BaseViewModel]?
 
