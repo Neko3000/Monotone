@@ -1,5 +1,5 @@
 //
-//  PhotoDetailsOpeartionView.swift
+//  PhotoDetailsOperationView.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/23.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class PhotoDetailsOpeartionView: BaseView {
+class PhotoDetailsOperationView: BaseView {
         
     public var downloadBtn: UIButton!
     public var shareBtn: UIButton!

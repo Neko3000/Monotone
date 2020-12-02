@@ -24,3 +24,15 @@
 "unsplash_home_segment_sustainability" = "Sustainability";
 "unsplash_home_search" = "Search";
 
+"unsplash_details_collect" = "Collect";
+
+"unsplash_info_since_to_last_month" = "since last month";
+"unsplash_info_camera_settings" = "Camera";
+"unsplash_info_camera_settings_make" = "Make";
+"unsplash_info_camera_settings_model" = "Model";
+"unsplash_info_camera_settings_focal_length" = "Focal Length";
+"unsplash_info_camera_settings_shtter_speed" = "Shutter Speed";
+"unsplash_info_camera_settings_aperture" = "Aperture";
+"unsplash_info_camera_settings_iso" = "ISO";
+"unsplash_info_camera_settings_dimensions" = "Dimentsions";
+

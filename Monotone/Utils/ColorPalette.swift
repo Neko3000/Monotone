@@ -73,6 +73,11 @@ class ColorPalette{
         return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#999999")
     }
     
+    public static var colorGrayHeavy:UIColor{
+        // FIXME: waiting dark color
+        return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#4a4a4a")
+    }
+    
     public static var colorWhite:UIColor{
         return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#ffffff")
     }

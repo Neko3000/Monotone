@@ -19,7 +19,7 @@ class PhotoDetailsViewController: BaseViewController {
     
     // MARK: Controls
     private var userCapsuleBtn: CapsuleButton!
-    private var opeartionView: PhotoDetailsOpeartionView!
+    private var operationView: PhotoDetailsOperationView!
     private var scrollView: PhotoZoomableScrollView!
     
     private var likeCapsuleBtn: CapsuleButton!
@@ -62,11 +62,12 @@ class PhotoDetailsViewController: BaseViewController {
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
         
-        // opeartionView.
-        self.opeartionView = PhotoDetailsOpeartionView()
-        self.view.addSubview(self.opeartionView)
-        self.opeartionView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(self.view)
+        // operationView.
+        self.operationView = PhotoDetailsOperationView()
+        self.view.addSubview(self.operationView)
+        self.operationView.snp.makeConstraints { (make) in
+            make.right.equalTo(self.view)
+            make.left.equalTo(self.userCapsuleBtn.snp.right)
             make.height.equalTo(30.0)
             make.centerY.equalTo(self.userCapsuleBtn)
         }
@@ -79,7 +80,7 @@ class PhotoDetailsViewController: BaseViewController {
         self.view.addSubview(self.likeCapsuleBtn)
         self.likeCapsuleBtn.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(17.0)
-            make.bottom.equalTo(self.view).offset(-68.0)
+            make.bottom.equalTo(self.userCapsuleBtn.snp.top).offset(-26.0)
         }
         
         // collectCapsuleBtn.
@@ -111,10 +112,24 @@ class PhotoDetailsViewController: BaseViewController {
         let photoDetailsViewModel = self.viewModel(type:PhotoDetailsViewModel.self)
         
         // scrollView.
-        photoDetailsViewModel?.output.photo.subscribe(onNext: { (photo) in
+        photoDetailsViewModel!.output.photo.subscribe(onNext: { (photo) in
             self.scrollView.photo = photo
         })
         .disposed(by: self.disposeBag)
+        
+        // operationView.
+        self.operationView.infoBtn.rx.tap
+            .subscribe(onNext: { _ in
+                let photo = photoDetailsViewModel!.output.photo.value
+
+                let args = [
+                    "photo" : photo
+                ]
+
+                self.transition(type: .present(.photoInfo(args), .fullScreen), with: nil)
+//                self.transition(type: .push(.photoInfo(args)), with: nil)
+            })
+            .disposed(by: self.disposeBag)
         
         // expandBtn.
         self.expandBtn.rx.tap
@@ -170,7 +185,7 @@ extension PhotoDetailsViewController: ViewControllerAnimatable{
                         make.centerY.equalTo(self.likeCapsuleBtn)
                     }
                     
-                    self.opeartionView.snp.makeConstraints { (make) in
+                    self.operationView.snp.remakeConstraints { (make) in
                         make.left.right.equalTo(self.view)
                         make.height.equalTo(30.0)
                         make.centerY.equalTo(self.userCapsuleBtn)
@@ -202,10 +217,10 @@ extension PhotoDetailsViewController: ViewControllerAnimatable{
                         make.centerY.equalTo(self.userCapsuleBtn)
                     }
                     
-                    self.opeartionView.snp.remakeConstraints { (make) in
+                    self.operationView.snp.remakeConstraints { (make) in
                         make.left.right.equalTo(self.view)
                         make.height.equalTo(30.0)
-                        make.bottom.equalTo(self.view.snp.bottom).offset(self.opeartionView.frame.size.height)
+                        make.bottom.equalTo(self.view.snp.bottom).offset(self.operationView.frame.size.height)
                     }
                 }
             }

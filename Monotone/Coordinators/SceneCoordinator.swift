@@ -14,11 +14,13 @@ import RxCocoa
 enum Scene {
     case home
     case photoDetails([String: Any]?)
+    case photoInfo([String: Any]?)
 }
 
 enum SceneContent {
     case home
     case photoDetails([String: Any]?)
+    case photoInfo([String: Any]?)
     case listPhotos([String: Any]?)
     case searchPhotos([String: Any]?)
     case empty
@@ -169,6 +171,13 @@ extension SceneCoordinator: FactoryCoordinator{
             
             return vc
             
+        case let .photoInfo(args):
+            let vc = PhotoInfoViewController()
+            let photoInfoVM = self.viewModel(sceneContent: .photoInfo(args))!
+            vc.bind(to: [photoInfoVM])
+            
+            return vc
+            
         default:
             return nil
         }
@@ -184,6 +193,10 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case let .photoDetails(args):
             let vm: PhotoDetailsViewModel = PhotoDetailsViewModel(services: nil, args: args)
+            return vm
+            
+        case let .photoInfo(args):
+            let vm: PhotoInfoViewModel = PhotoInfoViewModel(services: nil, args: args)
             return vm
             
         case let .listPhotos(args):
