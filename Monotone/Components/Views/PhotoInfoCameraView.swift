@@ -14,6 +14,9 @@ import RxRelay
 class PhotoInfoCameraView: BaseView {
     
     // MARK: Public
+    public var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
+    
+    /*
     public var make: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "")
     public var model: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "")
     public var focalLength: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "")
@@ -21,6 +24,7 @@ class PhotoInfoCameraView: BaseView {
     public var aperture: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "")
     public var iso: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "")
     public var dimensions: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "")
+    */
 
     // MARK: Controls
     private var cameraImageView: UIImageView!
@@ -133,19 +137,104 @@ class PhotoInfoCameraView: BaseView {
             make.top.equalTo(self.focalLengthLabel.snp.bottom).offset(6.0)
         }
         
+        self.shutterSpeedLabel = UILabel()
+        self.shutterSpeedLabel.text = "Shutter Speed"
+        self.shutterSpeedLabel.textColor = ColorPalette.colorGrayLight
+        self.shutterSpeedLabel.font = UIFont.systemFont(ofSize: 12)
+        self.addSubview(self.shutterSpeedLabel)
+        self.shutterSpeedLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.snp.right).multipliedBy(4/7.0)
+            make.top.equalTo(self.snp.bottom).multipliedBy(2/5.0)
+        }
+        
+        self.shutterSpeedContentLabel = UILabel()
+        self.shutterSpeedContentLabel.text = "1/250s"
+        self.shutterSpeedContentLabel.textColor = ColorPalette.colorGrayHeavy
+        self.shutterSpeedContentLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        self.addSubview(self.shutterSpeedContentLabel)
+        self.shutterSpeedContentLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.shutterSpeedLabel)
+            make.top.equalTo(self.shutterSpeedLabel.snp.bottom).offset(6.0)
+        }
+        
+        self.apertureLabel = UILabel()
+        self.apertureLabel.text = "Aperture"
+        self.apertureLabel.textColor = ColorPalette.colorGrayLight
+        self.apertureLabel.font = UIFont.systemFont(ofSize: 12)
+        self.addSubview(self.apertureLabel)
+        self.apertureLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self)
+            make.right.equalTo(self).multipliedBy(3/7.0)
+            make.top.equalTo(self.snp.bottom).multipliedBy(3/5.0)
+        }
+        
+        self.apertureContentLabel = UILabel()
+        self.apertureContentLabel.text = "ƒ/5.6"
+        self.apertureContentLabel.textColor = ColorPalette.colorGrayHeavy
+        self.apertureContentLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        self.addSubview(self.apertureContentLabel)
+        self.apertureContentLabel.snp.makeConstraints { (make) in
+            make.left.right.equalTo(self.apertureLabel)
+            make.top.equalTo(self.apertureLabel.snp.bottom).offset(6.0)
+        }
+        
+        self.isoLabel = UILabel()
+        self.isoLabel.text = "ISO"
+        self.isoLabel.textColor = ColorPalette.colorGrayLight
+        self.isoLabel.font = UIFont.systemFont(ofSize: 12)
+        self.addSubview(self.isoLabel)
+        self.isoLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.snp.right).multipliedBy(4/7.0)
+            make.top.equalTo(self.snp.bottom).multipliedBy(3/5.0)
+        }
+        
+        self.isoContentLabel = UILabel()
+        self.isoContentLabel.text = "400"
+        self.isoContentLabel.textColor = ColorPalette.colorGrayHeavy
+        self.isoContentLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        self.addSubview(self.isoContentLabel)
+        self.isoContentLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.isoLabel)
+            make.top.equalTo(self.isoLabel.snp.bottom).offset(6.0)
+        }
+        
+        self.dimensionsLabel = UILabel()
+        self.dimensionsLabel.text = "Dimensions"
+        self.dimensionsLabel.textColor = ColorPalette.colorGrayLight
+        self.dimensionsLabel.font = UIFont.systemFont(ofSize: 12)
+        self.addSubview(self.dimensionsLabel)
+        self.dimensionsLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self)
+            make.right.equalTo(self).multipliedBy(3/7.0)
+            make.top.equalTo(self.snp.bottom).multipliedBy(4/5.0)
+        }
+        
+        self.dimensionsContentLabel = UILabel()
+        self.dimensionsContentLabel.text = "2648 × 3310"
+        self.dimensionsContentLabel.textColor = ColorPalette.colorGrayHeavy
+        self.dimensionsContentLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        self.addSubview(self.dimensionsContentLabel)
+        self.dimensionsContentLabel.snp.makeConstraints { (make) in
+            make.left.right.equalTo(self.dimensionsLabel)
+            make.top.equalTo(self.dimensionsLabel.snp.bottom).offset(6.0)
+        }
     }
     
     override func buildLogic() {
         
         // Bindings
-        self.make.bind(to: self.makeLabel.rx.text).disposed(by: self.disposeBag)
-        self.model.bind(to: self.modelLabel.rx.text).disposed(by: self.disposeBag)
-        self.focalLength.bind(to: self.focalLengthLabel.rx.text).disposed(by: self.disposeBag)
-        self.shutterSpeed.bind(to: self.shutterSpeedLabel.rx.text).disposed(by: self.disposeBag)
-        self.aperture.bind(to: self.apertureLabel.rx.text).disposed(by: self.disposeBag)
-        self.iso.bind(to: self.isoLabel.rx.text).disposed(by: self.disposeBag)
-        self.dimensions.bind(to: self.dimensionsLabel.rx.text).disposed(by: self.disposeBag)
-
+        self.photo
+            .filter({ return $0 != nil })
+            .subscribe(onNext: { photo in
+                self.makeContentLabel.text = photo?.exif?.make ?? "-"
+                self.modelContentLabel.text = photo?.exif?.model ?? "-"
+                self.focalLengthContentLabel.text = photo?.exif?.focalLength ?? "-"
+                self.shutterSpeedContentLabel.text = photo?.exif?.exposureTime ?? "-"
+                self.apertureContentLabel.text = photo?.exif?.aperture ?? "-"
+                self.isoContentLabel.text = photo?.exif?.iso ?? "-"
+                self.dimensionsContentLabel.text = "\(photo?.width ?? 0) x \(photo?.height ?? 0)"
+        })
+            .disposed(by: self.disposeBag)
     }
 
 }

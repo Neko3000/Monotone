@@ -90,23 +90,23 @@ class HomeViewController: BaseViewController {
     override func buildLogic() {
         
         // ViewModel.
-        let homeViewModel = self.viewModel(type:HomeViewModel.self)
+        let homeViewModel = self.viewModel(type:HomeViewModel.self)!
 
         // homeJumbotronView & homeHeaderView
-        (self.homeJumbotronView.listOrderBy <=> homeViewModel!.input.listOrderBy)
+        (self.homeJumbotronView.listOrderBy <=> homeViewModel.input.listOrderBy)
             .disposed(by:self.disposeBag)
         
-        (self.homeHeaderView.listOrderBy <=> homeViewModel!.input.listOrderBy)
+        (self.homeHeaderView.listOrderBy <=> homeViewModel.input.listOrderBy)
             .disposed(by:self.disposeBag)
         
-        (self.homeHeaderView.searchQuery <=> homeViewModel!.input.searchQuery)
+        (self.homeHeaderView.searchQuery <=> homeViewModel.input.searchQuery)
             .disposed(by:self.disposeBag)
         
-        (self.homeHeaderView.topic <=> homeViewModel!.input.topic)
+        (self.homeHeaderView.topic <=> homeViewModel.input.topic)
             .disposed(by:self.disposeBag)
                 
         // CollectionView.
-        homeViewModel!.output.photos
+        homeViewModel.output.photos
             .bind(to: self.collectionView.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
                 (row, element, cell) in
                 
@@ -132,15 +132,15 @@ class HomeViewController: BaseViewController {
 
         // CollectionView MJRefresh.
         self.collectionView.mj_header!.refreshingBlock = {
-            homeViewModel!.input.reloadAction?.execute()
+            homeViewModel.input.reloadAction?.execute()
         }
             
         self.collectionView.mj_footer!.refreshingBlock = {
-            homeViewModel!.input.loadMoreAction?.execute()
+            homeViewModel.input.loadMoreAction?.execute()
         }
         
         // MJRefresh style.
-        homeViewModel!.output.reloading
+        homeViewModel.output.reloading
             .skipWhile({ $0 == true })
             .subscribe { (_) in
                 self.collectionView.mj_header!.endRefreshing()
@@ -148,7 +148,7 @@ class HomeViewController: BaseViewController {
             .disposed(by: self.disposeBag)
 
         
-        homeViewModel!.output.loadingMore
+        homeViewModel.output.loadingMore
             .skipWhile({ $0 == true })
             .subscribe { (_) in
                 self.collectionView.mj_footer!.endRefreshing()

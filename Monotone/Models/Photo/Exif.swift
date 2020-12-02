@@ -10,7 +10,7 @@ import ObjectMapper
 
 class Exif: Mappable {
 
-    var iso: Int?
+    var iso: String?
     var aperture: String?
     var model: String?
     var focalLength: String?

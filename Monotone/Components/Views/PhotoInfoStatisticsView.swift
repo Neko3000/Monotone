@@ -115,7 +115,7 @@ class PhotoInfoStatisticsView: BaseView {
         }
         
         self.likeCountCompareLabel = UILabel()
-        self.likeCountCompareLabel.text = "1817"
+        self.likeCountCompareLabel.text = "+1817"
         self.likeCountCompareLabel.textColor = ColorPalette.colorBlack
         self.likeCountCompareLabel.font = UIFont.systemFont(ofSize: 10)
         self.addSubview(self.likeCountCompareLabel)
@@ -162,7 +162,7 @@ class PhotoInfoStatisticsView: BaseView {
         }
         
         self.downloadCountCompareLabel = UILabel()
-        self.downloadCountCompareLabel.text = "17"
+        self.downloadCountCompareLabel.text = "+17"
         self.downloadCountCompareLabel.textColor = ColorPalette.colorBlack
         self.downloadCountCompareLabel.font = UIFont.systemFont(ofSize: 10)
         self.addSubview(self.downloadCountCompareLabel)
@@ -190,9 +190,9 @@ class PhotoInfoStatisticsView: BaseView {
     override func buildLogic() {
         
         // Bindings
-        self.viewCount.bind(to: self.viewCountLabel.rx.text).disposed(by: self.disposeBag)
-        self.likeCount.bind(to: self.likeCountLabel.rx.text).disposed(by: self.disposeBag)
-        self.downloadCount.bind(to: self.downloadCountLabel.rx.text).disposed(by: self.disposeBag)
+//        self.viewCount.bind(to: self.viewCountLabel.rx.text).disposed(by: self.disposeBag)
+//        self.likeCount.bind(to: self.likeCountLabel.rx.text).disposed(by: self.disposeBag)
+//        self.downloadCount.bind(to: self.downloadCountLabel.rx.text).disposed(by: self.disposeBag)
 
     }
 }

@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import Kingfisher
+
 class PhotoInfoViewController: BaseViewController {
     
     // MARK: Controls
@@ -15,6 +18,9 @@ class PhotoInfoViewController: BaseViewController {
     private var photoImageView: UIImageView!
     private var photoInfoStatisticsView: PhotoInfoStatisticsView!
     private var photoInfoCameraView: PhotoInfoCameraView!
+    
+    // MARK: Private
+    private let disposeBag: DisposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +66,7 @@ class PhotoInfoViewController: BaseViewController {
         self.photoInfoCameraView = PhotoInfoCameraView()
         self.view.addSubview(self.photoInfoCameraView)
         self.photoInfoCameraView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.center.y)
+            make.top.equalTo(self.view.snp.centerY).offset(20.0)
             make.left.equalTo(self.view).offset(16.0)
             make.right.equalTo(self.view).offset(-16.0)
             make.bottom.equalTo(self.view)
@@ -69,6 +75,19 @@ class PhotoInfoViewController: BaseViewController {
     
     override func buildLogic() {
         
+        // ViewModel.
+        let photoInfoViewModel = self.viewModel(type: PhotoInfoViewModel.self)!
+        
+        // Bindings.
+        photoInfoViewModel.output.photo.subscribe(onNext: { photo in
+            self.photoImageView.kf.setImage(with: URL(string: photo.urls?.regular ?? ""),
+                                            placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
+                                            options: [.transition(.fade(1.0)), .originalCache(.default)])
+        })
+        .disposed(by: self.disposeBag)
+        
+        photoInfoViewModel.output.photo.bind(to: self.photoInfoCameraView.photo)
+            .disposed(by: self.disposeBag)
     }
     
 

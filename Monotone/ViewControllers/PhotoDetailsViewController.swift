@@ -109,10 +109,10 @@ class PhotoDetailsViewController: BaseViewController {
     override func buildLogic() {
                 
         // ViewModel.
-        let photoDetailsViewModel = self.viewModel(type:PhotoDetailsViewModel.self)
+        let photoDetailsViewModel = self.viewModel(type:PhotoDetailsViewModel.self)!
         
         // scrollView.
-        photoDetailsViewModel!.output.photo.subscribe(onNext: { (photo) in
+        photoDetailsViewModel.output.photo.subscribe(onNext: { (photo) in
             self.scrollView.photo = photo
         })
         .disposed(by: self.disposeBag)
@@ -120,7 +120,7 @@ class PhotoDetailsViewController: BaseViewController {
         // operationView.
         self.operationView.infoBtn.rx.tap
             .subscribe(onNext: { _ in
-                let photo = photoDetailsViewModel!.output.photo.value
+                let photo = photoDetailsViewModel.output.photo.value
 
                 let args = [
                     "photo" : photo
