@@ -13,9 +13,13 @@ import RxRelay
 class PhotoInfoStatisticsView: BaseView {
     
     // MARK: Public
+    public var statistics: BehaviorRelay<Statistics?> = BehaviorRelay<Statistics?>(value: nil)
+    
+    /*
     public var viewCount: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "")
     public var likeCount: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "")
     public var downloadCount: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "")
+    */
     
     // MARK: Controls
     private var viewCountImageView: UIImageView!
@@ -73,19 +77,19 @@ class PhotoInfoStatisticsView: BaseView {
         self.viewCountCompareLabel.font = UIFont.systemFont(ofSize: 10)
         self.addSubview(self.viewCountCompareLabel)
         self.viewCountCompareLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.viewCountLabel.snp.bottom)
+            make.top.equalTo(self.viewCountLabel.snp.bottom).offset(4.0)
             make.centerX.equalTo(self.viewCountImageView)
             make.left.greaterThanOrEqualTo(self.snp.left).offset(10.0)
             make.right.lessThanOrEqualTo(self.snp.right).offset(-10.0)
         }
         
         self.viewSinceLastMonthLabel = UILabel()
-        self.viewSinceLastMonthLabel.text = "since last month"
+        self.viewSinceLastMonthLabel.text = NSLocalizedString("unsplash_info_since_to_last_month", comment: "since last month")
         self.viewSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight
         self.viewSinceLastMonthLabel.font = UIFont.systemFont(ofSize: 8)
         self.addSubview(self.viewSinceLastMonthLabel)
         self.viewSinceLastMonthLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.viewCountCompareLabel.snp.bottom)
+            make.top.equalTo(self.viewCountCompareLabel.snp.bottom).offset(2.0)
             make.centerX.equalTo(self.viewCountImageView)
             make.left.greaterThanOrEqualTo(self.snp.left).offset(10.0)
             make.right.lessThanOrEqualTo(self.snp.right).offset(-10.0)
@@ -120,19 +124,19 @@ class PhotoInfoStatisticsView: BaseView {
         self.likeCountCompareLabel.font = UIFont.systemFont(ofSize: 10)
         self.addSubview(self.likeCountCompareLabel)
         self.likeCountCompareLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.likeCountLabel.snp.bottom)
+            make.top.equalTo(self.likeCountLabel.snp.bottom).offset(4.0)
             make.centerX.equalTo(self.likeCountImageView)
             make.left.greaterThanOrEqualTo(self.snp.left).offset(10.0)
             make.right.lessThanOrEqualTo(self.snp.right).offset(-10.0)
         }
         
         self.likeSinceLastMonthLabel = UILabel()
-        self.likeSinceLastMonthLabel.text = "since last month"
+        self.likeSinceLastMonthLabel.text = NSLocalizedString("unsplash_info_since_to_last_month", comment: "since last month")
         self.likeSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight
         self.likeSinceLastMonthLabel.font = UIFont.systemFont(ofSize: 8)
         self.addSubview(self.likeSinceLastMonthLabel)
         self.likeSinceLastMonthLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.likeCountCompareLabel.snp.bottom)
+            make.top.equalTo(self.likeCountCompareLabel.snp.bottom).offset(2.0)
             make.centerX.equalTo(self.likeCountImageView)
             make.left.greaterThanOrEqualTo(self.snp.left).offset(10.0)
             make.right.lessThanOrEqualTo(self.snp.right).offset(-10.0)
@@ -167,19 +171,19 @@ class PhotoInfoStatisticsView: BaseView {
         self.downloadCountCompareLabel.font = UIFont.systemFont(ofSize: 10)
         self.addSubview(self.downloadCountCompareLabel)
         self.downloadCountCompareLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.downloadCountLabel.snp.bottom)
+            make.top.equalTo(self.downloadCountLabel.snp.bottom).offset(4.0)
             make.centerX.equalTo(self.downloadCountImageView)
             make.left.greaterThanOrEqualTo(self.snp.left).offset(10.0)
             make.right.lessThanOrEqualTo(self.snp.right).offset(-10.0)
         }
         
         self.downloadSinceLastMonthLabel = UILabel()
-        self.downloadSinceLastMonthLabel.text = "since last month"
+        self.downloadSinceLastMonthLabel.text = NSLocalizedString("unsplash_info_since_to_last_month", comment: "since last month")
         self.downloadSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight
         self.downloadSinceLastMonthLabel.font = UIFont.systemFont(ofSize: 8)
         self.addSubview(self.downloadSinceLastMonthLabel)
         self.downloadSinceLastMonthLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.downloadCountCompareLabel.snp.bottom)
+            make.top.equalTo(self.downloadCountCompareLabel.snp.bottom).offset(2.0)
             make.centerX.equalTo(self.downloadCountImageView)
             make.left.greaterThanOrEqualTo(self.snp.left).offset(10.0)
             make.right.lessThanOrEqualTo(self.snp.right).offset(-10.0)
@@ -190,9 +194,39 @@ class PhotoInfoStatisticsView: BaseView {
     override func buildLogic() {
         
         // Bindings
-//        self.viewCount.bind(to: self.viewCountLabel.rx.text).disposed(by: self.disposeBag)
-//        self.likeCount.bind(to: self.likeCountLabel.rx.text).disposed(by: self.disposeBag)
-//        self.downloadCount.bind(to: self.downloadCountLabel.rx.text).disposed(by: self.disposeBag)
+        self.statistics
+            .filter({ return $0 != nil })
+            .subscribe(onNext: { statistics in
+                
+                let numberFormatter = NumberFormatter()
+                numberFormatter.usesGroupingSeparator = true
+                numberFormatter.groupingSeparator = ","
+                numberFormatter.groupingSize = 3
+
+                if let viewCountTotal = statistics!.views?.total{
+                    self.viewCountLabel.text = numberFormatter.string(from: NSNumber(value: viewCountTotal))
+                }
+                if let likeCountTotal = statistics!.likes?.total{
+                    self.likeCountLabel.text = numberFormatter.string(from: NSNumber(value: likeCountTotal))
+                }
+                if let downloadCountTotal = statistics!.downloads?.total{
+                    self.downloadCountLabel.text = numberFormatter.string(from: NSNumber(value: downloadCountTotal))
+                }
+                
+                numberFormatter.positivePrefix = "+"
+                numberFormatter.negativePrefix = "-"
+                
+                if let viewCountChange = statistics!.views?.historical?.change{
+                    self.viewCountCompareLabel.text = numberFormatter.string(from: NSNumber(value: viewCountChange))
+                }
+                if let likeCountChange = statistics!.likes?.historical?.change{
+                    self.likeCountCompareLabel.text = numberFormatter.string(from: NSNumber(value: likeCountChange))
+                }
+                if let downloadCountChange = statistics!.downloads?.historical?.change{
+                    self.downloadCountCompareLabel.text = numberFormatter.string(from: NSNumber(value: downloadCountChange))
+                }
+        })
+            .disposed(by: self.disposeBag)
 
     }
 }

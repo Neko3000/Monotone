@@ -12,6 +12,6 @@ class GetTopicPhotosResponse: BaseResponse{
     public var results: [Photo]?
     
     override func mapping(map: Map) {
-        self.results <- map["results"]
+        results <- map["results"]
     }
 }

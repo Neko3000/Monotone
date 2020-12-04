@@ -13,13 +13,13 @@ import RxSwift
 class PhotoService: NetworkService {
 
     public func searchPhotos(query:String,
-                      page:Int? = 1,
-                      perPage:Int? = 10,
-                      orderBy:String? = "relevant",
-                      collections:[String]? = [],
-                      contentFilter:String? = "low",
-                      color:String? = "",
-                      oritentation:String? = "") -> Observable<[Photo]>{
+                             page:Int? = 1,
+                             perPage:Int? = 10,
+                             orderBy:String? = "relevant",
+                             collections:[String]? = [],
+                             contentFilter:String? = "low",
+                             color:String? = "",
+                             oritentation:String? = "") -> Observable<[Photo]>{
         
         let request: SearchPhotosRequest = SearchPhotosRequest()
         request.query = query
@@ -28,10 +28,11 @@ class PhotoService: NetworkService {
         
         return Observable.create { (observer) -> Disposable in
             
-            NetworkManager.shared.request(request: request, method: .get).subscribe { (json) in
+            NetworkManager.shared.request(request: request , method: .get).subscribe { (json) in
                 let response = SearchPhotosResponse(JSON: json)
+                let photos = response!.results!
                 
-                observer.onNext(response!.results!)
+                observer.onNext(photos)
                 observer.onCompleted()
 
             } onError: { (error) in
@@ -56,8 +57,36 @@ class PhotoService: NetworkService {
             
             NetworkManager.shared.request(request: request, method: .get).subscribe { (json) in
                 let response = ListPhotosResponse(JSON: json)
+                let photos = response!.results!
                 
-                observer.onNext(response!.results!)
+                observer.onNext(photos)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
+    
+    public func statisticizePhoto(id: String,
+                                  resolution: String? = "days",
+                                  quantity: Int? = 30) -> Observable<Statistics>{
+        
+        let request: StatisticizePhotoRequest = StatisticizePhotoRequest()
+        request.id = id
+        request.resolution = resolution
+        request.quantity = quantity
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request, method: .get).subscribe { (json) in
+                let response = StatisticizePhotoResponse(JSON: json)
+                let statistics = Statistics(JSON: response!.toJSON())!
+                
+                observer.onNext(statistics)
                 observer.onCompleted()
 
             } onError: { (error) in

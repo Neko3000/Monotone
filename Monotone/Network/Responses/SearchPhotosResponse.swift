@@ -14,8 +14,8 @@ class SearchPhotosResponse: BaseResponse{
     public var results: [Photo]?
     
     override func mapping(map: Map) {
-        self.total      <- map["total"]
-        self.totalPages <- map["total_pages"]
-        self.results    <- map["results"]
+        total      <- map["total"]
+        totalPages <- map["total_pages"]
+        results    <- map["results"]
     }
 }

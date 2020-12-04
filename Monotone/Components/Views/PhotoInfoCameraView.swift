@@ -66,7 +66,7 @@ class PhotoInfoCameraView: BaseView {
         }
         
         self.cameraLabel = UILabel()
-        self.cameraLabel.text = "Camera"
+        self.cameraLabel.text = NSLocalizedString("unsplash_info_camera_settings", comment: "Camera")
         self.cameraLabel.textColor = ColorPalette.colorBlack
         self.cameraLabel.font = UIFont.boldSystemFont(ofSize: 18)
         self.addSubview(self.cameraLabel)
@@ -76,7 +76,7 @@ class PhotoInfoCameraView: BaseView {
         }
         
         self.makeLabel = UILabel()
-        self.makeLabel.text = "Make"
+        self.makeLabel.text = NSLocalizedString("unsplash_info_camera_settings_make", comment: "Make")
         self.makeLabel.textColor = ColorPalette.colorGrayLight
         self.makeLabel.font = UIFont.systemFont(ofSize: 12)
         self.addSubview(self.makeLabel)
@@ -97,7 +97,7 @@ class PhotoInfoCameraView: BaseView {
         }
         
         self.modelLabel = UILabel()
-        self.modelLabel.text = "Model"
+        self.modelLabel.text = NSLocalizedString("unsplash_info_camera_settings_model", comment: "Model")
         self.modelLabel.textColor = ColorPalette.colorGrayLight
         self.modelLabel.font = UIFont.systemFont(ofSize: 12)
         self.addSubview(self.modelLabel)
@@ -117,7 +117,7 @@ class PhotoInfoCameraView: BaseView {
         }
         
         self.focalLengthLabel = UILabel()
-        self.focalLengthLabel.text = "Focal Length"
+        self.focalLengthLabel.text = NSLocalizedString("unsplash_info_camera_settings_focal_length", comment: "Focal Length")
         self.focalLengthLabel.textColor = ColorPalette.colorGrayLight
         self.focalLengthLabel.font = UIFont.systemFont(ofSize: 12)
         self.addSubview(self.focalLengthLabel)
@@ -138,7 +138,7 @@ class PhotoInfoCameraView: BaseView {
         }
         
         self.shutterSpeedLabel = UILabel()
-        self.shutterSpeedLabel.text = "Shutter Speed"
+        self.shutterSpeedLabel.text = NSLocalizedString("unsplash_info_camera_settings_shutter_speed", comment: "Shutter Speed")
         self.shutterSpeedLabel.textColor = ColorPalette.colorGrayLight
         self.shutterSpeedLabel.font = UIFont.systemFont(ofSize: 12)
         self.addSubview(self.shutterSpeedLabel)
@@ -158,7 +158,7 @@ class PhotoInfoCameraView: BaseView {
         }
         
         self.apertureLabel = UILabel()
-        self.apertureLabel.text = "Aperture"
+        self.apertureLabel.text = NSLocalizedString("unsplash_info_camera_settings_aperture", comment: "Aperture")
         self.apertureLabel.textColor = ColorPalette.colorGrayLight
         self.apertureLabel.font = UIFont.systemFont(ofSize: 12)
         self.addSubview(self.apertureLabel)
@@ -179,7 +179,7 @@ class PhotoInfoCameraView: BaseView {
         }
         
         self.isoLabel = UILabel()
-        self.isoLabel.text = "ISO"
+        self.isoLabel.text = NSLocalizedString("unsplash_info_camera_settings_iso", comment: "ISO")
         self.isoLabel.textColor = ColorPalette.colorGrayLight
         self.isoLabel.font = UIFont.systemFont(ofSize: 12)
         self.addSubview(self.isoLabel)
@@ -199,7 +199,7 @@ class PhotoInfoCameraView: BaseView {
         }
         
         self.dimensionsLabel = UILabel()
-        self.dimensionsLabel.text = "Dimensions"
+        self.dimensionsLabel.text = NSLocalizedString("unsplash_info_camera_settings_dimensions", comment: "Dimensions")
         self.dimensionsLabel.textColor = ColorPalette.colorGrayLight
         self.dimensionsLabel.font = UIFont.systemFont(ofSize: 12)
         self.addSubview(self.dimensionsLabel)

@@ -88,6 +88,8 @@ class PhotoInfoViewController: BaseViewController {
         
         photoInfoViewModel.output.photo.bind(to: self.photoInfoCameraView.photo)
             .disposed(by: self.disposeBag)
+        photoInfoViewModel.output.statistics.bind(to: self.photoInfoStatisticsView.statistics)
+            .disposed(by: self.disposeBag)
     }
     
 
