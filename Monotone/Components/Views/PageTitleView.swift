@@ -7,14 +7,24 @@
 
 import UIKit
 
+import RxSwift
+import RxRelay
+
 class PageTitleView: BaseView {
     
+    // MARK: Public
+    public var title: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    public var subtitle: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+
     // MARK: Controls
     private var titleLabel: UILabel!
-    private var dateLabel: UILabel!
+    private var subtitleLabel: UILabel!
     
     private var horizontalLineLong: UIView!
     private var horizontalLineShort: UIView!
+    
+    // MARK: Private
+    private let disposeBag: DisposeBag = DisposeBag()
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -36,12 +46,12 @@ class PageTitleView: BaseView {
             make.top.equalTo(self)
         }
         
-        self.dateLabel = UILabel()
-        self.dateLabel.textColor = ColorPalette.colorGrayLight
-        self.dateLabel.font = UIFont.systemFont(ofSize: 12)
-        self.dateLabel.text = "Published on November 28, 2018."
-        self.addSubview(self.dateLabel)
-        self.dateLabel.snp.makeConstraints { (make) in
+        self.subtitleLabel = UILabel()
+        self.subtitleLabel.textColor = ColorPalette.colorGrayLight
+        self.subtitleLabel.font = UIFont.systemFont(ofSize: 12)
+        self.subtitleLabel.text = "Published on November 28, 2018."
+        self.addSubview(self.subtitleLabel)
+        self.subtitleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(5.0)
             make.right.equalTo(self)
             make.top.equalTo(self.titleLabel.snp.bottom).offset(4.0)
@@ -73,5 +83,8 @@ class PageTitleView: BaseView {
 
     override func buildLogic() {
         
+        // Bindings
+        self.title.bind(to: self.titleLabel.rx.text).disposed(by: self.disposeBag)
+        self.subtitle.bind(to: self.subtitleLabel.rx.text).disposed(by: self.disposeBag)
     }
 }

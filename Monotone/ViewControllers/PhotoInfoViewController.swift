@@ -20,6 +20,12 @@ class PhotoInfoViewController: BaseViewController {
     private var photoInfoCameraView: PhotoInfoCameraSettingsView!
     
     // MARK: Private
+    private var dateFormatter: DateFormatter{
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        return dateFormatter
+    }
     private let disposeBag: DisposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -80,12 +86,25 @@ class PhotoInfoViewController: BaseViewController {
         
         // Bindings.
         photoInfoViewModel.output.photo.subscribe(onNext: { photo in
+            
+            // pageTitleView.
+            if let altDescription = photo.altDescription{
+                let title = altDescription.split(separator: " ").prefix(2).joined(separator: " ").capitalized
+                self.pageTitleView.title.accept(title)
+            }
+            
+            if let createdAt = photo.createdAt{
+                let subtitle = self.dateFormatter.string(from: createdAt)
+                self.pageTitleView.subtitle.accept(subtitle)
+            }
+            
+            // photoImageView.
             self.photoImageView.kf.setImage(with: URL(string: photo.urls?.regular ?? ""),
                                             placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
                                             options: [.transition(.fade(1.0)), .originalCache(.default)])
         })
         .disposed(by: self.disposeBag)
-        
+                
         photoInfoViewModel.output.photo.bind(to: self.photoInfoCameraView.photo)
             .disposed(by: self.disposeBag)
         photoInfoViewModel.output.statistics.bind(to: self.photoInfoStatisticsView.statistics)

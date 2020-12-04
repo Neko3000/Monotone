@@ -363,11 +363,11 @@
 			isa = PBXGroup;
 			children = (
 				1409A7962550EAAB0005B702 /* BaseView.swift */,
+				14009C74257607C300C70E6E /* PageTitleView.swift */,
 				143F567A254FEF320038761D /* HomeJumbotronView.swift */,
 				1433B8E22561190100FE9B1D /* HomeHeaderView.swift */,
 				14BE9CF0256BAA8500B0DB39 /* PhotoDetailsOperationView.swift */,
 				14009B022575D86700C70E6E /* PhotoInfoCameraSettingsView.swift */,
-				14009C74257607C300C70E6E /* PageTitleView.swift */,
 				14009C79257610E000C70E6E /* PhotoInfoStatisticsView.swift */,
 			);
 			path = Views;
