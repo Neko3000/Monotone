@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14009AFC2575D69200C70E6E /* PhotoInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009AFB2575D69200C70E6E /* PhotoInfoViewController.swift */; };
-		14009B032575D86700C70E6E /* PhotoInfoCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009B022575D86700C70E6E /* PhotoInfoCameraView.swift */; };
+		14009B032575D86700C70E6E /* PhotoInfoCameraSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009B022575D86700C70E6E /* PhotoInfoCameraSettingsView.swift */; };
 		14009C712575E7E100C70E6E /* PhotoInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009C702575E7E100C70E6E /* PhotoInfoViewModel.swift */; };
 		14009C75257607C300C70E6E /* PageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009C74257607C300C70E6E /* PageTitleView.swift */; };
 		14009C7A257610E000C70E6E /* PhotoInfoStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009C79257610E000C70E6E /* PhotoInfoStatisticsView.swift */; };
@@ -97,7 +97,7 @@
 /* Begin PBXFileReference section */
 		0DE40B09FB07DB642D48B327 /* Pods-Monotone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.debug.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.debug.xcconfig"; sourceTree = "<group>"; };
 		14009AFB2575D69200C70E6E /* PhotoInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoViewController.swift; sourceTree = "<group>"; };
-		14009B022575D86700C70E6E /* PhotoInfoCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoCameraView.swift; sourceTree = "<group>"; };
+		14009B022575D86700C70E6E /* PhotoInfoCameraSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoCameraSettingsView.swift; sourceTree = "<group>"; };
 		14009C702575E7E100C70E6E /* PhotoInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoViewModel.swift; sourceTree = "<group>"; };
 		14009C74257607C300C70E6E /* PageTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTitleView.swift; sourceTree = "<group>"; };
 		14009C79257610E000C70E6E /* PhotoInfoStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoStatisticsView.swift; sourceTree = "<group>"; };
@@ -366,7 +366,7 @@
 				143F567A254FEF320038761D /* HomeJumbotronView.swift */,
 				1433B8E22561190100FE9B1D /* HomeHeaderView.swift */,
 				14BE9CF0256BAA8500B0DB39 /* PhotoDetailsOperationView.swift */,
-				14009B022575D86700C70E6E /* PhotoInfoCameraView.swift */,
+				14009B022575D86700C70E6E /* PhotoInfoCameraSettingsView.swift */,
 				14009C74257607C300C70E6E /* PageTitleView.swift */,
 				14009C79257610E000C70E6E /* PhotoInfoStatisticsView.swift */,
 			);
@@ -685,7 +685,7 @@
 				1428403E2564BC56004C06DF /* Topic.swift in Sources */,
 				142840342564BA2E004C06DF /* TopicService.swift in Sources */,
 				143114C1255A788D00991676 /* SearchPhotosViewModel.swift in Sources */,
-				14009B032575D86700C70E6E /* PhotoInfoCameraView.swift in Sources */,
+				14009B032575D86700C70E6E /* PhotoInfoCameraSettingsView.swift in Sources */,
 				14E59E492557CA6A00F1FB60 /* Photo.swift in Sources */,
 				14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */,
 				14E59E912557FC5000F1FB60 /* NetworkError.swift in Sources */,

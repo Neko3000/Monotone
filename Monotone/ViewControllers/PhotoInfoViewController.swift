@@ -17,7 +17,7 @@ class PhotoInfoViewController: BaseViewController {
     
     private var photoImageView: UIImageView!
     private var photoInfoStatisticsView: PhotoInfoStatisticsView!
-    private var photoInfoCameraView: PhotoInfoCameraView!
+    private var photoInfoCameraView: PhotoInfoCameraSettingsView!
     
     // MARK: Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -63,7 +63,7 @@ class PhotoInfoViewController: BaseViewController {
         }
         
         // photoInfoCameraView.
-        self.photoInfoCameraView = PhotoInfoCameraView()
+        self.photoInfoCameraView = PhotoInfoCameraSettingsView()
         self.view.addSubview(self.photoInfoCameraView)
         self.photoInfoCameraView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.snp.centerY).offset(20.0)

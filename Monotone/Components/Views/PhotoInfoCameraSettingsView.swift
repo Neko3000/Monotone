@@ -1,5 +1,5 @@
 //
-//  PhotoInfoCameraView.swift
+//  PhotoInfoCameraSettingsView.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/12/1.
@@ -11,7 +11,7 @@ import SnapKit
 import RxSwift
 import RxRelay
 
-class PhotoInfoCameraView: BaseView {
+class PhotoInfoCameraSettingsView: BaseView {
     
     // MARK: Public
     public var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
