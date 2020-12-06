@@ -131,6 +131,18 @@ class PhotoDetailsViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
+        self.operationView.shareBtn.rx.tap
+            .subscribe(onNext: { _ in
+                let photo = photoDetailsViewModel.output.photo.value
+
+                let args = [
+                    "photo" : photo
+                ]
+
+                self.transition(type: .present(.photoShare(args), .fullScreen), with: nil)
+            })
+            .disposed(by: self.disposeBag)
+        
         // expandBtn.
         self.expandBtn.rx.tap
             .subscribe(onNext: { _ in

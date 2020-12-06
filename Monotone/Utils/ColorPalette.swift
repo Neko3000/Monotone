@@ -82,6 +82,9 @@ class ColorPalette{
         return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#ffffff")
     }
     
+    public static var colorShadow:UIColor{
+        return UIColor.black.alpha(0.3)
+    }
     
     // More
     public static var colorDenim:UIColor{

@@ -9,6 +9,7 @@ import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
         
+    // MARK: Controls
     public var photoImageView: UIImageView!
     public var defaultImageView: UIImageView!
     

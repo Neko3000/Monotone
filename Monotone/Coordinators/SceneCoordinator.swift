@@ -15,12 +15,14 @@ enum Scene {
     case home
     case photoDetails([String: Any]?)
     case photoInfo([String: Any]?)
+    case photoShare([String: Any]?)
 }
 
 enum SceneContent {
     case home
     case photoDetails([String: Any]?)
     case photoInfo([String: Any]?)
+    case photoShare([String: Any]?)
     case listPhotos([String: Any]?)
     case searchPhotos([String: Any]?)
     case empty
@@ -110,9 +112,6 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             self.currentViewController = SceneCoordinator.actualViewController(for: targetVC)
             
             break
-
-        default:
-            break
         }
     
         
@@ -178,8 +177,13 @@ extension SceneCoordinator: FactoryCoordinator{
             
             return vc
             
-        default:
-            return nil
+        case let .photoShare(args):
+            let vc = PhotoShareViewController()
+            let photoInfoVM = self.viewModel(sceneContent: .photoShare(args))!
+            vc.bind(to: [photoInfoVM])
+            
+            return vc
+
         }
     }
     
@@ -197,6 +201,10 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case let .photoInfo(args):
             let vm: PhotoInfoViewModel = PhotoInfoViewModel(services: [PhotoService()], args: args)
+            return vm
+            
+        case let .photoShare(args):
+            let vm: PhotoShareViewModel = PhotoShareViewModel(services: nil, args: args)
             return vm
             
         case let .listPhotos(args):
