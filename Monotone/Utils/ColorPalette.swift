@@ -83,7 +83,7 @@ class ColorPalette{
     }
     
     public static var colorShadow:UIColor{
-        return UIColor.black.alpha(0.3)
+        return UIColor.black.alpha(0.09)
     }
     
     // More

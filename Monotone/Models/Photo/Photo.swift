@@ -53,7 +53,7 @@ class Photo: Equatable, Mappable{
         description    <- map["description"]
         altDescription <- map["alt_description"]
         urls           <- map["urls"]
-        links          <- map["linkes"]
+        links          <- map["links"]
         likes          <- map["likes"]
         likedByUser    <- map["liked_by_user"]
         likedByUser    <- map["liked_by_user"]

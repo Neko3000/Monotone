@@ -14,6 +14,7 @@ class Links: Mappable{
     public var photos: String?
     public var likes: String?
     public var download: String?
+    public var downloadLocation: String?
     
     init() {
         
@@ -24,10 +25,13 @@ class Links: Mappable{
     }
     
     func mapping(map: Map) {
-        self.selfLink   <- map["self"]
-        self.html       <- map["html"]
-        self.photos     <- map["photos"]
-        self.likes      <- map["likes"]
+        selfLink           <- map["self"]
+        html               <- map["html"]
+        photos             <- map["photos"]
+        likes              <- map["likes"]
+        download           <- map["download"]
+        downloadLocation   <- map["download_location"]
+
     }
     
 }

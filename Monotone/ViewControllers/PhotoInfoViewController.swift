@@ -44,6 +44,7 @@ class PhotoInfoViewController: BaseViewController {
             make.left.equalTo(15.0)
             make.right.equalTo(-15.0)
             make.top.equalTo(self.view.safeAreaLayoutGuide).offset(40.0)
+            make.height.equalTo(50.0)
         }
         
         // photoImageView.
@@ -53,7 +54,7 @@ class PhotoInfoViewController: BaseViewController {
         self.photoImageView.layer.masksToBounds = true
         self.view.addSubview(self.photoImageView)
         self.photoImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.pageTitleView.snp.bottom).offset(17.0)
+            make.top.equalTo(self.pageTitleView.snp.bottom).offset(30.0)
             make.left.equalTo(15.0)
             make.right.equalTo(self.view.snp.right).multipliedBy(4.0/7)
             make.bottom.equalTo(self.view).multipliedBy(1/2.0)

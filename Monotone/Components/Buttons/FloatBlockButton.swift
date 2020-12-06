@@ -28,64 +28,62 @@ class FloatBlockButton: BaseButton {
         
         self.backgroundColor = ColorPalette.colorWhite
         
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        self.setTitleColor(ColorPalette.colorBlack, for: .normal)
+        
         self.layer.cornerRadius = 6.0
-        self.layer.masksToBounds = true
+        // self.layer.masksToBounds = true
         
-        // Layout.
-        self.centerVertically()
-        
-        // Shadow.
-        self.layer.applySketchShadow(color: ColorPalette.colorShadow, alpha: 1.0, x: 0, y: 2.0, blur: 10.0, spread: 0)
     }
-    
+     
     override func buildLogic() {
         super.buildLogic()
         
-        self.rx.observe(CGRect.self, #keyPath(UIView.bounds))
-            .filter({ (rect) -> Bool in
-                return rect != CGRect.zero
-            })
-            .distinctUntilChanged({ (rectA, rectB) -> Bool in
-                return rectA?.size == rectB?.size
-            })
-            .subscribe(onNext: { _ in
-
-                self.centerVertically()
-            })
-            .disposed(by: self.disposeBag)
     }
     
     // https://stackoverflow.com/questions/4201959/label-under-image-in-uibutton
     // by RaffAl at Jun/20.
-    private func centerVertically(padding: CGFloat = 6.0) {
-            guard
-                let imageViewSize = self.imageView?.frame.size,
-                let titleLabelSize = self.titleLabel?.frame.size else {
-                return
-            }
-            
-            let totalHeight = imageViewSize.height + titleLabelSize.height + padding
-            
-            self.imageEdgeInsets = UIEdgeInsets(
-                top: -(totalHeight - imageViewSize.height),
-                left: 0.0,
-                bottom: 0.0,
-                right: -titleLabelSize.width
-            )
-            
-            self.titleEdgeInsets = UIEdgeInsets(
-                top: 0.0,
-                left: -imageViewSize.width,
-                bottom: -(totalHeight - titleLabelSize.height),
-                right: 0.0
-            )
-            
-            self.contentEdgeInsets = UIEdgeInsets(
-                top: 0.0,
-                left: 0.0,
-                bottom: titleLabelSize.height,
-                right: 0.0
-            )
+    private func centerVertically(padding: CGFloat = 0) {
+        guard
+            let imageViewSize = self.imageView?.frame.size,
+            let titleLabelSize = self.titleLabel?.frame.size else {
+            return
         }
 
+        let totalHeight = imageViewSize.height + titleLabelSize.height + padding
+
+        self.imageEdgeInsets = UIEdgeInsets(
+            top: -(totalHeight - imageViewSize.height),
+            left: 0.0,
+            bottom: 0.0,
+            right: -titleLabelSize.width
+        )
+
+        self.titleEdgeInsets = UIEdgeInsets(
+            top: 0.0,
+            left: -imageViewSize.width,
+            bottom: -(totalHeight - titleLabelSize.height),
+            right: 0.0
+        )
+
+        self.contentEdgeInsets = UIEdgeInsets(
+            top: 10.0,
+            left: 0.0,
+            bottom: titleLabelSize.height,
+            right: 0.0
+        )
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.centerVertically()
+        self.applyShadow()
+    }
+    
+    private func applyShadow() {
+        // Shadow.
+        self.layer.applySketchShadow(color: ColorPalette.colorShadow, alpha: 1.0, x: 0, y: 2.0, blur: 10.0, spread: 0)
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 6.0).cgPath
+    }
 }

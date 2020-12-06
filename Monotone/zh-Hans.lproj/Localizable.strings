@@ -38,3 +38,6 @@
 "unsplash_info_camera_settings_aperture" = "光圈";
 "unsplash_info_camera_settings_iso" = "ISO";
 "unsplash_info_camera_settings_dimensions" = "分辨率";
+
+"unsplash_share_title" = "分享";
+"unsplash_share_subtitle_prefix" = "由 %@ 拍摄";

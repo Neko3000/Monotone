@@ -36,3 +36,5 @@
 "unsplash_info_camera_settings_iso" = "ISO";
 "unsplash_info_camera_settings_dimensions" = "Dimensions";
 
+"unsplash_share_title" = "Share";
+"unsplash_share_subtitle_prefix" = "Photo by %@";

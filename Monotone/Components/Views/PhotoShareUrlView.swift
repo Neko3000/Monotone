@@ -33,25 +33,33 @@ class PhotoShareUrlView: BaseView{
     override func buildSubviews() {
         super.buildSubviews()
         
+        self.layer.borderWidth = 1.0
+        self.layer.borderColor = ColorPalette.colorBlack.cgColor
+        
+        self.layer.cornerRadius = 6.0
+        self.layer.masksToBounds = true
+        
         // urlLabel.
         self.urlLabel = UILabel()
         self.urlLabel.font = UIFont.systemFont(ofSize: 12)
         self.urlLabel.textColor = ColorPalette.colorGrayLight
         self.urlLabel.text = "https://unsplash.com/photos/3wKKpxlZr1Q"
         self.urlLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        self.urlLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         self.addSubview(self.urlLabel)
         self.urlLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(10.0)
+            make.left.equalTo(self).offset(11.0)
             make.centerY.equalTo(self)
         }
         
         // copyBtn.
         self.copyBtn = UIButton()
         self.copyBtn.backgroundColor = ColorPalette.colorBlack
-        self.copyBtn.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        self.copyBtn.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        self.copyBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12.0)
         self.copyBtn.setTitle("Copy Link", for: .normal)
+        self.copyBtn.layer.cornerRadius = 2.0
+        self.copyBtn.layer.masksToBounds = true
+        self.copyBtn.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        self.copyBtn.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         self.addSubview(self.copyBtn)
         self.copyBtn.snp.makeConstraints { (make) in
             make.right.equalTo(self).offset(-10.0)
