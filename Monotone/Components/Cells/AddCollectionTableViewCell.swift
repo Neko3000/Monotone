@@ -17,6 +17,7 @@ class AddCollectionTableViewCell: UITableViewCell {
     public var lockImageView: UIImageView!
     public var plusImageView: UIImageView!
     
+    // MARK: - Life Cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

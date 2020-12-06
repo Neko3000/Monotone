@@ -13,23 +13,25 @@ import Kingfisher
 
 class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
     
-    private let disposeBag: DisposeBag = DisposeBag()
-        
-    // MARK: Public
+    // MARK: - Public
     public var photo: Photo?{
         didSet{
             self.updatePhoto()
         }
     }
     
-    // MARK: Private
+    // MARK: - Private
     private var photoUpdated: Bool = false
+    private let disposeBag: DisposeBag = DisposeBag()
     
-    // MARK: Controls
+    // MARK: - Controls
     public var photoImageView: UIImageView!
     
-    // MARK: Life Cycle
+    // MARK: - Life Cycle
     override func buildSubviews(){
+        super.buildSubviews()
+        
+        // delegate.
         self.delegate = self
 
         // photoImageView.
@@ -39,8 +41,7 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
     }
     
     override func buildLogic(){
-        
-        //
+        super.buildLogic()
         
         self.rx.observe(CGRect.self, #keyPath(UIView.bounds))
             .filter({ (rect) -> Bool in

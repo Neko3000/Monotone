@@ -13,6 +13,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     public var photoImageView: UIImageView!
     public var defaultImageView: UIImageView!
     
+    // MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         

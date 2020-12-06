@@ -10,7 +10,7 @@ import UIKit
 
 import RxSwift
 
-// MARK: Coordinator
+// MARK: - Coordinator
 protocol Coordinator {
     var childCoordinators: [Coordinator] { get set }
     
@@ -18,7 +18,7 @@ protocol Coordinator {
     var currentViewController: UIViewController? { get }
 }
 
-// MARK: FactoryCoordinator
+// MARK: - FactoryCoordinator
 protocol FactoryCoordinator {
     associatedtype sceneType
     associatedtype sceneContentType
@@ -27,15 +27,16 @@ protocol FactoryCoordinator {
     func viewModel(sceneContent: sceneContentType) -> BaseViewModel?
 }
 
-// MARK: CoordinatorTransitionable
+// MARK: - CoordinatorTransitionable
 protocol CoordinatorTransitionable {
     @discardableResult func transition(type: SceneTransition, with args: [String : Any]?, animated: Bool) -> Observable<Void>
     @discardableResult func pop(animated: Bool) -> Observable<Void>
 }
 
-// MARK: BaseCoordinator
+// MARK: - BaseCoordinator
 class BaseCoordinator: NSObject, Coordinator {
 
+    // MARK: - Public
     var childCoordinators: [Coordinator] = [Coordinator]()
     var firstViewController: UIViewController{
         get {
@@ -46,6 +47,7 @@ class BaseCoordinator: NSObject, Coordinator {
     var window: UIWindow
     var currentViewController: UIViewController?
     
+    // MARK: - Life Cycle
     init(window: UIWindow){
         self.window = window
         self.currentViewController = window.rootViewController

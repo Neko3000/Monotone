@@ -7,13 +7,7 @@
 
 import UIKit
 
-import RxSwift
-import RxRelay
-
 class FloatBlockButton: BaseButton {
-    
-    // MARK: Private
-    let disposeBag: DisposeBag = DisposeBag()
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -23,6 +17,7 @@ class FloatBlockButton: BaseButton {
     }
     */
 
+    // MARK: - Life Cycle
     override func buildSubviews() {
         super.buildSubviews()
         

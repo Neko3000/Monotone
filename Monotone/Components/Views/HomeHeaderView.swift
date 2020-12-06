@@ -15,10 +15,12 @@ import RxCocoa
 
 class HomeHeaderView: BaseView {
     
+    // MARK: - Public
     public let searchQuery: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
     public let listOrderBy: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
     public let topic: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
 
+    // MARK: - Controls
     private var searchTextField: UITextField!
     
     private var segmentedControl: HMSegmentedControl!
@@ -42,9 +44,13 @@ class HomeHeaderView: BaseView {
             "sustainability" : NSLocalizedString("unsplash_home_segment_sustainability", comment: "Sustainability"),
         ]
     }
+    
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
     
+    // MARK: - Life Cycle
     override func buildSubviews() {
+        super.buildSubviews()
         
         // 
         self.backgroundColor = ColorPalette.colorWhite
@@ -98,6 +104,7 @@ class HomeHeaderView: BaseView {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // searchTextField
         self.searchTextField.rx.controlEvent(.editingDidEndOnExit)

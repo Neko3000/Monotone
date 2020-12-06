@@ -15,8 +15,10 @@ import RxRelay
 
 class HomeJumbotronView: BaseView {
     
+    // MARK: - Public
     public let listOrderBy: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
 
+    // MARK: - Controls
     private var menuBtn: UIButton!
     private var searchBtn: UIButton!
     private var titleLabel: UILabel!
@@ -30,6 +32,7 @@ class HomeJumbotronView: BaseView {
         ]
     }
     
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
 
     /*
@@ -40,7 +43,9 @@ class HomeJumbotronView: BaseView {
     }
     */
     
+    // MARK: - Life Cycle
     override func buildSubviews(){
+        super.buildSubviews()
         
         // 
         self.backgroundColor = ColorPalette.colorWhite
@@ -122,6 +127,7 @@ class HomeJumbotronView: BaseView {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // segmentedControl
         self.listOrderBy

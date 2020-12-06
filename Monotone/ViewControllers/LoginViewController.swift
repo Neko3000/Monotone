@@ -10,8 +10,10 @@ import SnapKit
 
 import SwiftyJSON
 
+// MARK: LoginViewController
 class LoginViewController: BaseViewController {
     
+    // MARK: - Controls
     private var logoImageView : UIImageView!
     private var facebookLoginBtn : UIButton!
     private var orLabel : UILabel!
@@ -24,6 +26,7 @@ class LoginViewController: BaseViewController {
     private var noAccountLabel : UILabel!
     private var registerBtn : UIButton!
     
+    // MARK: - Life Cycle
     convenience init() {
         self.init()
     }

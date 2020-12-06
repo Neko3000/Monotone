@@ -8,6 +8,11 @@
 import Foundation
 
 extension Array{
+    
+    
+    /// Find the first element by a specific type in an array.
+    /// - Parameter type: The specific type.
+    /// - Returns: The first element whose type is same to the spcific type.
     public func find<T>(by type: T.Type) -> T?{
         
         if let element = self.first(where: { (element) -> Bool in

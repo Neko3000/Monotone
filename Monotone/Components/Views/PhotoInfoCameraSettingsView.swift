@@ -56,7 +56,10 @@ class PhotoInfoCameraSettingsView: BaseView {
     }
     */
     
+    // MARK: - Life Cycle
     override func buildSubviews() {
+        super.buildSubviews()
+        
         self.cameraImageView = UIImageView()
         self.cameraImageView.image = UIImage(named: "info-camera")
         self.addSubview(self.cameraImageView)
@@ -221,6 +224,7 @@ class PhotoInfoCameraSettingsView: BaseView {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // Bindings
         self.photo

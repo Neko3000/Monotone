@@ -13,32 +13,33 @@ import Action
 
 class PhotoShareViewModel: BaseViewModel, ViewModelStreamable{
     
-    // MARK: Input
+    // MARK: - Input
     struct Input {
         var photo: BehaviorRelay<Photo> = BehaviorRelay<Photo>(value: Photo())
     }
     public var input: Input = Input()
     
-    // MARK: Output
+    // MARK: - Output
     struct Output {
         var photo: BehaviorRelay<Photo> = BehaviorRelay<Photo>(value: Photo())
     }
     public var output: Output = Output()
     
-    // MARK: Private
+    // MARK: - Private
 
     
-    // MARK: Inject
+    // MARK: - Inject
     override func inject(args: [String : Any]?) {
         if(args?["photo"] != nil){
             self.input.photo = BehaviorRelay(value: args!["photo"] as! Photo)
         }
     }
     
-    // MARK: Bind
+    // MARK: - Bind
     override func bind() {
         
         // Service.
+        //
         
         // Bindings.
         self.input.photo.bind(to: self.output.photo)

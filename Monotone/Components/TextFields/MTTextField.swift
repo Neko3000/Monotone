@@ -9,9 +9,11 @@ import UIKit
 
 class MTTextField: UITextField {
     
+    // MARK: - Public
     let iconLeftMargin: CGFloat = 10.0
     let textLeftMargin: CGFloat = 15.0
     
+    // MARK: - Life Cycle
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.leftViewRect(forBounds: bounds)
         rect.origin.x += iconLeftMargin

@@ -12,7 +12,7 @@ import Action
 
 class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
     
-    // MARK: Input
+    // MARK: - Input
     struct Input {
         var orderBy: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
         var loadMoreAction: Action<Void, [Photo]>?
@@ -20,7 +20,7 @@ class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
     }
     public var input:Input = Input()
     
-    // MARK: Output
+    // MARK: - Output
     struct Output {
         var photos: BehaviorSubject<[Photo]> = BehaviorSubject<[Photo]>(value: [])
         var loadingMore: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
@@ -28,17 +28,17 @@ class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
     }
     public var output: Output = Output()
     
-    // MARK: Private
+    // MARK: - Private
     private var nextLoadPage: Int = 1
     
-    // MARK: Inject
+    // MARK: - Inject
     override func inject(args: [String : Any]?) {
         if(args?["orderBy"] != nil){
             self.input.orderBy = BehaviorSubject<String>(value: args!["orderBy"] as? String ?? "")
         }
     }
     
-    // MARK: Bind
+    // MARK: - Bind
     override func bind() {
         
         // Service.

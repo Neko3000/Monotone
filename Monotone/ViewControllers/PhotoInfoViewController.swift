@@ -10,16 +10,17 @@ import UIKit
 import RxSwift
 import Kingfisher
 
+// MARK: PhotoDetailsViewController
 class PhotoInfoViewController: BaseViewController {
     
-    // MARK: Controls
+    // MARK: - Controls
     private var pageTitleView: PageTitleView!
     
     private var photoImageView: UIImageView!
     private var photoInfoStatisticsView: PhotoInfoStatisticsView!
     private var photoInfoCameraView: PhotoInfoCameraSettingsView!
     
-    // MARK: Private
+    // MARK: - Private
     private var dateFormatter: DateFormatter{
         
         let dateFormatter = DateFormatter()
@@ -27,7 +28,18 @@ class PhotoInfoViewController: BaseViewController {
         return dateFormatter
     }
     private let disposeBag: DisposeBag = DisposeBag()
+    
+    /*
+    // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -112,15 +124,4 @@ class PhotoInfoViewController: BaseViewController {
             .disposed(by: self.disposeBag)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

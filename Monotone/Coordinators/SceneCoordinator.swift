@@ -11,6 +11,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+// MARK: - Scene
 enum Scene {
     case home
     case photoDetails([String: Any]?)
@@ -18,6 +19,7 @@ enum Scene {
     case photoShare([String: Any]?)
 }
 
+// MARK: - SceneContent
 enum SceneContent {
     case home
     case photoDetails([String: Any]?)
@@ -28,10 +30,13 @@ enum SceneContent {
     case empty
 }
 
+// MARK: - SceneCoordinator
 class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     
+    // MARK: - Single Skeleton
     static var shared: SceneCoordinator!
     
+    // MARK: - Public
     override var currentViewController: UIViewController? {
         didSet{
             currentViewController?.tabBarController?.delegate = self
@@ -149,11 +154,12 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     }
 }
 
+// MARK: FactoryCoordinator
 extension SceneCoordinator: FactoryCoordinator{
     typealias sceneType = Scene
     typealias sceneContentType = SceneContent
     
-    // MARK: ViewController Factory
+    // MARK: - ViewController Factory
     func viewController(scene: Scene) -> BaseViewController?{
         
         switch scene {
@@ -188,7 +194,7 @@ extension SceneCoordinator: FactoryCoordinator{
         }
     }
     
-    // MARK: ViewModel Factory
+    // MARK: - ViewModel Factory
     func viewModel(sceneContent: SceneContent) -> BaseViewModel?{
         
         switch sceneContent {
@@ -222,12 +228,14 @@ extension SceneCoordinator: FactoryCoordinator{
     }
 }
 
+// MARK: - UITabBarControllerDelegate
 extension SceneCoordinator: UITabBarControllerDelegate{
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         self.currentViewController = SceneCoordinator.actualViewController(for: viewController)
     }
 }
 
+// MARK: - UINavigationControllerDelegate
 extension SceneCoordinator: UINavigationControllerDelegate{
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         self.currentViewController = SceneCoordinator.actualViewController(for: viewController)
@@ -240,6 +248,7 @@ extension SceneCoordinator: UINavigationControllerDelegate{
     }
 }
 
+// MARK: - UIAdaptivePresentationControllerDelegate
 extension SceneCoordinator: UIAdaptivePresentationControllerDelegate{
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         self.currentViewController = SceneCoordinator.actualViewController(for: presentationController.presentingViewController)

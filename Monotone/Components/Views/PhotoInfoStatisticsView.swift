@@ -48,7 +48,10 @@ class PhotoInfoStatisticsView: BaseView {
     }
     */
 
+    // MARK: - Life Cycle
     override func buildSubviews() {
+        super.buildSubviews()
+        
         self.viewCountImageView = UIImageView()
         self.viewCountImageView.image = UIImage(named: "info-view")
         self.addSubview(self.viewCountImageView)
@@ -192,6 +195,7 @@ class PhotoInfoStatisticsView: BaseView {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // Bindings
         self.statistics

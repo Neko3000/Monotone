@@ -9,17 +9,20 @@ import UIKit
 
 class CapsuleButton: BaseButton {
     
+    // MARK: - Enums
     enum BackgroundStyle{
         case normal
         case blur
     }
     
+    // MARK: - Public
     public var backgroundStyle: BackgroundStyle = .normal{
         didSet{
             self.updateBackgroundStyle()
         }
     }
     
+    // MARK: - Private
     private var blurBackgroundView: UIVisualEffectView!
     
     /*
@@ -30,7 +33,10 @@ class CapsuleButton: BaseButton {
     }
     */
 
+    // MARK: - Life Cycle
     override func buildSubviews(){
+        super.buildSubviews()
+        
         self.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         
         self.contentEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 25.0)
@@ -42,7 +48,7 @@ class CapsuleButton: BaseButton {
     }
     
     override func buildLogic(){
-        
+        super.buildLogic()
     }
     
     override func layoutSubviews() {

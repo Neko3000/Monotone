@@ -13,7 +13,7 @@ import Action
 
 class HomeViewModel: BaseViewModel, ViewModelStreamable{
     
-    // MARK: Input
+    // MARK: - Input
     struct Input {
         var searchQuery: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
         var listOrderBy: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
@@ -23,7 +23,7 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
     }
     public var input: Input = Input()
     
-    // MARK: Output
+    // MARK: - Output
     struct Output {
         var photos: BehaviorRelay<[Photo]> = BehaviorRelay<[Photo]>(value: [])
         var loadingMore: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
@@ -31,11 +31,11 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
     }
     public var output: Output = Output()
     
-    // MARK: Private
+    // MARK: - Private
     private var nextLoadPage: Int = 1
     private var emptyPhotos: [Photo] = Array.init(repeating: Photo(), count: 10)
     
-    // MARK: Inject
+    // MARK: - Inject
     override func inject(args: [String : Any]?) {
         if(args?["searchQuery"] != nil){
             self.input.searchQuery = BehaviorRelay(value: args!["searchQuery"] as! String)
@@ -45,7 +45,7 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         }
     }
     
-    // MARK: Bind
+    // MARK: - Bind
     override func bind() {
         
         // Service
@@ -151,6 +151,5 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
             }
             .disposed(by: self.disposeBag)
     }
-    
     
 }

@@ -31,9 +31,10 @@ class PhotoShareSMView: BaseView {
         // Drawing code
     }
     */
-
+    
+    // MARK: - Life Cycle
     override func buildSubviews() {
-        
+        super.buildSubviews()
         
         self.stackView = UIStackView()
         self.stackView.axis = .vertical
@@ -86,6 +87,7 @@ class PhotoShareSMView: BaseView {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // Bindings
         

@@ -14,17 +14,19 @@ import Kingfisher
 import anim
 import ViewAnimator
 
+// MARK: HomeViewController
 class HomeViewController: BaseViewController {
     
-    // MARK: Priavte
-    private let disposeBag: DisposeBag = DisposeBag()
-    
-    // MARK: Controls
+    // MARK: - Controls
     private var homeJumbotronView: HomeJumbotronView!
     private var homeHeaderView: HomeHeaderView!
         
     private var collectionView: UICollectionView!
     
+    // MARK: - Priavte
+    private let disposeBag: DisposeBag = DisposeBag()
+    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -184,9 +186,9 @@ class HomeViewController: BaseViewController {
 
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout{
     
-    // MARK: CollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if(indexPath.row % 4 == 0 || indexPath.row % 4 == 3 ){
@@ -198,13 +200,17 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
     }
 }
 
+// MARK: - ViewControllerAnimatable
 extension HomeViewController: ViewControllerAnimatable{
+    
+    // MARK: - Enums
     enum AnimationState {
         case showJumbotronView
         case showHeaderView
     }
     
-    // MARK: Animation for homeJumbotronView & homeHeaderView
+    // MARK: - Animation
+    // Animation for homeJumbotronView & homeHeaderView
     func animation(animationState: AnimationState) {
         switch animationState {
         case .showHeaderView:

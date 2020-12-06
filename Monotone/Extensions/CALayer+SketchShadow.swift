@@ -9,6 +9,15 @@ import Foundation
 import UIKit
 
 extension CALayer {
+    
+    /// Create a shadow by parameters just like provided in Sketch.
+    /// - Parameters:
+    ///   - color: Color
+    ///   - alpha: Alpha
+    ///   - x: x
+    ///   - y: y
+    ///   - blur: Blur
+    ///   - spread: Spread
     func applySketchShadow(
         color: UIColor = .black,
         alpha: Float = 0.5,

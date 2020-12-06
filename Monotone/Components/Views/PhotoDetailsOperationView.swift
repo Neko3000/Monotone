@@ -11,13 +11,13 @@ import SnapKit
 
 class PhotoDetailsOperationView: BaseView {
         
+    // MARK: - Controls
     public var downloadBtn: UIButton!
     public var shareBtn: UIButton!
     public var infoBtn: UIButton!
     
     private var stackView: UIStackView!
     
-
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -26,7 +26,9 @@ class PhotoDetailsOperationView: BaseView {
     }
     */
     
+    // MARK: - Life Cycle
     override func buildSubviews() {
+        super.buildSubviews()
         
         // stackView.
         self.stackView = UIStackView()
@@ -70,5 +72,8 @@ class PhotoDetailsOperationView: BaseView {
         }
         self.stackView.addArrangedSubview(self.infoBtn!)
     }
-
+    
+    override func buildLogic() {
+        super.buildLogic()
+    }
 }

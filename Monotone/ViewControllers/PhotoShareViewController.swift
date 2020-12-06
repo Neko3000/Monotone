@@ -10,18 +10,30 @@ import UIKit
 import RxSwift
 import Kingfisher
 
+// MARK: - PhotoShareViewController
 class PhotoShareViewController: BaseViewController {
     
-    // MARK: Controls
+    // MARK: - Controls
     private var pageTitleView: PageTitleView!
     
     private var photoImageView: UIImageView!
     private var photoShareSMView: PhotoShareSMView!
     private var photoShareUrlView: PhotoShareUrlView!
     
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
+    
+    /*
+    // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+    // MARK - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -107,15 +119,4 @@ class PhotoShareViewController: BaseViewController {
         .disposed(by: self.disposeBag)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -9,10 +9,7 @@ import UIKit
 
 class BaseNavigationController: UINavigationController {
 
-    // MARK: Variables
-    //
-        
-    // MARK: LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,7 +26,6 @@ class BaseNavigationController: UINavigationController {
         
     }
     
-    // MARK: Nav
     func updateNavBarTransparent(transparent: Bool) {
         
     }

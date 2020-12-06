@@ -11,6 +11,7 @@ import Hue
 
 class ColorPalette{
     
+    // MARK: - Static Methods
     public static func colorWithDarkMode(darkColor:UIColor, lightColor:UIColor) -> UIColor{
         var color:UIColor?
         if #available(iOS 13.0, *){
@@ -54,6 +55,7 @@ class ColorPalette{
         return color.resolvedColor(with: traitCollection)
     }
     
+    // MARK: - Color Varibles
     public static var colorBlack:UIColor{
         return self.colorWithDarkMode(darkColorHex: "#ffffff", lightColorHex: "#000000")
     }
@@ -86,7 +88,7 @@ class ColorPalette{
         return UIColor.black.alpha(0.09)
     }
     
-    // More
+    // FIXME: To Archive
     public static var colorDenim:UIColor{
         return self.colorWithDarkMode(darkColorHex: "#3c5080", lightColorHex: "#3c5080")
     }

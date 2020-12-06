@@ -12,12 +12,10 @@ import RxSwift
 import Kingfisher
 import anim
 
+// MARK: PhotoDetailsViewController
 class PhotoDetailsViewController: BaseViewController {
-    
-    // MARK: Priavte
-    private let disposeBag: DisposeBag = DisposeBag()
-    
-    // MARK: Controls
+
+    // MARK: - Controls
     private var userCapsuleBtn: CapsuleButton!
     private var operationView: PhotoDetailsOperationView!
     private var scrollView: PhotoZoomableScrollView!
@@ -26,10 +24,14 @@ class PhotoDetailsViewController: BaseViewController {
     private var collectCapsuleBtn: CapsuleButton!
     private var expandBtn: UIButton!
     
-    // MARK: ViewControllers
+    // MARK: - ViewControllers
     private var photoInfoViewController: PhotoInfoViewController!
     private var photoShareViewController: PhotoShareViewController!
     
+    // MARK: - Priavte
+    private let disposeBag: DisposeBag = DisposeBag()
+    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -171,12 +173,16 @@ class PhotoDetailsViewController: BaseViewController {
 
 }
 
+// MARK: - ViewControllerAnimatable
 extension PhotoDetailsViewController: ViewControllerAnimatable{
+    
+    // MARK: - Enums
     enum AnimationState{
         case normal
         case expanded
     }
     
+    // MARK: - Animation
     func animation(animationState: AnimationState) {
         switch animationState {
         case .normal:

@@ -8,12 +8,15 @@
 import UIKit
 import RxSwift
 
-// MARK: ViewControllerBindable
+// MARK: - ViewControllerBindable
 protocol ViewControllerBindable{
     
+    // Stored ViewModels.
     var viewModels: [BaseViewModel]? { get }
     
+    // Bind to ViewControler.
     func bind(to viewModels: [BaseViewModel]?)
+    // Retrieve ViewModels.
     func viewModel<T: BaseViewModel>(type: T.Type) -> T?
 }
 
@@ -28,9 +31,11 @@ extension ViewControllerBindable where Self: BaseViewController{
     }
 }
 
-// MARK: ViewControllerTransitionable
+// MARK: - ViewControllerTransitionable
 protocol ViewControllerTransitionable {
+    // Transition.
     @discardableResult func transition(type: SceneTransition, with args: [String : Any]?, animated: Bool) -> Observable<Void>
+    // Pop.
     @discardableResult func pop() -> Observable<Void>
 }
 
@@ -46,23 +51,33 @@ extension ViewControllerTransitionable where Self: BaseViewController{
     }
 }
 
-// MARK: ViewControllerAnimatable
+// MARK: - ViewControllerAnimatable
 protocol ViewControllerAnimatable {
     associatedtype AnimationStateType
     
     func animation(animationState: AnimationStateType)
 }
 
-// MARK: BaseViewController
+// MARK: - BaseViewController
 class BaseViewController: UIViewController, ViewControllerBindable, ViewControllerTransitionable {
     
+    // MARK: - Public
     var navBarTransparent: Bool = false
     var navBarHidden: Bool = false
     
-    // MARK: ViewControllerBindable
     var viewModels: [BaseViewModel]?
+    
+    /*
+    // MARK: - Navigation
 
-    // MARK: Life Cycle
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -78,16 +93,5 @@ class BaseViewController: UIViewController, ViewControllerBindable, ViewControll
     func buildLogic() {
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

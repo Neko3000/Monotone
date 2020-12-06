@@ -9,7 +9,7 @@ import Foundation
 
 import RxSwift
 
-// MARK: ViewModelServable
+// MARK: - ViewModelServable
 protocol ViewModelServable {
     init(services: [NetworkService]?, args: [String: Any]?)
     
@@ -24,7 +24,7 @@ extension ViewModelServable where Self: BaseViewModel{
     }
 }
 
-// MARK: ViewModelStreamble
+// MARK: - ViewModelStreamble
 protocol ViewModelStreamable {
     associatedtype InputType
     associatedtype OutputType
@@ -37,7 +37,7 @@ extension ViewModelStreamable where Self: BaseViewModel{
 
 }
 
-// MARK: BaseViewModel
+// MARK: - BaseViewModel
 class BaseViewModel: ViewModelServable {
     
     let disposeBag: DisposeBag = DisposeBag()

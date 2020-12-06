@@ -10,14 +10,15 @@ import UIKit
 import RxSwift
 import Kingfisher
 
+// MARK: - PhotoAddCollectionViewController
 class PhotoAddCollectionViewController: BaseViewController {
     
-    // MARK: Controls
+    // MARK: - Controls
     private var pageTitleView: PageTitleView!
-    
+
     private var tableView: UITableView!
     
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -26,6 +27,17 @@ class PhotoAddCollectionViewController: BaseViewController {
         // Do any additional setup after loading the view.
     }
     
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
+    // MARK: - Life Cycle
     override func buildSubviews() {
         self.view.backgroundColor = UIColor.white
         
@@ -45,19 +57,11 @@ class PhotoAddCollectionViewController: BaseViewController {
     override func buildLogic() {
         
         // ViewModel.
+        //
         
         // Bindings.
+        //
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

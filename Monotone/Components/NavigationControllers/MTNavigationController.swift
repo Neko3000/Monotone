@@ -9,6 +9,7 @@ import UIKit
 
 class MTNavigationController: BaseNavigationController {
     
+    // MARK: - Controls
     private var logoBtn: UIButton!
     private var backBtn: UIButton!
     private var closeBtn: UIButton!
@@ -17,6 +18,7 @@ class MTNavigationController: BaseNavigationController {
     private var backBarButtonItem: UIBarButtonItem!
     private var closeBarButtonItem: UIBarButtonItem!
 
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +26,7 @@ class MTNavigationController: BaseNavigationController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
         // configure.
         self.updateNavBarTransparent(transparent: false)

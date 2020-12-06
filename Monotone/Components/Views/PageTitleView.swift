@@ -12,18 +12,18 @@ import RxRelay
 
 class PageTitleView: BaseView {
     
-    // MARK: Public
+    // MARK: - Public
     public var title: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     public var subtitle: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
 
-    // MARK: Controls
+    // MARK: - Controls
     private var titleLabel: UILabel!
     private var subtitleLabel: UILabel!
     
     private var horizontalLineLong: UIView!
     private var horizontalLineShort: UIView!
     
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
 
     /*
@@ -34,8 +34,11 @@ class PageTitleView: BaseView {
     }
     */
     
+    // MARK: - Life Cycle
     override func buildSubviews() {
+        super.buildSubviews()
         
+        // titleLabel.
         self.titleLabel = UILabel()
         self.titleLabel.textColor = ColorPalette.colorBlack
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 26)
@@ -46,6 +49,7 @@ class PageTitleView: BaseView {
             make.top.equalTo(self)
         }
         
+        // subtitleLabel.
         self.subtitleLabel = UILabel()
         self.subtitleLabel.textColor = ColorPalette.colorGrayLight
         self.subtitleLabel.font = UIFont.systemFont(ofSize: 12)
@@ -58,6 +62,7 @@ class PageTitleView: BaseView {
             make.bottom.equalTo(self)
         }
         
+        // horizontalLineShort.
         self.horizontalLineShort = UIView()
         self.horizontalLineShort.backgroundColor = ColorPalette.colorBlack
         self.addSubview(self.horizontalLineShort)
@@ -68,6 +73,7 @@ class PageTitleView: BaseView {
             make.height.equalTo(1.0)
         }
         
+        // horizontalLineLong.
         self.horizontalLineLong = UIView()
         self.horizontalLineLong.backgroundColor = ColorPalette.colorBlack
         self.addSubview(self.horizontalLineLong)
@@ -82,6 +88,7 @@ class PageTitleView: BaseView {
     }
 
     override func buildLogic() {
+        super.buildLogic()
         
         // Bindings
         self.title.bind(to: self.titleLabel.rx.text).disposed(by: self.disposeBag)
