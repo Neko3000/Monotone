@@ -58,7 +58,8 @@ class PhotoShareViewController: BaseViewController {
         self.photoShareSMView = PhotoShareSMView()
         self.view.addSubview(self.photoShareSMView)
         self.photoShareSMView.snp.makeConstraints { (make) in
-            make.top.bottom.equalTo(self.photoImageView)
+            make.top.equalTo(self.photoImageView).offset(10.0)
+            make.bottom.equalTo(self.photoImageView).offset(-10.0)
             make.left.equalTo(self.photoImageView.snp.right)
             make.right.equalTo(self.view)
         }
