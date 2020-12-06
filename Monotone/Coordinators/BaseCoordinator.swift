@@ -66,7 +66,7 @@ class BaseCoordinator: NSObject, Coordinator {
         if let navigationController = vc as? UINavigationController{
             
             vc = navigationController.viewControllers.first!
-            return actualViewController(for: navigationController)
+            return actualViewController(for: vc)
         }
         
         return vc

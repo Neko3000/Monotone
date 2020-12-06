@@ -7,33 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A5EA06D8-35A2-4457-9CB9-DD1C4C8AAA45"
-            shouldBeEnabled = "No"
+            uuid = "A772A864-F4BC-45E3-9379-96F43344D5A5"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Monotone/ViewControllers/PhotoShareViewController.swift"
+            filePath = "Monotone/Coordinators/SceneCoordinator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "buildLogic()"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "presentationControllerDidDismiss(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "62A66000-C41E-40F5-BDA7-CEEB7C4C3700"
+            uuid = "C759DF80-5AB7-4414-B349-DD7EC97F2C43"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Monotone/Components/Buttons/FloatBlockButton.swift"
+            filePath = "Monotone/Coordinators/SceneCoordinator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "centerVertically(padding:)"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "transition(type:with:animated:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C759DF80-5AB7-4414-B349-DD7EC97F2C43 - f7220238a4f5868d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Monotone.SceneCoordinator.transition(type: Monotone.SceneTransition, with: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, animated: Swift.Bool) -&gt; RxSwift.Observable&lt;()&gt;"
+                  moduleName = "Monotone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Coordinators/SceneCoordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "3376">
+               </Location>
+               <Location
+                  uuid = "C759DF80-5AB7-4414-B349-DD7EC97F2C43 - e49625b52f13ef9f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 () -&gt; () in Monotone.SceneCoordinator.transition(type: Monotone.SceneTransition, with: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, animated: Swift.Bool) -&gt; RxSwift.Observable&lt;()&gt;"
+                  moduleName = "Monotone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Coordinators/SceneCoordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

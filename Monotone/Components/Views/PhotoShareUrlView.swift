@@ -45,7 +45,7 @@ class PhotoShareUrlView: BaseView{
         self.urlLabel.textColor = ColorPalette.colorGrayLight
         self.urlLabel.text = "https://unsplash.com/photos/3wKKpxlZr1Q"
         self.urlLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        self.urlLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        self.urlLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         self.addSubview(self.urlLabel)
         self.urlLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(11.0)
@@ -61,7 +61,7 @@ class PhotoShareUrlView: BaseView{
         self.copyBtn.layer.masksToBounds = true
         self.copyBtn.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         self.copyBtn.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        self.copyBtn.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        self.copyBtn.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         self.addSubview(self.copyBtn)
         self.copyBtn.snp.makeConstraints { (make) in
             make.right.equalTo(self).offset(-10.0)

@@ -36,6 +36,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
         didSet{
             currentViewController?.tabBarController?.delegate = self
             currentViewController?.navigationController?.delegate = self
+            currentViewController?.presentationController?.delegate = self
         }
     }
 
@@ -236,6 +237,12 @@ extension SceneCoordinator: UINavigationControllerDelegate{
             navVC.updateNavBarTransparent(transparent:topVC.navBarTransparent)
             navVC.updateNavBarHidden(hidden:topVC.navBarHidden)
         }
+    }
+}
+
+extension SceneCoordinator: UIAdaptivePresentationControllerDelegate{
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        self.currentViewController = SceneCoordinator.actualViewController(for: presentationController.presentingViewController)
     }
 }
 

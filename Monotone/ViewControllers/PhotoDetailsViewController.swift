@@ -26,6 +26,10 @@ class PhotoDetailsViewController: BaseViewController {
     private var collectCapsuleBtn: CapsuleButton!
     private var expandBtn: UIButton!
     
+    // MARK: ViewControllers
+    private var photoInfoViewController: PhotoInfoViewController!
+    private var photoShareViewController: PhotoShareViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -126,7 +130,7 @@ class PhotoDetailsViewController: BaseViewController {
                     "photo" : photo
                 ]
 
-                self.transition(type: .present(.photoInfo(args), .fullScreen), with: nil)
+                self.transition(type: .present(.photoInfo(args), .pageSheet), with: nil, animated: true)
 //                self.transition(type: .push(.photoInfo(args)), with: nil)
             })
             .disposed(by: self.disposeBag)
@@ -139,7 +143,7 @@ class PhotoDetailsViewController: BaseViewController {
                     "photo" : photo
                 ]
 
-                self.transition(type: .present(.photoShare(args), .fullScreen), with: nil)
+                self.transition(type: .present(.photoShare(args), .pageSheet), with: nil, animated: true)
             })
             .disposed(by: self.disposeBag)
         
