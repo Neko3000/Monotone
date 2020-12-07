@@ -21,4 +21,5 @@ target 'Monotone' do
   pod 'anim', '1.2.10'
   pod 'ViewAnimator', '3.0.1'
   pod 'Hero', '1.5.0'
+  pod 'BEMCheckBox', '1.4.1'
 end
