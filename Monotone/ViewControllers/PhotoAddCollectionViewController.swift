@@ -87,10 +87,6 @@ class PhotoAddCollectionViewController: BaseViewController {
         let photoAddCollectionViewModel = self.viewModel(type: PhotoAddCollectionViewModel.self)!
         
         // Bindings.
-        
-        // pageTitleView.
-        self.pageTitleView.title.accept(NSLocalizedString("unsplash_add_collection_title", comment: "Add to collection"))
-        
         photoAddCollectionViewModel.output.collections
             .bind(to: self.tableView.rx.items(cellIdentifier: "AddCollectionTableViewCell")){
                 (row, element, cell) in
@@ -99,7 +95,15 @@ class PhotoAddCollectionViewController: BaseViewController {
                 pcell.collection.accept(element)
             }
             .disposed(by: self.disposeBag)
-            
+        
+        // pageTitleView.
+        self.pageTitleView.title.accept(NSLocalizedString("unsplash_add_collection_title", comment: "Add to collection"))
+        
+        self.createCollectionBtn.rx.tap.subscribe(onNext: { _ in
+
+            self.transition(type: .present(.photoCreateCollection(nil), .pageSheet), with: nil, animated: true)
+        })
+        .disposed(by: self.disposeBag)
     }
     
     override func viewDidLayoutSubviews() {

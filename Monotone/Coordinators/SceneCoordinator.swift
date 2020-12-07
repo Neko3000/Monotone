@@ -18,6 +18,7 @@ enum Scene {
     case photoInfo([String: Any]?)
     case photoShare([String: Any]?)
     case photoAddCollection([String: Any]?)
+    case photoCreateCollection([String: Any]?)
 }
 
 // MARK: - SceneContent
@@ -27,6 +28,8 @@ enum SceneContent {
     case photoInfo([String: Any]?)
     case photoShare([String: Any]?)
     case photoAddCollection([String: Any]?)
+    case photoCreateCollection([String: Any]?)
+
     case listPhotos([String: Any]?)
     case searchPhotos([String: Any]?)
     case empty
@@ -199,6 +202,13 @@ extension SceneCoordinator: FactoryCoordinator{
             vc.bind(to: [photoAddCollectionVM])
             
             return vc
+            
+        case let .photoCreateCollection(args):
+            let vc = PhotoCreateCollectionViewController()
+            let photoCreateCollectionVM = self.viewModel(sceneContent: .photoCreateCollection(args))!
+            vc.bind(to: [photoCreateCollectionVM])
+            
+            return vc
 
         }
     }
@@ -225,6 +235,10 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case let .photoAddCollection(args):
             let vm: PhotoAddCollectionViewModel = PhotoAddCollectionViewModel(services: [UserService()], args: args)
+            return vm
+            
+        case let .photoCreateCollection(args):
+            let vm: PhotoCreateCollectionViewModel = PhotoCreateCollectionViewModel(services: nil, args: args)
             return vm
             
         case let .listPhotos(args):

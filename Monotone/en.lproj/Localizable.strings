@@ -41,3 +41,5 @@
 
 "unsplash_add_collection_title" = "Add to collection";
 "unsplash_add_collection_total_photo_prefix" = "%d Photos";
+
+"unsplash_create_collection_title" = "Create new collection";

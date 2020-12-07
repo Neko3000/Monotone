@@ -44,3 +44,5 @@
 
 "unsplash_add_collection_title" = "添加到收藏";
 "unsplash_add_collection_total_photo_prefix" = "%d 张图片";
+
+"unsplash_create_collection_title" = "创建一个收藏";
