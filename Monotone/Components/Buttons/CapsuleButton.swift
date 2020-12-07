@@ -45,6 +45,7 @@ class CapsuleButton: BaseButton {
         // blurBackgroundView.
         let blurEffect = UIBlurEffect(style: .light)
         self.blurBackgroundView = UIVisualEffectView(effect: blurEffect)
+        self.blurBackgroundView.isUserInteractionEnabled = false
     }
     
     override func buildLogic(){

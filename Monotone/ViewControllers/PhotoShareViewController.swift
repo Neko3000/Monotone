@@ -93,10 +93,11 @@ class PhotoShareViewController: BaseViewController {
         let photoShareViewModel = self.viewModel(type: PhotoShareViewModel.self)!
         
         // Bindings.
+        
+        // pageTitleView.
+        self.pageTitleView.title.accept(NSLocalizedString("unsplash_share_title", comment: "Share"))
+        
         photoShareViewModel.output.photo.subscribe(onNext: { photo in
-            
-            // pageTitleView.
-            self.pageTitleView.title.accept(NSLocalizedString("unsplash_share_title", comment: "Share"))
             
             if let editor = photo.user?.username{
                 let subtitle = String(format: NSLocalizedString("unsplash_share_subtitle_prefix", comment: "Photo by %@"), editor)

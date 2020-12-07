@@ -38,3 +38,6 @@
 
 "unsplash_share_title" = "Share";
 "unsplash_share_subtitle_prefix" = "Photo by %@";
+
+"unsplash_add_collection_title" = "Add to collection";
+"unsplash_add_collection_total_photo_prefix" = "%d Photos";

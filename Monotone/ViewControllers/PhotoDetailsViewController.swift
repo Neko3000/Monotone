@@ -149,6 +149,19 @@ class PhotoDetailsViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
+        // collectCapsuleBtn.
+        self.collectCapsuleBtn.rx.tap
+            .subscribe(onNext: { _ in
+                let username = photoDetailsViewModel.output.photo.value.user?.username
+
+                let args = [
+                    "username" : "neko3000"
+                ]
+
+                self.transition(type: .present(.photoAddCollection(args), .pageSheet), with: nil, animated: true)
+            })
+            .disposed(by: self.disposeBag)
+        
         // expandBtn.
         self.expandBtn.rx.tap
             .subscribe(onNext: { _ in

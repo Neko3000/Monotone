@@ -41,3 +41,6 @@
 
 "unsplash_share_title" = "分享";
 "unsplash_share_subtitle_prefix" = "由 %@ 拍摄";
+
+"unsplash_add_collection_title" = "添加到收藏";
+"unsplash_add_collection_total_photo_prefix" = "%d 张图片";
