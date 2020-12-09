@@ -10,8 +10,16 @@ import UIKit
 class MTTextField: UITextField {
     
     // MARK: - Public
-    let iconLeftMargin: CGFloat = 10.0
-    let textLeftMargin: CGFloat = 15.0
+    public var iconLeftMargin: CGFloat = 10.0{
+        didSet{
+            self.layoutIfNeeded()
+        }
+    }
+    public var textLeftMargin: CGFloat = 15.0{
+        didSet{
+            self.layoutIfNeeded()
+        }
+    }
     
     // MARK: - Life Cycle
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {

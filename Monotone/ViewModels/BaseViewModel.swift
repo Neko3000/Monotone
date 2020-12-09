@@ -11,15 +11,15 @@ import RxSwift
 
 // MARK: - ViewModelServable
 protocol ViewModelServable {
-    init(services: [NetworkService]?, args: [String: Any]?)
+    init(services: [BaseService]?, args: [String: Any]?)
     
-    var services: [NetworkService]? { get }
-    func service<T: NetworkService>(type: T.Type) -> T?
+    var services: [BaseService]? { get }
+    func service<T: BaseService>(type: T.Type) -> T?
 }
 
 extension ViewModelServable where Self: BaseViewModel{
     
-    func service<T>(type: T.Type) -> T? where T : NetworkService {
+    func service<T>(type: T.Type) -> T? where T : BaseService {
         return self.services?.find(by: type)
     }
 }
@@ -43,9 +43,9 @@ class BaseViewModel: ViewModelServable {
     let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: ViewModelServable
-    var services: [NetworkService]?
+    var services: [BaseService]?
     
-    required init(services: [NetworkService]?, args: [String: Any]? ) {
+    required init(services: [BaseService]?, args: [String: Any]? ) {
         self.services = services
         
         self.inject(args: args)

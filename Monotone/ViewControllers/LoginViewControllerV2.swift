@@ -10,8 +10,8 @@ import SnapKit
 
 import SwiftyJSON
 
-// MARK: LoginViewController
-class LoginViewController: BaseViewController {
+// MARK: LoginViewControllerV2
+class LoginViewControllerV2: BaseViewController {
     
     // MARK: - Controls
     private var logoImageView : UIImageView!

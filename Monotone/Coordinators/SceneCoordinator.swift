@@ -13,6 +13,7 @@ import RxCocoa
 
 // MARK: - Scene
 enum Scene {
+    case login
     case home
     case photoDetails([String: Any]?)
     case photoInfo([String: Any]?)
@@ -23,6 +24,7 @@ enum Scene {
 
 // MARK: - SceneContent
 enum SceneContent {
+    case login
     case home
     case photoDetails([String: Any]?)
     case photoInfo([String: Any]?)
@@ -168,6 +170,12 @@ extension SceneCoordinator: FactoryCoordinator{
     func viewController(scene: Scene) -> BaseViewController?{
         
         switch scene {
+        case .login:
+            let vc = LoginViewController()
+            let loginVM = self.viewModel(sceneContent:.login)!
+            vc.bind(to: [loginVM])
+            return vc
+            
         case .home:
             let vc = HomeViewController()
             let homeVM = self.viewModel(sceneContent:.home)!
@@ -217,6 +225,10 @@ extension SceneCoordinator: FactoryCoordinator{
     func viewModel(sceneContent: SceneContent) -> BaseViewModel?{
         
         switch sceneContent {
+        case .login:
+            let vm: LoginViewModel = LoginViewModel(services: [AuthService()], args: nil)
+            return vm
+            
         case .home:
             let vm: HomeViewModel = HomeViewModel(services: [PhotoService(),TopicService()], args: nil)
             return vm

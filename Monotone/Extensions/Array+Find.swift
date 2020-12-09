@@ -16,10 +16,15 @@ extension Array{
     public func find<T>(by type: T.Type) -> T?{
         
         if let element = self.first(where: { (element) -> Bool in
-            let elementTypeStr = String(describing: element.self).components(separatedBy: ".").last!
-            let typeStr = String(describing: type).components(separatedBy: ".").last!
+            // FIXME:
+            // The code here is complicated cause the result of String(describing: element.self) always return
+            // some values with their memory addresses, "<Monotone.AuthService: 0x280e34a00>" etc.
+            // I can not figure the reason yet.
             
-            return elementTypeStr == typeStr
+            let elementSplitedStrs = String(describing: element.self).components(separatedBy: ["."," ",":"])
+            let typeStr = String(describing: type)
+                        
+            return elementSplitedStrs.contains(typeStr)
         }){
             return element as? T
         }

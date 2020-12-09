@@ -7,66 +7,26 @@
 
 import Foundation
 
-import Alamofire
 import SwiftyJSON
+import Alamofire
 import RxSwift
-
-let debugKeyFileName: String = "api_keys_debug"
-let sampleKeyFileName: String = "api_keys_sample"
 
 class NetworkManager{
     static let shared = NetworkManager()
     
     init() {
-        // Load API keys
-        self.loadAPIKeys()
+        
     }
     
     let domain: String = "https://api.unsplash.com/"
-    
-    // MARK: API keys
-    public var accessKey : String{
-        get{ return _accessKey ?? "" }
-    }
-    
-    public var secretKey : String{
-        get{ return _secretKey ?? "" }
-    }
-    
-    private var _accessKey : String?
-    private var _secretKey : String?
     
     // MARK: Header
     private var headers : HTTPHeaders{
         get{
             return [
-            "Authorization" : "Client-ID \(self.accessKey)"
+                "Authorization" : "Client-ID \(AppManager.shared.accessKey)"
             ]
         }
-    }
-    
-    private func loadAPIKeys(){
-        
-        var keyFilePath: String? = nil
-        keyFilePath = Bundle.main.path(forResource: sampleKeyFileName, ofType: "json") ?? keyFilePath
-        keyFilePath = Bundle.main.path(forResource: debugKeyFileName, ofType: "json") ?? keyFilePath
-        
-        if(keyFilePath == nil){
-            fatalError("API key file does not exist.")
-        }
-        
-        do{
-            let data = try Data(contentsOf: URL(fileURLWithPath: keyFilePath!))
-            let json = try JSON(data: data)
-            
-            self._accessKey = json["api_keys"]["access_key"].string
-            self._secretKey = json["api_keys"]["secret_key"].string
-            
-        }
-        catch{
-            fatalError("Could not read json format for API key file.")
-        }
-
     }
     
     public func request(request:BaseRequest, method:HTTPMethod) -> Observable<[String: Any]>{
