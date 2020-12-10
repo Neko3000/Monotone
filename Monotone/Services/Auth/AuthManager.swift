@@ -13,6 +13,7 @@ import SwiftyJSON
 import RxSwift
 import RxRelay
 
+// MARK: AuthManager
 class AuthManager: NSObject{
     static let shared = AuthManager()
     
@@ -23,13 +24,21 @@ class AuthManager: NSObject{
         self.credential = AuthCredential.localCredential()
     }
     
-    let domain: String = "https://unsplash.com/oauth/"
-    
     // MARK: Public
+    public let domain: String = "https://unsplash.com/oauth/"
+    
     public var accessToken: String{
         get { return _accessToken ?? "" }
     }
-    public var credential: AuthCredential?
+    
+    public var credential: AuthCredential?{
+        didSet(credential){
+            if let credential = credential{
+                // Presistence.
+                AuthCredential.storeCredential(for: credential)
+            }
+        }
+    }
     
     // MARK: Private
     private var _accessToken: String?
@@ -67,12 +76,12 @@ class AuthManager: NSObject{
     }
     
     public func token(code: String) -> Observable<String>{
-                
+        
         let params = [
             "client_id" : AppManager.shared.credntial.accessKey,
             "client_secret": AppManager.shared.credntial.secretKey,
             "redirect_uri": AuthArguments.redirectUri,
-            "code": "iow",
+            "code": code,
             "grant_type": AuthArguments.grandType,
         ]
     
@@ -94,7 +103,7 @@ class AuthManager: NSObject{
                             let scope = json["scope"].stringValue
                             let createAt = json["create_at"].doubleValue
                             
-                            AuthCredential.storeCredential(for: AuthCredential(accessToken: accessToken, tokenType: tokenType, scope: scope, createAt: createAt))
+                            self.credential = AuthCredential(accessToken: accessToken, tokenType: tokenType, scope: scope, createAt: createAt)
                             
                             observer.onNext(json["access_token"].stringValue)
                         }
@@ -137,6 +146,7 @@ class AuthManager: NSObject{
 
 }
 
+// MARK: ASWebAuthenticationPresentationContextProviding
 extension AuthManager: ASWebAuthenticationPresentationContextProviding{
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return ASPresentationAnchor()

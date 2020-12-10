@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: AuthCredential
 class AuthCredential: NSObject, NSCoding{
     
     init(accessToken: String,
@@ -58,6 +59,7 @@ class AuthCredential: NSObject, NSCoding{
     }
 }
 
+// MARK: UserDefaults Presistence.
 extension AuthCredential{
     
     public static func localCredential() -> AuthCredential? {
