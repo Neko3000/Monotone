@@ -7,18 +7,20 @@
 
 import Foundation
 
+let USER_DEFAULTS_KEY_AUTH_CREDENTIAL = "USER_DEFAULT_KEY_AUTH_CREDENTIAL"
+
 // MARK: AuthCredential
-class AuthCredential: NSObject, NSCoding{
+class AuthCredential: NSObject, NSCoding, NSSecureCoding{
     
     init(accessToken: String,
          tokenType: String,
          scope: String,
-         createAt: Double){
+         createdAt: Double){
         
         self._accessToken = accessToken
         self._tokenType = tokenType
         self._scope = scope
-        self._createAt = createAt
+        self._createdAt = createdAt
     }
     
     // MARK: Public
@@ -34,40 +36,43 @@ class AuthCredential: NSObject, NSCoding{
         get{ return _scope }
     }
     
-    public var createAt : Date{
-        get{ return Date(timeIntervalSince1970: _createAt) }
+    public var createdAt : Date{
+        get{ return Date(timeIntervalSince1970: _createdAt) }
     }
     
     // MARK: Private
     private var _accessToken : String
     private var _tokenType : String
     private var _scope : String
-    private var _createAt : Double
+    private var _createdAt : Double
     
     // MARK: NSCoding
     required init(coder aDecoder: NSCoder) {
-        _accessToken = aDecoder.decodeObject(forKey: "accessToken") as? String ?? ""
-        _tokenType = aDecoder.decodeObject(forKey: "tokenType") as? String ?? ""
-        _scope = aDecoder.decodeObject(forKey: "scope") as? String ?? ""
-        _createAt = aDecoder.decodeObject(forKey: "createAt") as? Double ?? 0
+        self._accessToken = aDecoder.decodeObject(forKey: "accessToken") as? String ?? ""
+        self._tokenType = aDecoder.decodeObject(forKey: "tokenType") as? String ?? ""
+        self._scope = aDecoder.decodeObject(forKey: "scope") as? String ?? ""
+        self._createdAt = aDecoder.decodeObject(forKey: "createdAt") as? Double ?? 0
     }
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(_accessToken, forKey: "accessToken")
-        aCoder.encode(_tokenType, forKey: "tokenType")
-        aCoder.encode(_scope, forKey: "scope")
-        aCoder.encode(_createAt, forKey: "createAt")
+        aCoder.encode(self._accessToken, forKey: "accessToken")
+        aCoder.encode(self._tokenType, forKey: "tokenType")
+        aCoder.encode(self._scope, forKey: "scope")
+        aCoder.encode(self._createdAt, forKey: "createdAt")
     }
+    
+    // MARK: NSSecureCoding
+    static var supportsSecureCoding: Bool{ get{ return true } }
 }
 
 // MARK: UserDefaults Presistence.
 extension AuthCredential{
     
     public static func localCredential() -> AuthCredential? {
-        guard let authCredentialData = UserDefaults.standard.data(forKey: "authCredential") else { return nil }
+        guard let credential = UserDefaults.standard.data(forKey: USER_DEFAULTS_KEY_AUTH_CREDENTIAL) else { return nil }
         
         do {
-            return try NSKeyedUnarchiver.unarchivedObject(ofClass: AuthCredential.self, from: authCredentialData)
+            return try NSKeyedUnarchiver.unarchivedObject(ofClass: AuthCredential.self, from: credential)
         }
         catch{
             print("Unarchive AuthCredential failed.")
@@ -76,11 +81,15 @@ extension AuthCredential{
         return nil
     }
     
-    public static func storeCredential(for credential: AuthCredential) {
+    public static func storeCredential(for credential: AuthCredential?) {
+        guard let credential = credential else{
+            UserDefaults.standard.setValue(nil, forKey: "authCredential")
+            return
+        }
         
-        do {
-            let authCredentialData = try NSKeyedArchiver.archivedData(withRootObject: credential, requiringSecureCoding: false)
-            UserDefaults.standard.setValue(authCredentialData, forKey: "authCredential")
+        do{
+            let authCredentialData = try NSKeyedArchiver.archivedData(withRootObject: credential, requiringSecureCoding: true)
+            UserDefaults.standard.setValue(authCredentialData, forKey: USER_DEFAULTS_KEY_AUTH_CREDENTIAL)
         }
         catch{
             print("Archive AuthCredential failed.")

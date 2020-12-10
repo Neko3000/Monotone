@@ -20,28 +20,23 @@ class AuthManager: NSObject{
     override init(){
         super.init()
         
-        //
-        self.credential = AuthCredential.localCredential()
     }
     
     // MARK: Public
     public let domain: String = "https://unsplash.com/oauth/"
     
-    public var accessToken: String{
-        get { return _accessToken ?? "" }
-    }
-    
     public var credential: AuthCredential?{
-        didSet(credential){
-            if let credential = credential{
-                // Presistence.
-                AuthCredential.storeCredential(for: credential)
-            }
+        get{
+            return AuthCredential.localCredential()
+        }
+        set{
+            _credential = newValue
+            AuthCredential.storeCredential(for: _credential!)
         }
     }
     
     // MARK: Private
-    private var _accessToken: String?
+    private var _credential: AuthCredential?
     private var authSession: ASWebAuthenticationSession!
     
     public func authorize() -> Observable<String>{
@@ -78,6 +73,7 @@ class AuthManager: NSObject{
                 authSession.presentationContextProvider = self
             }
             
+//            authSession.prefersEphemeralWebBrowserSession = true
             authSession.start()
             
             return Disposables.create()
@@ -110,10 +106,10 @@ class AuthManager: NSObject{
                             let accessToken = json["access_token"].stringValue
                             let tokenType = json["token_type"].stringValue
                             let scope = json["scope"].stringValue
-                            let createAt = json["create_at"].doubleValue
+                            let createdAt = json["created_at"].doubleValue
                             
-                            self.credential = AuthCredential(accessToken: accessToken, tokenType: tokenType, scope: scope, createAt: createAt)
-                            observer.onNext(json["access_token"].stringValue)
+                            self.credential = AuthCredential(accessToken: accessToken, tokenType: tokenType, scope: scope, createdAt: createdAt)
+                            observer.onNext(accessToken)
                         }
                         catch{
                             print("Could not decode success result from \(url), the error is \(error.localizedDescription)")

@@ -19,7 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.makeKeyAndVisible()
         
         SceneCoordinator.shared = SceneCoordinator(window: self.window!)
-        SceneCoordinator.shared.transition(type: .root(.login), with: nil)
+        
+        if(AuthManager.shared.credential != nil){
+            SceneCoordinator.shared.transition(type: .root(.home), with: nil)
+        }
+        else{
+            SceneCoordinator.shared.transition(type: .root(.login), with: nil)
+        }
         
         return true
     }

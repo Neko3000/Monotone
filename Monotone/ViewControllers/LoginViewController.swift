@@ -36,7 +36,7 @@ class LoginViewController: BaseViewController {
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // descriptionLabel.
-        let attributedDescription = NSMutableAttributedString(string: "Explore those Impressive photos which created by\nmost creative Maestros all over the World.")
+        let attributedDescription = NSMutableAttributedString(string: NSLocalizedString("unsplash_login_description", comment: "Explore those Impressive photos which created by\nmost creative Maestros all over the World."))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 2.0
         
@@ -76,11 +76,12 @@ class LoginViewController: BaseViewController {
             make.width.height.equalTo(44.0);
             make.centerX.equalTo(self.view)
             make.bottom.equalTo(self.titleLabel.snp.top).offset(-40.0)
+            
         }
         
         // loginBtn.
         self.loginBtn = UIButton()
-        self.loginBtn.setTitle("Login", for: .normal)
+        self.loginBtn.setTitle(NSLocalizedString("unsplash_login_sign_in_or_sign_up", comment: "Sign in / Sign up"), for: .normal)
         self.loginBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
         self.loginBtn.backgroundColor = ColorPalette.colorBlack
         self.loginBtn.layer.cornerRadius = 24.0
@@ -101,10 +102,18 @@ class LoginViewController: BaseViewController {
         let loginViewModel = self.viewModel(type: LoginViewModel.self)!
         
         // Bindings.
-        self.loginBtn.rx.tap.subscribe(onNext: { _ in
-            loginViewModel.input.loginAction.execute()
-        })
-        .disposed(by: self.disposeBag)
+        self.loginBtn.rx.tap
+            .subscribe(onNext: { _ in
+                loginViewModel.input.loginAction.execute()
+            })
+            .disposed(by: self.disposeBag)
+        
+        loginViewModel.output.loggedIn
+            .filter({ $0 != false })
+            .subscribe(onNext:{ _ in
+                SceneCoordinator.shared.transition(type: .root(.home), with: nil)
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 

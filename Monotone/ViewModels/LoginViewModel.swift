@@ -21,7 +21,7 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Output
     struct Output {
-        
+        var loggedIn: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     }
     public var output: Output = Output()
     
@@ -51,10 +51,10 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
             })
             .subscribe(onNext: { token in
                 
-                
-            
+                self.output.loggedIn.accept(true)
             }, onError: { (error) in
-                //
+                
+                self.output.loggedIn.accept(false)
             })
             .disposed(by: self.disposeBag)
     }
