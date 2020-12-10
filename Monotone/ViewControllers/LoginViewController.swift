@@ -8,23 +8,21 @@
 import UIKit
 import SnapKit
 
-import SwiftyJSON
+import RxSwift
+import RxCocoa
+import Action
 
 // MARK: LoginViewController
 class LoginViewController: BaseViewController {
     
     // MARK: - Controls
     private var logoImageView : UIImageView!
-    private var facebookLoginBtn : UIButton!
-    private var orLabel : UILabel!
-    private var usernameTextField : UITextField!
-    private var passwordTextField : UITextField!
+    private var titleLabel : UILabel!
+    private var descriptionLabel : UILabel!
     private var loginBtn : UIButton!
-    private var forgetPasswordBtn : UIButton!
     
-    private var centerView : UIView!
-    private var noAccountLabel : UILabel!
-    private var registerBtn : UIButton!
+    // MARK: - Private
+    private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -37,82 +35,43 @@ class LoginViewController: BaseViewController {
         
         self.view.backgroundColor = ColorPalette.colorWhite
         
-        // usernameTextField.
-        self.usernameTextField = UITextField()
-        self.usernameTextField.placeholder = "Username or email"
-        self.usernameTextField.textColor = ColorPalette.colorGrayLight
-        self.usernameTextField.font = UIFont.systemFont(ofSize: 14)
-        self.usernameTextField.textAlignment = .center
-        self.usernameTextField.backgroundColor = ColorPalette.colorGrayLighter
-        self.usernameTextField.layer.cornerRadius = 20.0
-        self.usernameTextField.layer.masksToBounds = true
-        self.view.addSubview(self.usernameTextField)
-        self.usernameTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view).offset(34.0)
-            make.right.equalTo(self.view).offset(-34.0)
-            make.height.equalTo(40.0)
-            make.bottom.equalTo(self.view.snp.centerY).offset(-10.0)
-        }
-        
-        // passwordTextField.
-        self.passwordTextField = UITextField()
-        self.passwordTextField.placeholder = "Password"
-        self.passwordTextField.textColor = ColorPalette.colorGrayLight
-        self.passwordTextField.font = UIFont.systemFont(ofSize: 14)
-        self.passwordTextField.textAlignment = .center
-        self.passwordTextField.backgroundColor = ColorPalette.colorGrayLighter
-        self.passwordTextField.layer.cornerRadius = 20.0
-        self.passwordTextField.layer.masksToBounds = true
-        self.view.addSubview(self.passwordTextField)
-        self.passwordTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view).offset(34.0)
-            make.right.equalTo(self.view).offset(-34.0)
-            make.height.equalTo(40.0)
-            make.top.equalTo(self.view.snp.centerY).offset(10.0)
-        }
-        
-        // orLabel.
-        self.orLabel = UILabel()
-        self.orLabel.text = "or";
-        self.orLabel.textColor = ColorPalette.colorGrayLight
-        self.orLabel.font = UIFont.systemFont(ofSize: 14)
-        self.view.addSubview(self.orLabel)
-        self.orLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.usernameTextField.snp.top).offset(-8)
+        // descriptionLabel.
+        self.descriptionLabel = UILabel()
+        self.descriptionLabel.textColor = ColorPalette.colorBlack
+        self.descriptionLabel.text = "Explore those Impressive photos which created by\nmost creative Maestros all over the World."
+        self.descriptionLabel.numberOfLines = 0
+        self.view.addSubview(self.descriptionLabel)
+        self.descriptionLabel.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
+            make.bottom.equalTo(self.view.snp.centerY).offset(-20.0)
         }
         
-        // facebookLoginBtn.
-        self.facebookLoginBtn = UIButton()
-        self.facebookLoginBtn.setTitle("Login with Facebook", for: .normal)
-        self.facebookLoginBtn.setTitleColor(UIColor.white, for: .normal)
-        self.facebookLoginBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        self.facebookLoginBtn.backgroundColor = ColorPalette.colorDenim
-        self.facebookLoginBtn.layer.cornerRadius = 24.0
-        self.facebookLoginBtn.layer.masksToBounds = true
-        self.view.addSubview(self.facebookLoginBtn)
-        self.facebookLoginBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view).offset(34.0)
-            make.right.equalTo(self.view).offset(-34.0)
-            make.height.equalTo(48.0)
-            make.bottom.equalTo(self.orLabel.snp.top).offset(-8.0)
+        // titleLabel.
+        self.titleLabel = UILabel()
+        self.titleLabel.textColor = ColorPalette.colorBlack
+        self.titleLabel.text = "Monotone"
+        self.view.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.bottom.equalTo(self.descriptionLabel.snp.top).offset(-10.0)
         }
         
         // logoImageView.
         self.logoImageView = UIImageView()
-        self.logoImageView.image = UIImage(named: "unsplash-logo")
+        self.logoImageView.tintColor = ColorPalette.colorBlack
+        self.logoImageView.image = UIImage(named: "unsplash-logo")?.withRenderingMode(.alwaysTemplate)
         self.view.addSubview(self.logoImageView)
         self.logoImageView.snp.makeConstraints { (make) in
             make.width.height.equalTo(44.0);
             make.centerX.equalTo(self.view)
-            make.bottom.equalTo(self.facebookLoginBtn.snp.top).offset(-48.0)
+            make.bottom.equalTo(self.titleLabel.snp.top).offset(-10.0)
         }
         
         // loginBtn.
         self.loginBtn = UIButton()
         self.loginBtn.setTitle("Login", for: .normal)
-        self.loginBtn.setTitleColor(UIColor.white, for: .normal)
-        self.loginBtn.backgroundColor = UIColor.black
+        self.loginBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
+        self.loginBtn.backgroundColor = ColorPalette.colorBlack
         self.loginBtn.layer.cornerRadius = 24.0
         self.loginBtn.layer.masksToBounds = true
         self.view.addSubview(self.loginBtn)
@@ -120,76 +79,21 @@ class LoginViewController: BaseViewController {
             make.left.equalTo(self.view).offset(34.0)
             make.right.equalTo(self.view).offset(-34.0)
             make.height.equalTo(48.0)
-            make.top.equalTo(self.passwordTextField.snp.bottom).offset(25.0)
+            make.top.equalTo(self.view.snp.centerY).offset(30.0)
         }
-        
-        // forgetPasswordBtn.
-        self.forgetPasswordBtn = UIButton()
-        self.forgetPasswordBtn.setTitle("Forgot Password?", for: .normal)
-        self.forgetPasswordBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
-        self.forgetPasswordBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        self.forgetPasswordBtn.backgroundColor = UIColor.clear
-        self.view.addSubview(self.forgetPasswordBtn)
-        self.forgetPasswordBtn.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(self.loginBtn.snp.bottom).offset(24.0)
-        }
-        
-        // centerView
-        self.centerView = UIView()
-        self.view.addSubview(self.centerView)
-        self.centerView.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(self.forgetPasswordBtn.snp.bottom).offset(17.0)
-        }
-        
-        // noAccountLabel.
-        self.noAccountLabel = UILabel()
-        self.noAccountLabel.text = "Don't have an account?";
-        self.noAccountLabel.textColor = ColorPalette.colorGrayLight
-        self.noAccountLabel.font = UIFont.systemFont(ofSize: 14)
-        self.centerView.addSubview(self.noAccountLabel)
-        self.noAccountLabel.snp.makeConstraints { (make) in
-            make.left.top.bottom.equalTo(self.centerView!)
-            make.height.equalTo(18.0)
-        }
-        
-        // registerBtn.
-        self.registerBtn = UIButton()
-        self.registerBtn.setTitle("Join", for: .normal)
-        self.registerBtn.setTitleColor(UIColor.black, for: .normal)
-        self.registerBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        self.registerBtn.backgroundColor = UIColor.clear
-        self.view.addSubview(self.registerBtn)
-        self.registerBtn.snp.makeConstraints { (make) in
-            make.top.right.bottom.equalTo(self.centerView!)
-            make.left.equalTo(self.noAccountLabel.snp.right).offset(3.0)
-            make.height.equalTo(18.0)
-        }
-                
-//        let request = SearchPhotosRequest()
-//        NetworkManager.shared.request(request: request, method: .get,success: { (result:JSON) in
-//            print("success")
-//        }, fail: { (error:JSON) in
-//            print("error")
-//        })
-
-//        NetworkManager.shared.sendRequest(request: request, method: MTHTTPMethod.get, success:{
-//            (request:BaseRequest) -> Void in
-//        }, fail: {
-//            (error:Error) -> Void in
-//        } )
-        
     }
     
     override func buildLogic() {
         super.buildLogic()
         
         // ViewModel.
-        let loginViewModel = self.viewModel(type: LoginViewModel.self)
+        let loginViewModel = self.viewModel(type: LoginViewModel.self)!
         
         // Bindings.
-        loginViewModel?.input.loginAction?.execute()
+        self.loginBtn.rx.tap.subscribe(onNext: { _ in
+            loginViewModel.input.loginAction.execute()
+        })
+        .disposed(by: self.disposeBag)
     }
 }
 

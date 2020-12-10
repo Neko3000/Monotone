@@ -15,7 +15,7 @@ class NetworkManager{
     static let shared = NetworkManager()
     
     init() {
-        
+        //
     }
     
     let domain: String = "https://api.unsplash.com/"
@@ -24,7 +24,7 @@ class NetworkManager{
     private var headers : HTTPHeaders{
         get{
             return [
-                "Authorization" : "Client-ID \(AppManager.shared.accessKey)"
+                "Authorization" : "Client-ID \(AppManager.shared.credntial.accessKey)"
             ]
         }
     }

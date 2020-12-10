@@ -160,7 +160,7 @@ class HomeViewController: BaseViewController {
         // Animation for homeJumbotronView & homeHeaderView
         self.collectionView.rx.contentOffset
             .flatMap({ (contentOffset) -> Observable<AnimationState> in
-                let animationState: AnimationState = contentOffset.y >= InterfaceGlobalValue.showTopContentOffset ? .showHeaderView : .showJumbotronView
+                let animationState: AnimationState = contentOffset.y >= InterfaceGlobalVars.showTopContentOffset ? .showHeaderView : .showJumbotronView
                 return Observable.just(animationState)
             })
             .skipWhile({ $0 == .showJumbotronView })

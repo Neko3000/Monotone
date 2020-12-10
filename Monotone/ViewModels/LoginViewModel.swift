@@ -15,13 +15,13 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var loginAction: Action<Void,URL?>?
+        var loginAction: Action<Void,String>!
     }
     public var input: Input = Input()
     
     // MARK: - Output
     struct Output {
-        //
+        
     }
     public var output: Output = Output()
     
@@ -40,17 +40,22 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
         let authService = self.service(type: AuthService.self)!
         
         // Bindings.
-        self.input.loginAction = Action<Void, URL?>(workFactory: { (_) -> Observable<URL?> in
+        self.input.loginAction = Action<Void, String>(workFactory: { (_) -> Observable<String> in
             
             return authService.authorize()
         })
         
         self.input.loginAction?.elements
-            .filter({ $0 != nil })
-            .subscribe(onNext: { url in
-                print(url!.absoluteString)
+            .flatMap({ (code) -> Observable<String> in
+                return authService.token(code: code)
+            })
+            .subscribe(onNext: { token in
+                
+                
             
-        })
+            }, onError: { (error) in
+                //
+            })
             .disposed(by: self.disposeBag)
     }
     

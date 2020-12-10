@@ -14,8 +14,13 @@ import RxSwift
 // MARK: AuthService
 class AuthService: BaseService {
     
-    public func authorize() -> Observable<URL?>{
+    public func authorize() -> Observable<String>{
         
         return AuthManager.shared.authorize()
+    }
+    
+    public func token(code: String) -> Observable<String>{
+        
+        return AuthManager.shared.token(code: code)
     }
 }
