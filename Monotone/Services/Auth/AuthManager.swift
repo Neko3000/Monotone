@@ -58,18 +58,27 @@ class AuthManager: NSObject{
         
         return Observable.create { (observer) -> Disposable in
             
-            self.authSession = ASWebAuthenticationSession(url: urlComponents.url!, callbackURLScheme: UrlScheme.main){ (callbackURL, error) in
-                guard error == nil, let callbackURL = callbackURL else { return }
-                guard let code = callbackURL.value(of: "code") else { return }
+            let authSession = ASWebAuthenticationSession(url: urlComponents.url!, callbackURLScheme: UrlScheme.main){ (callbackURL, error) in
+                
+                guard error == nil, let callbackURL = callbackURL else {
+                    observer.onCompleted()
+                    return
+                }
+                
+                guard let code = callbackURL.value(of: "code") else {
+                    observer.onCompleted()
+                    return
+                }
                 
                 observer.onNext(code)
+                observer.onCompleted()
             }
             
             if #available(iOS 13.0, *) {
-                self.authSession.presentationContextProvider = self
+                authSession.presentationContextProvider = self
             }
             
-            self.authSession.start()
+            authSession.start()
             
             return Disposables.create()
         }
@@ -104,7 +113,6 @@ class AuthManager: NSObject{
                             let createAt = json["create_at"].doubleValue
                             
                             self.credential = AuthCredential(accessToken: accessToken, tokenType: tokenType, scope: scope, createAt: createAt)
-                            
                             observer.onNext(json["access_token"].stringValue)
                         }
                         catch{

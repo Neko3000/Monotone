@@ -38,12 +38,13 @@ class AuthCredential: NSObject, NSCoding{
         get{ return Date(timeIntervalSince1970: _createAt) }
     }
     
-    // Mark: Private
+    // MARK: Private
     private var _accessToken : String
     private var _tokenType : String
     private var _scope : String
     private var _createAt : Double
     
+    // MARK: NSCoding
     required init(coder aDecoder: NSCoder) {
         _accessToken = aDecoder.decodeObject(forKey: "accessToken") as? String ?? ""
         _tokenType = aDecoder.decodeObject(forKey: "tokenType") as? String ?? ""

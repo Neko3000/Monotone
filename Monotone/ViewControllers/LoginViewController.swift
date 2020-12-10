@@ -36,20 +36,31 @@ class LoginViewController: BaseViewController {
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // descriptionLabel.
+        let attributedDescription = NSMutableAttributedString(string: "Explore those Impressive photos which created by\nmost creative Maestros all over the World.")
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 2.0
+        
+        attributedDescription.addAttribute(NSAttributedString.Key.paragraphStyle,value: paragraphStyle, range: NSMakeRange(0, attributedDescription.length))
+        
         self.descriptionLabel = UILabel()
-        self.descriptionLabel.textColor = ColorPalette.colorBlack
-        self.descriptionLabel.text = "Explore those Impressive photos which created by\nmost creative Maestros all over the World."
+        self.descriptionLabel.font = UIFont.systemFont(ofSize: 12)
+        self.descriptionLabel.textColor = ColorPalette.colorGrayNormal
+        self.descriptionLabel.attributedText = attributedDescription
+        self.descriptionLabel.textAlignment = .center
         self.descriptionLabel.numberOfLines = 0
         self.view.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.bottom.equalTo(self.view.snp.centerY).offset(-20.0)
+            make.left.greaterThanOrEqualTo(self.view).offset(20.0)
+            make.right.lessThanOrEqualTo(self.view).offset(-20.0)
         }
         
         // titleLabel.
         self.titleLabel = UILabel()
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         self.titleLabel.textColor = ColorPalette.colorBlack
-        self.titleLabel.text = "Monotone"
+        self.titleLabel.text = "Monotone."
         self.view.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
@@ -64,7 +75,7 @@ class LoginViewController: BaseViewController {
         self.logoImageView.snp.makeConstraints { (make) in
             make.width.height.equalTo(44.0);
             make.centerX.equalTo(self.view)
-            make.bottom.equalTo(self.titleLabel.snp.top).offset(-10.0)
+            make.bottom.equalTo(self.titleLabel.snp.top).offset(-40.0)
         }
         
         // loginBtn.
@@ -79,7 +90,7 @@ class LoginViewController: BaseViewController {
             make.left.equalTo(self.view).offset(34.0)
             make.right.equalTo(self.view).offset(-34.0)
             make.height.equalTo(48.0)
-            make.top.equalTo(self.view.snp.centerY).offset(30.0)
+            make.top.equalTo(self.view.snp.centerY).offset(20.0)
         }
     }
     
