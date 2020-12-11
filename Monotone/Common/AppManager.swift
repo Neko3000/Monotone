@@ -17,7 +17,7 @@ class AppManager{
     }
     
     // MARK: Public
-    public var credntial: AppCredential = AppCredential()
+    public let credntial: AppCredential = AppCredential()
     
     // MARK: Private
     //

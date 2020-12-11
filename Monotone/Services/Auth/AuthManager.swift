@@ -73,7 +73,7 @@ class AuthManager: NSObject{
                 authSession.presentationContextProvider = self
             }
             
-//            authSession.prefersEphemeralWebBrowserSession = true
+            authSession.prefersEphemeralWebBrowserSession = true
             authSession.start()
             
             return Disposables.create()

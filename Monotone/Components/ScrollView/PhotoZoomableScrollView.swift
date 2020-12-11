@@ -47,8 +47,8 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
             .filter({ (rect) -> Bool in
                 return rect != CGRect.zero
             })
-            .distinctUntilChanged({ (rectA, rectB) -> Bool in
-                return rectA?.size == rectB?.size
+            .distinctUntilChanged({ (oldValue, newValue) -> Bool in
+                return oldValue?.size == newValue?.size
             })
             .subscribe(onNext: { _ in
 

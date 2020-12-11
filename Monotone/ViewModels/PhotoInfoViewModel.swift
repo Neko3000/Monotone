@@ -22,7 +22,7 @@ class PhotoInfoViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Output
     struct Output {
         var photo: BehaviorRelay<Photo> = BehaviorRelay<Photo>(value: Photo())
-        var statistics: BehaviorRelay<Statistics> = BehaviorRelay<Statistics>(value: Statistics())
+        var statistics: BehaviorRelay<Statistics?> = BehaviorRelay<Statistics?>(value: nil)
     }
     public var output: Output = Output()
     

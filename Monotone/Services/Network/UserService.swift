@@ -14,7 +14,7 @@ class UserService: NetworkService {
 
     public func listUserCollections(username:String,
                                     page:Int? = 1,
-                                    perPage:Int? = 1) -> Observable<[Collection]>{
+                                    perPage:Int? = 10) -> Observable<[Collection]>{
         let request: ListUserCollectionsRequest = ListUserCollectionsRequest()
         request.username = username
         request.page = page

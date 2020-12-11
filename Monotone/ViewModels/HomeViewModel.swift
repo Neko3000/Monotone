@@ -98,7 +98,7 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         // Reload.
         self.input.reloadAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
             self.nextLoadPage = 1
-            
+
             // Before the request returns.
             self.output.photos.accept(self.emptyPhotos)
             
@@ -130,9 +130,7 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         // Order by.
         self.input.listOrderBy
             .distinctUntilChanged()
-            .filter({
-                        $0 != ""
-            })
+            .filter({ $0 != "" })
             .subscribe { (_) in
                 self.input.searchQuery.accept("")
                 self.input.topic.accept("")

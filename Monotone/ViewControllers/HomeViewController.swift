@@ -79,12 +79,13 @@ class HomeViewController: BaseViewController {
             make.top.equalTo(self.view).offset(256.0)
         }
         
-        let header = MJRefreshNormalHeader.init()
+        // MJRefresh.
+        let header = MJRefreshNormalHeader()
         header.stateLabel!.font = UIFont.systemFont(ofSize: 12)
         header.lastUpdatedTimeLabel!.font = UIFont.systemFont(ofSize: 10)
         self.collectionView.mj_header = header
         
-        let footer = MJRefreshAutoNormalFooter.init()
+        let footer = MJRefreshAutoNormalFooter()
         footer.stateLabel!.font = UIFont.systemFont(ofSize: 12)
         self.collectionView.mj_footer = footer
     }
@@ -94,6 +95,7 @@ class HomeViewController: BaseViewController {
         // ViewModel.
         let homeViewModel = self.viewModel(type:HomeViewModel.self)!
 
+        // Bindings.
         // homeJumbotronView & homeHeaderView
         (self.homeJumbotronView.listOrderBy <=> homeViewModel.input.listOrderBy)
             .disposed(by:self.disposeBag)
@@ -107,7 +109,7 @@ class HomeViewController: BaseViewController {
         (self.homeHeaderView.topic <=> homeViewModel.input.topic)
             .disposed(by:self.disposeBag)
                 
-        // CollectionView.
+        // collectionView.
         homeViewModel.output.photos
             .bind(to: self.collectionView.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
                 (row, element, cell) in
@@ -132,7 +134,7 @@ class HomeViewController: BaseViewController {
 
             }.disposed(by: self.disposeBag)
 
-        // CollectionView MJRefresh.
+        // MJRefresh.
         self.collectionView.mj_header!.refreshingBlock = {
             homeViewModel.input.reloadAction?.execute()
         }
@@ -141,23 +143,21 @@ class HomeViewController: BaseViewController {
             homeViewModel.input.loadMoreAction?.execute()
         }
         
-        // MJRefresh style.
         homeViewModel.output.reloading
-            .skipWhile({ $0 == true })
+            .filter({ $0 == false })
             .subscribe { (_) in
                 self.collectionView.mj_header!.endRefreshing()
             }
             .disposed(by: self.disposeBag)
 
-        
         homeViewModel.output.loadingMore
-            .skipWhile({ $0 == true })
+            .filter({ $0 == false })
             .subscribe { (_) in
                 self.collectionView.mj_footer!.endRefreshing()
             }
             .disposed(by: self.disposeBag)
         
-        // Animation for homeJumbotronView & homeHeaderView
+        // Animation
         self.collectionView.rx.contentOffset
             .flatMap({ (contentOffset) -> Observable<AnimationState> in
                 let animationState: AnimationState = contentOffset.y >= InterfaceGlobalVars.showTopContentOffset ? .showHeaderView : .showJumbotronView

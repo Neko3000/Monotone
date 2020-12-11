@@ -24,7 +24,7 @@ class Collection: Mappable {
     var isPrivate: Bool?
 
     required init?(map: Map) {
-        
+        self.mapping(map: map)
     }
 
     func mapping(map: Map) {

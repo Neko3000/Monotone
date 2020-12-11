@@ -11,6 +11,7 @@ import RxSwift
 import RxRelay
 import RxCocoa
 import Kingfisher
+import MJRefresh
 
 // MARK: - PhotoAddCollectionViewController
 class PhotoAddCollectionViewController: BaseViewController {
@@ -61,8 +62,7 @@ class PhotoAddCollectionViewController: BaseViewController {
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view).offset(17.0)
-            make.right.equalTo(self.view).offset(-17.0)
+            make.left.right.equalTo(self.view)
             make.top.equalTo(self.pageTitleView.snp.bottom).offset(21.0)
             make.bottom.equalTo(self.view).offset(-96.0)
         }
@@ -75,10 +75,21 @@ class PhotoAddCollectionViewController: BaseViewController {
         self.createCollectionBtn.setTitle("Create a new collection", for: .normal)
         self.view.addSubview(self.createCollectionBtn)
         self.createCollectionBtn.snp.makeConstraints { (make) in
-            make.left.right.equalTo(self.tableView)
+            make.left.equalTo(self.view).offset(17.0)
+            make.right.equalTo(self.view).offset(-17.0)
             make.top.equalTo(self.tableView.snp.bottom).offset(20.0)
             make.height.equalTo(50.0)
         }
+        
+        // MJRefresh.
+        let header = MJRefreshNormalHeader()
+        header.stateLabel!.font = UIFont.systemFont(ofSize: 12)
+        header.lastUpdatedTimeLabel!.font = UIFont.systemFont(ofSize: 10)
+        self.tableView.mj_header = header
+        
+        let footer = MJRefreshAutoNormalFooter()
+        footer.stateLabel!.font = UIFont.systemFont(ofSize: 12)
+        self.tableView.mj_footer = footer
     }
     
     override func buildLogic() {
@@ -99,11 +110,42 @@ class PhotoAddCollectionViewController: BaseViewController {
         // pageTitleView.
         self.pageTitleView.title.accept(NSLocalizedString("unsplash_add_collection_title", comment: "Add to collection"))
         
+        // MJRefresh.
+        self.tableView.mj_header!.refreshingBlock = {
+            photoAddCollectionViewModel.input.reloadAction?.execute()
+        }
+            
+        self.tableView.mj_footer!.refreshingBlock = {
+            photoAddCollectionViewModel.input.loadMoreAction?.execute()
+        }
+        
+        photoAddCollectionViewModel.output.reloading
+            .filter({ $0 == false })
+            .subscribe { (_) in
+                self.tableView.mj_header!.endRefreshing()
+            }
+            .disposed(by: self.disposeBag)
+
+        photoAddCollectionViewModel.output.loadingMore
+            .filter({ $0 == false })
+            .subscribe { (_) in
+                self.tableView.mj_footer!.endRefreshing()
+            }
+            .disposed(by: self.disposeBag)
+        
+        // createCollectionBtn.
         self.createCollectionBtn.rx.tap.subscribe(onNext: { _ in
 
             self.transition(type: .present(.photoCreateCollection(nil), .pageSheet), with: nil, animated: true)
         })
         .disposed(by: self.disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // First Loading.
+         self.tableView.mj_header?.beginRefreshing()
     }
     
     override func viewDidLayoutSubviews() {
@@ -119,5 +161,18 @@ extension PhotoAddCollectionViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 94.0
+    }
+}
+
+// MARK: - ViewControllerPresentable
+extension PhotoAddCollectionViewController: ViewControllerPresentable{
+    
+    func didDismissPresentingViewController(presentationController: UIPresentationController?) {
+        
+        // Reloading.
+        self.tableView.mj_header?.beginRefreshing()
+        
+        // Scroll to top.
+        self.tableView.setContentOffset(.zero, animated: true)
     }
 }

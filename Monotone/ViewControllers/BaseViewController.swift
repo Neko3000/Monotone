@@ -58,6 +58,11 @@ protocol ViewControllerAnimatable {
     func animation(animationState: AnimationStateType)
 }
 
+// MARK: - ViewControllerPresentable
+protocol ViewControllerPresentable {
+    func didDismissPresentingViewController(presentationController: UIPresentationController?)
+}
+
 // MARK: - BaseViewController
 class BaseViewController: UIViewController, ViewControllerBindable, ViewControllerTransitionable {
     

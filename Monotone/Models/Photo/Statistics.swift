@@ -13,13 +13,9 @@ class Statistics: Mappable {
     public var downloads: StatisticsIndicator?
     public var views: StatisticsIndicator?
     public var likes: StatisticsIndicator?
-    
-    init() {
-        
-    }
 
     required init?(map: Map) {
-        
+        self.mapping(map: map)
     }
 
     func mapping(map: Map) {

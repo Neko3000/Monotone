@@ -20,15 +20,15 @@ class PhotoCreateCollectionViewController: BaseViewController {
     // MARK: - Controls
     private var pageTitleView: PageTitleView!
     
-    private var nameLabel: UILabel!
-    private var nameTextField: MTTextField!
+    private var titleLabel: UILabel!
+    private var titleTextField: MTTextField!
     private var descriptionLabel: UILabel!
     private var descriptionTextView: UITextView!
     
     private var privateCheckBox: BEMCheckBox!
     private var privateLabel: UILabel!
     
-    private var confirmBtn: UIButton!
+    private var submitBtn: UIButton!
     
     // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -63,30 +63,30 @@ class PhotoCreateCollectionViewController: BaseViewController {
             make.height.equalTo(50.0)
         }
         
-        // nameTextField
-        self.nameTextField = MTTextField()
-        self.nameTextField.iconLeftMargin = 0
-        self.nameTextField.layer.cornerRadius = 6.0
-        self.nameTextField.layer.masksToBounds = true
-        self.nameTextField.layer.borderWidth = 1.0
-        self.nameTextField.layer.borderColor = ColorPalette.colorGrayHeavy.cgColor
-        self.view.addSubview(self.nameTextField)
-        self.nameTextField.snp.makeConstraints { (make) in
+        // titleTextField
+        self.titleTextField = MTTextField()
+        self.titleTextField.iconLeftMargin = 0
+        self.titleTextField.layer.cornerRadius = 6.0
+        self.titleTextField.layer.masksToBounds = true
+        self.titleTextField.layer.borderWidth = 1.0
+        self.titleTextField.layer.borderColor = ColorPalette.colorGrayHeavy.cgColor
+        self.view.addSubview(self.titleTextField)
+        self.titleTextField.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(16.0)
             make.right.equalTo(self.view).offset(-16.0)
             make.top.equalTo(self.pageTitleView.snp.bottom).offset(53.0)
             make.height.equalTo(44.0)
         }
         
-        // nameLabel.
-        self.nameLabel = UILabel()
-        self.nameLabel.font = UIFont.systemFont(ofSize: 16)
-        self.nameLabel.textColor = ColorPalette.colorGrayHeavy
-        self.nameLabel.text = "Name"
-        self.view.addSubview(self.nameLabel)
-        self.nameLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.nameTextField)
-            make.bottom.equalTo(self.nameTextField.snp.top).offset(-11.0)
+        // titleLabel.
+        self.titleLabel = UILabel()
+        self.titleLabel.font = UIFont.systemFont(ofSize: 16)
+        self.titleLabel.textColor = ColorPalette.colorGrayHeavy
+        self.titleLabel.text = "Name"
+        self.view.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.titleTextField)
+            make.bottom.equalTo(self.titleTextField.snp.top).offset(-11.0)
         }
         
         // descriptionTextView
@@ -99,7 +99,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
         self.descriptionTextView.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(16.0)
             make.right.equalTo(self.view).offset(-16.0)
-            make.top.equalTo(self.nameTextField.snp.bottom).offset(61.0)
+            make.top.equalTo(self.titleTextField.snp.bottom).offset(61.0)
             make.height.equalTo(84.0)
         }
         
@@ -122,6 +122,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
         self.privateCheckBox.onTintColor = ColorPalette.colorGrayHeavy
         self.privateCheckBox.onFillColor = ColorPalette.colorGrayHeavy
         self.privateCheckBox.onCheckColor = UIColor.white
+        self.privateCheckBox.delegate = self
         self.view.addSubview(self.privateCheckBox)
         self.privateCheckBox.snp.makeConstraints { (make) in
             make.width.height.equalTo(12.0)
@@ -140,17 +141,17 @@ class PhotoCreateCollectionViewController: BaseViewController {
             make.centerY.equalTo(self.privateCheckBox)
         }
         
-        // confirmBtn.
-        self.confirmBtn = UIButton()
-        self.confirmBtn.backgroundColor = ColorPalette.colorBlack
-        self.confirmBtn.contentEdgeInsets = UIEdgeInsets(top: 11.0, left: 20.0, bottom: 11.0, right: 20.0)
-        self.confirmBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        self.confirmBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
-        self.confirmBtn.setTitle("Create Collection", for: .normal)
-        self.confirmBtn.layer.cornerRadius = 6.0
-        self.confirmBtn.layer.masksToBounds = true
-        self.view.addSubview(self.confirmBtn)
-        self.confirmBtn.snp.makeConstraints { (make) in
+        // submitBtn.
+        self.submitBtn = UIButton()
+        self.submitBtn.backgroundColor = ColorPalette.colorBlack
+        self.submitBtn.contentEdgeInsets = UIEdgeInsets(top: 11.0, left: 20.0, bottom: 11.0, right: 20.0)
+        self.submitBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        self.submitBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
+        self.submitBtn.setTitle("Create Collection", for: .normal)
+        self.submitBtn.layer.cornerRadius = 6.0
+        self.submitBtn.layer.masksToBounds = true
+        self.view.addSubview(self.submitBtn)
+        self.submitBtn.snp.makeConstraints { (make) in
             make.right.equalTo(self.view).offset(-16.0)
             make.bottom.equalTo(self.view).offset(-23.0)
         }
@@ -164,5 +165,40 @@ class PhotoCreateCollectionViewController: BaseViewController {
         // Bindings.
         self.pageTitleView.title.accept(NSLocalizedString("unsplash_create_collection_title", comment: "Create new collection"))
         
+        self.titleTextField.rx.text.orEmpty
+            .bind(to: photoCreateCollectionViewModel.input.title)
+            .disposed(by: self.disposeBag)
+        
+        self.descriptionTextView.rx.text.orEmpty
+            .bind(to: photoCreateCollectionViewModel.input.description)
+            .disposed(by: self.disposeBag)
+        
+        self.submitBtn.rx.tap
+            .subscribe { (_) in
+                photoCreateCollectionViewModel.input.submitAction?.execute()
+            }
+            .disposed(by: self.disposeBag)
+        
+        photoCreateCollectionViewModel.output.created
+            .filter({ $0 != false })
+            .subscribe { (created) in
+                SceneCoordinator.shared.pop()
+            } onError: { (error) in
+                // TODO: handle error
+                
+            }
+            .disposed(by: self.disposeBag)
+
+    }
+}
+
+// MARK: BEMCheckBoxDelegate
+extension PhotoCreateCollectionViewController: BEMCheckBoxDelegate{
+    func didTap(_ checkBox: BEMCheckBox) {
+        
+        // ViewModel.
+        let photoCreateCollectionViewModel = self.viewModel(type: PhotoCreateCollectionViewModel.self)!
+        
+        photoCreateCollectionViewModel.input.isPrivate.accept(checkBox.isSelected)
     }
 }

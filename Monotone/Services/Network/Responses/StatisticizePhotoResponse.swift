@@ -10,14 +10,10 @@ import ObjectMapper
 
 class StatisticizePhotoResponse: BaseResponse{
     public var id: String?
-    public var downloads: StatisticsIndicator?
-    public var views: StatisticsIndicator?
-    public var likes: StatisticsIndicator?
+    public var statistics: Statistics?
     
     override func mapping(map: Map) {
-        id          <- map["id"]
-        downloads   <- map["downloads"]
-        views       <- map["views"]
-        likes       <- map["likes"]
+        id <- map["id"]
+        statistics = Statistics(map: map)
     }
 }

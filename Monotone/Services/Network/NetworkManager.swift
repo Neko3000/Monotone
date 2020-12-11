@@ -23,8 +23,20 @@ class NetworkManager{
     // MARK: Header
     private var headers : HTTPHeaders{
         get{
+            var tokenType: String = ""
+            var accessToken: String = ""
+            
+            if(AuthManager.shared.credential != nil){
+                tokenType = AuthManager.shared.credential!.tokenType
+                accessToken = AuthManager.shared.credential!.accessToken
+            }
+            else{
+                tokenType = "Client-ID"
+                accessToken = AppManager.shared.credntial.accessKey
+            }
+            
             return [
-                "Authorization" : "Client-ID \(AppManager.shared.credntial.accessKey)"
+                "Authorization" : "\(tokenType) \(accessToken)"
             ]
         }
     }
@@ -41,7 +53,7 @@ class NetworkManager{
                 switch(response.result){
                 case .success(let data):
 
-                    if(response.response?.statusCode == 200){
+                    if(response.response?.statusCode == 200 || response.response?.statusCode == 201){
                         do{
                             var json = try JSON(data: data!)
                         

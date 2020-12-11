@@ -20,6 +20,9 @@
 		14009CB6257775F800C70E6E /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009CB5257775F800C70E6E /* Statistics.swift */; };
 		14014CEF2581BE1B00746563 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14014CEE2581BE1B00746563 /* AuthError.swift */; };
 		14014DEE2581C46300746563 /* AuthCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14014DED2581C46300746563 /* AuthCredential.swift */; };
+		1401547A25831BF600746563 /* CollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401547925831BF600746563 /* CollectionService.swift */; };
+		1401547E25831ED900746563 /* CreateCollectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401547D25831ED900746563 /* CreateCollectionRequest.swift */; };
+		1401548125831FEA00746563 /* CreateCollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401548025831FEA00746563 /* CreateCollectionResponse.swift */; };
 		1406E9E2257A02530096DE82 /* FloatBlockButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9E1257A02530096DE82 /* FloatBlockButton.swift */; };
 		1406E9E5257A04370096DE82 /* CALayer+SketchShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9E4257A04370096DE82 /* CALayer+SketchShadow.swift */; };
 		1406E9E8257A04EF0096DE82 /* PhotoShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9E7257A04EF0096DE82 /* PhotoShareViewController.swift */; };
@@ -106,7 +109,6 @@
 		14FD9B61257F32CF00DEC579 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD9B60257F32CF00DEC579 /* AuthManager.swift */; };
 		14FD9B65257F345800DEC579 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD9B64257F345800DEC579 /* AuthService.swift */; };
 		14FD9B68257F4E0C00DEC579 /* String+Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD9B67257F4E0C00DEC579 /* String+Split.swift */; };
-		14FD9C3F257F73C300DEC579 /* AuthorizeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD9C3E257F73C300DEC579 /* AuthorizeRequest.swift */; };
 		14FD9C53257F75CC00DEC579 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD9C52257F75CC00DEC579 /* BaseService.swift */; };
 		14FD9C59257F7AE800DEC579 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD9C58257F7AE800DEC579 /* AppManager.swift */; };
 		73CFE15CA67265ABCA3CC319 /* Pods_Monotone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */; };
@@ -139,6 +141,9 @@
 		14009CB5257775F800C70E6E /* Statistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		14014CEE2581BE1B00746563 /* AuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		14014DED2581C46300746563 /* AuthCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCredential.swift; sourceTree = "<group>"; };
+		1401547925831BF600746563 /* CollectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionService.swift; sourceTree = "<group>"; };
+		1401547D25831ED900746563 /* CreateCollectionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCollectionRequest.swift; sourceTree = "<group>"; };
+		1401548025831FEA00746563 /* CreateCollectionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCollectionResponse.swift; sourceTree = "<group>"; };
 		1406E9E1257A02530096DE82 /* FloatBlockButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatBlockButton.swift; sourceTree = "<group>"; };
 		1406E9E4257A04370096DE82 /* CALayer+SketchShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+SketchShadow.swift"; sourceTree = "<group>"; };
 		1406E9E7257A04EF0096DE82 /* PhotoShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoShareViewController.swift; sourceTree = "<group>"; };
@@ -232,7 +237,6 @@
 		14FD9B60257F32CF00DEC579 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		14FD9B64257F345800DEC579 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		14FD9B67257F4E0C00DEC579 /* String+Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Split.swift"; sourceTree = "<group>"; };
-		14FD9C3E257F73C300DEC579 /* AuthorizeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizeRequest.swift; sourceTree = "<group>"; };
 		14FD9C52257F75CC00DEC579 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		14FD9C58257F7AE800DEC579 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monotone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -327,6 +331,7 @@
 				14E59E902557FC5000F1FB60 /* NetworkError.swift */,
 				14E59E302556A0E200F1FB60 /* NetworkService.swift */,
 				14E59E2D2556A0CA00F1FB60 /* PhotoService.swift */,
+				1401547925831BF600746563 /* CollectionService.swift */,
 				14842C68257DCF7C00364FFF /* UserService.swift */,
 				142840332564BA2E004C06DF /* TopicService.swift */,
 				143114BC255A77EF00991676 /* Requests */,
@@ -358,7 +363,7 @@
 				14009CA425775E6D00C70E6E /* StatistizePhotoRequest.swift */,
 				142840362564BACE004C06DF /* ListTopicsRequest.swift */,
 				14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */,
-				14FD9C3E257F73C300DEC579 /* AuthorizeRequest.swift */,
+				1401547D25831ED900746563 /* CreateCollectionRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 				14009CA82577604B00C70E6E /* StatisticizePhotoResponse.swift */,
 				142840392564BBB1004C06DF /* ListTopicsResponse.swift */,
 				14BE9A00256A637C00B0DB39 /* GetTopicPhotosResponse.swift */,
+				1401548025831FEA00746563 /* CreateCollectionResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -770,11 +776,13 @@
 				143F567B254FEF320038761D /* HomeJumbotronView.swift in Sources */,
 				14FA70D92580F1D8004AFBE8 /* URL+Find.swift in Sources */,
 				14009CB2257762C600C70E6E /* HistoricalValue.swift in Sources */,
+				1401547A25831BF600746563 /* CollectionService.swift in Sources */,
 				1410491C255D3686003312BC /* SceneTransition.swift in Sources */,
 				14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */,
 				1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */,
 				14014CEF2581BE1B00746563 /* AuthError.swift in Sources */,
 				14842D4D257DD3F200364FFF /* PhotoAddCollectionViewModel.swift in Sources */,
+				1401547E25831ED900746563 /* CreateCollectionRequest.swift in Sources */,
 				14071AFB2564CB2100D418C8 /* PreviewPhoto.swift in Sources */,
 				14F016B32567981400F60C99 /* RxOpeartors.swift in Sources */,
 				14071B182565FD1C00D418C8 /* HomeViewModel.swift in Sources */,
@@ -817,6 +825,7 @@
 				143FB14F255BAD2D00D24248 /* ListPhotosViewModel.swift in Sources */,
 				14FD83CB2567F7CD00D5B575 /* BlurHashEncode.swift in Sources */,
 				1428403A2564BBB1004C06DF /* ListTopicsResponse.swift in Sources */,
+				1401548125831FEA00746563 /* CreateCollectionResponse.swift in Sources */,
 				14E59DCD2556716400F1FB60 /* BaseViewModel.swift in Sources */,
 				14E59E462557C5F700F1FB60 /* SearchPhotosResponse.swift in Sources */,
 				14071B0E256549F000D418C8 /* Exif.swift in Sources */,
@@ -834,7 +843,6 @@
 				14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */,
 				14E59E912557FC5000F1FB60 /* NetworkError.swift in Sources */,
 				14F36F91254D3AB80086B8CC /* ColorPalette.swift in Sources */,
-				14FD9C3F257F73C300DEC579 /* AuthorizeRequest.swift in Sources */,
 				14009C712575E7E100C70E6E /* PhotoInfoViewModel.swift in Sources */,
 				14842E35257E0F6300364FFF /* PhotoCreateCollectionViewModel.swift in Sources */,
 				1433B8E92561270700FE9B1D /* InterfaceGlobalVars.swift in Sources */,

@@ -48,6 +48,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
         didSet{
             currentViewController?.tabBarController?.delegate = self
             currentViewController?.navigationController?.delegate = self
+            
             currentViewController?.presentationController?.delegate = self
         }
     }
@@ -139,6 +140,10 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             
             self.currentViewController?.dismiss(animated: true, completion: {
                 self.currentViewController = SceneCoordinator.actualViewController(for: presentingViewController)
+                
+                if let vc = presentingViewController as? ViewControllerPresentable{
+                    vc.didDismissPresentingViewController(presentationController: presentingViewController.presentationController)
+                }
             })
             
         }
@@ -250,7 +255,7 @@ extension SceneCoordinator: FactoryCoordinator{
             return vm
             
         case let .photoCreateCollection(args):
-            let vm: PhotoCreateCollectionViewModel = PhotoCreateCollectionViewModel(services: nil, args: args)
+            let vm: PhotoCreateCollectionViewModel = PhotoCreateCollectionViewModel(services: [CollectionService()], args: args)
             return vm
             
         case let .listPhotos(args):
@@ -290,7 +295,10 @@ extension SceneCoordinator: UINavigationControllerDelegate{
 // MARK: - UIAdaptivePresentationControllerDelegate
 extension SceneCoordinator: UIAdaptivePresentationControllerDelegate{
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        
+        // When the presented ViewController dismissed.
         self.currentViewController = SceneCoordinator.actualViewController(for: presentationController.presentingViewController)
+        
     }
 }
 

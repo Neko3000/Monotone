@@ -84,7 +84,7 @@ class PhotoService: NetworkService {
             
             NetworkManager.shared.request(request: request, method: .get).subscribe { (json) in
                 let response = StatisticizePhotoResponse(JSON: json)
-                let statistics = Statistics(JSON: response!.toJSON())!
+                let statistics = response!.statistics!
                 
                 observer.onNext(statistics)
                 observer.onCompleted()

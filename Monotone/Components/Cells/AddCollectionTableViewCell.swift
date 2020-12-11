@@ -51,7 +51,8 @@ class AddCollectionTableViewCell: UITableViewCell {
         self.coverImageView.snp.makeConstraints({ (make) in
             make.top.equalTo(self.contentView).offset(7.0)
             make.bottom.equalTo(self.contentView).offset(-7.0)
-            make.left.right.equalTo(self.contentView)
+            make.left.equalTo(self.contentView).offset(17.0)
+            make.right.equalTo(self.contentView).offset(-17.0)
         })
         
         // lockImageView.
