@@ -22,4 +22,5 @@ target 'Monotone' do
   pod 'ViewAnimator', '3.0.1'
   pod 'Hero', '1.5.0'
   pod 'BEMCheckBox', '1.4.1'
+  pod 'SwiftMessages', '8.0.3'
 end
