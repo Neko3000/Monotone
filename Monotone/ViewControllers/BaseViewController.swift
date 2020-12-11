@@ -85,18 +85,25 @@ class BaseViewController: UIViewController, ViewControllerBindable, ViewControll
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // Do any additional setup after loading the view.
+        
         self.buildSubviews()
         self.buildLogic()
-        // Do any additional setup after loading the view.
     }
     
     func buildSubviews() {
-        
+        // Implemented by subclass.
     }
     
     func buildLogic() {
+        // Implemented by subclass.
+    }
+    
+    // MARK: - touchesBegan
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         
+        UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 
 }

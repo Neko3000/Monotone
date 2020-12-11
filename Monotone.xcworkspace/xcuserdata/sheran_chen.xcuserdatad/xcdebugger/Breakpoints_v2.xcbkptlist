@@ -160,7 +160,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
             endingLineNumber = "173"
-            landmarkName = "didDismiss(presentationController:)"
+            landmarkName = "didDismissPresentingViewController(presentationController:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

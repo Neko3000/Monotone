@@ -152,8 +152,8 @@ class PhotoCreateCollectionViewController: BaseViewController {
         self.submitBtn.layer.masksToBounds = true
         self.view.addSubview(self.submitBtn)
         self.submitBtn.snp.makeConstraints { (make) in
-            make.right.equalTo(self.view).offset(-16.0)
-            make.bottom.equalTo(self.view).offset(-23.0)
+            make.top.equalTo(self.descriptionTextView.snp.bottom).offset(70.0)
+            make.centerX.equalTo(self.view)
         }
     }
     
