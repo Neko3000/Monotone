@@ -123,6 +123,9 @@ class PhotoAddCollectionViewController: BaseViewController {
             .filter({ $0 == false })
             .subscribe { (_) in
                 self.tableView.mj_header!.endRefreshing()
+                
+                // Scroll to top.
+                self.tableView.setContentOffset(.zero, animated: true)
             }
             .disposed(by: self.disposeBag)
 
@@ -171,8 +174,5 @@ extension PhotoAddCollectionViewController: ViewControllerPresentable{
         
         // Reloading.
         self.tableView.mj_header?.beginRefreshing()
-        
-        // Scroll to top.
-        self.tableView.setContentOffset(.zero, animated: true)
     }
 }

@@ -49,3 +49,5 @@
 "unsplash_add_collection_total_photo_prefix" = "%d 张图片";
 
 "unsplash_create_collection_title" = "创建一个收藏";
+
+"unsplash_network_error_title" = "天哪，网络上有个错误...";

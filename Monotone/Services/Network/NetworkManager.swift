@@ -36,7 +36,9 @@ class NetworkManager{
             }
             
             return [
-                "Authorization" : "\(tokenType) \(accessToken)"
+//                "Authorization" : "\(tokenType) \(accessToken)"
+                                "Authorization" : "x"
+
             ]
         }
     }
@@ -63,6 +65,7 @@ class NetworkManager{
                             }
                             
                             observer.onNext(json.dictionaryObject ?? [String :Any]())
+                            observer.onCompleted()
                         }
                         catch{
                             print("Could not decode success result from \(url), the error is \(error.localizedDescription)")
@@ -72,19 +75,33 @@ class NetworkManager{
                         do{
                             let json = try JSON(data: data!)
                             let error = NetworkError(errorStrs: json["errors"].arrayObject as! [String])
+                            
+                            MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_network_error_title",
+                                                                                      comment: "Oops, there was a problem..."),
+                                                             body: error.localizedDescription,
+                                                             theme: .error)
+                            
                             observer.onError(error)
                         }
                         catch{
                             print("Could not decode failure errors from \(url), the error is \(error.localizedDescription)")
-                        }
+
+                            MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_auth_error_title",
+                                                                                      comment: "Oops, there was a problem of authentication..."),
+                                                             body: error.localizedDescription,
+                                                             theme: .error)                        }
                     }
                     
-                    observer.onCompleted()
                     break
                 
                 case .failure(let error):
                     
                     print("\(error.localizedDescription)")
+                    
+                    MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_auth_error_title",
+                                                                              comment: "Oops, there was a problem of authentication..."),
+                                                     body: error.localizedDescription,
+                                                     theme: .error)
                     observer.onError(error)
                     break
                 }

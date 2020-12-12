@@ -123,10 +123,17 @@ class AuthManager: NSObject{
                             let description = json["error_description"].string ?? ""
                             
                             let error = AuthError(title: title, description: description)
+                            
+                            MessageCenter.shared.showMessage(title: title, body: description, theme: .error)
                             observer.onError(error)
                         }
                         catch{
                             print("Could not decode failure errors from \(url), the error is \(error.localizedDescription)")
+
+                            MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_auth_error_title",
+                                                                                      comment: "Oops, there was a problem of authentication..."),
+                                                             body: error.localizedDescription,
+                                                             theme: .error)
                         }
                     }
                     
@@ -136,6 +143,11 @@ class AuthManager: NSObject{
                 case .failure(let error):
                     
                     print("\(error.localizedDescription)")
+                    
+                    MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_auth_error_title",
+                                                                              comment: "Oops, there was a problem of authentication..."),
+                                                     body: error.localizedDescription,
+                                                     theme: .error)
                     observer.onError(error)
                     break
                 }

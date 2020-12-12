@@ -24,8 +24,8 @@ class PhotoAddCollectionViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Output
     struct Output {
         var collections: BehaviorRelay<[Collection]> = BehaviorRelay<[Collection]>(value: [])
-        var loadingMore: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-        var reloading: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+        var loadingMore: PublishRelay<Bool> = PublishRelay<Bool>()
+        var reloading: PublishRelay<Bool> = PublishRelay<Bool>()
     }
     public var output: Output = Output()
     
@@ -79,7 +79,11 @@ class PhotoAddCollectionViewModel: BaseViewModel, ViewModelStreamable{
                 self.output.collections.accept(collections)
                 
                 self.output.reloading.accept(false)
-            }, onError: { (error) in
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.input.reloadAction?.errors
+            .subscribe(onNext: { (_) in
                 
                 self.output.reloading.accept(false)
             })

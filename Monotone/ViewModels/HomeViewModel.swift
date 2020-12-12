@@ -26,8 +26,8 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Output
     struct Output {
         var photos: BehaviorRelay<[Photo]> = BehaviorRelay<[Photo]>(value: [])
-        var loadingMore: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-        var reloading: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+        var loadingMore: PublishRelay<Bool> = PublishRelay<Bool>()
+        var reloading: PublishRelay<Bool> = PublishRelay<Bool>()
     }
     public var output: Output = Output()
     
@@ -85,7 +85,11 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
                 self.nextLoadPage += 1
                 
                 self.output.loadingMore.accept(false)
-            }, onError: { (error) in
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.input.loadMoreAction?.errors
+            .subscribe(onNext: { (_) in
                 
                 self.output.photos.accept(self.output.photos.value.filter({ (photo) -> Bool in
                     !self.emptyPhotos.contains(photo)
@@ -110,7 +114,11 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
                 
                 self.output.photos.accept(photos)
                 self.output.reloading.accept(false)
-            }, onError: { (error) in
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.input.reloadAction?.errors
+            .subscribe(onNext: { (_) in
                 
                 self.output.reloading.accept(false)
             })

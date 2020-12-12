@@ -21,7 +21,7 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Output
     struct Output {
-        var loggedIn: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+        var loggedIn: PublishRelay<Bool> = PublishRelay<Bool>()
     }
     public var output: Output = Output()
     

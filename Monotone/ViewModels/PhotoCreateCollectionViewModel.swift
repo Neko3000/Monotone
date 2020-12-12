@@ -24,7 +24,7 @@ class PhotoCreateCollectionViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Output
     struct Output {
-        var created: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+        var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
     }
     public var output: Output = Output()
     
@@ -51,12 +51,16 @@ class PhotoCreateCollectionViewModel: BaseViewModel, ViewModelStreamable{
         
         self.input.submitAction?.elements
             .subscribe(onNext: { (collection) in
-                self.output.created.accept(true)
-            },
-            onError: { (error) in
-                // TODO: show error
+                self.output.collection.accept(collection)
             })
             .disposed(by: self.disposeBag)
+        
+        self.input.submitAction?.errors
+            .subscribe(onNext: { _ in
+                self.output.collection.accept(nil)
+            })
+            .disposed(by: self.disposeBag)
+        
     }
     
 }

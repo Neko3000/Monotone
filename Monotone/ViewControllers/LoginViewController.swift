@@ -93,6 +93,8 @@ class LoginViewController: BaseViewController {
             make.height.equalTo(48.0)
             make.top.equalTo(self.view.snp.centerY).offset(20.0)
         }
+        
+        // TODO: Privacy Information: we use you ...
     }
     
     override func buildLogic() {

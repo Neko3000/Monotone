@@ -23,6 +23,7 @@
 		1401547A25831BF600746563 /* CollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401547925831BF600746563 /* CollectionService.swift */; };
 		1401547E25831ED900746563 /* CreateCollectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401547D25831ED900746563 /* CreateCollectionRequest.swift */; };
 		1401548125831FEA00746563 /* CreateCollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401548025831FEA00746563 /* CreateCollectionResponse.swift */; };
+		140158FE258388EF00746563 /* MessageCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140158FD258388EF00746563 /* MessageCenter.swift */; };
 		1406E9E2257A02530096DE82 /* FloatBlockButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9E1257A02530096DE82 /* FloatBlockButton.swift */; };
 		1406E9E5257A04370096DE82 /* CALayer+SketchShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9E4257A04370096DE82 /* CALayer+SketchShadow.swift */; };
 		1406E9E8257A04EF0096DE82 /* PhotoShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9E7257A04EF0096DE82 /* PhotoShareViewController.swift */; };
@@ -144,6 +145,7 @@
 		1401547925831BF600746563 /* CollectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionService.swift; sourceTree = "<group>"; };
 		1401547D25831ED900746563 /* CreateCollectionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCollectionRequest.swift; sourceTree = "<group>"; };
 		1401548025831FEA00746563 /* CreateCollectionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCollectionResponse.swift; sourceTree = "<group>"; };
+		140158FD258388EF00746563 /* MessageCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCenter.swift; sourceTree = "<group>"; };
 		1406E9E1257A02530096DE82 /* FloatBlockButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatBlockButton.swift; sourceTree = "<group>"; };
 		1406E9E4257A04370096DE82 /* CALayer+SketchShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+SketchShadow.swift"; sourceTree = "<group>"; };
 		1406E9E7257A04EF0096DE82 /* PhotoShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoShareViewController.swift; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 				14FD9C58257F7AE800DEC579 /* AppManager.swift */,
 				14FA607F2580AE74004AFBE8 /* AppCredential.swift */,
 				14FA648D2580C1D7004AFBE8 /* UrlScheme.swift */,
+				140158FD258388EF00746563 /* MessageCenter.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				14E59E312556A0E200F1FB60 /* NetworkService.swift in Sources */,
 				14BE9A01256A637C00B0DB39 /* GetTopicPhotosResponse.swift in Sources */,
 				14009CAC2577625000C70E6E /* StatisticsIndicator.swift in Sources */,
+				140158FE258388EF00746563 /* MessageCenter.swift in Sources */,
 				143FB13F255B859F00D24248 /* ListPhotosResponse.swift in Sources */,
 				1406E9F1257A11A20096DE82 /* PhotoShareViewModel.swift in Sources */,
 				14842C6C257DD00300364FFF /* ListUserCollectionsRequest.swift in Sources */,

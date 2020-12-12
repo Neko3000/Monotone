@@ -46,3 +46,6 @@
 "unsplash_add_collection_total_photo_prefix" = "%d Photos";
 
 "unsplash_create_collection_title" = "Create new collection";
+
+"unsplash_auth_error_title" = "Oops, there was a problem of authentication...";
+"unsplash_network_error_title" = "Oops, there was a problem on network...";
