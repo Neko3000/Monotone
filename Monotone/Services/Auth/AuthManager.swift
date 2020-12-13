@@ -39,6 +39,7 @@ class AuthManager: NSObject{
     private var _credential: AuthCredential?
     private var authSession: ASWebAuthenticationSession!
     
+    // MARK: Authroize
     public func authorize() -> Observable<String>{
         
         let params = [
@@ -80,6 +81,7 @@ class AuthManager: NSObject{
         }
     }
     
+    // MARK: Token
     public func token(code: String) -> Observable<String>{
         
         let params = [

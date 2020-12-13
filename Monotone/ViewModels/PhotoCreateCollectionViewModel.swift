@@ -18,7 +18,7 @@ class PhotoCreateCollectionViewModel: BaseViewModel, ViewModelStreamable{
         var title: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
         var description: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
         var isPrivate: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-        var submitAction: Action<Void, Collection>?
+        var submitAction: Action<Void, Collection?>?
     }
     public var input: Input = Input()
     
@@ -43,14 +43,14 @@ class PhotoCreateCollectionViewModel: BaseViewModel, ViewModelStreamable{
         let collectionService = self.service(type: CollectionService.self)!
         
         // Bindings.
-        self.input.submitAction = Action<Void,Collection>(workFactory: { (_) -> Observable<Collection> in
+        self.input.submitAction = Action<Void,Collection?>(workFactory: { (_) -> Observable<Collection?> in
             return collectionService.createCollection(title: self.input.title.value,
                                                       description: self.input.description.value,
                                                       isPrivate: self.input.isPrivate.value)
         })
         
         self.input.submitAction?.elements
-            .subscribe(onNext: { (collection) in
+            .subscribe(onNext: { (collection: Collection?) in
                 self.output.collection.accept(collection)
             })
             .disposed(by: self.disposeBag)

@@ -154,11 +154,12 @@ class PhotoDetailsViewController: BaseViewController {
             .subscribe(onNext: { _ in
                 let username = photoDetailsViewModel.output.photo.value.user?.username
 
-                let args = [
-                    "username" : "neko3000"
+                let args: [String : Any]  = [
+                    "username" : "neko3000",
+                    "photo": photoDetailsViewModel.output.photo
                 ]
 
-                self.transition(type: .present(.photoAddCollection(args), .pageSheet), with: nil, animated: true)
+                self.transition(type: .present(.photoAddToCollection(args), .pageSheet), with: nil, animated: true)
             })
             .disposed(by: self.disposeBag)
         

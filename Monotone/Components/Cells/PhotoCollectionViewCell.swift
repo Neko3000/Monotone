@@ -25,7 +25,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
     private func buildSubviews(){
-        
+                
         // defaultImageView.
         self.defaultImageView = UIImageView()
         self.defaultImageView.image = UIImage(named: "unsplash-logo")

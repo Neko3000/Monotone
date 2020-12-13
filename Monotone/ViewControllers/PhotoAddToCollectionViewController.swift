@@ -1,5 +1,5 @@
 //
-//  PhotoAddCollectionViewController.swift
+//  PhotoAddToCollectionViewController.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/12/4.
@@ -13,8 +13,8 @@ import RxCocoa
 import Kingfisher
 import MJRefresh
 
-// MARK: - PhotoAddCollectionViewController
-class PhotoAddCollectionViewController: BaseViewController {
+// MARK: - PhotoAddToCollectionViewController
+class PhotoAddToCollectionViewController: BaseViewController {
     
     // MARK: - Controls
     private var pageTitleView: PageTitleView!
@@ -58,7 +58,7 @@ class PhotoAddCollectionViewController: BaseViewController {
         // tableView.
         self.tableView = UITableView()
         self.tableView.separatorStyle = .none
-        self.tableView.register(AddCollectionTableViewCell.self, forCellReuseIdentifier: "AddCollectionTableViewCell")
+        self.tableView.register(AddToCollectionTableViewCell.self, forCellReuseIdentifier: "AddToCollectionTableViewCell")
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
@@ -67,7 +67,7 @@ class PhotoAddCollectionViewController: BaseViewController {
             make.bottom.equalTo(self.view).offset(-96.0)
         }
         
-        // addCollectionBtn.
+        // createCollectionBtn.
         self.createCollectionBtn = UIButton()
         self.createCollectionBtn.backgroundColor = ColorPalette.colorGrayLighter
         self.createCollectionBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -95,31 +95,46 @@ class PhotoAddCollectionViewController: BaseViewController {
     override func buildLogic() {
         
         // ViewModel.
-        let photoAddCollectionViewModel = self.viewModel(type: PhotoAddCollectionViewModel.self)!
+        let photoAddToCollectionViewModel = self.viewModel(type: PhotoAddToCollectionViewModel.self)!
         
         // Bindings.
-        photoAddCollectionViewModel.output.collections
-            .bind(to: self.tableView.rx.items(cellIdentifier: "AddCollectionTableViewCell")){
+        photoAddToCollectionViewModel.output.collections
+            .bind(to: self.tableView.rx.items(cellIdentifier: "AddToCollectionTableViewCell")){
                 (row, element, cell) in
                 
-                let pcell: AddCollectionTableViewCell = cell as! AddCollectionTableViewCell
+                let pcell: AddToCollectionTableViewCell = cell as! AddToCollectionTableViewCell
                 pcell.collection.accept(element)
             }
             .disposed(by: self.disposeBag)
+        
+        self.tableView.rx.modelSelected(Collection.self)
+            .subscribe(onNext: { (collection) in
+                
+                photoAddToCollectionViewModel.input.collection.accept(collection)
+                photoAddToCollectionViewModel.input.addToCollectionAction?.execute()
+                
+            })
+            .disposed(by: self.disposeBag)
+        
+        photoAddToCollectionViewModel.output.addingToCollection
+            .filter({ $0 != true})
+            .subscribe { (addingToCollection) in
+                
+            }
         
         // pageTitleView.
         self.pageTitleView.title.accept(NSLocalizedString("unsplash_add_collection_title", comment: "Add to collection"))
         
         // MJRefresh.
         self.tableView.mj_header!.refreshingBlock = {
-            photoAddCollectionViewModel.input.reloadAction?.execute()
+            photoAddToCollectionViewModel.input.reloadAction?.execute()
         }
             
         self.tableView.mj_footer!.refreshingBlock = {
-            photoAddCollectionViewModel.input.loadMoreAction?.execute()
+            photoAddToCollectionViewModel.input.loadMoreAction?.execute()
         }
         
-        photoAddCollectionViewModel.output.reloading
+        photoAddToCollectionViewModel.output.reloading
             .filter({ $0 == false })
             .subscribe { (_) in
                 self.tableView.mj_header!.endRefreshing()
@@ -129,7 +144,7 @@ class PhotoAddCollectionViewController: BaseViewController {
             }
             .disposed(by: self.disposeBag)
 
-        photoAddCollectionViewModel.output.loadingMore
+        photoAddToCollectionViewModel.output.loadingMore
             .filter({ $0 == false })
             .subscribe { (_) in
                 self.tableView.mj_footer!.endRefreshing()
@@ -160,7 +175,7 @@ class PhotoAddCollectionViewController: BaseViewController {
 }
 
 // MARK: - UITableViewDelegate
-extension PhotoAddCollectionViewController: UITableViewDelegate{
+extension PhotoAddToCollectionViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 94.0
@@ -168,7 +183,7 @@ extension PhotoAddCollectionViewController: UITableViewDelegate{
 }
 
 // MARK: - ViewControllerPresentable
-extension PhotoAddCollectionViewController: ViewControllerPresentable{
+extension PhotoAddToCollectionViewController: ViewControllerPresentable{
     
     func didDismissPresentingViewController(presentationController: UIPresentationController?) {
         

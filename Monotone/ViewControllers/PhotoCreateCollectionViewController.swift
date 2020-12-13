@@ -179,8 +179,8 @@ class PhotoCreateCollectionViewController: BaseViewController {
             }
             .disposed(by: self.disposeBag)
         
-        photoCreateCollectionViewModel.output.created
-            .filter({ $0 != false })
+        photoCreateCollectionViewModel.output.collection
+            .filter({ $0 != nil })
             .subscribe { (created) in
                 SceneCoordinator.shared.pop()
             } onError: { (error) in

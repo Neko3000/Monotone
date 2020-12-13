@@ -1,5 +1,5 @@
 //
-//  AddCollectionTableViewCell.swift
+//  AddToCollectionTableViewCell.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/12/4.
@@ -10,8 +10,9 @@ import UIKit
 import RxSwift
 import RxRelay
 import RxCocoa
+import anim
 
-class AddCollectionTableViewCell: UITableViewCell {
+class AddToCollectionTableViewCell: UITableViewCell {
     
     // MARK: Public
     public var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
@@ -23,6 +24,8 @@ class AddCollectionTableViewCell: UITableViewCell {
     public var photoCountLabel: UILabel!
     public var lockImageView: UIImageView!
     public var plusImageView: UIImageView!
+    
+    public var overlayerView: UIView!
     
     // MARK: Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -40,6 +43,8 @@ class AddCollectionTableViewCell: UITableViewCell {
     }
     
     private func buildSubviews(){
+        
+        self.selectionStyle = .none
                 
         // coverImageView.
         self.coverImageView = UIImageView()
@@ -97,6 +102,17 @@ class AddCollectionTableViewCell: UITableViewCell {
             make.width.height.equalTo(20.0)
         })
         
+        // overlayerView.
+        self.overlayerView = UIView()
+        self.overlayerView.backgroundColor = UIColor.green
+        self.overlayerView.alpha = 0
+        self.overlayerView.layer.cornerRadius = 8.0
+        self.overlayerView.layer.masksToBounds = true
+        self.contentView.addSubview(self.overlayerView)
+        self.overlayerView.snp.makeConstraints({ (make) in
+            make.top.right.bottom.left.equalTo(self.coverImageView)
+        })
+        
     }
 
     private func buildLogic(){
@@ -111,7 +127,24 @@ class AddCollectionTableViewCell: UITableViewCell {
                 self.coverImageView.kf.setImage(with: URL(string: collection!.coverPhoto?.urls?.small ?? ""),
                                                 placeholder: UIImage(blurHash: collection!.coverPhoto?.blurHash ?? "", size: CGSize(width: 10, height: 10)),
                                                 options: [.transition(.fade(1.0)), .originalCache(.default)])
-        })
+            })
             .disposed(by: self.disposeBag)
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: true)
+        
+        if(selected){
+            
+            self.overlayerView.alpha = 0.6
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 1.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.overlayerView.alpha = 0
+                }
+            }
+        }
     }
 }

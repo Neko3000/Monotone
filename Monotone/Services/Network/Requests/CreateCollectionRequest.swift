@@ -12,7 +12,7 @@ class CreateCollectionRequest: BaseRequest{
     
     override var api: String?{
         get{
-            return "/collections"
+            return "collections"
         }
     }
     

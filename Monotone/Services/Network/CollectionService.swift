@@ -14,7 +14,7 @@ class CollectionService: NetworkService {
 
     public func createCollection(title: String,
                                  description: String? = "",
-                                 isPrivate: Bool? = false) -> Observable<Collection>{
+                                 isPrivate: Bool? = false) -> Observable<Collection?>{
         
         let request: CreateCollectionRequest = CreateCollectionRequest()
         request.title = title
@@ -28,6 +28,31 @@ class CollectionService: NetworkService {
                 let collection = response!.collection!
                 
                 observer.onNext(collection)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
+    
+    public func addToCollection(collectionId: String,
+                                photoId: String) -> Observable<Photo?>{
+        
+        let request: AddToCollectionRequest = AddToCollectionRequest()
+        request.collectionId = collectionId
+        request.photoId = photoId
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request , method: .post).subscribe { (json) in
+                let response = AddToCollectionResponse(JSON: json)
+                let photo = response!.photo!
+                
+                observer.onNext(photo)
                 observer.onCompleted()
 
             } onError: { (error) in

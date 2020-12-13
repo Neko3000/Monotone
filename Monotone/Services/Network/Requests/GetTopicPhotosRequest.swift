@@ -12,7 +12,7 @@ class GetTopicPhotosRequest: BaseRequest{
     
     override var api: String?{
         get{
-            return "/topics/\(self.idOrSlug ?? "")/photos"
+            return "topics/\(self.idOrSlug ?? "")/photos"
         }
     }
     

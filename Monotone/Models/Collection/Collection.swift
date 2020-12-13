@@ -10,7 +10,7 @@ import ObjectMapper
 
 class Collection: Mappable {
 
-    var id: Int?
+    var id: String?
     var title: String?
     var coverPhoto: Photo?
     var description: String?

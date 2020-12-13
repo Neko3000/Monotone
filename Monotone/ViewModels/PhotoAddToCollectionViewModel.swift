@@ -1,5 +1,5 @@
 //
-//  PhotoAddCollectionViewModel.swift
+//  PhotoAddToCollectionViewModel.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/12/7.
@@ -11,13 +11,17 @@ import RxSwift
 import RxRelay
 import Action
 
-class PhotoAddCollectionViewModel: BaseViewModel, ViewModelStreamable{
+class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var username: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
+        var username: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
         var loadMoreAction: Action<Void, [Collection]>?
         var reloadAction: Action<Void, [Collection]>?
+        
+        var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
+        var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
+        var addToCollectionAction: Action<Void, Photo?>?
     }
     public var input: Input = Input()
     
@@ -26,6 +30,9 @@ class PhotoAddCollectionViewModel: BaseViewModel, ViewModelStreamable{
         var collections: BehaviorRelay<[Collection]> = BehaviorRelay<[Collection]>(value: [])
         var loadingMore: PublishRelay<Bool> = PublishRelay<Bool>()
         var reloading: PublishRelay<Bool> = PublishRelay<Bool>()
+        
+        var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
+        var addingToCollection: PublishRelay<Bool> = PublishRelay<Bool>()
     }
     public var output: Output = Output()
     
@@ -34,8 +41,11 @@ class PhotoAddCollectionViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Inject
     override func inject(args: [String : Any]?) {
-        if(args?["username"] != nil){
-            self.input.username = BehaviorRelay(value: args!["username"] as! String)
+        if let username = args?["username"]{
+            self.input.username = BehaviorRelay(value: username as? String)
+        }
+        if let photo = args?["photo"]{
+            self.input.photo = BehaviorRelay(value: photo as? Photo)
         }
     }
     
@@ -44,13 +54,14 @@ class PhotoAddCollectionViewModel: BaseViewModel, ViewModelStreamable{
         
         // Service.
         let userService = self.service(type: UserService.self)!
+        let collectionService = self.service(type: CollectionService.self)!
         
         // Bindings.
         // LoadMore.
         self.input.loadMoreAction = Action<Void, [Collection]>(workFactory: { (_) -> Observable<[Collection]> in
             self.output.loadingMore.accept(true)
                         
-            return userService.listUserCollections(username: self.input.username.value, page: self.nextLoadPage, perPage: 20)
+            return userService.listUserCollections(username: self.input.username.value!, page: self.nextLoadPage, perPage: 20)
         })
         
         self.input.loadMoreAction?.elements
@@ -60,7 +71,11 @@ class PhotoAddCollectionViewModel: BaseViewModel, ViewModelStreamable{
                 self.nextLoadPage += 1
                 
                 self.output.loadingMore.accept(false)
-            }, onError: { (error) in
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.input.loadMoreAction?.errors
+            .subscribe(onNext: { (_) in
                 
                 self.output.loadingMore.accept(false)
             })
@@ -68,6 +83,7 @@ class PhotoAddCollectionViewModel: BaseViewModel, ViewModelStreamable{
         
         // Reload.
         self.input.reloadAction = Action<Void, [Collection]>(workFactory: { (_) -> Observable<[Collection]> in
+            self.output.reloading.accept(true)
             self.nextLoadPage = 1
             
             return self.input.loadMoreAction!.execute()
@@ -86,6 +102,32 @@ class PhotoAddCollectionViewModel: BaseViewModel, ViewModelStreamable{
             .subscribe(onNext: { (_) in
                 
                 self.output.reloading.accept(false)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // addToCollection.
+        self.input.addToCollectionAction = Action<Void, Photo?>(workFactory: { (_) -> Observable<Photo?> in
+            self.output.addingToCollection.accept(true)
+
+            return collectionService.addToCollection(collectionId: self.input.collection.value!.id!,
+                                                     photoId: self.input.photo.value!.id!)
+        })
+        
+        self.input.addToCollectionAction?.elements
+            .subscribe(onNext: { (photo: Photo?) in
+
+                self.output.photo.accept(photo)
+                
+                self.output.addingToCollection.accept(false)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.input.addToCollectionAction?.errors
+            .subscribe(onNext: { (_) in
+                
+                self.output.photo.accept(nil)
+                
+                self.output.addingToCollection.accept(false)
             })
             .disposed(by: self.disposeBag)
         

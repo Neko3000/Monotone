@@ -20,7 +20,7 @@ class NetworkManager{
     
     let domain: String = "https://api.unsplash.com/"
     
-    // MARK: Header
+    // MARK: Headers
     private var headers : HTTPHeaders{
         get{
             var tokenType: String = ""
@@ -36,13 +36,12 @@ class NetworkManager{
             }
             
             return [
-//                "Authorization" : "\(tokenType) \(accessToken)"
-                                "Authorization" : "x"
-
+                "Authorization" : "\(tokenType) \(accessToken)"
             ]
         }
     }
     
+    // MARK: Request.
     public func request(request:BaseRequest, method:HTTPMethod) -> Observable<[String: Any]>{
         
         let endPoint = (request.api ?? "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -77,7 +76,7 @@ class NetworkManager{
                             let error = NetworkError(errorStrs: json["errors"].arrayObject as! [String])
                             
                             MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_network_error_title",
-                                                                                      comment: "Oops, there was a problem..."),
+                                                                                      comment: "Oops, there was a problem on network..."),
                                                              body: error.localizedDescription,
                                                              theme: .error)
                             
@@ -86,10 +85,11 @@ class NetworkManager{
                         catch{
                             print("Could not decode failure errors from \(url), the error is \(error.localizedDescription)")
 
-                            MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_auth_error_title",
-                                                                                      comment: "Oops, there was a problem of authentication..."),
+                            MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_network_error_title",
+                                                                                      comment: "Oops, there was a problem on network..."),
                                                              body: error.localizedDescription,
-                                                             theme: .error)                        }
+                                                             theme: .error)
+                        }
                     }
                     
                     break
@@ -98,7 +98,7 @@ class NetworkManager{
                     
                     print("\(error.localizedDescription)")
                     
-                    MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_auth_error_title",
+                    MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_network_error_title",
                                                                               comment: "Oops, there was a problem of authentication..."),
                                                      body: error.localizedDescription,
                                                      theme: .error)
