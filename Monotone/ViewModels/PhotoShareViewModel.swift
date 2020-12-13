@@ -15,13 +15,13 @@ class PhotoShareViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var photo: BehaviorRelay<Photo> = BehaviorRelay<Photo>(value: Photo())
+        var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
     }
     public var input: Input = Input()
     
     // MARK: - Output
     struct Output {
-        var photo: BehaviorRelay<Photo> = BehaviorRelay<Photo>(value: Photo())
+        var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
     }
     public var output: Output = Output()
     
@@ -30,8 +30,8 @@ class PhotoShareViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Inject
     override func inject(args: [String : Any]?) {
-        if(args?["photo"] != nil){
-            self.input.photo = BehaviorRelay(value: args!["photo"] as! Photo)
+        if let photo = args?["photo"]{
+            self.input.photo = BehaviorRelay(value: photo as? Photo)
         }
     }
     
