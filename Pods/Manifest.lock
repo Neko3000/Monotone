@@ -12,6 +12,9 @@ PODS:
     - Kingfisher/Core (= 5.15.7)
   - Kingfisher/Core (5.15.7)
   - MJRefresh (3.5.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - ObjectMapper (4.2.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
@@ -36,6 +39,7 @@ DEPENDENCIES:
   - Hue (= 5.0.0)
   - Kingfisher (= 5.15.7)
   - MJRefresh (= 3.5.0)
+  - NVActivityIndicatorView (= 5.1.1)
   - ObjectMapper (= 4.2.0)
   - RxCocoa (= 5.1.1)
   - RxRelay (= 5.1.1)
@@ -56,6 +60,7 @@ SPEC REPOS:
     - Hue
     - Kingfisher
     - MJRefresh
+    - NVActivityIndicatorView
     - ObjectMapper
     - RxCocoa
     - RxRelay
@@ -75,6 +80,7 @@ SPEC CHECKSUMS:
   Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
   Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
@@ -84,6 +90,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   ViewAnimator: dd18d2f5c1e472f78d0065ff92750fe56cbd2f39
 
-PODFILE CHECKSUM: 63510a5d1aab8b7cef54a9c0a69c14f45d9cfcec
+PODFILE CHECKSUM: b2af0ba9be63f26312d29059796f1628e3bd4c1d
 
 COCOAPODS: 1.6.1
