@@ -11,8 +11,13 @@ import RxSwift
 import RxRelay
 import RxCocoa
 import anim
+import NVActivityIndicatorView
 
 class AddToCollectionTableViewCell: UITableViewCell {
+    enum DisplayState{
+        case succeed
+        case failed
+    }
     
     // MARK: Public
     public var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
@@ -26,6 +31,9 @@ class AddToCollectionTableViewCell: UITableViewCell {
     public var plusImageView: UIImageView!
     
     public var overlayerView: UIView!
+    
+    public var stateColorView: UIView!
+    public var activityIndicatorView: NVActivityIndicatorView!
     
     // MARK: Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -58,6 +66,16 @@ class AddToCollectionTableViewCell: UITableViewCell {
             make.bottom.equalTo(self.contentView).offset(-7.0)
             make.left.equalTo(self.contentView).offset(17.0)
             make.right.equalTo(self.contentView).offset(-17.0)
+        })
+        
+        // overlayerView.
+        self.overlayerView = UIView()
+        self.overlayerView.backgroundColor = ColorPalette.colorOverlayer
+        self.overlayerView.layer.cornerRadius = 8.0
+        self.overlayerView.layer.masksToBounds = true
+        self.contentView.addSubview(self.overlayerView)
+        self.overlayerView.snp.makeConstraints({ (make) in
+            make.top.right.bottom.left.equalTo(self.coverImageView)
         })
         
         // lockImageView.
@@ -102,17 +120,25 @@ class AddToCollectionTableViewCell: UITableViewCell {
             make.width.height.equalTo(20.0)
         })
         
-        // overlayerView.
-        self.overlayerView = UIView()
-        self.overlayerView.backgroundColor = UIColor.green
-        self.overlayerView.alpha = 0
-        self.overlayerView.layer.cornerRadius = 8.0
-        self.overlayerView.layer.masksToBounds = true
-        self.contentView.addSubview(self.overlayerView)
-        self.overlayerView.snp.makeConstraints({ (make) in
+        // stateView.
+        self.stateColorView = UIView()
+        self.stateColorView.alpha = 0
+        self.stateColorView.layer.cornerRadius = 8.0
+        self.stateColorView.layer.masksToBounds = true
+        self.contentView.addSubview(self.stateColorView)
+        self.stateColorView.snp.makeConstraints({ (make) in
             make.top.right.bottom.left.equalTo(self.coverImageView)
         })
         
+        // activityIndicatorView
+        self.activityIndicatorView = NVActivityIndicatorView(frame: CGRect.zero)
+        self.activityIndicatorView.type = .circleStrokeSpin
+        self.activityIndicatorView.color = UIColor.white
+        self.contentView.addSubview(self.activityIndicatorView)
+        self.activityIndicatorView.snp.makeConstraints { (make) in
+            make.center.equalTo(self.contentView)
+            make.width.height.equalTo(20.0)
+        }
     }
 
     private func buildLogic(){
@@ -131,20 +157,53 @@ class AddToCollectionTableViewCell: UITableViewCell {
             .disposed(by: self.disposeBag)
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: true)
+    public func switchLoadingState(loading: Bool){
         
-        if(selected){
+        if(loading){
+            self.activityIndicatorView.startAnimating()
+            self.activityIndicatorView.isHidden = false
+        }
+        else{
+            self.activityIndicatorView.stopAnimating()
+            self.activityIndicatorView.isHidden = true
+        }
+        
+    }
+    
+    public func switchDisplayState(displayState: DisplayState){
+        switch displayState {
             
-            self.overlayerView.alpha = 0.6
+        case .succeed:
+            self.activityIndicatorView.isHidden = true
+
+            self.stateColorView.backgroundColor = ColorPalette.colorGreen
+            self.stateColorView.alpha = 0.5
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 1.5
                 animSettings.ease = .easeInOutQuart
                 
                 return {
-                    self.overlayerView.alpha = 0
+                    self.stateColorView.alpha = 0
                 }
             }
+            
+            break
+            
+        case .failed:
+            self.activityIndicatorView.isHidden = true
+
+            self.stateColorView.backgroundColor = ColorPalette.colorRed
+            self.stateColorView.alpha = 0.5
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 1.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.stateColorView.alpha = 0
+                }
+            }
+            
+            break
         }
     }
 }

@@ -88,8 +88,20 @@ class ColorPalette{
         return UIColor.black.alpha(0.09)
     }
     
+    public static var colorOverlayer:UIColor{
+        return self.colorWithDarkMode(darkColor: UIColor.black.alpha(0.4), lightColor: UIColor.black.alpha(0.6))
+    }
+    
     // FIXME: To Archive
     public static var colorDenim:UIColor{
         return self.colorWithDarkMode(darkColorHex: "#3c5080", lightColorHex: "#3c5080")
+    }
+    
+    public static var colorGreen:UIColor{
+        return self.colorWithDarkMode(darkColorHex: "#2cb191", lightColorHex: "#2cb191")
+    }
+    
+    public static var colorRed:UIColor{
+        return self.colorWithDarkMode(darkColorHex: "#bb055a", lightColorHex: "#bb055a")
     }
 }

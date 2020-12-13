@@ -156,7 +156,7 @@ class PhotoDetailsViewController: BaseViewController {
 
                 let args: [String : Any]  = [
                     "username" : "neko3000",
-                    "photo": photoDetailsViewModel.output.photo
+                    "photo": photoDetailsViewModel.output.photo.value
                 ]
 
                 self.transition(type: .present(.photoAddToCollection(args), .pageSheet), with: nil, animated: true)

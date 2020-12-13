@@ -112,15 +112,41 @@ class PhotoAddToCollectionViewController: BaseViewController {
                 
                 photoAddToCollectionViewModel.input.collection.accept(collection)
                 photoAddToCollectionViewModel.input.addToCollectionAction?.execute()
-                
             })
             .disposed(by: self.disposeBag)
         
-        photoAddToCollectionViewModel.output.addingToCollection
-            .filter({ $0 != true})
-            .subscribe { (addingToCollection) in
+        tableView.rx.itemSelected
+            .subscribe(onNext: { indexPath in
                 
-            }
+                let pcell = self.tableView.cellForRow(at: indexPath) as! AddToCollectionTableViewCell
+                pcell.switchLoadingState(loading: true)
+                
+                self.tableView.allowsSelection = false
+            })
+            .disposed(by: disposeBag)
+        
+        photoAddToCollectionViewModel.output.addingToCollection
+            .filter({ $0 != false })
+            .filter({ _ in self.tableView.indexPathForSelectedRow != nil})
+            .subscribe( onNext: {(addingToCollection) in
+                
+                let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
+                pcell.switchLoadingState(loading: false)
+                
+                self.tableView.allowsSelection = true
+            })
+            .disposed(by: self.disposeBag)
+        
+        photoAddToCollectionViewModel.output.photo
+            .filter({ _ in self.tableView.indexPathForSelectedRow != nil })
+            .subscribe( onNext: {(photo) in
+                
+                let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
+                pcell.switchDisplayState(displayState: photo != nil ? .succeed : .failed)
+                
+                self.tableView.allowsSelection = true
+            })
+            .disposed(by: self.disposeBag)
         
         // pageTitleView.
         self.pageTitleView.title.accept(NSLocalizedString("unsplash_add_collection_title", comment: "Add to collection"))
