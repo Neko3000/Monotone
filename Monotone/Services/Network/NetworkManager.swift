@@ -68,6 +68,8 @@ class NetworkManager{
                         }
                         catch{
                             print("Could not decode success result from \(url), the error is \(error.localizedDescription)")
+                            
+                            observer.onCompleted()
                         }
                     }
                     else{
@@ -84,11 +86,8 @@ class NetworkManager{
                         }
                         catch{
                             print("Could not decode failure errors from \(url), the error is \(error.localizedDescription)")
-
-                            MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_network_error_title",
-                                                                                      comment: "Oops, there was a problem on network..."),
-                                                             body: error.localizedDescription,
-                                                             theme: .error)
+                            
+                            observer.onError(error)
                         }
                     }
                     

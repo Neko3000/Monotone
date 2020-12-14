@@ -64,7 +64,8 @@ class SearchPhotosViewModel: BaseViewModel, ViewModelStreamable{
             }, onError: { (error) in
                 
                 self.output.loadingMore.onNext(false)
-            }).disposed(by: self.disposeBag)
+            })
+            .disposed(by: self.disposeBag)
         
         // Reload.
         self.input.reloadAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
@@ -80,6 +81,7 @@ class SearchPhotosViewModel: BaseViewModel, ViewModelStreamable{
             }, onError: { (error) in
                 
                 self.output.reloading.onNext(false)
-            }).disposed(by: self.disposeBag)
+            })
+            .disposed(by: self.disposeBag)
     }
 }

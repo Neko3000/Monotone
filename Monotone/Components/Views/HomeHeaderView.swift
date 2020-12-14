@@ -12,13 +12,14 @@ import HMSegmentedControl
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 class HomeHeaderView: BaseView {
     
     // MARK: - Public
-    public let searchQuery: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
-    public let listOrderBy: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
-    public let topic: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
+    public let searchQuery: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    public let listOrderBy: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    public let topic: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
 
     // MARK: - Controls
     private var searchTextField: UITextField!
@@ -109,19 +110,19 @@ class HomeHeaderView: BaseView {
         // searchTextField
         self.searchTextField.rx.controlEvent(.editingDidEndOnExit)
             .subscribe(onNext: { (_) in
-                self.searchQuery.accept(self.searchTextField.text ?? "")
+                self.searchQuery.accept(self.searchTextField.text ?? nil)
             })
             .disposed(by: self.disposeBag)
         
         self.searchQuery
-            .bind(to: self.searchTextField.rx.text.orEmpty)
+            .bind(to: self.searchTextField.rx.text)
             .disposed(by: self.disposeBag)
         
         // segmentedControl
         Observable.of(self.listOrderBy, self.topic)
             .merge()
             .distinctUntilChanged()
-            .filter({ $0 != ""})
+            .unwrap()
             .flatMap { (key) -> Observable<Int> in
                 let segmentedKeys = Array(self.listOrderByContent.map({ $0.key })) + Array(self.topicContent.map({ $0.key }))
                 let index = segmentedKeys.firstIndex { $0 == key } ?? -1
@@ -136,28 +137,28 @@ class HomeHeaderView: BaseView {
         
         self.searchQuery
             .distinctUntilChanged()
-            .filter({ $0 != ""})
+            .unwrap()
             .subscribe { (value) in
-                self.listOrderBy.accept("")
-                self.topic.accept("")
+                self.listOrderBy.accept(nil)
+                self.topic.accept(nil)
             }
             .disposed(by: self.disposeBag)
         
         self.listOrderBy
             .distinctUntilChanged()
-            .filter({ $0 != ""})
+            .unwrap()
             .subscribe { (value) in
-                self.searchQuery.accept("")
-                self.topic.accept("")
+                self.searchQuery.accept(nil)
+                self.topic.accept(nil)
             }
             .disposed(by: self.disposeBag)
         
         self.topic
             .distinctUntilChanged()
-            .filter({ $0 != ""})
+            .unwrap()
             .subscribe { (value) in
-                self.searchQuery.accept("")
-                self.listOrderBy.accept("")
+                self.searchQuery.accept(nil)
+                self.listOrderBy.accept(nil)
             }
             .disposed(by: self.disposeBag)
         

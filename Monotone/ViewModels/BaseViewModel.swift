@@ -11,7 +11,7 @@ import RxSwift
 
 // MARK: - ViewModelServable
 protocol ViewModelServable {
-    init(services: [BaseService]?, args: [String: Any]?)
+    init(services: [BaseService]?, args: [String: Any?]?)
     
     var services: [BaseService]? { get }
     func service<T: BaseService>(type: T.Type) -> T?
@@ -45,7 +45,7 @@ class BaseViewModel: ViewModelServable {
     // MARK: ViewModelServable
     var services: [BaseService]?
     
-    required init(services: [BaseService]?, args: [String: Any]? ) {
+    required init(services: [BaseService]?, args: [String: Any?]? ) {
         self.services = services
         
         self.inject(args: args)

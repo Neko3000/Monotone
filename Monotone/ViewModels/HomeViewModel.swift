@@ -10,14 +10,15 @@ import Foundation
 import RxSwift
 import RxRelay
 import Action
+import RxSwiftExt
 
 class HomeViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var searchQuery: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
-        var listOrderBy: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
-        var topic: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
+        var searchQuery: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+        var listOrderBy: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+        var topic: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
         var loadMoreAction: Action<Void, [Photo]>?
         var reloadAction: Action<Void, [Photo]>?
     }
@@ -37,11 +38,11 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Inject
     override func inject(args: [String : Any]?) {
-        if(args?["searchQuery"] != nil){
-            self.input.searchQuery = BehaviorRelay(value: args!["searchQuery"] as! String)
+        if let searchQuery = args?["searchQuery"]{
+            self.input.searchQuery = BehaviorRelay(value: searchQuery as? String)
         }
-        if(args?["listOrderBy"] != nil){
-            self.input.listOrderBy = BehaviorRelay(value: args!["listOrderBy"] as! String)
+        if let listOrderBy = args?["listOrderBy"]{
+            self.input.listOrderBy = BehaviorRelay(value: listOrderBy as? String)
         }
     }
     
@@ -60,14 +61,14 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
             // Before the request returns.
             self.output.photos.accept(self.output.photos.value + self.emptyPhotos)
             
-            if(self.input.listOrderBy.value != ""){
-                return photoService!.listPhotos(page: self.nextLoadPage, perPage: 20, orderBy: self.input.listOrderBy.value)
+            if let listOrderBy = self.input.listOrderBy.value{
+                return photoService!.listPhotos(page: self.nextLoadPage, perPage: 20, orderBy: listOrderBy)
             }
-            else if(self.input.searchQuery.value != ""){
-                return photoService!.searchPhotos(query: self.input.searchQuery.value , page: self.nextLoadPage, perPage: 20)
+            else if let searchQuery = self.input.searchQuery.value{
+                return photoService!.searchPhotos(query: searchQuery , page: self.nextLoadPage, perPage: 20)
             }
-            else if(self.input.topic.value != ""){
-                return topicService!.getTopicPhotos(idOrSlug: self.input.topic.value, page: self.nextLoadPage, perPage: 20)
+            else if let topic = self.input.topic.value{
+                return topicService!.getTopicPhotos(idOrSlug: topic, page: self.nextLoadPage, perPage: 20)
             }
             else{
                 self.output.loadingMore.accept(false)
@@ -127,10 +128,10 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         // Search query.
         self.input.searchQuery
             .distinctUntilChanged()
-            .filter({ $0 != "" })
+            .unwrap()
             .subscribe { (_) in
-                self.input.listOrderBy.accept("")
-                self.input.topic.accept("")
+                self.input.listOrderBy.accept(nil)
+                self.input.topic.accept(nil)
                 self.input.reloadAction?.execute()
             }
             .disposed(by: self.disposeBag)
@@ -138,10 +139,10 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         // Order by.
         self.input.listOrderBy
             .distinctUntilChanged()
-            .filter({ $0 != "" })
+            .unwrap()
             .subscribe { (_) in
-                self.input.searchQuery.accept("")
-                self.input.topic.accept("")
+                self.input.searchQuery.accept(nil)
+                self.input.topic.accept(nil)
                 self.input.reloadAction?.execute()
             }
             .disposed(by: self.disposeBag)
@@ -149,10 +150,10 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         // Topic.
         self.input.topic
             .distinctUntilChanged()
-            .filter({ $0 != "" })
+            .unwrap()
             .subscribe { (_) in
-                self.input.searchQuery.accept("")
-                self.input.listOrderBy.accept("")
+                self.input.searchQuery.accept(nil)
+                self.input.listOrderBy.accept(nil)
                 self.input.reloadAction?.execute()
             }
             .disposed(by: self.disposeBag)

@@ -47,7 +47,12 @@
 
 "unsplash_add_collection_title" = "添加到收藏";
 "unsplash_add_collection_total_photo_prefix" = "%d 张图片";
+"unsplash_add_collection_button_create" = "创建一个新的收藏";
 
 "unsplash_create_collection_title" = "创建一个收藏";
+"unsplash_create_collection_form_title" = "名称";
+"unsplash_create_collection_form_description" = "描述 (可选)";
+"unsplash_create_collection_form_option_private" = "这是一个私有收藏";
+"unsplash_create_collection_form_button_submit" = "创建";
 
 "unsplash_network_error_title" = "天哪，网络上有个错误...";

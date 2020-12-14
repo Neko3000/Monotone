@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-class Collection: Mappable {
+class Collection:Equatable, Mappable{
 
     var id: String?
     var title: String?
@@ -40,6 +40,10 @@ class Collection: Mappable {
         shareKey        <- map["share_key"]
         links           <- map["links"]
         isPrivate       <- map["private"]
+    }
+    
+    static func == (lhs: Collection, rhs: Collection) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 

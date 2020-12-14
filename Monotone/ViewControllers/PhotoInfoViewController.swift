@@ -98,7 +98,9 @@ class PhotoInfoViewController: BaseViewController {
         let photoInfoViewModel = self.viewModel(type: PhotoInfoViewModel.self)!
         
         // Bindings.
-        photoInfoViewModel.output.photo.subscribe(onNext: { photo in
+        photoInfoViewModel.output.photo
+            .unwrap()
+            .subscribe(onNext: { photo in
             
             // pageTitleView.
             if let altDescription = photo.altDescription{

@@ -19,9 +19,11 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
         var loadMoreAction: Action<Void, [Collection]>?
         var reloadAction: Action<Void, [Collection]>?
         
-        var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
         var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
+        
+        var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
         var addToCollectionAction: Action<Void, Photo?>?
+        var removeFromCollectionAction: Action<Void, Photo?>?
     }
     public var input: Input = Input()
     
@@ -31,8 +33,10 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
         var loadingMore: PublishRelay<Bool> = PublishRelay<Bool>()
         var reloading: PublishRelay<Bool> = PublishRelay<Bool>()
         
-        var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
+        var addedPhoto: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
         var addingToCollection: PublishRelay<Bool> = PublishRelay<Bool>()
+        var removedPhoto: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
+        var removingFromCollection: PublishRelay<Bool> = PublishRelay<Bool>()
     }
     public var output: Output = Output()
     
@@ -116,7 +120,8 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
         self.input.addToCollectionAction?.elements
             .subscribe(onNext: { (photo: Photo?) in
 
-                self.output.photo.accept(photo)
+                self.input.photo.accept(photo)
+                self.output.addedPhoto.accept(photo)
                 
                 self.output.addingToCollection.accept(false)
             })
@@ -125,12 +130,37 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
         self.input.addToCollectionAction?.errors
             .subscribe(onNext: { (_) in
                 
-                self.output.photo.accept(nil)
+                self.output.addedPhoto.accept(nil)
                 
                 self.output.addingToCollection.accept(false)
             })
             .disposed(by: self.disposeBag)
         
+        // removeFromCollection.
+        self.input.removeFromCollectionAction = Action<Void, Photo?>(workFactory: { (_) -> Observable<Photo?> in
+            self.output.removingFromCollection.accept(true)
+
+            return collectionService.removeFromCollection(collectionId: self.input.collection.value!.id!,
+                                                          photoId: self.input.photo.value!.id!)
+        })
+        
+        self.input.removeFromCollectionAction?.elements
+            .subscribe(onNext: { (photo: Photo?) in
+
+                self.input.photo.accept(photo)
+                self.output.removedPhoto.accept(photo)
+                
+                self.output.removingFromCollection.accept(false)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.input.removeFromCollectionAction?.errors
+            .subscribe(onNext: { (_) in
+                
+                self.output.removedPhoto.accept(nil)
+                
+                self.output.removingFromCollection.accept(false)
+            })
+            .disposed(by: self.disposeBag)
     }
-    
 }

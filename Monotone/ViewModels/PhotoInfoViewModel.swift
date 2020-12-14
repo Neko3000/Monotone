@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxRelay
 import Action
+import RxSwiftExt
 
 class PhotoInfoViewModel: BaseViewModel, ViewModelStreamable{
     
@@ -43,16 +44,19 @@ class PhotoInfoViewModel: BaseViewModel, ViewModelStreamable{
         let photoService = self.service(type: PhotoService.self)!
         
         // Bindings.
-        self.input.photo.flatMap { (photo) -> Observable<Statistics> in
-            return photoService.statisticizePhoto(id: photo.id!)
-        }
-        .subscribe(onNext: { (statistics) in
+        self.input.photo
+            .unwrap()
+            .flatMap { (photo) -> Observable<Statistics> in
+                return photoService.statisticizePhoto(id: photo.id!)
+                
+            }
+            .subscribe(onNext: { (statistics) in
             
-            self.output.statistics.accept(statistics)
-        }, onError: { (error) in
-            
-        })
-        .disposed(by: self.disposeBag)
+                self.output.statistics.accept(statistics)
+            }, onError: { (error) in
+                
+            })
+            .disposed(by: self.disposeBag)
 
         self.input.photo.bind(to: self.output.photo)
             .disposed(by: self.disposeBag)

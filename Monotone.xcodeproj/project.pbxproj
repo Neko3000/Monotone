@@ -63,6 +63,8 @@
 		143F567B254FEF320038761D /* HomeJumbotronView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F567A254FEF320038761D /* HomeJumbotronView.swift */; };
 		143FB13F255B859F00D24248 /* ListPhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB13E255B859F00D24248 /* ListPhotosResponse.swift */; };
 		143FB14F255BAD2D00D24248 /* ListPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB14E255BAD2D00D24248 /* ListPhotosViewModel.swift */; };
+		14621CB32587546A00446F5F /* RemoveFromCollectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14621CB22587546A00446F5F /* RemoveFromCollectionRequest.swift */; };
+		14621CB62587549D00446F5F /* RemoveFromCollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14621CB52587549D00446F5F /* RemoveFromCollectionResponse.swift */; };
 		14842C69257DCF7C00364FFF /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14842C68257DCF7C00364FFF /* UserService.swift */; };
 		14842C6C257DD00300364FFF /* ListUserCollectionsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14842C6B257DD00300364FFF /* ListUserCollectionsRequest.swift */; };
 		14842C70257DD08100364FFF /* ListUserCollectionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14842C6F257DD08100364FFF /* ListUserCollectionsResponse.swift */; };
@@ -187,6 +189,8 @@
 		143F567A254FEF320038761D /* HomeJumbotronView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeJumbotronView.swift; sourceTree = "<group>"; };
 		143FB13E255B859F00D24248 /* ListPhotosResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPhotosResponse.swift; sourceTree = "<group>"; };
 		143FB14E255BAD2D00D24248 /* ListPhotosViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPhotosViewModel.swift; sourceTree = "<group>"; };
+		14621CB22587546A00446F5F /* RemoveFromCollectionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveFromCollectionRequest.swift; sourceTree = "<group>"; };
+		14621CB52587549D00446F5F /* RemoveFromCollectionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveFromCollectionResponse.swift; sourceTree = "<group>"; };
 		14842C68257DCF7C00364FFF /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		14842C6B257DD00300364FFF /* ListUserCollectionsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListUserCollectionsRequest.swift; sourceTree = "<group>"; };
 		14842C6F257DD08100364FFF /* ListUserCollectionsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListUserCollectionsResponse.swift; sourceTree = "<group>"; };
@@ -371,6 +375,7 @@
 				14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */,
 				1401547D25831ED900746563 /* CreateCollectionRequest.swift */,
 				149325042585FB34006EB8E3 /* AddToCollectionRequest.swift */,
+				14621CB22587546A00446F5F /* RemoveFromCollectionRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				14BE9A00256A637C00B0DB39 /* GetTopicPhotosResponse.swift */,
 				1401548025831FEA00746563 /* CreateCollectionResponse.swift */,
 				149325072585FC20006EB8E3 /* AddToCollectionResponse.swift */,
+				14621CB52587549D00446F5F /* RemoveFromCollectionResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -790,6 +796,7 @@
 			files = (
 				143F567B254FEF320038761D /* HomeJumbotronView.swift in Sources */,
 				14FA70D92580F1D8004AFBE8 /* URL+Find.swift in Sources */,
+				14621CB62587549D00446F5F /* RemoveFromCollectionResponse.swift in Sources */,
 				14009CB2257762C600C70E6E /* HistoricalValue.swift in Sources */,
 				1401547A25831BF600746563 /* CollectionService.swift in Sources */,
 				1410491C255D3686003312BC /* SceneTransition.swift in Sources */,
@@ -863,6 +870,7 @@
 				14009C712575E7E100C70E6E /* PhotoInfoViewModel.swift in Sources */,
 				14842E35257E0F6300364FFF /* PhotoCreateCollectionViewModel.swift in Sources */,
 				1433B8E92561270700FE9B1D /* InterfaceGlobalVars.swift in Sources */,
+				14621CB32587546A00446F5F /* RemoveFromCollectionRequest.swift in Sources */,
 				142BCC982566374C00B7FB06 /* Array+Find.swift in Sources */,
 				14956D32255CC72B0057A4A6 /* SceneCoordinator.swift in Sources */,
 				14CB252F2580687700741537 /* LoginViewControllerV2.swift in Sources */,

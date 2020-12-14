@@ -89,7 +89,7 @@ class ColorPalette{
     }
     
     public static var colorOverlayer:UIColor{
-        return self.colorWithDarkMode(darkColor: UIColor.black.alpha(0.4), lightColor: UIColor.black.alpha(0.6))
+        return self.colorWithDarkMode(darkColor: UIColor.black.alpha(0.6), lightColor: UIColor.black.alpha(0.4))
     }
     
     // FIXME: To Archive

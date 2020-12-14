@@ -12,11 +12,12 @@ import SnapKit
 
 import RxSwift
 import RxRelay
+import RxSwiftExt
 
 class HomeJumbotronView: BaseView {
     
     // MARK: - Public
-    public let listOrderBy: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
+    public let listOrderBy: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
 
     // MARK: - Controls
     private var menuBtn: UIButton!
@@ -131,13 +132,17 @@ class HomeJumbotronView: BaseView {
         
         // segmentedControl
         self.listOrderBy
+            .unwrap()
             .flatMap { (key) -> Observable<Int> in
                 let segmentedKeys = Array(self.listOrderByContent.map({ $0.key }))
                 let index = segmentedKeys.firstIndex { $0 == key } ?? -1
                 
                 return Observable.just(index)
             }
-            .filter({ NSDecimalNumber(value: $0) !=  NSDecimalNumber(value: self.segmentedControl.selectedSegmentIndex) })
+            .filter({
+                // HMSegmentedControlNoSegment is not -1, but a really big signed digit.
+                NSDecimalNumber(value: $0) !=  NSDecimalNumber(value: self.segmentedControl.selectedSegmentIndex)
+            })
             .subscribe(onNext: { (index) in
                 self.segmentedControl.setSelectedSegmentIndex(index == -1 ? HMSegmentedControlNoSegment : UInt(index), animated: false)
             })

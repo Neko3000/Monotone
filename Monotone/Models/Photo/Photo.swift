@@ -26,7 +26,7 @@ class Photo: Equatable, Mappable{
 //    public var sponsorship: String?
     public var likes: Int?
     public var likedByUser: Bool?
-//    public var currentUserCollections:[]?
+    public var currentUserCollections:[Collection]?
     public var user: User?
     public var exif: Exif?
     public var location: Location?
@@ -38,28 +38,29 @@ class Photo: Equatable, Mappable{
     }
 
     required init?(map: Map) {
-        
+        self.mapping(map: map)
     }
     
     func mapping(map: Map) {
-        id             <- map["id"]
-        createdAt      <- (map["created_at"], ISO8601DateTransform())
-        updatedAt      <- (map["updated_at"], ISO8601DateTransform())
-        promotedAt     <- (map["promoted_at"], ISO8601DateTransform())
-        width          <- map["width"]
-        height         <- map["height"]
-        color          <- map["color"]
-        blurHash       <- map["blur_hash"]
-        description    <- map["description"]
-        altDescription <- map["alt_description"]
-        urls           <- map["urls"]
-        links          <- map["links"]
-        likes          <- map["likes"]
-        likedByUser    <- map["liked_by_user"]
-        likedByUser    <- map["liked_by_user"]
-        user           <- map["user"]
-        exif           <- map["exif"]
-        location       <- map["location"]
+        id                      <- map["id"]
+        createdAt               <- (map["created_at"], ISO8601DateTransform())
+        updatedAt               <- (map["updated_at"], ISO8601DateTransform())
+        promotedAt              <- (map["promoted_at"], ISO8601DateTransform())
+        width                   <- map["width"]
+        height                  <- map["height"]
+        color                   <- map["color"]
+        blurHash                <- map["blur_hash"]
+        description             <- map["description"]
+        altDescription          <- map["alt_description"]
+        urls                    <- map["urls"]
+        links                   <- map["links"]
+        likes                   <- map["likes"]
+        likedByUser             <- map["liked_by_user"]
+        likedByUser             <- map["liked_by_user"]
+        currentUserCollections  <- map["current_user_collections"]
+        user                    <- map["user"]
+        exif                    <- map["exif"]
+        location                <- map["location"]
     }
     
     static func == (lhs: Photo, rhs: Photo) -> Bool {

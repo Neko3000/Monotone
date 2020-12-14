@@ -15,25 +15,25 @@ import RxCocoa
 enum Scene {
     case login
     case home
-    case photoDetails([String: Any]?)
-    case photoInfo([String: Any]?)
-    case photoShare([String: Any]?)
-    case photoAddToCollection([String: Any]?)
-    case photoCreateCollection([String: Any]?)
+    case photoDetails([String: Any?]?)
+    case photoInfo([String: Any?]?)
+    case photoShare([String: Any?]?)
+    case photoAddToCollection([String: Any?]?)
+    case photoCreateCollection([String: Any?]?)
 }
 
 // MARK: - SceneContent
 enum SceneContent {
     case login
     case home
-    case photoDetails([String: Any]?)
-    case photoInfo([String: Any]?)
-    case photoShare([String: Any]?)
-    case photoAddToCollection([String: Any]?)
-    case photoCreateCollection([String: Any]?)
+    case photoDetails([String: Any?]?)
+    case photoInfo([String: Any?]?)
+    case photoShare([String: Any?]?)
+    case photoAddToCollection([String: Any?]?)
+    case photoCreateCollection([String: Any?]?)
 
-    case listPhotos([String: Any]?)
-    case searchPhotos([String: Any]?)
+    case listPhotos([String: Any?]?)
+    case searchPhotos([String: Any?]?)
     case empty
 }
 

@@ -97,27 +97,31 @@ class PhotoShareViewController: BaseViewController {
         // pageTitleView.
         self.pageTitleView.title.accept(NSLocalizedString("unsplash_share_title", comment: "Share"))
         
-        photoShareViewModel.output.photo.subscribe(onNext: { photo in
+        photoShareViewModel.output.photo
+            .unwrap()
+            .subscribe(onNext: { photo in
             
-            if let editor = photo.user?.username{
-                let subtitle = String(format: NSLocalizedString("unsplash_share_subtitle_prefix", comment: "Photo by %@"), editor)
-                self.pageTitleView.subtitle.accept(subtitle)
-            }
-            
-            // photoImageView.
-            self.photoImageView.kf.setImage(with: URL(string: photo.urls?.regular ?? ""),
-                                            placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                            options: [.transition(.fade(1.0)), .originalCache(.default)])
-            
-            // photoShareImage
-        })
-        .disposed(by: self.disposeBag)
+                if let editor = photo.user?.username{
+                    let subtitle = String(format: NSLocalizedString("unsplash_share_subtitle_prefix", comment: "Photo by %@"), editor)
+                    self.pageTitleView.subtitle.accept(subtitle)
+                }
                 
-        photoShareViewModel.output.photo.subscribe(onNext: { photo in
-            self.photoShareUrlView.url.accept(photo.links?.selfLink)
-            
-        })
-        .disposed(by: self.disposeBag)
+                // photoImageView.
+                self.photoImageView.kf.setImage(with: URL(string: photo.urls?.regular ?? ""),
+                                                placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
+                                                options: [.transition(.fade(1.0)), .originalCache(.default)])
+                
+                // photoShareImage
+            })
+            .disposed(by: self.disposeBag)
+                
+        photoShareViewModel.output.photo
+            .unwrap()
+            .subscribe(onNext: { photo in
+                self.photoShareUrlView.url.accept(photo.links?.selfLink)
+                
+            })
+            .disposed(by: self.disposeBag)
     }
     
 }

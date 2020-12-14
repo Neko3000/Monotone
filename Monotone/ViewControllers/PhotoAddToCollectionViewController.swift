@@ -72,7 +72,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
         self.createCollectionBtn.backgroundColor = ColorPalette.colorGrayLighter
         self.createCollectionBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         self.createCollectionBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
-        self.createCollectionBtn.setTitle("Create a new collection", for: .normal)
+        self.createCollectionBtn.setTitle(NSLocalizedString("unsplash_add_collection_button_create", comment: "Create a new collection"), for: .normal)
         self.view.addSubview(self.createCollectionBtn)
         self.createCollectionBtn.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(17.0)
@@ -104,14 +104,22 @@ class PhotoAddToCollectionViewController: BaseViewController {
                 
                 let pcell: AddToCollectionTableViewCell = cell as! AddToCollectionTableViewCell
                 pcell.collection.accept(element)
+                
+                if let currentUserCollections = photoAddToCollectionViewModel.input.photo.value?.currentUserCollections{
+                    if(currentUserCollections.contains(element)){
+                        pcell.state.accept(.containsPhoto)
+                    }
+                    else{
+                        pcell.state.accept(.notContainsPhoto)
+                    }
+                }
             }
             .disposed(by: self.disposeBag)
         
         self.tableView.rx.modelSelected(Collection.self)
             .subscribe(onNext: { (collection) in
                 
-                photoAddToCollectionViewModel.input.collection.accept(collection)
-                photoAddToCollectionViewModel.input.addToCollectionAction?.execute()
+
             })
             .disposed(by: self.disposeBag)
         
@@ -119,30 +127,56 @@ class PhotoAddToCollectionViewController: BaseViewController {
             .subscribe(onNext: { indexPath in
                 
                 let pcell = self.tableView.cellForRow(at: indexPath) as! AddToCollectionTableViewCell
-                pcell.switchLoadingState(loading: true)
                 
-                self.tableView.allowsSelection = false
+                if(pcell.state.value == .notContainsPhoto){
+                    photoAddToCollectionViewModel.input.collection.accept(pcell.collection.value)
+                    photoAddToCollectionViewModel.input.addToCollectionAction?.execute()
+                    
+                    pcell.switchLoadingState(to: true)
+                    self.tableView.allowsSelection = false
+                }
+                else if(pcell.state.value == .containsPhoto){
+                    photoAddToCollectionViewModel.input.collection.accept(pcell.collection.value)
+                    photoAddToCollectionViewModel.input.removeFromCollectionAction?.execute()
+                    
+                    pcell.switchLoadingState(to: true)
+                    self.tableView.allowsSelection = false
+                }
+                
             })
             .disposed(by: disposeBag)
         
-        photoAddToCollectionViewModel.output.addingToCollection
-            .filter({ $0 != false })
+        Observable.of(photoAddToCollectionViewModel.output.addingToCollection,
+                      photoAddToCollectionViewModel.output.removingFromCollection)
+            .merge()
+            .filter({ $0 == false })
             .filter({ _ in self.tableView.indexPathForSelectedRow != nil})
-            .subscribe( onNext: {(addingToCollection) in
+            .subscribe( onNext: { _ in
                 
                 let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
-                pcell.switchLoadingState(loading: false)
+                pcell.switchLoadingState(to: false)
                 
                 self.tableView.allowsSelection = true
             })
             .disposed(by: self.disposeBag)
         
-        photoAddToCollectionViewModel.output.photo
+        photoAddToCollectionViewModel.output.addedPhoto
             .filter({ _ in self.tableView.indexPathForSelectedRow != nil })
             .subscribe( onNext: {(photo) in
                 
                 let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
-                pcell.switchDisplayState(displayState: photo != nil ? .succeed : .failed)
+                pcell.switchDisplayState(to: photo != nil ? .addSuccessfully : .addUnsuccessfully)
+                
+                self.tableView.allowsSelection = true
+            })
+            .disposed(by: self.disposeBag)
+        
+        photoAddToCollectionViewModel.output.removedPhoto
+            .filter({ _ in self.tableView.indexPathForSelectedRow != nil })
+            .subscribe( onNext: {(photo) in
+                
+                let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
+                pcell.switchDisplayState(to: photo != nil ? .removeSuccessfully : .removeUnsuccessfully)
                 
                 self.tableView.allowsSelection = true
             })

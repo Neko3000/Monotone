@@ -15,7 +15,7 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var loginAction: Action<Void,String>!
+        var loginAction: Action<Void,String>?
     }
     public var input: Input = Input()
     

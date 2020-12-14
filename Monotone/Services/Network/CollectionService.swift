@@ -63,4 +63,29 @@ class CollectionService: NetworkService {
             return Disposables.create()
         }
     }
+    
+    public func removeFromCollection(collectionId: String,
+                                     photoId: String) -> Observable<Photo?>{
+        
+        let request: RemoveFromCollectionRequest = RemoveFromCollectionRequest()
+        request.collectionId = collectionId
+        request.photoId = photoId
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request , method: .delete).subscribe { (json) in
+                let response = RemoveFromCollectionResponse(JSON: json)
+                let photo = response!.photo!
+                
+                observer.onNext(photo)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
 }

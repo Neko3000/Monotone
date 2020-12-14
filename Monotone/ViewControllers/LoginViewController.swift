@@ -106,7 +106,7 @@ class LoginViewController: BaseViewController {
         // Bindings.
         self.loginBtn.rx.tap
             .subscribe(onNext: { _ in
-                loginViewModel.input.loginAction.execute()
+                loginViewModel.input.loginAction?.execute()
             })
             .disposed(by: self.disposeBag)
         

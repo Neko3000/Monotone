@@ -10,18 +10,16 @@ import UIKit
 import RxSwift
 import RxRelay
 import RxCocoa
+import RxSwiftExt
 import anim
 import NVActivityIndicatorView
 
 class AddToCollectionTableViewCell: UITableViewCell {
-    enum DisplayState{
-        case succeed
-        case failed
-    }
     
     // MARK: Public
     public var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
-    
+    public var state: BehaviorRelay<State> = BehaviorRelay<State>(value: .notContainsPhoto)
+
     // MARK: Controls
     public var coverImageView: UIImageView!
     
@@ -32,7 +30,8 @@ class AddToCollectionTableViewCell: UITableViewCell {
     
     public var overlayerView: UIView!
     
-    public var stateColorView: UIView!
+    public var successStateView: UIView!
+    public var unsuccessStateView: UIView!
     public var activityIndicatorView: NVActivityIndicatorView!
     
     // MARK: Private
@@ -120,13 +119,25 @@ class AddToCollectionTableViewCell: UITableViewCell {
             make.width.height.equalTo(20.0)
         })
         
-        // stateView.
-        self.stateColorView = UIView()
-        self.stateColorView.alpha = 0
-        self.stateColorView.layer.cornerRadius = 8.0
-        self.stateColorView.layer.masksToBounds = true
-        self.contentView.addSubview(self.stateColorView)
-        self.stateColorView.snp.makeConstraints({ (make) in
+        // successStateView.
+        self.successStateView = UIView()
+        self.successStateView.backgroundColor = ColorPalette.colorGreen
+        self.successStateView.alpha = 0
+        self.successStateView.layer.cornerRadius = 8.0
+        self.successStateView.layer.masksToBounds = true
+        self.contentView.addSubview(self.successStateView)
+        self.successStateView.snp.makeConstraints({ (make) in
+            make.top.right.bottom.left.equalTo(self.coverImageView)
+        })
+        
+        // unsuccessStateView.
+        self.unsuccessStateView = UIView()
+        self.unsuccessStateView.backgroundColor = ColorPalette.colorRed
+        self.unsuccessStateView.alpha = 0
+        self.unsuccessStateView.layer.cornerRadius = 8.0
+        self.unsuccessStateView.layer.masksToBounds = true
+        self.contentView.addSubview(self.unsuccessStateView)
+        self.unsuccessStateView.snp.makeConstraints({ (make) in
             make.top.right.bottom.left.equalTo(self.coverImageView)
         })
         
@@ -145,19 +156,40 @@ class AddToCollectionTableViewCell: UITableViewCell {
         
         // Bindings
         self.collection
-            .filter({ return $0 != nil })
+            .unwrap()
             .subscribe(onNext: { collection in
-                self.nameLabel.text = collection!.title
-                self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_prefix", comment: "%d Photos"), collection?.totalPhotos ?? 0)
+                self.nameLabel.text = collection.title
+                self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_prefix", comment: "%d Photos"), collection.totalPhotos ?? 0)
                 
-                self.coverImageView.kf.setImage(with: URL(string: collection!.coverPhoto?.urls?.small ?? ""),
-                                                placeholder: UIImage(blurHash: collection!.coverPhoto?.blurHash ?? "", size: CGSize(width: 10, height: 10)),
+                self.coverImageView.kf.setImage(with: URL(string: collection.coverPhoto?.urls?.regular ?? ""),
+                                                placeholder: UIImage(blurHash: collection.coverPhoto?.blurHash ?? "", size: CGSize(width: 10, height: 10)),
                                                 options: [.transition(.fade(1.0)), .originalCache(.default)])
+                
+                self.lockImageView.isHidden = collection.isPrivate ?? true
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.state
+            .subscribe(onNext: { displayState in
+                self.switchDisplayState(to: displayState)
             })
             .disposed(by: self.disposeBag)
     }
+}
+
+extension AddToCollectionTableViewCell{
+    enum State{
+        case containsPhoto
+        case notContainsPhoto
+        
+        case addSuccessfully
+        case addUnsuccessfully
+        
+        case removeSuccessfully
+        case removeUnsuccessfully
+    }
     
-    public func switchLoadingState(loading: Bool){
+    public func switchLoadingState(to loading: Bool){
         
         if(loading){
             self.activityIndicatorView.startAnimating()
@@ -170,39 +202,103 @@ class AddToCollectionTableViewCell: UITableViewCell {
         
     }
     
-    public func switchDisplayState(displayState: DisplayState){
+    public func switchDisplayState(to displayState: State){
         switch displayState {
             
-        case .succeed:
-            self.activityIndicatorView.isHidden = true
+        case .containsPhoto:
+            
+            self.successStateView.alpha = 0.5
+            self.unsuccessStateView.alpha = 0
+            
+            break
+            
+        case .notContainsPhoto:
+            
+            self.successStateView.alpha = 0
+            self.unsuccessStateView.alpha = 0
 
-            self.stateColorView.backgroundColor = ColorPalette.colorGreen
-            self.stateColorView.alpha = 0.5
+            break
+            
+        case .addSuccessfully:
+            
+            if let totalPhotos = self.collection.value?.totalPhotos{
+                self.collection.value?.totalPhotos = totalPhotos + 1
+                self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_prefix", comment: "%d Photos"), totalPhotos + 1)
+            }
+            
+            self.successStateView.alpha = 0.8
+            self.unsuccessStateView.alpha = 0
+            
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 1.5
                 animSettings.ease = .easeInOutQuart
                 
                 return {
-                    self.stateColorView.alpha = 0
+                    self.successStateView.alpha = 0.5
                 }
+            }.callback {
+                self.state.accept(.containsPhoto)
             }
             
             break
             
-        case .failed:
-            self.activityIndicatorView.isHidden = true
-
-            self.stateColorView.backgroundColor = ColorPalette.colorRed
-            self.stateColorView.alpha = 0.5
+        case .addUnsuccessfully:
+            
+            self.successStateView.alpha = 0
+            self.unsuccessStateView.alpha = 0.8
+            
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 1.5
                 animSettings.ease = .easeInOutQuart
                 
                 return {
-                    self.stateColorView.alpha = 0
+                    self.unsuccessStateView.alpha = 0
                 }
+            }.callback {
+                self.state.accept(.notContainsPhoto)
             }
             
+            break
+            
+        case .removeSuccessfully:
+            
+            if let totalPhotos = self.collection.value?.totalPhotos{
+                self.collection.value?.totalPhotos = totalPhotos - 1
+                self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_prefix", comment: "%d Photos"), totalPhotos - 1)
+            }
+            
+            self.successStateView.alpha = 0.5
+            self.unsuccessStateView.alpha = 0
+            
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 1.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.successStateView.alpha = 0
+                }
+            }.callback {
+                self.state.accept(.notContainsPhoto)
+            }
+        
+            break
+            
+        case .removeUnsuccessfully:
+            
+            self.successStateView.alpha = 0.5
+            self.unsuccessStateView.alpha = 0.8
+            
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 1.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.unsuccessStateView.alpha = 0
+                }
+            }.callback {
+                self.state.accept(.containsPhoto)
+            }
+        
             break
         }
     }

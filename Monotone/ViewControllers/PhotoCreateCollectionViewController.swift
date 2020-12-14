@@ -82,7 +82,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
         self.titleLabel = UILabel()
         self.titleLabel.font = UIFont.systemFont(ofSize: 16)
         self.titleLabel.textColor = ColorPalette.colorGrayHeavy
-        self.titleLabel.text = "Name"
+        self.titleLabel.text = NSLocalizedString("unsplash_create_collection_form_title", comment: "Name")
         self.view.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.titleTextField)
@@ -107,7 +107,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
         self.descriptionLabel = UILabel()
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 16)
         self.descriptionLabel.textColor = ColorPalette.colorGrayHeavy
-        self.descriptionLabel.text = "Description (Optional)"
+        self.descriptionLabel.text = NSLocalizedString("unsplash_create_collection_form_description", comment: "Description (Optional)")
         self.view.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.descriptionTextView)
@@ -134,7 +134,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
         self.privateLabel = UILabel()
         self.privateLabel.font = UIFont.systemFont(ofSize: 12)
         self.privateLabel.textColor = ColorPalette.colorGrayHeavy
-        self.privateLabel.text = "Make collection private"
+        self.privateLabel.text = NSLocalizedString("unsplash_create_collection_form_option_private", comment: "Make collection private")
         self.view.addSubview(self.privateLabel)
         self.privateLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.privateCheckBox.snp.right).offset(9.0)
@@ -147,7 +147,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
         self.submitBtn.contentEdgeInsets = UIEdgeInsets(top: 11.0, left: 20.0, bottom: 11.0, right: 20.0)
         self.submitBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         self.submitBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
-        self.submitBtn.setTitle("Create Collection", for: .normal)
+        self.submitBtn.setTitle(NSLocalizedString("unsplash_create_collection_form_button_submit", comment: "Create Collection"), for: .normal)
         self.submitBtn.layer.cornerRadius = 6.0
         self.submitBtn.layer.masksToBounds = true
         self.view.addSubview(self.submitBtn)

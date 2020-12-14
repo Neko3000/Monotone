@@ -130,7 +130,7 @@ class PhotoDetailsViewController: BaseViewController {
 
                 let args = [
                     "photo" : photo
-                ]
+                ] as [String : Any?]
 
                 self.transition(type: .present(.photoInfo(args), .pageSheet), with: nil, animated: true)
 //                self.transition(type: .push(.photoInfo(args)), with: nil)
@@ -143,7 +143,7 @@ class PhotoDetailsViewController: BaseViewController {
 
                 let args = [
                     "photo" : photo
-                ]
+                ] as [String : Any?]
 
                 self.transition(type: .present(.photoShare(args), .pageSheet), with: nil, animated: true)
             })
@@ -152,12 +152,12 @@ class PhotoDetailsViewController: BaseViewController {
         // collectCapsuleBtn.
         self.collectCapsuleBtn.rx.tap
             .subscribe(onNext: { _ in
-                let username = photoDetailsViewModel.output.photo.value.user?.username
+//                let username = photoDetailsViewModel.output.photo.value.user?.username
 
-                let args: [String : Any]  = [
+                let args = [
                     "username" : "neko3000",
                     "photo": photoDetailsViewModel.output.photo.value
-                ]
+                ] as [String : Any?]
 
                 self.transition(type: .present(.photoAddToCollection(args), .pageSheet), with: nil, animated: true)
             })

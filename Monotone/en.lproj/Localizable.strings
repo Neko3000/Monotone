@@ -44,8 +44,13 @@
 
 "unsplash_add_collection_title" = "Add to collection";
 "unsplash_add_collection_total_photo_prefix" = "%d Photos";
+"unsplash_add_collection_button_create" = "Create a new collection";
 
 "unsplash_create_collection_title" = "Create new collection";
+"unsplash_create_collection_form_title" = "Name";
+"unsplash_create_collection_form_description" = "Description (Optional)";
+"unsplash_create_collection_form_option_private" = "Make collection private";
+"unsplash_create_collection_form_button_submit" = "Create Collection";
 
 "unsplash_auth_error_title" = "Oops, there was a problem of authentication...";
 "unsplash_network_error_title" = "Oops, there was a problem on network...";
