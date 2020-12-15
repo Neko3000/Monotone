@@ -16,6 +16,8 @@ class PhotoDetailsViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Input
     struct Input {
         var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
+        var likePhotoAction: Action<Void,Photo>?
+        var unlikePhotoAction: Action<Void,Photo>?
     }
     public var input: Input = Input()
     
@@ -39,12 +41,41 @@ class PhotoDetailsViewModel: BaseViewModel, ViewModelStreamable{
     override func bind() {
         
         // Service.
-        //
+        let photoService = self.service(type: PhotoService.self)!
         
         // Binding.
         (self.input.photo <=> self.output.photo)
             .disposed(by: self.disposeBag)
+        
+        self.input.likePhotoAction = Action<Void,Photo>(workFactory: { (_) -> Observable<Photo> in
+            
+            if let photo = self.input.photo.value{
+                return photoService.likePhoto(id: photo.id!)
+            }
+            
+            return Observable.empty()
+        })
+        
+        self.input.likePhotoAction?.elements
+            .subscribe(onNext: { (photo) in
+                self.input.photo.accept(photo)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.input.unlikePhotoAction = Action<Void,Photo>(workFactory: { (_) -> Observable<Photo> in
+            
+            if let photo = self.input.photo.value{
+                return photoService.unlikePhoto(id: photo.id!)
+            }
+            
+            return Observable.empty()
+        })
+        
+        self.input.unlikePhotoAction?.elements
+            .subscribe(onNext: { (photo) in
+                self.input.photo.accept(photo)
+            })
+            .disposed(by: self.disposeBag)
+        
     }
-    
-    
 }

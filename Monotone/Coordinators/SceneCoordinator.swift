@@ -239,7 +239,7 @@ extension SceneCoordinator: FactoryCoordinator{
             return vm
             
         case let .photoDetails(args):
-            let vm: PhotoDetailsViewModel = PhotoDetailsViewModel(services: nil, args: args)
+            let vm: PhotoDetailsViewModel = PhotoDetailsViewModel(services: [PhotoService()], args: args)
             return vm
             
         case let .photoInfo(args):

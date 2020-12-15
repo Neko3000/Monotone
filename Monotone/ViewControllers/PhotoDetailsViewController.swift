@@ -81,7 +81,8 @@ class PhotoDetailsViewController: BaseViewController {
         // likeCapsuleBtn.
         self.likeCapsuleBtn = CapsuleButton()
         self.likeCapsuleBtn.setTitle("20", for: .normal)
-        self.likeCapsuleBtn.setImage(UIImage(named: "details-btn-like"), for: .normal)
+        self.likeCapsuleBtn.setImage(UIImage(named: "details-btn-like"), for: .selected)
+        self.likeCapsuleBtn.setImage(UIImage(named: "details-btn-unlike"), for: .normal)
         self.likeCapsuleBtn.backgroundStyle = .blur
         self.view.addSubview(self.likeCapsuleBtn)
         self.likeCapsuleBtn.snp.makeConstraints { (make) in
@@ -118,11 +119,16 @@ class PhotoDetailsViewController: BaseViewController {
         let photoDetailsViewModel = self.viewModel(type:PhotoDetailsViewModel.self)!
         
         // scrollView.
-        photoDetailsViewModel.output.photo.subscribe(onNext: { (photo) in
-            self.scrollView.photo = photo
-        })
-        .disposed(by: self.disposeBag)
-        
+        photoDetailsViewModel.output.photo
+            .unwrap()
+            .subscribe(onNext: { (photo) in
+                self.scrollView.photo = photo
+                
+                self.likeCapsuleBtn.setTitle("\(photo.likes ?? 0)", for: .normal)
+                self.likeCapsuleBtn.isSelected = photo.likedByUser ?? false
+            })
+            .disposed(by: self.disposeBag)
+                        
         // operationView.
         self.operationView.infoBtn.rx.tap
             .subscribe(onNext: { _ in
@@ -137,6 +143,7 @@ class PhotoDetailsViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
+        // shareBtn.
         self.operationView.shareBtn.rx.tap
             .subscribe(onNext: { _ in
                 let photo = photoDetailsViewModel.output.photo.value
@@ -146,6 +153,20 @@ class PhotoDetailsViewController: BaseViewController {
                 ] as [String : Any?]
 
                 self.transition(type: .present(.photoShare(args), .pageSheet), with: nil, animated: true)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // likeCapsuleBtn.
+        self.likeCapsuleBtn.rx.tap
+            .subscribe(onNext: { _ in
+                
+                if(self.likeCapsuleBtn.isSelected){
+                    photoDetailsViewModel.input.unlikePhotoAction?.execute()
+                }
+                else{
+                    photoDetailsViewModel.input.likePhotoAction?.execute()
+                }
+                
             })
             .disposed(by: self.disposeBag)
         

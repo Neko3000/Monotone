@@ -97,4 +97,50 @@ class PhotoService: NetworkService {
             return Disposables.create()
         }
     }
+    
+    public func likePhoto(id: String) -> Observable<Photo>{
+        
+        let request: LikePhotoRequest = LikePhotoRequest()
+        request.id = id
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request, method: .post).subscribe { (json) in
+                let response = LikePhotoResponse(JSON: json)
+                let photo = response!.photo!
+                
+                observer.onNext(photo)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
+    
+    public func unlikePhoto(id: String) -> Observable<Photo>{
+        
+        let request: UnlikePhotoRequest = UnlikePhotoRequest()
+        request.id = id
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request, method: .delete).subscribe { (json) in
+                let response = UnlikePhotoResponse(JSON: json)
+                let photo = response!.photo!
+                
+                observer.onNext(photo)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
 }

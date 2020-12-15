@@ -20,7 +20,6 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
         var reloadAction: Action<Void, [Collection]>?
         
         var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
-        
         var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
         var addToCollectionAction: Action<Void, Photo?>?
         var removeFromCollectionAction: Action<Void, Photo?>?

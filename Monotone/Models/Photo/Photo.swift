@@ -56,7 +56,6 @@ class Photo: Equatable, Mappable{
         links                   <- map["links"]
         likes                   <- map["likes"]
         likedByUser             <- map["liked_by_user"]
-        likedByUser             <- map["liked_by_user"]
         currentUserCollections  <- map["current_user_collections"]
         user                    <- map["user"]
         exif                    <- map["exif"]
