@@ -9,8 +9,11 @@ import UIKit
 
 import SnapKit
 import MJRefresh
-import RxSwift
 import Kingfisher
+
+import RxSwift
+import RxSwiftExt
+
 import anim
 import ViewAnimator
 
@@ -144,14 +147,14 @@ class HomeViewController: BaseViewController {
         }
         
         homeViewModel.output.reloading
-            .filter({ $0 == false })
+            .ignore(true)
             .subscribe { (_) in
                 self.collectionView.mj_header!.endRefreshing()
             }
             .disposed(by: self.disposeBag)
 
         homeViewModel.output.loadingMore
-            .filter({ $0 == false })
+            .ignore(true)
             .subscribe { (_) in
                 self.collectionView.mj_footer!.endRefreshing()
             }

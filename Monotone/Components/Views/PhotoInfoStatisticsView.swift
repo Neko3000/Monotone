@@ -9,6 +9,7 @@ import UIKit
 
 import RxSwift
 import RxRelay
+import RxSwiftExt
 
 class PhotoInfoStatisticsView: BaseView {
     
@@ -199,7 +200,7 @@ class PhotoInfoStatisticsView: BaseView {
         
         // Bindings
         self.statistics
-            .filter({ return $0 != nil })
+            .unwrap()
             .subscribe(onNext: { statistics in
                 
                 let numberFormatter = NumberFormatter()
@@ -207,26 +208,26 @@ class PhotoInfoStatisticsView: BaseView {
                 numberFormatter.groupingSeparator = ","
                 numberFormatter.groupingSize = 3
 
-                if let viewCountTotal = statistics!.views?.total{
+                if let viewCountTotal = statistics.views?.total{
                     self.viewCountLabel.text = numberFormatter.string(from: NSNumber(value: viewCountTotal))
                 }
-                if let likeCountTotal = statistics!.likes?.total{
+                if let likeCountTotal = statistics.likes?.total{
                     self.likeCountLabel.text = numberFormatter.string(from: NSNumber(value: likeCountTotal))
                 }
-                if let downloadCountTotal = statistics!.downloads?.total{
+                if let downloadCountTotal = statistics.downloads?.total{
                     self.downloadCountLabel.text = numberFormatter.string(from: NSNumber(value: downloadCountTotal))
                 }
                 
                 numberFormatter.positivePrefix = "+"
                 numberFormatter.negativePrefix = "-"
                 
-                if let viewCountChange = statistics!.views?.historical?.change{
+                if let viewCountChange = statistics.views?.historical?.change{
                     self.viewCountCompareLabel.text = numberFormatter.string(from: NSNumber(value: viewCountChange))
                 }
-                if let likeCountChange = statistics!.likes?.historical?.change{
+                if let likeCountChange = statistics.likes?.historical?.change{
                     self.likeCountCompareLabel.text = numberFormatter.string(from: NSNumber(value: likeCountChange))
                 }
-                if let downloadCountChange = statistics!.downloads?.historical?.change{
+                if let downloadCountChange = statistics.downloads?.historical?.change{
                     self.downloadCountCompareLabel.text = numberFormatter.string(from: NSNumber(value: downloadCountChange))
                 }
         })

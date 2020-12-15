@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxRelay
+import RxSwiftExt
 
 class PhotoInfoCameraSettingsView: BaseView {
     
@@ -228,15 +229,15 @@ class PhotoInfoCameraSettingsView: BaseView {
         
         // Bindings
         self.photo
-            .filter({ return $0 != nil })
+            .unwrap()
             .subscribe(onNext: { photo in
-                self.makeContentLabel.text = photo?.exif?.make ?? "-"
-                self.modelContentLabel.text = photo?.exif?.model ?? "-"
-                self.focalLengthContentLabel.text = photo?.exif?.focalLength ?? "-"
-                self.shutterSpeedContentLabel.text = photo?.exif?.exposureTime ?? "-"
-                self.apertureContentLabel.text = photo?.exif?.aperture ?? "-"
-                self.isoContentLabel.text = photo?.exif?.iso ?? "-"
-                self.dimensionsContentLabel.text = "\(photo?.width ?? 0) x \(photo?.height ?? 0)"
+                self.makeContentLabel.text = photo.exif?.make ?? "-"
+                self.modelContentLabel.text = photo.exif?.model ?? "-"
+                self.focalLengthContentLabel.text = photo.exif?.focalLength ?? "-"
+                self.shutterSpeedContentLabel.text = photo.exif?.exposureTime ?? "-"
+                self.apertureContentLabel.text = photo.exif?.aperture ?? "-"
+                self.isoContentLabel.text = photo.exif?.iso ?? "-"
+                self.dimensionsContentLabel.text = "\(photo.width ?? 0) x \(photo.height ?? 0)"
         })
             .disposed(by: self.disposeBag)
     }

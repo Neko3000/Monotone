@@ -25,6 +25,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
     // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
 
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +42,6 @@ class PhotoAddToCollectionViewController: BaseViewController {
     }
     */
     
-    // MARK: - Life Cycle
     override func buildSubviews() {
         self.view.backgroundColor = UIColor.white
         
@@ -98,6 +98,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
         let photoAddToCollectionViewModel = self.viewModel(type: PhotoAddToCollectionViewModel.self)!
         
         // Bindings.
+        // tableView cell.
         photoAddToCollectionViewModel.output.collections
             .bind(to: self.tableView.rx.items(cellIdentifier: "AddToCollectionTableViewCell")){
                 (row, element, cell) in
@@ -116,13 +117,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
             }
             .disposed(by: self.disposeBag)
         
-        self.tableView.rx.modelSelected(Collection.self)
-            .subscribe(onNext: { (collection) in
-                
-
-            })
-            .disposed(by: self.disposeBag)
-        
+        // tableView didSelect.
         tableView.rx.itemSelected
             .subscribe(onNext: { indexPath in
                 
@@ -146,10 +141,30 @@ class PhotoAddToCollectionViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        // After reloaded collections.
+        photoAddToCollectionViewModel.output.reloading
+            .ignore(true)
+            .subscribe { (_) in
+                self.tableView.mj_header!.endRefreshing()
+                
+                // Scroll to top.
+                self.tableView.setContentOffset(.zero, animated: true)
+            }
+            .disposed(by: self.disposeBag)
+
+        // After loaded more collections.
+        photoAddToCollectionViewModel.output.loadingMore
+            .ignore(true)
+            .subscribe { (_) in
+                self.tableView.mj_footer!.endRefreshing()
+            }
+            .disposed(by: self.disposeBag)
+        
+        // After adding or removing, hidden activity indicator in the selected cell.
         Observable.of(photoAddToCollectionViewModel.output.addingToCollection,
                       photoAddToCollectionViewModel.output.removingFromCollection)
             .merge()
-            .filter({ $0 == false })
+            .ignore(true)
             .filter({ _ in self.tableView.indexPathForSelectedRow != nil})
             .subscribe( onNext: { _ in
                 
@@ -160,23 +175,29 @@ class PhotoAddToCollectionViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
+        // After adding photo to a collection, switch selected cell's state.
         photoAddToCollectionViewModel.output.addedPhoto
             .filter({ _ in self.tableView.indexPathForSelectedRow != nil })
             .subscribe( onNext: {(photo) in
                 
                 let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
-                pcell.switchDisplayState(to: photo != nil ? .addSuccessfully : .addUnsuccessfully)
+                if(photo != nil){
+                    pcell.switchDisplayState(to: .addSuccessfully)
+                }
                 
                 self.tableView.allowsSelection = true
             })
             .disposed(by: self.disposeBag)
         
+        // After removing photo to a collection, switch selected cell's state.
         photoAddToCollectionViewModel.output.removedPhoto
             .filter({ _ in self.tableView.indexPathForSelectedRow != nil })
             .subscribe( onNext: {(photo) in
                 
                 let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
-                pcell.switchDisplayState(to: photo != nil ? .removeSuccessfully : .removeUnsuccessfully)
+                if(photo != nil){
+                    pcell.switchDisplayState(to: .removeSuccessfully)
+                }
                 
                 self.tableView.allowsSelection = true
             })
@@ -193,23 +214,6 @@ class PhotoAddToCollectionViewController: BaseViewController {
         self.tableView.mj_footer!.refreshingBlock = {
             photoAddToCollectionViewModel.input.loadMoreAction?.execute()
         }
-        
-        photoAddToCollectionViewModel.output.reloading
-            .filter({ $0 == false })
-            .subscribe { (_) in
-                self.tableView.mj_header!.endRefreshing()
-                
-                // Scroll to top.
-                self.tableView.setContentOffset(.zero, animated: true)
-            }
-            .disposed(by: self.disposeBag)
-
-        photoAddToCollectionViewModel.output.loadingMore
-            .filter({ $0 == false })
-            .subscribe { (_) in
-                self.tableView.mj_footer!.endRefreshing()
-            }
-            .disposed(by: self.disposeBag)
         
         // createCollectionBtn.
         self.createCollectionBtn.rx.tap.subscribe(onNext: { _ in
@@ -247,7 +251,7 @@ extension PhotoAddToCollectionViewController: ViewControllerPresentable{
     
     func didDismissPresentingViewController(presentationController: UIPresentationController?) {
         
-        // Reloading.
+        // Reload collections when the presented view controller dismissed.
         self.tableView.mj_header?.beginRefreshing()
     }
 }

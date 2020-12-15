@@ -120,7 +120,9 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
         self.input.addToCollectionAction?.elements
             .subscribe(onNext: { (photo: Photo?) in
 
-                self.input.photo.accept(photo)
+                if(photo != nil){
+                    self.input.photo.accept(photo)
+                }
                 self.output.addedPhoto.accept(photo)
                 
                 self.output.addingToCollection.accept(false)
@@ -147,7 +149,9 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
         self.input.removeFromCollectionAction?.elements
             .subscribe(onNext: { (photo: Photo?) in
 
-                self.input.photo.accept(photo)
+                if(photo != nil){
+                    self.input.photo.accept(photo)
+                }
                 self.output.removedPhoto.accept(photo)
                 
                 self.output.removingFromCollection.accept(false)

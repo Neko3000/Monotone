@@ -31,7 +31,6 @@ class AddToCollectionTableViewCell: UITableViewCell {
     public var overlayerView: UIView!
     
     public var successStateView: UIView!
-    public var unsuccessStateView: UIView!
     public var activityIndicatorView: NVActivityIndicatorView!
     
     // MARK: Private
@@ -130,17 +129,6 @@ class AddToCollectionTableViewCell: UITableViewCell {
             make.top.right.bottom.left.equalTo(self.coverImageView)
         })
         
-        // unsuccessStateView.
-        self.unsuccessStateView = UIView()
-        self.unsuccessStateView.backgroundColor = ColorPalette.colorRed
-        self.unsuccessStateView.alpha = 0
-        self.unsuccessStateView.layer.cornerRadius = 8.0
-        self.unsuccessStateView.layer.masksToBounds = true
-        self.contentView.addSubview(self.unsuccessStateView)
-        self.unsuccessStateView.snp.makeConstraints({ (make) in
-            make.top.right.bottom.left.equalTo(self.coverImageView)
-        })
-        
         // activityIndicatorView
         self.activityIndicatorView = NVActivityIndicatorView(frame: CGRect.zero)
         self.activityIndicatorView.type = .circleStrokeSpin
@@ -183,10 +171,7 @@ extension AddToCollectionTableViewCell{
         case notContainsPhoto
         
         case addSuccessfully
-        case addUnsuccessfully
-        
         case removeSuccessfully
-        case removeUnsuccessfully
     }
     
     public func switchLoadingState(to loading: Bool){
@@ -203,19 +188,18 @@ extension AddToCollectionTableViewCell{
     }
     
     public func switchDisplayState(to displayState: State){
+                
         switch displayState {
             
         case .containsPhoto:
             
             self.successStateView.alpha = 0.5
-            self.unsuccessStateView.alpha = 0
             
             break
             
         case .notContainsPhoto:
             
             self.successStateView.alpha = 0
-            self.unsuccessStateView.alpha = 0
 
             break
             
@@ -227,7 +211,6 @@ extension AddToCollectionTableViewCell{
             }
             
             self.successStateView.alpha = 0.8
-            self.unsuccessStateView.alpha = 0
             
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 1.5
@@ -242,24 +225,6 @@ extension AddToCollectionTableViewCell{
             
             break
             
-        case .addUnsuccessfully:
-            
-            self.successStateView.alpha = 0
-            self.unsuccessStateView.alpha = 0.8
-            
-            anim { (animSettings) -> (animClosure) in
-                animSettings.duration = 1.5
-                animSettings.ease = .easeInOutQuart
-                
-                return {
-                    self.unsuccessStateView.alpha = 0
-                }
-            }.callback {
-                self.state.accept(.notContainsPhoto)
-            }
-            
-            break
-            
         case .removeSuccessfully:
             
             if let totalPhotos = self.collection.value?.totalPhotos{
@@ -268,7 +233,6 @@ extension AddToCollectionTableViewCell{
             }
             
             self.successStateView.alpha = 0.5
-            self.unsuccessStateView.alpha = 0
             
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 1.5
@@ -283,23 +247,6 @@ extension AddToCollectionTableViewCell{
         
             break
             
-        case .removeUnsuccessfully:
-            
-            self.successStateView.alpha = 0.5
-            self.unsuccessStateView.alpha = 0.8
-            
-            anim { (animSettings) -> (animClosure) in
-                animSettings.duration = 1.5
-                animSettings.ease = .easeInOutQuart
-                
-                return {
-                    self.unsuccessStateView.alpha = 0
-                }
-            }.callback {
-                self.state.accept(.containsPhoto)
-            }
-        
-            break
         }
     }
 }

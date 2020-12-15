@@ -10,8 +10,9 @@ import UIKit
 import RxSwift
 import RxRelay
 import RxCocoa
-import Kingfisher
+import RxSwiftExt
 
+import Kingfisher
 import BEMCheckBox
 
 // MARK: - PhotoCreateCollectionViewController
@@ -180,7 +181,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         photoCreateCollectionViewModel.output.collection
-            .filter({ $0 != nil })
+            .unwrap()
             .subscribe { (created) in
                 SceneCoordinator.shared.pop()
             } onError: { (error) in

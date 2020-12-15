@@ -11,6 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import Action
+import RxSwiftExt
 
 // MARK: LoginViewController
 class LoginViewController: BaseViewController {
@@ -111,7 +112,7 @@ class LoginViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         loginViewModel.output.loggedIn
-            .filter({ $0 != false })
+            .ignore(false)
             .subscribe(onNext:{ _ in
                 SceneCoordinator.shared.transition(type: .root(.home), with: nil)
             })
