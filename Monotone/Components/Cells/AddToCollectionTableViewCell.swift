@@ -18,7 +18,9 @@ class AddToCollectionTableViewCell: UITableViewCell {
     
     // MARK: Public
     public var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
-    public var state: BehaviorRelay<State> = BehaviorRelay<State>(value: .notContainsPhoto)
+    
+    public var loading: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    public var displayState: BehaviorRelay<DisplayState> = BehaviorRelay<DisplayState>(value: .notContainsPhoto)
 
     // MARK: Controls
     public var coverImageView: UIImageView!
@@ -157,7 +159,13 @@ class AddToCollectionTableViewCell: UITableViewCell {
             })
             .disposed(by: self.disposeBag)
         
-        self.state
+        self.loading
+            .subscribe(onNext: { loading in
+                self.switchLoadingState(to: loading)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.displayState
             .subscribe(onNext: { displayState in
                 self.switchDisplayState(to: displayState)
             })
@@ -166,7 +174,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
 }
 
 extension AddToCollectionTableViewCell{
-    enum State{
+    enum DisplayState{
         case containsPhoto
         case notContainsPhoto
         
@@ -174,7 +182,7 @@ extension AddToCollectionTableViewCell{
         case removeSuccessfully
     }
     
-    public func switchLoadingState(to loading: Bool){
+    private func switchLoadingState(to loading: Bool){
         
         if(loading){
             self.activityIndicatorView.startAnimating()
@@ -187,7 +195,7 @@ extension AddToCollectionTableViewCell{
         
     }
     
-    public func switchDisplayState(to displayState: State){
+    private func switchDisplayState(to displayState: DisplayState){
                 
         switch displayState {
             
@@ -220,7 +228,7 @@ extension AddToCollectionTableViewCell{
                     self.successStateView.alpha = 0.5
                 }
             }.callback {
-                self.state.accept(.containsPhoto)
+                self.displayState.accept(.containsPhoto)
             }
             
             break
@@ -242,7 +250,7 @@ extension AddToCollectionTableViewCell{
                     self.successStateView.alpha = 0
                 }
             }.callback {
-                self.state.accept(.notContainsPhoto)
+                self.displayState.accept(.notContainsPhoto)
             }
         
             break

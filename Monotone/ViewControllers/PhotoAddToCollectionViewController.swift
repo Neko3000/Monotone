@@ -108,10 +108,10 @@ class PhotoAddToCollectionViewController: BaseViewController {
                 
                 if let currentUserCollections = photoAddToCollectionViewModel.input.photo.value?.currentUserCollections{
                     if(currentUserCollections.contains(element)){
-                        pcell.state.accept(.containsPhoto)
+                        pcell.displayState.accept(.containsPhoto)
                     }
                     else{
-                        pcell.state.accept(.notContainsPhoto)
+                        pcell.displayState.accept(.notContainsPhoto)
                     }
                 }
             }
@@ -123,18 +123,18 @@ class PhotoAddToCollectionViewController: BaseViewController {
                 
                 let pcell = self.tableView.cellForRow(at: indexPath) as! AddToCollectionTableViewCell
                 
-                if(pcell.state.value == .notContainsPhoto){
+                if(pcell.displayState.value == .notContainsPhoto){
                     photoAddToCollectionViewModel.input.collection.accept(pcell.collection.value)
                     photoAddToCollectionViewModel.input.addToCollectionAction?.execute()
                     
-                    pcell.switchLoadingState(to: true)
+                    pcell.loading.accept(true)
                     self.tableView.allowsSelection = false
                 }
-                else if(pcell.state.value == .containsPhoto){
+                else if(pcell.displayState.value == .containsPhoto){
                     photoAddToCollectionViewModel.input.collection.accept(pcell.collection.value)
                     photoAddToCollectionViewModel.input.removeFromCollectionAction?.execute()
                     
-                    pcell.switchLoadingState(to: true)
+                    pcell.loading.accept(true)
                     self.tableView.allowsSelection = false
                 }
                 
@@ -148,7 +148,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
                 self.tableView.mj_header!.endRefreshing()
                 
                 // Scroll to top.
-                self.tableView.setContentOffset(.zero, animated: true)
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
             .disposed(by: self.disposeBag)
 
@@ -169,8 +169,8 @@ class PhotoAddToCollectionViewController: BaseViewController {
             .subscribe( onNext: { _ in
                 
                 let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
-                pcell.switchLoadingState(to: false)
-                
+                pcell.loading.accept(false)
+
                 self.tableView.allowsSelection = true
             })
             .disposed(by: self.disposeBag)
@@ -182,7 +182,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
                 
                 let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
                 if(photo != nil){
-                    pcell.switchDisplayState(to: .addSuccessfully)
+                    pcell.displayState.accept(.containsPhoto)
                 }
                 
                 self.tableView.allowsSelection = true
@@ -196,7 +196,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
                 
                 let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
                 if(photo != nil){
-                    pcell.switchDisplayState(to: .removeSuccessfully)
+                    pcell.displayState.accept(.notContainsPhoto)
                 }
                 
                 self.tableView.allowsSelection = true
