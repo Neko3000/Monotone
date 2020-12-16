@@ -58,7 +58,7 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
             .disposed(by: self.disposeBag)
     }
     
-    func updatePhoto(){
+    private func updatePhoto(){
         self.photoImageView.kf.setImage(with: URL(string: photo!.urls?.regular ?? ""),
                                         placeholder: UIImage(blurHash: photo!.blurHash ?? "", size: CGSize(width: 10, height: 10)),
                                         options: [.transition(.fade(1.0)), .originalCache(.default)])
@@ -68,7 +68,7 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
         self.photoUpdated = true
     }
     
-    func updatePhotoSize(){
+    private func updatePhotoSize(){
         let boundsWidth = self.bounds.size.width
         let boundsHeight = self.bounds.size.height
         let boundsRatio =  boundsHeight / boundsWidth
@@ -85,7 +85,7 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
         }
     }
     
-    func updatePhotoPosition(){
+    private func updatePhotoPosition(){
         let boundsWidth = self.bounds.size.width
         let boundsHeight = self.bounds.size.height
         
