@@ -10,6 +10,8 @@ import Foundation
 import SwiftyJSON
 
 class AppManager{
+    
+    // MARK: - Single Skeleton
     static let shared = AppManager()
     
     init(){

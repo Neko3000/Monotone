@@ -12,6 +12,8 @@ import Alamofire
 import RxSwift
 
 class NetworkManager{
+    
+    // MARK: - Single Skeleton
     static let shared = NetworkManager()
     
     init() {

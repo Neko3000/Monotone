@@ -45,7 +45,7 @@ class BaseCoordinator: NSObject, Coordinator {
     }
     
     var window: UIWindow
-    var currentViewController: UIViewController?
+    weak var currentViewController: UIViewController?
     
     // MARK: - Life Cycle
     init(window: UIWindow){

@@ -13,29 +13,29 @@ class BaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Do any additional setup after loading the view.
         self.buildSubviews()
         self.buildLogic()
-        // Do any additional setup after loading the view.
     }
     
     func buildSubviews() {
-        
+        // Implemented by subclass.
     }
     
     func buildLogic() {
-        
+        // Implemented by subclass.
     }
     
     func updateNavBarTransparent(transparent: Bool) {
-        
+        // Implemented by subclass.
     }
     
     func updateNavBarHidden(hidden: Bool) {
-        
+        // Implemented by subclass.
     }
     
-    func updateNavItems() {
-        
+    func updateNavItems(color: UIColor? = nil, leftItems: [UIBarButtonItem]? = nil, rightItems: [UIBarButtonItem]? = nil) {
+        // Implemented by subclass.
     }
     
 

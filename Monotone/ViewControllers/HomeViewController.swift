@@ -133,7 +133,7 @@ class HomeViewController: BaseViewController {
                 ]
 
 //                self.transition(type: .present(.photoDetails(args), .fullScreen), with: nil)
-                self.transition(type: .push(.photoDetails(args)), with: nil)
+                self.transition(type: .push(.photoDetails(args)), with: nil, animated: true)
 
             }).disposed(by: self.disposeBag)
 

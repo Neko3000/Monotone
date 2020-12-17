@@ -45,6 +45,7 @@ class PhotoDetailsViewController: BaseViewController {
         // navBar.
         self.navBarTransparent = true
         // self.navBarHidden = true
+        self.navBarItemsColor = UIColor.white
                 
         // scrollView.
         self.scrollView = PhotoZoomableScrollView()

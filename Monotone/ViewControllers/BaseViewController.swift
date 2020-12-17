@@ -69,6 +69,7 @@ class BaseViewController: UIViewController, ViewControllerBindable, ViewControll
     // MARK: - Public
     var navBarTransparent: Bool = false
     var navBarHidden: Bool = false
+    var navBarItemsColor: UIColor = ColorPalette.colorBlack
     
     var viewModels: [BaseViewModel]?
     

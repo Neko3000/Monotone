@@ -15,6 +15,8 @@ import RxRelay
 
 // MARK: AuthManager
 class AuthManager: NSObject{
+    
+    // MARK: - Single Skeleton
     static let shared = AuthManager()
     
     override init(){

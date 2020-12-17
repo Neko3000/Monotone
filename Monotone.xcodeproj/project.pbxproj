@@ -45,6 +45,7 @@
 		14104925255D49A5003312BC /* MTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14104924255D49A5003312BC /* MTNavigationController.swift */; };
 		14109A9D25620B150094BDA7 /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14109A9C25620B150094BDA7 /* MTTextField.swift */; };
 		141591D0255E53FE00179ED5 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141591CF255E53FE00179ED5 /* BaseCoordinator.swift */; };
+		1420AC16258B3D2C0095FD2E /* SceneCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420AC15258B3D2C0095FD2E /* SceneCoordinator+Factory.swift */; };
 		1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423A4DC254BA121009DEEA1 /* BaseViewController.swift */; };
 		142840342564BA2E004C06DF /* TopicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142840332564BA2E004C06DF /* TopicService.swift */; };
 		142840372564BACE004C06DF /* ListTopicsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142840362564BACE004C06DF /* ListTopicsRequest.swift */; };
@@ -175,6 +176,7 @@
 		14104924255D49A5003312BC /* MTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTNavigationController.swift; sourceTree = "<group>"; };
 		14109A9C25620B150094BDA7 /* MTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTextField.swift; sourceTree = "<group>"; };
 		141591CF255E53FE00179ED5 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		1420AC15258B3D2C0095FD2E /* SceneCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneCoordinator+Factory.swift"; sourceTree = "<group>"; };
 		1423A4DC254BA121009DEEA1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		142840332564BA2E004C06DF /* TopicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicService.swift; sourceTree = "<group>"; };
 		142840362564BACE004C06DF /* ListTopicsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicsRequest.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				1410491B255D3686003312BC /* SceneTransition.swift */,
 				141591CF255E53FE00179ED5 /* BaseCoordinator.swift */,
 				14956D31255CC72B0057A4A6 /* SceneCoordinator.swift */,
+				1420AC15258B3D2C0095FD2E /* SceneCoordinator+Factory.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -880,6 +883,7 @@
 				14FD9B68257F4E0C00DEC579 /* String+Split.swift in Sources */,
 				1406E9EE257A0E050096DE82 /* PhotoShareUrlView.swift in Sources */,
 				14E59E492557CA6A00F1FB60 /* Photo.swift in Sources */,
+				1420AC16258B3D2C0095FD2E /* SceneCoordinator+Factory.swift in Sources */,
 				14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */,
 				14E59E912557FC5000F1FB60 /* NetworkError.swift in Sources */,
 				14F36F91254D3AB80086B8CC /* ColorPalette.swift in Sources */,

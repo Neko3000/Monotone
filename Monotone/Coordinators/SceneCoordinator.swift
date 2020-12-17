@@ -44,7 +44,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     static var shared: SceneCoordinator!
     
     // MARK: - Public
-    override var currentViewController: UIViewController? {
+    override weak var currentViewController: UIViewController? {
         didSet{
             currentViewController?.tabBarController?.delegate = self
             currentViewController?.navigationController?.delegate = self
@@ -58,6 +58,9 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             return self.viewController(scene: .home)!
         }
     }
+    
+    // MARK: Private
+    private let disposeBag: DisposeBag = DisposeBag()
     
     // FIXME: To finish.
     @discardableResult
@@ -89,6 +92,8 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             else{
                 let navigationController = MTNavigationController(rootViewController: targetVC)
                 navigationController.modalPresentationStyle = .fullScreen
+                
+                self.configureNavBar(navigationController: navigationController)
                 
                 _ = navigationController.rx.delegate
                     .sentMessage(#selector(navigationController(_:didShow:animated:)))
@@ -164,111 +169,18 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
         
         return subject.asObserver().take(1)
     }
-}
-
-// MARK: FactoryCoordinator
-extension SceneCoordinator: FactoryCoordinator{
-    typealias sceneType = Scene
-    typealias sceneContentType = SceneContent
     
-    // MARK: - ViewController Factory
-    func viewController(scene: Scene) -> BaseViewController?{
+    // MARK: - ConfigureNavBar
+    private func configureNavBar(navigationController: MTNavigationController){
         
-        switch scene {
-        case .login:
-            let vc = LoginViewController()
-            let loginVM = self.viewModel(sceneContent:.login)!
-            vc.bind(to: [loginVM])
-            return vc
-            
-        case .home:
-            let vc = HomeViewController()
-            let homeVM = self.viewModel(sceneContent:.home)!
-            vc.bind(to: [homeVM])
+        Observable.of(navigationController.closeBtnDidTap,navigationController.backBtnDidTap)
+            .merge()
+            .subscribe(onNext:{ [weak self] _ in
+                guard let self = self else { return }
 
-            return vc
-            
-        case let .photoDetails(args):
-            let vc = PhotoDetailsViewController()
-            let photoDetailsVM = self.viewModel(sceneContent: .photoDetails(args))!
-            vc.bind(to: [photoDetailsVM])
-            
-            return vc
-            
-        case let .photoInfo(args):
-            let vc = PhotoInfoViewController()
-            let photoInfoVM = self.viewModel(sceneContent: .photoInfo(args))!
-            vc.bind(to: [photoInfoVM])
-            
-            return vc
-            
-        case let .photoShare(args):
-            let vc = PhotoShareViewController()
-            let photoShareVM = self.viewModel(sceneContent: .photoShare(args))!
-            vc.bind(to: [photoShareVM])
-            
-            return vc
-            
-        case let .photoAddToCollection(args):
-            let vc = PhotoAddToCollectionViewController()
-            let photoAddToCollectionVM = self.viewModel(sceneContent: .photoAddToCollection(args))!
-            vc.bind(to: [photoAddToCollectionVM])
-            
-            return vc
-            
-        case let .photoCreateCollection(args):
-            let vc = PhotoCreateCollectionViewController()
-            let photoCreateCollectionVM = self.viewModel(sceneContent: .photoCreateCollection(args))!
-            vc.bind(to: [photoCreateCollectionVM])
-            
-            return vc
-
-        }
-    }
-    
-    // MARK: - ViewModel Factory
-    func viewModel(sceneContent: SceneContent) -> BaseViewModel?{
-        
-        switch sceneContent {
-        case .login:
-            let vm: LoginViewModel = LoginViewModel(services: [AuthService()], args: nil)
-            return vm
-            
-        case .home:
-            let vm: HomeViewModel = HomeViewModel(services: [PhotoService(),TopicService()], args: nil)
-            return vm
-            
-        case let .photoDetails(args):
-            let vm: PhotoDetailsViewModel = PhotoDetailsViewModel(services: [PhotoService()], args: args)
-            return vm
-            
-        case let .photoInfo(args):
-            let vm: PhotoInfoViewModel = PhotoInfoViewModel(services: [PhotoService()], args: args)
-            return vm
-            
-        case let .photoShare(args):
-            let vm: PhotoShareViewModel = PhotoShareViewModel(services: nil, args: args)
-            return vm
-            
-        case let .photoAddToCollection(args):
-            let vm: PhotoAddToCollectionViewModel = PhotoAddToCollectionViewModel(services: [UserService(),CollectionService()], args: args)
-            return vm
-            
-        case let .photoCreateCollection(args):
-            let vm: PhotoCreateCollectionViewModel = PhotoCreateCollectionViewModel(services: [CollectionService()], args: args)
-            return vm
-            
-        case let .listPhotos(args):
-            let vm: ListPhotosViewModel = ListPhotosViewModel(services: [PhotoService()], args: args)
-            return vm
-            
-        case let .searchPhotos(args):
-            let vm: SearchPhotosViewModel = SearchPhotosViewModel(services: [PhotoService()], args: args)
-            return vm
-            
-        default:
-            return nil
-        }        
+                self.pop(animated: true)
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 
@@ -288,6 +200,7 @@ extension SceneCoordinator: UINavigationControllerDelegate{
            let navVC = navigationController as? BaseNavigationController{
             navVC.updateNavBarTransparent(transparent:topVC.navBarTransparent)
             navVC.updateNavBarHidden(hidden:topVC.navBarHidden)
+            navVC.updateNavItems(color:topVC.navBarItemsColor)
         }
     }
 }

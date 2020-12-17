@@ -7,7 +7,14 @@
 
 import UIKit
 
+import RxSwift
+import RxRelay
+
 class MTNavigationController: BaseNavigationController {
+    
+    // MARK: - Public
+    public var backBtnDidTap: PublishRelay<Void> = PublishRelay<Void>()
+    public var closeBtnDidTap: PublishRelay<Void> = PublishRelay<Void>()
     
     // MARK: - Controls
     private var logoBtn: UIButton!
@@ -17,6 +24,9 @@ class MTNavigationController: BaseNavigationController {
     private var logoBarButtonItem: UIBarButtonItem!
     private var backBarButtonItem: UIBarButtonItem!
     private var closeBarButtonItem: UIBarButtonItem!
+    
+    // MARK: - Private
+    private let disposeBag: DisposeBag = DisposeBag()
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -35,29 +45,46 @@ class MTNavigationController: BaseNavigationController {
         // logoBtn.
         self.logoBtn = UIButton()
         self.logoBtn.setImage(UIImage(named: "unsplash-logo")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.logoBtn.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
         self.logoBtn.tintColor = ColorPalette.colorBlack
+        self.logoBtn.isEnabled = false
         self.logoBtn.snp.makeConstraints { (make) in
-            make.width.height.equalTo(20.0)
+            make.width.height.equalTo(30.0)
         }
         self.logoBarButtonItem = UIBarButtonItem(customView: self.logoBtn)
         
         // backBtn.
         self.backBtn = UIButton()
         self.backBtn.setImage(UIImage(named: "nav-btn-back")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.backBtn.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
         self.backBtn.tintColor = ColorPalette.colorBlack
         self.backBtn.snp.makeConstraints { (make) in
-            make.width.height.equalTo(20.0)
+            make.width.height.equalTo(30.0)
         }
         self.backBarButtonItem = UIBarButtonItem(customView: self.backBtn)
         
         // closeBtn.
         self.closeBtn = UIButton()
         self.closeBtn.setImage(UIImage(named: "nav-btn-close")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.closeBtn.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0 ,right: 5.0)
         self.closeBtn.tintColor = ColorPalette.colorBlack
         self.closeBtn.snp.makeConstraints { (make) in
-            make.width.height.equalTo(20.0)
+            make.width.height.equalTo(30.0)
         }
         self.closeBarButtonItem = UIBarButtonItem(customView: self.closeBtn)
+    }
+    
+    override func buildLogic() {
+        super.buildLogic()
+        
+        // Buttons
+        self.backBtn.rx.tap
+            .bind(to: self.backBtnDidTap)
+            .disposed(by: self.disposeBag)
+        
+        self.closeBtn.rx.tap
+            .bind(to: self.closeBtnDidTap)
+            .disposed(by: self.disposeBag)
     }
     
     override public func updateNavBarTransparent(transparent: Bool){
@@ -87,16 +114,33 @@ class MTNavigationController: BaseNavigationController {
         }
     }
     
-    override public func updateNavItems(){
+    override public func updateNavItems(color: UIColor? = nil,
+                                        leftItems: [UIBarButtonItem]? = nil,
+                                        rightItems: [UIBarButtonItem]? = nil){
         
-        if(self.viewControllers.count <= 1){
-            self.topViewController!.navigationItem.leftBarButtonItems = [self.logoBarButtonItem]
-            self.topViewController!.navigationItem.rightBarButtonItems = [self.closeBarButtonItem]
+        // leftBarButtonItems
+        if let leftItems = leftItems{
+            self.topViewController!.navigationItem.leftBarButtonItems = leftItems
         }
         else{
-            self.topViewController!.navigationItem.leftBarButtonItems = [self.backBarButtonItem]
-            self.topViewController!.navigationItem.rightBarButtonItems = [self.logoBarButtonItem]
+            self.topViewController!.navigationItem.leftBarButtonItems = self.viewControllers.count <= 1 ? [self.logoBarButtonItem] : [self.backBarButtonItem]
         }
+        
+        // rightBarButtonItems
+        if let rightItems = rightItems{
+            self.topViewController!.navigationItem.rightBarButtonItems = rightItems
+        }
+        else{
+            self.topViewController!.navigationItem.rightBarButtonItems = self.viewControllers.count <= 1 ? [self.closeBarButtonItem] : [self.logoBarButtonItem]
+        }
+        
+        // color
+        self.topViewController!.navigationItem.leftBarButtonItems?.forEach({ (item) in
+            item.customView?.tintColor = color ?? ColorPalette.colorBlack
+        })
+        self.topViewController!.navigationItem.rightBarButtonItems?.forEach({ (item) in
+            item.customView?.tintColor = color ?? ColorPalette.colorBlack
+        })
     }
 
     /*

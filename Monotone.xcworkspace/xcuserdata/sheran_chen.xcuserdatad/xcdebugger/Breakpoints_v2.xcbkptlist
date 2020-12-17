@@ -14,8 +14,8 @@
             filePath = "Monotone/Services/Network/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "request(request:method:)"
             landmarkType = "7">
             <Locations>
@@ -50,6 +50,70 @@
                   offsetFromSymbolStart = "148">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04A34F6C-FF34-4CA5-9B5C-20743413D45E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Monotone/Components/NavigationControllers/MTNavigationController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "updateNavItems(color:leftItems:rightItems:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "04A34F6C-FF34-4CA5-9B5C-20743413D45E - 80cb418e02e8945d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Monotone.MTNavigationController.updateNavItems(color: Swift.Optional&lt;__C.UIColor&gt;, leftItems: Swift.Optional&lt;Swift.Array&lt;__C.UIBarButtonItem&gt;&gt;, rightItems: Swift.Optional&lt;Swift.Array&lt;__C.UIBarButtonItem&gt;&gt;) -&gt; ()"
+                  moduleName = "Monotone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Components/NavigationControllers/MTNavigationController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "3348">
+               </Location>
+               <Location
+                  uuid = "04A34F6C-FF34-4CA5-9B5C-20743413D45E - da987f50238cb3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.UIBarButtonItem) -&gt; () in Monotone.MTNavigationController.updateNavItems(color: Swift.Optional&lt;__C.UIColor&gt;, leftItems: Swift.Optional&lt;Swift.Array&lt;__C.UIBarButtonItem&gt;&gt;, rightItems: Swift.Optional&lt;Swift.Array&lt;__C.UIBarButtonItem&gt;&gt;) -&gt; ()"
+                  moduleName = "Monotone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Components/NavigationControllers/MTNavigationController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "132164B5-A07A-4433-B8F1-1154BAEBE835"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Monotone/Coordinators/SceneCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "configureNavBar(navigationController:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
