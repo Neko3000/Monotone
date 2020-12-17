@@ -125,9 +125,9 @@ class HomeViewController: BaseViewController {
             }.disposed(by: self.disposeBag)
         
         self.collectionView.rx.modelSelected(Photo.self)
-            .subscribe { (controlEvent) in
-                let photo = controlEvent.element!
-
+            .subscribe(onNext:{ [weak self] (photo) in
+                guard let self = self else { return }
+                
                 let args = [
                     "photo" : photo
                 ]
@@ -135,7 +135,7 @@ class HomeViewController: BaseViewController {
 //                self.transition(type: .present(.photoDetails(args), .fullScreen), with: nil)
                 self.transition(type: .push(.photoDetails(args)), with: nil)
 
-            }.disposed(by: self.disposeBag)
+            }).disposed(by: self.disposeBag)
 
         // MJRefresh.
         self.collectionView.mj_header!.refreshingBlock = {
@@ -148,14 +148,16 @@ class HomeViewController: BaseViewController {
         
         homeViewModel.output.reloading
             .ignore(true)
-            .subscribe { (_) in
-                self.collectionView.mj_header!.endRefreshing()
+            .subscribe { [weak self] (_) in
+                self?.collectionView.mj_header!.endRefreshing()
             }
             .disposed(by: self.disposeBag)
 
         homeViewModel.output.loadingMore
             .ignore(true)
-            .subscribe { (_) in
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+
                 self.collectionView.mj_footer!.endRefreshing()
             }
             .disposed(by: self.disposeBag)
@@ -168,7 +170,9 @@ class HomeViewController: BaseViewController {
             })
             .skipWhile({ $0 == .showJumbotronView })
             .distinctUntilChanged()
-            .subscribe(onNext: { (animationState) in
+            .subscribe(onNext: { [weak self] (animationState) in
+                guard let self = self else { return }
+                
                 self.animation(animationState: animationState)
             })
             .disposed(by: self.disposeBag)

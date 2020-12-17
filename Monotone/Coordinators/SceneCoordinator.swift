@@ -81,7 +81,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
                 
                 _ = navigationController.rx.delegate
                     .sentMessage(#selector(navigationController(_:didShow:animated:)))
-                    .map({ _ in return () })
+                    .map({ (_) in return () })
                     .bind(to: subject)
                 
                 navigationController.pushViewController(SceneCoordinator.actualViewController(for: targetVC), animated: animated)
@@ -92,7 +92,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
                 
                 _ = navigationController.rx.delegate
                     .sentMessage(#selector(navigationController(_:didShow:animated:)))
-                    .map({ _ in return () })
+                    .map({ (_) in return () })
                     .bind(to: subject)
                 
                 currentViewController!.present(navigationController, animated: animated, completion: {
@@ -151,7 +151,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             
             _ = navigationController.rx.delegate
                 .sentMessage(#selector(navigationController(_:didShow:animated:)))
-                .map({ _ in return () })
+                .map({ (_) in return () })
                 .bind(to: subject)
             
             guard navigationController.popViewController(animated: animated) != nil else{

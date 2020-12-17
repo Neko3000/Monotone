@@ -100,30 +100,31 @@ class PhotoInfoViewController: BaseViewController {
         // Bindings.
         photoInfoViewModel.output.photo
             .unwrap()
-            .subscribe(onNext: { photo in
+            .subscribe(onNext: { [weak self] photo in
+                guard let self = self else { return }
             
-            // pageTitleView.
-            if let altDescription = photo.altDescription{
-                let title = altDescription.split(separator: " ").prefix(2).joined(separator: " ").capitalized
-                self.pageTitleView.title.accept(title)
-            }
-            
-            if let createdAt = photo.createdAt{
-                let subtitle = self.dateFormatter.string(from: createdAt)
-                self.pageTitleView.subtitle.accept(subtitle)
-            }
-            
-            // photoImageView.
-            self.photoImageView.kf.setImage(with: URL(string: photo.urls?.regular ?? ""),
-                                            placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                            options: [.transition(.fade(1.0)), .originalCache(.default)])
-        })
-        .disposed(by: self.disposeBag)
+                // pageTitleView.
+                if let altDescription = photo.altDescription{
+                    let title = altDescription.split(separator: " ").prefix(2).joined(separator: " ").capitalized
+                    self.pageTitleView.title.accept(title)
+                }
                 
-        photoInfoViewModel.output.photo.bind(to: self.photoInfoCameraView.photo)
+                if let createdAt = photo.createdAt{
+                    let subtitle = self.dateFormatter.string(from: createdAt)
+                    self.pageTitleView.subtitle.accept(subtitle)
+                }
+                
+                // photoImageView.
+                self.photoImageView.kf.setImage(with: URL(string: photo.urls?.regular ?? ""),
+                                                placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
+                                                options: [.transition(.fade(1.0)), .originalCache(.default)])
+            })
             .disposed(by: self.disposeBag)
-        photoInfoViewModel.output.statistics.bind(to: self.photoInfoStatisticsView.statistics)
-            .disposed(by: self.disposeBag)
+                    
+            photoInfoViewModel.output.photo.bind(to: self.photoInfoCameraView.photo)
+                .disposed(by: self.disposeBag)
+            photoInfoViewModel.output.statistics.bind(to: self.photoInfoStatisticsView.statistics)
+                .disposed(by: self.disposeBag)
     }
     
 }

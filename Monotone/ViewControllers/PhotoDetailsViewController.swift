@@ -121,7 +121,9 @@ class PhotoDetailsViewController: BaseViewController {
         // scrollView.
         photoDetailsViewModel.output.photo
             .unwrap()
-            .subscribe(onNext: { (photo) in
+            .subscribe(onNext: { [weak self] (photo) in
+                guard let self = self else { return }
+
                 self.scrollView.photo = photo
                 
                 self.likeCapsuleBtn.setTitle("\(photo.likes ?? 0)", for: .normal)
@@ -131,7 +133,9 @@ class PhotoDetailsViewController: BaseViewController {
                         
         // operationView.
         self.operationView.infoBtn.rx.tap
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
+
                 let photo = photoDetailsViewModel.output.photo.value
 
                 let args = [
@@ -145,7 +149,9 @@ class PhotoDetailsViewController: BaseViewController {
         
         // shareBtn.
         self.operationView.shareBtn.rx.tap
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
+                
                 let photo = photoDetailsViewModel.output.photo.value
 
                 let args = [
@@ -158,7 +164,8 @@ class PhotoDetailsViewController: BaseViewController {
         
         // likeCapsuleBtn.
         self.likeCapsuleBtn.rx.tap
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
                 
                 if(self.likeCapsuleBtn.isSelected){
                     photoDetailsViewModel.input.unlikePhotoAction?.execute()
@@ -166,13 +173,12 @@ class PhotoDetailsViewController: BaseViewController {
                 else{
                     photoDetailsViewModel.input.likePhotoAction?.execute()
                 }
-                
             })
             .disposed(by: self.disposeBag)
         
         // collectCapsuleBtn.
         self.collectCapsuleBtn.rx.tap
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [weak self ] (_) in
 //                let username = photoDetailsViewModel.output.photo.value.user?.username
 
                 let args = [
@@ -180,15 +186,16 @@ class PhotoDetailsViewController: BaseViewController {
                     "photo": photoDetailsViewModel.output.photo.value
                 ] as [String : Any?]
 
-                self.transition(type: .present(.photoAddToCollection(args), .pageSheet), with: nil, animated: true)
+                self?.transition(type: .present(.photoAddToCollection(args), .pageSheet), with: nil, animated: true)
             })
             .disposed(by: self.disposeBag)
         
         // expandBtn.
         self.expandBtn.rx.tap
-            .subscribe(onNext: { _ in
-                self.expandBtn.isSelected = !self.expandBtn.isSelected
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
                 
+                self.expandBtn.isSelected = !self.expandBtn.isSelected
                 self.animation(animationState: self.expandBtn.isSelected ? .expanded: .normal)
                 self.scrollView.adjustZoomScale(scaleToFill: self.expandBtn.isSelected, animated: true)
             })

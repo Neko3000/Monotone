@@ -143,7 +143,9 @@ class HomeJumbotronView: BaseView {
                 // HMSegmentedControlNoSegment is not -1, but a really big signed digit.
                 NSDecimalNumber(value: $0) !=  NSDecimalNumber(value: self.segmentedControl.selectedSegmentIndex)
             })
-            .subscribe(onNext: { (index) in
+            .subscribe(onNext: {[weak self] (index) in
+                guard let self = self else { return }
+                
                 self.segmentedControl.setSelectedSegmentIndex(index == -1 ? HMSegmentedControlNoSegment : UInt(index), animated: false)
             })
             .disposed(by: self.disposeBag)

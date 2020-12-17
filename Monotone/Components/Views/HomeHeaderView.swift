@@ -109,8 +109,10 @@ class HomeHeaderView: BaseView {
         
         // searchTextField
         self.searchTextField.rx.controlEvent(.editingDidEndOnExit)
-            .subscribe(onNext: { (_) in
-                self.searchQuery.accept(self.searchTextField.text ?? nil)
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
+                
+                self.searchQuery.accept(self.searchTextField.text)
             })
             .disposed(by: self.disposeBag)
         
@@ -130,7 +132,9 @@ class HomeHeaderView: BaseView {
                 return Observable.just(index)
             }
             .filter({ NSDecimalNumber(value: $0) !=  NSDecimalNumber(value: self.segmentedControl.selectedSegmentIndex) })
-            .subscribe(onNext: { (index) in
+            .subscribe(onNext: { [weak self] (index) in
+                guard let self = self else { return }
+                
                 self.segmentedControl.setSelectedSegmentIndex(index == -1 ? HMSegmentedControlNoSegment : UInt(index), animated: false)
             })
             .disposed(by: self.disposeBag)
@@ -138,7 +142,9 @@ class HomeHeaderView: BaseView {
         self.searchQuery
             .distinctUntilChanged()
             .unwrap()
-            .subscribe { (value) in
+            .subscribe { [weak self] (value) in
+                guard let self = self else { return }
+                
                 self.listOrderBy.accept(nil)
                 self.topic.accept(nil)
             }
@@ -147,7 +153,9 @@ class HomeHeaderView: BaseView {
         self.listOrderBy
             .distinctUntilChanged()
             .unwrap()
-            .subscribe { (value) in
+            .subscribe { [weak self] (value) in
+                guard let self = self else { return }
+
                 self.searchQuery.accept(nil)
                 self.topic.accept(nil)
             }
@@ -156,7 +164,9 @@ class HomeHeaderView: BaseView {
         self.topic
             .distinctUntilChanged()
             .unwrap()
-            .subscribe { (value) in
+            .subscribe { [weak self] (value) in
+                guard let self = self else { return }
+                
                 self.searchQuery.accept(nil)
                 self.listOrderBy.accept(nil)
             }

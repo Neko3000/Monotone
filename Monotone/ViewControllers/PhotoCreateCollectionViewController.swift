@@ -182,7 +182,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
         
         photoCreateCollectionViewModel.output.collection
             .unwrap()
-            .subscribe { (created) in
+            .subscribe { (_) in
                 SceneCoordinator.shared.pop()
             } onError: { (error) in
                 // TODO: handle error

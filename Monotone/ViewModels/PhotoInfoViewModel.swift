@@ -48,13 +48,11 @@ class PhotoInfoViewModel: BaseViewModel, ViewModelStreamable{
             .unwrap()
             .flatMap { (photo) -> Observable<Statistics> in
                 return photoService.statisticizePhoto(id: photo.id!)
-                
             }
-            .subscribe(onNext: { (statistics) in
+            .subscribe(onNext: { [weak self] (statistics) in
+                guard let self = self else { return }
             
                 self.output.statistics.accept(statistics)
-            }, onError: { (error) in
-                
             })
             .disposed(by: self.disposeBag)
 

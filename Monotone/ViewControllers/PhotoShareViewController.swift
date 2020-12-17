@@ -99,7 +99,8 @@ class PhotoShareViewController: BaseViewController {
         
         photoShareViewModel.output.photo
             .unwrap()
-            .subscribe(onNext: { photo in
+            .subscribe(onNext: { [weak self] photo in
+                guard let self = self else { return }
             
                 if let editor = photo.user?.username{
                     let subtitle = String(format: NSLocalizedString("unsplash_share_subtitle_prefix", comment: "Photo by %@"), editor)
@@ -110,16 +111,15 @@ class PhotoShareViewController: BaseViewController {
                 self.photoImageView.kf.setImage(with: URL(string: photo.urls?.regular ?? ""),
                                                 placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
                                                 options: [.transition(.fade(1.0)), .originalCache(.default)])
-                
-                // photoShareImage
             })
             .disposed(by: self.disposeBag)
                 
         photoShareViewModel.output.photo
             .unwrap()
-            .subscribe(onNext: { photo in
+            .subscribe(onNext: { [weak self] photo in
+                guard let self = self else { return }
+
                 self.photoShareUrlView.url.accept(photo.links?.selfLink)
-                
             })
             .disposed(by: self.disposeBag)
     }

@@ -119,7 +119,8 @@ class PhotoAddToCollectionViewController: BaseViewController {
         
         // tableView didSelect.
         tableView.rx.itemSelected
-            .subscribe(onNext: { indexPath in
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
                 
                 let pcell = self.tableView.cellForRow(at: indexPath) as! AddToCollectionTableViewCell
                 
@@ -144,7 +145,9 @@ class PhotoAddToCollectionViewController: BaseViewController {
         // After reloaded collections.
         photoAddToCollectionViewModel.output.reloading
             .ignore(true)
-            .subscribe { (_) in
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+
                 self.tableView.mj_header!.endRefreshing()
                 
                 // Scroll to top.
@@ -155,7 +158,9 @@ class PhotoAddToCollectionViewController: BaseViewController {
         // After loaded more collections.
         photoAddToCollectionViewModel.output.loadingMore
             .ignore(true)
-            .subscribe { (_) in
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+                
                 self.tableView.mj_footer!.endRefreshing()
             }
             .disposed(by: self.disposeBag)
@@ -165,11 +170,14 @@ class PhotoAddToCollectionViewController: BaseViewController {
                       photoAddToCollectionViewModel.output.removingFromCollection)
             .merge()
             .ignore(true)
-            .filter({ _ in self.tableView.indexPathForSelectedRow != nil})
-            .subscribe( onNext: { _ in
+            .filter({ (_) in self.tableView.indexPathForSelectedRow != nil})
+            .subscribe( onNext: { [weak self] (_) in
+                guard let self = self else { return }
                 
-                let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
-                pcell.loading.accept(false)
+                if let selectedIndexPath = self.tableView.indexPathForSelectedRow{
+                    let pcell = self.tableView.cellForRow(at: selectedIndexPath) as! AddToCollectionTableViewCell
+                    pcell.loading.accept(false)
+                }
 
                 self.tableView.allowsSelection = true
             })
@@ -177,26 +185,32 @@ class PhotoAddToCollectionViewController: BaseViewController {
         
         // After adding photo to a collection, switch selected cell's state.
         photoAddToCollectionViewModel.output.addedPhoto
-            .filter({ _ in self.tableView.indexPathForSelectedRow != nil })
-            .subscribe( onNext: {(photo) in
+            .filter({ (_) in self.tableView.indexPathForSelectedRow != nil })
+            .subscribe( onNext: { [weak self] (photo) in
+                guard let self = self else { return }
                 
-                let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
-                if(photo != nil){
-                    pcell.displayState.accept(.containsPhoto)
+                if let selectedIndexPath = self.tableView.indexPathForSelectedRow{
+                    let pcell = self.tableView.cellForRow(at: selectedIndexPath) as! AddToCollectionTableViewCell
+                    if(photo != nil){
+                        pcell.displayState.accept(.containsPhoto)
+                    }
                 }
-                
+            
                 self.tableView.allowsSelection = true
             })
             .disposed(by: self.disposeBag)
         
         // After removing photo to a collection, switch selected cell's state.
         photoAddToCollectionViewModel.output.removedPhoto
-            .filter({ _ in self.tableView.indexPathForSelectedRow != nil })
-            .subscribe( onNext: {(photo) in
+            .filter({ (_) in self.tableView.indexPathForSelectedRow != nil })
+            .subscribe( onNext: { [weak self] (photo) in
+                guard let self = self else { return }
                 
-                let pcell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as! AddToCollectionTableViewCell
-                if(photo != nil){
-                    pcell.displayState.accept(.notContainsPhoto)
+                if let selectedIndexPath = self.tableView.indexPathForSelectedRow{
+                    let pcell = self.tableView.cellForRow(at: selectedIndexPath) as! AddToCollectionTableViewCell
+                    if(photo != nil){
+                        pcell.displayState.accept(.notContainsPhoto)
+                    }
                 }
                 
                 self.tableView.allowsSelection = true
@@ -216,7 +230,8 @@ class PhotoAddToCollectionViewController: BaseViewController {
         }
         
         // createCollectionBtn.
-        self.createCollectionBtn.rx.tap.subscribe(onNext: { _ in
+        self.createCollectionBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
+            guard let self = self else { return }
 
             self.transition(type: .present(.photoCreateCollection(nil), .pageSheet), with: nil, animated: true)
         })

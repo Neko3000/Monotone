@@ -34,7 +34,8 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Private
     private var nextLoadPage: Int = 1
-    private var emptyPhotos: [Photo] = Array.init(repeating: Photo(), count: 10)
+    private var currentPhotos: [Photo] = []
+    private var emptyPhotos: [Photo] = Array(repeating: Photo(), count: 10)
     
     // MARK: - Inject
     override func inject(args: [String : Any]?) {
@@ -50,25 +51,27 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
     override func bind() {
         
         // Service
-        let photoService = self.service(type: PhotoService.self)
-        let topicService = self.service(type: TopicService.self)
+        let photoService = self.service(type: PhotoService.self)!
+        let topicService = self.service(type: TopicService.self)!
         
         // Binding
         // LoadMore.
-        self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
+        self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { [weak self] _ -> Observable<[Photo]> in
+            guard let self = self else { return Observable.empty() }
+            
             self.output.loadingMore.accept(true)
             
             // Before the request returns.
-            self.output.photos.accept(self.output.photos.value + self.emptyPhotos)
+            self.output.photos.accept((self.currentPhotos) + (self.emptyPhotos))
             
             if let listOrderBy = self.input.listOrderBy.value{
-                return photoService!.listPhotos(page: self.nextLoadPage, perPage: 20, orderBy: listOrderBy)
+                return photoService.listPhotos(page: self.nextLoadPage, perPage: 20, orderBy: listOrderBy)
             }
             else if let searchQuery = self.input.searchQuery.value{
-                return photoService!.searchPhotos(query: searchQuery , page: self.nextLoadPage, perPage: 20)
+                return photoService.searchPhotos(query: searchQuery , page: self.nextLoadPage, perPage: 20)
             }
             else if let topic = self.input.topic.value{
-                return topicService!.getTopicPhotos(idOrSlug: topic, page: self.nextLoadPage, perPage: 20)
+                return topicService.getTopicPhotos(idOrSlug: topic, page: self.nextLoadPage, perPage: 20)
             }
             else{
                 self.output.loadingMore.accept(false)
@@ -78,40 +81,47 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         })
         
         self.input.loadMoreAction?.elements
-            .subscribe(onNext: { (photos: [Photo]) in
-                                
-                self.output.photos.accept(self.nextLoadPage == 1 ? photos : self.output.photos.value.filter({ (photo) -> Bool in
-                    !self.emptyPhotos.contains(photo)
-                }) + photos)
+            .subscribe(onNext: { [weak self] (photos) in
+                guard let self = self else { return }
+                
+                self.currentPhotos = self.nextLoadPage == 1 ? photos : self.currentPhotos
                 self.nextLoadPage += 1
+
+                self.output.photos.accept(self.currentPhotos)
                 
                 self.output.loadingMore.accept(false)
             })
             .disposed(by: self.disposeBag)
         
         self.input.loadMoreAction?.errors
-            .subscribe(onNext: { (_) in
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
                 
-                self.output.photos.accept(self.output.photos.value.filter({ (photo) -> Bool in
-                    !self.emptyPhotos.contains(photo)
-                }))
-                
+                self.output.photos.accept(self.currentPhotos)
+
                 self.output.loadingMore.accept(false)
             })
             .disposed(by: self.disposeBag)
         
         // Reload.
-        self.input.reloadAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
-            self.nextLoadPage = 1
+        self.input.reloadAction = Action<Void, [Photo]>(workFactory: { [weak self](_) -> Observable<[Photo]> in
+            guard let self = self else { return Observable.empty() }
 
-            // Before the request returns.
-            self.output.photos.accept(self.emptyPhotos)
+            if let loadMoreAction = self.input.loadMoreAction{
+                self.nextLoadPage = 1
+                
+                // Before the request returns.
+                self.output.photos.accept(self.emptyPhotos)
+                
+                return loadMoreAction.execute()
+            }
             
-            return self.input.loadMoreAction!.execute()
+            return Observable.empty()
         })
         
         self.input.reloadAction?.elements
-            .subscribe(onNext: { (photos: [Photo]) in
+            .subscribe(onNext: { [weak self] (photos) in
+                guard let self = self else { return }
                 
                 self.output.photos.accept(photos)
                 self.output.reloading.accept(false)
@@ -119,8 +129,10 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
             .disposed(by: self.disposeBag)
         
         self.input.reloadAction?.errors
-            .subscribe(onNext: { (_) in
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
                 
+                self.output.photos.accept([])
                 self.output.reloading.accept(false)
             })
             .disposed(by: self.disposeBag)
@@ -129,7 +141,9 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         self.input.searchQuery
             .distinctUntilChanged()
             .unwrap()
-            .subscribe { (_) in
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+                
                 self.input.listOrderBy.accept(nil)
                 self.input.topic.accept(nil)
                 self.input.reloadAction?.execute()
@@ -140,7 +154,9 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         self.input.listOrderBy
             .distinctUntilChanged()
             .unwrap()
-            .subscribe { (_) in
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+                
                 self.input.searchQuery.accept(nil)
                 self.input.topic.accept(nil)
                 self.input.reloadAction?.execute()
@@ -151,7 +167,9 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         self.input.topic
             .distinctUntilChanged()
             .unwrap()
-            .subscribe { (_) in
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+                
                 self.input.searchQuery.accept(nil)
                 self.input.listOrderBy.accept(nil)
                 self.input.reloadAction?.execute()

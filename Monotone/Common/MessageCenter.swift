@@ -33,14 +33,14 @@ class MessageCenter{
             view.configureTheme(theme)
 
             if let buttonTapHandler = buttonTapHandler{
-                view.buttonTapHandler = { _ in
+                view.buttonTapHandler = { (_) in
                     buttonTapHandler()
                 }
                 view.button?.isHidden = false
             }
             
             if let tapHandler = tapHandler{
-                view.tapHandler = { _ in
+                view.tapHandler = { (_) in
                     tapHandler()
                 }
                 view.button?.isHidden = false

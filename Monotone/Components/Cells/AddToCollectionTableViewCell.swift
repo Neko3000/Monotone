@@ -147,26 +147,32 @@ class AddToCollectionTableViewCell: UITableViewCell {
         // Bindings
         self.collection
             .unwrap()
-            .subscribe(onNext: { collection in
+            .subscribe(onNext: { [weak self] (collection) in
+                guard let self = self else { return }
+                
                 self.nameLabel.text = collection.title
                 self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_prefix", comment: "%d Photos"), collection.totalPhotos ?? 0)
                 
                 self.coverImageView.kf.setImage(with: URL(string: collection.coverPhoto?.urls?.regular ?? ""),
-                                                placeholder: UIImage(blurHash: collection.coverPhoto?.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                                options: [.transition(.fade(1.0)), .originalCache(.default)])
+                                                 placeholder: UIImage(blurHash: collection.coverPhoto?.blurHash ?? "", size: CGSize(width: 10, height: 10)),
+                                                 options: [.transition(.fade(1.0)), .originalCache(.default)])
                 
                 self.lockImageView.isHidden = collection.isPrivate ?? true
             })
             .disposed(by: self.disposeBag)
         
         self.loading
-            .subscribe(onNext: { loading in
+            .subscribe(onNext: { [weak self] (loading) in
+                guard let self = self else { return }
+                
                 self.switchLoadingState(to: loading)
             })
             .disposed(by: self.disposeBag)
         
         self.displayState
-            .subscribe(onNext: { displayState in
+            .subscribe(onNext: { [weak self] (displayState) in
+                guard let self = self else { return }
+                
                 self.switchDisplayState(to: displayState)
             })
             .disposed(by: self.disposeBag)

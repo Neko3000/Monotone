@@ -49,10 +49,12 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
             .flatMap({ (code) -> Observable<String> in
                 return authService.token(code: code)
             })
-            .subscribe(onNext: { token in
+            .subscribe(onNext: { [weak self] (token) in
+                guard let self = self else { return }
                 
                 self.output.loggedIn.accept(true)
-            }, onError: { (error) in
+            }, onError: { [weak self] (error) in
+                guard let self = self else { return }
                 
                 self.output.loggedIn.accept(false)
             })

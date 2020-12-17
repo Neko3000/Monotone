@@ -230,7 +230,9 @@ class PhotoInfoCameraSettingsView: BaseView {
         // Bindings
         self.photo
             .unwrap()
-            .subscribe(onNext: { photo in
+            .subscribe(onNext: { [weak self] (photo) in
+                guard let self = self else { return }
+                
                 self.makeContentLabel.text = photo.exif?.make ?? "-"
                 self.modelContentLabel.text = photo.exif?.model ?? "-"
                 self.focalLengthContentLabel.text = photo.exif?.focalLength ?? "-"

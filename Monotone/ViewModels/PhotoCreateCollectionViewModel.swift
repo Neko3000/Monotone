@@ -43,20 +43,24 @@ class PhotoCreateCollectionViewModel: BaseViewModel, ViewModelStreamable{
         let collectionService = self.service(type: CollectionService.self)!
         
         // Bindings.
-        self.input.submitAction = Action<Void,Collection?>(workFactory: { (_) -> Observable<Collection?> in
+        self.input.submitAction = Action<Void,Collection?>(workFactory: { _ -> Observable<Collection?> in
             return collectionService.createCollection(title: self.input.title.value,
                                                       description: self.input.description.value,
                                                       isPrivate: self.input.isPrivate.value)
         })
         
         self.input.submitAction?.elements
-            .subscribe(onNext: { (collection: Collection?) in
+            .subscribe(onNext: { [weak self] (collection) in
+                guard let self = self else { return }
+
                 self.output.collection.accept(collection)
             })
             .disposed(by: self.disposeBag)
         
         self.input.submitAction?.errors
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
+
                 self.output.collection.accept(nil)
             })
             .disposed(by: self.disposeBag)

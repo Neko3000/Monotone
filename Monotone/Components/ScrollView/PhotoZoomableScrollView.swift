@@ -50,7 +50,8 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
             .distinctUntilChanged({ (oldValue, newValue) -> Bool in
                 return oldValue?.size == newValue?.size
             })
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: {[weak self] (_) in
+                guard let self = self else { return }
 
                 self.updatePhotoSize()
                 self.updatePhotoPosition()

@@ -40,6 +40,7 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
     public var output: Output = Output()
     
     // MARK: - Private
+    private var currentCollections: [Collection] = []
     private var nextLoadPage: Int = 1
     
     // MARK: - Inject
@@ -68,32 +69,43 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
         })
         
         self.input.loadMoreAction?.elements
-            .subscribe(onNext: { (collections: [Collection]) in
-                                
-                self.output.collections.accept(self.nextLoadPage == 1 ? collections : self.output.collections.value + collections)
+            .subscribe(onNext: { [weak self] (collections: [Collection]) in
+                guard let self = self else { return }
+                
+                self.currentCollections = self.nextLoadPage == 1 ? collections : self.currentCollections + collections
                 self.nextLoadPage += 1
+                
+                self.output.collections.accept(self.currentCollections)
                 
                 self.output.loadingMore.accept(false)
             })
             .disposed(by: self.disposeBag)
         
         self.input.loadMoreAction?.errors
-            .subscribe(onNext: { (_) in
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
                 
                 self.output.loadingMore.accept(false)
             })
             .disposed(by: self.disposeBag)
         
         // Reload.
-        self.input.reloadAction = Action<Void, [Collection]>(workFactory: { (_) -> Observable<[Collection]> in
-            self.output.reloading.accept(true)
-            self.nextLoadPage = 1
+        self.input.reloadAction = Action<Void, [Collection]>(workFactory: { [weak self] _ -> Observable<[Collection]> in
+            guard let self = self else { return Observable.empty() }
             
-            return self.input.loadMoreAction!.execute()
+            if let loadMoreAction = self.input.loadMoreAction{
+                self.output.reloading.accept(true)
+                self.nextLoadPage = 1
+                
+                return loadMoreAction.execute()
+            }
+
+            return Observable.empty()
         })
         
         self.input.reloadAction?.elements
-            .subscribe(onNext: { (collections: [Collection]) in
+            .subscribe(onNext: { [weak self ] (collections) in
+                guard let self = self else { return }
                 
                 self.output.collections.accept(collections)
                 
@@ -102,22 +114,29 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
             .disposed(by: self.disposeBag)
         
         self.input.reloadAction?.errors
-            .subscribe(onNext: { (_) in
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
                 
                 self.output.reloading.accept(false)
             })
             .disposed(by: self.disposeBag)
         
         // addToCollection.
-        self.input.addToCollectionAction = Action<Void, Photo?>(workFactory: { (_) -> Observable<Photo?> in
-            self.output.addingToCollection.accept(true)
+        self.input.addToCollectionAction = Action<Void, Photo?>(workFactory: { [weak self] _ -> Observable<Photo?> in
+            guard let self = self else { return Observable.empty() }
+            
+            if let collectitonId = self.input.collection.value?.id, let photoId = self.input.photo.value?.id{
+                
+                self.output.addingToCollection.accept(true)
+                return collectionService.addToCollection(collectionId: collectitonId, photoId: photoId)
+            }
 
-            return collectionService.addToCollection(collectionId: self.input.collection.value!.id!,
-                                                     photoId: self.input.photo.value!.id!)
+            return Observable.empty()
         })
         
         self.input.addToCollectionAction?.elements
-            .subscribe(onNext: { (photo: Photo?) in
+            .subscribe(onNext: { [weak self](photo) in
+                guard let self = self else { return }
 
                 if(photo != nil){
                     self.input.photo.accept(photo)
@@ -129,8 +148,9 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
             .disposed(by: self.disposeBag)
         
         self.input.addToCollectionAction?.errors
-            .subscribe(onNext: { (_) in
-                
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
+
                 self.output.addedPhoto.accept(nil)
                 
                 self.output.addingToCollection.accept(false)
@@ -138,15 +158,21 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
             .disposed(by: self.disposeBag)
         
         // removeFromCollection.
-        self.input.removeFromCollectionAction = Action<Void, Photo?>(workFactory: { (_) -> Observable<Photo?> in
-            self.output.removingFromCollection.accept(true)
+        self.input.removeFromCollectionAction = Action<Void, Photo?>(workFactory: { [weak self] _ -> Observable<Photo?> in
+            guard let self = self else { return Observable.empty() }
 
-            return collectionService.removeFromCollection(collectionId: self.input.collection.value!.id!,
-                                                          photoId: self.input.photo.value!.id!)
+            if let collectitonId = self.input.collection.value?.id, let photoId = self.input.photo.value?.id{
+                
+                self.output.removingFromCollection.accept(true)
+                return collectionService.removeFromCollection(collectionId: collectitonId, photoId: photoId)
+            }
+            
+            return Observable.empty()
         })
         
         self.input.removeFromCollectionAction?.elements
-            .subscribe(onNext: { (photo: Photo?) in
+            .subscribe(onNext: { [weak self] (photo) in
+                guard let self = self else { return }
 
                 if(photo != nil){
                     self.input.photo.accept(photo)
@@ -158,10 +184,11 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
             .disposed(by: self.disposeBag)
         
         self.input.removeFromCollectionAction?.errors
-            .subscribe(onNext: { (_) in
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
                 
                 self.output.removedPhoto.accept(nil)
-                
+    
                 self.output.removingFromCollection.accept(false)
             })
             .disposed(by: self.disposeBag)

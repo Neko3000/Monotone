@@ -53,15 +53,13 @@ class SearchPhotosViewModel: BaseViewModel, ViewModelStreamable{
         })
         
         self.input.loadMoreAction?.elements
-            .subscribe(onNext: { (photos: [Photo]) in
+            .subscribe(onNext: { [weak self] (photos) in
+                guard let self = self else { return }
 
                 if let value = try? self.output.photos.value(){
                     self.output.photos.onNext(value + photos)
                     self.nextLoadPage += 1
                 }
-                
-                self.output.loadingMore.onNext(false)
-            }, onError: { (error) in
                 
                 self.output.loadingMore.onNext(false)
             })
@@ -74,12 +72,10 @@ class SearchPhotosViewModel: BaseViewModel, ViewModelStreamable{
         })
         
         self.input.reloadAction?.elements
-            .subscribe(onNext: { (photos: [Photo]) in
+            .subscribe(onNext: { [weak self] (photos) in
+                guard let self = self else { return }
                 
                 self.output.photos.onNext(photos)
-                self.output.reloading.onNext(false)
-            }, onError: { (error) in
-                
                 self.output.reloading.onNext(false)
             })
             .disposed(by: self.disposeBag)

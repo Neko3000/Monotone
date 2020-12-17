@@ -57,7 +57,9 @@ class PhotoDetailsViewModel: BaseViewModel, ViewModelStreamable{
         })
         
         self.input.likePhotoAction?.elements
-            .subscribe(onNext: { (photo) in
+            .subscribe(onNext: { [weak self] (photo) in
+                guard let self = self else { return }
+
                 self.input.photo.accept(photo)
             })
             .disposed(by: self.disposeBag)
@@ -72,7 +74,9 @@ class PhotoDetailsViewModel: BaseViewModel, ViewModelStreamable{
         })
         
         self.input.unlikePhotoAction?.elements
-            .subscribe(onNext: { (photo) in
+            .subscribe(onNext: { [weak self] (photo) in
+                guard let self = self else { return }
+
                 self.input.photo.accept(photo)
             })
             .disposed(by: self.disposeBag)

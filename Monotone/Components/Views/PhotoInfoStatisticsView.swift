@@ -201,7 +201,8 @@ class PhotoInfoStatisticsView: BaseView {
         // Bindings
         self.statistics
             .unwrap()
-            .subscribe(onNext: { statistics in
+            .subscribe(onNext: { [weak self] (statistics) in
+                guard let self = self else { return }
                 
                 let numberFormatter = NumberFormatter()
                 numberFormatter.usesGroupingSeparator = true
