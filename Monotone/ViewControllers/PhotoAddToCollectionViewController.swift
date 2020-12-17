@@ -192,7 +192,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
                 if let selectedIndexPath = self.tableView.indexPathForSelectedRow{
                     let pcell = self.tableView.cellForRow(at: selectedIndexPath) as! AddToCollectionTableViewCell
                     if(photo != nil){
-                        pcell.displayState.accept(.containsPhoto)
+                        pcell.displayState.accept(.addSuccessfully)
                     }
                 }
             
@@ -209,7 +209,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
                 if let selectedIndexPath = self.tableView.indexPathForSelectedRow{
                     let pcell = self.tableView.cellForRow(at: selectedIndexPath) as! AddToCollectionTableViewCell
                     if(photo != nil){
-                        pcell.displayState.accept(.notContainsPhoto)
+                        pcell.displayState.accept(.removeSuccessfully)
                     }
                 }
                 

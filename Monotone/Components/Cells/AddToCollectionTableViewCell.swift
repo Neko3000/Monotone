@@ -155,7 +155,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
                 
                 self.coverImageView.kf.setImage(with: URL(string: collection.coverPhoto?.urls?.regular ?? ""),
                                                  placeholder: UIImage(blurHash: collection.coverPhoto?.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                                 options: [.transition(.fade(1.0)), .originalCache(.default)])
+                                                 options: [.transition(.fade(0.7)), .originalCache(.default)])
                 
                 self.lockImageView.isHidden = collection.isPrivate ?? true
             })
@@ -221,7 +221,7 @@ extension AddToCollectionTableViewCell{
             
             if let totalPhotos = self.collection.value?.totalPhotos{
                 self.collection.value?.totalPhotos = totalPhotos + 1
-                self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_prefix", comment: "%d Photos"), totalPhotos + 1)
+                self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_prefix", comment: "%d Photos"), self.collection.value?.totalPhotos ?? 0)
             }
             
             self.successStateView.alpha = 0.8
@@ -243,7 +243,7 @@ extension AddToCollectionTableViewCell{
             
             if let totalPhotos = self.collection.value?.totalPhotos{
                 self.collection.value?.totalPhotos = totalPhotos - 1
-                self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_prefix", comment: "%d Photos"), totalPhotos - 1)
+                self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_prefix", comment: "%d Photos"), self.collection.value?.totalPhotos ?? 0)
             }
             
             self.successStateView.alpha = 0.5

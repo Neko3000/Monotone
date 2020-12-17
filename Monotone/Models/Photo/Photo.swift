@@ -23,7 +23,7 @@ class Photo: Equatable, Mappable{
     public var urls: Urls?
     public var links: Links?
 //    public var categories: []?
-//    public var sponsorship: String?
+    public var sponsorship: Sponsorship?
     public var likes: Int?
     public var likedByUser: Bool?
     public var currentUserCollections:[Collection]?
@@ -54,6 +54,7 @@ class Photo: Equatable, Mappable{
         altDescription          <- map["alt_description"]
         urls                    <- map["urls"]
         links                   <- map["links"]
+        sponsorship             <- map["sponsorship"]
         likes                   <- map["likes"]
         likedByUser             <- map["liked_by_user"]
         currentUserCollections  <- map["current_user_collections"]

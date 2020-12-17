@@ -1,13 +1,13 @@
 //
-//  CapsuleButton.swift
+//  CapsuleView.swift
 //  Monotone
 //
-//  Created by Xueliang Chen on 2020/11/29.
+//  Created by Xueliang Chen on 2020/12/17.
 //
 
 import UIKit
 
-class CapsuleButton: BaseButton {
+class CapsuleView: BaseView {
     
     // MARK: - Enums
     enum BackgroundStyle{
@@ -21,9 +21,36 @@ class CapsuleButton: BaseButton {
             self.updateBackgroundStyle()
         }
     }
+    public var views: [UIView] = []{
+        didSet{
+            self.stackView.subviews.forEach { self.stackView.removeArrangedSubview($0) }
+            views.forEach { self.stackView.addArrangedSubview($0) }
+        }
+    }
+    
+    // MARK: - Controls
+    private var stackView: UIStackView!
     
     // MARK: - Private
     private var blurBackgroundView: UIVisualEffectView!
+    
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//    }
+//
+//    convenience init(views:[UIView]) {
+//        self.init()
+//
+//        views.forEach { [weak self](view) in
+//            guard let self = self else { return }
+//
+//            self.stackView.addArrangedSubview(view)
+//        }
+//    }
     
     /*
     // Only override draw() if you perform custom drawing.
@@ -37,15 +64,22 @@ class CapsuleButton: BaseButton {
     override func buildSubviews(){
         super.buildSubviews()
         
-        self.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        
-        self.contentEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 25.0)
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10.0, bottom: 0, right: -10.0)
-        
         // blurBackgroundView.
         let blurEffect = UIBlurEffect(style: .light)
         self.blurBackgroundView = UIVisualEffectView(effect: blurEffect)
         self.blurBackgroundView.isUserInteractionEnabled = false
+        
+        // stackView.
+        self.stackView = UIStackView()
+        self.stackView.distribution = .equalSpacing
+        self.stackView.axis = .horizontal
+        self.stackView.spacing = 11.0
+        self.stackView.layoutMargins = UIEdgeInsets(top: 11.0, left: 11.0, bottom: 11.0, right: 11.0)
+        self.stackView.isLayoutMarginsRelativeArrangement = true
+        self.addSubview(self.stackView)
+        self.stackView.snp.makeConstraints { (make) in
+            make.top.right.bottom.left.equalTo(self)
+        }
     }
     
     override func buildLogic(){
@@ -64,11 +98,11 @@ class CapsuleButton: BaseButton {
         case .normal:
             
             self.blurBackgroundView.removeFromSuperview()
-            self.backgroundColor = UIColor.black
+            self.backgroundColor = UIColor.clear
             break
         case .blur:
             
-            self.insertSubview(self.blurBackgroundView, belowSubview: self.imageView!)
+            self.insertSubview(self.blurBackgroundView, belowSubview: self.stackView!)
             self.blurBackgroundView.snp.makeConstraints { (make) in
                 make.left.top.right.bottom.equalTo(self)
             }
