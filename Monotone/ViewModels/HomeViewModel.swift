@@ -84,7 +84,7 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
             .subscribe(onNext: { [weak self] (photos) in
                 guard let self = self else { return }
                 
-                self.currentPhotos = self.nextLoadPage == 1 ? photos : self.currentPhotos
+                self.currentPhotos = self.nextLoadPage == 1 ? photos : self.currentPhotos + photos
                 self.nextLoadPage += 1
 
                 self.output.photos.accept(self.currentPhotos)
@@ -106,6 +106,8 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
         // Reload.
         self.input.reloadAction = Action<Void, [Photo]>(workFactory: { [weak self](_) -> Observable<[Photo]> in
             guard let self = self else { return Observable.empty() }
+            
+            self.output.reloading.accept(true)
 
             if let loadMoreAction = self.input.loadMoreAction{
                 self.nextLoadPage = 1
@@ -123,7 +125,6 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
             .subscribe(onNext: { [weak self] (photos) in
                 guard let self = self else { return }
                 
-                self.output.photos.accept(photos)
                 self.output.reloading.accept(false)
             })
             .disposed(by: self.disposeBag)
@@ -132,7 +133,6 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
             .subscribe(onNext: { [weak self] (_) in
                 guard let self = self else { return }
                 
-                self.output.photos.accept([])
                 self.output.reloading.accept(false)
             })
             .disposed(by: self.disposeBag)
