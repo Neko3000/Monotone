@@ -46,7 +46,7 @@
 "unsplash_share_subtitle_prefix" = "由 %@ 拍摄";
 
 "unsplash_add_collection_title" = "添加到收藏";
-"unsplash_add_collection_total_photo_prefix" = "%d 张图片";
+"unsplash_add_collection_total_photo_suffix" = "%d 张图片";
 "unsplash_add_collection_button_create" = "创建一个新的收藏";
 
 "unsplash_create_collection_title" = "创建一个收藏";
@@ -55,4 +55,18 @@
 "unsplash_create_collection_form_option_private" = "这是一个私有收藏";
 "unsplash_create_collection_form_button_submit" = "创建";
 
+"unsplash_auth_error_title" = "天哪，授权上有个错误...";
 "unsplash_network_error_title" = "天哪，网络上有个错误...";
+
+"unsplash_side_menu_edit_profile" = "编辑";
+"unsplash_side_menu_collection_count_suffix" = "%d 收藏";
+"unsplash_side_menu_collection_description" = "%d 照片 · 由 %@ 建立";
+"unsplash_side_menu_like_count_suffix" = "%d 喜爱";
+"unsplash_side_menu_like_description" = "%d 照片 · %@";
+
+"unsplash_side_menu_option_my_photos" = "我的照片";
+"unsplash_side_menu_option_hiring" = "委托";
+"unsplash_side_menu_option_licenses" = "许可条例";
+"unsplash_side_menu_option_help" = "帮助";
+"unsplash_side_menu_option_made_with_unsplash" = "周边产品";
+

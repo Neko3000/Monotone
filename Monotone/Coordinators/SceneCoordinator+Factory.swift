@@ -29,6 +29,13 @@ extension SceneCoordinator: FactoryCoordinator{
 
             return vc
             
+        case .sideMenu:
+            let vc = SideMenuViewController()
+            let sideMenuVM = self.viewModel(sceneContent:.sideMenu)!
+            vc.bind(to: [sideMenuVM])
+
+            return vc
+            
         case let .photoDetails(args):
             let vc = PhotoDetailsViewController()
             let photoDetailsVM = self.viewModel(sceneContent: .photoDetails(args))!
@@ -73,6 +80,10 @@ extension SceneCoordinator: FactoryCoordinator{
         switch sceneContent {
         case .login:
             let vm: LoginViewModel = LoginViewModel(services: [AuthService()], args: nil)
+            return vm
+            
+        case .home:
+            let vm: HomeViewModel = HomeViewModel(services: [PhotoService(),TopicService()], args: nil)
             return vm
             
         case .home:

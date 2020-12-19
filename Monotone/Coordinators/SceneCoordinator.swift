@@ -15,6 +15,7 @@ import RxCocoa
 enum Scene {
     case login
     case home
+    case sideMenu
     case photoDetails([String: Any?]?)
     case photoInfo([String: Any?]?)
     case photoShare([String: Any?]?)
@@ -26,6 +27,7 @@ enum Scene {
 enum SceneContent {
     case login
     case home
+    case sideMenu
     case photoDetails([String: Any?]?)
     case photoInfo([String: Any?]?)
     case photoShare([String: Any?]?)
