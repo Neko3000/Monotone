@@ -23,28 +23,7 @@ class HomeHeaderView: BaseView {
 
     // MARK: - Controls
     private var searchTextField: UITextField!
-    
     private var segmentedControl: HMSegmentedControl!
-    private var listOrderByContent: KeyValuePairs<String, String> {
-        return [
-            "popular" : NSLocalizedString("unsplash_home_segment_popular", comment: "Popular"),
-            "latest" : NSLocalizedString("unsplash_home_segment_latest", comment: "latest")
-        ]
-    }
-    private var topicContent: KeyValuePairs<String, String> {
-        return [
-            "nature" : NSLocalizedString("unsplash_home_segment_nature", comment: "Nature"),
-            "people" : NSLocalizedString("unsplash_home_segment_people", comment: "People"),
-            "street-photography" : NSLocalizedString("unsplash_home_segment_street_photography", comment: "Street Photography"),
-            "arts-culture" : NSLocalizedString("unsplash_home_segment_arts_culture", comment: "Arts & Culture"),
-            "architecture" : NSLocalizedString("unsplash_home_segment_architecture", comment: "Architecture"),
-            "travel" : NSLocalizedString("unsplash_home_segment_travel", comment: "Travel"),
-            "technology" : NSLocalizedString("unsplash_home_segment_technology", comment: "Technology"),
-            "animals" : NSLocalizedString("unsplash_home_segment_animals", comment: "Animals"),
-            "food-drink" : NSLocalizedString("unsplash_home_segment_food_drink", comment: "Food & Drink"),
-            "sustainability" : NSLocalizedString("unsplash_home_segment_sustainability", comment: "Sustainability"),
-        ]
-    }
     
     // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -80,7 +59,7 @@ class HomeHeaderView: BaseView {
         })
         
         // segmentedControl
-        let segmentedValues = Array(self.listOrderByContent.map({ $0.value })) + Array(self.topicContent.map({ $0.value }))
+        let segmentedValues = PhotoVars.listOrderBys.map({ $0.value }) + PhotoVars.topics.map({ $0.value })
         self.segmentedControl = HMSegmentedControl(sectionTitles: segmentedValues)
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),
@@ -126,7 +105,7 @@ class HomeHeaderView: BaseView {
             .distinctUntilChanged()
             .unwrap()
             .flatMap { (key) -> Observable<Int> in
-                let segmentedKeys = Array(self.listOrderByContent.map({ $0.key })) + Array(self.topicContent.map({ $0.key }))
+                let segmentedKeys = PhotoVars.listOrderBys.map({ $0.key }) + PhotoVars.topics.map({ $0.key })
                 let index = segmentedKeys.firstIndex { $0 == key } ?? -1
                 
                 return Observable.just(index)
@@ -190,12 +169,12 @@ class HomeHeaderView: BaseView {
         let index = Int(segmentedControl.selectedSegmentIndex)
         
         switch index {
-        case 0..<self.listOrderByContent.count:
-            self.listOrderBy.accept(self.listOrderByContent[index].key)
+        case 0..<PhotoVars.listOrderBys.count:
+            self.listOrderBy.accept(PhotoVars.listOrderBys[index].key)
             break
             
-        case self.listOrderByContent.count..<self.listOrderByContent.count + self.topicContent.count:
-            self.topic.accept(self.topicContent[index - self.listOrderByContent.count].key)
+        case PhotoVars.listOrderBys.count..<PhotoVars.listOrderBys.count + PhotoVars.topics.count:
+            self.topic.accept(PhotoVars.topics[index - PhotoVars.listOrderBys.count].key)
             break
 
         default:

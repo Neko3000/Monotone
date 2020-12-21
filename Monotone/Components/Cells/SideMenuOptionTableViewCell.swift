@@ -7,15 +7,20 @@
 
 import UIKit
 
+import RxSwift
+import RxRelay
+import RxSwiftExt
+
 class SideMenuOptionTableViewCell: UITableViewCell {
     
     // MARK: Public
-    
+    public var page: BehaviorRelay<(key:Pages,value:String)?> = BehaviorRelay<(key:Pages,value:String)?>(value: nil)
 
     // MARK: Controls
     public var titleLabel: UILabel!
     
     // MARK: Private
+    private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: - Life Cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -47,5 +52,13 @@ class SideMenuOptionTableViewCell: UITableViewCell {
     private func buildLogic(){
         
         // Bindings
+        self.page
+            .unwrap()
+            .flatMap { (keyValuePair) -> Observable<String> in
+                return Observable.just(keyValuePair.value)
+            }
+            .bind(to: self.titleLabel.rx.text)
+            .disposed(by: self.disposeBag)
+            
     }
 }

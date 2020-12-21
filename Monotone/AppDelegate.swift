@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SceneCoordinator.shared = SceneCoordinator(window: self.window!)
         
         if(AuthManager.shared.credential != nil){
-            SceneCoordinator.shared.transition(type: .root(.home), with: nil)
+//            SceneCoordinator.shared.transition(type: .root(.home), with: nil)
+            SceneCoordinator.shared.transition(type: .root(.sideMenu), with: nil)
         }
         else{
             SceneCoordinator.shared.transition(type: .root(.login), with: nil)

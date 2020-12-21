@@ -55,32 +55,35 @@ class SideMenuProfileView: BaseView{
         self.usernameLabel = UILabel()
         self.usernameLabel.textColor = ColorPalette.colorBlack
         self.usernameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        self.usernameLabel.text = "Misc"
+        self.usernameLabel.text = "Joan Notinghham"
         self.addSubview(self.usernameLabel)
         self.usernameLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.avatarImageView.snp.right).offset(20.0)
             make.right.equalTo(self)
             make.top.equalTo(self).offset(10.0)
         }
         
         // editBtn.
         self.editBtn = UIButton()
+        self.editBtn.backgroundColor = ColorPalette.colorBlack
         self.editBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
-        self.editBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        self.editBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         self.editBtn.setTitle("Edit Profile", for: .normal)
         self.addSubview(self.editBtn)
         self.editBtn.snp.makeConstraints { (make) in
             make.left.equalTo(self.usernameLabel)
-            make.top.equalTo(self.usernameLabel).offset(10.0)
+            make.top.equalTo(self.usernameLabel.snp.bottom).offset(10.0)
         }
         
         // signOutBtn.
         self.signOutBtn = UIButton()
+        self.signOutBtn.backgroundColor = ColorPalette.colorBlack
         self.signOutBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
-        self.signOutBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        self.signOutBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         self.signOutBtn.setTitle("Edit Profile", for: .normal)
         self.addSubview(self.signOutBtn)
         self.signOutBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(self.editBtn).offset(15.0)
+            make.left.equalTo(self.editBtn.snp.right).offset(15.0)
             make.centerY.equalTo(self.editBtn)
         }
         
@@ -91,7 +94,8 @@ class SideMenuProfileView: BaseView{
         self.collectionBtn.setTitle("21 Collections", for: .normal)
         self.addSubview(self.collectionBtn)
         self.collectionBtn.snp.makeConstraints { (make) in
-            make.left.top.equalTo(self.avatarImageView)
+            make.left.equalTo(self.avatarImageView)
+            make.top.equalTo(self.avatarImageView.snp.bottom).offset(22.0)
         }
         
         // likeBtn.
@@ -101,8 +105,8 @@ class SideMenuProfileView: BaseView{
         self.likeBtn.setTitle("220 Liked", for: .normal)
         self.addSubview(self.likeBtn)
         self.likeBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(self.collectionBtn).offset(20.0)
-            make.center.equalTo(self.collectionBtn)
+            make.left.equalTo(self.collectionBtn.snp.right).offset(20.0)
+            make.centerY.equalTo(self.collectionBtn)
         }
         
         // collectionsView.
@@ -110,7 +114,8 @@ class SideMenuProfileView: BaseView{
         self.addSubview(self.collectionsView)
         self.collectionsView.snp.makeConstraints { (make) in
             make.left.equalTo(self.avatarImageView)
-            make.top.equalTo(self.collectionBtn).offset(22.0)
+            make.top.equalTo(self.collectionBtn.snp.bottom).offset(22.0)
+            make.bottom.equalTo(self)
             make.height.equalTo(219.0)
             make.width.equalTo(237.0)
         }

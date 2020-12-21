@@ -1,5 +1,5 @@
 //
-//  SideMenuOptionView.swift
+//  SideMenuPageView.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/12/18.
@@ -10,12 +10,14 @@ import Foundation
 import RxSwift
 import RxRelay
 import RxCocoa
+import RxSwiftExt
 
-// MARK: - SideMenuOptionView
-class SideMenuOptionView: BaseView{
+// MARK: - SideMenuPageView
+class SideMenuPageView: BaseView{
     
     // MARK: Public
-    
+    public var pages: BehaviorRelay<[(key:Pages,value:String)]?> = BehaviorRelay<[(key:Pages,value:String)]?>(value: nil)
+
     // MARK: Controls
     private var tableView: UITableView!
     
@@ -23,16 +25,6 @@ class SideMenuOptionView: BaseView{
     private var horizontalTopLineShort: UIView!
     private var horizontalBottomLineLong: UIView!
     private var horizontalBottomLineShort: UIView!
-    
-    private var optionContent: [String] {
-        return [
-            NSLocalizedString("unsplash_side_menu_option_my_photos", comment: "My Photos"),
-            NSLocalizedString("unsplash_side_menu_option_hiring", comment: "Hiring"),
-            NSLocalizedString("unsplash_side_menu_option_licenses", comment: "Licenses"),
-            NSLocalizedString("unsplash_side_menu_option_help", comment: "Help"),
-            NSLocalizedString("unsplash_side_menu_option_made_with_unsplash", comment: "Made with Unsplash"),
-        ]
-    }
         
     // MARK: Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -97,7 +89,7 @@ class SideMenuOptionView: BaseView{
         self.addSubview(self.horizontalBottomLineShort)
         self.horizontalBottomLineShort.snp.makeConstraints { (make) in
             make.right.equalTo(self.horizontalBottomLineLong.snp.left).offset(-8.0)
-            make.top.equalTo(self)
+            make.bottom.equalTo(self)
             make.height.equalTo(1.0)
             make.width.equalTo(8.0)
         }
@@ -107,11 +99,20 @@ class SideMenuOptionView: BaseView{
         super.buildLogic()
         
         // Bindings.
-        
+        self.pages
+            .unwrap()
+            .bind(to: self.tableView.rx.items(cellIdentifier: "SideMenuOptionTableViewCell")){
+                (row, element, cell) in
+                
+                let pcell: SideMenuOptionTableViewCell = cell as! SideMenuOptionTableViewCell
+                pcell.page.accept(element)
+
+            }
+            .disposed(by: self.disposeBag)
     }
 }
 
 // MARK: - UITableViewDelegate
-extension SideMenuOptionView: UITableViewDelegate{
+extension SideMenuPageView: UITableViewDelegate{
     
 }

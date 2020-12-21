@@ -15,7 +15,7 @@ class SideMenuViewController: BaseViewController {
     
     // MARK: - Controls
     private var profileView: SideMenuProfileView!
-    private var optionView: SideMenuOptionView!
+    private var pageView: SideMenuPageView!
     
     // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -44,27 +44,33 @@ class SideMenuViewController: BaseViewController {
         self.profileView = SideMenuProfileView()
         self.view.addSubview(self.profileView)
         self.profileView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.view).multipliedBy(1.0/2)
-            make.top.equalTo(self.view).offset(42.0)
-            make.left.right.equalTo(self.view)
+            make.left.equalTo(self.view).offset(18.0)
+            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(42.0)
         }
         
-        // optionView.
-        self.optionView = SideMenuOptionView()
-        self.view.addSubview(self.optionView)
-        self.optionView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).multipliedBy(1.0/2)
+        // pageView.
+        self.pageView = SideMenuPageView()
+        self.view.addSubview(self.pageView)
+        self.pageView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.profileView.snp.bottom).offset(30.0)
             make.left.equalTo(self.view).offset(18.0)
-            make.width.equalTo(self.view).offset(259.0)
-            make.bottom.equalTo(self.view).offset(-53.0)
+            make.right.equalTo(self.view).offset(-18.0)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-42.0)
         }
     }
     
     override func buildLogic() {
         
         // ViewModel.
+        let sideMenuViewModel = self.viewModel(type: SideMenuViewModel.self)!
         
         // Bindings.
+        sideMenuViewModel.output.pages
+            .bind(to: self.pageView.pages)
+            .disposed(by: self.disposeBag)
+        
+        sideMenuViewModel.input.pages.accept(PageVars.pages)
+        
     }
     
 }

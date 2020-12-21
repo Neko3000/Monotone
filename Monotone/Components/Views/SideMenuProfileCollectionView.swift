@@ -50,20 +50,20 @@ class SideMenuProfileCollectionView: BaseView{
         self.photoAImageView.backgroundColor = UIColor.blue
         self.photoContainerView.addSubview(self.photoAImageView)
         self.photoAImageView.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.photoContainerView.snp.bottom)
-            make.bottom.equalTo(self.photoContainerView.snp.bottom).multipliedBy(1.0/3).offset(-7.0)
-            make.right.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(-7.0)
+            make.top.left.equalTo(self.photoContainerView)
+            make.bottom.equalTo(self.photoContainerView.snp.bottom).multipliedBy(1.0/3).offset(-2.0)
+            make.right.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(-2.0)
         }
         
         // photoBImageView
         self.photoBImageView = UIImageView()
         self.photoBImageView.contentMode = .scaleAspectFill
         self.photoBImageView.backgroundColor = UIColor.blue
-        self.addSubview(self.photoBImageView)
-        self.photoContainerView.snp.makeConstraints { (make) in
-            make.left.bottom.equalTo(self.photoContainerView.snp.bottom)
-            make.top.equalTo(self.photoContainerView.snp.bottom).multipliedBy(2.0/3).offset(7.0)
-            make.right.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(-7.0)
+        self.photoContainerView.addSubview(self.photoBImageView)
+        self.photoBImageView.snp.makeConstraints { (make) in
+            make.left.bottom.equalTo(self.photoContainerView)
+            make.top.equalTo(self.photoContainerView.snp.bottom).multipliedBy(1.0/3).offset(2.0)
+            make.right.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(-2.0)
         }
         
         // photoCImageView
@@ -72,8 +72,8 @@ class SideMenuProfileCollectionView: BaseView{
         self.photoCImageView.backgroundColor = UIColor.blue
         self.photoContainerView.addSubview(self.photoCImageView)
         self.photoCImageView.snp.makeConstraints { (make) in
-            make.top.right.bottom.equalTo(self.photoContainerView.snp.bottom)
-            make.left.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(7.0)
+            make.top.right.bottom.equalTo(self.photoContainerView)
+            make.left.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(2.0)
         }
         
         // titleLabel

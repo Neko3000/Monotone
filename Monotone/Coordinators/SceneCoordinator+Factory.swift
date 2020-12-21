@@ -86,8 +86,8 @@ extension SceneCoordinator: FactoryCoordinator{
             let vm: HomeViewModel = HomeViewModel(services: [PhotoService(),TopicService()], args: nil)
             return vm
             
-        case .home:
-            let vm: HomeViewModel = HomeViewModel(services: [PhotoService(),TopicService()], args: nil)
+        case .sideMenu:
+            let vm: SideMenuViewModel = SideMenuViewModel(services: nil, args: nil)
             return vm
             
         case let .photoDetails(args):

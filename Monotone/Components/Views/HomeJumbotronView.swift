@@ -26,12 +26,6 @@ class HomeJumbotronView: BaseView {
     private var descriptionLabel: UILabel!
     
     private var segmentedControl: HMSegmentedControl!
-    private var listOrderByContent: KeyValuePairs<String, String> {
-        return [
-            "popular" :  NSLocalizedString("unsplash_home_segment_popular", comment: "Popular"),
-            "latest" : NSLocalizedString("unsplash_home_segment_latest", comment: "latest"),
-        ]
-    }
     
     // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -103,10 +97,10 @@ class HomeJumbotronView: BaseView {
         }
         
         // segmentedControl.
-        let text: String = self.listOrderByContent.map { $0.value }.joined()
+        let text: String = PhotoVars.listOrderBys.map { $0.value }.joined()
         let textSize = text.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.0)])
         
-        self.segmentedControl = HMSegmentedControl(sectionTitles: Array(self.listOrderByContent.map({ $1 })))
+        self.segmentedControl = HMSegmentedControl(sectionTitles: PhotoVars.listOrderBys.map({ $0.value }))
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
             NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal
@@ -134,7 +128,7 @@ class HomeJumbotronView: BaseView {
         self.listOrderBy
             .unwrap()
             .flatMap { (key) -> Observable<Int> in
-                let segmentedKeys = Array(self.listOrderByContent.map({ $0.key }))
+                let segmentedKeys = PhotoVars.listOrderBys.map({ $0.key })
                 let index = segmentedKeys.firstIndex { $0 == key } ?? -1
                 
                 return Observable.just(index)
@@ -156,8 +150,8 @@ class HomeJumbotronView: BaseView {
         let index = Int(segmentedControl.selectedSegmentIndex)
 
         switch index {
-        case 0..<self.listOrderByContent.count:
-            self.listOrderBy.accept(self.listOrderByContent[index].key)
+        case 0..<PhotoVars.listOrderBys.count:
+            self.listOrderBy.accept(PhotoVars.listOrderBys[index].key)
             break
 
         default:

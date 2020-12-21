@@ -89,6 +89,9 @@
 		149C9DC5258C3F1400C5B322 /* SideMenuProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149C9DC4258C3F1400C5B322 /* SideMenuProfileView.swift */; };
 		149CA133258C582800C5B322 /* SideMenuProfileCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CA132258C582800C5B322 /* SideMenuProfileCollectionView.swift */; };
 		149CA590258CAA3200C5B322 /* SideMenuOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CA58F258CAA3200C5B322 /* SideMenuOptionView.swift */; };
+		149EE5EB25906817000230CD /* PhotoVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149EE5EA25906817000230CD /* PhotoVars.swift */; };
+		149EE5F0259068C2000230CD /* PageVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149EE5EF259068C2000230CD /* PageVars.swift */; };
+		149EE5F425906C13000230CD /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149EE5F325906C13000230CD /* SideMenuViewModel.swift */; };
 		14BA29A0258CB61000215F03 /* SideMenuOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BA299F258CB61000215F03 /* SideMenuOptionTableViewCell.swift */; };
 		14BA300A258CCC6200215F03 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BA3009258CCC6200215F03 /* SideMenuViewController.swift */; };
 		14BE99FE256A623400B0DB39 /* GetTopicPhotosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */; };
@@ -233,6 +236,9 @@
 		149C9DC4258C3F1400C5B322 /* SideMenuProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuProfileView.swift; sourceTree = "<group>"; };
 		149CA132258C582800C5B322 /* SideMenuProfileCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuProfileCollectionView.swift; sourceTree = "<group>"; };
 		149CA58F258CAA3200C5B322 /* SideMenuOptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuOptionView.swift; sourceTree = "<group>"; };
+		149EE5EA25906817000230CD /* PhotoVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVars.swift; sourceTree = "<group>"; };
+		149EE5EF259068C2000230CD /* PageVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageVars.swift; sourceTree = "<group>"; };
+		149EE5F325906C13000230CD /* SideMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 		14BA299F258CB61000215F03 /* SideMenuOptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuOptionTableViewCell.swift; sourceTree = "<group>"; };
 		14BA3009258CCC6200215F03 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTopicPhotosRequest.swift; sourceTree = "<group>"; };
@@ -358,6 +364,7 @@
 				1406E9F0257A11A20096DE82 /* PhotoShareViewModel.swift */,
 				14842D4C257DD3F200364FFF /* PhotoAddToCollectionViewModel.swift */,
 				14842E34257E0F6300364FFF /* PhotoCreateCollectionViewModel.swift */,
+				149EE5F325906C13000230CD /* SideMenuViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -525,6 +532,16 @@
 			path = Collection;
 			sourceTree = "<group>";
 		};
+		149EE5E92590677F000230CD /* Vars */ = {
+			isa = PBXGroup;
+			children = (
+				1433B8E82561270700FE9B1D /* InterfaceGlobalVars.swift */,
+				149EE5EA25906817000230CD /* PhotoVars.swift */,
+				149EE5EF259068C2000230CD /* PageVars.swift */,
+			);
+			path = Vars;
+			sourceTree = "<group>";
+		};
 		14D5E8DD254A589D0021FE3E = {
 			isa = PBXGroup;
 			children = (
@@ -585,14 +602,6 @@
 			path = ScrollView;
 			sourceTree = "<group>";
 		};
-		14FA64902580C262004AFBE8 /* Interface */ = {
-			isa = PBXGroup;
-			children = (
-				1433B8E82561270700FE9B1D /* InterfaceGlobalVars.swift */,
-			);
-			path = Interface;
-			sourceTree = "<group>";
-		};
 		14FCE26A2563973E00B98130 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,7 +639,7 @@
 		14FD9C57257F7AC700DEC579 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				14FA64902580C262004AFBE8 /* Interface */,
+				149EE5E92590677F000230CD /* Vars */,
 				14FD9C58257F7AE800DEC579 /* AppManager.swift */,
 				14FA607F2580AE74004AFBE8 /* AppCredential.swift */,
 				14FA648D2580C1D7004AFBE8 /* UrlScheme.swift */,
@@ -855,6 +864,7 @@
 				14E3ACCF257383F4000297CF /* CapsuleButton.swift in Sources */,
 				14109A9D25620B150094BDA7 /* MTTextField.swift in Sources */,
 				14009CB6257775F800C70E6E /* Statistics.swift in Sources */,
+				149EE5EB25906817000230CD /* PhotoVars.swift in Sources */,
 				1406EADF257A5B9F0096DE82 /* PhotoAddToCollectionViewController.swift in Sources */,
 				14E3ACD325738413000297CF /* BaseButton.swift in Sources */,
 				143114DF255AA6D400991676 /* ListPhotosRequest.swift in Sources */,
@@ -920,6 +930,7 @@
 				14009C712575E7E100C70E6E /* PhotoInfoViewModel.swift in Sources */,
 				14842E35257E0F6300364FFF /* PhotoCreateCollectionViewModel.swift in Sources */,
 				1433B8E92561270700FE9B1D /* InterfaceGlobalVars.swift in Sources */,
+				149EE5F425906C13000230CD /* SideMenuViewModel.swift in Sources */,
 				14621CB32587546A00446F5F /* RemoveFromCollectionRequest.swift in Sources */,
 				142BCC982566374C00B7FB06 /* Array+Find.swift in Sources */,
 				14956D32255CC72B0057A4A6 /* SceneCoordinator.swift in Sources */,
@@ -938,6 +949,7 @@
 				14FD9C53257F75CC00DEC579 /* BaseService.swift in Sources */,
 				143114D1255A797A00991676 /* ProfileImage.swift in Sources */,
 				14104920255D4944003312BC /* BaseNavigationController.swift in Sources */,
+				149EE5F0259068C2000230CD /* PageVars.swift in Sources */,
 				14E59E2E2556A0CA00F1FB60 /* PhotoService.swift in Sources */,
 				149325082585FC20006EB8E3 /* AddToCollectionResponse.swift in Sources */,
 				14842C70257DD08100364FFF /* ListUserCollectionsResponse.swift in Sources */,
