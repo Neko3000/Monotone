@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import NVActivityIndicatorView
 
 import RxSwift
 import RxCocoa
@@ -21,6 +22,7 @@ class LoginViewController: BaseViewController {
     private var titleLabel : UILabel!
     private var descriptionLabel : UILabel!
     private var loginBtn : UIButton!
+    private var activityIndicatorView: NVActivityIndicatorView!
     
     // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -95,6 +97,17 @@ class LoginViewController: BaseViewController {
             make.top.equalTo(self.view.snp.centerY).offset(20.0)
         }
         
+        // activityIndicatorView
+        self.activityIndicatorView = NVActivityIndicatorView(frame: CGRect.zero)
+        self.activityIndicatorView.type = .circleStrokeSpin
+        self.activityIndicatorView.color = ColorPalette.colorBlack
+        self.view.addSubview(self.activityIndicatorView)
+        self.activityIndicatorView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.loginBtn.snp.bottom).offset(20.0)
+            make.width.height.equalTo(20.0)
+            make.centerX.equalTo(self.loginBtn)
+        }
+        
         // TODO: Privacy Information: we use you ...
     }
     
@@ -105,18 +118,51 @@ class LoginViewController: BaseViewController {
         let loginViewModel = self.viewModel(type: LoginViewModel.self)!
         
         // Bindings.
+        // loginBtn.
         self.loginBtn.rx.tap
             .subscribe(onNext: { (_) in
                 loginViewModel.input.loginAction?.execute()
             })
             .disposed(by: self.disposeBag)
         
+        // logging.
+        loginViewModel.output.logging
+            .subscribe(onNext:{ [weak self] (logging) in
+                guard let self = self else { return }
+                
+                if(logging){
+                    self.loginBtn.isHidden = true
+                    
+                    self.activityIndicatorView.isHidden = false
+                    self.activityIndicatorView.startAnimating()
+                }
+                else{
+                    self.loginBtn.isHidden = false
+                    
+                    self.activityIndicatorView.isHidden = true
+                    self.activityIndicatorView.stopAnimating()
+                }
+
+            })
+            .disposed(by: self.disposeBag)
+        
+        // loggedIn.
         loginViewModel.output.loggedIn
             .ignore(false)
             .subscribe(onNext:{ (_) in
                 SceneCoordinator.shared.transition(type: .root(.home), with: nil)
             })
             .disposed(by: self.disposeBag)
+        
+        // If there's local credential, update current user information only.
+        // Else do completed login flow.
+        if(AuthManager.shared.credential != nil){
+            loginViewModel.input.updateUserAction?.execute()
+        }
+        else{
+            loginViewModel.input.loginAction?.execute()
+        }
+        
     }
 }
 

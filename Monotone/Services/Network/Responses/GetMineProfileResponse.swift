@@ -12,6 +12,6 @@ class GetMineProfileResponse: BaseResponse{
     public var user: User?
     
     override func mapping(map: Map) {
-        user <- User(map: map)
+        user = User(map: map)
     }
 }

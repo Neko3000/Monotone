@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 class UserManager{
+    // MARK: - Single Skeleton
     public static let shared = UserManager(userService: UserService())
     
     // MARK: - Public
@@ -20,7 +21,6 @@ class UserManager{
 
     init(userService: UserService){
         self.userService = userService
-        self.updateCurrentUser()
     }
     
     // MARK: - Private
@@ -28,15 +28,33 @@ class UserManager{
     private var _currentUser: User?
     private let disposeBag: DisposeBag = DisposeBag()
     
-    
     // MARK: - UpdateCurrentUser
-    public func updateCurrentUser(){
-        userService.getMineProfile()
-            .subscribe(onNext: { [weak self] (user) in
-                guard let self = self else { return }
+    @discardableResult
+    public func updateCurrentUser() -> Observable<Void>{
+        
+        /*
+        return self.userService.getMineProfile()
+            .flatMap { (user) -> Observable<Void> in
                 
-                self._currentUser = user
-            })
-            .disposed(by: self.disposeBag)
+                return Observable.just(Void())
+            }
+         */
+        
+        return Observable.create { [weak self](observer) -> Disposable in
+            guard let self = self else { return Disposables.create() }
+
+            return self.userService.getMineProfile()
+                .subscribe(onNext: { [weak self] (user) in
+                    guard let self = self else { return }
+ 
+                    self._currentUser = user
+                    
+                    observer.onCompleted()
+
+                }, onError: { (error) in
+
+                    observer.onError(error)
+                })
+        }
     }
 }
