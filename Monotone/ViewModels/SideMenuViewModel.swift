@@ -15,13 +15,13 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var pages: BehaviorRelay<[(key:Pages, value:String)]?> = BehaviorRelay<[(key:Pages, value:String)]?>(value: nil)
+        var pages: BehaviorRelay<[(key:SideMenuPage, value:String)]?> = BehaviorRelay<[(key:SideMenuPage, value:String)]?>(value: nil)
     }
     public var input: Input = Input()
     
     // MARK: - Output
     struct Output {
-        var pages: BehaviorRelay<[(key:Pages, value:String)]?> = BehaviorRelay<[(key:Pages, value:String)]?>(value: nil)
+        var pages: BehaviorRelay<[(key:SideMenuPage, value:String)]?> = BehaviorRelay<[(key:SideMenuPage, value:String)]?>(value: nil)
     }
     public var output: Output = Output()
     

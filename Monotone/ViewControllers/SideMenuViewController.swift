@@ -69,7 +69,7 @@ class SideMenuViewController: BaseViewController {
             .bind(to: self.pageView.pages)
             .disposed(by: self.disposeBag)
         
-        sideMenuViewModel.input.pages.accept(PageVars.pages)
+        sideMenuViewModel.input.pages.accept(SideMenuPageVars.pages)
         
     }
     

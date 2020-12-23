@@ -16,7 +16,7 @@ import RxSwiftExt
 class SideMenuPageView: BaseView{
     
     // MARK: Public
-    public var pages: BehaviorRelay<[(key:Pages,value:String)]?> = BehaviorRelay<[(key:Pages,value:String)]?>(value: nil)
+    public var pages: BehaviorRelay<[(key:SideMenuPage,value:String)]?> = BehaviorRelay<[(key:SideMenuPage,value:String)]?>(value: nil)
 
     // MARK: Controls
     private var tableView: UITableView!
