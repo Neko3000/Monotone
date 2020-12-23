@@ -37,4 +37,25 @@ class UserService: NetworkService {
             return Disposables.create()
         }
     }
+    
+    public func getMineProfile() -> Observable<User>{
+        let request: GetMineProfileRequest = GetMineProfileRequest()
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request, method: .get).subscribe { (json) in
+                let response = GetMineProfileResponse(JSON: json)
+                let user = response!.user!
+                
+                observer.onNext(user)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
 }

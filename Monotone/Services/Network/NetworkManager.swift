@@ -14,7 +14,7 @@ import RxSwift
 class NetworkManager{
     
     // MARK: - Single Skeleton
-    static let shared = NetworkManager()
+    public static let shared = NetworkManager()
     
     init() {
         //

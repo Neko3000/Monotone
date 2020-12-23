@@ -37,7 +37,7 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
     override func bind() {
         
         // Service.
-        //
+        let userService = self.service(type: UserService.self)!
         
         // Bindings.
         self.input.pages

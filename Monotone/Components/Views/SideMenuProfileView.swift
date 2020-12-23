@@ -66,8 +66,9 @@ class SideMenuProfileView: BaseView{
         // editBtn.
         self.editBtn = UIButton()
         self.editBtn.backgroundColor = ColorPalette.colorBlack
+        self.editBtn.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
         self.editBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
-        self.editBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        self.editBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         self.editBtn.setTitle("Edit Profile", for: .normal)
         self.addSubview(self.editBtn)
         self.editBtn.snp.makeConstraints { (make) in
@@ -77,10 +78,9 @@ class SideMenuProfileView: BaseView{
         
         // signOutBtn.
         self.signOutBtn = UIButton()
-        self.signOutBtn.backgroundColor = ColorPalette.colorBlack
         self.signOutBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
         self.signOutBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        self.signOutBtn.setTitle("Edit Profile", for: .normal)
+        self.signOutBtn.setImage(UIImage(named: "profile-sign-out"), for: .normal)
         self.addSubview(self.signOutBtn)
         self.signOutBtn.snp.makeConstraints { (make) in
             make.left.equalTo(self.editBtn.snp.right).offset(15.0)
@@ -89,9 +89,11 @@ class SideMenuProfileView: BaseView{
         
         // collectionBtn.
         self.collectionBtn = UIButton()
-        self.collectionBtn.setTitleColor(ColorPalette.colorBlack, for: .normal)
-        self.collectionBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        self.collectionBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
+        self.collectionBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         self.collectionBtn.setTitle("21 Collections", for: .normal)
+        self.collectionBtn.setImage(UIImage(named: "profile-collection"), for: .normal)
+        self.collectionBtn.setImage(UIImage(named: "profile-collection-selected"), for: .selected)
         self.addSubview(self.collectionBtn)
         self.collectionBtn.snp.makeConstraints { (make) in
             make.left.equalTo(self.avatarImageView)
@@ -100,9 +102,11 @@ class SideMenuProfileView: BaseView{
         
         // likeBtn.
         self.likeBtn = UIButton()
-        self.likeBtn.setTitleColor(ColorPalette.colorBlack, for: .normal)
-        self.likeBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        self.likeBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
+        self.likeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         self.likeBtn.setTitle("220 Liked", for: .normal)
+        self.likeBtn.setImage(UIImage(named: "profile-like"), for: .normal)
+        self.likeBtn.setImage(UIImage(named: "profile-like-selected"), for: .selected)
         self.addSubview(self.likeBtn)
         self.likeBtn.snp.makeConstraints { (make) in
             make.left.equalTo(self.collectionBtn.snp.right).offset(20.0)

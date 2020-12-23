@@ -12,7 +12,7 @@ import SwiftMessages
 class MessageCenter{
     
     // MARK: - Single Skeleton
-    static let shared = MessageCenter()
+    public static let shared = MessageCenter()
     
     init() {
 
