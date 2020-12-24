@@ -71,16 +71,21 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
         
         // loginAction
         self.input.loginAction = Action<Void, String>(workFactory: { (_) -> Observable<String> in
-            self.output.logging.accept(true)
             
             return authService.authorize()
         })
         
         self.input.loginAction?.elements
-            .flatMap({ (code) -> Observable<String> in
+            .flatMap({ [weak self] (code) -> Observable<String> in
+                guard let self = self else { return Observable.empty() }
+                
+                self.output.logging.accept(true)
+
                 return authService.token(code: code)
             })
-            .flatMap({ (token) -> Observable<Void> in
+            .flatMap({ [weak self] (token) -> Observable<Void> in
+                guard let self = self else { return Observable.empty() }
+
                 return self.input.updateUserAction!.execute()
             })
             .subscribe(onError: { [weak self] (error) in

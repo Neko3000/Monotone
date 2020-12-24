@@ -135,7 +135,7 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
         })
         
         self.input.addToCollectionAction?.elements
-            .subscribe(onNext: { [weak self](photo) in
+            .subscribe(onNext: { [weak self] (photo) in
                 guard let self = self else { return }
 
                 if(photo != nil){

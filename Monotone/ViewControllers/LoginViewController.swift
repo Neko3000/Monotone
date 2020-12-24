@@ -154,15 +154,10 @@ class LoginViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
-        // If there's local credential, update current user information only.
-        // Else do completed login flow.
+        // If there's local credential, update current user information automatically.
         if(AuthManager.shared.credential != nil){
             loginViewModel.input.updateUserAction?.execute()
         }
-        else{
-            loginViewModel.input.loginAction?.execute()
-        }
-        
     }
 }
 

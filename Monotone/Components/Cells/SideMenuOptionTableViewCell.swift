@@ -14,7 +14,7 @@ import RxSwiftExt
 class SideMenuOptionTableViewCell: UITableViewCell {
     
     // MARK: Public
-    public var page: BehaviorRelay<(key:Pages,value:String)?> = BehaviorRelay<(key:Pages,value:String)?>(value: nil)
+    public var page: BehaviorRelay<(key:SideMenuPage,value:String)?> = BehaviorRelay<(key:SideMenuPage,value:String)?>(value: nil)
 
     // MARK: Controls
     public var titleLabel: UILabel!

@@ -1,5 +1,5 @@
 //
-//  PageVars.swift
+//  SideMenuPageVars.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/15.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Pages{
+enum SideMenuPage{
     case myPhotos
     case hiring
     case licenses
@@ -15,9 +15,9 @@ enum Pages{
     case madeWithUnsplash
 }
 
-class PageVars{
+class SideMenuPageVars{
 
-    public static let pages: [(key:Pages, value:String)] =
+    public static let pages: [(key:SideMenuPage, value:String)] =
         [
             (key: .myPhotos, value: NSLocalizedString("unsplash_side_menu_option_my_photos", comment: "My Photos")),
             (key: .hiring, value: NSLocalizedString("unsplash_side_menu_option_hiring", comment: "Hiring")),
