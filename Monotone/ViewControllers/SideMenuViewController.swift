@@ -75,7 +75,6 @@ class SideMenuViewController: BaseViewController {
             .subscribe(onNext:{ [weak self] (user) in
                 guard let self = self else { return }
                 
-                self.profileView
                        
             })
         

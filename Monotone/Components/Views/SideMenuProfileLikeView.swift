@@ -51,7 +51,7 @@ class SideMenuProfileLikeView: BaseView{
         self.avatarImageView.backgroundColor = UIColor.blue
         self.addSubview(self.avatarImageView)
         self.avatarImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.photoImageView).offset(11.0)
+            make.top.equalTo(self.photoImageView.snp.bottom).offset(11.0)
             make.left.equalTo(self).offset(5.0)
             make.width.height.equalTo(24.0)
         }
@@ -63,8 +63,8 @@ class SideMenuProfileLikeView: BaseView{
         self.usernameLabel.text = "David"
         self.addSubview(self.usernameLabel)
         self.usernameLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.avatarImageView).offset(10.0)
-            make.top.equalTo(self.avatarImageView.snp.bottom)
+            make.left.equalTo(self.avatarImageView.snp.right).offset(10.0)
+            make.top.equalTo(self.avatarImageView)
         }
         
         // descriptionLabel

@@ -15,7 +15,7 @@ class SideMenuProfileView: BaseView{
     // MARK: - Public
     var user: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
     var collections: BehaviorRelay<[Collection]?> = BehaviorRelay<[Collection]?>(value: nil)
-    var likedPhotos: BehaviorRelay<[Photo]?> = BehaviorRelay<[Photo]?>(value: nil)
+    var photos: BehaviorRelay<[Photo]?> = BehaviorRelay<[Photo]?>(value: nil)
     
     // MARK: - Controls
     private var avatarImageView: UIImageView!
@@ -26,7 +26,8 @@ class SideMenuProfileView: BaseView{
     private var collectionBtn: UIButton!
     private var likeBtn: UIButton!
     
-    private var collectionsView: SideMenuProfileCollectionView!
+    private var collectionView: SideMenuProfileCollectionView!
+    private var likeView: SideMenuProfileLikeView!
     
 //    private var enterBtn: UIButton!
         
@@ -116,10 +117,21 @@ class SideMenuProfileView: BaseView{
             make.centerY.equalTo(self.collectionBtn)
         }
         
-        // collectionsView.
-        self.collectionsView = SideMenuProfileCollectionView()
-        self.addSubview(self.collectionsView)
-        self.collectionsView.snp.makeConstraints { (make) in
+//        // collectionView.
+//        self.collectionView = SideMenuProfileCollectionView()
+//        self.addSubview(self.collectionView)
+//        self.collectionView.snp.makeConstraints { (make) in
+//            make.left.equalTo(self.avatarImageView)
+//            make.top.equalTo(self.collectionBtn.snp.bottom).offset(22.0)
+//            make.bottom.equalTo(self)
+//            make.height.equalTo(219.0)
+//            make.width.equalTo(237.0)
+//        }
+        
+        // likeView.
+        self.likeView = SideMenuProfileLikeView()
+        self.addSubview(self.likeView)
+        self.likeView.snp.makeConstraints { (make) in
             make.left.equalTo(self.avatarImageView)
             make.top.equalTo(self.collectionBtn.snp.bottom).offset(22.0)
             make.bottom.equalTo(self)
@@ -139,6 +151,22 @@ class SideMenuProfileView: BaseView{
                 
                 self.usernameLabel.text = user.username
             })
+            .disposed(by: self.disposeBag)
+        
+        self.collections
+            .unwrap()
+            .flatMap({ (collections) -> Observable<Collection?> in
+                return Observable.just(collections.first)
+            })
+            .bind(to: self.collectionView.collection)
+            .disposed(by: self.disposeBag)
+        
+        self.photos
+            .unwrap()
+            .flatMap({ (photos) -> Observable<Photo?> in
+                return Observable.just(photos.first)
+            })
+            .bind(to: self.likeView.photo)
             .disposed(by: self.disposeBag)
 
     }
