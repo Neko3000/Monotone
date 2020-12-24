@@ -71,6 +71,14 @@ class SideMenuViewController: BaseViewController {
         
         sideMenuViewModel.input.pages.accept(SideMenuPageVars.pages)
         
+        sideMenuViewModel.output.currentUser
+            .subscribe(onNext:{ [weak self] (user) in
+                guard let self = self else { return }
+                
+                self.profileView
+                       
+            })
+        
     }
     
 }

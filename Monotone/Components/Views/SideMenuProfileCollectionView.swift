@@ -13,6 +13,7 @@ import RxRelay
 class SideMenuProfileCollectionView: BaseView{
     
     // MARK: - Public
+    var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
     
     // MARK: - Controls
     private var photoContainerView: UIView!
@@ -103,6 +104,32 @@ class SideMenuProfileCollectionView: BaseView{
         super.buildLogic()
         
         // Bindings.
+        self.collection
+            .unwrap()
+            .subscribe(onNext:{ [weak self] (collection) in
+                guard let self = self else { return }
+                
+                let editor = collection.sponsorship?.sponsor ?? collection.user
 
+                self.titleLabel.text = collection.title
+                self.descriptionLabel.text = String(format: NSLocalizedString("unsplash_side_menu_collection_description",
+                                                                              comment: "%d Photos · Curated by %@"),
+                                                    collection.totalPhotos ?? 0,
+                                                    editor?.username ?? "")
+                
+                collection.previewPhotos?
+                    .prefix(self.photoContainerView.subviews.count)
+                    .enumerated()
+                    .forEach({ (index, element) in
+                        let imageView = self.subviews[index] as! UIImageView
+                        
+                        imageView.kf.setImage(with: URL(string: element.urls?.small ?? ""),
+                                              placeholder: UIImage(blurHash: element.blurHash ?? "", size: CGSize(width: 10, height: 10)),
+                                              options: [.transition(.fade(0.7)), .originalCache(.default)])
+                    })
+                
+                
+            })
+            .disposed(by: self.disposeBag)
     }
 }

@@ -23,6 +23,8 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
     struct Output {
         var pages: BehaviorRelay<[(key:SideMenuPage, value:String)]?> = BehaviorRelay<[(key:SideMenuPage, value:String)]?>(value: nil)
         var currentUser: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
+        var collections: BehaviorRelay<[Collection]?> = BehaviorRelay<[Collection]?>(value: nil)
+        var likedPhotos: BehaviorRelay<[Photo]?> = BehaviorRelay<[Photo]?>(value: nil)
     }
     public var output: Output = Output()
     
@@ -51,6 +53,31 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
             .bind(to: self.output.currentUser)
             .disposed(by: self.disposeBag)
         
+        self.output.currentUser
+            .unwrap()
+            .flatMap { (user) -> Observable<[Photo]> in
+                
+                if let username = user.username{
+                    return userService.listUserLikedPhotos(username: username, orderBy: "latest")
+                }
+                
+                return Observable.empty()
+            }
+            .bind(to: self.output.likedPhotos)
+            .disposed(by: self.disposeBag)
+        
+        self.output.currentUser
+            .unwrap()
+            .flatMap { (user) -> Observable<[Collection]> in
+                
+                if let username = user.username{
+                    return userService.listUserCollections(username: username)
+                }
+                
+                return Observable.empty()
+            }
+            .bind(to: self.output.collections)
+            .disposed(by: self.disposeBag)
         
     }
     

@@ -11,6 +11,27 @@ import ObjectMapper
 import RxSwift
 
 class UserService: NetworkService {
+    
+    public func getMineProfile() -> Observable<User>{
+        let request: GetMineProfileRequest = GetMineProfileRequest()
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request, method: .get).subscribe { (json) in
+                let response = GetMineProfileResponse(JSON: json)
+                let user = response!.user!
+                
+                observer.onNext(user)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
 
     public func listUserCollections(username:String,
                                     page:Int? = 1,
@@ -38,16 +59,25 @@ class UserService: NetworkService {
         }
     }
     
-    public func getMineProfile() -> Observable<User>{
-        let request: GetMineProfileRequest = GetMineProfileRequest()
+    public func listUserLikedPhotos(username:String,
+                                    page:Int? = 1,
+                                    perPage:Int? = 10,
+                                    orderBy:String? = "latest",
+                                    orientation:String? = "") -> Observable<[Photo]>{
+        let request: ListUserLikedPhotosRequest = ListUserLikedPhotosRequest()
+        request.username = username
+        request.page = page
+        request.perPage = perPage
+        request.orderBy = orderBy
+        request.orientation = orientation
         
         return Observable.create { (observer) -> Disposable in
             
             NetworkManager.shared.request(request: request, method: .get).subscribe { (json) in
-                let response = GetMineProfileResponse(JSON: json)
-                let user = response!.user!
+                let response = ListUserLikedPhotosResponse(JSON: json)
+                let photos = response!.results!
                 
-                observer.onNext(user)
+                observer.onNext(photos)
                 observer.onCompleted()
 
             } onError: { (error) in
@@ -58,4 +88,5 @@ class UserService: NetworkService {
             return Disposables.create()
         }
     }
+
 }

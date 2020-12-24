@@ -13,6 +13,9 @@ import RxRelay
 class SideMenuProfileView: BaseView{
     
     // MARK: - Public
+    var user: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
+    var collections: BehaviorRelay<[Collection]?> = BehaviorRelay<[Collection]?>(value: nil)
+    var likedPhotos: BehaviorRelay<[Photo]?> = BehaviorRelay<[Photo]?>(value: nil)
     
     // MARK: - Controls
     private var avatarImageView: UIImageView!
@@ -129,6 +132,14 @@ class SideMenuProfileView: BaseView{
         super.buildLogic()
         
         // Bindings.
+        self.user
+            .unwrap()
+            .subscribe(onNext:{ [weak self] (user) in
+                guard let self = self else { return }
+                
+                self.usernameLabel.text = user.username
+            })
+            .disposed(by: self.disposeBag)
 
     }
 }

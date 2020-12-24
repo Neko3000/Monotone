@@ -18,10 +18,13 @@ class Collection:Equatable, Mappable{
     var lastCollectedAt: Date?
     var updatedAt: Date?
     var totalPhotos: Int?
+    var previewPhotos: [Photo]?
+    var sponsorship: Sponsorship?
     var user: User?
     var shareKey: String?
     var links: Links?
     var isPrivate: Bool?
+    // meta : title description index
 
     required init?(map: Map) {
         self.mapping(map: map)
@@ -37,6 +40,9 @@ class Collection:Equatable, Mappable{
         updatedAt       <- (map["updated_at"], ISO8601DateTransform())
         user            <- map["user"]
         totalPhotos     <- map["total_photos"]
+        previewPhotos   <- map["preview_photos"]
+        sponsorship     <- map["sponsorship"]
+        user            <- map["user"]
         shareKey        <- map["share_key"]
         links           <- map["links"]
         isPrivate       <- map["private"]
