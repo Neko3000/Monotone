@@ -10,9 +10,9 @@ import ObjectMapper
 
 class Sponsorship: Mappable{
     
-    // var impressionUrls: []?
+    // var impressionURLs: []?
     var tagline: String?
-    var taglineUrl: String?
+    var taglineURL: String?
     var sponsor: User?
 
     required init?(map: Map) {
@@ -20,9 +20,9 @@ class Sponsorship: Mappable{
     }
     
     func mapping(map: Map) {
-        // impressionUrls <- map["impression_urls"]
+        // impressionURLs <- map["impression_urls"]
         tagline     <- map["tagline"]
-        taglineUrl  <- map["tagline_url"]
+        taglineURL  <- map["tagline_url"]
         sponsor     <- map["sponsor"]
     }
 }

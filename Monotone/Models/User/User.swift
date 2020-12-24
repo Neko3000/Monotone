@@ -18,7 +18,7 @@ class User: Mappable{
     public var lastName: String?
     public var instagramUsername: String?
     public var twitterUsername: String?
-    public var portfolioUrl: String?
+    public var portfolioURL: String?
     public var bio: String?
     public var location: Location?
     public var links: Links?
@@ -55,7 +55,7 @@ class User: Mappable{
         lastName            <- map["last_name"]
         instagramUsername   <- map["instagram_username"]
         twitterUsername     <- map["twitter_username"]
-        portfolioUrl        <- map["portfolio_url"]
+        portfolioURL        <- map["portfolio_url"]
         bio                 <- map["bio"]
         location            <- map["location"]
         links               <- map["links"]

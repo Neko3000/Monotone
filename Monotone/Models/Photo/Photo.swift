@@ -20,7 +20,7 @@ class Photo: Equatable, Mappable{
     public var blurHash: String?
     public var description: String?
     public var altDescription: String?
-    public var urls: Urls?
+    public var urls: URLs?
     public var links: Links?
 //    public var categories: []?
     public var sponsorship: Sponsorship?

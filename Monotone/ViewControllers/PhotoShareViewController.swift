@@ -18,7 +18,7 @@ class PhotoShareViewController: BaseViewController {
     
     private var photoImageView: UIImageView!
     private var photoShareSMView: PhotoShareSMView!
-    private var photoShareUrlView: PhotoShareUrlView!
+    private var photoShareURLView: PhotoShareURLView!
     
     // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -76,10 +76,10 @@ class PhotoShareViewController: BaseViewController {
             make.right.equalTo(self.view)
         }
         
-        // photoShareUrlView.
-        self.photoShareUrlView = PhotoShareUrlView()
-        self.view.addSubview(self.photoShareUrlView)
-        self.photoShareUrlView.snp.makeConstraints { (make) in
+        // photoShareURLView.
+        self.photoShareURLView = PhotoShareURLView()
+        self.view.addSubview(self.photoShareURLView)
+        self.photoShareURLView.snp.makeConstraints { (make) in
             make.bottom.equalTo(self.view).offset(-28.0)
             make.left.equalTo(self.view).offset(17.0)
             make.right.equalTo(self.view).offset(-17.0)
@@ -119,7 +119,7 @@ class PhotoShareViewController: BaseViewController {
             .subscribe(onNext: { [weak self] photo in
                 guard let self = self else { return }
 
-                self.photoShareUrlView.url.accept(photo.links?.selfLink)
+                self.photoShareURLView.url.accept(photo.links?.selfLink)
             })
             .disposed(by: self.disposeBag)
     }

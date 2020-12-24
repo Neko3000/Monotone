@@ -11,7 +11,7 @@ import ObjectMapper
 class PreviewPhoto: Mappable{
     var updatedAt: String?
     var createdAt: String?
-    var urls: Urls?
+    var urls: URLs?
     var id: String?
     
     init() {

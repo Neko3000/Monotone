@@ -56,7 +56,7 @@ class AuthManager: NSObject{
         
         return Observable.create { (observer) -> Disposable in
             
-            let authSession = ASWebAuthenticationSession(url: urlComponents.url!, callbackURLScheme: UrlScheme.main){ (callbackURL, error) in
+            let authSession = ASWebAuthenticationSession(url: urlComponents.url!, callbackURLScheme: URLScheme.main){ (callbackURL, error) in
                 
                 guard error == nil, let callbackURL = callbackURL else {
                     observer.onCompleted()

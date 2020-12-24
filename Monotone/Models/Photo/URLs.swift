@@ -1,5 +1,5 @@
 //
-//  Urls.swift
+//  URLs.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/10.
@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-class Urls: Mappable{
+class URLs: Mappable{
     public var raw: String?
     public var full: String?
     public var regular: String?

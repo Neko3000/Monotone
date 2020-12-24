@@ -1,5 +1,5 @@
 //
-//  PhotoShareUrlView.swift
+//  PhotoShareURLView.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/12/4.
@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxRelay
 
-class PhotoShareUrlView: BaseView{
+class PhotoShareURLView: BaseView{
     
     // MARK: Public
     public var url: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
