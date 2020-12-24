@@ -12,9 +12,9 @@ import RxRelay
 
 class SideMenuProfileCollectionView: BaseView{
     
-    // MARK: Public
+    // MARK: - Public
     
-    // MARK: Controls
+    // MARK: - Controls
     private var photoContainerView: UIView!
     private var photoAImageView: UIImageView!
     private var photoBImageView: UIImageView!
@@ -23,7 +23,7 @@ class SideMenuProfileCollectionView: BaseView{
     private var titleLabel: UILabel!
     private var descriptionLabel: UILabel!
 
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
     
     /*

@@ -61,7 +61,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
         }
     }
     
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
     
     // FIXME: To finish.

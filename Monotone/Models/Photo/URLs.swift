@@ -20,7 +20,7 @@ class URLs: Mappable{
     }
 
     required init?(map: Map) {
-        
+        self.mapping(map: map)
     }
     
     func mapping(map: Map) {

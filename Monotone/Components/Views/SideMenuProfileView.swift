@@ -12,9 +12,9 @@ import RxRelay
 
 class SideMenuProfileView: BaseView{
     
-    // MARK: Public
+    // MARK: - Public
     
-    // MARK: Controls
+    // MARK: - Controls
     private var avatarImageView: UIImageView!
     private var usernameLabel: UILabel!
     private var editBtn: UIButton!
@@ -27,7 +27,7 @@ class SideMenuProfileView: BaseView{
     
 //    private var enterBtn: UIButton!
         
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
     
     /*

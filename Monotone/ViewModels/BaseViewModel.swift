@@ -42,7 +42,7 @@ class BaseViewModel: ViewModelServable {
     
     let disposeBag: DisposeBag = DisposeBag()
     
-    // MARK: ViewModelServable
+    // MARK: - ViewModelServable
     var services: [BaseService]?
     
     required init(services: [BaseService]?, args: [String: Any?]? ) {

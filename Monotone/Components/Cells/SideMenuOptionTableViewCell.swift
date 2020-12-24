@@ -13,13 +13,13 @@ import RxSwiftExt
 
 class SideMenuOptionTableViewCell: UITableViewCell {
     
-    // MARK: Public
+    // MARK: - Public
     public var page: BehaviorRelay<(key:SideMenuPage,value:String)?> = BehaviorRelay<(key:SideMenuPage,value:String)?>(value: nil)
 
-    // MARK: Controls
+    // MARK: - Controls
     public var titleLabel: UILabel!
     
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: - Life Cycle

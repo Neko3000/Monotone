@@ -10,7 +10,7 @@ import SnapKit
 
 import SwiftyJSON
 
-// MARK: LoginViewControllerV2
+// MARK: - LoginViewControllerV2
 class LoginViewControllerV2: BaseViewController {
     
     // MARK: - Controls

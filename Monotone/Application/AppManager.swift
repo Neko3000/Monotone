@@ -10,7 +10,6 @@ import Foundation
 import SwiftyJSON
 
 class AppManager{
-    
     // MARK: - Single Skeleton
     public static let shared = AppManager()
     
@@ -18,9 +17,9 @@ class AppManager{
         
     }
     
-    // MARK: Public
+    // MARK: - Public
     public let credntial: AppCredential = AppCredential()
     
-    // MARK: Private
+    // MARK: - Private
     //
 }

@@ -17,7 +17,7 @@ import RxSwiftExt
 import anim
 import ViewAnimator
 
-// MARK: HomeViewController
+// MARK: - HomeViewController
 class HomeViewController: BaseViewController {
     
     // MARK: - Controls

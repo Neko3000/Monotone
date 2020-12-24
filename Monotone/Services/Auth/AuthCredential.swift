@@ -9,7 +9,7 @@ import Foundation
 
 let USER_DEFAULTS_KEY_AUTH_CREDENTIAL = "USER_DEFAULT_KEY_AUTH_CREDENTIAL"
 
-// MARK: AuthCredential
+// MARK: - AuthCredential
 class AuthCredential: NSObject, NSCoding, NSSecureCoding{
     
     init(accessToken: String,
@@ -23,7 +23,7 @@ class AuthCredential: NSObject, NSCoding, NSSecureCoding{
         self._createdAt = createdAt
     }
     
-    // MARK: Public
+    // MARK: - Public
     public var accessToken : String{
         get{ return _accessToken }
     }
@@ -40,13 +40,13 @@ class AuthCredential: NSObject, NSCoding, NSSecureCoding{
         get{ return Date(timeIntervalSince1970: _createdAt) }
     }
     
-    // MARK: Private
+    // MARK: - Private
     private var _accessToken : String
     private var _tokenType : String
     private var _scope : String
     private var _createdAt : Double
     
-    // MARK: NSCoding
+    // MARK: - NSCoding
     required init(coder aDecoder: NSCoder) {
         self._accessToken = aDecoder.decodeObject(forKey: "accessToken") as? String ?? ""
         self._tokenType = aDecoder.decodeObject(forKey: "tokenType") as? String ?? ""
@@ -61,11 +61,11 @@ class AuthCredential: NSObject, NSCoding, NSSecureCoding{
         aCoder.encode(self._createdAt, forKey: "createdAt")
     }
     
-    // MARK: NSSecureCoding
+    // MARK: - NSSecureCoding
     static var supportsSecureCoding: Bool{ get{ return true } }
 }
 
-// MARK: UserDefaults Presistence.
+// MARK: - UserDefaults Presistence.
 extension AuthCredential{
     
     public static func localCredential() -> AuthCredential? {

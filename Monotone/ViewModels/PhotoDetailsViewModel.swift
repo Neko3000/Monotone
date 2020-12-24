@@ -27,7 +27,7 @@ class PhotoDetailsViewModel: BaseViewModel, ViewModelStreamable{
     }
     public var output: Output = Output()
     
-    // MARK: Private
+    // MARK: - Private
 
     
     // MARK: - Inject

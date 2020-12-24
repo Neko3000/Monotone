@@ -193,7 +193,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
     }
 }
 
-// MARK: BEMCheckBoxDelegate
+// MARK: - BEMCheckBoxDelegate
 extension PhotoCreateCollectionViewController: BEMCheckBoxDelegate{
     func didTap(_ checkBox: BEMCheckBox) {
         

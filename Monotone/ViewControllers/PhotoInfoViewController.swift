@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import Kingfisher
 
-// MARK: PhotoDetailsViewController
+// MARK: - PhotoDetailsViewController
 class PhotoInfoViewController: BaseViewController {
     
     // MARK: - Controls

@@ -16,13 +16,13 @@ import NVActivityIndicatorView
 
 class AddToCollectionTableViewCell: UITableViewCell {
     
-    // MARK: Public
+    // MARK: - Public
     public var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
     
     public var loading: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     public var displayState: BehaviorRelay<DisplayState> = BehaviorRelay<DisplayState>(value: .notContainsPhoto)
 
-    // MARK: Controls
+    // MARK: - Controls
     public var coverImageView: UIImageView!
     
     public var nameLabel: UILabel!
@@ -35,7 +35,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
     public var successStateView: UIView!
     public var activityIndicatorView: NVActivityIndicatorView!
     
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: - Life Cycle

@@ -12,14 +12,14 @@ import RxRelay
 
 class PhotoShareURLView: BaseView{
     
-    // MARK: Public
+    // MARK: - Public
     public var url: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     
-    // MARK: Controls
+    // MARK: - Controls
     private var urlLabel: UILabel!
     private var copyBtn: UIButton!
     
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
     
     /*

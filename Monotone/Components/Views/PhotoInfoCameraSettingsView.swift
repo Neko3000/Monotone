@@ -14,7 +14,7 @@ import RxSwiftExt
 
 class PhotoInfoCameraSettingsView: BaseView {
     
-    // MARK: Public
+    // MARK: - Public
     public var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
     
     /*
@@ -27,7 +27,7 @@ class PhotoInfoCameraSettingsView: BaseView {
     public var dimensions: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "")
     */
 
-    // MARK: Controls
+    // MARK: - Controls
     private var cameraImageView: UIImageView!
     private var cameraLabel: UILabel!
     
@@ -46,7 +46,7 @@ class PhotoInfoCameraSettingsView: BaseView {
     private var dimensionsLabel: UILabel!
     private var dimensionsContentLabel: UILabel!
     
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
 
     /*

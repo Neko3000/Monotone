@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: FactoryCoordinator
+// MARK: - FactoryCoordinator
 extension SceneCoordinator: FactoryCoordinator{
     typealias sceneType = Scene
     typealias sceneContentType = SceneContent

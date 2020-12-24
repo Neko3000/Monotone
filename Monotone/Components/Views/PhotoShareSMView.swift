@@ -12,9 +12,9 @@ import RxRelay
 
 class PhotoShareSMView: BaseView {
     
-    // MARK: Public
+    // MARK: - Public
     
-    // MARK: Controls
+    // MARK: - Controls
     private var pinterestBtn: FloatBlockButton!
     private var instagramBtn: FloatBlockButton!
     private var facebookBtn: FloatBlockButton!
@@ -22,7 +22,7 @@ class PhotoShareSMView: BaseView {
     private var twitterBtn: FloatBlockButton!
     private var stackView: UIStackView!
     
-    // MARK: Private
+    // MARK: - Private
 
     /*
     // Only override draw() if you perform custom drawing.

@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 import RxSwift
 
-// MARK: AuthService
+// MARK: - AuthService
 class AuthService: BaseService {
     
     public func authorize() -> Observable<String>{

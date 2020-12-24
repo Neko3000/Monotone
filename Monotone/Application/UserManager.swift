@@ -6,18 +6,16 @@
 //
 
 import Foundation
+
 import RxSwift
+import RxRelay
 
 class UserManager{
     // MARK: - Single Skeleton
     public static let shared = UserManager(userService: UserService())
     
     // MARK: - Public
-    public var currentUser : User?{
-        get{
-            return _currentUser
-        }
-    }
+    public let currentUser: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
 
     init(userService: UserService){
         self.userService = userService
@@ -25,7 +23,6 @@ class UserManager{
     
     // MARK: - Private
     private let userService: UserService
-    private var _currentUser: User?
     private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: - UpdateCurrentUser
@@ -47,7 +44,7 @@ class UserManager{
                 .subscribe(onNext: { [weak self] (user) in
                     guard let self = self else { return }
  
-                    self._currentUser = user
+                    self.currentUser.accept(user)
                     
                     observer.onCompleted()
 

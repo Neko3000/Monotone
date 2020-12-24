@@ -13,7 +13,7 @@ import SwiftyJSON
 import RxSwift
 import RxRelay
 
-// MARK: AuthManager
+// MARK: - AuthManager
 class AuthManager: NSObject{
     
     // MARK: - Single Skeleton
@@ -24,7 +24,7 @@ class AuthManager: NSObject{
         
     }
     
-    // MARK: Public
+    // MARK: - Public
     public let domain: String = "https://unsplash.com/oauth/"
     
     public var credential: AuthCredential?{
@@ -37,11 +37,11 @@ class AuthManager: NSObject{
         }
     }
     
-    // MARK: Private
+    // MARK: - Private
     private var _credential: AuthCredential?
     private var authSession: ASWebAuthenticationSession!
     
-    // MARK: Authroize
+    // MARK: - Authroize
     public func authorize() -> Observable<String>{
         
         let params = [
@@ -83,7 +83,7 @@ class AuthManager: NSObject{
         }
     }
     
-    // MARK: Token
+    // MARK: - Token
     public func token(code: String) -> Observable<String>{
         
         let params = [
@@ -166,7 +166,7 @@ class AuthManager: NSObject{
 
 }
 
-// MARK: ASWebAuthenticationPresentationContextProviding
+// MARK: - ASWebAuthenticationPresentationContextProviding
 extension AuthManager: ASWebAuthenticationPresentationContextProviding{
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return ASPresentationAnchor()

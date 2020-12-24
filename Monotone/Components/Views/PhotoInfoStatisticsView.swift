@@ -13,7 +13,7 @@ import RxSwiftExt
 
 class PhotoInfoStatisticsView: BaseView {
     
-    // MARK: Public
+    // MARK: - Public
     public var statistics: BehaviorRelay<Statistics?> = BehaviorRelay<Statistics?>(value: nil)
     
     /*
@@ -22,7 +22,7 @@ class PhotoInfoStatisticsView: BaseView {
     public var downloadCount: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "")
     */
     
-    // MARK: Controls
+    // MARK: - Controls
     private var viewCountImageView: UIImageView!
     private var viewCountLabel: UILabel!
     private var viewCountCompareLabel: UILabel!
@@ -38,7 +38,7 @@ class PhotoInfoStatisticsView: BaseView {
     private var downloadCountCompareLabel: UILabel!
     private var downloadSinceLastMonthLabel: UILabel!
     
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
 
     /*

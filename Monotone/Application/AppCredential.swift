@@ -38,7 +38,7 @@ class AppCredential{
         
     }
     
-    // MARK: Public
+    // MARK: - Public
     public var accessKey : String{
         get{ return _accessKey }
     }
@@ -47,7 +47,7 @@ class AppCredential{
         get{ return _secretKey }
     }
     
-    // MARK: Private
+    // MARK: - Private
     private var _accessKey : String
     private var _secretKey : String
 }

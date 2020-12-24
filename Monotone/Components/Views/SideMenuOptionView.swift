@@ -15,10 +15,10 @@ import RxSwiftExt
 // MARK: - SideMenuPageView
 class SideMenuPageView: BaseView{
     
-    // MARK: Public
+    // MARK: - Public
     public var pages: BehaviorRelay<[(key:SideMenuPage,value:String)]?> = BehaviorRelay<[(key:SideMenuPage,value:String)]?>(value: nil)
 
-    // MARK: Controls
+    // MARK: - Controls
     private var tableView: UITableView!
     
     private var horizontalTopLineLong: UIView!
@@ -26,7 +26,7 @@ class SideMenuPageView: BaseView{
     private var horizontalBottomLineLong: UIView!
     private var horizontalBottomLineShort: UIView!
         
-    // MARK: Private
+    // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
     
     /*

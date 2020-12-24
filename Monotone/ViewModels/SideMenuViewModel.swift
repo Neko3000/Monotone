@@ -22,6 +22,7 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Output
     struct Output {
         var pages: BehaviorRelay<[(key:SideMenuPage, value:String)]?> = BehaviorRelay<[(key:SideMenuPage, value:String)]?>(value: nil)
+        var currentUser: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
     }
     public var output: Output = Output()
     
@@ -30,7 +31,7 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Inject
     override func inject(args: [String : Any]?) {
-
+        
     }
     
     // MARK: - Bind
@@ -46,6 +47,10 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
             }
             .disposed(by: self.disposeBag)
 
+        UserManager.shared.currentUser
+            .bind(to: self.output.currentUser)
+            .disposed(by: self.disposeBag)
+        
         
     }
     
