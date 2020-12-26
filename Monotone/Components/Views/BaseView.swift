@@ -7,6 +7,14 @@
 
 import UIKit
 
+// MARK: - ViewAnimatable
+protocol ViewAnimatable {
+    associatedtype AnimationStateType
+    
+    func animation(animationState: AnimationStateType)
+}
+
+// MARK: - BaseView
 class BaseView: UIView {
 
     /*
@@ -29,10 +37,10 @@ class BaseView: UIView {
     }
     
     func buildSubviews(){
-        
+        // Implemented by subclass.
     }
     
     func buildLogic(){
-        
+        // Implemented by subclass.
     }
 }

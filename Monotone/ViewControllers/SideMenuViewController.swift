@@ -72,11 +72,16 @@ class SideMenuViewController: BaseViewController {
         sideMenuViewModel.input.pages.accept(SideMenuPageVars.pages)
         
         sideMenuViewModel.output.currentUser
-            .subscribe(onNext:{ [weak self] (user) in
-                guard let self = self else { return }
-                
-                       
-            })
+            .bind(to: self.profileView.user)
+            .disposed(by: self.disposeBag)
+        
+        sideMenuViewModel.output.collections
+            .bind(to: self.profileView.collections)
+            .disposed(by: self.disposeBag)
+        
+        sideMenuViewModel.output.likedPhotos
+            .bind(to: self.profileView.photos)
+            .disposed(by: self.disposeBag)
         
     }
     

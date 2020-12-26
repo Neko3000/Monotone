@@ -40,10 +40,12 @@ class SideMenuProfileLikeView: BaseView{
         self.photoImageView = UIImageView()
         self.photoImageView.contentMode = .scaleAspectFill
         self.photoImageView.backgroundColor = UIColor.blue
+        self.photoImageView.layer.masksToBounds = true
         self.addSubview(self.photoImageView)
         self.photoImageView.snp.makeConstraints { (make) in
             make.top.right.left.equalTo(self)
         }
+        
         
         // avatarImageView
         self.avatarImageView = UIImageView()
@@ -53,6 +55,7 @@ class SideMenuProfileLikeView: BaseView{
         self.avatarImageView.snp.makeConstraints { (make) in
             make.top.equalTo(self.photoImageView.snp.bottom).offset(11.0)
             make.left.equalTo(self).offset(5.0)
+            make.bottom.equalTo(self)
             make.width.height.equalTo(24.0)
         }
         
@@ -76,7 +79,6 @@ class SideMenuProfileLikeView: BaseView{
         self.descriptionLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.usernameLabel)
             make.top.equalTo(self.usernameLabel.snp.bottom)
-            make.bottom.equalTo(self)
         }
     }
     

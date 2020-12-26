@@ -62,8 +62,8 @@ class UserService: NetworkService {
     public func listUserLikedPhotos(username:String,
                                     page:Int? = 1,
                                     perPage:Int? = 10,
-                                    orderBy:String? = "latest",
-                                    orientation:String? = "") -> Observable<[Photo]>{
+                                    orderBy:String? = nil,
+                                    orientation:String? = nil) -> Observable<[Photo]>{
         let request: ListUserLikedPhotosRequest = ListUserLikedPhotosRequest()
         request.username = username
         request.page = page

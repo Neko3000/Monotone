@@ -7,9 +7,12 @@
 
 import Foundation
 
+import anim
+
 import RxSwift
 import RxRelay
 
+// MARK: - SideMenuProfileView
 class SideMenuProfileView: BaseView{
     
     // MARK: - Public
@@ -26,6 +29,7 @@ class SideMenuProfileView: BaseView{
     private var collectionBtn: UIButton!
     private var likeBtn: UIButton!
     
+    private var containerView: UIView!
     private var collectionView: SideMenuProfileCollectionView!
     private var likeView: SideMenuProfileLikeView!
     
@@ -91,6 +95,35 @@ class SideMenuProfileView: BaseView{
             make.centerY.equalTo(self.editBtn)
         }
         
+        self.containerView = UIView()
+//        self.containerView.layer.masksToBounds = true
+        self.addSubview(self.containerView)
+        self.containerView.snp.makeConstraints { (make) in
+            make.left.equalTo(self.avatarImageView)
+            make.top.equalTo(self.avatarImageView.snp.bottom).offset(64.0)
+            make.bottom.equalTo(self)
+            make.height.equalTo(219.0)
+            make.width.equalTo(237.0)
+        }
+        
+        // collectionView.
+        self.collectionView = SideMenuProfileCollectionView()
+        self.containerView.addSubview(self.collectionView)
+        self.collectionView.snp.makeConstraints { (make) in
+            make.width.height.equalTo(self.containerView)
+            make.top.equalTo(self.containerView)
+            make.left.equalTo(self.containerView)
+        }
+        
+        // likeView.
+        self.likeView = SideMenuProfileLikeView()
+        self.containerView.addSubview(self.likeView)
+        self.likeView.snp.makeConstraints { (make) in
+            make.width.height.equalTo(self.containerView)
+            make.top.equalTo(self.containerView)
+            make.left.equalTo(self.containerView.snp.right)
+        }
+        
         // collectionBtn.
         self.collectionBtn = UIButton()
         self.collectionBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
@@ -100,8 +133,8 @@ class SideMenuProfileView: BaseView{
         self.collectionBtn.setImage(UIImage(named: "profile-collection-selected"), for: .selected)
         self.addSubview(self.collectionBtn)
         self.collectionBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(self.avatarImageView)
-            make.top.equalTo(self.avatarImageView.snp.bottom).offset(22.0)
+            make.left.equalTo(self.containerView)
+            make.bottom.equalTo(self.containerView.snp.top).offset(-22.0)
         }
         
         // likeBtn.
@@ -116,28 +149,6 @@ class SideMenuProfileView: BaseView{
             make.left.equalTo(self.collectionBtn.snp.right).offset(20.0)
             make.centerY.equalTo(self.collectionBtn)
         }
-        
-//        // collectionView.
-//        self.collectionView = SideMenuProfileCollectionView()
-//        self.addSubview(self.collectionView)
-//        self.collectionView.snp.makeConstraints { (make) in
-//            make.left.equalTo(self.avatarImageView)
-//            make.top.equalTo(self.collectionBtn.snp.bottom).offset(22.0)
-//            make.bottom.equalTo(self)
-//            make.height.equalTo(219.0)
-//            make.width.equalTo(237.0)
-//        }
-        
-        // likeView.
-        self.likeView = SideMenuProfileLikeView()
-        self.addSubview(self.likeView)
-        self.likeView.snp.makeConstraints { (make) in
-            make.left.equalTo(self.avatarImageView)
-            make.top.equalTo(self.collectionBtn.snp.bottom).offset(22.0)
-            make.bottom.equalTo(self)
-            make.height.equalTo(219.0)
-            make.width.equalTo(237.0)
-        }
     }
     
     override func buildLogic() {
@@ -150,6 +161,9 @@ class SideMenuProfileView: BaseView{
                 guard let self = self else { return }
                 
                 self.usernameLabel.text = user.username
+                
+                self.avatarImageView.kf.setImage(with: URL(string: user.profileImage?.medium ?? ""),
+                                                 options: [.transition(.fade(0.7)), .originalCache(.default)])
             })
             .disposed(by: self.disposeBag)
         
@@ -169,5 +183,91 @@ class SideMenuProfileView: BaseView{
             .bind(to: self.likeView.photo)
             .disposed(by: self.disposeBag)
 
+        // tap.
+        self.collectionBtn.rx.tap
+            .ignoreWhen({ self.collectionBtn.isSelected })
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+                self.collectionBtn.isSelected = true
+                self.likeBtn.isSelected = false
+                
+                self.animation(animationState: .showCollectionView)
+            }
+            .disposed(by: self.disposeBag)
+        
+        self.likeBtn.rx.tap
+            .ignoreWhen({ self.likeBtn.isSelected })
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+                self.likeBtn.isSelected = true
+                self.collectionBtn.isSelected = false
+                
+                self.animation(animationState: .showLikeView)
+            }
+            .disposed(by: self.disposeBag)
+    }
+}
+
+// MARK: - ViewAnimatable
+extension SideMenuProfileView: ViewAnimatable{
+    
+    // MARK: - Enums
+    enum AnimationState {
+        case showCollectionView
+        case showLikeView
+    }
+    
+    // MARK: - Animation
+    // Animation for homeJumbotronView & homeHeaderView
+    func animation(animationState: AnimationState) {
+        switch animationState {
+        case .showCollectionView:
+            
+            anim(constraintParent: self) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+
+                    self.collectionView.snp.remakeConstraints({ (make) in
+                        make.width.height.equalTo(self.containerView)
+                        make.top.equalTo(self.containerView)
+                        make.left.equalTo(self.containerView)
+                    })
+                    
+                    self.likeView.snp.remakeConstraints { (make) in
+                        make.width.height.equalTo(self.containerView)
+                        make.top.equalTo(self.containerView)
+                        make.left.equalTo(self.containerView.snp.right)
+                    }
+                }
+            }
+            
+            break
+            
+        case .showLikeView:
+            
+            anim(constraintParent: self) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    
+                    self.collectionView.snp.remakeConstraints({ (make) in
+                        make.width.height.equalTo(self.containerView)
+                        make.top.equalTo(self.containerView)
+                        make.right.equalTo(self.containerView.snp.left)
+                    })
+                    
+                    self.likeView.snp.remakeConstraints { (make) in
+                        make.width.height.equalTo(self.containerView)
+                        make.top.equalTo(self.containerView)
+                        make.left.equalTo(self.containerView)
+                    }
+                }
+            }
+            
+            break
+        }
     }
 }
