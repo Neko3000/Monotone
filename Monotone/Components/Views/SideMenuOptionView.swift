@@ -42,6 +42,7 @@ class SideMenuPageView: BaseView{
         
         // tableView.
         self.tableView = UITableView()
+        self.tableView.backgroundColor = UIColor.clear
         self.tableView.separatorStyle = .none
         self.tableView.register(SideMenuOptionTableViewCell.self, forCellReuseIdentifier: "SideMenuOptionTableViewCell")
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)

@@ -37,6 +37,7 @@ class SideMenuOptionTableViewCell: UITableViewCell {
     private func buildSubviews(){
         
         self.selectionStyle = .none
+        self.backgroundColor = UIColor.clear
             
         // photoCountLabel.
         self.titleLabel = UILabel()

@@ -46,16 +46,17 @@ class SideMenuProfileLikeView: BaseView{
             make.top.right.left.equalTo(self)
         }
         
-        
         // avatarImageView
         self.avatarImageView = UIImageView()
         self.avatarImageView.contentMode = .scaleAspectFill
         self.avatarImageView.backgroundColor = UIColor.blue
+        self.avatarImageView.layer.cornerRadius = 12.0
+        self.avatarImageView.layer.masksToBounds = true
         self.addSubview(self.avatarImageView)
         self.avatarImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.photoImageView.snp.bottom).offset(11.0)
+            make.top.equalTo(self.photoImageView.snp.bottom).offset(10.0)
             make.left.equalTo(self).offset(5.0)
-            make.bottom.equalTo(self)
+            make.bottom.equalTo(self).offset(-10.0)
             make.width.height.equalTo(24.0)
         }
         
@@ -67,7 +68,7 @@ class SideMenuProfileLikeView: BaseView{
         self.addSubview(self.usernameLabel)
         self.usernameLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.avatarImageView.snp.right).offset(10.0)
-            make.top.equalTo(self.avatarImageView)
+            make.bottom.equalTo(self.avatarImageView.snp.centerY).offset(-2.0)
         }
         
         // descriptionLabel
@@ -77,8 +78,8 @@ class SideMenuProfileLikeView: BaseView{
         self.descriptionLabel.text = "1 photos · Curated by Joan"
         self.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.usernameLabel)
-            make.top.equalTo(self.usernameLabel.snp.bottom)
+            make.left.equalTo(self.avatarImageView.snp.right).offset(10.0)
+            make.top.equalTo(self.avatarImageView.snp.centerY).offset(2.0)
         }
     }
     

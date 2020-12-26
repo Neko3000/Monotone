@@ -17,6 +17,8 @@ class SideMenuViewController: BaseViewController {
     private var profileView: SideMenuProfileView!
     private var pageView: SideMenuPageView!
     
+    private var unsplashLabel: UILabel!
+    
     // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -39,6 +41,18 @@ class SideMenuViewController: BaseViewController {
     
     override func buildSubviews() {
         self.view.backgroundColor = UIColor.white
+        
+        // unsplashLabel
+        self.unsplashLabel = UILabel()
+        self.unsplashLabel.textColor = ColorPalette.colorGrayLighter
+        self.unsplashLabel.font = UIFont.boldSystemFont(ofSize: 180)
+        self.unsplashLabel.text = NSLocalizedString("unsplash_upper_case", comment: "UNSPLASH")
+        self.unsplashLabel.transform = CGAffineTransform(rotationAngle: .pi / -2.0)
+        self.view.addSubview(self.unsplashLabel)
+        self.unsplashLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(self.view)
+            make.centerX.equalTo(self.view.snp.right).offset(-70.0)
+        }
         
         // profileView.
         self.profileView = SideMenuProfileView()

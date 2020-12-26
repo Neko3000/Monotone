@@ -32,7 +32,7 @@ class SideMenuProfileView: BaseView{
     private var containerView: UIView!
     private var collectionView: SideMenuProfileCollectionView!
     private var likeView: SideMenuProfileLikeView!
-    
+        
 //    private var enterBtn: UIButton!
         
     // MARK: - Private
@@ -53,6 +53,8 @@ class SideMenuProfileView: BaseView{
         self.avatarImageView = UIImageView()
         self.avatarImageView.contentMode = .scaleAspectFill
         self.avatarImageView.backgroundColor = UIColor.blue
+        self.avatarImageView.layer.cornerRadius = 42.0
+        self.avatarImageView.layer.masksToBounds = true
         self.addSubview(self.avatarImageView)
         self.avatarImageView.snp.makeConstraints { (make) in
             make.top.left.equalTo(self)
@@ -74,7 +76,7 @@ class SideMenuProfileView: BaseView{
         // editBtn.
         self.editBtn = UIButton()
         self.editBtn.backgroundColor = ColorPalette.colorBlack
-        self.editBtn.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
+        self.editBtn.contentEdgeInsets = UIEdgeInsets(top: 6.0, left: 10.0, bottom: 6.0, right: 10.0)
         self.editBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
         self.editBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         self.editBtn.setTitle("Edit Profile", for: .normal)
@@ -96,7 +98,7 @@ class SideMenuProfileView: BaseView{
         }
         
         self.containerView = UIView()
-//        self.containerView.layer.masksToBounds = true
+        self.containerView.layer.masksToBounds = true
         self.addSubview(self.containerView)
         self.containerView.snp.makeConstraints { (make) in
             make.left.equalTo(self.avatarImageView)
@@ -126,9 +128,12 @@ class SideMenuProfileView: BaseView{
         
         // collectionBtn.
         self.collectionBtn = UIButton()
-        self.collectionBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
-        self.collectionBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        self.collectionBtn.isSelected = true
         self.collectionBtn.setTitle("21 Collections", for: .normal)
+        self.collectionBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        self.collectionBtn.imageEdgeInsets = UIEdgeInsets(top: -2.0, left: 0, bottom: 2.0, right: 0)
+        self.collectionBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
+        self.collectionBtn.setTitleColor(ColorPalette.colorBlack, for: .selected)
         self.collectionBtn.setImage(UIImage(named: "profile-collection"), for: .normal)
         self.collectionBtn.setImage(UIImage(named: "profile-collection-selected"), for: .selected)
         self.addSubview(self.collectionBtn)
@@ -139,9 +144,11 @@ class SideMenuProfileView: BaseView{
         
         // likeBtn.
         self.likeBtn = UIButton()
-        self.likeBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
+        self.likeBtn.isSelected = false
         self.likeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        self.likeBtn.setTitle("220 Liked", for: .normal)
+        self.likeBtn.imageEdgeInsets = UIEdgeInsets(top: -2.0, left: 0, bottom: 2.0, right: 0)
+        self.likeBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
+        self.likeBtn.setTitleColor(ColorPalette.colorBlack, for: .selected)
         self.likeBtn.setImage(UIImage(named: "profile-like"), for: .normal)
         self.likeBtn.setImage(UIImage(named: "profile-like-selected"), for: .selected)
         self.addSubview(self.likeBtn)
@@ -162,8 +169,12 @@ class SideMenuProfileView: BaseView{
                 
                 self.usernameLabel.text = user.username
                 
-                self.avatarImageView.kf.setImage(with: URL(string: user.profileImage?.medium ?? ""),
+                self.avatarImageView.kf.setImage(with: URL(string: user.profileImage?.large ?? ""),
                                                  options: [.transition(.fade(0.7)), .originalCache(.default)])
+                
+                self.collectionBtn.setTitle(String(format: NSLocalizedString("unsplash_side_menu_collection_count_suffix", comment: "%d Collections"), user.totalCollections ?? 0), for: .normal)
+                self.likeBtn.setTitle(String(format: NSLocalizedString("unsplash_side_menu_like_count_suffix", comment: "%d Liked"), user.totalLikes ?? 0), for: .normal)
+                
             })
             .disposed(by: self.disposeBag)
         
