@@ -5,6 +5,7 @@
 //  Created by Xueliang Chen on 2020/12/17.
 //
 
+import UIKit
 import Foundation
 
 // MARK: - FactoryCoordinator
@@ -13,7 +14,7 @@ extension SceneCoordinator: FactoryCoordinator{
     typealias sceneContentType = SceneContent
     
     // MARK: - ViewController Factory
-    func viewController(scene: Scene) -> BaseViewController?{
+    func viewController(scene: Scene) -> UIViewController?{
         
         switch scene {
         case .login:
@@ -35,6 +36,32 @@ extension SceneCoordinator: FactoryCoordinator{
             vc.bind(to: [sideMenuVM])
 
             return vc
+            
+        case .tabBar:
+            let tabBarController = UITabBarController()
+            
+            let vc1TabbarItem = UITabBarItem(title: "i am vc1",
+                                             image: UIImage(named: "profile-collection"),
+                                             selectedImage: UIImage(named: "profile-view-selected"))
+            
+            let vc1 = UIViewController()
+            vc1.tabBarItem = vc1TabbarItem
+            vc1.view.backgroundColor = UIColor.purple
+            
+            let vc2TabbarItem = UITabBarItem(title: "i am vc2",
+                                             image: UIImage(named: "profile-like"),
+                                             selectedImage: UIImage(named: "profile-like-selected"))
+            
+            let vc2 = UIViewController()
+            vc2.tabBarItem = vc2TabbarItem
+            vc2.view.backgroundColor = UIColor.yellow
+            
+            tabBarController.viewControllers = [
+                vc1,
+                vc2
+            ]
+            
+            return tabBarController
             
         case let .photoDetails(args):
             let vc = PhotoDetailsViewController()
@@ -89,6 +116,9 @@ extension SceneCoordinator: FactoryCoordinator{
         case .sideMenu:
             let vm: SideMenuViewModel = SideMenuViewModel(services: [UserService()], args: nil)
             return vm
+            
+        case .tabBar:
+            return nil
             
         case let .photoDetails(args):
             let vm: PhotoDetailsViewModel = PhotoDetailsViewModel(services: [PhotoService()], args: args)

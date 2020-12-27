@@ -16,6 +16,7 @@ enum Scene {
     case login
     case home
     case sideMenu
+    case tabBar
     case photoDetails([String: Any?]?)
     case photoInfo([String: Any?]?)
     case photoShare([String: Any?]?)
@@ -28,6 +29,7 @@ enum SceneContent {
     case login
     case home
     case sideMenu
+    case tabBar
     case photoDetails([String: Any?]?)
     case photoInfo([String: Any?]?)
     case photoShare([String: Any?]?)

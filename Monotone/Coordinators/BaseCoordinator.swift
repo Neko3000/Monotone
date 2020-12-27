@@ -23,7 +23,7 @@ protocol FactoryCoordinator {
     associatedtype sceneType
     associatedtype sceneContentType
     
-    func viewController(scene: sceneType) -> BaseViewController?
+    func viewController(scene: sceneType) -> UIViewController?
     func viewModel(sceneContent: sceneContentType) -> BaseViewModel?
 }
 
