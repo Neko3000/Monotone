@@ -12,6 +12,7 @@ import MJRefresh
 import Kingfisher
 
 import RxSwift
+import RxRelay
 import RxSwiftExt
 
 import anim
@@ -19,6 +20,10 @@ import ViewAnimator
 
 // MARK: - PhotoListViewController
 class PhotoListViewController: BaseViewController {
+    
+    // MARK: - Public
+    public let menuBtnPressed: PublishRelay<Void> = PublishRelay<Void>()
+    public let searchBtnPressed: PublishRelay<Void> = PublishRelay<Void>()
     
     // MARK: - Controls
     private var jumbotronView: PhotoListJumbotronView!
@@ -175,6 +180,16 @@ class PhotoListViewController: BaseViewController {
                 
                 self.animation(animationState: animationState)
             })
+            .disposed(by: self.disposeBag)
+        
+        // MenuBtnPressed.
+        self.jumbotronView.menuBtnPressed
+            .bind(to: self.menuBtnPressed)
+            .disposed(by: self.disposeBag)
+        
+        // SearchBtnPressed.
+        self.jumbotronView.searchBtnPressed
+            .bind(to: self.searchBtnPressed)
             .disposed(by: self.disposeBag)
         
         // First Loading - Latest.

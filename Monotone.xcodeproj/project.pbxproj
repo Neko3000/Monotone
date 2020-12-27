@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14009AFC2575D69200C70E6E /* PhotoInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009AFB2575D69200C70E6E /* PhotoInfoViewController.swift */; };
+		14009AFC2575D69200C70E6E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009AFB2575D69200C70E6E /* HomeViewController.swift */; };
 		14009B032575D86700C70E6E /* PhotoInfoCameraSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009B022575D86700C70E6E /* PhotoInfoCameraSettingsView.swift */; };
 		14009C712575E7E100C70E6E /* PhotoInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009C702575E7E100C70E6E /* PhotoInfoViewModel.swift */; };
 		14009C75257607C300C70E6E /* PageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14009C74257607C300C70E6E /* PageTitleView.swift */; };
@@ -55,6 +55,7 @@
 		1428403A2564BBB1004C06DF /* ListTopicsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142840392564BBB1004C06DF /* ListTopicsResponse.swift */; };
 		1428403E2564BC56004C06DF /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428403D2564BC56004C06DF /* Topic.swift */; };
 		142BCC982566374C00B7FB06 /* Array+Find.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BCC972566374C00B7FB06 /* Array+Find.swift */; };
+		142BD867259897ED0097F5AC /* PhotoInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142BD866259897ED0097F5AC /* PhotoInfoViewController.swift */; };
 		143114C1255A788D00991676 /* SearchPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114C0255A788D00991676 /* SearchPhotosViewModel.swift */; };
 		143114CC255A794600991676 /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114CB255A794600991676 /* Links.swift */; };
 		143114D1255A797A00991676 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143114D0255A797A00991676 /* ProfileImage.swift */; };
@@ -154,7 +155,7 @@
 
 /* Begin PBXFileReference section */
 		0DE40B09FB07DB642D48B327 /* Pods-Monotone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.debug.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.debug.xcconfig"; sourceTree = "<group>"; };
-		14009AFB2575D69200C70E6E /* PhotoInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoViewController.swift; sourceTree = "<group>"; };
+		14009AFB2575D69200C70E6E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		14009B022575D86700C70E6E /* PhotoInfoCameraSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoCameraSettingsView.swift; sourceTree = "<group>"; };
 		14009C702575E7E100C70E6E /* PhotoInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoViewModel.swift; sourceTree = "<group>"; };
 		14009C74257607C300C70E6E /* PageTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTitleView.swift; sourceTree = "<group>"; };
@@ -202,6 +203,7 @@
 		142840392564BBB1004C06DF /* ListTopicsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicsResponse.swift; sourceTree = "<group>"; };
 		1428403D2564BC56004C06DF /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		142BCC972566374C00B7FB06 /* Array+Find.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Find.swift"; sourceTree = "<group>"; };
+		142BD866259897ED0097F5AC /* PhotoInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoViewController.swift; sourceTree = "<group>"; };
 		143114C0255A788D00991676 /* SearchPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosViewModel.swift; sourceTree = "<group>"; };
 		143114CB255A794600991676 /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		143114D0255A797A00991676 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
@@ -444,9 +446,10 @@
 				1423A4DC254BA121009DEEA1 /* BaseViewController.swift */,
 				14D5E8ED254A589D0021FE3E /* LoginViewController.swift */,
 				14CB252E2580687700741537 /* LoginViewControllerV2.swift */,
+				14009AFB2575D69200C70E6E /* HomeViewController.swift */,
 				143F5677254FEA040038761D /* PhotoListViewController.swift */,
 				14104915255D34AE003312BC /* PhotoDetailsViewController.swift */,
-				14009AFB2575D69200C70E6E /* PhotoInfoViewController.swift */,
+				142BD866259897ED0097F5AC /* PhotoInfoViewController.swift */,
 				1406E9E7257A04EF0096DE82 /* PhotoShareViewController.swift */,
 				1406EADE257A5B9F0096DE82 /* PhotoAddToCollectionViewController.swift */,
 				14842E31257E003100364FFF /* PhotoCreateCollectionViewController.swift */,
@@ -927,6 +930,7 @@
 				14621CB62587549D00446F5F /* RemoveFromCollectionResponse.swift in Sources */,
 				14009CB2257762C600C70E6E /* HistoricalValue.swift in Sources */,
 				149955B025948014008CBB21 /* ListUserLikedPhotosResponse.swift in Sources */,
+				142BD867259897ED0097F5AC /* PhotoInfoViewController.swift in Sources */,
 				1401547A25831BF600746563 /* CollectionService.swift in Sources */,
 				1410491C255D3686003312BC /* SceneTransition.swift in Sources */,
 				14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */,
@@ -985,7 +989,7 @@
 				1441D8042591C2A7000D49D1 /* GetMineProfileRequest.swift in Sources */,
 				14842D51257DF5E900364FFF /* UIView+Border.swift in Sources */,
 				149325052585FB34006EB8E3 /* AddToCollectionRequest.swift in Sources */,
-				14009AFC2575D69200C70E6E /* PhotoInfoViewController.swift in Sources */,
+				14009AFC2575D69200C70E6E /* HomeViewController.swift in Sources */,
 				14FD83CB2567F7CD00D5B575 /* BlurHashEncode.swift in Sources */,
 				1428403A2564BBB1004C06DF /* ListTopicsResponse.swift in Sources */,
 				1499575525949F4A008CBB21 /* SideMenuProfileLikeView.swift in Sources */,

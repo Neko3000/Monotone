@@ -18,7 +18,9 @@ class PhotoListJumbotronView: BaseView {
     
     // MARK: - Public
     public let listOrderBy: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
-
+    public let menuBtnPressed: PublishRelay<Void> = PublishRelay<Void>()
+    public let searchBtnPressed: PublishRelay<Void> = PublishRelay<Void>()
+    
     // MARK: - Controls
     private var menuBtn: UIButton!
     private var searchBtn: UIButton!
@@ -144,6 +146,22 @@ class PhotoListJumbotronView: BaseView {
                 self.segmentedControl.setSelectedSegmentIndex(index == -1 ? HMSegmentedControlNoSegment : UInt(index), animated: false)
             })
             .disposed(by: self.disposeBag)
+        
+        // MenuBtn.
+        self.menuBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            
+            self.menuBtnPressed.accept(Void())
+        })
+        .disposed(by: self.disposeBag)
+        
+        // SearchBtn.
+        self.searchBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            
+            self.searchBtnPressed.accept(Void())
+        })
+        .disposed(by: self.disposeBag)
     }
     
     @objc private func segmentedControlChangedValue(segmentedControl: HMSegmentedControl){

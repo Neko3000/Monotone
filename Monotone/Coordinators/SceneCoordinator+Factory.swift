@@ -23,20 +23,6 @@ extension SceneCoordinator: FactoryCoordinator{
             vc.bind(to: [loginVM])
             return vc
             
-        case .home:
-            let vc = PhotoListViewController()
-            let homeVM = self.viewModel(sceneContent:.home)!
-            vc.bind(to: [homeVM])
-
-            return vc
-            
-        case .sideMenu:
-            let vc = SideMenuViewController()
-            let sideMenuVM = self.viewModel(sceneContent:.sideMenu)!
-            vc.bind(to: [sideMenuVM])
-
-            return vc
-            
         case .tabBar:
             let tabBarController = UITabBarController()
             
@@ -62,6 +48,28 @@ extension SceneCoordinator: FactoryCoordinator{
             ]
             
             return tabBarController
+            
+        case .home:
+            let vc = HomeViewController()
+            let sideMenuVM = self.viewModel(sceneContent:.sideMenu)!
+            let photoListVM = self.viewModel(sceneContent:.photoList)!
+            vc.bind(to: [sideMenuVM, photoListVM])
+
+            return vc
+            
+        case .sideMenu:
+            let vc = SideMenuViewController()
+            let sideMenuVM = self.viewModel(sceneContent:.sideMenu)!
+            vc.bind(to: [sideMenuVM])
+
+            return vc
+            
+        case .photoList:
+            let vc = PhotoListViewController()
+            let photoListVM = self.viewModel(sceneContent:.photoList)!
+            vc.bind(to: [photoListVM])
+
+            return vc
             
         case let .photoDetails(args):
             let vc = PhotoDetailsViewController()
@@ -109,16 +117,19 @@ extension SceneCoordinator: FactoryCoordinator{
             let vm: LoginViewModel = LoginViewModel(services: [AuthService()], args: nil)
             return vm
             
+        case .tabBar:
+            return nil
+            
         case .home:
-            let vm: PhotoListViewModel = PhotoListViewModel(services: [PhotoService(),TopicService()], args: nil)
-            return vm
+            return nil
             
         case .sideMenu:
             let vm: SideMenuViewModel = SideMenuViewModel(services: [UserService()], args: nil)
             return vm
             
-        case .tabBar:
-            return nil
+        case .photoList:
+            let vm: PhotoListViewModel = PhotoListViewModel(services: [PhotoService(),TopicService()], args: nil)
+            return vm
             
         case let .photoDetails(args):
             let vm: PhotoDetailsViewModel = PhotoDetailsViewModel(services: [PhotoService()], args: args)
