@@ -19,7 +19,7 @@ extension Array{
             // FIXME:
             // The code here is complicated cause the result of String(describing: element.self) always return
             // some values with their memory addresses, "<Monotone.AuthService: 0x280e34a00>" etc.
-            // I can not figure the reason yet.
+            // I can not figure out the reason yet.
             
             let elementSplitedStrs = String(describing: element.self).components(separatedBy: ["."," ",":"])
             let typeStr = String(describing: type)

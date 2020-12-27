@@ -52,7 +52,7 @@ class BaseViewModel: ViewModelServable {
         self.bind()
     }
     
-    func inject(args: [String: Any]?) {
+    func inject(args: [String: Any?]?) {
         // Implementated by subclass.
     }
     

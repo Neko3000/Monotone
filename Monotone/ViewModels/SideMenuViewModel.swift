@@ -22,6 +22,7 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Output
     struct Output {
         var pages: BehaviorRelay<[(key:SideMenuPage, value:String)]?> = BehaviorRelay<[(key:SideMenuPage, value:String)]?>(value: nil)
+        
         var currentUser: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
         var collections: BehaviorRelay<[Collection]?> = BehaviorRelay<[Collection]?>(value: nil)
         var likedPhotos: BehaviorRelay<[Photo]?> = BehaviorRelay<[Photo]?>(value: nil)
@@ -32,7 +33,7 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
     //
     
     // MARK: - Inject
-    override func inject(args: [String : Any]?) {
+    override func inject(args: [String : Any?]?) {
         
     }
     
@@ -43,16 +44,19 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
         let userService = self.service(type: UserService.self)!
         
         // Bindings.
+        // Pages.
         self.input.pages
             .subscribe { (keyValuePairs) in
                 self.output.pages.accept(keyValuePairs)
             }
             .disposed(by: self.disposeBag)
 
+        // CurrentUser.
         UserManager.shared.currentUser
             .bind(to: self.output.currentUser)
             .disposed(by: self.disposeBag)
         
+        // LikedPhotos.
         self.output.currentUser
             .unwrap()
             .flatMap { (user) -> Observable<[Photo]> in
@@ -66,6 +70,7 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
             .bind(to: self.output.likedPhotos)
             .disposed(by: self.disposeBag)
         
+        // Collections.
         self.output.currentUser
             .unwrap()
             .flatMap { (user) -> Observable<[Collection]> in

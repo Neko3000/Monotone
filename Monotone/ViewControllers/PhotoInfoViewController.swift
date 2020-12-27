@@ -49,7 +49,7 @@ class PhotoInfoViewController: BaseViewController {
     override func buildSubviews() {
         self.view.backgroundColor = UIColor.white
         
-        // pageTitleView.
+        // PageTitleView.
         self.pageTitleView = PageTitleView()
         self.view.addSubview(self.pageTitleView)
         self.pageTitleView.snp.makeConstraints { (make) in
@@ -59,7 +59,7 @@ class PhotoInfoViewController: BaseViewController {
             make.height.equalTo(50.0)
         }
         
-        // photoImageView.
+        // PhotoImageView.
         self.photoImageView = UIImageView()
         self.photoImageView.contentMode = .scaleAspectFill
         self.photoImageView.layer.cornerRadius = 6.0
@@ -72,7 +72,7 @@ class PhotoInfoViewController: BaseViewController {
             make.bottom.equalTo(self.view).multipliedBy(1/2.0)
         }
         
-        // photoInfoStatisticsView.
+        // PhotoInfoStatisticsView.
         self.photoInfoStatisticsView = PhotoInfoStatisticsView()
         self.view.addSubview(self.photoInfoStatisticsView)
         self.photoInfoStatisticsView.snp.makeConstraints { (make) in
@@ -81,7 +81,7 @@ class PhotoInfoViewController: BaseViewController {
             make.right.equalTo(self.view)
         }
         
-        // photoInfoCameraView.
+        // PhotoInfoCameraView.
         self.photoInfoCameraView = PhotoInfoCameraSettingsView()
         self.view.addSubview(self.photoInfoCameraView)
         self.photoInfoCameraView.snp.makeConstraints { (make) in
@@ -98,12 +98,13 @@ class PhotoInfoViewController: BaseViewController {
         let photoInfoViewModel = self.viewModel(type: PhotoInfoViewModel.self)!
         
         // Bindings.
+        // Photo.
         photoInfoViewModel.output.photo
             .unwrap()
             .subscribe(onNext: { [weak self] photo in
                 guard let self = self else { return }
             
-                // pageTitleView.
+                // PageTitleView.
                 if let altDescription = photo.altDescription{
                     let title = altDescription.split(separator: " ").prefix(2).joined(separator: " ").capitalized
                     self.pageTitleView.title.accept(title)
@@ -114,15 +115,16 @@ class PhotoInfoViewController: BaseViewController {
                     self.pageTitleView.subtitle.accept(subtitle)
                 }
                 
-                // photoImageView.
+                // PhotoImageView.
                 self.photoImageView.kf.setImage(with: URL(string: photo.urls?.regular ?? ""),
                                                 placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
                                                 options: [.transition(.fade(0.7)), .originalCache(.default)])
             })
             .disposed(by: self.disposeBag)
-                    
+            
             photoInfoViewModel.output.photo.bind(to: self.photoInfoCameraView.photo)
                 .disposed(by: self.disposeBag)
+        
             photoInfoViewModel.output.statistics.bind(to: self.photoInfoStatisticsView.statistics)
                 .disposed(by: self.disposeBag)
     }

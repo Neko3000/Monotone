@@ -32,7 +32,7 @@ class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
     private var nextLoadPage: Int = 1
     
     // MARK: - Inject
-    override func inject(args: [String : Any]?) {
+    override func inject(args: [String : Any?]?) {
         if(args?["orderBy"] != nil){
             self.input.orderBy = BehaviorSubject<String>(value: args!["orderBy"] as? String ?? "")
         }
@@ -44,6 +44,7 @@ class ListPhotosViewModel: BaseViewModel, ViewModelStreamable{
         // Service.
         let photoService = self.service(type: PhotoService.self)
                 
+        // Bindings.
         // LoadMore.
         self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { (_) -> Observable<[Photo]> in
             self.output.loadingMore.onNext(true)

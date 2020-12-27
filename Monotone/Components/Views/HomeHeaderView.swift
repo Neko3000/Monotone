@@ -35,7 +35,7 @@ class HomeHeaderView: BaseView {
         // 
         self.backgroundColor = ColorPalette.colorWhite
         
-        // searchTextField.
+        // SearchTextField.
         let searchImageView: UIImageView = UIImageView()
         searchImageView.image = UIImage(named: "header-input-search")
         
@@ -58,7 +58,7 @@ class HomeHeaderView: BaseView {
             make.height.equalTo(36.0)
         })
         
-        // segmentedControl
+        // SegmentedControl
         let segmentedValues = PhotoVars.listOrderBys.map({ $0.value }) + PhotoVars.topics.map({ $0.value })
         self.segmentedControl = HMSegmentedControl(sectionTitles: segmentedValues)
         self.segmentedControl.titleTextAttributes = [
@@ -86,7 +86,8 @@ class HomeHeaderView: BaseView {
     override func buildLogic() {
         super.buildLogic()
         
-        // searchTextField
+        // Bindings.
+        // SearchTextField
         self.searchTextField.rx.controlEvent(.editingDidEndOnExit)
             .subscribe(onNext: { [weak self] (_) in
                 guard let self = self else { return }
@@ -99,7 +100,7 @@ class HomeHeaderView: BaseView {
             .bind(to: self.searchTextField.rx.text)
             .disposed(by: self.disposeBag)
         
-        // segmentedControl
+        // SegmentedControl
         Observable.of(self.listOrderBy, self.topic)
             .merge()
             .distinctUntilChanged()
@@ -118,6 +119,7 @@ class HomeHeaderView: BaseView {
             })
             .disposed(by: self.disposeBag)
         
+        // SearchQuery.
         self.searchQuery
             .distinctUntilChanged()
             .unwrap()
@@ -129,6 +131,7 @@ class HomeHeaderView: BaseView {
             }
             .disposed(by: self.disposeBag)
         
+        // ListOrderBy.
         self.listOrderBy
             .distinctUntilChanged()
             .unwrap()
@@ -140,6 +143,7 @@ class HomeHeaderView: BaseView {
             }
             .disposed(by: self.disposeBag)
         
+        // Topic.
         self.topic
             .distinctUntilChanged()
             .unwrap()

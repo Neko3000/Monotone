@@ -15,7 +15,7 @@ class PhotoShareViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
+        //
     }
     public var input: Input = Input()
     
@@ -29,9 +29,9 @@ class PhotoShareViewModel: BaseViewModel, ViewModelStreamable{
 
     
     // MARK: - Inject
-    override func inject(args: [String : Any]?) {
+    override func inject(args: [String : Any?]?) {
         if let photo = args?["photo"]{
-            self.input.photo = BehaviorRelay(value: photo as? Photo)
+            self.output.photo = BehaviorRelay(value: photo as? Photo)
         }
     }
     
@@ -42,9 +42,7 @@ class PhotoShareViewModel: BaseViewModel, ViewModelStreamable{
         //
         
         // Bindings.
-        self.input.photo.bind(to: self.output.photo)
-            .disposed(by: self.disposeBag)
-        
+        //
     }
     
 }

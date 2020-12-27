@@ -39,7 +39,7 @@ class PhotoShareURLView: BaseView{
         self.layer.cornerRadius = 6.0
         self.layer.masksToBounds = true
         
-        // urlLabel.
+        // URLLabel.
         self.urlLabel = UILabel()
         self.urlLabel.font = UIFont.systemFont(ofSize: 12)
         self.urlLabel.textColor = ColorPalette.colorGrayLight
@@ -52,7 +52,7 @@ class PhotoShareURLView: BaseView{
             make.centerY.equalTo(self)
         }
         
-        // copyBtn.
+        // CopyBtn.
         self.copyBtn = UIButton()
         self.copyBtn.backgroundColor = ColorPalette.colorBlack
         self.copyBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12.0)

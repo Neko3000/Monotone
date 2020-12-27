@@ -49,7 +49,7 @@ class SideMenuProfileView: BaseView{
     override func buildSubviews() {
         super.buildSubviews()
         
-        // avatarImageView.
+        // AvatarImageView.
         self.avatarImageView = UIImageView()
         self.avatarImageView.contentMode = .scaleAspectFill
         self.avatarImageView.backgroundColor = UIColor.blue
@@ -61,7 +61,7 @@ class SideMenuProfileView: BaseView{
             make.width.height.equalTo(83.0)
         }
         
-        // usernameLabel.
+        // UsernameLabel.
         self.usernameLabel = UILabel()
         self.usernameLabel.textColor = ColorPalette.colorBlack
         self.usernameLabel.font = UIFont.boldSystemFont(ofSize: 20)
@@ -73,7 +73,7 @@ class SideMenuProfileView: BaseView{
             make.top.equalTo(self).offset(10.0)
         }
         
-        // editBtn.
+        // EditBtn.
         self.editBtn = UIButton()
         self.editBtn.backgroundColor = ColorPalette.colorBlack
         self.editBtn.contentEdgeInsets = UIEdgeInsets(top: 6.0, left: 10.0, bottom: 6.0, right: 10.0)
@@ -86,7 +86,7 @@ class SideMenuProfileView: BaseView{
             make.top.equalTo(self.usernameLabel.snp.bottom).offset(10.0)
         }
         
-        // signOutBtn.
+        // SignOutBtn.
         self.signOutBtn = UIButton()
         self.signOutBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
         self.signOutBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
@@ -108,7 +108,7 @@ class SideMenuProfileView: BaseView{
             make.width.equalTo(237.0)
         }
         
-        // collectionView.
+        // CollectionView.
         self.collectionView = SideMenuProfileCollectionView()
         self.containerView.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints { (make) in
@@ -117,7 +117,7 @@ class SideMenuProfileView: BaseView{
             make.left.equalTo(self.containerView)
         }
         
-        // likeView.
+        // LikeView.
         self.likeView = SideMenuProfileLikeView()
         self.containerView.addSubview(self.likeView)
         self.likeView.snp.makeConstraints { (make) in
@@ -126,7 +126,7 @@ class SideMenuProfileView: BaseView{
             make.left.equalTo(self.containerView.snp.right)
         }
         
-        // collectionBtn.
+        // CollectionBtn.
         self.collectionBtn = UIButton()
         self.collectionBtn.isSelected = true
         self.collectionBtn.setTitle("21 Collections", for: .normal)
@@ -142,7 +142,7 @@ class SideMenuProfileView: BaseView{
             make.bottom.equalTo(self.containerView.snp.top).offset(-22.0)
         }
         
-        // likeBtn.
+        // LikeBtn.
         self.likeBtn = UIButton()
         self.likeBtn.isSelected = false
         self.likeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -162,6 +162,7 @@ class SideMenuProfileView: BaseView{
         super.buildLogic()
         
         // Bindings.
+        // User.
         self.user
             .unwrap()
             .subscribe(onNext:{ [weak self] (user) in
@@ -178,6 +179,7 @@ class SideMenuProfileView: BaseView{
             })
             .disposed(by: self.disposeBag)
         
+        // Collections.
         self.collections
             .unwrap()
             .flatMap({ (collections) -> Observable<Collection?> in
@@ -186,6 +188,7 @@ class SideMenuProfileView: BaseView{
             .bind(to: self.collectionView.collection)
             .disposed(by: self.disposeBag)
         
+        // Photos.
         self.photos
             .unwrap()
             .flatMap({ (photos) -> Observable<Photo?> in
@@ -194,7 +197,7 @@ class SideMenuProfileView: BaseView{
             .bind(to: self.likeView.photo)
             .disposed(by: self.disposeBag)
 
-        // tap.
+        // Tap.
         self.collectionBtn.rx.tap
             .ignoreWhen({ self.collectionBtn.isSelected })
             .subscribe { [weak self] (_) in

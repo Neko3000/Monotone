@@ -39,7 +39,7 @@ class SideMenuOptionTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         self.backgroundColor = UIColor.clear
             
-        // photoCountLabel.
+        // PhotoCountLabel.
         self.titleLabel = UILabel()
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 26)
         self.titleLabel.textColor = ColorPalette.colorBlack
@@ -52,7 +52,8 @@ class SideMenuOptionTableViewCell: UITableViewCell {
 
     private func buildLogic(){
         
-        // Bindings
+        // Bindings.
+        // Page.
         self.page
             .unwrap()
             .flatMap { (keyValuePair) -> Observable<String> in

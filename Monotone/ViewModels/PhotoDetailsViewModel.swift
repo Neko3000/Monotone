@@ -15,7 +15,6 @@ class PhotoDetailsViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
         var likePhotoAction: Action<Void,Photo>?
         var unlikePhotoAction: Action<Void,Photo>?
     }
@@ -31,9 +30,9 @@ class PhotoDetailsViewModel: BaseViewModel, ViewModelStreamable{
 
     
     // MARK: - Inject
-    override func inject(args: [String : Any]?) {
+    override func inject(args: [String : Any?]?) {
         if let photo = args?["photo"]{
-            self.input.photo = BehaviorRelay(value: photo as? Photo)
+            self.output.photo = BehaviorRelay(value: photo as? Photo)
         }
     }
     
@@ -43,13 +42,10 @@ class PhotoDetailsViewModel: BaseViewModel, ViewModelStreamable{
         // Service.
         let photoService = self.service(type: PhotoService.self)!
         
-        // Binding.
-        (self.input.photo <=> self.output.photo)
-            .disposed(by: self.disposeBag)
-        
+        // Bindings.
         self.input.likePhotoAction = Action<Void,Photo>(workFactory: { (_) -> Observable<Photo> in
             
-            if let photo = self.input.photo.value{
+            if let photo = self.output.photo.value{
                 return photoService.likePhoto(id: photo.id!)
             }
             
@@ -60,13 +56,13 @@ class PhotoDetailsViewModel: BaseViewModel, ViewModelStreamable{
             .subscribe(onNext: { [weak self] (photo) in
                 guard let self = self else { return }
 
-                self.input.photo.accept(photo)
+                self.output.photo.accept(photo)
             })
             .disposed(by: self.disposeBag)
         
         self.input.unlikePhotoAction = Action<Void,Photo>(workFactory: { (_) -> Observable<Photo> in
             
-            if let photo = self.input.photo.value{
+            if let photo = self.output.photo.value{
                 return photoService.unlikePhoto(id: photo.id!)
             }
             
@@ -77,7 +73,7 @@ class PhotoDetailsViewModel: BaseViewModel, ViewModelStreamable{
             .subscribe(onNext: { [weak self] (photo) in
                 guard let self = self else { return }
 
-                self.input.photo.accept(photo)
+                self.output.photo.accept(photo)
             })
             .disposed(by: self.disposeBag)
         

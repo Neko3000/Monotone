@@ -43,7 +43,7 @@ class PhotoShareViewController: BaseViewController {
     override func buildSubviews() {
         self.view.backgroundColor = UIColor.white
         
-        // pageTitleView.
+        // PageTitleView.
         self.pageTitleView = PageTitleView()
         self.view.addSubview(self.pageTitleView)
         self.pageTitleView.snp.makeConstraints { (make) in
@@ -53,7 +53,7 @@ class PhotoShareViewController: BaseViewController {
             make.height.equalTo(50.0)
         }
         
-        // photoImageView.
+        // PhotoImageView.
         self.photoImageView = UIImageView()
         self.photoImageView.contentMode = .scaleAspectFill
         self.photoImageView.layer.cornerRadius = 6.0
@@ -66,7 +66,7 @@ class PhotoShareViewController: BaseViewController {
             make.bottom.equalTo(self.view).offset(-90.0)
         }
         
-        // photoShareSMView.
+        // PhotoShareSMView.
         self.photoShareSMView = PhotoShareSMView()
         self.view.addSubview(self.photoShareSMView)
         self.photoShareSMView.snp.makeConstraints { (make) in
@@ -76,7 +76,7 @@ class PhotoShareViewController: BaseViewController {
             make.right.equalTo(self.view)
         }
         
-        // photoShareURLView.
+        // PhotoShareURLView.
         self.photoShareURLView = PhotoShareURLView()
         self.view.addSubview(self.photoShareURLView)
         self.photoShareURLView.snp.makeConstraints { (make) in
@@ -93,10 +93,7 @@ class PhotoShareViewController: BaseViewController {
         let photoShareViewModel = self.viewModel(type: PhotoShareViewModel.self)!
         
         // Bindings.
-        
-        // pageTitleView.
-        self.pageTitleView.title.accept(NSLocalizedString("unsplash_share_title", comment: "Share"))
-        
+        // Photo.
         photoShareViewModel.output.photo
             .unwrap()
             .subscribe(onNext: { [weak self] photo in
@@ -107,13 +104,13 @@ class PhotoShareViewController: BaseViewController {
                     self.pageTitleView.subtitle.accept(subtitle)
                 }
                 
-                // photoImageView.
+                // PhotoImageView.
                 self.photoImageView.kf.setImage(with: URL(string: photo.urls?.regular ?? ""),
                                                 placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
                                                 options: [.transition(.fade(0.7)), .originalCache(.default)])
             })
             .disposed(by: self.disposeBag)
-                
+        
         photoShareViewModel.output.photo
             .unwrap()
             .subscribe(onNext: { [weak self] photo in
@@ -122,6 +119,9 @@ class PhotoShareViewController: BaseViewController {
                 self.photoShareURLView.url.accept(photo.links?.selfLink)
             })
             .disposed(by: self.disposeBag)
+        
+        // PageTitleView.
+        self.pageTitleView.title.accept(NSLocalizedString("unsplash_share_title", comment: "Share"))
     }
     
 }

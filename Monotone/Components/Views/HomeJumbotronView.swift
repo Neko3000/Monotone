@@ -45,7 +45,7 @@ class HomeJumbotronView: BaseView {
         // 
         self.backgroundColor = ColorPalette.colorWhite
         
-        // menuBtn.
+        // MenuBtn.
         self.menuBtn = UIButton()
         self.menuBtn.setImage(UIImage(named: "header-menu"), for: .normal)
         self.addSubview(self.menuBtn)
@@ -55,7 +55,7 @@ class HomeJumbotronView: BaseView {
             make.width.height.equalTo(36.0)
         }
         
-        // searchBtn.
+        // SearchBtn.
         self.searchBtn = UIButton()
         self.searchBtn.setImage(UIImage(named: "header-search"), for: .normal)
         self.addSubview(self.searchBtn)
@@ -65,7 +65,7 @@ class HomeJumbotronView: BaseView {
             make.width.height.equalTo(36.0)
         }
         
-        // titleLabel.
+        // TitleLabel.
         self.titleLabel = UILabel()
         self.titleLabel.text = NSLocalizedString("unsplash_home_title", comment: "Unsplash")
         self.titleLabel.textColor = ColorPalette.colorBlack
@@ -76,7 +76,7 @@ class HomeJumbotronView: BaseView {
             make.top.equalTo(self).offset(91.0)
         }
         
-        // descriptionLabel.
+        // DescriptionLabel.
         let attributedDescription = NSMutableAttributedString(string: NSLocalizedString("unsplash_home_description", comment: "Beautiful, free photos.\nGifted by the world’s most generous community of \nphotographers. 🎁"))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6.0
@@ -96,7 +96,7 @@ class HomeJumbotronView: BaseView {
             make.bottom.equalTo(self).offset(-60.0)
         }
         
-        // segmentedControl.
+        // SegmentedControl.
         let text: String = PhotoVars.listOrderBys.map { $0.value }.joined()
         let textSize = text.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.0)])
         
@@ -124,7 +124,8 @@ class HomeJumbotronView: BaseView {
     override func buildLogic() {
         super.buildLogic()
         
-        // segmentedControl
+        // Bindings.
+        // SegmentedControl
         self.listOrderBy
             .unwrap()
             .flatMap { (key) -> Observable<Int> in

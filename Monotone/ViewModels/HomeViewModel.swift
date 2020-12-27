@@ -38,7 +38,7 @@ class HomeViewModel: BaseViewModel, ViewModelStreamable{
     private var emptyPhotos: [Photo] = Array(repeating: Photo(), count: 10)
     
     // MARK: - Inject
-    override func inject(args: [String : Any]?) {
+    override func inject(args: [String : Any?]?) {
         if let searchQuery = args?["searchQuery"]{
             self.input.searchQuery = BehaviorRelay(value: searchQuery as? String)
         }

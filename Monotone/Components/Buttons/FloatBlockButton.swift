@@ -37,7 +37,7 @@ class FloatBlockButton: BaseButton {
     }
     
     // https://stackoverflow.com/questions/4201959/label-under-image-in-uibutton
-    // by RaffAl at Jun/20.
+    // by RaffAl, answered Mar 24 '14 at 22:07.
     private func centerVertically(padding: CGFloat = 0) {
         guard
             let imageViewSize = self.imageView?.frame.size,

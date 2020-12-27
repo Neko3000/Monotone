@@ -38,7 +38,7 @@ class LoginViewController: BaseViewController {
         
         self.view.backgroundColor = ColorPalette.colorWhite
         
-        // descriptionLabel.
+        // DescriptionLabel.
         let attributedDescription = NSMutableAttributedString(string: NSLocalizedString("unsplash_login_description", comment: "Explore those Impressive photos which created by\nmost creative Maestros all over the World."))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 2.0
@@ -59,7 +59,7 @@ class LoginViewController: BaseViewController {
             make.right.lessThanOrEqualTo(self.view).offset(-20.0)
         }
         
-        // titleLabel.
+        // TitleLabel.
         self.titleLabel = UILabel()
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         self.titleLabel.textColor = ColorPalette.colorBlack
@@ -70,7 +70,7 @@ class LoginViewController: BaseViewController {
             make.bottom.equalTo(self.descriptionLabel.snp.top).offset(-10.0)
         }
         
-        // logoImageView.
+        // LogoImageView.
         self.logoImageView = UIImageView()
         self.logoImageView.tintColor = ColorPalette.colorBlack
         self.logoImageView.image = UIImage(named: "unsplash-logo")?.withRenderingMode(.alwaysTemplate)
@@ -82,7 +82,7 @@ class LoginViewController: BaseViewController {
             
         }
         
-        // loginBtn.
+        // LoginBtn.
         self.loginBtn = UIButton()
         self.loginBtn.setTitle(NSLocalizedString("unsplash_login_sign_in_or_sign_up", comment: "Sign in / Sign up"), for: .normal)
         self.loginBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
@@ -97,7 +97,7 @@ class LoginViewController: BaseViewController {
             make.top.equalTo(self.view.snp.centerY).offset(20.0)
         }
         
-        // activityIndicatorView
+        // ActivityIndicatorView
         self.activityIndicatorView = NVActivityIndicatorView(frame: CGRect.zero)
         self.activityIndicatorView.type = .circleStrokeSpin
         self.activityIndicatorView.color = ColorPalette.colorBlack
@@ -118,14 +118,14 @@ class LoginViewController: BaseViewController {
         let loginViewModel = self.viewModel(type: LoginViewModel.self)!
         
         // Bindings.
-        // loginBtn.
+        // LoginBtn.
         self.loginBtn.rx.tap
             .subscribe(onNext: { (_) in
                 loginViewModel.input.loginAction?.execute()
             })
             .disposed(by: self.disposeBag)
         
-        // logging.
+        // Logging.
         loginViewModel.output.logging
             .subscribe(onNext:{ [weak self] (logging) in
                 guard let self = self else { return }
@@ -146,7 +146,7 @@ class LoginViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
-        // loggedIn.
+        // LoggedIn.
         loginViewModel.output.loggedIn
             .ignore(false)
             .subscribe(onNext:{ (_) in
@@ -155,6 +155,7 @@ class LoginViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
+        // 
         // If there's local credential, update current user information automatically.
         if(AuthManager.shared.credential != nil){
             loginViewModel.input.updateUserAction?.execute()

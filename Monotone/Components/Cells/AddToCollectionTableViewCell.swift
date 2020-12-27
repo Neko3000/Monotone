@@ -54,7 +54,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
         
         self.selectionStyle = .none
                 
-        // coverImageView.
+        // CoverImageView.
         self.coverImageView = UIImageView()
         self.coverImageView.contentMode = .scaleAspectFill
         self.coverImageView.layer.cornerRadius = 8.0
@@ -68,7 +68,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
             make.right.equalTo(self.contentView).offset(-17.0)
         })
         
-        // overlayerView.
+        // OverlayerView.
         self.overlayerView = UIView()
         self.overlayerView.backgroundColor = ColorPalette.colorOverlayer
         self.overlayerView.layer.cornerRadius = 8.0
@@ -78,7 +78,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
             make.top.right.bottom.left.equalTo(self.coverImageView)
         })
         
-        // lockImageView.
+        // LockImageView.
         self.lockImageView = UIImageView()
         self.lockImageView.image = UIImage(named: "collection-lock")
         self.contentView.addSubview(self.lockImageView)
@@ -88,7 +88,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
             make.width.height.equalTo(20.0)
         })
         
-        // nameLabel.
+        // NameLabel.
         self.nameLabel = UILabel()
         self.nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         self.nameLabel.textColor = UIColor.white
@@ -99,7 +99,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
             make.centerY.equalTo(self.lockImageView)
         })
         
-        // photoCountLabel.
+        // PhotoCountLabel.
         self.photoCountLabel = UILabel()
         self.photoCountLabel.font = UIFont.boldSystemFont(ofSize: 8)
         self.photoCountLabel.textColor = UIColor.white
@@ -110,7 +110,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
             make.bottom.equalTo(self.nameLabel.snp.top).offset(-3.0)
         })
         
-        // plusImageView.
+        // PlusImageView.
         self.plusImageView = UIImageView()
         self.plusImageView.image = UIImage(named: "collection-plus")
         self.contentView.addSubview(self.plusImageView)
@@ -120,7 +120,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
             make.width.height.equalTo(20.0)
         })
         
-        // successStateView.
+        // SuccessStateView.
         self.successStateView = UIView()
         self.successStateView.backgroundColor = ColorPalette.colorGreen
         self.successStateView.alpha = 0
@@ -131,7 +131,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
             make.top.right.bottom.left.equalTo(self.coverImageView)
         })
         
-        // activityIndicatorView
+        // ActivityIndicatorView
         self.activityIndicatorView = NVActivityIndicatorView(frame: CGRect.zero)
         self.activityIndicatorView.type = .circleStrokeSpin
         self.activityIndicatorView.color = UIColor.white
@@ -144,7 +144,8 @@ class AddToCollectionTableViewCell: UITableViewCell {
 
     private func buildLogic(){
         
-        // Bindings
+        // Bindings.
+        // Collection.
         self.collection
             .unwrap()
             .subscribe(onNext: { [weak self] (collection) in
@@ -161,6 +162,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
             })
             .disposed(by: self.disposeBag)
         
+        // Loading.
         self.loading
             .subscribe(onNext: { [weak self] (loading) in
                 guard let self = self else { return }
@@ -169,6 +171,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
             })
             .disposed(by: self.disposeBag)
         
+        // DisplayState.
         self.displayState
             .subscribe(onNext: { [weak self] (displayState) in
                 guard let self = self else { return }

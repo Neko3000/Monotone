@@ -54,7 +54,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
     override func buildSubviews() {
         self.view.backgroundColor = ColorPalette.colorWhite
         
-        // pageTitleView.
+        // PageTitleView.
         self.pageTitleView = PageTitleView()
         self.view.addSubview(self.pageTitleView)
         self.pageTitleView.snp.makeConstraints { (make) in
@@ -64,7 +64,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
             make.height.equalTo(50.0)
         }
         
-        // titleTextField
+        // TitleTextField
         self.titleTextField = MTTextField()
         self.titleTextField.iconLeftMargin = 0
         self.titleTextField.layer.cornerRadius = 6.0
@@ -79,7 +79,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
             make.height.equalTo(44.0)
         }
         
-        // titleLabel.
+        // TitleLabel.
         self.titleLabel = UILabel()
         self.titleLabel.font = UIFont.systemFont(ofSize: 16)
         self.titleLabel.textColor = ColorPalette.colorGrayHeavy
@@ -90,7 +90,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
             make.bottom.equalTo(self.titleTextField.snp.top).offset(-11.0)
         }
         
-        // descriptionTextView
+        // DescriptionTextView
         self.descriptionTextView = UITextView()
         self.descriptionTextView.layer.cornerRadius = 6.0
         self.descriptionTextView.layer.masksToBounds = true
@@ -104,7 +104,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
             make.height.equalTo(84.0)
         }
         
-        // descriptionLabel.
+        // DescriptionLabel.
         self.descriptionLabel = UILabel()
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 16)
         self.descriptionLabel.textColor = ColorPalette.colorGrayHeavy
@@ -115,7 +115,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
             make.bottom.equalTo(self.descriptionTextView.snp.top).offset(-11.0)
         }
         
-        // privateCheckBox
+        // PrivateCheckBox
         self.privateCheckBox = BEMCheckBox()
         self.privateCheckBox.boxType = .square
         self.privateCheckBox.onAnimationType = .bounce
@@ -131,7 +131,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
             make.top.equalTo(self.descriptionTextView.snp.bottom).offset(20.0)
         }
         
-        // privateLabel.
+        // PrivateLabel.
         self.privateLabel = UILabel()
         self.privateLabel.font = UIFont.systemFont(ofSize: 12)
         self.privateLabel.textColor = ColorPalette.colorGrayHeavy
@@ -142,7 +142,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
             make.centerY.equalTo(self.privateCheckBox)
         }
         
-        // submitBtn.
+        // SubmitBtn.
         self.submitBtn = UIButton()
         self.submitBtn.backgroundColor = ColorPalette.colorBlack
         self.submitBtn.contentEdgeInsets = UIEdgeInsets(top: 11.0, left: 20.0, bottom: 11.0, right: 20.0)
@@ -164,22 +164,27 @@ class PhotoCreateCollectionViewController: BaseViewController {
         let photoCreateCollectionViewModel = self.viewModel(type: PhotoCreateCollectionViewModel.self)!
         
         // Bindings.
+        // PageTitleView.
         self.pageTitleView.title.accept(NSLocalizedString("unsplash_create_collection_title", comment: "Create new collection"))
         
+        // TitleTextField.
         self.titleTextField.rx.text.orEmpty
             .bind(to: photoCreateCollectionViewModel.input.title)
             .disposed(by: self.disposeBag)
         
+        // DescriptionTextView.
         self.descriptionTextView.rx.text.orEmpty
             .bind(to: photoCreateCollectionViewModel.input.description)
             .disposed(by: self.disposeBag)
         
+        // SubmitBtn.
         self.submitBtn.rx.tap
             .subscribe { (_) in
                 photoCreateCollectionViewModel.input.submitAction?.execute()
             }
             .disposed(by: self.disposeBag)
         
+        // Pop.
         photoCreateCollectionViewModel.output.collection
             .unwrap()
             .subscribe { (_) in

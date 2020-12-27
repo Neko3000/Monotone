@@ -10,6 +10,7 @@ import Foundation
 extension String {
     
     // https://stackoverflow.com/questions/32465121/splitting-a-string-in-swift-using-multiple-delimiters
+    // by meomeomeo, answered May 23 '19 at 6:17.
     func components(separatedBy separators: [String]) -> [String]{
         var result = [self]
         for separator in separators {

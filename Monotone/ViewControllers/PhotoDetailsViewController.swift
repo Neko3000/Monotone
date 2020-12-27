@@ -45,12 +45,12 @@ class PhotoDetailsViewController: BaseViewController {
     override func buildSubviews() {
         self.view.backgroundColor = UIColor.black
         
-        // navBar.
+        // NavBar.
         self.navBarTransparent = true
         // self.navBarHidden = true
         self.navBarItemsColor = UIColor.white
                 
-        // scrollView.
+        // ScrollView.
         self.scrollView = PhotoZoomableScrollView()
         self.scrollView.maximumZoomScale = 10.0
         self.scrollView.minimumZoomScale = 1.0
@@ -67,11 +67,11 @@ class PhotoDetailsViewController: BaseViewController {
             make.width.height.equalTo(27.0)
         }
         
+        // UserCapsuleView.
         self.usernameLabel = UILabel()
         self.usernameLabel.font = UIFont.systemFont(ofSize: 12.0)
         self.usernameLabel.textColor = UIColor.white
         
-        // userCapsuleView.
         self.userCapsuleView = CapsuleView()
         self.userCapsuleView.views = [avatarImageView, usernameLabel]
         self.view.addSubview(self.userCapsuleView)
@@ -80,7 +80,7 @@ class PhotoDetailsViewController: BaseViewController {
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
         
-        // operationView.
+        // OperationView.
         self.operationView = PhotoDetailsOperationView()
         self.view.addSubview(self.operationView)
         self.operationView.snp.makeConstraints { (make) in
@@ -90,7 +90,7 @@ class PhotoDetailsViewController: BaseViewController {
             make.centerY.equalTo(self.userCapsuleView)
         }
         
-        // likeCapsuleBtn.
+        // LikeCapsuleBtn.
         self.likeCapsuleBtn = CapsuleButton()
         self.likeCapsuleBtn.setTitle("20", for: .normal)
         self.likeCapsuleBtn.setImage(UIImage(named: "details-btn-like"), for: .selected)
@@ -102,7 +102,7 @@ class PhotoDetailsViewController: BaseViewController {
             make.bottom.equalTo(self.userCapsuleView.snp.top).offset(-26.0)
         }
         
-        // collectCapsuleBtn.
+        // CollectCapsuleBtn.
         self.collectCapsuleBtn = CapsuleButton()
         self.collectCapsuleBtn.setTitle("Collect", for: .normal)
         self.collectCapsuleBtn.setImage(UIImage(named: "details-btn-collect"), for: .normal)
@@ -113,7 +113,7 @@ class PhotoDetailsViewController: BaseViewController {
             make.centerY.equalTo(self.likeCapsuleBtn)
         }
         
-        // expandBtn.
+        // ExpandBtn.
         self.expandBtn = UIButton()
         self.expandBtn.setImage(UIImage(named: "details-btn-expand"), for: .normal)
         self.expandBtn.setImage(UIImage(named: "details-btn-collapse"), for: .selected)
@@ -130,7 +130,8 @@ class PhotoDetailsViewController: BaseViewController {
         // ViewModel.
         let photoDetailsViewModel = self.viewModel(type:PhotoDetailsViewModel.self)!
         
-        // scrollView.
+        // Bindings.
+        // ScrollView.
         photoDetailsViewModel.output.photo
             .unwrap()
             .subscribe(onNext: { [weak self] (photo) in
@@ -152,7 +153,7 @@ class PhotoDetailsViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
                         
-        // operationView.
+        // OperationView.
         self.operationView.infoBtn.rx.tap
             .subscribe(onNext: { [weak self] (_) in
                 guard let self = self else { return }
@@ -168,7 +169,7 @@ class PhotoDetailsViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
-        // shareBtn.
+        // ShareBtn.
         self.operationView.shareBtn.rx.tap
             .subscribe(onNext: { [weak self] (_) in
                 guard let self = self else { return }
@@ -183,7 +184,7 @@ class PhotoDetailsViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
-        // likeCapsuleBtn.
+        // LikeCapsuleBtn.
         self.likeCapsuleBtn.rx.tap
             .subscribe(onNext: { [weak self] (_) in
                 guard let self = self else { return }
@@ -197,21 +198,21 @@ class PhotoDetailsViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
-        // collectCapsuleBtn.
+        // CollectCapsuleBtn.
         self.collectCapsuleBtn.rx.tap
             .subscribe(onNext: { [weak self ] (_) in
-//                let username = photoDetailsViewModel.output.photo.value.user?.username
+                guard let self = self else { return }
 
                 let args = [
-                    "username" : "neko3000",
+                    "username" : UserManager.shared.currentUser.value?.username,
                     "photo": photoDetailsViewModel.output.photo.value
                 ] as [String : Any?]
 
-                self?.transition(type: .present(.photoAddToCollection(args), .pageSheet), with: nil, animated: true)
+                self.transition(type: .present(.photoAddToCollection(args), .pageSheet), with: nil, animated: true)
             })
             .disposed(by: self.disposeBag)
         
-        // expandBtn.
+        // ExpandBtn.
         self.expandBtn.rx.tap
             .subscribe(onNext: { [weak self] (_) in
                 guard let self = self else { return }

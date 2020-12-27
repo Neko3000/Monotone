@@ -30,7 +30,7 @@ class PhotoDetailsOperationView: BaseView {
     override func buildSubviews() {
         super.buildSubviews()
         
-        // stackView.
+        // StackView.
         self.stackView = UIStackView()
         self.stackView.distribution = .equalSpacing
         self.stackView.axis = .horizontal
@@ -45,7 +45,7 @@ class PhotoDetailsOperationView: BaseView {
             make.height.equalTo(30.0)
         }
         
-        // downloadBtn.
+        // DownloadBtn.
         self.downloadBtn = UIButton()
         self.downloadBtn.setImage(UIImage(named: "bar-btn-download"), for: .normal)
         self.downloadBtn.snp.makeConstraints { (make) in
@@ -54,7 +54,7 @@ class PhotoDetailsOperationView: BaseView {
         }
         self.stackView.addArrangedSubview(self.downloadBtn!)
         
-        // shareBtn.
+        // ShareBtn.
         self.shareBtn = UIButton()
         self.shareBtn.setImage(UIImage(named: "bar-btn-share"), for: .normal)
         self.shareBtn.snp.makeConstraints { (make) in
@@ -63,7 +63,7 @@ class PhotoDetailsOperationView: BaseView {
         }
         self.stackView.addArrangedSubview(self.shareBtn!)
         
-        // infoBtn.
+        // InfoBtn.
         self.infoBtn = UIButton()
         self.infoBtn.setImage(UIImage(named: "bar-btn-info"), for: .normal)
         self.infoBtn.snp.makeConstraints { (make) in

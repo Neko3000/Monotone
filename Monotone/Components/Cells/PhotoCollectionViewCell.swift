@@ -26,7 +26,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     private func buildSubviews(){
                 
-        // defaultImageView.
+        // DefaultImageView.
         self.defaultImageView = UIImageView()
         self.defaultImageView.image = UIImage(named: "unsplash-logo")
         self.contentView.addSubview(self.defaultImageView)
@@ -35,7 +35,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             make.width.height.equalTo(30.0)
         })
         
-        // photoImageView.
+        // PhotoImageView.
         self.photoImageView = UIImageView()
         self.photoImageView.contentMode = .scaleAspectFill
         self.photoImageView.layer.masksToBounds = true

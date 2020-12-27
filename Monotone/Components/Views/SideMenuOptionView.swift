@@ -40,7 +40,7 @@ class SideMenuPageView: BaseView{
     override func buildSubviews() {
         super.buildSubviews()
         
-        // tableView.
+        // TableView.
         self.tableView = UITableView()
         self.tableView.backgroundColor = UIColor.clear
         self.tableView.separatorStyle = .none
@@ -53,7 +53,7 @@ class SideMenuPageView: BaseView{
             make.bottom.equalTo(self).offset(-20.0)
         }
         
-        // horizontalTopLineLong.
+        // HorizontalTopLineLong.
         self.horizontalTopLineLong = UIView()
         self.horizontalTopLineLong.backgroundColor = ColorPalette.colorBlack
         self.addSubview(self.horizontalTopLineLong)
@@ -63,7 +63,7 @@ class SideMenuPageView: BaseView{
             make.width.equalTo(53.0)
         }
         
-        // horizontalTopLineShort.
+        // HorizontalTopLineShort.
         self.horizontalTopLineShort = UIView()
         self.horizontalTopLineShort.backgroundColor = ColorPalette.colorBlack
         self.addSubview(self.horizontalTopLineShort)
@@ -74,7 +74,7 @@ class SideMenuPageView: BaseView{
             make.width.equalTo(8.0)
         }
         
-        // horizontalBottomLineLong.
+        // HorizontalBottomLineLong.
         self.horizontalBottomLineLong = UIView()
         self.horizontalBottomLineLong.backgroundColor = ColorPalette.colorBlack
         self.addSubview(self.horizontalBottomLineLong)
@@ -84,7 +84,7 @@ class SideMenuPageView: BaseView{
             make.width.equalTo(53.0)
         }
         
-        // horizontalBottomLineShort.
+        // HorizontalBottomLineShort.
         self.horizontalBottomLineShort = UIView()
         self.horizontalBottomLineShort.backgroundColor = ColorPalette.colorBlack
         self.addSubview(self.horizontalBottomLineShort)
@@ -100,6 +100,7 @@ class SideMenuPageView: BaseView{
         super.buildLogic()
         
         // Bindings.
+        // Pages.
         self.pages
             .unwrap()
             .bind(to: self.tableView.rx.items(cellIdentifier: "SideMenuOptionTableViewCell")){

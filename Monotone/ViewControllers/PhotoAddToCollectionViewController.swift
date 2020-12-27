@@ -45,7 +45,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
     override func buildSubviews() {
         self.view.backgroundColor = UIColor.white
         
-        // pageTitleView.
+        // PageTitleView.
         self.pageTitleView = PageTitleView()
         self.view.addSubview(self.pageTitleView)
         self.pageTitleView.snp.makeConstraints { (make) in
@@ -55,7 +55,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
             make.height.equalTo(50.0)
         }
         
-        // tableView.
+        // TableView.
         self.tableView = UITableView()
         self.tableView.separatorStyle = .none
         self.tableView.register(AddToCollectionTableViewCell.self, forCellReuseIdentifier: "AddToCollectionTableViewCell")
@@ -67,7 +67,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
             make.bottom.equalTo(self.view).offset(-96.0)
         }
         
-        // createCollectionBtn.
+        // CreateCollectionBtn.
         self.createCollectionBtn = UIButton()
         self.createCollectionBtn.backgroundColor = ColorPalette.colorGrayLighter
         self.createCollectionBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -98,7 +98,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
         let photoAddToCollectionViewModel = self.viewModel(type: PhotoAddToCollectionViewModel.self)!
         
         // Bindings.
-        // tableView cell.
+        // TableView cell.
         photoAddToCollectionViewModel.output.collections
             .bind(to: self.tableView.rx.items(cellIdentifier: "AddToCollectionTableViewCell")){
                 (row, element, cell) in
@@ -117,7 +117,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
             }
             .disposed(by: self.disposeBag)
         
-        // tableView didSelect.
+        // TableView cell didselect.
         tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
@@ -229,7 +229,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
             photoAddToCollectionViewModel.input.loadMoreAction?.execute()
         }
         
-        // createCollectionBtn.
+        // CreateCollectionBtn.
         self.createCollectionBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
             guard let self = self else { return }
 

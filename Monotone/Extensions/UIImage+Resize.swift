@@ -11,7 +11,7 @@ import UIKit
 extension UIImage{
     
     // https://stackoverflow.com/questions/2658738/the-simplest-way-to-resize-an-uiimage
-    // by Rogerio Chaves at Jun/30.
+    // by Rogerio Chaves, answered Jun 30 '14 at 20:12.
     public func resize(to size: CGSize, retina: Bool = true) -> UIImage? {
          // In next line, pass 0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
          // Pass 1 to force exact pixel size.

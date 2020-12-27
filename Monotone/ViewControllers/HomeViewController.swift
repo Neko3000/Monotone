@@ -48,7 +48,7 @@ class HomeViewController: BaseViewController {
         
         self.view.backgroundColor = ColorPalette.colorWhite
         
-        // homeHeaderView.
+        // HomeHeaderView.
         self.homeHeaderView = HomeHeaderView()
         self.view.addSubview(self.homeHeaderView)
         self.homeHeaderView.snp.makeConstraints { (make) in
@@ -57,7 +57,7 @@ class HomeViewController: BaseViewController {
             make.top.equalTo(self.view)
         }
         
-        // homeJumbotronView.
+        // HomeJumbotronView.
         self.homeJumbotronView = HomeJumbotronView()
         self.view.addSubview(self.homeJumbotronView)
         self.homeJumbotronView.snp.makeConstraints { (make) in
@@ -66,7 +66,7 @@ class HomeViewController: BaseViewController {
             make.top.equalTo(self.view)
         }
         
-        // collectionView.
+        // CollectionView.
         let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.minimumLineSpacing = 0
@@ -99,7 +99,7 @@ class HomeViewController: BaseViewController {
         let homeViewModel = self.viewModel(type:HomeViewModel.self)!
 
         // Bindings.
-        // homeJumbotronView & homeHeaderView
+        // HomeJumbotronView & HomeHeaderView
         (self.homeJumbotronView.listOrderBy <=> homeViewModel.input.listOrderBy)
             .disposed(by:self.disposeBag)
         
@@ -112,7 +112,7 @@ class HomeViewController: BaseViewController {
         (self.homeHeaderView.topic <=> homeViewModel.input.topic)
             .disposed(by:self.disposeBag)
                 
-        // collectionView.
+        // CollectionView.
         homeViewModel.output.photos
             .bind(to: self.collectionView.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
                 (row, element, cell) in
@@ -130,7 +130,7 @@ class HomeViewController: BaseViewController {
                 
                 let args = [
                     "photo" : photo
-                ]
+                ] as [String : Any?]
 
 //                self.transition(type: .present(.photoDetails(args), .fullScreen), with: nil)
                 self.transition(type: .push(.photoDetails(args)), with: nil, animated: true)

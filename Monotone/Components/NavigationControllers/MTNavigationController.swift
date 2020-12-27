@@ -38,11 +38,11 @@ class MTNavigationController: BaseNavigationController {
     override func buildSubviews() {
         super.buildSubviews()
         
-        // configure.
+        // Configure.
         self.updateNavBarTransparent(transparent: false)
         self.updateNavBarHidden(hidden: false)
 
-        // logoBtn.
+        // LogoBtn.
         self.logoBtn = UIButton()
         self.logoBtn.setImage(UIImage(named: "unsplash-logo")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.logoBtn.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
@@ -53,7 +53,7 @@ class MTNavigationController: BaseNavigationController {
         }
         self.logoBarButtonItem = UIBarButtonItem(customView: self.logoBtn)
         
-        // backBtn.
+        // BackBtn.
         self.backBtn = UIButton()
         self.backBtn.setImage(UIImage(named: "nav-btn-back")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.backBtn.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
@@ -63,7 +63,7 @@ class MTNavigationController: BaseNavigationController {
         }
         self.backBarButtonItem = UIBarButtonItem(customView: self.backBtn)
         
-        // closeBtn.
+        // CloseBtn.
         self.closeBtn = UIButton()
         self.closeBtn.setImage(UIImage(named: "nav-btn-close")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.closeBtn.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0 ,right: 5.0)
@@ -118,7 +118,7 @@ class MTNavigationController: BaseNavigationController {
                                         leftItems: [UIBarButtonItem]? = nil,
                                         rightItems: [UIBarButtonItem]? = nil){
         
-        // leftBarButtonItems
+        // LeftBarButtonItems
         if let leftItems = leftItems{
             self.topViewController!.navigationItem.leftBarButtonItems = leftItems
         }
@@ -126,7 +126,7 @@ class MTNavigationController: BaseNavigationController {
             self.topViewController!.navigationItem.leftBarButtonItems = self.viewControllers.count <= 1 ? [self.logoBarButtonItem] : [self.backBarButtonItem]
         }
         
-        // rightBarButtonItems
+        // RightBarButtonItems
         if let rightItems = rightItems{
             self.topViewController!.navigationItem.rightBarButtonItems = rightItems
         }
@@ -134,7 +134,7 @@ class MTNavigationController: BaseNavigationController {
             self.topViewController!.navigationItem.rightBarButtonItems = self.viewControllers.count <= 1 ? [self.closeBarButtonItem] : [self.logoBarButtonItem]
         }
         
-        // color
+        // Color
         self.topViewController!.navigationItem.leftBarButtonItems?.forEach({ (item) in
             item.customView?.tintColor = color ?? ColorPalette.colorBlack
         })

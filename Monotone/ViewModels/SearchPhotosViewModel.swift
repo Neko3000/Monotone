@@ -32,7 +32,7 @@ class SearchPhotosViewModel: BaseViewModel, ViewModelStreamable{
     private var nextLoadPage: Int = 1
     
     // MARK: - Inject
-    override func inject(args: [String : Any]?) {
+    override func inject(args: [String : Any?]?) {
         if(args?["query"] != nil){
             self.input.query = BehaviorSubject<String>(value: args!["query"] as! String)
         }

@@ -31,10 +31,9 @@ class PhotoZoomableScrollView: BaseScrollView, UIScrollViewDelegate {
     override func buildSubviews(){
         super.buildSubviews()
         
-        // delegate.
         self.delegate = self
 
-        // photoImageView.
+        // PhotoImageView.
         self.photoImageView = UIImageView()
         self.photoImageView.contentMode = .scaleToFill
         self.addSubview(self.photoImageView)

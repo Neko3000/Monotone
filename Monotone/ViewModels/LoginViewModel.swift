@@ -31,7 +31,7 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
     //
     
     // MARK: - Inject
-    override func inject(args: [String : Any]?) {
+    override func inject(args: [String : Any?]?) {
         //
     }
     

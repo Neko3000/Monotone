@@ -44,7 +44,7 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
     private var nextLoadPage: Int = 1
     
     // MARK: - Inject
-    override func inject(args: [String : Any]?) {
+    override func inject(args: [String : Any?]?) {
         if let username = args?["username"]{
             self.input.username = BehaviorRelay(value: username as? String)
         }
@@ -121,7 +121,7 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
             })
             .disposed(by: self.disposeBag)
         
-        // addToCollection.
+        // AddToCollection.
         self.input.addToCollectionAction = Action<Void, Photo?>(workFactory: { [weak self] _ -> Observable<Photo?> in
             guard let self = self else { return Observable.empty() }
             
@@ -157,7 +157,7 @@ class PhotoAddToCollectionViewModel: BaseViewModel, ViewModelStreamable{
             })
             .disposed(by: self.disposeBag)
         
-        // removeFromCollection.
+        // RemoveFromCollection.
         self.input.removeFromCollectionAction = Action<Void, Photo?>(workFactory: { [weak self] _ -> Observable<Photo?> in
             guard let self = self else { return Observable.empty() }
 

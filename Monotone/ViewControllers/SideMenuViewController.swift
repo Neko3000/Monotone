@@ -42,7 +42,7 @@ class SideMenuViewController: BaseViewController {
     override func buildSubviews() {
         self.view.backgroundColor = UIColor.white
         
-        // unsplashLabel
+        // UnsplashLabel
         self.unsplashLabel = UILabel()
         self.unsplashLabel.textColor = ColorPalette.colorGrayLighter
         self.unsplashLabel.font = UIFont.boldSystemFont(ofSize: 180)
@@ -54,7 +54,7 @@ class SideMenuViewController: BaseViewController {
             make.centerX.equalTo(self.view.snp.right).offset(-70.0)
         }
         
-        // profileView.
+        // ProfileView.
         self.profileView = SideMenuProfileView()
         self.view.addSubview(self.profileView)
         self.profileView.snp.makeConstraints { (make) in
@@ -62,7 +62,7 @@ class SideMenuViewController: BaseViewController {
             make.top.equalTo(self.view.safeAreaLayoutGuide).offset(42.0)
         }
         
-        // pageView.
+        // PageView.
         self.pageView = SideMenuPageView()
         self.view.addSubview(self.pageView)
         self.pageView.snp.makeConstraints { (make) in
@@ -79,23 +79,28 @@ class SideMenuViewController: BaseViewController {
         let sideMenuViewModel = self.viewModel(type: SideMenuViewModel.self)!
         
         // Bindings.
+        // Pages.
         sideMenuViewModel.output.pages
             .bind(to: self.pageView.pages)
             .disposed(by: self.disposeBag)
-        
-        sideMenuViewModel.input.pages.accept(SideMenuPageVars.pages)
-        
+                
+        // CurrentUser.
         sideMenuViewModel.output.currentUser
             .bind(to: self.profileView.user)
             .disposed(by: self.disposeBag)
         
+        // Collections.
         sideMenuViewModel.output.collections
             .bind(to: self.profileView.collections)
             .disposed(by: self.disposeBag)
         
+        // LikedPhotos.
         sideMenuViewModel.output.likedPhotos
             .bind(to: self.profileView.photos)
             .disposed(by: self.disposeBag)
+        
+        //
+        sideMenuViewModel.input.pages.accept(SideMenuPageVars.pages)
         
     }
     

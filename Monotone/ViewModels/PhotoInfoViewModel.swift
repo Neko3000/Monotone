@@ -16,7 +16,7 @@ class PhotoInfoViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
+        //
     }
     public var input: Input = Input()
     
@@ -31,9 +31,9 @@ class PhotoInfoViewModel: BaseViewModel, ViewModelStreamable{
     //
     
     // MARK: - Inject
-    override func inject(args: [String : Any]?) {
+    override func inject(args: [String : Any?]?) {
         if let photo = args?["photo"]{
-            self.input.photo = BehaviorRelay(value: photo as? Photo)
+            self.output.photo = BehaviorRelay(value: photo as? Photo)
         }
     }
     
@@ -44,7 +44,7 @@ class PhotoInfoViewModel: BaseViewModel, ViewModelStreamable{
         let photoService = self.service(type: PhotoService.self)!
         
         // Bindings.
-        self.input.photo
+        self.output.photo
             .unwrap()
             .flatMap { (photo) -> Observable<Statistics> in
                 return photoService.statisticizePhoto(id: photo.id!)
@@ -55,10 +55,6 @@ class PhotoInfoViewModel: BaseViewModel, ViewModelStreamable{
                 self.output.statistics.accept(statistics)
             })
             .disposed(by: self.disposeBag)
-
-        self.input.photo.bind(to: self.output.photo)
-            .disposed(by: self.disposeBag)
-        
     }
     
 }

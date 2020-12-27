@@ -38,14 +38,14 @@ class SideMenuProfileCollectionView: BaseView{
     override func buildSubviews() {
         super.buildSubviews()
         
-        // photoContainerView
+        // PhotoContainerView
         self.photoContainerView = UIView()
         self.addSubview(self.photoContainerView)
         self.photoContainerView.snp.makeConstraints { (make) in
             make.top.right.left.equalTo(self)
         }
         
-        // photoAImageView
+        // PhotoAImageView
         self.photoAImageView = UIImageView()
         self.photoAImageView.contentMode = .scaleAspectFill
         self.photoAImageView.backgroundColor = UIColor.blue
@@ -56,7 +56,7 @@ class SideMenuProfileCollectionView: BaseView{
             make.right.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(-2.0)
         }
         
-        // photoBImageView
+        // PhotoBImageView
         self.photoBImageView = UIImageView()
         self.photoBImageView.contentMode = .scaleAspectFill
         self.photoBImageView.backgroundColor = UIColor.blue
@@ -67,7 +67,7 @@ class SideMenuProfileCollectionView: BaseView{
             make.right.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(-2.0)
         }
         
-        // photoCImageView
+        // PhotoCImageView
         self.photoCImageView = UIImageView()
         self.photoCImageView.contentMode = .scaleAspectFill
         self.photoCImageView.backgroundColor = UIColor.blue
@@ -77,7 +77,7 @@ class SideMenuProfileCollectionView: BaseView{
             make.left.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(2.0)
         }
         
-        // titleLabel
+        // TitleLabel
         self.titleLabel = UILabel()
         self.titleLabel.textColor = ColorPalette.colorBlack
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 12)
@@ -88,7 +88,7 @@ class SideMenuProfileCollectionView: BaseView{
             make.top.equalTo(self.photoContainerView.snp.bottom).offset(7.0)
         }
         
-        // descriptionLabel
+        // DescriptionLabel
         self.descriptionLabel = UILabel()
         self.descriptionLabel.textColor = ColorPalette.colorGrayLight
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 12)
@@ -104,6 +104,7 @@ class SideMenuProfileCollectionView: BaseView{
         super.buildLogic()
         
         // Bindings.
+        // Collection.
         self.collection
             .unwrap()
             .subscribe(onNext:{ [weak self] (collection) in

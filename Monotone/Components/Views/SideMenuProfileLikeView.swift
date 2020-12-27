@@ -36,7 +36,7 @@ class SideMenuProfileLikeView: BaseView{
     override func buildSubviews() {
         super.buildSubviews()
         
-        // photoImageView
+        // PhotoImageView
         self.photoImageView = UIImageView()
         self.photoImageView.contentMode = .scaleAspectFill
         self.photoImageView.backgroundColor = UIColor.blue
@@ -46,7 +46,7 @@ class SideMenuProfileLikeView: BaseView{
             make.top.right.left.equalTo(self)
         }
         
-        // avatarImageView
+        // AvatarImageView
         self.avatarImageView = UIImageView()
         self.avatarImageView.contentMode = .scaleAspectFill
         self.avatarImageView.backgroundColor = UIColor.blue
@@ -60,7 +60,7 @@ class SideMenuProfileLikeView: BaseView{
             make.width.height.equalTo(24.0)
         }
         
-        // usernameLabel
+        // UsernameLabel
         self.usernameLabel = UILabel()
         self.usernameLabel.textColor = ColorPalette.colorBlack
         self.usernameLabel.font = UIFont.boldSystemFont(ofSize: 12)
@@ -71,7 +71,7 @@ class SideMenuProfileLikeView: BaseView{
             make.bottom.equalTo(self.avatarImageView.snp.centerY).offset(-2.0)
         }
         
-        // descriptionLabel
+        // DescriptionLabel
         self.descriptionLabel = UILabel()
         self.descriptionLabel.textColor = ColorPalette.colorGrayLight
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 12)
@@ -87,6 +87,7 @@ class SideMenuProfileLikeView: BaseView{
         super.buildLogic()
         
         // Bindings.
+        // Photo.
         self.photo
             .unwrap()
             .subscribe(onNext:{ [weak self] (photo) in

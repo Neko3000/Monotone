@@ -38,7 +38,7 @@ class PageTitleView: BaseView {
     override func buildSubviews() {
         super.buildSubviews()
         
-        // titleLabel.
+        // TitleLabel.
         self.titleLabel = UILabel()
         self.titleLabel.textColor = ColorPalette.colorBlack
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 26)
@@ -49,7 +49,7 @@ class PageTitleView: BaseView {
             make.top.equalTo(self)
         }
         
-        // subtitleLabel.
+        // SubtitleLabel.
         self.subtitleLabel = UILabel()
         self.subtitleLabel.textColor = ColorPalette.colorGrayLight
         self.subtitleLabel.font = UIFont.systemFont(ofSize: 12)
@@ -62,7 +62,7 @@ class PageTitleView: BaseView {
             make.bottom.equalTo(self)
         }
         
-        // horizontalLineShort.
+        // HorizontalLineShort.
         self.horizontalLineShort = UIView()
         self.horizontalLineShort.backgroundColor = ColorPalette.colorBlack
         self.addSubview(self.horizontalLineShort)
@@ -73,7 +73,7 @@ class PageTitleView: BaseView {
             make.height.equalTo(1.0)
         }
         
-        // horizontalLineLong.
+        // HorizontalLineLong.
         self.horizontalLineLong = UIView()
         self.horizontalLineLong.backgroundColor = ColorPalette.colorBlack
         self.addSubview(self.horizontalLineLong)
