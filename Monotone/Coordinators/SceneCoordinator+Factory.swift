@@ -24,7 +24,7 @@ extension SceneCoordinator: FactoryCoordinator{
             return vc
             
         case .home:
-            let vc = HomeViewController()
+            let vc = PhotoListViewController()
             let homeVM = self.viewModel(sceneContent:.home)!
             vc.bind(to: [homeVM])
 
@@ -110,7 +110,7 @@ extension SceneCoordinator: FactoryCoordinator{
             return vm
             
         case .home:
-            let vm: HomeViewModel = HomeViewModel(services: [PhotoService(),TopicService()], args: nil)
+            let vm: PhotoListViewModel = PhotoListViewModel(services: [PhotoService(),TopicService()], args: nil)
             return vm
             
         case .sideMenu:
@@ -138,10 +138,6 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case let .photoCreateCollection(args):
             let vm: PhotoCreateCollectionViewModel = PhotoCreateCollectionViewModel(services: [CollectionService()], args: args)
-            return vm
-            
-        case let .listPhotos(args):
-            let vm: ListPhotosViewModel = ListPhotosViewModel(services: [PhotoService()], args: args)
             return vm
             
         case let .searchPhotos(args):

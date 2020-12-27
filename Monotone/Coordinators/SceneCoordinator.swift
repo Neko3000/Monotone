@@ -36,7 +36,6 @@ enum SceneContent {
     case photoAddToCollection([String: Any?]?)
     case photoCreateCollection([String: Any?]?)
 
-    case listPhotos([String: Any?]?)
     case searchPhotos([String: Any?]?)
     case empty
 }

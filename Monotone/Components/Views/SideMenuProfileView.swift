@@ -232,7 +232,7 @@ extension SideMenuProfileView: ViewAnimatable{
     }
     
     // MARK: - Animation
-    // Animation for homeJumbotronView & homeHeaderView
+    // Animation for collectionView & likeView
     func animation(animationState: AnimationState) {
         switch animationState {
         case .showCollectionView:

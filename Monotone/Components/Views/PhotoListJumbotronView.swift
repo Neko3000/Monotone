@@ -1,5 +1,5 @@
 //
-//  HomeJumbotronView.swift
+//  PhotoListJumbotronView.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/2.
@@ -14,7 +14,7 @@ import RxSwift
 import RxRelay
 import RxSwiftExt
 
-class HomeJumbotronView: BaseView {
+class PhotoListJumbotronView: BaseView {
     
     // MARK: - Public
     public let listOrderBy: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)

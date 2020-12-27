@@ -1,5 +1,5 @@
 //
-//  HomeHeaderView.swift
+//  PhotoListHeaderView.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/15.
@@ -14,7 +14,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-class HomeHeaderView: BaseView {
+class PhotoListHeaderView: BaseView {
     
     // MARK: - Public
     public let searchQuery: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)

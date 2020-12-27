@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  PhotoListViewController.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/2.
@@ -17,12 +17,12 @@ import RxSwiftExt
 import anim
 import ViewAnimator
 
-// MARK: - HomeViewController
-class HomeViewController: BaseViewController {
+// MARK: - PhotoListViewController
+class PhotoListViewController: BaseViewController {
     
     // MARK: - Controls
-    private var homeJumbotronView: HomeJumbotronView!
-    private var homeHeaderView: HomeHeaderView!
+    private var jumbotronView: PhotoListJumbotronView!
+    private var headerView: PhotoListHeaderView!
         
     private var collectionView: UICollectionView!
     
@@ -48,19 +48,19 @@ class HomeViewController: BaseViewController {
         
         self.view.backgroundColor = ColorPalette.colorWhite
         
-        // HomeHeaderView.
-        self.homeHeaderView = HomeHeaderView()
-        self.view.addSubview(self.homeHeaderView)
-        self.homeHeaderView.snp.makeConstraints { (make) in
+        // PhotoListHeaderView.
+        self.headerView = PhotoListHeaderView()
+        self.view.addSubview(self.headerView)
+        self.headerView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self.view)
             make.height.equalTo(140.0)
             make.top.equalTo(self.view)
         }
         
-        // HomeJumbotronView.
-        self.homeJumbotronView = HomeJumbotronView()
-        self.view.addSubview(self.homeJumbotronView)
-        self.homeJumbotronView.snp.makeConstraints { (make) in
+        // PhotoListJumbotronView.
+        self.jumbotronView = PhotoListJumbotronView()
+        self.view.addSubview(self.jumbotronView)
+        self.jumbotronView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self.view)
             make.height.equalTo(256.0)
             make.top.equalTo(self.view)
@@ -96,24 +96,24 @@ class HomeViewController: BaseViewController {
     override func buildLogic() {
         
         // ViewModel.
-        let homeViewModel = self.viewModel(type:HomeViewModel.self)!
+        let photoListViewModel = self.viewModel(type:PhotoListViewModel.self)!
 
         // Bindings.
-        // HomeJumbotronView & HomeHeaderView
-        (self.homeJumbotronView.listOrderBy <=> homeViewModel.input.listOrderBy)
+        // PhotoListJumbotronView & PhotoListHeaderView
+        (self.jumbotronView.listOrderBy <=> photoListViewModel.input.listOrderBy)
             .disposed(by:self.disposeBag)
         
-        (self.homeHeaderView.listOrderBy <=> homeViewModel.input.listOrderBy)
+        (self.headerView.listOrderBy <=> photoListViewModel.input.listOrderBy)
             .disposed(by:self.disposeBag)
         
-        (self.homeHeaderView.searchQuery <=> homeViewModel.input.searchQuery)
+        (self.headerView.searchQuery <=> photoListViewModel.input.searchQuery)
             .disposed(by:self.disposeBag)
         
-        (self.homeHeaderView.topic <=> homeViewModel.input.topic)
+        (self.headerView.topic <=> photoListViewModel.input.topic)
             .disposed(by:self.disposeBag)
                 
         // CollectionView.
-        homeViewModel.output.photos
+        photoListViewModel.output.photos
             .bind(to: self.collectionView.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
                 (row, element, cell) in
                 
@@ -139,21 +139,21 @@ class HomeViewController: BaseViewController {
 
         // MJRefresh.
         self.collectionView.mj_header!.refreshingBlock = {
-            homeViewModel.input.reloadAction?.execute()
+            photoListViewModel.input.reloadAction?.execute()
         }
             
         self.collectionView.mj_footer!.refreshingBlock = {
-            homeViewModel.input.loadMoreAction?.execute()
+            photoListViewModel.input.loadMoreAction?.execute()
         }
         
-        homeViewModel.output.reloading
+        photoListViewModel.output.reloading
             .ignore(true)
             .subscribe { [weak self] (_) in
                 self?.collectionView.mj_header!.endRefreshing()
             }
             .disposed(by: self.disposeBag)
 
-        homeViewModel.output.loadingMore
+        photoListViewModel.output.loadingMore
             .ignore(true)
             .subscribe { [weak self] (_) in
                 guard let self = self else { return }
@@ -178,7 +178,7 @@ class HomeViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // First Loading - Latest.
-        self.homeJumbotronView.listOrderBy.accept("latest")
+        self.jumbotronView.listOrderBy.accept("latest")
     }
 
     /*
@@ -194,7 +194,7 @@ class HomeViewController: BaseViewController {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension HomeViewController: UICollectionViewDelegateFlowLayout{
+extension PhotoListViewController: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -208,7 +208,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
 }
 
 // MARK: - ViewControllerAnimatable
-extension HomeViewController: ViewControllerAnimatable{
+extension PhotoListViewController: ViewControllerAnimatable{
     
     // MARK: - Enums
     enum AnimationState {
@@ -217,7 +217,7 @@ extension HomeViewController: ViewControllerAnimatable{
     }
     
     // MARK: - Animation
-    // Animation for homeJumbotronView & homeHeaderView
+    // Animation for jumbotronView & headerView
     func animation(animationState: AnimationState) {
         switch animationState {
         case .showHeaderView:
@@ -227,7 +227,7 @@ extension HomeViewController: ViewControllerAnimatable{
                 animSettings.ease = .easeInOutQuart
                 
                 return {
-                    self.homeJumbotronView.alpha = 0
+                    self.jumbotronView.alpha = 0
                 }
             }
             
@@ -236,7 +236,7 @@ extension HomeViewController: ViewControllerAnimatable{
                 animSettings.ease = .easeInOutQuart
                 
                 return {
-                    self.homeJumbotronView.snp.updateConstraints({ (make) in
+                    self.jumbotronView.snp.updateConstraints({ (make) in
                         make.height.equalTo(140.0)
                     })
                     
@@ -254,7 +254,7 @@ extension HomeViewController: ViewControllerAnimatable{
                 animSettings.ease = .easeInOutQuart
                 
                 return {
-                    self.homeJumbotronView.alpha = 1
+                    self.jumbotronView.alpha = 1
                 }
             }
             
@@ -263,7 +263,7 @@ extension HomeViewController: ViewControllerAnimatable{
                 animSettings.ease = .easeInOutQuart
                 
                 return {
-                    self.homeJumbotronView.snp.updateConstraints({ (make) in
+                    self.jumbotronView.snp.updateConstraints({ (make) in
                         make.height.equalTo(256.0)
                     })
                     

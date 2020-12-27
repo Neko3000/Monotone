@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  PhotoListViewModel.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/19.
@@ -12,7 +12,7 @@ import RxRelay
 import Action
 import RxSwiftExt
 
-class HomeViewModel: BaseViewModel, ViewModelStreamable{
+class PhotoListViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
