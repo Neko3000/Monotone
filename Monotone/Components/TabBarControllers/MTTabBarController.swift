@@ -36,12 +36,11 @@ class MTTabBarController: BaseTabBarController {
         }
                 
         self.addBtn = UIButton()
-        self.addBtn.backgroundColor = ColorPalette.colorBlack
+        self.addBtn.setImage(UIImage(named: "add-item-btn"), for: .normal)
         self.view.addSubview(self.addBtn)
         self.addBtn.snp.makeConstraints { (make) in
             make.centerY.equalTo(self.tabBarBackgroundView.snp.top)
             make.centerX.equalTo(self.tabBarBackgroundView.snp.right).multipliedBy(3.5/4)
-            make.width.height.equalTo(50.0)
         }
         
     }
@@ -59,6 +58,9 @@ class MTTabBarController: BaseTabBarController {
             tabFrame.origin.y = self.view.frame.size.height - height
             self.tabBar.frame = tabFrame
         }
+        
+        self.updateTabBar()
+        
 
     }
 
@@ -70,6 +72,34 @@ class MTTabBarController: BaseTabBarController {
         tabFrame.size.height = 400
         tabFrame.origin.y = self.view.frame.size.height - 200
         self.tabBar.frame = tabFrame
+    }
+    
+    private func updateTabBar() {
+        let path = UIBezierPath(roundedRect: self.tabBarBackgroundView.bounds, cornerRadius: 0)
+        
+        let cropPath = UIBezierPath()
+        
+        let centerX = self.tabBarBackgroundView.bounds.width * (3.5/4)
+        let offsetX = self.addBtn.bounds.width / 2.0
+        let margin: CGFloat = 7.0
+        
+        let beginPoint = CGPoint(x: centerX - offsetX - margin, y: 0)
+        cropPath.move(to: beginPoint)
+        cropPath.addLine(to: CGPoint(x: centerX + offsetX + margin, y: 0))
+        cropPath.addLine(to: CGPoint(x: centerX, y: offsetX + margin))
+        cropPath.close()
+        
+        path.append(cropPath)
+        path.usesEvenOddFillRule = true
+        
+        let maskShapeLayer = CAShapeLayer()
+        maskShapeLayer.frame = self.tabBarBackgroundView.bounds
+        maskShapeLayer.fillRule = .evenOdd
+
+        maskShapeLayer.path = path.cgPath
+        // shapeLayer.fillRule = .evenOdd
+        
+        self.tabBarBackgroundView.layer.mask = maskShapeLayer
     }
 
     /*
