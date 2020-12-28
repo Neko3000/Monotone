@@ -24,9 +24,9 @@ extension SceneCoordinator: FactoryCoordinator{
             return vc
             
         case .tabBar:
-            let tabBarController = UITabBarController()
+            let tabBarController = MTTabBarController()
             
-            let vc1TabbarItem = UITabBarItem(title: "i am vc1",
+            let vc1TabbarItem = UITabBarItem(title: nil,
                                              image: UIImage(named: "profile-collection"),
                                              selectedImage: UIImage(named: "profile-view-selected"))
             
@@ -34,7 +34,7 @@ extension SceneCoordinator: FactoryCoordinator{
             vc1.tabBarItem = vc1TabbarItem
             vc1.view.backgroundColor = UIColor.purple
             
-            let vc2TabbarItem = UITabBarItem(title: "i am vc2",
+            let vc2TabbarItem = UITabBarItem(title: nil,
                                              image: UIImage(named: "profile-like"),
                                              selectedImage: UIImage(named: "profile-like-selected"))
             

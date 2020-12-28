@@ -148,7 +148,7 @@ class PhotoListJumbotronView: BaseView {
             .disposed(by: self.disposeBag)
         
         // MenuBtn.
-        self.menuBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+        self.menuBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
             guard let self = self else { return }
             
             self.menuBtnPressed.accept(Void())
@@ -156,7 +156,7 @@ class PhotoListJumbotronView: BaseView {
         .disposed(by: self.disposeBag)
         
         // SearchBtn.
-        self.searchBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+        self.searchBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
             guard let self = self else { return }
             
             self.searchBtnPressed.accept(Void())

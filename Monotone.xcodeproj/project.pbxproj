@@ -46,7 +46,7 @@
 		14109A9D25620B150094BDA7 /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14109A9C25620B150094BDA7 /* MTTextField.swift */; };
 		141591D0255E53FE00179ED5 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141591CF255E53FE00179ED5 /* BaseCoordinator.swift */; };
 		1420AC16258B3D2C0095FD2E /* SceneCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420AC15258B3D2C0095FD2E /* SceneCoordinator+Factory.swift */; };
-		1420B298258B72420095FD2E /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B297258B72410095FD2E /* UIImage+Resize.swift */; };
+		1420B298258B72420095FD2E /* UIImage+Reformat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B297258B72410095FD2E /* UIImage+Reformat.swift */; };
 		1420B2B0258B7F4C0095FD2E /* CapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B2AF258B7F4C0095FD2E /* CapsuleView.swift */; };
 		1420B2B5258B916C0095FD2E /* Sponsorship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B2B4258B916C0095FD2E /* Sponsorship.swift */; };
 		1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423A4DC254BA121009DEEA1 /* BaseViewController.swift */; };
@@ -109,6 +109,8 @@
 		14D5E8F1254A589D0021FE3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8EF254A589D0021FE3E /* Main.storyboard */; };
 		14D5E8F3254A589E0021FE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8F2254A589E0021FE3E /* Assets.xcassets */; };
 		14D5E8F6254A589E0021FE3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5E8F4254A589E0021FE3E /* LaunchScreen.storyboard */; };
+		14D7DBCD2599A39B001BF0CB /* MTTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D7DBCC2599A39B001BF0CB /* MTTabBarController.swift */; };
+		14D7DBD12599A3D4001BF0CB /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D7DBD02599A3D4001BF0CB /* BaseTabBarController.swift */; };
 		14DE10AE2592D9C700503FB0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE10AD2592D9C700503FB0 /* UserManager.swift */; };
 		14E3ACCF257383F4000297CF /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3ACCE257383F4000297CF /* CapsuleButton.swift */; };
 		14E3ACD325738413000297CF /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3ACD225738413000297CF /* BaseButton.swift */; };
@@ -194,7 +196,7 @@
 		14109A9C25620B150094BDA7 /* MTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTextField.swift; sourceTree = "<group>"; };
 		141591CF255E53FE00179ED5 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		1420AC15258B3D2C0095FD2E /* SceneCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneCoordinator+Factory.swift"; sourceTree = "<group>"; };
-		1420B297258B72410095FD2E /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		1420B297258B72410095FD2E /* UIImage+Reformat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Reformat.swift"; sourceTree = "<group>"; };
 		1420B2AF258B7F4C0095FD2E /* CapsuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapsuleView.swift; sourceTree = "<group>"; };
 		1420B2B4258B916C0095FD2E /* Sponsorship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sponsorship.swift; sourceTree = "<group>"; };
 		1423A4DC254BA121009DEEA1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +266,8 @@
 		14D5E8F2254A589E0021FE3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14D5E8F5254A589E0021FE3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14D5E8F7254A589E0021FE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14D7DBCC2599A39B001BF0CB /* MTTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTabBarController.swift; sourceTree = "<group>"; };
+		14D7DBD02599A3D4001BF0CB /* BaseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		14DE10AD2592D9C700503FB0 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		14E3ACCE257383F4000297CF /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		14E3ACD225738413000297CF /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
@@ -494,10 +498,11 @@
 		143114BB255A77CC00991676 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				14D7DBCF2599A3AD001BF0CB /* TabBarControllers */,
+				141591DA255E579D00179ED5 /* NavigationControllers */,
 				14E3ACD1257383FC000297CF /* Buttons */,
 				14F9936325709E9F00BF2D57 /* ScrollView */,
 				14109A9725620AF80094BDA7 /* TextFields */,
-				141591DA255E579D00179ED5 /* NavigationControllers */,
 				143FB157255BAE2D00D24248 /* Views */,
 				143FB158255BAE3400D24248 /* Cells */,
 			);
@@ -678,6 +683,15 @@
 			path = Monotone;
 			sourceTree = "<group>";
 		};
+		14D7DBCF2599A3AD001BF0CB /* TabBarControllers */ = {
+			isa = PBXGroup;
+			children = (
+				14D7DBD02599A3D4001BF0CB /* BaseTabBarController.swift */,
+				14D7DBCC2599A39B001BF0CB /* MTTabBarController.swift */,
+			);
+			path = TabBarControllers;
+			sourceTree = "<group>";
+		};
 		14E3ACD1257383FC000297CF /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,7 +719,7 @@
 				1406E9E4257A04370096DE82 /* CALayer+SketchShadow.swift */,
 				14842D50257DF5E900364FFF /* UIView+Border.swift */,
 				14FD9B67257F4E0C00DEC579 /* String+Split.swift */,
-				1420B297258B72410095FD2E /* UIImage+Resize.swift */,
+				1420B297258B72410095FD2E /* UIImage+Reformat.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -989,6 +1003,7 @@
 				1441D8042591C2A7000D49D1 /* GetMineProfileRequest.swift in Sources */,
 				14842D51257DF5E900364FFF /* UIView+Border.swift in Sources */,
 				149325052585FB34006EB8E3 /* AddToCollectionRequest.swift in Sources */,
+				14D7DBD12599A3D4001BF0CB /* BaseTabBarController.swift in Sources */,
 				14009AFC2575D69200C70E6E /* HomeViewController.swift in Sources */,
 				14FD83CB2567F7CD00D5B575 /* BlurHashEncode.swift in Sources */,
 				1428403A2564BBB1004C06DF /* ListTopicsResponse.swift in Sources */,
@@ -1028,6 +1043,7 @@
 				14F36FB0254D53940086B8CC /* NetworkManager.swift in Sources */,
 				140912FC2571333800EEC157 /* BaseScrollView.swift in Sources */,
 				14842E32257E003100364FFF /* PhotoCreateCollectionViewController.swift in Sources */,
+				14D7DBCD2599A39B001BF0CB /* MTTabBarController.swift in Sources */,
 				14071B1125654A4900D418C8 /* Location.swift in Sources */,
 				14BE99FE256A623400B0DB39 /* GetTopicPhotosRequest.swift in Sources */,
 				14F3707A254EA9300086B8CC /* BaseRequest.swift in Sources */,
@@ -1042,7 +1058,7 @@
 				149325082585FC20006EB8E3 /* AddToCollectionResponse.swift in Sources */,
 				14842C70257DD08100364FFF /* ListUserCollectionsResponse.swift in Sources */,
 				14F37083254ED2F60086B8CC /* SearchPhotosRequest.swift in Sources */,
-				1420B298258B72420095FD2E /* UIImage+Resize.swift in Sources */,
+				1420B298258B72420095FD2E /* UIImage+Reformat.swift in Sources */,
 				14009CAF2577629500C70E6E /* Historical.swift in Sources */,
 				141591D0255E53FE00179ED5 /* BaseCoordinator.swift in Sources */,
 				14014DEE2581C46300746563 /* AuthCredential.swift in Sources */,

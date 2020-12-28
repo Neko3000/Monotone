@@ -30,6 +30,7 @@ class PhotoListViewController: BaseViewController {
     private var headerView: PhotoListHeaderView!
         
     private var collectionView: UICollectionView!
+    private var toTabBarBtn: UIButton!
     
     // MARK: - Priavte
     private let disposeBag: DisposeBag = DisposeBag()
@@ -96,6 +97,15 @@ class PhotoListViewController: BaseViewController {
         let footer = MJRefreshAutoNormalFooter()
         footer.stateLabel!.font = UIFont.systemFont(ofSize: 12)
         self.collectionView.mj_footer = footer
+        
+        // ToTabBarBtn.
+        self.toTabBarBtn = UIButton()
+        self.toTabBarBtn.setImage(UIImage(named: "to-tabbar-btn"), for: .normal)
+        self.view.addSubview(self.toTabBarBtn)
+        self.toTabBarBtn.snp.makeConstraints { (make) in
+            make.right.equalTo(self.view).offset(-30.0);
+            make.bottom.equalTo(self.view).offset(-46.0);
+        }
     }
     
     override func buildLogic() {
@@ -181,6 +191,12 @@ class PhotoListViewController: BaseViewController {
                 self.animation(animationState: animationState)
             })
             .disposed(by: self.disposeBag)
+        
+        // ToTabBarBtn.
+        self.toTabBarBtn.rx.tap.subscribe(onNext: { (_) in
+            SceneCoordinator.shared.transition(type: .present(.tabBar, .fullScreen), with: nil, animated: true)
+        })
+        .disposed(by: self.disposeBag)
         
         // MenuBtnPressed.
         self.jumbotronView.menuBtnPressed
