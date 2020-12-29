@@ -48,7 +48,7 @@ class SideMenuProfileCollectionView: BaseView{
         // PhotoAImageView
         self.photoAImageView = UIImageView()
         self.photoAImageView.contentMode = .scaleAspectFill
-        self.photoAImageView.backgroundColor = UIColor.blue
+        self.photoAImageView.backgroundColor = ColorPalette.colorGrayLighter
         self.photoContainerView.addSubview(self.photoAImageView)
         self.photoAImageView.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.photoContainerView)
@@ -59,7 +59,7 @@ class SideMenuProfileCollectionView: BaseView{
         // PhotoBImageView
         self.photoBImageView = UIImageView()
         self.photoBImageView.contentMode = .scaleAspectFill
-        self.photoBImageView.backgroundColor = UIColor.blue
+        self.photoBImageView.backgroundColor = ColorPalette.colorGrayLighter
         self.photoContainerView.addSubview(self.photoBImageView)
         self.photoBImageView.snp.makeConstraints { (make) in
             make.left.bottom.equalTo(self.photoContainerView)
@@ -70,7 +70,7 @@ class SideMenuProfileCollectionView: BaseView{
         // PhotoCImageView
         self.photoCImageView = UIImageView()
         self.photoCImageView.contentMode = .scaleAspectFill
-        self.photoCImageView.backgroundColor = UIColor.blue
+        self.photoCImageView.backgroundColor = ColorPalette.colorGrayLighter
         self.photoContainerView.addSubview(self.photoCImageView)
         self.photoCImageView.snp.makeConstraints { (make) in
             make.top.right.bottom.equalTo(self.photoContainerView)

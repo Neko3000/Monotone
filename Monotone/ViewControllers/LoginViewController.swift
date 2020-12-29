@@ -151,7 +151,6 @@ class LoginViewController: BaseViewController {
             .ignore(false)
             .subscribe(onNext:{ (_) in
                 SceneCoordinator.shared.transition(type: .root(.home), with: nil)
-//                SceneCoordinator.shared.transition(type: .root(.sideMenu), with: nil)
             })
             .disposed(by: self.disposeBag)
         

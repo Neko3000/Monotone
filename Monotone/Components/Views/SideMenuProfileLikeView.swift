@@ -39,7 +39,7 @@ class SideMenuProfileLikeView: BaseView{
         // PhotoImageView
         self.photoImageView = UIImageView()
         self.photoImageView.contentMode = .scaleAspectFill
-        self.photoImageView.backgroundColor = UIColor.blue
+        self.photoImageView.backgroundColor = ColorPalette.colorGrayLighter
         self.photoImageView.layer.masksToBounds = true
         self.addSubview(self.photoImageView)
         self.photoImageView.snp.makeConstraints { (make) in
@@ -49,7 +49,7 @@ class SideMenuProfileLikeView: BaseView{
         // AvatarImageView
         self.avatarImageView = UIImageView()
         self.avatarImageView.contentMode = .scaleAspectFill
-        self.avatarImageView.backgroundColor = UIColor.blue
+        self.avatarImageView.backgroundColor = ColorPalette.colorGrayLighter
         self.avatarImageView.layer.cornerRadius = 12.0
         self.avatarImageView.layer.masksToBounds = true
         self.addSubview(self.avatarImageView)
@@ -68,7 +68,7 @@ class SideMenuProfileLikeView: BaseView{
         self.addSubview(self.usernameLabel)
         self.usernameLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.avatarImageView.snp.right).offset(10.0)
-            make.bottom.equalTo(self.avatarImageView.snp.centerY).offset(-2.0)
+            make.top.equalTo(self.avatarImageView)
         }
         
         // DescriptionLabel
@@ -79,7 +79,7 @@ class SideMenuProfileLikeView: BaseView{
         self.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.avatarImageView.snp.right).offset(10.0)
-            make.top.equalTo(self.avatarImageView.snp.centerY).offset(2.0)
+            make.top.equalTo(self.usernameLabel.snp.bottom).offset(2.0)
         }
     }
     

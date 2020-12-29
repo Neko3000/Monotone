@@ -53,7 +53,7 @@ class SideMenuProfileView: BaseView{
         // AvatarImageView.
         self.avatarImageView = UIImageView()
         self.avatarImageView.contentMode = .scaleAspectFill
-        self.avatarImageView.backgroundColor = UIColor.blue
+        self.avatarImageView.backgroundColor = ColorPalette.colorGrayLighter
         self.avatarImageView.layer.cornerRadius = 42.0
         self.avatarImageView.layer.masksToBounds = true
         self.addSubview(self.avatarImageView)
