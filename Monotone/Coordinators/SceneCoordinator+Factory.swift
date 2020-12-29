@@ -26,25 +26,54 @@ extension SceneCoordinator: FactoryCoordinator{
         case .tabBar:
             let tabBarController = MTTabBarController()
             
+            // vc1
             let vc1TabbarItem = UITabBarItem(title: nil,
-                                             image: UIImage(named: "profile-collection"),
-                                             selectedImage: UIImage(named: "profile-view-selected"))
+                                             image: UIImage(named: "tabbar-shop"),
+                                             selectedImage: UIImage(named: "tabbar-shop-selected"))
             
             let vc1 = UIViewController()
             vc1.tabBarItem = vc1TabbarItem
             vc1.view.backgroundColor = UIColor.purple
+            let nav1 = UINavigationController(rootViewController: vc1)
             
+            
+            // vc2
             let vc2TabbarItem = UITabBarItem(title: nil,
-                                             image: UIImage(named: "profile-like"),
-                                             selectedImage: UIImage(named: "profile-like-selected"))
+                                             image: UIImage(named: "tabbar-wallpaper"),
+                                             selectedImage: UIImage(named: "tabbar-wallpaper-selected"))
             
             let vc2 = UIViewController()
             vc2.tabBarItem = vc2TabbarItem
             vc2.view.backgroundColor = UIColor.yellow
+            let nav2 = UINavigationController(rootViewController: vc2)
+
+            
+            // vc3
+            let vc3TabbarItem = UITabBarItem(title: nil,
+                                             image: UIImage(named: "tabbar-collection"),
+                                             selectedImage: UIImage(named: "tabbar-collection-selected"))
+            
+            let vc3 = UIViewController()
+            vc3.tabBarItem = vc3TabbarItem
+            vc3.view.backgroundColor = UIColor.magenta
+            let nav3 = UINavigationController(rootViewController: vc3)
+            
+            
+            // vc4
+            let vc4TabbarItem = UITabBarItem(title: nil,
+                                             image: UIImage(named: "tabbar-explore"),
+                                             selectedImage: UIImage(named: "tabbar-explore-selected"))
+            
+            let vc4 = UIViewController()
+            vc4.tabBarItem = vc4TabbarItem
+            vc4.view.backgroundColor = UIColor.orange
+            let nav4 = UINavigationController(rootViewController: vc4)
             
             tabBarController.viewControllers = [
-                vc1,
-                vc2
+                nav1,
+                nav2,
+                nav3,
+                nav4
             ]
             
             return tabBarController

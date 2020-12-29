@@ -66,12 +66,7 @@ class MTTabBarController: BaseTabBarController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
-        var tabFrame = self.tabBar.frame
-        tabFrame.size.width = 200
-        tabFrame.size.height = 400
-        tabFrame.origin.y = self.view.frame.size.height - 200
-        self.tabBar.frame = tabFrame
+        
     }
     
     private func updateTabBar() {
