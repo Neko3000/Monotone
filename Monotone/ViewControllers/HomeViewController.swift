@@ -22,6 +22,7 @@ class HomeViewController: BaseViewController {
     private var menuBtn: UIButton!
     
     // MARK: - Private
+    private var animationState: AnimationState = .showPhotoList
     private var swipeGestureRecognizer: UISwipeGestureRecognizer!
     
     private let disposeBag: DisposeBag = DisposeBag()
@@ -83,6 +84,7 @@ class HomeViewController: BaseViewController {
         // Bindings.
         // SwipeGestureRecognizer.
         self.swipeGestureRecognizer.rx.event
+            .ignoreWhen({ _ in self.animationState == .showPhotoList })
             .subscribe(onNext: { [weak self] recognizer in
                 guard let self = self else { return }
                 
@@ -92,6 +94,7 @@ class HomeViewController: BaseViewController {
         
         //
         self.photoListViewController.menuBtnPressed
+            .ignoreWhen({ _ in self.animationState == .showSideMenu })
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 
@@ -116,6 +119,7 @@ extension HomeViewController: ViewControllerAnimatable{
     func animation(animationState: AnimationState) {
         switch animationState {
         case .showPhotoList:
+            self.animationState = .showPhotoList
             
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 0.5
@@ -147,6 +151,7 @@ extension HomeViewController: ViewControllerAnimatable{
             
             break
         case .showSideMenu:
+            self.animationState = .showSideMenu
             
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 0.5

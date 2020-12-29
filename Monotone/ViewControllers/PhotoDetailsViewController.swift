@@ -32,6 +32,8 @@ class PhotoDetailsViewController: BaseViewController {
     private var photoShareViewController: PhotoShareViewController!
     
     // MARK: - Priavte
+    private var animationState: AnimationState = .normal
+
     private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: - Life Cycle
@@ -217,9 +219,13 @@ class PhotoDetailsViewController: BaseViewController {
             .subscribe(onNext: { [weak self] (_) in
                 guard let self = self else { return }
                 
-                self.expandBtn.isSelected = !self.expandBtn.isSelected
-                self.animation(animationState: self.expandBtn.isSelected ? .expanded: .normal)
-                self.scrollView.adjustZoomScale(scaleToFill: self.expandBtn.isSelected, animated: true)
+                if(self.animationState == .normal){
+                    self.animation(animationState: .expanded)
+                }
+                else if(self.animationState == .expanded){
+                    self.animation(animationState: .normal)
+                }
+                
             })
             .disposed(by: self.disposeBag)
         
@@ -250,8 +256,11 @@ extension PhotoDetailsViewController: ViewControllerAnimatable{
     func animation(animationState: AnimationState) {
         switch animationState {
         case .normal:
+            self.animationState = .normal
             
+            self.expandBtn.isSelected = true
             self.userCapsuleView.backgroundStyle = .normal
+            self.scrollView.adjustZoomScale(scaleToFill: true, animated: true)
             
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 0.5
@@ -284,8 +293,11 @@ extension PhotoDetailsViewController: ViewControllerAnimatable{
             
             break
         case .expanded:
+            self.animationState = .expanded
             
+            self.expandBtn.isSelected = false
             self.userCapsuleView.backgroundStyle = .blur
+            self.scrollView.adjustZoomScale(scaleToFill: false, animated: true)
 
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 0.5

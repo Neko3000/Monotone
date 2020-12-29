@@ -36,6 +36,7 @@ class SideMenuProfileView: BaseView{
 //    private var enterBtn: UIButton!
         
     // MARK: - Private
+    private var animationState: AnimationState = .showCollectionView
     private let disposeBag: DisposeBag = DisposeBag()
     
     /*
@@ -65,7 +66,7 @@ class SideMenuProfileView: BaseView{
         self.usernameLabel = UILabel()
         self.usernameLabel.textColor = ColorPalette.colorBlack
         self.usernameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        self.usernameLabel.text = "Joan Notinghham"
+        self.usernameLabel.text = "nil"
         self.addSubview(self.usernameLabel)
         self.usernameLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.avatarImageView.snp.right).offset(20.0)
@@ -129,7 +130,7 @@ class SideMenuProfileView: BaseView{
         // CollectionBtn.
         self.collectionBtn = UIButton()
         self.collectionBtn.isSelected = true
-        self.collectionBtn.setTitle("21 Collections", for: .normal)
+        self.collectionBtn.setTitle("0 Collections", for: .normal)
         self.collectionBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         self.collectionBtn.imageEdgeInsets = UIEdgeInsets(top: -2.0, left: 0, bottom: 2.0, right: 0)
         self.collectionBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
@@ -145,6 +146,7 @@ class SideMenuProfileView: BaseView{
         // LikeBtn.
         self.likeBtn = UIButton()
         self.likeBtn.isSelected = false
+        self.likeBtn.setTitle("0 Collections", for: .normal)
         self.likeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         self.likeBtn.imageEdgeInsets = UIEdgeInsets(top: -2.0, left: 0, bottom: 2.0, right: 0)
         self.likeBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
@@ -197,9 +199,9 @@ class SideMenuProfileView: BaseView{
             .bind(to: self.likeView.photo)
             .disposed(by: self.disposeBag)
 
-        // Tap.
+        // Animation.
         self.collectionBtn.rx.tap
-            .ignoreWhen({ self.collectionBtn.isSelected })
+            .ignoreWhen({ self.animationState == .showCollectionView })
             .subscribe { [weak self] (_) in
                 guard let self = self else { return }
                 self.collectionBtn.isSelected = true
@@ -210,7 +212,7 @@ class SideMenuProfileView: BaseView{
             .disposed(by: self.disposeBag)
         
         self.likeBtn.rx.tap
-            .ignoreWhen({ self.likeBtn.isSelected })
+            .ignoreWhen({ self.animationState == .showLikeView })
             .subscribe { [weak self] (_) in
                 guard let self = self else { return }
                 self.likeBtn.isSelected = true
@@ -236,6 +238,7 @@ extension SideMenuProfileView: ViewAnimatable{
     func animation(animationState: AnimationState) {
         switch animationState {
         case .showCollectionView:
+            self.animationState = .showCollectionView
             
             anim(constraintParent: self) { (animSettings) -> animClosure in
                 animSettings.duration = 0.5
@@ -260,6 +263,7 @@ extension SideMenuProfileView: ViewAnimatable{
             break
             
         case .showLikeView:
+            self.animationState = .showLikeView
             
             anim(constraintParent: self) { (animSettings) -> animClosure in
                 animSettings.duration = 0.5

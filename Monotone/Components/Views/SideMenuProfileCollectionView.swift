@@ -81,7 +81,7 @@ class SideMenuProfileCollectionView: BaseView{
         self.titleLabel = UILabel()
         self.titleLabel.textColor = ColorPalette.colorBlack
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 12)
-        self.titleLabel.text = "Misc"
+        self.titleLabel.text = "nil"
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self)
@@ -92,7 +92,7 @@ class SideMenuProfileCollectionView: BaseView{
         self.descriptionLabel = UILabel()
         self.descriptionLabel.textColor = ColorPalette.colorGrayLight
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 12)
-        self.descriptionLabel.text = "1 photos · Curated by Joan"
+        self.descriptionLabel.text = "0 photos · Curated by nil"
         self.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
             make.left.bottom.equalTo(self)
