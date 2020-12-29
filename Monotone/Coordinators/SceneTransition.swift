@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 enum SceneTransition{
-    case root(Scene)
-    case push(Scene)
-    case present(Scene, UIModalPresentationStyle)
+    case root(scene: Scene, wrapped: Bool = false)
+    case push(scene: Scene)
+    case present(scene: Scene, presentationStyle: UIModalPresentationStyle = .fullScreen, warpped: Bool = false)
 }

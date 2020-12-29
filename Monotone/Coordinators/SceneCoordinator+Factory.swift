@@ -134,6 +134,13 @@ extension SceneCoordinator: FactoryCoordinator{
             vc.bind(to: [photoCreateCollectionVM])
             
             return vc
+            
+        case let .myPhotos:
+            let vc = MyPhotosViewController()
+            let myPhotosVM = self.viewModel(sceneContent: .myPhotos)!
+            vc.bind(to: [myPhotosVM])
+            
+            return vc
 
         }
     }
@@ -178,6 +185,10 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case let .photoCreateCollection(args):
             let vm: PhotoCreateCollectionViewModel = PhotoCreateCollectionViewModel(services: [CollectionService()], args: args)
+            return vm
+            
+        case .myPhotos:
+            let vm: MyPhotosViewModel = MyPhotosViewModel(services: [UserService()], args: nil)
             return vm
             
         case let .searchPhotos(args):

@@ -32,6 +32,42 @@ class UserService: NetworkService {
             return Disposables.create()
         }
     }
+    
+    public func listUserPhotos(username:String,
+                               page:Int? = 1,
+                               perPage:Int? = 10,
+                               orderBy:String? = "latest",
+                               stats:Bool? = false,
+                               resolution:String? = "days",
+                               quantity:Int? = 30,
+                               orientation:String? = nil) -> Observable<[Photo]>{
+        let request: ListUserPhotosRequest = ListUserPhotosRequest()
+        request.username = username
+        request.page = page
+        request.perPage = perPage
+        request.orderBy = orderBy
+        request.stats = stats
+        request.resolution = resolution
+        request.quantity = quantity
+        request.orientation = orientation
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request, method: .get).subscribe { (json) in
+                let response = ListUserPhotosResponse(JSON: json)
+                let photos = response!.results!
+                
+                observer.onNext(photos)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
 
     public func listUserCollections(username:String,
                                     page:Int? = 1,

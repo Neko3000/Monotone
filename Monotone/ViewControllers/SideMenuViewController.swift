@@ -99,8 +99,35 @@ class SideMenuViewController: BaseViewController {
             .bind(to: self.profileView.photos)
             .disposed(by: self.disposeBag)
         
-        //
+        // Pages.
         sideMenuViewModel.input.pages.accept(SideMenuPageVars.pages)
+        
+        // SelectedPage.
+        pageView.selectedPage
+            .unwrap()
+            .subscribe(onNext: { (keyValuePair) in
+                
+                switch keyValuePair.key{
+                case .myPhotos:
+                    SceneCoordinator.shared.transition(type: .present(scene: .myPhotos, warpped: true),
+                                                       with: nil,
+                                                       animated: true)
+                    break
+                    
+                case .hiring:
+                    break
+                    
+                case .licenses:
+                    break
+                    
+                case .help:
+                    break
+                    
+                case .madeWithUnsplash:
+                    break
+                }
+            })
+            .disposed(by: self.disposeBag)
         
     }
     

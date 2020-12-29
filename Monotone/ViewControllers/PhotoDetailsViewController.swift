@@ -166,7 +166,7 @@ class PhotoDetailsViewController: BaseViewController {
                     "photo" : photo
                 ] as [String : Any?]
 
-                self.transition(type: .present(.photoInfo(args), .pageSheet), with: nil, animated: true)
+                self.transition(type: .present(scene: .photoInfo(args), presentationStyle: .pageSheet), with: nil, animated: true)
 //                self.transition(type: .push(.photoInfo(args)), with: nil)
             })
             .disposed(by: self.disposeBag)
@@ -182,7 +182,7 @@ class PhotoDetailsViewController: BaseViewController {
                     "photo" : photo
                 ] as [String : Any?]
 
-                self.transition(type: .present(.photoShare(args), .pageSheet), with: nil, animated: true)
+                self.transition(type: .present(scene: .photoShare(args), presentationStyle: .pageSheet), with: nil, animated: true)
             })
             .disposed(by: self.disposeBag)
         
@@ -210,7 +210,7 @@ class PhotoDetailsViewController: BaseViewController {
                     "photo": photoDetailsViewModel.output.photo.value
                 ] as [String : Any?]
 
-                self.transition(type: .present(.photoAddToCollection(args), .pageSheet), with: nil, animated: true)
+                self.transition(type: .present(scene: .photoAddToCollection(args), presentationStyle: .pageSheet), with: nil, animated: true)
             })
             .disposed(by: self.disposeBag)
         

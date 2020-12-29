@@ -23,6 +23,8 @@ enum Scene {
     case photoShare([String: Any?]?)
     case photoAddToCollection([String: Any?]?)
     case photoCreateCollection([String: Any?]?)
+    
+    case myPhotos
 }
 
 // MARK: - SceneContent
@@ -37,6 +39,8 @@ enum SceneContent {
     case photoShare([String: Any?]?)
     case photoAddToCollection([String: Any?]?)
     case photoCreateCollection([String: Any?]?)
+    
+    case myPhotos
 
     case searchPhotos([String: Any?]?)
     case empty
@@ -113,9 +117,17 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             }
             break
         
-        case let .root(scene):
+        case let .root(scene,wrapped):
             
-            let targetVC = self.viewController(scene: scene)!
+            var targetVC = self.viewController(scene: scene)!
+            
+            if(wrapped){
+                let navigationController = MTNavigationController(rootViewController: targetVC)
+                
+                self.configureNavBar(navigationController: navigationController)
+                
+                targetVC = navigationController
+            }
             
             self.currentViewController = SceneCoordinator.actualViewController(for: targetVC)
             self.window.rootViewController = targetVC
@@ -124,10 +136,18 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             
             break
             
-        case let .present(scene,presetationStyle):
+        case let .present(scene,presetationStyle,wrapped):
             
-            let targetVC = self.viewController(scene: scene)!
-            targetVC.modalPresentationStyle = presetationStyle
+            var targetVC = self.viewController(scene: scene)!
+            
+            if(wrapped){
+                let navigationController = MTNavigationController(rootViewController: targetVC)
+                navigationController.modalPresentationStyle = presetationStyle
+                
+                self.configureNavBar(navigationController: navigationController)
+                
+                targetVC = navigationController
+            }
         
             currentViewController?.present(targetVC, animated: animated, completion: {
                 subject.onCompleted()
@@ -146,18 +166,8 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     func pop(animated: Bool = false) -> Observable<Void>{
         let subject = PublishSubject<Void>()
 
-        if let presentingViewController = self.currentViewController?.presentingViewController{
-            
-            self.currentViewController?.dismiss(animated: true, completion: {
-                self.currentViewController = SceneCoordinator.actualViewController(for: presentingViewController)
-                
-                if let vc = presentingViewController as? ViewControllerPresentable{
-                    vc.didDismissPresentingViewController(presentationController: presentingViewController.presentationController)
-                }
-            })
-            
-        }
-        else if let navigationController = self.currentViewController?.navigationController{
+        if let navigationController = self.currentViewController?.navigationController,
+           navigationController.viewControllers.count > 1{
             
             _ = navigationController.rx.delegate
                 .sentMessage(#selector(navigationController(_:didShow:animated:)))
@@ -167,6 +177,17 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             guard navigationController.popViewController(animated: animated) != nil else{
                 fatalError("Could not navigate back from current view controller.")
             }
+        }
+        else if let presentingViewController = self.currentViewController?.presentingViewController{
+            
+            self.currentViewController?.dismiss(animated: true, completion: {
+                self.currentViewController = SceneCoordinator.actualViewController(for: presentingViewController)
+                
+                if let vc = presentingViewController as? ViewControllerPresentable{
+                    vc.didDismissPresentingViewController(presentationController: presentingViewController.presentationController)
+                }
+            })
+            
         }
         else{
             fatalError("Could not pop back from current view controller.")

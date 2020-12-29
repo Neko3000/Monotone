@@ -17,6 +17,7 @@ class SideMenuPageView: BaseView{
     
     // MARK: - Public
     public var pages: BehaviorRelay<[(key:SideMenuPage,value:String)]?> = BehaviorRelay<[(key:SideMenuPage,value:String)]?>(value: nil)
+    public var selectedPage: BehaviorRelay<(key:SideMenuPage,value:String)?> = BehaviorRelay<(key:SideMenuPage,value:String)?>(value: nil)
 
     // MARK: - Controls
     private var tableView: UITableView!
@@ -111,6 +112,14 @@ class SideMenuPageView: BaseView{
 
             }
             .disposed(by: self.disposeBag)
+        
+        self.tableView.rx.modelSelected((key:SideMenuPage,value:String).self)
+            .subscribe(onNext:{ [weak self] (keyValuePair) in
+                guard let self = self else { return }
+                
+                self.selectedPage.accept(keyValuePair)
+
+            }).disposed(by: self.disposeBag)
     }
 }
 

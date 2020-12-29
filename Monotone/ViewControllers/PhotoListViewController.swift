@@ -148,7 +148,7 @@ class PhotoListViewController: BaseViewController {
                 ] as [String : Any?]
 
 //                self.transition(type: .present(.photoDetails(args), .fullScreen), with: nil)
-                self.transition(type: .push(.photoDetails(args)), with: nil, animated: true)
+                self.transition(type: .push(scene: .photoDetails(args)), with: nil, animated: true)
 
             }).disposed(by: self.disposeBag)
 
@@ -194,7 +194,7 @@ class PhotoListViewController: BaseViewController {
         
         // ToTabBarBtn.
         self.toTabBarBtn.rx.tap.subscribe(onNext: { (_) in
-            SceneCoordinator.shared.transition(type: .present(.tabBar, .fullScreen), with: nil, animated: true)
+            SceneCoordinator.shared.transition(type: .present(scene: .tabBar), with: nil, animated: true)
         })
         .disposed(by: self.disposeBag)
         
