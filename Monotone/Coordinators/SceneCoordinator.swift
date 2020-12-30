@@ -219,15 +219,17 @@ extension SceneCoordinator: UITabBarControllerDelegate{
 
 // MARK: - UINavigationControllerDelegate
 extension SceneCoordinator: UINavigationControllerDelegate{
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        self.currentViewController = SceneCoordinator.actualViewController(for: viewController)
-        
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if let topVC = viewController as? BaseViewController,
            let navVC = navigationController as? BaseNavigationController{
             navVC.updateNavBarTransparent(transparent:topVC.navBarTransparent)
             navVC.updateNavBarHidden(hidden:topVC.navBarHidden)
             navVC.updateNavItems(color:topVC.navBarItemsColor)
         }
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        self.currentViewController = SceneCoordinator.actualViewController(for: viewController)
     }
 }
 

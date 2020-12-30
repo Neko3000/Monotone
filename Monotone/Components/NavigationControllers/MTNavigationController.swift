@@ -88,17 +88,18 @@ class MTNavigationController: BaseNavigationController {
     }
     
     override public func updateNavBarTransparent(transparent: Bool){
-        
+                
         if(transparent){
             self.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            self.navigationBar.shadowImage = UIImage()
             self.view.backgroundColor = .clear
+            self.navigationBar.shadowImage = UIImage()
             
             self.navigationBar.isTranslucent = true
         }
         else{
             self.navigationBar.barTintColor = ColorPalette.colorWhite
             self.navigationBar.tintColor = ColorPalette.colorBlack
+            self.navigationBar.shadowImage = UIImage()
 
             self.navigationBar.isTranslucent = false
         }
