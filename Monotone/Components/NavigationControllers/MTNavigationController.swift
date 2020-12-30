@@ -77,7 +77,7 @@ class MTNavigationController: BaseNavigationController {
     override func buildLogic() {
         super.buildLogic()
         
-        // Buttons
+        // Buttons.
         self.backBtn.rx.tap
             .bind(to: self.backBtnDidTap)
             .disposed(by: self.disposeBag)
@@ -119,7 +119,7 @@ class MTNavigationController: BaseNavigationController {
                                         leftItems: [UIBarButtonItem]? = nil,
                                         rightItems: [UIBarButtonItem]? = nil){
         
-        // LeftBarButtonItems
+        // LeftBarButtonItems.
         if let leftItems = leftItems{
             self.topViewController!.navigationItem.leftBarButtonItems = leftItems
         }
@@ -127,7 +127,7 @@ class MTNavigationController: BaseNavigationController {
             self.topViewController!.navigationItem.leftBarButtonItems = self.viewControllers.count <= 1 ? [self.logoBarButtonItem] : [self.backBarButtonItem]
         }
         
-        // RightBarButtonItems
+        // RightBarButtonItems.
         if let rightItems = rightItems{
             self.topViewController!.navigationItem.rightBarButtonItems = rightItems
         }
@@ -135,7 +135,7 @@ class MTNavigationController: BaseNavigationController {
             self.topViewController!.navigationItem.rightBarButtonItems = self.viewControllers.count <= 1 ? [self.closeBarButtonItem] : [self.logoBarButtonItem]
         }
         
-        // Color
+        // Color.
         self.topViewController!.navigationItem.leftBarButtonItems?.forEach({ (item) in
             item.customView?.tintColor = color ?? ColorPalette.colorBlack
         })

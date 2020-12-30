@@ -25,6 +25,7 @@ class MyPhotosViewController: BaseViewController {
 
     
     // MARK: - Controls
+    private var titleLabel: UILabel!
     private var collectionView: UICollectionView!
     
     // MARK: - Priavte
@@ -54,7 +55,7 @@ class MyPhotosViewController: BaseViewController {
         self.view.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(self.view)
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(90.0)
         }
         
         // MJRefresh.
@@ -66,6 +67,17 @@ class MyPhotosViewController: BaseViewController {
         let footer = MJRefreshAutoNormalFooter()
         footer.stateLabel!.font = UIFont.systemFont(ofSize: 12)
         self.collectionView.mj_footer = footer
+        
+        // TitleLabel.
+        self.titleLabel = UILabel()
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
+        self.titleLabel.textColor = ColorPalette.colorBlack
+        self.titleLabel.text = NSLocalizedString("unsplash_side_menu_option_my_photos", comment: "My Photos")
+        self.view.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.view)
+            make.bottom.equalTo(self.collectionView.snp.top).offset(25.0)
+        }
     }
     
     override func buildLogic() {
