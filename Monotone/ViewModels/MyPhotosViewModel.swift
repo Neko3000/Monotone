@@ -56,7 +56,7 @@ class MyPhotosViewModel: BaseViewModel, ViewModelStreamable{
             self.output.photos.accept((self.currentPhotos) + (self.emptyPhotos))
             
             if let username = UserManager.shared.currentUser.value?.username{
-                return userService.listUserPhotos(username: username)
+                return userService.listUserPhotos(username: username, page: self.nextLoadPage, perPage: 20)
             }
             
             return Observable.empty()

@@ -145,6 +145,7 @@
 		14FD9C53257F75CC00DEC579 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD9C52257F75CC00DEC579 /* BaseService.swift */; };
 		14FD9C59257F7AE800DEC579 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD9C58257F7AE800DEC579 /* AppManager.swift */; };
 		73CFE15CA67265ABCA3CC319 /* Pods_Monotone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */; };
+		EB53EB91259C905B00DE6776 /* ElevatorFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB53EB90259C905B00DE6776 /* ElevatorFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -307,6 +308,7 @@
 		14FD9C58257F7AE800DEC579 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monotone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AF9737896258A142CECD23 /* Pods-Monotone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.release.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.release.xcconfig"; sourceTree = "<group>"; };
+		EB53EB90259C905B00DE6776 /* ElevatorFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevatorFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -510,6 +512,7 @@
 		143114BB255A77CC00991676 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EB53EB8F259C901A00DE6776 /* FlowLayouts */,
 				14D7DBCF2599A3AD001BF0CB /* TabBarControllers */,
 				141591DA255E579D00179ED5 /* NavigationControllers */,
 				14E3ACD1257383FC000297CF /* Buttons */,
@@ -766,6 +769,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EB53EB8F259C901A00DE6776 /* FlowLayouts */ = {
+			isa = PBXGroup;
+			children = (
+				EB53EB90259C905B00DE6776 /* ElevatorFlowLayout.swift */,
+			);
+			path = FlowLayouts;
+			sourceTree = "<group>";
+		};
 		F0993FA6A35EE5A3CA4D55B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -999,6 +1010,7 @@
 				148321262588E04700097F85 /* UnlikePhotoResponse.swift in Sources */,
 				148321232588E01B00097F85 /* LikePhotoResponse.swift in Sources */,
 				14BE9A01256A637C00B0DB39 /* GetTopicPhotosResponse.swift in Sources */,
+				EB53EB91259C905B00DE6776 /* ElevatorFlowLayout.swift in Sources */,
 				14009CAC2577625000C70E6E /* StatisticsIndicator.swift in Sources */,
 				140158FE258388EF00746563 /* MessageCenter.swift in Sources */,
 				143FB13F255B859F00D24248 /* ListPhotosResponse.swift in Sources */,

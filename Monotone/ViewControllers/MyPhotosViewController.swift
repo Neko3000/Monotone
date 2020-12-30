@@ -47,12 +47,7 @@ class MyPhotosViewController: BaseViewController {
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // CollectionView.
-        let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumInteritemSpacing = 0
-        flowLayout.minimumLineSpacing = 0
-        flowLayout.scrollDirection = .vertical
-        
-        self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+        self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: ElevatorFlowLayout())
         self.collectionView.backgroundColor = UIColor.clear
         self.collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
         self.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
