@@ -16,14 +16,14 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Input
     struct Input {
         var loginAction: Action<Void,String>?
-        var updateUserAction: Action<Void, Void>?
+        var updateUserAction: Action<Void, User>?
     }
     public var input: Input = Input()
     
     // MARK: - Output
     struct Output {
         var logging: PublishRelay<Bool> = PublishRelay<Bool>()
-        var loggedIn: PublishRelay<Bool> = PublishRelay<Bool>()
+        var user: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
     }
     public var output: Output = Output()
     
@@ -40,22 +40,23 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
         
         // Service.
         let authService = self.service(type: AuthService.self)!
+        let userService = self.service(type: UserService.self)!
         
         // Bindings.
-        // updateUserAction
-        self.input.updateUserAction = Action<Void, Void>(workFactory: { [weak self] (_) -> Observable<Void> in
+        // UpdateUserAction.
+        self.input.updateUserAction = Action<Void, User>(workFactory: { [weak self] (_) -> Observable<User> in
             guard let self = self else { return Observable.empty() }
 
             self.output.logging.accept(true)
             
-            return UserManager.shared.updateCurrentUser()
+            return userService.getMineProfile()
         })
         
-        self.input.updateUserAction?.completions
-            .subscribe(onNext: { [weak self] (_) in
+        self.input.updateUserAction?.elements
+            .subscribe(onNext: { [weak self] (user) in
                 guard let self = self else { return }
                 
-                self.output.loggedIn.accept(true)
+                self.output.user.accept(user)
                 self.output.logging.accept(false)
             })
             .disposed(by: self.disposeBag)
@@ -64,12 +65,11 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
             .subscribe(onNext: { [weak self] (_) in
                 guard let self = self else { return }
                 
-                self.output.loggedIn.accept(false)
                 self.output.logging.accept(false)
             })
             .disposed(by: self.disposeBag)
         
-        // loginAction
+        // LoginAction.
         self.input.loginAction = Action<Void, String>(workFactory: { (_) -> Observable<String> in
             
             return authService.authorize()
@@ -83,16 +83,16 @@ class LoginViewModel: BaseViewModel, ViewModelStreamable{
 
                 return authService.token(code: code)
             })
-            .flatMap({ [weak self] (token) -> Observable<Void> in
+            .flatMap({ [weak self] (token) -> Observable<User> in
                 guard let self = self else { return Observable.empty() }
 
                 return self.input.updateUserAction!.execute()
             })
-            .subscribe(onError: { [weak self] (error) in
+            .subscribe(onNext: { [weak self] (user) in
                 guard let self = self else { return }
                 
                 self.output.logging.accept(false)
-            }, onCompleted: { [weak self] in
+            }, onError: { [weak self] (error) in
                 guard let self = self else { return }
                 
                 self.output.logging.accept(false)

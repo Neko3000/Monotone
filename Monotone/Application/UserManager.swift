@@ -24,34 +24,6 @@ class UserManager{
     // MARK: - Private
     private let userService: UserService
     private let disposeBag: DisposeBag = DisposeBag()
-    
-    // MARK: - UpdateCurrentUser
-    @discardableResult
-    public func updateCurrentUser() -> Observable<Void>{
-        
-        /*
-        return self.userService.getMineProfile()
-            .flatMap { (user) -> Observable<Void> in
-                
-                return Observable.just(Void())
-            }
-         */
-        
-        return Observable.create { [weak self](observer) -> Disposable in
-            guard let self = self else { return Disposables.create() }
 
-            return self.userService.getMineProfile()
-                .subscribe(onNext: { [weak self] (user) in
-                    guard let self = self else { return }
- 
-                    self.currentUser.accept(user)
-                    
-                    observer.onCompleted()
-
-                }, onError: { (error) in
-
-                    observer.onError(error)
-                })
-        }
-    }
+    //
 }

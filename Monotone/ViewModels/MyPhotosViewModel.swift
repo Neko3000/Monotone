@@ -16,6 +16,8 @@ class MyPhotosViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
+        var username: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+
         var loadMoreAction: Action<Void, [Photo]>?
         var reloadAction: Action<Void, [Photo]>?
     }
@@ -24,6 +26,7 @@ class MyPhotosViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Output
     struct Output {
         var photos: BehaviorRelay<[Photo]> = BehaviorRelay<[Photo]>(value: [])
+        
         var loadingMore: PublishRelay<Bool> = PublishRelay<Bool>()
         var reloading: PublishRelay<Bool> = PublishRelay<Bool>()
     }
@@ -36,7 +39,9 @@ class MyPhotosViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Inject
     override func inject(args: [String : Any?]?) {
-        //
+        if let username = args?["username"]{
+            self.input.username = BehaviorRelay(value: username as? String)
+        }
     }
     
     // MARK: - Bind
@@ -55,7 +60,7 @@ class MyPhotosViewModel: BaseViewModel, ViewModelStreamable{
             // Before the request returns.
             self.output.photos.accept((self.currentPhotos) + (self.emptyPhotos))
             
-            if let username = UserManager.shared.currentUser.value?.username{
+            if let username = self.input.username.value{
                 return userService.listUserPhotos(username: username, page: self.nextLoadPage, perPage: 20)
             }
             

@@ -146,10 +146,12 @@ class LoginViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
-        // LoggedIn.
-        loginViewModel.output.loggedIn
-            .ignore(false)
-            .subscribe(onNext:{ (_) in
+        // User.
+        loginViewModel.output.user
+            .unwrap()
+            .subscribe(onNext:{ (user) in
+                UserManager.shared.currentUser.accept(user)
+
                 SceneCoordinator.shared.transition(type: .root(scene: .home), with: nil)
             })
             .disposed(by: self.disposeBag)

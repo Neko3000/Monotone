@@ -24,7 +24,7 @@ enum Scene {
     case photoAddToCollection([String: Any?]?)
     case photoCreateCollection([String: Any?]?)
     
-    case myPhotos
+    case myPhotos([String: Any?]?)
 }
 
 // MARK: - SceneContent
@@ -40,7 +40,7 @@ enum SceneContent {
     case photoAddToCollection([String: Any?]?)
     case photoCreateCollection([String: Any?]?)
     
-    case myPhotos
+    case myPhotos([String: Any?]?)
 
     case searchPhotos([String: Any?]?)
     case empty
@@ -80,7 +80,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     }
     
     @discardableResult
-    func transition(type: SceneTransition, with args: [String : Any]?, animated: Bool = false) -> Observable<Void> {
+    func transition(type: SceneTransition, with args: [String : Any?]?, animated: Bool = false) -> Observable<Void> {
         let subject = PublishSubject<Void>()
         
         switch type {

@@ -85,6 +85,10 @@ class SideMenuViewController: BaseViewController {
             .disposed(by: self.disposeBag)
                 
         // CurrentUser.
+        UserManager.shared.currentUser
+            .bind(to: sideMenuViewModel.input.currentUser)
+            .disposed(by: self.disposeBag)
+        
         sideMenuViewModel.output.currentUser
             .bind(to: self.profileView.user)
             .disposed(by: self.disposeBag)
@@ -109,8 +113,12 @@ class SideMenuViewController: BaseViewController {
                 
                 switch keyValuePair.key{
                 case .myPhotos:
-                    SceneCoordinator.shared.transition(type: .present(scene: .myPhotos, warpped: true),
-                                                       with: nil,
+                    let args = [
+                        "username" : UserManager.shared.currentUser.value?.username,
+                    ] as [String : Any?]
+                    
+                    SceneCoordinator.shared.transition(type: .present(scene: .myPhotos(args), wrapped: true),
+                                                       with: args,
                                                        animated: true)
                     break
                     

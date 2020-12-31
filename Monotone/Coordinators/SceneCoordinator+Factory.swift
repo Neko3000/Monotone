@@ -135,9 +135,9 @@ extension SceneCoordinator: FactoryCoordinator{
             
             return vc
             
-        case let .myPhotos:
+        case let .myPhotos(args):
             let vc = MyPhotosViewController()
-            let myPhotosVM = self.viewModel(sceneContent: .myPhotos)!
+            let myPhotosVM = self.viewModel(sceneContent: .myPhotos(args))!
             vc.bind(to: [myPhotosVM])
             
             return vc
@@ -150,7 +150,7 @@ extension SceneCoordinator: FactoryCoordinator{
         
         switch sceneContent {
         case .login:
-            let vm: LoginViewModel = LoginViewModel(services: [AuthService()], args: nil)
+            let vm: LoginViewModel = LoginViewModel(services: [AuthService(),UserService()], args: nil)
             return vm
             
         case .tabBar:
@@ -187,8 +187,8 @@ extension SceneCoordinator: FactoryCoordinator{
             let vm: PhotoCreateCollectionViewModel = PhotoCreateCollectionViewModel(services: [CollectionService()], args: args)
             return vm
             
-        case .myPhotos:
-            let vm: MyPhotosViewModel = MyPhotosViewModel(services: [UserService()], args: nil)
+        case let .myPhotos(args):
+            let vm: MyPhotosViewModel = MyPhotosViewModel(services: [UserService()], args: args)
             return vm
             
         case let .searchPhotos(args):
