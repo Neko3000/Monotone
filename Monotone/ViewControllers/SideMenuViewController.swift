@@ -117,7 +117,7 @@ class SideMenuViewController: BaseViewController {
                         "username" : UserManager.shared.currentUser.value?.username,
                     ] as [String : Any?]
                     
-                    SceneCoordinator.shared.transition(type: .present(scene: .myPhotos(args), wrapped: true),
+                    SceneCoordinator.shared.transition(type: .present(scene: .myPhotos, wrapped: true),
                                                        with: args,
                                                        animated: true)
                     break

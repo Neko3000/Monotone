@@ -18,13 +18,13 @@ enum Scene {
     case sideMenu
     case photoList
     case tabBar
-    case photoDetails([String: Any?]?)
-    case photoInfo([String: Any?]?)
-    case photoShare([String: Any?]?)
-    case photoAddToCollection([String: Any?]?)
-    case photoCreateCollection([String: Any?]?)
+    case photoDetails
+    case photoInfo
+    case photoShare
+    case photoAddToCollection
+    case photoCreateCollection
     
-    case myPhotos([String: Any?]?)
+    case myPhotos
 }
 
 // MARK: - SceneContent
@@ -34,15 +34,15 @@ enum SceneContent {
     case sideMenu
     case photoList
     case tabBar
-    case photoDetails([String: Any?]?)
-    case photoInfo([String: Any?]?)
-    case photoShare([String: Any?]?)
-    case photoAddToCollection([String: Any?]?)
-    case photoCreateCollection([String: Any?]?)
+    case photoDetails
+    case photoInfo
+    case photoShare
+    case photoAddToCollection
+    case photoCreateCollection
     
-    case myPhotos([String: Any?]?)
+    case myPhotos
 
-    case searchPhotos([String: Any?]?)
+    case searchPhotos
     case empty
 }
 
@@ -64,7 +64,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
 
     override var firstViewController: UIViewController {
         get{
-            return self.viewController(scene: .home)!
+            return self.viewController(scene: .home, with: nil)!
         }
     }
     
@@ -86,7 +86,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
         switch type {
         case let .push(scene):
             
-            let targetVC = self.viewController(scene: scene)!
+            let targetVC = self.viewController(scene: scene, with: args)!
             
             if(self.currentViewController!.navigationController != nil){
                 let navigationController = self.currentViewController!.navigationController!
@@ -119,7 +119,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
         
         case let .root(scene,wrapped):
             
-            var targetVC = self.viewController(scene: scene)!
+            var targetVC = self.viewController(scene: scene, with: args)!
             
             if(wrapped){
                 let navigationController = MTNavigationController(rootViewController: targetVC)
@@ -138,7 +138,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             
         case let .present(scene,presetationStyle,wrapped):
             
-            var targetVC = self.viewController(scene: scene)!
+            var targetVC = self.viewController(scene: scene, with: args)!
             
             if(wrapped){
                 let navigationController = MTNavigationController(rootViewController: targetVC)

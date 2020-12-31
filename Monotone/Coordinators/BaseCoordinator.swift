@@ -23,8 +23,8 @@ protocol FactoryCoordinator {
     associatedtype sceneType
     associatedtype sceneContentType
     
-    func viewController(scene: sceneType) -> UIViewController?
-    func viewModel(sceneContent: sceneContentType) -> BaseViewModel?
+    func viewController(scene: sceneType, with args: [String : Any?]?) -> UIViewController?
+    func viewModel(sceneContent: sceneContentType, with args: [String : Any?]?) -> BaseViewModel?
 }
 
 // MARK: - CoordinatorTransitionable

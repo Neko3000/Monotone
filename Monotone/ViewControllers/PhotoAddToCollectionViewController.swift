@@ -233,7 +233,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
         self.createCollectionBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
             guard let self = self else { return }
 
-            self.transition(type: .present(scene: .photoCreateCollection(nil), presentationStyle: .pageSheet), with: nil, animated: true)
+            self.transition(type: .present(scene: .photoCreateCollection, presentationStyle: .pageSheet), with: nil, animated: true)
         })
         .disposed(by: self.disposeBag)
     }

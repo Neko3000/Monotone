@@ -148,7 +148,7 @@ class PhotoListViewController: BaseViewController {
                 ] as [String : Any?]
 
 //                self.transition(type: .present(.photoDetails(args), .fullScreen), with: nil)
-                self.transition(type: .push(scene: .photoDetails(args)), with: nil, animated: true)
+                self.transition(type: .push(scene: .photoDetails), with: args, animated: true)
 
             }).disposed(by: self.disposeBag)
 

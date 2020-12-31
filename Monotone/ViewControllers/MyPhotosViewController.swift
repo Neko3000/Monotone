@@ -106,7 +106,7 @@ class MyPhotosViewController: BaseViewController {
                     "photo" : photo
                 ] as [String : Any?]
 
-                self.transition(type: .push(scene: .photoDetails(args)), with: nil, animated: true)
+                self.transition(type: .push(scene: .photoDetails), with: args, animated: true)
 
             }).disposed(by: self.disposeBag)
 

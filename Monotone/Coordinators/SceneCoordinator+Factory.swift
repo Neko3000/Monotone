@@ -14,12 +14,12 @@ extension SceneCoordinator: FactoryCoordinator{
     typealias sceneContentType = SceneContent
     
     // MARK: - ViewController Factory
-    func viewController(scene: Scene) -> UIViewController?{
+    func viewController(scene: Scene, with args: [String : Any?]?) -> UIViewController?{
         
         switch scene {
         case .login:
             let vc = LoginViewController()
-            let loginVM = self.viewModel(sceneContent:.login)!
+            let loginVM = self.viewModel(sceneContent:.login, with: args)!
             vc.bind(to: [loginVM])
             return vc
             
@@ -80,64 +80,64 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case .home:
             let vc = HomeViewController()
-            let sideMenuVM = self.viewModel(sceneContent:.sideMenu)!
-            let photoListVM = self.viewModel(sceneContent:.photoList)!
+            let sideMenuVM = self.viewModel(sceneContent:.sideMenu, with: args)!
+            let photoListVM = self.viewModel(sceneContent:.photoList, with: args)!
             vc.bind(to: [sideMenuVM, photoListVM])
 
             return vc
             
         case .sideMenu:
             let vc = SideMenuViewController()
-            let sideMenuVM = self.viewModel(sceneContent:.sideMenu)!
+            let sideMenuVM = self.viewModel(sceneContent:.sideMenu,with: args)!
             vc.bind(to: [sideMenuVM])
 
             return vc
             
         case .photoList:
             let vc = PhotoListViewController()
-            let photoListVM = self.viewModel(sceneContent:.photoList)!
+            let photoListVM = self.viewModel(sceneContent:.photoList, with: args)!
             vc.bind(to: [photoListVM])
 
             return vc
             
-        case let .photoDetails(args):
+        case .photoDetails:
             let vc = PhotoDetailsViewController()
-            let photoDetailsVM = self.viewModel(sceneContent: .photoDetails(args))!
+            let photoDetailsVM = self.viewModel(sceneContent: .photoDetails, with: args)!
             vc.bind(to: [photoDetailsVM])
             
             return vc
             
-        case let .photoInfo(args):
+        case .photoInfo:
             let vc = PhotoInfoViewController()
-            let photoInfoVM = self.viewModel(sceneContent: .photoInfo(args))!
+            let photoInfoVM = self.viewModel(sceneContent: .photoInfo, with: args)!
             vc.bind(to: [photoInfoVM])
             
             return vc
             
-        case let .photoShare(args):
+        case .photoShare:
             let vc = PhotoShareViewController()
-            let photoShareVM = self.viewModel(sceneContent: .photoShare(args))!
+            let photoShareVM = self.viewModel(sceneContent: .photoShare, with: args)!
             vc.bind(to: [photoShareVM])
             
             return vc
             
-        case let .photoAddToCollection(args):
+        case .photoAddToCollection:
             let vc = PhotoAddToCollectionViewController()
-            let photoAddToCollectionVM = self.viewModel(sceneContent: .photoAddToCollection(args))!
+            let photoAddToCollectionVM = self.viewModel(sceneContent: .photoAddToCollection, with: args)!
             vc.bind(to: [photoAddToCollectionVM])
             
             return vc
             
-        case let .photoCreateCollection(args):
+        case .photoCreateCollection:
             let vc = PhotoCreateCollectionViewController()
-            let photoCreateCollectionVM = self.viewModel(sceneContent: .photoCreateCollection(args))!
+            let photoCreateCollectionVM = self.viewModel(sceneContent: .photoCreateCollection, with: args)!
             vc.bind(to: [photoCreateCollectionVM])
             
             return vc
             
-        case let .myPhotos(args):
+        case .myPhotos:
             let vc = MyPhotosViewController()
-            let myPhotosVM = self.viewModel(sceneContent: .myPhotos(args))!
+            let myPhotosVM = self.viewModel(sceneContent: .myPhotos, with: args)!
             vc.bind(to: [myPhotosVM])
             
             return vc
@@ -146,7 +146,7 @@ extension SceneCoordinator: FactoryCoordinator{
     }
     
     // MARK: - ViewModel Factory
-    func viewModel(sceneContent: SceneContent) -> BaseViewModel?{
+    func viewModel(sceneContent: SceneContent, with args: [String : Any?]?) -> BaseViewModel?{
         
         switch sceneContent {
         case .login:
@@ -167,31 +167,31 @@ extension SceneCoordinator: FactoryCoordinator{
             let vm: PhotoListViewModel = PhotoListViewModel(services: [PhotoService(),TopicService()], args: nil)
             return vm
             
-        case let .photoDetails(args):
+        case .photoDetails:
             let vm: PhotoDetailsViewModel = PhotoDetailsViewModel(services: [PhotoService()], args: args)
             return vm
             
-        case let .photoInfo(args):
+        case .photoInfo:
             let vm: PhotoInfoViewModel = PhotoInfoViewModel(services: [PhotoService()], args: args)
             return vm
             
-        case let .photoShare(args):
+        case .photoShare:
             let vm: PhotoShareViewModel = PhotoShareViewModel(services: nil, args: args)
             return vm
             
-        case let .photoAddToCollection(args):
+        case .photoAddToCollection:
             let vm: PhotoAddToCollectionViewModel = PhotoAddToCollectionViewModel(services: [UserService(),CollectionService()], args: args)
             return vm
             
-        case let .photoCreateCollection(args):
+        case .photoCreateCollection:
             let vm: PhotoCreateCollectionViewModel = PhotoCreateCollectionViewModel(services: [CollectionService()], args: args)
             return vm
             
-        case let .myPhotos(args):
+        case .myPhotos:
             let vm: MyPhotosViewModel = MyPhotosViewModel(services: [UserService()], args: args)
             return vm
             
-        case let .searchPhotos(args):
+        case .searchPhotos:
             let vm: SearchPhotosViewModel = SearchPhotosViewModel(services: [PhotoService()], args: args)
             return vm
             
