@@ -33,8 +33,8 @@ class HiringViewController: BaseViewController {
     
     private var topGradientImageView: UIImageView!
     
-    private var titleLabel: UILabel!
-    private var contentLabel: UILabel!
+    private var sectionTitleLabel: UILabel!
+    private var contentTitleLabel: UILabel!
     
     // MARK: - Priavte
     private let disposeBag: DisposeBag = DisposeBag()
@@ -74,7 +74,7 @@ class HiringViewController: BaseViewController {
         self.headerLabel = UILabel()
         self.headerLabel.font = UIFont.boldSystemFont(ofSize: 36)
         self.headerLabel.textColor = ColorPalette.colorBlack
-        self.headerLabel.text = "Help build a creative movement."
+        self.headerLabel.text = NSLocalizedString("unsplash_hiring_header", comment: "Help build a creative movement.")
         self.headerLabel.numberOfLines = 0
         self.containerView.addSubview(self.headerLabel)
         self.headerLabel.snp.makeConstraints { (make) in
@@ -109,14 +109,14 @@ class HiringViewController: BaseViewController {
             make.height.equalTo(322.0)
         }
         
-        // TitleLabel.
-        self.titleLabel = UILabel()
-        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 26)
-        self.titleLabel.textColor = ColorPalette.colorBlack
-        self.titleLabel.text = "How to Apply"
-        self.titleLabel.numberOfLines = 0
-        self.containerView.addSubview(self.titleLabel)
-        self.titleLabel.snp.makeConstraints { (make) in
+        // sectionTitleLabel.
+        self.sectionTitleLabel = UILabel()
+        self.sectionTitleLabel.font = UIFont.boldSystemFont(ofSize: 26)
+        self.sectionTitleLabel.textColor = ColorPalette.colorBlack
+        self.sectionTitleLabel.text = NSLocalizedString("unsplash_hiring_section_title", comment: "How to Apply")
+        self.sectionTitleLabel.numberOfLines = 0
+        self.containerView.addSubview(self.sectionTitleLabel)
+        self.sectionTitleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.sampleAImageView.snp.bottom).offset(65.0)
             make.left.equalTo(self.containerView).offset(18.0)
             make.right.equalTo(self.containerView).offset(-120.0)
@@ -132,21 +132,21 @@ class HiringViewController: BaseViewController {
             make.height.equalTo(256.0)
         }
         
-        // ContentLabel.
-        let attributedContent = NSMutableAttributedString(string: "If you want to work with us, all we want to see is a message from you. Please don’t send a resume. Instead, tell us who you are. Show us relevant things you’ve done that you’re excited about.")
+        // contentTitleLabel.
+        let attributedContent = NSMutableAttributedString(string: NSLocalizedString("unsplash_hiring_section_content", comment: "If you want to work with us, all we want to see is a message from you. Please don’t send a resume. Instead, tell us who you are. Show us relevant things you’ve done that you’re excited about."))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6.0
         
         attributedContent.addAttribute(NSAttributedString.Key.paragraphStyle,value: paragraphStyle, range: NSMakeRange(0, attributedContent.length))
         
-        self.contentLabel = UILabel()
-        self.contentLabel.font = UIFont.systemFont(ofSize: 16)
-        self.contentLabel.textColor = ColorPalette.colorGrayLight
-        self.contentLabel.numberOfLines = 0
-        self.contentLabel.attributedText = attributedContent
-        self.containerView.addSubview(self.contentLabel)
-        self.contentLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(12.0)
+        self.contentTitleLabel = UILabel()
+        self.contentTitleLabel.font = UIFont.systemFont(ofSize: 16)
+        self.contentTitleLabel.textColor = ColorPalette.colorGrayLight
+        self.contentTitleLabel.numberOfLines = 0
+        self.contentTitleLabel.attributedText = attributedContent
+        self.containerView.addSubview(self.contentTitleLabel)
+        self.contentTitleLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.sectionTitleLabel.snp.bottom).offset(12.0)
             make.left.equalTo(self.containerView).offset(18.0)
             make.right.equalTo(self.containerView).offset(-18.0)
             make.bottom.equalTo(self.containerView).offset(-20.0)

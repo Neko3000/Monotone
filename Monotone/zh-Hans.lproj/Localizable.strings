@@ -66,8 +66,12 @@
 "unsplash_side_menu_like_description" = "%d 照片 · %@";
 
 "unsplash_side_menu_option_my_photos" = "我的照片";
-"unsplash_side_menu_option_hiring" = "委托";
+"unsplash_side_menu_option_hiring" = "应募";
 "unsplash_side_menu_option_licenses" = "许可条例";
 "unsplash_side_menu_option_help" = "帮助";
 "unsplash_side_menu_option_made_with_unsplash" = "周边产品";
+
+"unsplash_hiring_header" = "帮助我们呈现创意.";
+"unsplash_hiring_section_title" = "如何申请";
+"unsplash_hiring_section_content" = "如果您希望与我们一同工作，请给我们发送消息。请不要提交简历，与此相对的，我们更喜欢听听您最近在沉迷于什么有趣的玩意儿。";
 
