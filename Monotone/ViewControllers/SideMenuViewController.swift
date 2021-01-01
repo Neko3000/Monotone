@@ -123,6 +123,11 @@ class SideMenuViewController: BaseViewController {
                     break
                     
                 case .hiring:
+                    
+                    SceneCoordinator.shared.transition(type: .present(scene: .hiring, wrapped: true),
+                                                       with: nil,
+                                                       animated: true)
+                    
                     break
                     
                 case .licenses:

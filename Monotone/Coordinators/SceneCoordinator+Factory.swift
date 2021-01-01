@@ -141,6 +141,13 @@ extension SceneCoordinator: FactoryCoordinator{
             vc.bind(to: [myPhotosVM])
             
             return vc
+            
+        case .hiring:
+            let vc = HiringViewController()
+            // let hiringVM = self.viewModel(sceneContent: .hiring, with: args)!
+            // vc.bind(to: [hiringVM])
+            
+            return vc
 
         }
     }
@@ -190,6 +197,9 @@ extension SceneCoordinator: FactoryCoordinator{
         case .myPhotos:
             let vm: MyPhotosViewModel = MyPhotosViewModel(services: [UserService()], args: args)
             return vm
+            
+        case .hiring:
+            return nil
             
         case .searchPhotos:
             let vm: SearchPhotosViewModel = SearchPhotosViewModel(services: [PhotoService()], args: args)

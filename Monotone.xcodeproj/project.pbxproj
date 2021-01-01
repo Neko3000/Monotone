@@ -125,6 +125,7 @@
 		14E59E492557CA6A00F1FB60 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E59E482557CA6A00F1FB60 /* Photo.swift */; };
 		14E59E912557FC5000F1FB60 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E59E902557FC5000F1FB60 /* NetworkError.swift */; };
 		14EE8D0C259EC78900132F74 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EE8D0B259EC78900132F74 /* GradientView.swift */; };
+		14EE8D10259EED5400132F74 /* HiringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EE8D0F259EED5400132F74 /* HiringViewController.swift */; };
 		14F016B32567981400F60C99 /* RxSwift+Opeartors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F016B22567981400F60C99 /* RxSwift+Opeartors.swift */; };
 		14F36F91254D3AB80086B8CC /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F36F90254D3AB80086B8CC /* ColorPalette.swift */; };
 		14F36FB0254D53940086B8CC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F36FAF254D53940086B8CC /* NetworkManager.swift */; };
@@ -288,6 +289,7 @@
 		14E59E482557CA6A00F1FB60 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		14E59E902557FC5000F1FB60 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		14EE8D0B259EC78900132F74 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		14EE8D0F259EED5400132F74 /* HiringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiringViewController.swift; sourceTree = "<group>"; };
 		14F016B22567981400F60C99 /* RxSwift+Opeartors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift+Opeartors.swift"; sourceTree = "<group>"; };
 		14F36F90254D3AB80086B8CC /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		14F36FAF254D53940086B8CC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 				14842E31257E003100364FFF /* PhotoCreateCollectionViewController.swift */,
 				14BA3009258CCC6200215F03 /* SideMenuViewController.swift */,
 				14E3046C259AFB5C006BDBDB /* MyPhotosViewController.swift */,
+				14EE8D0F259EED5400132F74 /* HiringViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1034,6 +1037,7 @@
 				149325052585FB34006EB8E3 /* AddToCollectionRequest.swift in Sources */,
 				14D7DBD12599A3D4001BF0CB /* BaseTabBarController.swift in Sources */,
 				14009AFC2575D69200C70E6E /* HomeViewController.swift in Sources */,
+				14EE8D10259EED5400132F74 /* HiringViewController.swift in Sources */,
 				14FD83CB2567F7CD00D5B575 /* BlurHashEncode.swift in Sources */,
 				1428403A2564BBB1004C06DF /* ListTopicsResponse.swift in Sources */,
 				14E3047C259B2100006BDBDB /* ListUserPhotosResponse.swift in Sources */,
