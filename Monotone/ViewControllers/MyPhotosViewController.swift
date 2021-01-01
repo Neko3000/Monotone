@@ -28,6 +28,9 @@ class MyPhotosViewController: BaseViewController {
     private var titleLabel: UILabel!
     private var collectionView: UICollectionView!
     
+    private var topGradientImageView: UIImageView!
+//    private var gradientView: GradientView!
+    
     // MARK: - Priavte
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -68,6 +71,32 @@ class MyPhotosViewController: BaseViewController {
         footer.stateLabel!.font = UIFont.systemFont(ofSize: 12)
         self.collectionView.mj_footer = footer
         
+        // TopGradientView.
+        self.topGradientImageView = UIImageView()
+        self.topGradientImageView.image = UIImage(named: "list-top-gradient")
+        self.view.addSubview(self.topGradientImageView)
+        self.topGradientImageView.snp.makeConstraints { (make) in
+            make.right.left.equalTo(self.view)
+            make.top.equalTo(self.view).offset(-(self.navigationController?.navigationBar.bounds.height ?? 0))
+            make.height.equalTo(256.0)
+        }
+        
+        /*
+        // GradientView.
+        self.gradientView = GradientView()
+        self.gradientView.lightColors = [UIColor.white.cgColor, UIColor.white.alpha(0.8).cgColor, UIColor.white.alpha(0).cgColor]
+        self.gradientView.darkColors = [UIColor.black.cgColor, UIColor.black.alpha(0.8).cgColor, UIColor.black.alpha(0).cgColor]
+        self.gradientView.startPoint = CGPoint(x: 0.5, y: 0)
+        self.gradientView.endPoint = CGPoint(x: 0.5, y: 1.0)
+        self.gradientView.locations = [0, 0.5, 1.0]
+        self.view.addSubview(self.gradientView)
+        self.gradientView.snp.makeConstraints { (make) in
+            make.right.left.equalTo(self.view)
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.height.equalTo(180.0)
+        }
+        */
+                
         // TitleLabel.
         self.titleLabel = UILabel()
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
@@ -75,8 +104,8 @@ class MyPhotosViewController: BaseViewController {
         self.titleLabel.text = NSLocalizedString("unsplash_side_menu_option_my_photos", comment: "My Photos")
         self.view.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view)
-            make.bottom.equalTo(self.collectionView.snp.top).offset(25.0)
+            make.left.equalTo(self.view).offset(18.0)
+            make.bottom.equalTo(self.collectionView.snp.top).offset(-25.0)
         }
     }
     
