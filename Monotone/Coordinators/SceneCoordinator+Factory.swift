@@ -148,6 +148,13 @@ extension SceneCoordinator: FactoryCoordinator{
             // vc.bind(to: [hiringVM])
             
             return vc
+            
+        case .licenses:
+            let vc = LicensesViewController()
+            // let hiringVM = self.viewModel(sceneContent: .hiring, with: args)!
+            // vc.bind(to: [hiringVM])
+            
+            return vc
 
         }
     }
@@ -199,6 +206,9 @@ extension SceneCoordinator: FactoryCoordinator{
             return vm
             
         case .hiring:
+            return nil
+            
+        case .licenses:
             return nil
             
         case .searchPhotos:

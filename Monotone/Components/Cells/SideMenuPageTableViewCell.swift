@@ -1,5 +1,5 @@
 //
-//  SideMenuOptionTableViewCell.swift
+//  SideMenuPageTableViewCell.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/12/18.
@@ -11,10 +11,10 @@ import RxSwift
 import RxRelay
 import RxSwiftExt
 
-class SideMenuOptionTableViewCell: UITableViewCell {
+class SideMenuPageTableViewCell: UITableViewCell {
     
     // MARK: - Public
-    public var page: BehaviorRelay<(key:SideMenuPage,value:String)?> = BehaviorRelay<(key:SideMenuPage,value:String)?>(value: nil)
+    public var page: BehaviorRelay<SideMenuPage?> = BehaviorRelay<SideMenuPage?>(value: nil)
 
     // MARK: - Controls
     public var titleLabel: UILabel!
@@ -56,8 +56,8 @@ class SideMenuOptionTableViewCell: UITableViewCell {
         // Page.
         self.page
             .unwrap()
-            .flatMap { (keyValuePair) -> Observable<String> in
-                return Observable.just(keyValuePair.value)
+            .flatMap { (page) -> Observable<String> in
+                return Observable.just(page.rawValue.description)
             }
             .bind(to: self.titleLabel.rx.text)
             .disposed(by: self.disposeBag)

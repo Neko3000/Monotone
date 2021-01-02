@@ -99,10 +99,10 @@ class PhotoListJumbotronView: BaseView {
         }
         
         // SegmentedControl.
-        let text: String = PhotoVars.listOrderBys.map { $0.value }.joined()
+        let text: String = PhotoVars.listOrderBys.map { $0.description }.joined()
         let textSize = text.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.0)])
         
-        self.segmentedControl = HMSegmentedControl(sectionTitles: PhotoVars.listOrderBys.map({ $0.value }))
+        self.segmentedControl = HMSegmentedControl(sectionTitles: PhotoVars.listOrderBys.map({ $0.description }))
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
             NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal

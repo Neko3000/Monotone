@@ -96,7 +96,7 @@ class MyPhotosViewController: BaseViewController {
         }
         */
                 
-        // headerLabel.
+        // HeaderLabel.
         self.headerLabel = UILabel()
         self.headerLabel.font = UIFont.boldSystemFont(ofSize: 36)
         self.headerLabel.textColor = ColorPalette.colorBlack

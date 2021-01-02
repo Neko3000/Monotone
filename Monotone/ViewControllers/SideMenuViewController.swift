@@ -104,14 +104,14 @@ class SideMenuViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // Pages.
-        sideMenuViewModel.input.pages.accept(SideMenuPageVars.pages)
+        sideMenuViewModel.input.pages.accept(SideMenuPage.allCases)
         
         // SelectedPage.
         pageView.selectedPage
             .unwrap()
-            .subscribe(onNext: { (keyValuePair) in
+            .subscribe(onNext: { (page) in
                 
-                switch keyValuePair.key{
+                switch page{
                 case .myPhotos:
                     let args = [
                         "username" : UserManager.shared.currentUser.value?.username,
@@ -131,6 +131,11 @@ class SideMenuViewController: BaseViewController {
                     break
                     
                 case .licenses:
+                    
+                    SceneCoordinator.shared.transition(type: .present(scene: .licenses, wrapped: true),
+                                                       with: nil,
+                                                       animated: true)
+                    
                     break
                     
                 case .help:

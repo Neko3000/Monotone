@@ -59,7 +59,7 @@ class PhotoListHeaderView: BaseView {
         })
         
         // SegmentedControl
-        let segmentedValues = PhotoVars.listOrderBys.map({ $0.value }) + PhotoVars.topics.map({ $0.value })
+        let segmentedValues = PhotoVars.listOrderBys.map({ $0.description }) + PhotoVars.topics.map({ $0.description })
         self.segmentedControl = HMSegmentedControl(sectionTitles: segmentedValues)
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),

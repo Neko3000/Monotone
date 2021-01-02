@@ -34,7 +34,7 @@ class HiringViewController: BaseViewController {
     private var topGradientImageView: UIImageView!
     
     private var sectionTitleLabel: UILabel!
-    private var contentTitleLabel: UILabel!
+    private var sectionContentLabel: UILabel!
     
     // MARK: - Priavte
     private let disposeBag: DisposeBag = DisposeBag()
@@ -66,7 +66,7 @@ class HiringViewController: BaseViewController {
         self.containerView = UIView()
         self.scrollView.addSubview(self.containerView)
         self.containerView.snp.makeConstraints { (make) in
-            make.width.equalTo(self.view)
+            make.width.equalTo(self.scrollView)
             make.top.right.bottom.left.equalTo(self.scrollView)
         }
         
@@ -109,7 +109,7 @@ class HiringViewController: BaseViewController {
             make.height.equalTo(322.0)
         }
         
-        // sectionTitleLabel.
+        // SectionTitleLabel.
         self.sectionTitleLabel = UILabel()
         self.sectionTitleLabel.font = UIFont.boldSystemFont(ofSize: 26)
         self.sectionTitleLabel.textColor = ColorPalette.colorBlack
@@ -122,6 +122,26 @@ class HiringViewController: BaseViewController {
             make.right.equalTo(self.containerView).offset(-120.0)
         }
         
+        // SectionContentLabel.
+        let attributedContent = NSMutableAttributedString(string: NSLocalizedString("unsplash_hiring_section_content", comment: "If you want to work with us, all we want to see is a message from you. Please don’t send a resume. Instead, tell us who you are. Show us relevant things you’ve done that you’re excited about."))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 6.0
+        
+        attributedContent.addAttribute(NSAttributedString.Key.paragraphStyle,value: paragraphStyle, range: NSMakeRange(0, attributedContent.length))
+        
+        self.sectionContentLabel = UILabel()
+        self.sectionContentLabel.font = UIFont.systemFont(ofSize: 16)
+        self.sectionContentLabel.textColor = ColorPalette.colorGrayLight
+        self.sectionContentLabel.numberOfLines = 0
+        self.sectionContentLabel.attributedText = attributedContent
+        self.containerView.addSubview(self.sectionContentLabel)
+        self.sectionContentLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.sectionTitleLabel.snp.bottom).offset(12.0)
+            make.left.equalTo(self.containerView).offset(18.0)
+            make.right.equalTo(self.containerView).offset(-18.0)
+            make.bottom.equalTo(self.containerView).offset(-20.0)
+        }
+        
         // TopGradientView.
         self.topGradientImageView = UIImageView()
         self.topGradientImageView.image = UIImage(named: "list-top-gradient")
@@ -130,26 +150,6 @@ class HiringViewController: BaseViewController {
             make.right.left.equalTo(self.view)
             make.top.equalTo(self.view).offset(-(self.navigationController?.navigationBar.bounds.height ?? 0))
             make.height.equalTo(256.0)
-        }
-        
-        // contentTitleLabel.
-        let attributedContent = NSMutableAttributedString(string: NSLocalizedString("unsplash_hiring_section_content", comment: "If you want to work with us, all we want to see is a message from you. Please don’t send a resume. Instead, tell us who you are. Show us relevant things you’ve done that you’re excited about."))
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 6.0
-        
-        attributedContent.addAttribute(NSAttributedString.Key.paragraphStyle,value: paragraphStyle, range: NSMakeRange(0, attributedContent.length))
-        
-        self.contentTitleLabel = UILabel()
-        self.contentTitleLabel.font = UIFont.systemFont(ofSize: 16)
-        self.contentTitleLabel.textColor = ColorPalette.colorGrayLight
-        self.contentTitleLabel.numberOfLines = 0
-        self.contentTitleLabel.attributedText = attributedContent
-        self.containerView.addSubview(self.contentTitleLabel)
-        self.contentTitleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.sectionTitleLabel.snp.bottom).offset(12.0)
-            make.left.equalTo(self.containerView).offset(18.0)
-            make.right.equalTo(self.containerView).offset(-18.0)
-            make.bottom.equalTo(self.containerView).offset(-20.0)
         }
     }
     

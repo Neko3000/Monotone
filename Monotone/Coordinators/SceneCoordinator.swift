@@ -26,6 +26,7 @@ enum Scene {
     
     case myPhotos
     case hiring
+    case licenses
 }
 
 // MARK: - SceneContent
@@ -43,6 +44,7 @@ enum SceneContent {
     
     case myPhotos
     case hiring
+    case licenses
 
     case searchPhotos
     case empty

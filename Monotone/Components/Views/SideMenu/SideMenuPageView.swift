@@ -16,8 +16,8 @@ import RxSwiftExt
 class SideMenuPageView: BaseView{
     
     // MARK: - Public
-    public var pages: BehaviorRelay<[(key:SideMenuPage,value:String)]?> = BehaviorRelay<[(key:SideMenuPage,value:String)]?>(value: nil)
-    public var selectedPage: BehaviorRelay<(key:SideMenuPage,value:String)?> = BehaviorRelay<(key:SideMenuPage,value:String)?>(value: nil)
+    public var pages: BehaviorRelay<[SideMenuPage]?> = BehaviorRelay<[SideMenuPage]?>(value: nil)
+    public var selectedPage: BehaviorRelay<SideMenuPage?> = BehaviorRelay<SideMenuPage?>(value: nil)
 
     // MARK: - Controls
     private var tableView: UITableView!
@@ -45,7 +45,7 @@ class SideMenuPageView: BaseView{
         self.tableView = UITableView()
         self.tableView.backgroundColor = UIColor.clear
         self.tableView.separatorStyle = .none
-        self.tableView.register(SideMenuOptionTableViewCell.self, forCellReuseIdentifier: "SideMenuOptionTableViewCell")
+        self.tableView.register(SideMenuPageTableViewCell.self, forCellReuseIdentifier: "SideMenuPageTableViewCell")
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
@@ -104,20 +104,20 @@ class SideMenuPageView: BaseView{
         // Pages.
         self.pages
             .unwrap()
-            .bind(to: self.tableView.rx.items(cellIdentifier: "SideMenuOptionTableViewCell")){
+            .bind(to: self.tableView.rx.items(cellIdentifier: "SideMenuPageTableViewCell")){
                 (row, element, cell) in
                 
-                let pcell: SideMenuOptionTableViewCell = cell as! SideMenuOptionTableViewCell
+                let pcell: SideMenuPageTableViewCell = cell as! SideMenuPageTableViewCell
                 pcell.page.accept(element)
 
             }
             .disposed(by: self.disposeBag)
         
-        self.tableView.rx.modelSelected((key:SideMenuPage,value:String).self)
-            .subscribe(onNext:{ [weak self] (keyValuePair) in
+        self.tableView.rx.modelSelected(SideMenuPage.self)
+            .subscribe(onNext:{ [weak self] (page) in
                 guard let self = self else { return }
                 
-                self.selectedPage.accept(keyValuePair)
+                self.selectedPage.accept(page)
 
             }).disposed(by: self.disposeBag)
     }

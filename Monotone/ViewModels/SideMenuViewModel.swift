@@ -15,14 +15,14 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var pages: BehaviorRelay<[(key:SideMenuPage, value:String)]?> = BehaviorRelay<[(key:SideMenuPage, value:String)]?>(value: nil)
+        var pages: BehaviorRelay<[SideMenuPage]?> = BehaviorRelay<[SideMenuPage]?>(value: nil)
         var currentUser: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
     }
     public var input: Input = Input()
     
     // MARK: - Output
     struct Output {
-        var pages: BehaviorRelay<[(key:SideMenuPage, value:String)]?> = BehaviorRelay<[(key:SideMenuPage, value:String)]?>(value: nil)
+        var pages: BehaviorRelay<[SideMenuPage]?> = BehaviorRelay<[SideMenuPage]?>(value: nil)
         var currentUser: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
         
         var collections: BehaviorRelay<[Collection]?> = BehaviorRelay<[Collection]?>(value: nil)
@@ -52,8 +52,8 @@ class SideMenuViewModel: BaseViewModel, ViewModelStreamable{
         
         // Pages.
         self.input.pages
-            .subscribe { (keyValuePairs) in
-                self.output.pages.accept(keyValuePairs)
+            .subscribe { (pages) in
+                self.output.pages.accept(pages)
             }
             .disposed(by: self.disposeBag)
         
