@@ -43,7 +43,9 @@ class LoginViewController: BaseViewController {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 2.0
         
-        attributedDescription.addAttribute(NSAttributedString.Key.paragraphStyle,value: paragraphStyle, range: NSMakeRange(0, attributedDescription.length))
+        attributedDescription.addAttribute(NSAttributedString.Key.paragraphStyle,
+                                           value: paragraphStyle,
+                                           range: NSMakeRange(0, attributedDescription.length))
         
         self.descriptionLabel = UILabel()
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 12)

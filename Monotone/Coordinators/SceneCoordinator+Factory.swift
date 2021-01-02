@@ -151,8 +151,8 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case .licenses:
             let vc = LicensesViewController()
-            // let hiringVM = self.viewModel(sceneContent: .hiring, with: args)!
-            // vc.bind(to: [hiringVM])
+             let licensesVM = self.viewModel(sceneContent: .licenses, with: args)!
+             vc.bind(to: [licensesVM])
             
             return vc
 
@@ -209,7 +209,8 @@ extension SceneCoordinator: FactoryCoordinator{
             return nil
             
         case .licenses:
-            return nil
+            let vm: LicensesViewModel = LicensesViewModel(services: nil, args: args)
+            return vm
             
         case .searchPhotos:
             let vm: SearchPhotosViewModel = SearchPhotosViewModel(services: [PhotoService()], args: args)

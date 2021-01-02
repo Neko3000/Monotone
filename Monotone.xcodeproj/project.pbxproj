@@ -45,6 +45,8 @@
 		14104925255D49A5003312BC /* MTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14104924255D49A5003312BC /* MTNavigationController.swift */; };
 		14109A9D25620B150094BDA7 /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14109A9C25620B150094BDA7 /* MTTextField.swift */; };
 		141591D0255E53FE00179ED5 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141591CF255E53FE00179ED5 /* BaseCoordinator.swift */; };
+		141B368625A0818400213819 /* UnsplashAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141B368525A0818400213819 /* UnsplashAgreement.swift */; };
+		141B368B25A093C700213819 /* UITableView+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141B368A25A093C700213819 /* UITableView+Notification.swift */; };
 		1420AC16258B3D2C0095FD2E /* SceneCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420AC15258B3D2C0095FD2E /* SceneCoordinator+Factory.swift */; };
 		1420B298258B72420095FD2E /* UIImage+Reformat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B297258B72410095FD2E /* UIImage+Reformat.swift */; };
 		1420B2B0258B7F4C0095FD2E /* CapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B2AF258B7F4C0095FD2E /* CapsuleView.swift */; };
@@ -207,6 +209,8 @@
 		14104924255D49A5003312BC /* MTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTNavigationController.swift; sourceTree = "<group>"; };
 		14109A9C25620B150094BDA7 /* MTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTextField.swift; sourceTree = "<group>"; };
 		141591CF255E53FE00179ED5 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		141B368525A0818400213819 /* UnsplashAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashAgreement.swift; sourceTree = "<group>"; };
+		141B368A25A093C700213819 /* UITableView+Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Notification.swift"; sourceTree = "<group>"; };
 		1420AC15258B3D2C0095FD2E /* SceneCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneCoordinator+Factory.swift"; sourceTree = "<group>"; };
 		1420B297258B72410095FD2E /* UIImage+Reformat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Reformat.swift"; sourceTree = "<group>"; };
 		1420B2AF258B7F4C0095FD2E /* CapsuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapsuleView.swift; sourceTree = "<group>"; };
@@ -663,6 +667,7 @@
 				1433B8E82561270700FE9B1D /* InterfaceGlobalVars.swift */,
 				149EE5EA25906817000230CD /* UnsplashTopic.swift */,
 				14627A5125A0692B00C1D94E /* UnsplashListOrderBy.swift */,
+				141B368525A0818400213819 /* UnsplashAgreement.swift */,
 				149EE5EF259068C2000230CD /* SideMenuPage.swift */,
 			);
 			path = Vars;
@@ -804,6 +809,7 @@
 				14842D50257DF5E900364FFF /* UIView+Border.swift */,
 				14FD9B67257F4E0C00DEC579 /* String+Split.swift */,
 				1420B297258B72410095FD2E /* UIImage+Reformat.swift */,
+				141B368A25A093C700213819 /* UITableView+Notification.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1052,12 +1058,14 @@
 				14DE10AE2592D9C700503FB0 /* UserManager.swift in Sources */,
 				14071B182565FD1C00D418C8 /* PhotoListViewModel.swift in Sources */,
 				14BA300A258CCC6200215F03 /* SideMenuViewController.swift in Sources */,
+				141B368625A0818400213819 /* UnsplashAgreement.swift in Sources */,
 				14009CA525775E6D00C70E6E /* StatistizePhotoRequest.swift in Sources */,
 				14104916255D34AE003312BC /* PhotoDetailsViewController.swift in Sources */,
 				14E3ACCF257383F4000297CF /* CapsuleButton.swift in Sources */,
 				14109A9D25620B150094BDA7 /* MTTextField.swift in Sources */,
 				14E30479259B1E04006BDBDB /* ListUserPhotosRequest.swift in Sources */,
 				14009CB6257775F800C70E6E /* Statistics.swift in Sources */,
+				141B368B25A093C700213819 /* UITableView+Notification.swift in Sources */,
 				149EE5EB25906817000230CD /* UnsplashTopic.swift in Sources */,
 				1406EADF257A5B9F0096DE82 /* PhotoAddToCollectionViewController.swift in Sources */,
 				14E3ACD325738413000297CF /* BaseButton.swift in Sources */,

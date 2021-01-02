@@ -1,5 +1,5 @@
 //
-//  PhotoVars.swift
+//  UnsplashListOrderBy.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/15.
@@ -16,10 +16,12 @@ extension UnsplashListOrderBy: RawRepresentable, CaseIterable{
     init?(rawValue: (key:String, description:String)) {
         switch rawValue {
         
-        case (key: "popular", description : NSLocalizedString("unsplash_home_segment_popular", comment: "Popular")):
+        case (key: "popular",
+              description : NSLocalizedString("unsplash_home_segment_popular", comment: "Popular")):
             self = .popular
             
-        case (key: "latest", description : NSLocalizedString("unsplash_home_segment_latest", comment: "latest")):
+        case (key: "latest",
+              description : NSLocalizedString("unsplash_home_segment_latest", comment: "latest")):
             self = .latest
             
         default:

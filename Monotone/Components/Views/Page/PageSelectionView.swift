@@ -65,15 +65,29 @@ class PageSelectionView: BaseView {
             }
             .disposed(by: self.disposeBag)
         
-        self.tableView.rx.modelSelected((key:SideMenuPage,value:String).self)
-            .subscribe(onNext:{ [weak self] (tuple) in
+        // SelectedPage.
+        self.tableView.rx.modelSelected((key:Any,value:String).self)
+            .subscribe(onNext:{ [weak self] (item) in
                 guard let self = self else { return }
                 
-                self.selectedItem.accept(tuple)
-
-            }).disposed(by: self.disposeBag)
+                self.selectedItem.accept(item)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // ReloadData.
+        self.tableView.rx.methodInvoked(#selector(UITableView.reloadData))
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
+                
+                if(self.tableView.numberOfSections > 0 && self.tableView.numberOfRows(inSection: 0) > 0){
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+                    self.tableView.delegate?.tableView?(self.tableView, didSelectRowAt: indexPath)
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
     }
-
 }
 
 // MARK: - UITableViewDelegate

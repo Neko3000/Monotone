@@ -18,17 +18,13 @@ class LicensesViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        //
+        var aggrements: BehaviorRelay<[UnsplashAgreement]?> = BehaviorRelay<[UnsplashAgreement]?>(value: nil)
     }
     public var input: Input = Input()
     
     // MARK: - Output
     struct Output {
-        var license: BehaviorRelay<(key:String,value:String)?> = BehaviorRelay<(key:String,value:String)?>(value: nil)
-        var manifesto: BehaviorRelay<(key:String,value:String)?> = BehaviorRelay<(key:String,value:String)?>(value: nil)
-        var privacyPolicy: BehaviorRelay<(key:String,value:String)?> = BehaviorRelay<(key:String,value:String)?>(value: nil)
-        var termsAndConditions: BehaviorRelay<(key:String,value:String)?> = BehaviorRelay<(key:String,value:String)?>(value: nil)
-        var apiTerms: BehaviorRelay<(key:String,value:String)?> = BehaviorRelay<(key:String,value:String)?>(value: nil)
+        var aggrements: BehaviorRelay<[UnsplashAgreement]?> = BehaviorRelay<[UnsplashAgreement]?>(value: nil)
     }
     public var output: Output = Output()
     
@@ -47,7 +43,9 @@ class LicensesViewModel: BaseViewModel, ViewModelStreamable{
         //
         
         // Bindings.
-        self.output.license.accept((key:"License",value:""))
+        self.input.aggrements
+            .bind(to: self.output.aggrements)
+            .disposed(by: self.disposeBag)
     }
     
 }

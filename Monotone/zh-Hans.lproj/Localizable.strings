@@ -75,3 +75,13 @@
 "unsplash_hiring_section_title" = "如何申请";
 "unsplash_hiring_section_content" = "如果您希望与我们一同工作，请给我们发送消息。请不要提交简历，与此相对的，我们更喜欢听听您最近在沉迷于什么有趣的玩意儿。";
 
+"unsplash_agreement_license_title" = "许可证";
+"unsplash_agreement_license_content" = "您可以免费使用Unsplash上发布的照片，所有的照片都可用于商业或者非商业用途。也不需要取得来自于摄影师或者Unsplash的任何许可（如果有的话也是很好的）。更准确的说，Unsplash赋予您不变的，没有例外的，全世界通用的版权许可。您可以自由地下载，拷贝，修改，发布，展示和使用任何内容，包括商用用途，也不需要来自于摄影师或者Unsplash本身的许可。但是，这个许可证不包括，任何涉嫌抄袭或者复制Unsplash所提供的服务的权利...";
+"unsplash_agreement_privacy_policy_title" = "隐私政策";
+"unsplash_agreement_privacy_policy_content" = "Unsplash有限公司，和其关联企业，子公司（“Unsplash”，“我们”）被赋予保护您的个人信息的隐私和安全的使命。该隐私政策的目的在于让你了解我们的隐私保护，包括我们怎样获取，使用，公开，您的个人信息。隐私政策适用于我们的网站，移动端应用和关联服务（“Unsplash服务”）。通过访问，连接，或者使用Unsplash服务，意味着您同意该政策，以及其的实施，所以请认真阅读。如果您不同意其中的任何政策条例，或者其的实施，请停止访问，连接，或者使用Unsplash服务...";
+"unsplash_agreement_manifesto_title" = "声明";
+"unsplash_agreement_manifesto_content" = "Unsplash是一个全球性的组织...";
+"unsplash_agreement_terms_and_conditions_title" = "规则与条例";
+"unsplash_agreement_terms_and_conditions_content" = "Unsplash是一个高质量的免费照片浏览平台。我们（Unsplash有限公司，加拿大），通过unsplash.com域名运营Unsplash网站（站点），和其他软件，移动端应用，和其他我们提供的服务。我们的目的是，推动贡献者为该的社区提供更多的创造性。您对服务的使用，以及我们对您的授权，以及您与我们之间的协议，都将包括在该条款内...";
+"unsplash_agreement_api_terms_title" = "API条款";
+"unsplash_agreement_api_terms_content" = "这些Unsplash API使用条款的划定了一个您与Unsplash有限公司（“Unsplash”，“我们”）之间的合法协议。并且描述了开发者在使用Unsplash应用接口（“APIs”），以及Unsplash在其开发者网站 - https://unsplash.com/developers（“开发者网站”）所发布的相关文档时，必须遵循的一系列规则。任何使用APIs集成的应用都被称为，开发者应用...";

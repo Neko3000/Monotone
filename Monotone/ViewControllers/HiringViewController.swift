@@ -127,7 +127,9 @@ class HiringViewController: BaseViewController {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6.0
         
-        attributedContent.addAttribute(NSAttributedString.Key.paragraphStyle,value: paragraphStyle, range: NSMakeRange(0, attributedContent.length))
+        attributedContent.addAttribute(NSAttributedString.Key.paragraphStyle,
+                                       value: paragraphStyle,
+                                       range: NSMakeRange(0, attributedContent.length))
         
         self.sectionContentLabel = UILabel()
         self.sectionContentLabel.font = UIFont.systemFont(ofSize: 16)

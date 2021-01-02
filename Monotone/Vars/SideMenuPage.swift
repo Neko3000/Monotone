@@ -19,19 +19,24 @@ extension SideMenuPage: RawRepresentable, CaseIterable{
     init?(rawValue: (key:String, description:String)) {
         switch rawValue {
         
-        case (key:"myPhotos", description:NSLocalizedString("unsplash_side_menu_option_my_photos", comment: "My Photos")):
+        case (key:"myPhotos",
+              description:NSLocalizedString("unsplash_side_menu_option_my_photos", comment: "My Photos")):
             self = .myPhotos
             
-        case (key:"hiring", description:NSLocalizedString("unsplash_side_menu_option_hiring", comment: "Hiring")):
+        case (key:"hiring",
+              description:NSLocalizedString("unsplash_side_menu_option_hiring", comment: "Hiring")):
             self = .hiring
             
-        case (key:"licenses", description:NSLocalizedString("unsplash_side_menu_option_licenses", comment: "Licenses")):
+        case (key:"licenses",
+              description:NSLocalizedString("unsplash_side_menu_option_licenses", comment: "Licenses")):
             self = .licenses
             
-        case (key:"help", description:NSLocalizedString("unsplash_side_menu_option_help", comment: "Help")):
+        case (key:"help",
+              description:NSLocalizedString("unsplash_side_menu_option_help", comment: "Help")):
             self = .help
             
-        case (key:"madeWithUnsplash", description:NSLocalizedString("unsplash_side_menu_option_made_with_unsplash", comment: "Made with Unsplash")):
+        case (key:"madeWithUnsplash",
+              description:NSLocalizedString("unsplash_side_menu_option_made_with_unsplash", comment: "Made with Unsplash")):
             self = .madeWithUnsplash
             
         default: return nil

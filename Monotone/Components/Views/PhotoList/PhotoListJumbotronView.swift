@@ -83,7 +83,9 @@ class PhotoListJumbotronView: BaseView {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6.0
         
-        attributedDescription.addAttribute(NSAttributedString.Key.paragraphStyle,value: paragraphStyle, range: NSMakeRange(0, attributedDescription.length))
+        attributedDescription.addAttribute(NSAttributedString.Key.paragraphStyle,
+                                           value: paragraphStyle,
+                                           range: NSMakeRange(0, attributedDescription.length))
 
         self.descriptionLabel = UILabel()
         self.descriptionLabel.attributedText = attributedDescription

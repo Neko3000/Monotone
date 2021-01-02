@@ -260,7 +260,7 @@ extension PhotoDetailsViewController: ViewControllerAnimatable{
             
             self.expandBtn.isSelected = false
             self.userCapsuleView.backgroundStyle = .normal
-            self.scrollView.adjustZoomScale(scaleToFill: true, animated: true)
+            self.scrollView.adjustZoomScale(scaleToFill: false, animated: true)
             
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 0.5
@@ -297,7 +297,7 @@ extension PhotoDetailsViewController: ViewControllerAnimatable{
             
             self.expandBtn.isSelected = true
             self.userCapsuleView.backgroundStyle = .blur
-            self.scrollView.adjustZoomScale(scaleToFill: false, animated: true)
+            self.scrollView.adjustZoomScale(scaleToFill: true, animated: true)
 
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 0.5
