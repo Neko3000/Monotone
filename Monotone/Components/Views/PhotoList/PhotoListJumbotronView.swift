@@ -99,10 +99,10 @@ class PhotoListJumbotronView: BaseView {
         }
         
         // SegmentedControl.
-        let text: String = PhotoVars.listOrderBys.map { $0.description }.joined()
+        let text: String = UnsplashListOrderBy.allCases.map { $0.rawValue.description }.joined()
         let textSize = text.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.0)])
         
-        self.segmentedControl = HMSegmentedControl(sectionTitles: PhotoVars.listOrderBys.map({ $0.description }))
+        self.segmentedControl = HMSegmentedControl(sectionTitles: UnsplashListOrderBy.allCases.map({ $0.rawValue.description }))
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
             NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal
@@ -131,7 +131,7 @@ class PhotoListJumbotronView: BaseView {
         self.listOrderBy
             .unwrap()
             .flatMap { (key) -> Observable<Int> in
-                let segmentedKeys = PhotoVars.listOrderBys.map({ $0.key })
+                let segmentedKeys = UnsplashListOrderBy.allCases.map({ $0.rawValue.key })
                 let index = segmentedKeys.firstIndex { $0 == key } ?? -1
                 
                 return Observable.just(index)
@@ -169,8 +169,8 @@ class PhotoListJumbotronView: BaseView {
         let index = Int(segmentedControl.selectedSegmentIndex)
 
         switch index {
-        case 0..<PhotoVars.listOrderBys.count:
-            self.listOrderBy.accept(PhotoVars.listOrderBys[index].key)
+        case 0..<UnsplashListOrderBy.allCases.count:
+            self.listOrderBy.accept(UnsplashListOrderBy.allCases[index].rawValue.key)
             break
 
         default:

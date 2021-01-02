@@ -68,5 +68,85 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CB83D5D1-DFB5-4659-A066-D343611D7E53"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Monotone/Components/Views/PhotoList/PhotoListHeaderView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "segmentedControlChangedValue(segmentedControl:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CB83D5D1-DFB5-4659-A066-D343611D7E53 - d274e4b81fb5705e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Monotone.PhotoListHeaderView.(segmentedControlChangedValue in _06124F17258B24693BBE558652CFC75A)(segmentedControl: __C.HMSegmentedControl) -&gt; ()"
+                  moduleName = "Monotone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Components/Views/PhotoList/PhotoListHeaderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "CB83D5D1-DFB5-4659-A066-D343611D7E53 - d274e4b81fb5705e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Monotone.PhotoListHeaderView.(segmentedControlChangedValue in _06124F17258B24693BBE558652CFC75A)(segmentedControl: __C.HMSegmentedControl) -&gt; ()"
+                  moduleName = "Monotone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Components/Views/PhotoList/PhotoListHeaderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "700">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98254ECC-1094-48BA-9753-46F40D91835B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Monotone/Components/Views/PhotoList/PhotoListHeaderView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "buildLogic()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "16999DF8-CA27-45D9-88CC-DF57E8210B06"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Monotone/Components/Views/PhotoList/PhotoListHeaderView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "buildLogic()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -59,7 +59,7 @@ class PhotoListHeaderView: BaseView {
         })
         
         // SegmentedControl
-        let segmentedValues = PhotoVars.listOrderBys.map({ $0.description }) + PhotoVars.topics.map({ $0.description })
+        let segmentedValues = UnsplashListOrderBy.allCases.map({ $0.rawValue.description }) + UnsplashTopic.allCases.map({ $0.rawValue.description })
         self.segmentedControl = HMSegmentedControl(sectionTitles: segmentedValues)
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),
@@ -106,7 +106,7 @@ class PhotoListHeaderView: BaseView {
             .distinctUntilChanged()
             .unwrap()
             .flatMap { (key) -> Observable<Int> in
-                let segmentedKeys = PhotoVars.listOrderBys.map({ $0.key }) + PhotoVars.topics.map({ $0.key })
+                let segmentedKeys = UnsplashListOrderBy.allCases.map({ $0.rawValue.key }) + UnsplashTopic.allCases.map({ $0.rawValue.key })
                 let index = segmentedKeys.firstIndex { $0 == key } ?? -1
                 
                 return Observable.just(index)
@@ -173,12 +173,12 @@ class PhotoListHeaderView: BaseView {
         let index = Int(segmentedControl.selectedSegmentIndex)
         
         switch index {
-        case 0..<PhotoVars.listOrderBys.count:
-            self.listOrderBy.accept(PhotoVars.listOrderBys[index].key)
+        case 0..<UnsplashListOrderBy.allCases.count:
+            self.listOrderBy.accept(UnsplashListOrderBy.allCases[index].rawValue.key)
             break
             
-        case PhotoVars.listOrderBys.count..<PhotoVars.listOrderBys.count + PhotoVars.topics.count:
-            self.topic.accept(PhotoVars.topics[index - PhotoVars.listOrderBys.count].key)
+        case UnsplashListOrderBy.allCases.count..<UnsplashListOrderBy.allCases.count + UnsplashTopic.allCases.count:
+            self.topic.accept(UnsplashTopic.allCases[index - UnsplashListOrderBy.allCases.count].rawValue.key)
             break
 
         default:
