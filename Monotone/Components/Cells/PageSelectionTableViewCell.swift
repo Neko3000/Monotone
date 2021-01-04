@@ -81,8 +81,8 @@ class PageSelectionTableViewCell: UITableViewCell {
         // Item.
         self.item
             .unwrap()
-            .flatMap { (tuple) -> Observable<String> in
-                return Observable.just(tuple.value)
+            .flatMap { (item) -> Observable<String> in
+                return Observable.just(item.value)
             }
             .bind(to: self.titleLabel.rx.text)
             .disposed(by: self.disposeBag)

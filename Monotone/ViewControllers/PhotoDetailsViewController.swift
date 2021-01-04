@@ -27,10 +27,6 @@ class PhotoDetailsViewController: BaseViewController {
     private var collectCapsuleBtn: CapsuleButton!
     private var expandBtn: UIButton!
     
-    // MARK: - ViewControllers
-    private var photoInfoViewController: PhotoInfoViewController!
-    private var photoShareViewController: PhotoShareViewController!
-    
     // MARK: - Priavte
     private var animationState: AnimationState = .normal
 
