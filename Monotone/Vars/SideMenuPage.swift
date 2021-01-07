@@ -17,29 +17,25 @@ enum SideMenuPage{
 
 extension SideMenuPage: RawRepresentable, CaseIterable{
     init?(rawValue: (key:String, description:String)) {
-        switch rawValue {
+        switch rawValue.key {
         
-        case (key:"myPhotos",
-              description:NSLocalizedString("unsplash_side_menu_option_my_photos", comment: "My Photos")):
+        case "myPhotos":
             self = .myPhotos
             
-        case (key:"hiring",
-              description:NSLocalizedString("unsplash_side_menu_option_hiring", comment: "Hiring")):
+        case "hiring":
             self = .hiring
             
-        case (key:"licenses",
-              description:NSLocalizedString("unsplash_side_menu_option_licenses", comment: "Licenses")):
+        case "licenses":
             self = .licenses
             
-        case (key:"help",
-              description:NSLocalizedString("unsplash_side_menu_option_help", comment: "Help")):
+        case "help":
             self = .help
             
-        case (key:"madeWithUnsplash",
-              description:NSLocalizedString("unsplash_side_menu_option_made_with_unsplash", comment: "Made with Unsplash")):
+        case "madeWithUnsplash":
             self = .madeWithUnsplash
             
-        default: return nil
+        default:
+            return nil
         }
     }
     

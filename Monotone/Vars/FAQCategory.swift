@@ -14,23 +14,16 @@ enum FAQCategory{
 
 extension FAQCategory: RawRepresentable, CaseIterable{
     init?(rawValue: (key:String, icon:UIImage, title:String, description:String, count:Int)) {
-        switch rawValue {
+        switch rawValue.key {
         
-        case (key:"account",
-              icon:UIImage(named: "help-category-account")!,
-              title:"Managing your Unsplash account",
-              description:"Learn about your Unsplash account and how to manage your preferences",
-              count:10):
+        case "account":
             self = .account
             
-        case (key:"licenses",
-              icon:UIImage(named: "help-category-licenses")!,
-              title:"Unsplash License",
-              description:"The official Unsplash License guide and FAQ",
-              count:10):
+        case "licenses":
             self = .licenses
             
-        default: return nil
+        default:
+            return nil
         }
     }
     

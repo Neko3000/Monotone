@@ -14,14 +14,12 @@ enum UnsplashListOrderBy{
 
 extension UnsplashListOrderBy: RawRepresentable, CaseIterable{
     init?(rawValue: (key:String, description:String)) {
-        switch rawValue {
+        switch rawValue.key {
         
-        case (key: "popular",
-              description : NSLocalizedString("unsplash_home_segment_popular", comment: "Popular")):
+        case "popular":
             self = .popular
             
-        case (key: "latest",
-              description : NSLocalizedString("unsplash_home_segment_latest", comment: "latest")):
+        case "latest":
             self = .latest
             
         default:

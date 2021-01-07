@@ -19,34 +19,25 @@ enum UnsplashAgreement{
 
 extension UnsplashAgreement: RawRepresentable, CaseIterable{
     init?(rawValue: (key:String, title: String, content:String)) {
-        switch rawValue {
+        switch rawValue.key {
         
-        case (key:"license",
-              title:NSLocalizedString("unsplash_agreement_license_title", comment: "License"),
-              content:NSLocalizedString("unsplash_agreement_license_content", comment: "")):
+        case "license":
             self = .license
         
-        case (key:"manifesto",
-              title:NSLocalizedString("unsplash_agreement_manifesto_title", comment: "Manifesto"),
-              content:NSLocalizedString("unsplash_agreement_manifesto_content", comment: "")):
+        case "manifesto":
             self = .manifesto
             
-        case (key:"privacyPolicy",
-              title:NSLocalizedString("unsplash_agreement_privacy_policy_title", comment: "Privacy Policy"),
-              content:NSLocalizedString("unsplash_agreement_privacy_policy_content", comment: "")):
+        case "privacyPolicy":
             self = .privacyPolicy
             
-        case (key:"termsAndConditions",
-              title:NSLocalizedString("unsplash_agreement_terms_and_conditions_title", comment: "T&C"),
-              content:NSLocalizedString("unsplash_agreement_terms_and_conditions_content", comment: "")):
+        case "termsAndConditions":
             self = .termsAndConditions
             
-        case (key:"apiTerms",
-              title:NSLocalizedString("unsplash_agreement_api_terms_title", comment: "API Terms"),
-              content:NSLocalizedString("unsplash_agreement_api_terms_content", comment: "")):
+        case "apiTerms":
             self = .apiTerms
             
-        default: return nil
+        default:
+            return nil
         }
     }
     
