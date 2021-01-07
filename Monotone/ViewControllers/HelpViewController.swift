@@ -21,14 +21,8 @@ class HelpViewController: BaseViewController {
 
     
     // MARK: - Controls
-    private var scrollView: UIScrollView!
-    private var stackView: UIStackView!
-    
-    private var headerLabel: UILabel!
-    private var contentLabel: UILabel!
-    
-    private var agreementSelectionView: PageSelectionView!
-
+    private var headerView: HelpHeaderView!
+    private var collectionView: UICollectionView!
     
     // MARK: - Priavte
     private let disposeBag: DisposeBag = DisposeBag()
@@ -40,104 +34,60 @@ class HelpViewController: BaseViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-    }
-    
     override func buildSubviews() {
+        
+        // NavBar.
+        self.navBarTransparent = true
+        self.navBarItemsColor = UIColor.white
         
         self.view.backgroundColor = ColorPalette.colorWhite
         
-        // AgreementSelectionView.
-        self.agreementSelectionView = PageSelectionView()
-        self.view.addSubview(self.agreementSelectionView)
-        self.agreementSelectionView.snp.makeConstraints { (make) in
-            make.height.equalTo(self.view).multipliedBy(1.0/3)
-            make.width.equalTo(88.0)
-            make.centerY.equalTo(self.view).offset(10.0)
-            make.right.equalTo(self.view).offset(-19.0)
+        // HeaderView.
+        self.headerView = HelpHeaderView()
+        self.view.addSubview(self.headerView)
+        self.headerView.snp.makeConstraints { (make) in
+            make.top.right.left.equalTo(self.view)
+            make.height.equalTo(238.0)
+        }
+
+        // CollectionView.
+        let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumInteritemSpacing = 10.0
+        flowLayout.minimumLineSpacing = 22.0
+        flowLayout.scrollDirection = .vertical
+        
+        self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+        self.collectionView.backgroundColor = UIColor.clear
+        self.collectionView.contentInset = UIEdgeInsets(top: 34.0, left: 24.0, bottom: 34.0, right: 24.0)
+        self.collectionView.register(HelpCollectionViewCell.self, forCellWithReuseIdentifier: "HelpCollectionViewCell")
+        self.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
+        self.view.addSubview(self.collectionView)
+        self.collectionView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(self.view)
+            make.top.equalTo(self.headerView.snp.bottom)
         }
         
-        // ScrollView.
-        self.scrollView = UIScrollView()
-        self.scrollView.showsVerticalScrollIndicator = false
-        self.view.addSubview(self.scrollView)
-        self.scrollView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(20.0)
-            make.left.equalTo(self.view).offset(18.0)
-            make.right.equalTo(self.agreementSelectionView.snp.left).offset(-20.0)
-            make.bottom.equalTo(self.view)
-        }
-        
-        // StackView.
-        self.stackView = UIStackView()
-        self.stackView.distribution = .equalSpacing
-        self.stackView.axis = .vertical
-        self.stackView.spacing = 24.0
-        self.scrollView.addSubview(self.stackView)
-        self.stackView.snp.makeConstraints { (make) in
-            make.width.equalTo(self.scrollView)
-            make.top.right.bottom.left.equalTo(self.scrollView)
-        }
-                
-        // HeaderLabel.
-        self.headerLabel = UILabel()
-        self.headerLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        self.headerLabel.textColor = ColorPalette.colorBlack
-        self.headerLabel.numberOfLines = 0
-        self.stackView.addArrangedSubview(self.headerLabel)
-        
-        // ContentLabel.
-        self.contentLabel = UILabel()
-        self.contentLabel.font = UIFont.systemFont(ofSize: 16)
-        self.contentLabel.textColor = ColorPalette.colorBlack
-        self.contentLabel.numberOfLines = 0
-        self.stackView.addArrangedSubview(self.contentLabel)
     }
     
     override func buildLogic() {
         
         // ViewModel.
-        let licensesViewModel = self.viewModel(type: LicensesViewModel.self)!
-
+        let helpViewModel = self.viewModel(type: HelpViewModel.self)!
+        
         // Bindings.
-        // Agreements.
-        licensesViewModel.input.aggrements
-            .accept(UnsplashAgreement.allCases)
-        
-        // AgreementSelectionView.
-        licensesViewModel.output.aggrements
+        // CollectionView.
+        helpViewModel.output.categories
             .unwrap()
-            .subscribe(onNext:{ [weak self] (aggrements) in
-                guard let self = self else { return }
+            .bind(to: self.collectionView.rx.items(cellIdentifier: "HelpCollectionViewCell")){
+                (row, element, cell) in
                 
-                self.agreementSelectionView.items.accept(aggrements.map({ return (key: $0, value: $0.rawValue.title) }))
-            })
-            .disposed(by: self.disposeBag)
+                let pcell: HelpCollectionViewCell = cell as! HelpCollectionViewCell
+                pcell.category.accept(element.rawValue)
+            
+            }.disposed(by: self.disposeBag)
         
-        self.agreementSelectionView.selectedItem
-            .unwrap()
-            .subscribe(onNext:{ [weak self] (item) in
-                guard let self = self else { return }
-                
-                let agreement = item.key as! UnsplashAgreement
-                
-                self.headerLabel.text = agreement.rawValue.title
-                
-                let attributedContent = NSMutableAttributedString(string: agreement.rawValue.content)
-                let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.lineSpacing = 20.0
-                
-                attributedContent.addAttribute(NSAttributedString.Key.paragraphStyle,
-                                               value: paragraphStyle,
-                                               range: NSMakeRange(0, attributedContent.length))
-                
-                self.contentLabel.attributedText = attributedContent
-            })
-            .disposed(by: self.disposeBag)
-        
-        
+        //
+        helpViewModel.input.categories.accept(FAQCategory.allCases)
     }
 
     /*
@@ -150,4 +100,52 @@ class HelpViewController: BaseViewController {
     }
     */
 
+}
+
+extension HelpViewController: UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let columnCount = 2
+
+        let inset = collectionView.contentInset
+        let flowLayout: UICollectionViewFlowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        
+        let height: CGFloat = 206.0
+        let width: CGFloat = (collectionView.frame.width - (inset.left + inset.right) - flowLayout.minimumInteritemSpacing * CGFloat(columnCount - 1)) / CGFloat(columnCount)
+        
+        return CGSize(width: width, height: height)
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//
+//        let columnCount = 2
+//
+//        let inset = collectionView.contentInset
+//        let columnWidth = (self.collectionView.frame.width - (inset.left + inset.right)) / CGFloat(columnCount)
+//
+//        let topSpacing: CGFloat = 11.0
+//        let bottomSpacing: CGFloat = 11.0
+//
+//        let thinSpacing: CGFloat = 5.0
+//        let boldSpacing: CGFloat = columnWidth - thinSpacing - self.collectionView(self.collectionView, layout: self.collectionView.collectionViewLayout, sizeForItemAt: IndexPath()).width
+//
+//        return UIEdgeInsets(top: topSpacing, left: leftSpacing, bottom: bottomSpacing, right: rightSpacing)
+//    }
+//
+    
+    
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return 10
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HelpCollectionViewCell", for: indexPath) as! HelpCollectionViewCell
+//
+//        return cell
+//    }
 }

@@ -139,6 +139,11 @@ class SideMenuViewController: BaseViewController {
                     break
                     
                 case .help:
+                    
+                    SceneCoordinator.shared.transition(type: .present(scene: .help, wrapped: true),
+                                                       with: nil,
+                                                       animated: true)
+                    
                     break
                     
                 case .madeWithUnsplash:

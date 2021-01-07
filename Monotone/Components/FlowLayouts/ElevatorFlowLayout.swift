@@ -21,8 +21,8 @@ class ElevatorFlowLayout: UICollectionViewFlowLayout {
     private var contentWidth: CGFloat{
         guard let collectionView = self.collectionView else { return 0 }
         
-        let inset = collectionView.contentInset
-        return collectionView.bounds.width - (inset.left + inset.right)
+        let contentInset = collectionView.contentInset
+        return collectionView.bounds.width - (contentInset.left + contentInset.right)
     }
     
     private var cachedAttributes: [UICollectionViewLayoutAttributes] = [UICollectionViewLayoutAttributes]()

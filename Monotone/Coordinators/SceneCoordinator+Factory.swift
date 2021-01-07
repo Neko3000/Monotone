@@ -155,6 +155,13 @@ extension SceneCoordinator: FactoryCoordinator{
              vc.bind(to: [licensesVM])
             
             return vc
+            
+        case .help:
+            let vc = HelpViewController()
+              let helpVM = self.viewModel(sceneContent: .help, with: args)!
+              vc.bind(to: [helpVM])
+            
+            return vc
 
         }
     }
@@ -210,6 +217,10 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case .licenses:
             let vm: LicensesViewModel = LicensesViewModel(services: nil, args: args)
+            return vm
+            
+        case .help:
+            let vm: HelpViewModel = HelpViewModel(services: nil, args: args)
             return vm
             
         case .searchPhotos:
