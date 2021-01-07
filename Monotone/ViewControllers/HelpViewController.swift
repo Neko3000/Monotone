@@ -87,6 +87,9 @@ class HelpViewController: BaseViewController {
         let helpViewModel = self.viewModel(type: HelpViewModel.self)!
         
         // Bindings.
+        // FAQCategory.
+        helpViewModel.input.categories.accept(FAQCategory.allCases)
+        
         // CollectionView.
         helpViewModel.output.categories
             .unwrap()
@@ -99,7 +102,6 @@ class HelpViewController: BaseViewController {
             }.disposed(by: self.disposeBag)
         
         //
-        helpViewModel.input.categories.accept(FAQCategory.allCases)
     }
 
     /*

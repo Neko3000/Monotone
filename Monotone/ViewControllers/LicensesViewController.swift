@@ -29,7 +29,6 @@ class LicensesViewController: BaseViewController {
     
     private var agreementSelectionView: PageSelectionView!
 
-    
     // MARK: - Priavte
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -103,11 +102,11 @@ class LicensesViewController: BaseViewController {
 
         // Bindings.
         // Agreements.
-        licensesViewModel.input.aggrements
+        licensesViewModel.input.agreements
             .accept(UnsplashAgreement.allCases)
         
         // AgreementSelectionView.
-        licensesViewModel.output.aggrements
+        licensesViewModel.output.agreements
             .unwrap()
             .subscribe(onNext:{ [weak self] (aggrements) in
                 guard let self = self else { return }
@@ -118,10 +117,16 @@ class LicensesViewController: BaseViewController {
         
         self.agreementSelectionView.selectedItem
             .unwrap()
-            .subscribe(onNext:{ [weak self] (item) in
-                guard let self = self else { return }
-                
+            .subscribe(onNext:{ (item) in
                 let agreement = item.key as! UnsplashAgreement
+                licensesViewModel.input.selectedAgreement.accept(agreement)
+            })
+            .disposed(by: self.disposeBag)
+            
+        licensesViewModel.output.selectedAgreement
+            .unwrap()
+            .subscribe(onNext:{ [weak self] (agreement) in
+                guard let self = self else { return }
                 
                 self.headerLabel.text = agreement.rawValue.title
                 
@@ -136,8 +141,6 @@ class LicensesViewController: BaseViewController {
                 self.contentLabel.attributedText = attributedContent
             })
             .disposed(by: self.disposeBag)
-        
-        
     }
 
     /*

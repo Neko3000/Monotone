@@ -159,7 +159,11 @@
 		14FEE57825A5E8C200684CC1 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FEE57725A5E8C200684CC1 /* HelpViewController.swift */; };
 		14FEE57C25A5E96000684CC1 /* HelpHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FEE57B25A5E96000684CC1 /* HelpHeaderView.swift */; };
 		73CFE15CA67265ABCA3CC319 /* Pods_Monotone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */; };
+		EB2F87F025A7983700875C83 /* MadeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2F87EF25A7983700875C83 /* MadeCategory.swift */; };
 		EB53EB91259C905B00DE6776 /* ElevatorFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB53EB90259C905B00DE6776 /* ElevatorFlowLayout.swift */; };
+		EB8B906F25A79B3F00336A39 /* MadeWithUnsplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B906E25A79B3F00336A39 /* MadeWithUnsplashViewController.swift */; };
+		EB8B907225A79BB900336A39 /* MadeWithUnsplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B907125A79BB900336A39 /* MadeWithUnsplashViewModel.swift */; };
+		EB8B907625A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B907525A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -336,7 +340,11 @@
 		14FEE57B25A5E96000684CC1 /* HelpHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpHeaderView.swift; sourceTree = "<group>"; };
 		22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monotone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AF9737896258A142CECD23 /* Pods-Monotone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.release.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.release.xcconfig"; sourceTree = "<group>"; };
+		EB2F87EF25A7983700875C83 /* MadeCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadeCategory.swift; sourceTree = "<group>"; };
 		EB53EB90259C905B00DE6776 /* ElevatorFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevatorFlowLayout.swift; sourceTree = "<group>"; };
+		EB8B906E25A79B3F00336A39 /* MadeWithUnsplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadeWithUnsplashViewController.swift; sourceTree = "<group>"; };
+		EB8B907125A79BB900336A39 /* MadeWithUnsplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadeWithUnsplashViewModel.swift; sourceTree = "<group>"; };
+		EB8B907525A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadeWithUnsplashTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -502,6 +510,7 @@
 				14EE8D0F259EED5400132F74 /* HiringViewController.swift */,
 				14EE8D12259F0D7E00132F74 /* LicensesViewController.swift */,
 				14FEE57725A5E8C200684CC1 /* HelpViewController.swift */,
+				EB8B906E25A79B3F00336A39 /* MadeWithUnsplashViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -522,6 +531,7 @@
 				14E30473259AFBB0006BDBDB /* MyPhotosViewModel.swift */,
 				14EE8D38259F2E9000132F74 /* LicensesViewModel.swift */,
 				143BACE325A70AD800FF9D8A /* HelpViewModel.swift */,
+				EB8B907125A79BB900336A39 /* MadeWithUnsplashViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -663,6 +673,7 @@
 				14BA299F258CB61000215F03 /* SideMenuPageTableViewCell.swift */,
 				14EE8D26259F224600132F74 /* PageSelectionTableViewCell.swift */,
 				140F5C2F25A6BA47009A6459 /* HelpCollectionViewCell.swift */,
+				EB8B907525A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -684,6 +695,7 @@
 				141B368525A0818400213819 /* UnsplashAgreement.swift */,
 				149EE5EF259068C2000230CD /* SideMenuPage.swift */,
 				143BACDF25A705BB00FF9D8A /* FAQCategory.swift */,
+				EB2F87EF25A7983700875C83 /* MadeCategory.swift */,
 			);
 			path = Vars;
 			sourceTree = "<group>";
@@ -1069,6 +1081,7 @@
 				142BD867259897ED0097F5AC /* PhotoInfoViewController.swift in Sources */,
 				1401547A25831BF600746563 /* CollectionService.swift in Sources */,
 				1410491C255D3686003312BC /* SceneTransition.swift in Sources */,
+				EB8B907225A79BB900336A39 /* MadeWithUnsplashViewModel.swift in Sources */,
 				14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */,
 				1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */,
 				14014CEF2581BE1B00746563 /* AuthError.swift in Sources */,
@@ -1137,6 +1150,7 @@
 				149325052585FB34006EB8E3 /* AddToCollectionRequest.swift in Sources */,
 				14D7DBD12599A3D4001BF0CB /* BaseTabBarController.swift in Sources */,
 				14009AFC2575D69200C70E6E /* HomeViewController.swift in Sources */,
+				EB2F87F025A7983700875C83 /* MadeCategory.swift in Sources */,
 				14EE8D10259EED5400132F74 /* HiringViewController.swift in Sources */,
 				14FD83CB2567F7CD00D5B575 /* BlurHashEncode.swift in Sources */,
 				1428403A2564BBB1004C06DF /* ListTopicsResponse.swift in Sources */,
@@ -1152,6 +1166,7 @@
 				148321292588E06000097F85 /* UnlikePhotoRequest.swift in Sources */,
 				1428403E2564BC56004C06DF /* Topic.swift in Sources */,
 				1406E9E8257A04EF0096DE82 /* PhotoShareViewController.swift in Sources */,
+				EB8B907625A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift in Sources */,
 				1406EAF2257A5C640096DE82 /* AddToCollectionTableViewCell.swift in Sources */,
 				14FD9C59257F7AE800DEC579 /* AppManager.swift in Sources */,
 				143BACE425A70AD800FF9D8A /* HelpViewModel.swift in Sources */,
@@ -1163,6 +1178,7 @@
 				14FD9B68257F4E0C00DEC579 /* String+Split.swift in Sources */,
 				1406E9EE257A0E050096DE82 /* PhotoShareURLView.swift in Sources */,
 				14E59E492557CA6A00F1FB60 /* Photo.swift in Sources */,
+				EB8B906F25A79B3F00336A39 /* MadeWithUnsplashViewController.swift in Sources */,
 				1420AC16258B3D2C0095FD2E /* SceneCoordinator+Factory.swift in Sources */,
 				14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */,
 				14E59E912557FC5000F1FB60 /* NetworkError.swift in Sources */,
