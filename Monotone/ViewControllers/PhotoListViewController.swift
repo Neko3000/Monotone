@@ -164,7 +164,9 @@ class PhotoListViewController: BaseViewController {
         photoListViewModel.output.reloading
             .ignore(true)
             .subscribe { [weak self] (_) in
-                self?.collectionView.mj_header!.endRefreshing()
+                guard let self = self else { return }
+                
+                self.collectionView.mj_header!.endRefreshing()
             }
             .disposed(by: self.disposeBag)
 

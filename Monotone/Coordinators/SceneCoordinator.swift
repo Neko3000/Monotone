@@ -62,10 +62,12 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     // MARK: - Public
     override weak var currentViewController: UIViewController? {
         didSet{
-            currentViewController?.tabBarController?.delegate = self
             currentViewController?.navigationController?.delegate = self
+            currentViewController?.tabBarController?.delegate = self
             
             currentViewController?.presentationController?.delegate = self
+            currentViewController?.navigationController?.presentationController?.delegate = self
+            currentViewController?.tabBarController?.presentationController?.delegate = self
         }
     }
 
