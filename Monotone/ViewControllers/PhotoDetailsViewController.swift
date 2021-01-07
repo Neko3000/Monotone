@@ -75,7 +75,7 @@ class PhotoDetailsViewController: BaseViewController {
         self.view.addSubview(self.userCapsuleView)
         self.userCapsuleView.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(17.0)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
         // OperationView.

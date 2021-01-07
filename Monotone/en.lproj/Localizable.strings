@@ -82,3 +82,6 @@
 "unsplash_agreement_terms_and_conditions_content" = "Unsplash is a photo discovery platform for free to use, high-definition photos. We (Unsplash Inc., a Canadian corporation) operate the Unsplash website at unsplash.com (the “Site”) and all related websites, software, mobile apps, and other services that we provide (together, the “Service”) with the goal of celebrating and enabling contributors and fostering creativity in our community. Your use of the Service, and our provision of the Service to you, constitutes an agreement by you and Unsplash to be bound by the terms and conditions in these Terms of Service...";
 "unsplash_agreement_api_terms_title" = "API Terms";
 "unsplash_agreement_api_terms_content" = "These Unsplash API Terms of Use (these “API Terms”) comprise a legal agreement between Unsplash Inc. (“Unsplash,” “us,” “we,” or “our”) and you, and describe the rules developers must follow when accessing or using the Unsplash application programming interfaces (the “APIs”) and related documentation made available by Unsplash through the Unsplash developer website currently located at https://unsplash.com/developers (“Developer Site”). Any application you integrate with the APIs is a “Developer App.”";
+
+"unsplash_help_article_count_suffix" = "%d articles in this collection";
+

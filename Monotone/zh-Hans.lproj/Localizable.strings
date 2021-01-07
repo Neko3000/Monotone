@@ -85,3 +85,5 @@
 "unsplash_agreement_terms_and_conditions_content" = "Unsplash是一个高质量的免费照片浏览平台。我们（Unsplash有限公司，加拿大），通过unsplash.com域名运营Unsplash网站（站点），和其他软件，移动端应用，和其他我们提供的服务。我们的目的是，推动贡献者为该的社区提供更多的创造性。您对服务的使用，以及我们对您的授权，以及您与我们之间的协议，都将包括在该条款内...";
 "unsplash_agreement_api_terms_title" = "API条款";
 "unsplash_agreement_api_terms_content" = "这些Unsplash API使用条款的划定了一个您与Unsplash有限公司（“Unsplash”，“我们”）之间的合法协议。并且描述了开发者在使用Unsplash应用接口（“APIs”），以及Unsplash在其开发者网站 - https://unsplash.com/developers（“开发者网站”）所发布的相关文档时，必须遵循的一系列规则。任何使用APIs集成的应用都被称为，开发者应用...";
+
+"unsplash_help_article_count_suffix" = "包含 %d 篇文章";

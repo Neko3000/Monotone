@@ -22,6 +22,8 @@ class HelpViewController: BaseViewController {
     
     // MARK: - Controls
     private var headerView: HelpHeaderView!
+    private var headerBackgroundView: UIView!
+    
     private var collectionView: UICollectionView!
     
     // MARK: - Priavte
@@ -46,8 +48,18 @@ class HelpViewController: BaseViewController {
         self.headerView = HelpHeaderView()
         self.view.addSubview(self.headerView)
         self.headerView.snp.makeConstraints { (make) in
-            make.top.right.left.equalTo(self.view)
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.right.left.equalTo(self.view)
             make.height.equalTo(238.0)
+        }
+        
+        // HeaderBackgroundView.
+        self.headerBackgroundView = UIView()
+        self.headerBackgroundView.backgroundColor = UIColor.black
+        self.view.insertSubview(self.headerBackgroundView, belowSubview: self.headerView)
+        self.headerBackgroundView.snp.makeConstraints { (make) in
+            make.top.right.left.equalTo(self.view)
+            make.bottom.equalTo(self.headerView)
         }
 
         // CollectionView.
@@ -116,36 +128,4 @@ extension HelpViewController: UICollectionViewDelegateFlowLayout{
         
         return CGSize(width: width, height: height)
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//
-//        let columnCount = 2
-//
-//        let inset = collectionView.contentInset
-//        let columnWidth = (self.collectionView.frame.width - (inset.left + inset.right)) / CGFloat(columnCount)
-//
-//        let topSpacing: CGFloat = 11.0
-//        let bottomSpacing: CGFloat = 11.0
-//
-//        let thinSpacing: CGFloat = 5.0
-//        let boldSpacing: CGFloat = columnWidth - thinSpacing - self.collectionView(self.collectionView, layout: self.collectionView.collectionViewLayout, sizeForItemAt: IndexPath()).width
-//
-//        return UIEdgeInsets(top: topSpacing, left: leftSpacing, bottom: bottomSpacing, right: rightSpacing)
-//    }
-//
-    
-    
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 10
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HelpCollectionViewCell", for: indexPath) as! HelpCollectionViewCell
-//
-//        return cell
-//    }
 }
