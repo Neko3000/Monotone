@@ -8,10 +8,10 @@
 import Foundation
 import SwiftyJSON
 
-let debugKeyFileName: String = "api_keys_debug"
-let sampleKeyFileName: String = "api_keys_sample"
-
 class AppCredential{
+    
+    let debugKeyFileName: String = "api_keys_debug"
+    let sampleKeyFileName: String = "api_keys_sample"
     
     init(){
         

@@ -28,6 +28,7 @@ enum Scene {
     case hiring
     case licenses
     case help
+    case madeWithUnsplash
 }
 
 // MARK: - SceneContent
@@ -47,8 +48,8 @@ enum SceneContent {
     case hiring
     case licenses
     case help
+    case madeWithUnsplash
 
-    case searchPhotos
     case empty
 }
 

@@ -151,15 +151,22 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case .licenses:
             let vc = LicensesViewController()
-             let licensesVM = self.viewModel(sceneContent: .licenses, with: args)!
-             vc.bind(to: [licensesVM])
+            let licensesVM = self.viewModel(sceneContent: .licenses, with: args)!
+            vc.bind(to: [licensesVM])
             
             return vc
             
         case .help:
             let vc = HelpViewController()
-              let helpVM = self.viewModel(sceneContent: .help, with: args)!
-              vc.bind(to: [helpVM])
+            let helpVM = self.viewModel(sceneContent: .help, with: args)!
+            vc.bind(to: [helpVM])
+            
+            return vc
+            
+        case .madeWithUnsplash:
+            let vc = HelpViewController()
+            let helpVM = self.viewModel(sceneContent: .help, with: args)!
+            vc.bind(to: [helpVM])
             
             return vc
 
@@ -223,8 +230,8 @@ extension SceneCoordinator: FactoryCoordinator{
             let vm: HelpViewModel = HelpViewModel(services: nil, args: args)
             return vm
             
-        case .searchPhotos:
-            let vm: SearchPhotosViewModel = SearchPhotosViewModel(services: [PhotoService()], args: args)
+        case .madeWithUnsplash:
+            let vm: HelpViewModel = HelpViewModel(services: nil, args: args)
             return vm
             
         default:
