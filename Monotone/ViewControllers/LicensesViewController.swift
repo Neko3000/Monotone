@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 import SnapKit
 import MJRefresh
@@ -21,12 +22,7 @@ class LicensesViewController: BaseViewController {
 
     
     // MARK: - Controls
-    private var scrollView: UIScrollView!
-    private var stackView: UIStackView!
-    
-    private var headerLabel: UILabel!
-    private var contentLabel: UILabel!
-    
+    private var webView: WKWebView!
     private var agreementSelectionView: PageSelectionView!
 
     // MARK: - Priavte
@@ -58,41 +54,16 @@ class LicensesViewController: BaseViewController {
             make.right.equalTo(self.view).offset(-19.0)
         }
         
-        // ScrollView.
-        self.scrollView = UIScrollView()
-        self.scrollView.showsVerticalScrollIndicator = false
-        self.view.addSubview(self.scrollView)
-        self.scrollView.snp.makeConstraints { (make) in
+        // WebView.
+        self.webView = WKWebView()
+        self.webView.navigationDelegate = self
+        self.view.addSubview(self.webView)
+        self.webView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view).offset(20.0)
             make.left.equalTo(self.view).offset(18.0)
             make.right.equalTo(self.agreementSelectionView.snp.left).offset(-20.0)
             make.bottom.equalTo(self.view)
         }
-        
-        // StackView.
-        self.stackView = UIStackView()
-        self.stackView.distribution = .equalSpacing
-        self.stackView.axis = .vertical
-        self.stackView.spacing = 24.0
-        self.scrollView.addSubview(self.stackView)
-        self.stackView.snp.makeConstraints { (make) in
-            make.width.equalTo(self.scrollView)
-            make.top.right.bottom.left.equalTo(self.scrollView)
-        }
-                
-        // HeaderLabel.
-        self.headerLabel = UILabel()
-        self.headerLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        self.headerLabel.textColor = ColorPalette.colorBlack
-        self.headerLabel.numberOfLines = 0
-        self.stackView.addArrangedSubview(self.headerLabel)
-        
-        // ContentLabel.
-        self.contentLabel = UILabel()
-        self.contentLabel.font = UIFont.systemFont(ofSize: 16)
-        self.contentLabel.textColor = ColorPalette.colorBlack
-        self.contentLabel.numberOfLines = 0
-        self.stackView.addArrangedSubview(self.contentLabel)
     }
     
     override func buildLogic() {
@@ -128,17 +99,10 @@ class LicensesViewController: BaseViewController {
             .subscribe(onNext:{ [weak self] (agreement) in
                 guard let self = self else { return }
                 
-                self.headerLabel.text = agreement.rawValue.title
+                if let url = agreement.rawValue.content {
+                    self.webView.load(URLRequest(url: url))
+                }
                 
-                let attributedContent = NSMutableAttributedString(string: agreement.rawValue.content)
-                let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.lineSpacing = 20.0
-                
-                attributedContent.addAttribute(NSAttributedString.Key.paragraphStyle,
-                                               value: paragraphStyle,
-                                               range: NSMakeRange(0, attributedContent.length))
-                
-                self.contentLabel.attributedText = attributedContent
             })
             .disposed(by: self.disposeBag)
     }
@@ -153,4 +117,16 @@ class LicensesViewController: BaseViewController {
     }
     */
 
+}
+
+// MARK: - WKNavigationDelegate
+extension LicensesViewController: WKNavigationDelegate{
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
+        guard navigationAction.navigationType == .other || navigationAction.navigationType == .reload  else {
+            decisionHandler(.cancel)
+            return
+        }
+        decisionHandler(.allow)
+    }
 }

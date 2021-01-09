@@ -18,7 +18,7 @@ enum UnsplashAgreement{
 }
 
 extension UnsplashAgreement: RawRepresentable, CaseIterable{
-    init?(rawValue: (key:String, title: String, content:String)) {
+    init?(rawValue: (key:String, title: String, content: URL?)) {
         switch rawValue.key {
         
         case "license":
@@ -41,34 +41,40 @@ extension UnsplashAgreement: RawRepresentable, CaseIterable{
         }
     }
     
-    var rawValue: (key:String, title: String, content:String) {
+    var rawValue: (key:String, title: String, content: URL?) {
         switch self {
         
         case .license:
             return (key:"license",
                     title:NSLocalizedString("unsplash_agreement_license_title", comment: "License"),
-                    content:NSLocalizedString("unsplash_agreement_license_content", comment: ""))
+                    content: Bundle.main.url(forResource: "license_" + (Locale.current.languageCode == "zh" ? "cn" : "en"),
+                                             withExtension: "html"))
             
         case .manifesto:
             return (key:"manifesto",
                     title:NSLocalizedString("unsplash_agreement_manifesto_title", comment: "Manifesto"),
-                    content:NSLocalizedString("unsplash_agreement_manifesto_content", comment: ""))
-            
+                    content: Bundle.main.url(forResource: "manifesto_" + (Locale.current.languageCode == "zh" ? "cn" : "en"),
+                                             withExtension: "html"))
+
         case .privacyPolicy:
             return (key:"privacyPolicy",
                     title:NSLocalizedString("unsplash_agreement_privacy_policy_title", comment: "Privacy Policy"),
-                    content:NSLocalizedString("unsplash_agreement_privacy_policy_content", comment: ""))
-            
+                    content: Bundle.main.url(forResource: "privacy_policy_" + (Locale.current.languageCode == "zh" ? "cn" : "en"),
+                                             withExtension: "html"))
+
         case .termsAndConditions:
             return (key:"termsAndConditions",
                     title:NSLocalizedString("unsplash_agreement_terms_and_conditions_title", comment: "T&C"),
-                    content:NSLocalizedString("unsplash_agreement_terms_and_conditions_content", comment: ""))
-            
+                    content: Bundle.main.url(forResource: "terms_and_conditions_" + (Locale.current.languageCode == "zh" ? "cn" : "en"),
+                                             withExtension: "html"))
+
         case .apiTerms:
             return (key:"apiTerms",
                     title:NSLocalizedString("unsplash_agreement_api_terms_title", comment: "API Terms"),
-                    content:NSLocalizedString("unsplash_agreement_api_terms_content", comment: ""))
+                    content: Bundle.main.url(forResource: "api_terms_" + (Locale.current.languageCode == "zh" ? "cn" : "en"),
+                                             withExtension: "html"))
 
         }
     }
+
 }

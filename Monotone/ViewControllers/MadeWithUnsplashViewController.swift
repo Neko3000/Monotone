@@ -84,10 +84,13 @@ class MadeWithUnsplashViewController: BaseViewController {
         }
                 
         // TableView.
-        self.tableView = UITableView()
+        self.tableView = UITableView(frame: CGRect.zero, style: .grouped)
+        self.tableView.backgroundColor = UIColor.clear
         self.tableView.separatorStyle = .none
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.register(MadeWithUnsplashTableViewCell.self, forCellReuseIdentifier: "MadeWithUnsplashTableViewCell")
+        self.tableView.estimatedSectionHeaderHeight = 172.0
+        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
@@ -153,6 +156,24 @@ class MadeWithUnsplashViewController: BaseViewController {
 
 // MARK: - UITableViewDelegate
 extension MadeWithUnsplashViewController: UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        
+        header.addSubview(self.headerLabel)
+        self.headerLabel.snp.makeConstraints { (make) in
+            make.top.right.left.equalTo(header)
+        }
+        
+        header.addSubview(self.descriptionLabel)
+        self.descriptionLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.headerLabel.snp.bottom).offset(10.0)
+            make.right.left.equalTo(header)
+            make.bottom.equalTo(header).offset(-42.0)
+        }
+        
+        return header
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 469.0

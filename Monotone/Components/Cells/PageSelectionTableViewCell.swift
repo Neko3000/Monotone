@@ -45,9 +45,10 @@ class PageSelectionTableViewCell: UITableViewCell {
         self.titleLabel = UILabel()
         self.titleLabel.font = UIFont.systemFont(ofSize: 14)
         self.titleLabel.textColor = ColorPalette.colorGrayLight
+        self.titleLabel.textAlignment = .right
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints({ (make) in
-            make.right.equalTo(self.contentView)
+            make.left.right.equalTo(self.contentView)
             make.centerY.equalTo(self.contentView)
         })
         

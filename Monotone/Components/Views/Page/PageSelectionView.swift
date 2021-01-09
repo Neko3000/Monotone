@@ -94,4 +94,7 @@ class PageSelectionView: BaseView {
 // MARK: - UITableViewDelegate
 extension PageSelectionView: UITableViewDelegate{
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 49.0
+    }
 }
