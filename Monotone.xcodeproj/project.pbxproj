@@ -173,6 +173,11 @@
 		EB8B90A125A9B01D00336A39 /* terms_and_conditions_en.html in Resources */ = {isa = PBXBuildFile; fileRef = EB8B909D25A9B01D00336A39 /* terms_and_conditions_en.html */; };
 		EB8B90A225A9B01D00336A39 /* privacy_policy_en.html in Resources */ = {isa = PBXBuildFile; fileRef = EB8B909E25A9B01D00336A39 /* privacy_policy_en.html */; };
 		EB8B90A525A9B07B00336A39 /* Agreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90A425A9B07B00336A39 /* Agreement.swift */; };
+		EB8B90A825AA0C3600336A39 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90A725AA0C3600336A39 /* StoreViewController.swift */; };
+		EB8B90AD25AA0CB600336A39 /* StoreHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90AC25AA0CB600336A39 /* StoreHeaderView.swift */; };
+		EB8B90B025AA0D0600336A39 /* StoreCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90AF25AA0D0600336A39 /* StoreCategory.swift */; };
+		EB8B90B325AA145900336A39 /* StoreBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90B225AA145900336A39 /* StoreBannerView.swift */; };
+		EB8B90B625AA191E00336A39 /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90B525AA191D00336A39 /* StoreTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -363,6 +368,11 @@
 		EB8B909D25A9B01D00336A39 /* terms_and_conditions_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms_and_conditions_en.html; sourceTree = "<group>"; };
 		EB8B909E25A9B01D00336A39 /* privacy_policy_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy_policy_en.html; sourceTree = "<group>"; };
 		EB8B90A425A9B07B00336A39 /* Agreement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agreement.swift; sourceTree = "<group>"; };
+		EB8B90A725AA0C3600336A39 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		EB8B90AC25AA0CB600336A39 /* StoreHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreHeaderView.swift; sourceTree = "<group>"; };
+		EB8B90AF25AA0D0600336A39 /* StoreCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCategory.swift; sourceTree = "<group>"; };
+		EB8B90B225AA145900336A39 /* StoreBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreBannerView.swift; sourceTree = "<group>"; };
+		EB8B90B525AA191D00336A39 /* StoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -529,6 +539,7 @@
 				1406EADE257A5B9F0096DE82 /* PhotoAddToCollectionViewController.swift */,
 				14FEE57725A5E8C200684CC1 /* HelpViewController.swift */,
 				EB8B906E25A79B3F00336A39 /* MadeWithUnsplashViewController.swift */,
+				EB8B90A725AA0C3600336A39 /* StoreViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -693,6 +704,7 @@
 				14EE8D26259F224600132F74 /* PageSelectionTableViewCell.swift */,
 				140F5C2F25A6BA47009A6459 /* HelpCollectionViewCell.swift */,
 				EB8B907525A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift */,
+				EB8B90B525AA191D00336A39 /* StoreTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -715,6 +727,7 @@
 				149EE5EF259068C2000230CD /* SideMenuPage.swift */,
 				143BACDF25A705BB00FF9D8A /* FAQCategory.swift */,
 				EB2F87EF25A7983700875C83 /* MadeCategory.swift */,
+				EB8B90AF25AA0D0600336A39 /* StoreCategory.swift */,
 			);
 			path = Vars;
 			sourceTree = "<group>";
@@ -804,6 +817,8 @@
 			children = (
 				1433B8E22561190100FE9B1D /* PhotoListHeaderView.swift */,
 				143F567A254FEF320038761D /* PhotoListJumbotronView.swift */,
+				EB8B90AC25AA0CB600336A39 /* StoreHeaderView.swift */,
+				EB8B90B225AA145900336A39 /* StoreBannerView.swift */,
 			);
 			path = PhotoList;
 			sourceTree = "<group>";
@@ -1144,6 +1159,7 @@
 				14621CB62587549D00446F5F /* RemoveFromCollectionResponse.swift in Sources */,
 				14009CB2257762C600C70E6E /* HistoricalValue.swift in Sources */,
 				149955B025948014008CBB21 /* ListUserLikedPhotosResponse.swift in Sources */,
+				EB8B90A825AA0C3600336A39 /* StoreViewController.swift in Sources */,
 				14627A5225A0692B00C1D94E /* UnsplashListOrderBy.swift in Sources */,
 				142BD867259897ED0097F5AC /* PhotoInfoViewController.swift in Sources */,
 				1401547A25831BF600746563 /* CollectionService.swift in Sources */,
@@ -1196,6 +1212,7 @@
 				14009CAC2577625000C70E6E /* StatisticsIndicator.swift in Sources */,
 				140158FE258388EF00746563 /* MessageCenter.swift in Sources */,
 				143FB13F255B859F00D24248 /* ListPhotosResponse.swift in Sources */,
+				EB8B90B025AA0D0600336A39 /* StoreCategory.swift in Sources */,
 				14FEE57825A5E8C200684CC1 /* HelpViewController.swift in Sources */,
 				1441D8092591C319000D49D1 /* GetMineProfileResponse.swift in Sources */,
 				149C9DC5258C3F1400C5B322 /* SideMenuProfileView.swift in Sources */,
@@ -1207,6 +1224,8 @@
 				14009C7A257610E000C70E6E /* PhotoInfoStatisticsView.swift in Sources */,
 				14104925255D49A5003312BC /* MTNavigationController.swift in Sources */,
 				14FD83CA2567F7CD00D5B575 /* BlurHashDecode.swift in Sources */,
+				EB8B90B625AA191E00336A39 /* StoreTableViewCell.swift in Sources */,
+				EB8B90B325AA145900336A39 /* StoreBannerView.swift in Sources */,
 				14842C69257DCF7C00364FFF /* UserService.swift in Sources */,
 				1409A7972550EAAB0005B702 /* BaseView.swift in Sources */,
 				1433B8E32561190100FE9B1D /* PhotoListHeaderView.swift in Sources */,
@@ -1235,6 +1254,7 @@
 				1406E9E8257A04EF0096DE82 /* PhotoShareViewController.swift in Sources */,
 				EB8B907625A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift in Sources */,
 				1406EAF2257A5C640096DE82 /* AddToCollectionTableViewCell.swift in Sources */,
+				EB8B90AD25AA0CB600336A39 /* StoreHeaderView.swift in Sources */,
 				14FD9C59257F7AE800DEC579 /* AppManager.swift in Sources */,
 				143BACE425A70AD800FF9D8A /* HelpViewModel.swift in Sources */,
 				142840342564BA2E004C06DF /* TopicService.swift in Sources */,

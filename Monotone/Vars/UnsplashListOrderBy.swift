@@ -36,7 +36,7 @@ extension UnsplashListOrderBy: RawRepresentable, CaseIterable{
             
         case .latest:
             return (key: "latest",
-                    description : NSLocalizedString("uns_home_segment_latest", comment: "latest"))
+                    description : NSLocalizedString("uns_home_segment_latest", comment: "Latest"))
         }
     }
 }
