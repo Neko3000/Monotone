@@ -57,7 +57,7 @@ class PhotoDetailsViewController: BaseViewController {
             make.top.right.bottom.left.equalTo(self.view)
         })
         
-        // ImageView in userCapsuleView.
+        // AvatarImageView.
         self.avatarImageView = UIImageView()
         self.avatarImageView.layer.cornerRadius = 14.0
         self.avatarImageView.layer.masksToBounds = true
@@ -65,7 +65,7 @@ class PhotoDetailsViewController: BaseViewController {
             make.width.height.equalTo(27.0)
         }
         
-        // UserCapsuleView.
+        // UsernameLabel.
         self.usernameLabel = UILabel()
         self.usernameLabel.font = UIFont.systemFont(ofSize: 12.0)
         self.usernameLabel.textColor = UIColor.white
@@ -129,7 +129,7 @@ class PhotoDetailsViewController: BaseViewController {
         let photoDetailsViewModel = self.viewModel(type:PhotoDetailsViewModel.self)!
         
         // Bindings.
-        // ScrollView.
+        // Photo.
         photoDetailsViewModel.output.photo
             .unwrap()
             .subscribe(onNext: { [weak self] (photo) in
