@@ -18,13 +18,13 @@ class HelpViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var categories: BehaviorRelay<[FAQCategory]?> = BehaviorRelay<[FAQCategory]?>(value: nil)
+        var categories: BehaviorRelay<[HelpCategory]?> = BehaviorRelay<[HelpCategory]?>(value: nil)
     }
     public var input: Input = Input()
     
     // MARK: - Output
     struct Output {
-        var categories: BehaviorRelay<[FAQCategory]?> = BehaviorRelay<[FAQCategory]?>(value: nil)
+        var categories: BehaviorRelay<[HelpCategory]?> = BehaviorRelay<[HelpCategory]?>(value: nil)
     }
     public var output: Output = Output()
     

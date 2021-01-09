@@ -17,7 +17,7 @@ import RxSwiftExt
 class StoreHeaderView: BaseView {
     
     // MARK: - Public
-    public let category: BehaviorRelay<StoreCategory?> = BehaviorRelay<StoreCategory?>(value: nil)
+    public let selectedCategory: BehaviorRelay<StoreCategory?> = BehaviorRelay<StoreCategory?>(value: nil)
 
     // MARK: - Controls
     private var titleLabel: UILabel!
@@ -73,11 +73,11 @@ class StoreHeaderView: BaseView {
         
         // Bindings.
         // SegmentedControl
-        self.category
+        self.selectedCategory
             .distinctUntilChanged()
             .unwrap()
-            .flatMap { (category) -> Observable<Int> in
-                let index = StoreCategory.allCases.firstIndex { $0 == category } ?? -1
+            .flatMap { (selectedCategory) -> Observable<Int> in
+                let index = StoreCategory.allCases.firstIndex { $0 == selectedCategory } ?? -1
                 
                 return Observable.just(index)
             }
@@ -96,7 +96,7 @@ class StoreHeaderView: BaseView {
         
         switch index {
         case 0..<StoreCategory.allCases.count:
-            self.category.accept(StoreCategory.allCases[index])
+            self.selectedCategory.accept(StoreCategory.allCases[index])
             break
 
         default:

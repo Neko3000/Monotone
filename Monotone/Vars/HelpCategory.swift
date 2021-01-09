@@ -1,5 +1,5 @@
 //
-//  FAQCategoryVars.swift
+//  HelpCategoryVars.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2021/1/7.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-enum FAQCategory{
+enum HelpCategory{
     case account
     case licenses
 }
 
-extension FAQCategory: RawRepresentable, CaseIterable{
+extension HelpCategory: RawRepresentable, CaseIterable{
     init?(rawValue: (key:String, icon:UIImage, title:String, description:String, count:Int)) {
         switch rawValue.key {
         

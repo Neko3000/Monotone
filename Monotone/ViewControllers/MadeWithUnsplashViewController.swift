@@ -95,9 +95,9 @@ class MadeWithUnsplashViewController: BaseViewController {
         let madeWithUnsplashViewModel = self.viewModel(type: MadeWithUnsplashViewModel.self)!
 
         // Bindings.
-        // MadeCategory.
+        // MadeWithUnsplashCategory.
         madeWithUnsplashViewModel.input.categories
-            .accept(MadeCategory.allCases)
+            .accept(MadeWithUnsplashCategory.allCases)
         
         // CategorySelectionView.
         madeWithUnsplashViewModel.output.categories
@@ -112,7 +112,7 @@ class MadeWithUnsplashViewController: BaseViewController {
         self.categorySelectionView.selectedItem
             .unwrap()
             .subscribe(onNext:{ (item) in
-                let category = item.key as! MadeCategory
+                let category = item.key as! MadeWithUnsplashCategory
                 madeWithUnsplashViewModel.input.selectedCategory.accept(category)
             })
             .disposed(by: self.disposeBag)

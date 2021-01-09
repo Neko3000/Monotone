@@ -87,8 +87,8 @@ class HelpViewController: BaseViewController {
         let helpViewModel = self.viewModel(type: HelpViewModel.self)!
         
         // Bindings.
-        // FAQCategory.
-        helpViewModel.input.categories.accept(FAQCategory.allCases)
+        // HelpCategory.
+        helpViewModel.input.categories.accept(HelpCategory.allCases)
         
         // CollectionView.
         helpViewModel.output.categories

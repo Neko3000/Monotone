@@ -16,15 +16,15 @@ class MadeWithUnsplashViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var categories: BehaviorRelay<[MadeCategory]?> = BehaviorRelay<[MadeCategory]?>(value: nil)
-        var selectedCategory: BehaviorRelay<MadeCategory?> = BehaviorRelay<MadeCategory?>(value: nil)
+        var categories: BehaviorRelay<[MadeWithUnsplashCategory]?> = BehaviorRelay<[MadeWithUnsplashCategory]?>(value: nil)
+        var selectedCategory: BehaviorRelay<MadeWithUnsplashCategory?> = BehaviorRelay<MadeWithUnsplashCategory?>(value: nil)
     }
     public var input: Input = Input()
     
     // MARK: - Output
     struct Output {
-        var categories: BehaviorRelay<[MadeCategory]?> = BehaviorRelay<[MadeCategory]?>(value: nil)
-        var selectedCategory: BehaviorRelay<MadeCategory?> = BehaviorRelay<MadeCategory?>(value: nil)
+        var categories: BehaviorRelay<[MadeWithUnsplashCategory]?> = BehaviorRelay<[MadeWithUnsplashCategory]?>(value: nil)
+        var selectedCategory: BehaviorRelay<MadeWithUnsplashCategory?> = BehaviorRelay<MadeWithUnsplashCategory?>(value: nil)
         
         var madeItems: BehaviorRelay<[MadeWithUnsplashItem]?> = BehaviorRelay<[MadeWithUnsplashItem]?>(value: nil)
     }

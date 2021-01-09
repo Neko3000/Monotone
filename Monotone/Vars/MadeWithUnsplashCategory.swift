@@ -1,5 +1,5 @@
 //
-//  MadeCategory.swift
+//  MadeWithUnsplashCategory.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2021/1/7.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum MadeCategory{
+enum MadeWithUnsplashCategory{
     case all
     case articles
     case remixes
@@ -24,7 +24,7 @@ struct MadeWithUnsplashItem{
     public var username: String?
 }
 
-extension MadeCategory: RawRepresentable, CaseIterable{
+extension MadeWithUnsplashCategory: RawRepresentable, CaseIterable{
     init?(rawValue: (key:String, title:String, items:[MadeWithUnsplashItem])) {
         switch rawValue.key {
         
@@ -60,7 +60,7 @@ extension MadeCategory: RawRepresentable, CaseIterable{
         case .all:
             return (key:"all",
                     title:NSLocalizedString("uns_made_with_uns_category_all_title", comment: "All"),
-                    items:MadeCategory.allCases.filter({ $0 != .all }).flatMap({ category in category.rawValue.items }))
+                    items:MadeWithUnsplashCategory.allCases.filter({ $0 != .all }).flatMap({ category in category.rawValue.items }))
             
         case .articles:
             return (key:"articles",
