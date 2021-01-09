@@ -63,7 +63,7 @@ class StoreViewController: BaseViewController {
         self.tableView.backgroundColor = UIColor.clear
         self.tableView.separatorStyle = .none
         self.tableView.showsVerticalScrollIndicator = false
-        self.tableView.register(MadeWithUnsplashTableViewCell.self, forCellReuseIdentifier: "MadeWithUnsplashTableViewCell")
+        self.tableView.register(StoreTableViewCell.self, forCellReuseIdentifier: "StoreTableViewCell")
         self.tableView.estimatedSectionHeaderHeight = 172.0
         self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
@@ -77,11 +77,29 @@ class StoreViewController: BaseViewController {
     override func buildLogic() {
         
         // ViewModel.
-        
+        let storeViewModel = self.viewModel(type: StoreViewModel.self)!
+
         // Bindings.
+        // HeaderView.
+        self.headerView.category
+            .bind(to: storeViewModel.input.selectedCategory)
+            .disposed(by: self.disposeBag)
         
+        // BannerView.
+        self.bannerView.storeItem
+            .accept(StoreCategory.madeWithFriends.rawValue.items.first)
         
-        //
+        // TableView cell.
+        storeViewModel.output.storeItems
+            .unwrap()
+            .bind(to: self.tableView.rx.items(cellIdentifier: "StoreTableViewCell")){
+                (row, element, cell) in
+                
+                let pcell: StoreTableViewCell = cell as! StoreTableViewCell
+                pcell.storeItem.accept(element)
+    
+            }
+            .disposed(by: self.disposeBag)
     }
 
     /*

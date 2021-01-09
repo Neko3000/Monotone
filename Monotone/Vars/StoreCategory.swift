@@ -21,7 +21,7 @@ struct StoreItem{
     public var state: String?
     public var price: Decimal?
     
-    public var detailImages: [UIImage]?
+    public var detailImages: [UIImage?]?
     public var username: String?
 }
 
@@ -63,12 +63,40 @@ extension StoreCategory: RawRepresentable, CaseIterable{
         case .madeByUnsplash:
             return (key:"madeByUnsplash",
                     title:"Made by Unsplash",
-                    items:[])
+                    items:[
+                        StoreItem(coverImage: UIImage(named: "store-home-list-item-a"),
+                                  title: "Unsplash Sweatshirt",
+                                  price: 95.00,
+                                  detailImages: [UIImage(named: "store-details-item-a-image-1"),
+                                                 UIImage(named: "store-details-item-a-image-2"),
+                                                 UIImage(named: "store-details-item-a-image-3"),
+                                                 UIImage(named: "store-details-item-a-image-4")],
+                                  username: "Unsplash"),
+                        
+                        StoreItem(coverImage: UIImage(named: "store-home-list-item-b"),
+                                  title: "Unsplash Inspish",
+                                  price: 45.00,
+                                  detailImages: [UIImage(named: "store-details-item-a-image-1"),
+                                                 UIImage(named: "store-details-item-a-image-2"),
+                                                 UIImage(named: "store-details-item-a-image-3"),
+                                                 UIImage(named: "store-details-item-a-image-4")],
+                                  username: "Unsplash")
+                    ])
             
         case .madeWithFriends:
             return (key:"madeWithFriends",
                     title:"Made with Friends",
-                    items:[])
+                    items:[
+                        StoreItem(coverImage: UIImage(named: "store-home-banner-item"),
+                                  title: "Limited Edition: The Urban Explorer Sweatshirt",
+                                  state: "Sold Out",
+                                  price: 95.00,
+                                  detailImages: [UIImage(named: "store-details-item-a-image-1"),
+                                                 UIImage(named: "store-details-item-a-image-2"),
+                                                 UIImage(named: "store-details-item-a-image-3"),
+                                                 UIImage(named: "store-details-item-a-image-4")],
+                                  username: "Unsplash x van Schneider"),
+                    ])
 
         }
     }

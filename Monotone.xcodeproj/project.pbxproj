@@ -103,6 +103,7 @@
 		149EE5EB25906817000230CD /* UnsplashTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149EE5EA25906817000230CD /* UnsplashTopic.swift */; };
 		149EE5F0259068C2000230CD /* SideMenuPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149EE5EF259068C2000230CD /* SideMenuPage.swift */; };
 		149EE5F425906C13000230CD /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149EE5F325906C13000230CD /* SideMenuViewModel.swift */; };
+		149F921225AA316E00D1A4FC /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F921125AA316E00D1A4FC /* StoreViewModel.swift */; };
 		14BA29A0258CB61000215F03 /* SideMenuPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BA299F258CB61000215F03 /* SideMenuPageTableViewCell.swift */; };
 		14BA300A258CCC6200215F03 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BA3009258CCC6200215F03 /* SideMenuViewController.swift */; };
 		14BE99FE256A623400B0DB39 /* GetTopicPhotosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */; };
@@ -295,6 +296,7 @@
 		149EE5EA25906817000230CD /* UnsplashTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashTopic.swift; sourceTree = "<group>"; };
 		149EE5EF259068C2000230CD /* SideMenuPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuPage.swift; sourceTree = "<group>"; };
 		149EE5F325906C13000230CD /* SideMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
+		149F921125AA316E00D1A4FC /* StoreViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
 		14BA299F258CB61000215F03 /* SideMenuPageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuPageTableViewCell.swift; sourceTree = "<group>"; };
 		14BA3009258CCC6200215F03 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTopicPhotosRequest.swift; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 				14EE8D38259F2E9000132F74 /* LicensesViewModel.swift */,
 				143BACE325A70AD800FF9D8A /* HelpViewModel.swift */,
 				EB8B907125A79BB900336A39 /* MadeWithUnsplashViewModel.swift */,
+				149F921125AA316E00D1A4FC /* StoreViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				14EE8D2D259F272500132F74 /* PhotoDetails */,
 				14EE8D2E259F273400132F74 /* PhotoShare */,
 				14FEE57A25A5E94700684CC1 /* Help */,
+				149F921025AA312E00D1A4FC /* Store */,
 				14EE8D2A259F26F100132F74 /* Page */,
 			);
 			path = Views;
@@ -730,6 +734,15 @@
 				EB8B90AF25AA0D0600336A39 /* StoreCategory.swift */,
 			);
 			path = Vars;
+			sourceTree = "<group>";
+		};
+		149F921025AA312E00D1A4FC /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				EB8B90AC25AA0CB600336A39 /* StoreHeaderView.swift */,
+				EB8B90B225AA145900336A39 /* StoreBannerView.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		14D5E8DD254A589D0021FE3E = {
@@ -817,8 +830,6 @@
 			children = (
 				1433B8E22561190100FE9B1D /* PhotoListHeaderView.swift */,
 				143F567A254FEF320038761D /* PhotoListJumbotronView.swift */,
-				EB8B90AC25AA0CB600336A39 /* StoreHeaderView.swift */,
-				EB8B90B225AA145900336A39 /* StoreBannerView.swift */,
 			);
 			path = PhotoList;
 			sourceTree = "<group>";
@@ -1194,6 +1205,7 @@
 				14BA29A0258CB61000215F03 /* SideMenuPageTableViewCell.swift in Sources */,
 				143114D8255A79D000991676 /* URLs.swift in Sources */,
 				14FD9B4F257F17B100DEC579 /* LoginViewModel.swift in Sources */,
+				149F921225AA316E00D1A4FC /* StoreViewModel.swift in Sources */,
 				14F3707D254EABDA0086B8CC /* BaseResponse.swift in Sources */,
 				140F5C3025A6BA47009A6459 /* HelpCollectionViewCell.swift in Sources */,
 				14FA60832580B2B7004AFBE8 /* AuthArguments.swift in Sources */,
