@@ -25,43 +25,43 @@ extension UnsplashTopic: RawRepresentable, CaseIterable{
         switch rawValue {
         
         case (key: "nature",
-              description: NSLocalizedString("unsplash_home_segment_nature", comment: "Nature")):
+              description: NSLocalizedString("uns_home_segment_nature", comment: "Nature")):
             self = .nature
             
         case (key: "people",
-              description: NSLocalizedString("unsplash_home_segment_people", comment: "People")):
+              description: NSLocalizedString("uns_home_segment_people", comment: "People")):
             self = .people
 
         case (key: "street-photography",
-              description: NSLocalizedString("unsplash_home_segment_street_photography", comment: "Street Photography")):
+              description: NSLocalizedString("uns_home_segment_street_photography", comment: "Street Photography")):
             self = .streetPhotography
 
         case (key: "arts-culture",
-              description: NSLocalizedString("unsplash_home_segment_arts_culture", comment: "Arts & Culture")):
+              description: NSLocalizedString("uns_home_segment_arts_culture", comment: "Arts & Culture")):
             self = .artsCulture
 
         case (key: "architecture",
-              description: NSLocalizedString("unsplash_home_segment_architecture", comment: "Architecture")):
+              description: NSLocalizedString("uns_home_segment_architecture", comment: "Architecture")):
             self = .architecture
         
         case (key: "travel",
-              description: NSLocalizedString("unsplash_home_segment_travel", comment: "Travel")):
+              description: NSLocalizedString("uns_home_segment_travel", comment: "Travel")):
             self = .travel
 
         case (key: "technology",
-              description: NSLocalizedString("unsplash_home_segment_technology", comment: "Technology")):
+              description: NSLocalizedString("uns_home_segment_technology", comment: "Technology")):
             self = .technology
 
         case (key: "animals",
-              description: NSLocalizedString("unsplash_home_segment_animals", comment: "Animals")):
+              description: NSLocalizedString("uns_home_segment_animals", comment: "Animals")):
             self = .animals
 
         case (key: "food-drink",
-              description: NSLocalizedString("unsplash_home_segment_food_drink", comment: "Food & Drink")):
+              description: NSLocalizedString("uns_home_segment_food_drink", comment: "Food & Drink")):
             self = .foodDrink
 
         case (key: "sustainability",
-              description: NSLocalizedString("unsplash_home_segment_sustainability", comment: "Sustainability")):
+              description: NSLocalizedString("uns_home_segment_sustainability", comment: "Sustainability")):
             self = .sustainability
             
         default:
@@ -74,43 +74,43 @@ extension UnsplashTopic: RawRepresentable, CaseIterable{
         
         case .nature:
             return (key: "nature" ,
-                    description : NSLocalizedString("unsplash_home_segment_nature", comment: "Nature"))
+                    description : NSLocalizedString("uns_home_segment_nature", comment: "Nature"))
             
         case .people:
             return (key: "people" ,
-                    description : NSLocalizedString("unsplash_home_segment_people", comment: "People"))
+                    description : NSLocalizedString("uns_home_segment_people", comment: "People"))
 
         case .streetPhotography:
             return (key: "street-photography",
-                    description: NSLocalizedString("unsplash_home_segment_street_photography", comment: "Street Photography"))
+                    description: NSLocalizedString("uns_home_segment_street_photography", comment: "Street Photography"))
 
         case .artsCulture:
             return (key: "arts-culture" ,
-                    description: NSLocalizedString("unsplash_home_segment_arts_culture", comment: "Arts & Culture"))
+                    description: NSLocalizedString("uns_home_segment_arts_culture", comment: "Arts & Culture"))
 
         case .architecture:
             return (key: "architecture" ,
-                    description: NSLocalizedString("unsplash_home_segment_architecture", comment: "Architecture"))
+                    description: NSLocalizedString("uns_home_segment_architecture", comment: "Architecture"))
 
         case .travel:
             return (key: "travel" ,
-                    description: NSLocalizedString("unsplash_home_segment_travel", comment: "Travel"))
+                    description: NSLocalizedString("uns_home_segment_travel", comment: "Travel"))
 
         case .technology:
             return (key: "technology" ,
-                    description: NSLocalizedString("unsplash_home_segment_technology", comment: "Technology"))
+                    description: NSLocalizedString("uns_home_segment_technology", comment: "Technology"))
 
         case .animals:
             return (key: "animals" ,
-                    description: NSLocalizedString("unsplash_home_segment_animals", comment: "Animals"))
+                    description: NSLocalizedString("uns_home_segment_animals", comment: "Animals"))
 
         case .foodDrink:
             return (key: "food-drink" ,
-                    description: NSLocalizedString("unsplash_home_segment_food_drink", comment: "Food & Drink"))
+                    description: NSLocalizedString("uns_home_segment_food_drink", comment: "Food & Drink"))
 
         case .sustainability:
             return (key: "sustainability" ,
-                    description: NSLocalizedString("unsplash_home_segment_sustainability", comment: "Sustainability"))
+                    description: NSLocalizedString("uns_home_segment_sustainability", comment: "Sustainability"))
 
         }
     }

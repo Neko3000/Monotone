@@ -88,7 +88,7 @@ class PhotoInfoStatisticsView: BaseView {
         }
         
         self.viewSinceLastMonthLabel = UILabel()
-        self.viewSinceLastMonthLabel.text = NSLocalizedString("unsplash_info_since_to_last_month", comment: "since last month")
+        self.viewSinceLastMonthLabel.text = NSLocalizedString("uns_info_since_to_last_month", comment: "since last month")
         self.viewSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight
         self.viewSinceLastMonthLabel.font = UIFont.systemFont(ofSize: 8)
         self.addSubview(self.viewSinceLastMonthLabel)
@@ -135,7 +135,7 @@ class PhotoInfoStatisticsView: BaseView {
         }
         
         self.likeSinceLastMonthLabel = UILabel()
-        self.likeSinceLastMonthLabel.text = NSLocalizedString("unsplash_info_since_to_last_month", comment: "since last month")
+        self.likeSinceLastMonthLabel.text = NSLocalizedString("uns_info_since_to_last_month", comment: "since last month")
         self.likeSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight
         self.likeSinceLastMonthLabel.font = UIFont.systemFont(ofSize: 8)
         self.addSubview(self.likeSinceLastMonthLabel)
@@ -182,7 +182,7 @@ class PhotoInfoStatisticsView: BaseView {
         }
         
         self.downloadSinceLastMonthLabel = UILabel()
-        self.downloadSinceLastMonthLabel.text = NSLocalizedString("unsplash_info_since_to_last_month", comment: "since last month")
+        self.downloadSinceLastMonthLabel.text = NSLocalizedString("uns_info_since_to_last_month", comment: "since last month")
         self.downloadSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight
         self.downloadSinceLastMonthLabel.font = UIFont.systemFont(ofSize: 8)
         self.addSubview(self.downloadSinceLastMonthLabel)

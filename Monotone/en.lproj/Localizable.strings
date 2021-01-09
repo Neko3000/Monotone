@@ -5,101 +5,104 @@
   Created by Xueliang Chen on 2020/11/4.
   
 */
-"unsplash_upper_case" = "UNSPLASH";
+"uns_upper_case" = "UNSPLASH";
 
-"unsplash_login_sign_in_or_sign_up" = "Sign in / Sign up";
-"unsplash_login_description" = "Explore those Impressive photos which created by\nmost creative Maestros all over the World.";
+"uns_login_sign_in_or_sign_up" = "Sign in / Sign up";
+"uns_login_description" = "Explore those Impressive photos which created by\nmost creative Maestros all over the World.";
 
-"unsplash_home_title" = "Unsplash";
-"unsplash_home_description" = "Beautiful, free photos.\nGifted by the world’s most generous community of \nphotographers. 🎁";
-"unsplash_home_segment_editoral" = "Editoral";
-"unsplash_home_segment_following" = "Following";
-"unsplash_home_segment_popular" = "Popular";
-"unsplash_home_segment_latest" = "Latest";
-"unsplash_home_segment_nature" = "Nature";
-"unsplash_home_segment_people" = "People";
-"unsplash_home_segment_street_photography" = "Street Photography";
-"unsplash_home_segment_arts_culture" = "Arts & Culture";
-"unsplash_home_segment_architecture" = "Architecture";
-"unsplash_home_segment_travel" = "Travel";
-"unsplash_home_segment_technology" = "Technology";
-"unsplash_home_segment_animals" =  "Animals";
-"unsplash_home_segment_food_drink" = "Food & Drink";
-"unsplash_home_segment_sustainability" = "Sustainability";
-"unsplash_home_search" = "Search";
+"uns_home_title" = "Unsplash";
+"uns_home_description" = "Beautiful, free photos.\nGifted by the world’s most generous community of \nphotographers. 🎁";
+"uns_home_segment_editoral" = "Editoral";
+"uns_home_segment_following" = "Following";
+"uns_home_segment_popular" = "Popular";
+"uns_home_segment_latest" = "Latest";
+"uns_home_segment_nature" = "Nature";
+"uns_home_segment_people" = "People";
+"uns_home_segment_street_photography" = "Street Photography";
+"uns_home_segment_arts_culture" = "Arts & Culture";
+"uns_home_segment_architecture" = "Architecture";
+"uns_home_segment_travel" = "Travel";
+"uns_home_segment_technology" = "Technology";
+"uns_home_segment_animals" =  "Animals";
+"uns_home_segment_food_drink" = "Food & Drink";
+"uns_home_segment_sustainability" = "Sustainability";
+"uns_home_search" = "Search";
 
-"unsplash_details_collect" = "Collect";
+"uns_details_collect" = "Collect";
 
-"unsplash_info_since_to_last_month" = "since last month";
-"unsplash_info_camera_settings" = "Camera";
-"unsplash_info_camera_settings_make" = "Make";
-"unsplash_info_camera_settings_model" = "Model";
-"unsplash_info_camera_settings_focal_length" = "Focal Length";
-"unsplash_info_camera_settings_shutter_speed" = "Shutter Speed";
-"unsplash_info_camera_settings_aperture" = "Aperture";
-"unsplash_info_camera_settings_iso" = "ISO";
-"unsplash_info_camera_settings_dimensions" = "Dimensions";
+"uns_info_since_to_last_month" = "since last month";
+"uns_info_camera_settings" = "Camera";
+"uns_info_camera_settings_make" = "Make";
+"uns_info_camera_settings_model" = "Model";
+"uns_info_camera_settings_focal_length" = "Focal Length";
+"uns_info_camera_settings_shutter_speed" = "Shutter Speed";
+"uns_info_camera_settings_aperture" = "Aperture";
+"uns_info_camera_settings_iso" = "ISO";
+"uns_info_camera_settings_dimensions" = "Dimensions";
 
-"unsplash_share_title" = "Share";
-"unsplash_share_subtitle_prefix" = "Photo by %@";
+"uns_share_title" = "Share";
+"uns_share_subtitle_prefix" = "Photo by %@";
 
-"unsplash_add_collection_title" = "Add to collection";
-"unsplash_add_collection_total_photo_suffix" = "%d Photos";
-"unsplash_add_collection_button_create" = "Create a new collection";
+"uns_add_collection_title" = "Add to collection";
+"uns_add_collection_total_photo_suffix" = "%d Photos";
+"uns_add_collection_button_create" = "Create a new collection";
 
-"unsplash_create_collection_title" = "Create new collection";
-"unsplash_create_collection_form_title" = "Name";
-"unsplash_create_collection_form_description" = "Description (Optional)";
-"unsplash_create_collection_form_option_private" = "Make collection private";
-"unsplash_create_collection_form_button_submit" = "Create Collection";
+"uns_create_collection_title" = "Create new collection";
+"uns_create_collection_form_title" = "Name";
+"uns_create_collection_form_description" = "Description (Optional)";
+"uns_create_collection_form_option_private" = "Make collection private";
+"uns_create_collection_form_button_submit" = "Create Collection";
 
-"unsplash_auth_error_title" = "Oops, there was a problem of authentication...";
-"unsplash_network_error_title" = "Oops, there was a problem on network...";
+"uns_auth_error_title" = "Oops, there was a problem of authentication...";
+"uns_network_error_title" = "Oops, there was a problem on network...";
 
-"unsplash_side_menu_edit_profile" = "Edit Profile";
-"unsplash_side_menu_collection_count_suffix" = "%d Collections";
-"unsplash_side_menu_collection_description" = "%d Photos · Curated by %@";
-"unsplash_side_menu_like_count_suffix" = "%d Liked";
-"unsplash_side_menu_like_description" = "%d Photos · %@";
+"uns_side_menu_edit_profile" = "Edit Profile";
+"uns_side_menu_collection_count_suffix" = "%d Collections";
+"uns_side_menu_collection_description" = "%d Photos · Curated by %@";
+"uns_side_menu_like_count_suffix" = "%d Liked";
+"uns_side_menu_like_description" = "%d Photos · %@";
 
-"unsplash_side_menu_option_my_photos" = "My Photos";
-"unsplash_side_menu_option_hiring" = "Hiring";
-"unsplash_side_menu_option_licenses" = "Licenses";
-"unsplash_side_menu_option_help" = "Help";
-"unsplash_side_menu_option_made_with_unsplash" = "Made with Unsplash";
+"uns_side_menu_option_my_photos" = "My Photos";
+"uns_side_menu_option_hiring" = "Hiring";
+"uns_side_menu_option_licenses" = "Licenses";
+"uns_side_menu_option_help" = "Help";
+"uns_side_menu_option_made_with_unsplash" = "Made with Unsplash";
 
-"unsplash_hiring_header" = ".";
-"unsplash_hiring_section_title" = "How to Apply";
-"unsplash_hiring_section_content" = "If you want to work with us, all we want to see is a message from you. Please don’t send a resume. Instead, tell us who you are. Show us relevant things you’ve done that you’re excited about.";
+"uns_hiring_title" = "Help build a creative movement";
+"uns_hiring_section_title" = "How to Apply";
+"uns_hiring_section_content" = "If you want to work with us, all we want to see is a message from you. Please don’t send a resume. Instead, tell us who you are. Show us relevant things you’ve done that you’re excited about.";
 
-"unsplash_agreement_license_title" = "License";
-"unsplash_agreement_license_content" = "All photos published on Unsplash can be used for free. You can use them for commercial and noncommercial purposes. You do not need to ask permission from or provide credit to the photographer or Unsplash, although it is appreciated when possible.\nMore precisely, Unsplash grants you an irrevocable, nonexclusive, worldwide copyright license to download, copy, modify, distribute, perform, and use photos from Unsplash for free, including for commercial purposes, without permission from or attributing the photographer or Unsplash. This license does not include the right to compile photos from Unsplash to replicate a similar or competing service.\nQuestions? Read our FAQ.";
-"unsplash_agreement_privacy_policy_title" = "Privacy Policy";
-"unsplash_agreement_privacy_policy_content" = "Unsplash Inc. and its affiliates and subsidiaries (“Unsplash”, “we” or “us”) are committed to protecting your privacy and safeguarding your personal information. The purpose of this privacy policy (the “Privacy Policy”) is to inform you about our privacy practices, including how we collect, use and disclose your personal information.\nThis Privacy Policy applies to our website, mobile applications and related services (collectively, the “Unsplash Services”). By visiting, accessing, or using the Unsplash Services, you consent to the policies and practices of this Privacy Policy so please read them carefully. If any policies or practices of this Privacy Policy are unacceptable to you, please do not visit, access, or use the Unsplash Services...";
-"unsplash_agreement_manifesto_title" = "Manifesto";
-"unsplash_agreement_manifesto_content" = "Unsplash is a organization which...";
-"unsplash_agreement_terms_and_conditions_title" = "T&C";
-"unsplash_agreement_terms_and_conditions_content" = "Unsplash is a photo discovery platform for free to use, high-definition photos. We (Unsplash Inc., a Canadian corporation) operate the Unsplash website at unsplash.com (the “Site”) and all related websites, software, mobile apps, and other services that we provide (together, the “Service”) with the goal of celebrating and enabling contributors and fostering creativity in our community. Your use of the Service, and our provision of the Service to you, constitutes an agreement by you and Unsplash to be bound by the terms and conditions in these Terms of Service...";
-"unsplash_agreement_api_terms_title" = "API Terms";
-"unsplash_agreement_api_terms_content" = "These Unsplash API Terms of Use (these “API Terms”) comprise a legal agreement between Unsplash Inc. (“Unsplash,” “us,” “we,” or “our”) and you, and describe the rules developers must follow when accessing or using the Unsplash application programming interfaces (the “APIs”) and related documentation made available by Unsplash through the Unsplash developer website currently located at https://unsplash.com/developers (“Developer Site”). Any application you integrate with the APIs is a “Developer App.”";
+"uns_agreement_license_title" = "License";
+"uns_agreement_license_content" = "All photos published on Unsplash can be used for free. You can use them for commercial and noncommercial purposes. You do not need to ask permission from or provide credit to the photographer or Unsplash, although it is appreciated when possible.\nMore precisely, Unsplash grants you an irrevocable, nonexclusive, worldwide copyright license to download, copy, modify, distribute, perform, and use photos from Unsplash for free, including for commercial purposes, without permission from or attributing the photographer or Unsplash. This license does not include the right to compile photos from Unsplash to replicate a similar or competing service.\nQuestions? Read our FAQ.";
+"uns_agreement_privacy_policy_title" = "Privacy Policy";
+"uns_agreement_privacy_policy_content" = "Unsplash Inc. and its affiliates and subsidiaries (“Unsplash”, “we” or “us”) are committed to protecting your privacy and safeguarding your personal information. The purpose of this privacy policy (the “Privacy Policy”) is to inform you about our privacy practices, including how we collect, use and disclose your personal information.\nThis Privacy Policy applies to our website, mobile applications and related services (collectively, the “Unsplash Services”). By visiting, accessing, or using the Unsplash Services, you consent to the policies and practices of this Privacy Policy so please read them carefully. If any policies or practices of this Privacy Policy are unacceptable to you, please do not visit, access, or use the Unsplash Services...";
+"uns_agreement_manifesto_title" = "Manifesto";
+"uns_agreement_manifesto_content" = "Unsplash is a organization which...";
+"uns_agreement_terms_and_conditions_title" = "T&C";
+"uns_agreement_terms_and_conditions_content" = "Unsplash is a photo discovery platform for free to use, high-definition photos. We (Unsplash Inc., a Canadian corporation) operate the Unsplash website at unsplash.com (the “Site”) and all related websites, software, mobile apps, and other services that we provide (together, the “Service”) with the goal of celebrating and enabling contributors and fostering creativity in our community. Your use of the Service, and our provision of the Service to you, constitutes an agreement by you and Unsplash to be bound by the terms and conditions in these Terms of Service...";
+"uns_agreement_api_terms_title" = "API Terms";
+"uns_agreement_api_terms_content" = "These Unsplash API Terms of Use (these “API Terms”) comprise a legal agreement between Unsplash Inc. (“Unsplash,” “us,” “we,” or “our”) and you, and describe the rules developers must follow when accessing or using the Unsplash application programming interfaces (the “APIs”) and related documentation made available by Unsplash through the Unsplash developer website currently located at https://unsplash.com/developers (“Developer Site”). Any application you integrate with the APIs is a “Developer App.”";
 
-"unsplash_help_header" = "Advice and Answers from the Unsplash Team";
-"unsplash_help_search_placeholder" = "Search for Articles…";
+"uns_help_title" = "Advice and Answers from the Unsplash Team";
+"uns_help_search_placeholder" = "Search for Articles…";
 
-"unsplash_help_account_title" = "Managing your Unsplash account";
-"unsplash_help_account_description" = "Learn about your Unsplash account and how to manage your preferences";
+"uns_help_account_title" = "Managing your Unsplash account";
+"uns_help_account_description" = "Learn about your Unsplash account and how to manage your preferences";
 
-"unsplash_help_license_title" = "Unsplash License";
-"unsplash_help_license_description" = "The official Unsplash License guide and FAQ";
+"uns_help_license_title" = "Unsplash License";
+"uns_help_license_description" = "The official Unsplash License guide and FAQ";
 
-"unsplash_help_article_count_suffix" = "%d articles in this collection";
+"uns_help_article_count_suffix" = "%d articles in this collection";
 
-"unsplash_made_category_all_title" = "ALL";
-"unsplash_made_category_articles_title" = "ARTICLES";
-"unsplash_made_category_remixes_title" = "REMIXES";
-"unsplash_made_category_apps_title" = "APPS";
-"unsplash_made_category_products_title" = "PRODUCTS";
-"unsplash_made_category_websites_title" = "WEBSITES";
-"unsplash_made_category_videos_title" = "VIDEOS";
+"uns_made_with_uns_title" = "Made with Unsplash";
+"uns_made_with_uns_description" = "Showcasing the best things being made with Unsplash.";
 
-"unsplash_made_category_username_prefix" = "by %@";
+"uns_made_with_uns_category_all_title" = "ALL";
+"uns_made_with_uns_category_articles_title" = "ARTICLES";
+"uns_made_with_uns_category_remixes_title" = "REMIXES";
+"uns_made_with_uns_category_apps_title" = "APPS";
+"uns_made_with_uns_category_products_title" = "PRODUCTS";
+"uns_made_with_uns_category_websites_title" = "WEBSITES";
+"uns_made_with_uns_category_videos_title" = "VIDEOS";
+
+"uns_made_with_uns_category_username_prefix" = "by %@";

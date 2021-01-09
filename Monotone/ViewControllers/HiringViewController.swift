@@ -27,7 +27,7 @@ class HiringViewController: BaseViewController {
     private var scrollView: UIScrollView!
     private var containerView: UIView!
     
-    private var headerLabel: UILabel!
+    private var titleLabel: UILabel!
     private var sampleAImageView: UIImageView!
     private var sampleBImageView: UIImageView!
     
@@ -70,14 +70,14 @@ class HiringViewController: BaseViewController {
             make.top.right.bottom.left.equalTo(self.scrollView)
         }
         
-        // HeaderLabel.
-        self.headerLabel = UILabel()
-        self.headerLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        self.headerLabel.textColor = ColorPalette.colorBlack
-        self.headerLabel.text = NSLocalizedString("unsplash_hiring_header", comment: "Help build a creative movement.")
-        self.headerLabel.numberOfLines = 0
-        self.containerView.addSubview(self.headerLabel)
-        self.headerLabel.snp.makeConstraints { (make) in
+        // TitleLabel.
+        self.titleLabel = UILabel()
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
+        self.titleLabel.textColor = ColorPalette.colorBlack
+        self.titleLabel.text = NSLocalizedString("uns_hiring_title", comment: "Help build a creative movement.")
+        self.titleLabel.numberOfLines = 0
+        self.containerView.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.containerView).offset(10.0)
             make.left.equalTo(self.containerView).offset(18.0)
             make.right.equalTo(self.containerView).offset(-120.0)
@@ -88,9 +88,9 @@ class HiringViewController: BaseViewController {
         self.sampleAImageView.contentMode = .scaleAspectFill
         self.sampleAImageView.layer.masksToBounds = true
         self.sampleAImageView.image = UIImage(named: "hiring-sample-a")
-        self.containerView.insertSubview(self.sampleAImageView, belowSubview: self.headerLabel)
+        self.containerView.insertSubview(self.sampleAImageView, belowSubview: self.titleLabel)
         self.sampleAImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.headerLabel.snp.bottom).offset(40.0)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(40.0)
             make.left.equalTo(self.containerView)
             make.right.equalTo(self.containerView.snp.centerX)
             make.height.equalTo(322.0)
@@ -101,7 +101,7 @@ class HiringViewController: BaseViewController {
         self.sampleBImageView.contentMode = .scaleAspectFill
         self.sampleBImageView.layer.masksToBounds = true
         self.sampleBImageView.image = UIImage(named: "hiring-sample-b")
-        self.containerView.insertSubview(self.sampleBImageView, belowSubview: self.headerLabel)
+        self.containerView.insertSubview(self.sampleBImageView, belowSubview: self.titleLabel)
         self.sampleBImageView.snp.makeConstraints { (make) in
             make.right.equalTo(self.containerView)
             make.left.equalTo(self.containerView.snp.centerX)
@@ -113,7 +113,7 @@ class HiringViewController: BaseViewController {
         self.sectionTitleLabel = UILabel()
         self.sectionTitleLabel.font = UIFont.boldSystemFont(ofSize: 26)
         self.sectionTitleLabel.textColor = ColorPalette.colorBlack
-        self.sectionTitleLabel.text = NSLocalizedString("unsplash_hiring_section_title", comment: "How to Apply")
+        self.sectionTitleLabel.text = NSLocalizedString("uns_hiring_section_title", comment: "How to Apply")
         self.sectionTitleLabel.numberOfLines = 0
         self.containerView.addSubview(self.sectionTitleLabel)
         self.sectionTitleLabel.snp.makeConstraints { (make) in
@@ -123,7 +123,7 @@ class HiringViewController: BaseViewController {
         }
         
         // SectionContentLabel.
-        let attributedContent = NSMutableAttributedString(string: NSLocalizedString("unsplash_hiring_section_content", comment: "If you want to work with us, all we want to see is a message from you. Please don’t send a resume. Instead, tell us who you are. Show us relevant things you’ve done that you’re excited about."))
+        let attributedContent = NSMutableAttributedString(string: NSLocalizedString("uns_hiring_section_content", comment: "If you want to work with us, all we want to see is a message from you. Please don’t send a resume. Instead, tell us who you are. Show us relevant things you’ve done that you’re excited about."))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6.0
         
@@ -147,7 +147,7 @@ class HiringViewController: BaseViewController {
         // TopGradientView.
         self.topGradientImageView = UIImageView()
         self.topGradientImageView.image = UIImage(named: "list-top-gradient")
-        self.containerView.insertSubview(self.topGradientImageView, belowSubview: self.headerLabel)
+        self.containerView.insertSubview(self.topGradientImageView, belowSubview: self.titleLabel)
         self.topGradientImageView.snp.makeConstraints { (make) in
             make.right.left.equalTo(self.view)
             make.top.equalTo(self.view).offset(-(self.navigationController?.navigationBar.bounds.height ?? 0))

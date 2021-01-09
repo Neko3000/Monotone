@@ -79,7 +79,7 @@ class NetworkManager{
                             let json = try JSON(data: data!)
                             let error = NetworkError(errorStrs: json["errors"].arrayObject as! [String])
                             
-                            MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_network_error_title",
+                            MessageCenter.shared.showMessage(title: NSLocalizedString("uns_network_error_title",
                                                                                       comment: "Oops, there was a problem on network..."),
                                                              body: error.localizedDescription,
                                                              theme: .error)
@@ -99,7 +99,7 @@ class NetworkManager{
                     
                     print("\(error.localizedDescription)")
                     
-                    MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_network_error_title",
+                    MessageCenter.shared.showMessage(title: NSLocalizedString("uns_network_error_title",
                                                                               comment: "Oops, there was a problem of authentication..."),
                                                      body: error.localizedDescription,
                                                      theme: .error)

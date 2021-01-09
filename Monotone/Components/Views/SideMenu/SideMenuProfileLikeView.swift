@@ -100,7 +100,7 @@ class SideMenuProfileLikeView: BaseView{
                 let editor = photo.sponsorship?.sponsor ?? photo.user
 
                 self.usernameLabel.text = editor?.username ?? ""
-                self.descriptionLabel.text = String(format: NSLocalizedString("unsplash_side_menu_like_description",
+                self.descriptionLabel.text = String(format: NSLocalizedString("uns_side_menu_like_description",
                                                                               comment: "%d Photos · %@"),
                                                     editor?.totalPhotos ?? 0,
                                                     photo.exif?.model ?? "")

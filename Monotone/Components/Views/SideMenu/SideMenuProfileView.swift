@@ -175,8 +175,8 @@ class SideMenuProfileView: BaseView{
                 self.avatarImageView.kf.setImage(with: URL(string: user.profileImage?.large ?? ""),
                                                  options: [.transition(.fade(0.7)), .originalCache(.default)])
                 
-                self.collectionBtn.setTitle(String(format: NSLocalizedString("unsplash_side_menu_collection_count_suffix", comment: "%d Collections"), user.totalCollections ?? 0), for: .normal)
-                self.likeBtn.setTitle(String(format: NSLocalizedString("unsplash_side_menu_like_count_suffix", comment: "%d Liked"), user.totalLikes ?? 0), for: .normal)
+                self.collectionBtn.setTitle(String(format: NSLocalizedString("uns_side_menu_collection_count_suffix", comment: "%d Collections"), user.totalCollections ?? 0), for: .normal)
+                self.likeBtn.setTitle(String(format: NSLocalizedString("uns_side_menu_like_count_suffix", comment: "%d Liked"), user.totalLikes ?? 0), for: .normal)
                 
             })
             .disposed(by: self.disposeBag)

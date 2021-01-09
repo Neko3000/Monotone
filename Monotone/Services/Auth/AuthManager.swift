@@ -134,7 +134,7 @@ class AuthManager: NSObject{
                         catch{
                             print("Could not decode failure errors from \(url), the error is \(error.localizedDescription)")
 
-                            MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_auth_error_title",
+                            MessageCenter.shared.showMessage(title: NSLocalizedString("uns_auth_error_title",
                                                                                       comment: "Oops, there was a problem of authentication..."),
                                                              body: error.localizedDescription,
                                                              theme: .error)
@@ -148,7 +148,7 @@ class AuthManager: NSObject{
                     
                     print("\(error.localizedDescription)")
                     
-                    MessageCenter.shared.showMessage(title: NSLocalizedString("unsplash_auth_error_title",
+                    MessageCenter.shared.showMessage(title: NSLocalizedString("uns_auth_error_title",
                                                                               comment: "Oops, there was a problem of authentication..."),
                                                      body: error.localizedDescription,
                                                      theme: .error)

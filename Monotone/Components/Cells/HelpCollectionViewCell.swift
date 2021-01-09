@@ -104,7 +104,7 @@ class HelpCollectionViewCell: UICollectionViewCell {
                 self.iconImageView.image = category.icon
                 self.titleLabel.text = category.title
                 self.descriptionLabel.text = category.description
-                self.countLabel.text = String(format: NSLocalizedString("unsplash_help_article_count_suffix", comment: "%d articles in this collection"),
+                self.countLabel.text = String(format: NSLocalizedString("uns_help_article_count_suffix", comment: "%d articles in this collection"),
                                               category.count)
             })
             .disposed(by: self.disposeBag)

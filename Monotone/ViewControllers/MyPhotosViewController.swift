@@ -24,7 +24,7 @@ class MyPhotosViewController: BaseViewController {
 
     
     // MARK: - Controls
-    private var headerLabel: UILabel!
+    private var titleLabel: UILabel!
     private var collectionView: UICollectionView!
     
     private var topGradientImageView: UIImageView!
@@ -96,13 +96,13 @@ class MyPhotosViewController: BaseViewController {
         }
         */
                 
-        // HeaderLabel.
-        self.headerLabel = UILabel()
-        self.headerLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        self.headerLabel.textColor = ColorPalette.colorBlack
-        self.headerLabel.text = NSLocalizedString("unsplash_side_menu_option_my_photos", comment: "My Photos")
-        self.view.addSubview(self.headerLabel)
-        self.headerLabel.snp.makeConstraints { (make) in
+        // TitleLabel.
+        self.titleLabel = UILabel()
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
+        self.titleLabel.textColor = ColorPalette.colorBlack
+        self.titleLabel.text = NSLocalizedString("uns_side_menu_option_my_photos", comment: "My Photos")
+        self.view.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(18.0)
             make.bottom.equalTo(self.collectionView.snp.top).offset(-25.0)
         }

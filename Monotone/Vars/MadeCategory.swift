@@ -59,12 +59,12 @@ extension MadeCategory: RawRepresentable, CaseIterable{
         
         case .all:
             return (key:"all",
-                    title:NSLocalizedString("unsplash_made_category_all_title", comment: "All"),
+                    title:NSLocalizedString("uns_made_with_uns_category_all_title", comment: "All"),
                     items:MadeCategory.allCases.filter({ $0 != .all }).flatMap({ category in category.rawValue.items }))
             
         case .articles:
             return (key:"articles",
-                    title:NSLocalizedString("unsplash_made_category_articles_title", comment: "All"),
+                    title:NSLocalizedString("uns_made_with_uns_category_articles_title", comment: "All"),
                     items:[
                         MadeItem(coverImage: UIImage(named: "help-articles-made-item-a"), title: "", username: "Tommy D"),
                         MadeItem(coverImage: UIImage(named: "help-articles-made-item-b"), title: "", username: "Dan Christe")
@@ -72,27 +72,27 @@ extension MadeCategory: RawRepresentable, CaseIterable{
             
         case .remixes:
             return (key:"remixes",
-                    title:NSLocalizedString("unsplash_made_category_remixes_title", comment: "Remixes"),
+                    title:NSLocalizedString("uns_made_with_uns_category_remixes_title", comment: "Remixes"),
                     items:[])
             
         case .apps:
             return (key:"apps",
-                    title:NSLocalizedString("unsplash_made_category_apps_title", comment: "Apps"),
+                    title:NSLocalizedString("uns_made_with_uns_category_apps_title", comment: "Apps"),
                     items:[])
             
         case .products:
             return (key:"products",
-                    title:NSLocalizedString("unsplash_made_category_products_title", comment: "Products"),
+                    title:NSLocalizedString("uns_made_with_uns_category_products_title", comment: "Products"),
                     items:[])
             
         case .websites:
             return (key:"websites",
-                    title:NSLocalizedString("unsplash_made_category_websites_title", comment: "Websites"),
+                    title:NSLocalizedString("uns_made_with_uns_category_websites_title", comment: "Websites"),
                     items:[])
             
         case .videos:
             return (key:"videos",
-                    title:NSLocalizedString("unsplash_made_category_videos_title", comment: "Videos"),
+                    title:NSLocalizedString("uns_made_with_uns_category_videos_title", comment: "Videos"),
                     items:[])
 
         }

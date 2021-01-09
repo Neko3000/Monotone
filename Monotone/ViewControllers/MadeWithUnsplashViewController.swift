@@ -23,7 +23,7 @@ class MadeWithUnsplashViewController: BaseViewController {
     // MARK: - Controls
     private var tableView: UITableView!
     
-    private var headerLabel: UILabel!
+    private var titleLabel: UILabel!
     private var descriptionLabel: UILabel!
     
     private var categorySelectionView: PageSelectionView!
@@ -57,31 +57,19 @@ class MadeWithUnsplashViewController: BaseViewController {
             make.right.equalTo(self.view).offset(-19.0)
         }
         
-        // HeaderLabel.
-        self.headerLabel = UILabel()
-        self.headerLabel.textColor = ColorPalette.colorBlack
-        self.headerLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        self.headerLabel.text = "Made with Unsplash"
-        self.headerLabel.numberOfLines = 0
-        self.view.addSubview(self.headerLabel)
-        self.headerLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(12.0)
-            make.right.equalTo(self.view).offset(-138.0)
-            make.left.equalTo(self.view).offset(18.0)
-        }
+        // TitleLabel.
+        self.titleLabel = UILabel()
+        self.titleLabel.textColor = ColorPalette.colorBlack
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
+        self.titleLabel.text = NSLocalizedString("uns_made_with_uns_title", comment: "Made with Unsplash")
+        self.titleLabel.numberOfLines = 0
         
         // DescriptionLabel.
         self.descriptionLabel = UILabel()
         self.descriptionLabel.textColor = ColorPalette.colorGrayLight
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 16)
-        self.descriptionLabel.text = "Showcasing the best things being made with Unsplash."
+        self.descriptionLabel.text = NSLocalizedString("uns_made_with_uns_description", comment: "Showcasing the best things being made with Unsplash.")
         self.descriptionLabel.numberOfLines = 0
-        self.view.addSubview(self.descriptionLabel)
-        self.descriptionLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.headerLabel.snp.bottom).offset(12.0)
-            make.right.equalTo(self.view).offset(-138.0)
-            make.left.equalTo(self.view).offset(18.0)
-        }
                 
         // TableView.
         self.tableView = UITableView(frame: CGRect.zero, style: .grouped)
@@ -160,14 +148,14 @@ extension MadeWithUnsplashViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
         
-        header.addSubview(self.headerLabel)
-        self.headerLabel.snp.makeConstraints { (make) in
+        header.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints { (make) in
             make.top.right.left.equalTo(header)
         }
         
         header.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.headerLabel.snp.bottom).offset(10.0)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(10.0)
             make.right.left.equalTo(header)
             make.bottom.equalTo(header).offset(-42.0)
         }

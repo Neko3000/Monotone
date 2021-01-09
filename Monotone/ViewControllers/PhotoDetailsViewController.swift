@@ -90,7 +90,7 @@ class PhotoDetailsViewController: BaseViewController {
         
         // LikeCapsuleBtn.
         self.likeCapsuleBtn = CapsuleButton()
-        self.likeCapsuleBtn.setTitle("20", for: .normal)
+        self.likeCapsuleBtn.setTitle("0", for: .normal)
         self.likeCapsuleBtn.setImage(UIImage(named: "details-btn-like"), for: .selected)
         self.likeCapsuleBtn.setImage(UIImage(named: "details-btn-unlike"), for: .normal)
         self.likeCapsuleBtn.backgroundStyle = .blur
@@ -102,7 +102,7 @@ class PhotoDetailsViewController: BaseViewController {
         
         // CollectCapsuleBtn.
         self.collectCapsuleBtn = CapsuleButton()
-        self.collectCapsuleBtn.setTitle("Collect", for: .normal)
+        self.collectCapsuleBtn.setTitle(NSLocalizedString("uns_details_collect", comment: "Collect"), for: .normal)
         self.collectCapsuleBtn.setImage(UIImage(named: "details-btn-collect"), for: .normal)
         self.collectCapsuleBtn.backgroundStyle = .blur
         self.view.addSubview(self.collectCapsuleBtn)

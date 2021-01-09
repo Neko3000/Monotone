@@ -152,7 +152,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
                 guard let self = self else { return }
                 
                 self.nameLabel.text = collection.title
-                self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_suffix", comment: "%d Photos"), collection.totalPhotos ?? 0)
+                self.photoCountLabel.text = String(format: NSLocalizedString("uns_add_collection_total_photo_suffix", comment: "%d Photos"), collection.totalPhotos ?? 0)
                 
                 self.coverImageView.kf.setImage(with: URL(string: collection.coverPhoto?.urls?.regular ?? ""),
                                                  placeholder: UIImage(blurHash: collection.coverPhoto?.blurHash ?? "", size: CGSize(width: 10, height: 10)),
@@ -224,7 +224,7 @@ extension AddToCollectionTableViewCell{
             
             if let totalPhotos = self.collection.value?.totalPhotos{
                 self.collection.value?.totalPhotos = totalPhotos + 1
-                self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_suffix", comment: "%d Photos"), self.collection.value?.totalPhotos ?? 0)
+                self.photoCountLabel.text = String(format: NSLocalizedString("uns_add_collection_total_photo_suffix", comment: "%d Photos"), self.collection.value?.totalPhotos ?? 0)
             }
             
             self.successStateView.alpha = 0.8
@@ -246,7 +246,7 @@ extension AddToCollectionTableViewCell{
             
             if let totalPhotos = self.collection.value?.totalPhotos{
                 self.collection.value?.totalPhotos = totalPhotos - 1
-                self.photoCountLabel.text = String(format: NSLocalizedString("unsplash_add_collection_total_photo_suffix", comment: "%d Photos"), self.collection.value?.totalPhotos ?? 0)
+                self.photoCountLabel.text = String(format: NSLocalizedString("uns_add_collection_total_photo_suffix", comment: "%d Photos"), self.collection.value?.totalPhotos ?? 0)
             }
             
             self.successStateView.alpha = 0.5

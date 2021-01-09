@@ -113,7 +113,7 @@ class SideMenuProfileCollectionView: BaseView{
                 let editor = collection.sponsorship?.sponsor ?? collection.user
 
                 self.titleLabel.text = collection.title
-                self.descriptionLabel.text = String(format: NSLocalizedString("unsplash_side_menu_collection_description",
+                self.descriptionLabel.text = String(format: NSLocalizedString("uns_side_menu_collection_description",
                                                                               comment: "%d Photos · Curated by %@"),
                                                     collection.totalPhotos ?? 0,
                                                     editor?.username ?? "")

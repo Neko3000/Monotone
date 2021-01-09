@@ -72,7 +72,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
         self.createCollectionBtn.backgroundColor = ColorPalette.colorGrayLighter
         self.createCollectionBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         self.createCollectionBtn.setTitleColor(ColorPalette.colorGrayLight, for: .normal)
-        self.createCollectionBtn.setTitle(NSLocalizedString("unsplash_add_collection_button_create", comment: "Create a new collection"), for: .normal)
+        self.createCollectionBtn.setTitle(NSLocalizedString("uns_add_collection_button_create", comment: "Create a new collection"), for: .normal)
         self.view.addSubview(self.createCollectionBtn)
         self.createCollectionBtn.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(17.0)
@@ -218,7 +218,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // pageTitleView.
-        self.pageTitleView.title.accept(NSLocalizedString("unsplash_add_collection_title", comment: "Add to collection"))
+        self.pageTitleView.title.accept(NSLocalizedString("uns_add_collection_title", comment: "Add to collection"))
         
         // MJRefresh.
         self.tableView.mj_header!.refreshingBlock = {

@@ -100,7 +100,7 @@ class PhotoShareViewController: BaseViewController {
                 guard let self = self else { return }
             
                 if let editor = photo.user?.username{
-                    let subtitle = String(format: NSLocalizedString("unsplash_share_subtitle_prefix", comment: "Photo by %@"), editor)
+                    let subtitle = String(format: NSLocalizedString("uns_share_subtitle_prefix", comment: "Photo by %@"), editor)
                     self.pageTitleView.subtitle.accept(subtitle)
                 }
                 
@@ -121,7 +121,7 @@ class PhotoShareViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // PageTitleView.
-        self.pageTitleView.title.accept(NSLocalizedString("unsplash_share_title", comment: "Share"))
+        self.pageTitleView.title.accept(NSLocalizedString("uns_share_title", comment: "Share"))
     }
     
 }

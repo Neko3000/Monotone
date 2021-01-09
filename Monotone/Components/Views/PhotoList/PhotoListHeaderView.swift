@@ -39,7 +39,7 @@ class PhotoListHeaderView: BaseView {
         let searchImageView: UIImageView = UIImageView()
         searchImageView.image = UIImage(named: "header-input-search")
         
-        let attributedSearch = NSAttributedString(string: NSLocalizedString("unsplash_home_search", comment: "Search"), attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)])
+        let attributedSearch = NSAttributedString(string: NSLocalizedString("uns_home_search", comment: "Search"), attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)])
         
         self.searchTextField = MTTextField()
         self.searchTextField.backgroundColor = ColorPalette.colorGrayLighter

@@ -87,7 +87,7 @@ class MadeWithUnsplashTableViewCell: UITableViewCell {
                 guard let self = self else { return }
                 
                 self.coverImageView.image = madeItem.coverImage
-                self.usernameLabel.text = String(format: NSLocalizedString("unsplash_made_category_username_prefix", comment: "by %@"), madeItem.username ?? "")
+                self.usernameLabel.text = String(format: NSLocalizedString("uns_made_with_uns_category_username_prefix", comment: "by %@"), madeItem.username ?? "")
                 
             })
             .disposed(by: self.disposeBag)

@@ -44,23 +44,23 @@ extension SideMenuPage: RawRepresentable, CaseIterable{
         
         case .myPhotos:
             return (key:"myPhotos",
-                    description:NSLocalizedString("unsplash_side_menu_option_my_photos", comment: "My Photos"))
+                    description:NSLocalizedString("uns_side_menu_option_my_photos", comment: "My Photos"))
             
         case .hiring:
             return (key:"hiring",
-                    description:NSLocalizedString("unsplash_side_menu_option_hiring", comment: "Hiring"))
+                    description:NSLocalizedString("uns_side_menu_option_hiring", comment: "Hiring"))
             
         case .licenses:
             return (key:"licenses",
-                    description:NSLocalizedString("unsplash_side_menu_option_licenses", comment: "Licenses"))
+                    description:NSLocalizedString("uns_side_menu_option_licenses", comment: "Licenses"))
             
         case .help:
             return (key:"help",
-                    description:NSLocalizedString("unsplash_side_menu_option_help", comment: "Help"))
+                    description:NSLocalizedString("uns_side_menu_option_help", comment: "Help"))
             
         case .madeWithUnsplash:
             return (key:"madeWithUnsplash",
-                    description:NSLocalizedString("unsplash_side_menu_option_made_with_unsplash", comment: "Made with Unsplash"))
+                    description:NSLocalizedString("uns_side_menu_option_made_with_unsplash", comment: "Made with Unsplash"))
 
         }
     }

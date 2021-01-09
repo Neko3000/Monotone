@@ -39,7 +39,7 @@ class LoginViewController: BaseViewController {
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // DescriptionLabel.
-        let attributedDescription = NSMutableAttributedString(string: NSLocalizedString("unsplash_login_description", comment: "Explore those Impressive photos which created by\nmost creative Maestros all over the World."))
+        let attributedDescription = NSMutableAttributedString(string: NSLocalizedString("uns_login_description", comment: "Explore those Impressive photos which created by\nmost creative Maestros all over the World."))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 2.0
         
@@ -86,7 +86,7 @@ class LoginViewController: BaseViewController {
         
         // LoginBtn.
         self.loginBtn = UIButton()
-        self.loginBtn.setTitle(NSLocalizedString("unsplash_login_sign_in_or_sign_up", comment: "Sign in / Sign up"), for: .normal)
+        self.loginBtn.setTitle(NSLocalizedString("uns_login_sign_in_or_sign_up", comment: "Sign in / Sign up"), for: .normal)
         self.loginBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
         self.loginBtn.backgroundColor = ColorPalette.colorBlack
         self.loginBtn.layer.cornerRadius = 24.0

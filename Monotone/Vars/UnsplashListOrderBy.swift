@@ -32,11 +32,11 @@ extension UnsplashListOrderBy: RawRepresentable, CaseIterable{
         
         case .popular:
             return (key: "popular",
-                    description : NSLocalizedString("unsplash_home_segment_popular", comment: "Popular"))
+                    description : NSLocalizedString("uns_home_segment_popular", comment: "Popular"))
             
         case .latest:
             return (key: "latest",
-                    description : NSLocalizedString("unsplash_home_segment_latest", comment: "latest"))
+                    description : NSLocalizedString("uns_home_segment_latest", comment: "latest"))
         }
     }
 }

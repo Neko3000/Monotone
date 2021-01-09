@@ -5,104 +5,107 @@
   Created by Xueliang Chen on 2020/11/4.
   
 */
-"unsplash_upper_case" = "UNSPLASH";
+"uns_upper_case" = "UNSPLASH";
 
-"unsplash_login_sign_in_or_sign_up" = "登录 / 注册";
-"unsplash_login_description" = "探寻世界上创作性大师的得意之作们。";
+"uns_login_sign_in_or_sign_up" = "登录 / 注册";
+"uns_login_description" = "探寻世界上创作性大师的得意之作们。";
 
-"unsplash_home_title" = "Unsplash";
-"unsplash_home_description" = "自由并惊艳，\n来见见这些极具天赋的摄影师们为您送上的\n独一无二的礼物。🎁";
+"uns_home_title" = "Unsplash";
+"uns_home_description" = "自由并惊艳，\n来见见这些极具天赋的摄影师们为您送上的\n独一无二的礼物。🎁";
 
-"unsplash_home_segment_editoral" = "精选";
-"unsplash_home_segment_following" = "关注";
-"unsplash_home_segment_popular" = "人气";
-"unsplash_home_segment_latest" = "最新";
+"uns_home_segment_editoral" = "精选";
+"uns_home_segment_following" = "关注";
+"uns_home_segment_popular" = "人气";
+"uns_home_segment_latest" = "最新";
 
-"unsplash_home_segment_nature" = "自然";
-"unsplash_home_segment_people" = "人物";
-"unsplash_home_segment_street_photography" = "街头摄影";
-"unsplash_home_segment_arts_culture" = "艺术 & 文化";
-"unsplash_home_segment_architecture" = "建筑";
-"unsplash_home_segment_travel" = "旅行";
-"unsplash_home_segment_technology" = "技术";
-"unsplash_home_segment_animals" =  "动物";
-"unsplash_home_segment_food_drink" = "食物 & 饮品";
-"unsplash_home_segment_sustainability" = "可持续发展";
+"uns_home_segment_nature" = "自然";
+"uns_home_segment_people" = "人物";
+"uns_home_segment_street_photography" = "街头摄影";
+"uns_home_segment_arts_culture" = "艺术 & 文化";
+"uns_home_segment_architecture" = "建筑";
+"uns_home_segment_travel" = "旅行";
+"uns_home_segment_technology" = "技术";
+"uns_home_segment_animals" =  "动物";
+"uns_home_segment_food_drink" = "食物 & 饮品";
+"uns_home_segment_sustainability" = "可持续发展";
 
-"unsplash_home_search" = "搜索";
+"uns_home_search" = "搜索";
 
-"unsplash_details_collect" = "收藏";
+"uns_details_collect" = "收藏";
 
-"unsplash_info_since_to_last_month" = "相比上月";
-"unsplash_info_camera_settings" = "相机参数";
-"unsplash_info_camera_settings_make" = "制造商";
-"unsplash_info_camera_settings_model" = "型号";
-"unsplash_info_camera_settings_focal_length" = "焦距";
-"unsplash_info_camera_settings_shutter_speed" = "快门速度";
-"unsplash_info_camera_settings_aperture" = "光圈";
-"unsplash_info_camera_settings_iso" = "ISO";
-"unsplash_info_camera_settings_dimensions" = "分辨率";
+"uns_info_since_to_last_month" = "相比上月";
+"uns_info_camera_settings" = "相机参数";
+"uns_info_camera_settings_make" = "制造商";
+"uns_info_camera_settings_model" = "型号";
+"uns_info_camera_settings_focal_length" = "焦距";
+"uns_info_camera_settings_shutter_speed" = "快门速度";
+"uns_info_camera_settings_aperture" = "光圈";
+"uns_info_camera_settings_iso" = "ISO";
+"uns_info_camera_settings_dimensions" = "分辨率";
 
-"unsplash_share_title" = "分享";
-"unsplash_share_subtitle_prefix" = "由 %@ 拍摄";
+"uns_share_title" = "分享";
+"uns_share_subtitle_prefix" = "由 %@ 拍摄";
 
-"unsplash_add_collection_title" = "添加到收藏";
-"unsplash_add_collection_total_photo_suffix" = "%d 张图片";
-"unsplash_add_collection_button_create" = "创建一个新的收藏";
+"uns_add_collection_title" = "添加到收藏";
+"uns_add_collection_total_photo_suffix" = "%d 张图片";
+"uns_add_collection_button_create" = "创建一个新的收藏";
 
-"unsplash_create_collection_title" = "创建一个收藏";
-"unsplash_create_collection_form_title" = "名称";
-"unsplash_create_collection_form_description" = "描述 (可选)";
-"unsplash_create_collection_form_option_private" = "这是一个私有收藏";
-"unsplash_create_collection_form_button_submit" = "创建";
+"uns_create_collection_title" = "创建一个收藏";
+"uns_create_collection_form_title" = "名称";
+"uns_create_collection_form_description" = "描述 (可选)";
+"uns_create_collection_form_option_private" = "这是一个私有收藏";
+"uns_create_collection_form_button_submit" = "创建";
 
-"unsplash_auth_error_title" = "天哪，授权上有个错误...";
-"unsplash_network_error_title" = "天哪，网络上有个错误...";
+"uns_auth_error_title" = "天哪，授权上有个错误...";
+"uns_network_error_title" = "天哪，网络上有个错误...";
 
-"unsplash_side_menu_edit_profile" = "编辑";
-"unsplash_side_menu_collection_count_suffix" = "%d 收藏";
-"unsplash_side_menu_collection_description" = "%d 照片 · 由 %@ 建立";
-"unsplash_side_menu_like_count_suffix" = "%d 喜爱";
-"unsplash_side_menu_like_description" = "%d 照片 · %@";
+"uns_side_menu_edit_profile" = "编辑";
+"uns_side_menu_collection_count_suffix" = "%d 收藏";
+"uns_side_menu_collection_description" = "%d 照片 · 由 %@ 建立";
+"uns_side_menu_like_count_suffix" = "%d 喜爱";
+"uns_side_menu_like_description" = "%d 照片 · %@";
 
-"unsplash_side_menu_option_my_photos" = "我的照片";
-"unsplash_side_menu_option_hiring" = "应募";
-"unsplash_side_menu_option_licenses" = "许可条例";
-"unsplash_side_menu_option_help" = "帮助";
-"unsplash_side_menu_option_made_with_unsplash" = "周边产品";
+"uns_side_menu_option_my_photos" = "我的照片";
+"uns_side_menu_option_hiring" = "应募";
+"uns_side_menu_option_licenses" = "许可条例";
+"uns_side_menu_option_help" = "帮助";
+"uns_side_menu_option_made_with_unsplash" = "周边制作";
 
-"unsplash_hiring_header" = "帮助我们呈现创意.";
-"unsplash_hiring_section_title" = "如何申请";
-"unsplash_hiring_section_content" = "如果您希望与我们一同工作，请给我们发送消息。请不要提交简历，与此相对的，我们更喜欢听听您最近在沉迷于什么有趣的玩意儿。";
+"uns_hiring_title" = "帮助我们呈现创意";
+"uns_hiring_section_title" = "如何申请";
+"uns_hiring_section_content" = "如果您希望与我们一同工作，请给我们发送消息。请不要提交简历，与此相对的，我们更喜欢听听您最近在沉迷于什么有趣的玩意儿。";
 
-"unsplash_agreement_license_title" = "许可证";
-"unsplash_agreement_license_content" = "您可以免费使用Unsplash上发布的照片，所有的照片都可用于商业或者非商业用途。也不需要取得来自于摄影师或者Unsplash的任何许可（如果有的话也是很好的）。更准确的说，Unsplash赋予您不变的，没有例外的，全世界通用的版权许可。您可以自由地下载，拷贝，修改，发布，展示和使用任何内容，包括商用用途，也不需要来自于摄影师或者Unsplash本身的许可。但是，这个许可证不包括，任何涉嫌抄袭或者复制Unsplash所提供的服务的权利...";
-"unsplash_agreement_privacy_policy_title" = "隐私政策";
-"unsplash_agreement_privacy_policy_content" = "Unsplash有限公司，和其关联企业，子公司（“Unsplash”，“我们”）被赋予保护您的个人信息的隐私和安全的使命。该隐私政策的目的在于让你了解我们的隐私保护，包括我们怎样获取，使用，公开，您的个人信息。隐私政策适用于我们的网站，移动端应用和关联服务（“Unsplash服务”）。通过访问，连接，或者使用Unsplash服务，意味着您同意该政策，以及其的实施，所以请认真阅读。如果您不同意其中的任何政策条例，或者其的实施，请停止访问，连接，或者使用Unsplash服务...";
-"unsplash_agreement_manifesto_title" = "声明";
-"unsplash_agreement_manifesto_content" = "Unsplash是一个全球性的组织...";
-"unsplash_agreement_terms_and_conditions_title" = "规则与条例";
-"unsplash_agreement_terms_and_conditions_content" = "Unsplash是一个高质量的免费照片浏览平台。我们（Unsplash有限公司，加拿大），通过unsplash.com域名运营Unsplash网站（站点），和其他软件，移动端应用，和其他我们提供的服务。我们的目的是，推动贡献者为该的社区提供更多的创造性。您对服务的使用，以及我们对您的授权，以及您与我们之间的协议，都将包括在该条款内...";
-"unsplash_agreement_api_terms_title" = "API条款";
-"unsplash_agreement_api_terms_content" = "这些Unsplash API使用条款的划定了一个您与Unsplash有限公司（“Unsplash”，“我们”）之间的合法协议。并且描述了开发者在使用Unsplash应用接口（“APIs”），以及Unsplash在其开发者网站 - https://unsplash.com/developers（“开发者网站”）所发布的相关文档时，必须遵循的一系列规则。任何使用APIs集成的应用都被称为，开发者应用...";
+"uns_agreement_license_title" = "许可证";
+"uns_agreement_license_content" = "您可以免费使用Unsplash上发布的照片，所有的照片都可用于商业或者非商业用途。也不需要取得来自于摄影师或者Unsplash的任何许可（如果有的话也是很好的）。更准确的说，Unsplash赋予您不变的，没有例外的，全世界通用的版权许可。您可以自由地下载，拷贝，修改，发布，展示和使用任何内容，包括商用用途，也不需要来自于摄影师或者Unsplash本身的许可。但是，这个许可证不包括，任何涉嫌抄袭或者复制Unsplash所提供的服务的权利...";
+"uns_agreement_privacy_policy_title" = "隐私政策";
+"uns_agreement_privacy_policy_content" = "Unsplash有限公司，和其关联企业，子公司（“Unsplash”，“我们”）被赋予保护您的个人信息的隐私和安全的使命。该隐私政策的目的在于让你了解我们的隐私保护，包括我们怎样获取，使用，公开，您的个人信息。隐私政策适用于我们的网站，移动端应用和关联服务（“Unsplash服务”）。通过访问，连接，或者使用Unsplash服务，意味着您同意该政策，以及其的实施，所以请认真阅读。如果您不同意其中的任何政策条例，或者其的实施，请停止访问，连接，或者使用Unsplash服务...";
+"uns_agreement_manifesto_title" = "声明";
+"uns_agreement_manifesto_content" = "Unsplash是一个全球性的组织...";
+"uns_agreement_terms_and_conditions_title" = "规则与条例";
+"uns_agreement_terms_and_conditions_content" = "Unsplash是一个高质量的免费照片浏览平台。我们（Unsplash有限公司，加拿大），通过unsplash.com域名运营Unsplash网站（站点），和其他软件，移动端应用，和其他我们提供的服务。我们的目的是，推动贡献者为该的社区提供更多的创造性。您对服务的使用，以及我们对您的授权，以及您与我们之间的协议，都将包括在该条款内...";
+"uns_agreement_api_terms_title" = "API条款";
+"uns_agreement_api_terms_content" = "这些Unsplash API使用条款的划定了一个您与Unsplash有限公司（“Unsplash”，“我们”）之间的合法协议。并且描述了开发者在使用Unsplash应用接口（“APIs”），以及Unsplash在其开发者网站 - https://unsplash.com/developers（“开发者网站”）所发布的相关文档时，必须遵循的一系列规则。任何使用APIs集成的应用都被称为，开发者应用...";
 
-"unsplash_help_header" = "来自Unsplash团队的建议和回答";
-"unsplash_help_search_placeholder" = "搜索文章...";
+"uns_help_title" = "来自Unsplash团队的建议和回答";
+"uns_help_search_placeholder" = "搜索文章...";
 
-"unsplash_help_account_title" = "管理您的账户";
-"unsplash_help_account_description" = "学习如何使用您的Unsplash账户并进行偏好设定";
+"uns_help_account_title" = "管理您的账户";
+"uns_help_account_description" = "学习如何使用您的Unsplash账户并进行偏好设定";
 
-"unsplash_help_license_title" = "Unsplash许可证";
-"unsplash_help_license_description" = "官方许可指南和FAQ";
+"uns_help_license_title" = "Unsplash许可证";
+"uns_help_license_description" = "官方许可指南和FAQ";
 
-"unsplash_help_article_count_suffix" = "包含 %d 篇文章";
+"uns_help_article_count_suffix" = "包含 %d 篇文章";
 
-"unsplash_made_category_all_title" = "所有";
-"unsplash_made_category_articles_title" = "文章";
-"unsplash_made_category_remixes_title" = "混音";
-"unsplash_made_category_apps_title" = "Apps";
-"unsplash_made_category_products_title" = "产品";
-"unsplash_made_category_websites_title" = "网站";
-"unsplash_made_category_videos_title" = "视频";
+"uns_made_with_uns_title" = "周边制作";
+"uns_made_with_uns_description" = "一些使用Unsplash制作的最好的例子";
 
-"unsplash_made_category_username_prefix" = "by %@";
+"uns_made_with_uns_category_all_title" = "所有";
+"uns_made_with_uns_category_articles_title" = "文章";
+"uns_made_with_uns_category_remixes_title" = "混音";
+"uns_made_with_uns_category_apps_title" = "Apps";
+"uns_made_with_uns_category_products_title" = "产品";
+"uns_made_with_uns_category_websites_title" = "网站";
+"uns_made_with_uns_category_videos_title" = "视频";
+
+"uns_made_with_uns_category_username_prefix" = "by %@";

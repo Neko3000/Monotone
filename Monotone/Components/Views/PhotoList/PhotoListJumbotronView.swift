@@ -69,7 +69,7 @@ class PhotoListJumbotronView: BaseView {
         
         // TitleLabel.
         self.titleLabel = UILabel()
-        self.titleLabel.text = NSLocalizedString("unsplash_home_title", comment: "Unsplash")
+        self.titleLabel.text = NSLocalizedString("uns_home_title", comment: "Unsplash")
         self.titleLabel.textColor = ColorPalette.colorBlack
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
         self.addSubview(self.titleLabel)
@@ -79,7 +79,7 @@ class PhotoListJumbotronView: BaseView {
         }
         
         // DescriptionLabel.
-        let attributedDescription = NSMutableAttributedString(string: NSLocalizedString("unsplash_home_description", comment: "Beautiful, free photos.\nGifted by the world’s most generous community of \nphotographers. 🎁"))
+        let attributedDescription = NSMutableAttributedString(string: NSLocalizedString("uns_home_description", comment: "Beautiful, free photos.\nGifted by the world’s most generous community of \nphotographers. 🎁"))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6.0
         

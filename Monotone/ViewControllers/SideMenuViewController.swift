@@ -46,7 +46,7 @@ class SideMenuViewController: BaseViewController {
         self.unsplashLabel = UILabel()
         self.unsplashLabel.textColor = ColorPalette.colorGrayLighter
         self.unsplashLabel.font = UIFont.boldSystemFont(ofSize: 180)
-        self.unsplashLabel.text = NSLocalizedString("unsplash_upper_case", comment: "UNSPLASH")
+        self.unsplashLabel.text = NSLocalizedString("uns_upper_case", comment: "UNSPLASH")
         self.unsplashLabel.transform = CGAffineTransform(rotationAngle: .pi / -2.0)
         self.view.addSubview(self.unsplashLabel)
         self.unsplashLabel.snp.makeConstraints { (make) in
