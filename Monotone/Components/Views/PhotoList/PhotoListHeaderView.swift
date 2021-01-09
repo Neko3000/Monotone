@@ -59,7 +59,7 @@ class PhotoListHeaderView: BaseView {
         })
         
         // SegmentedControl
-        let segmentedValues = UnsplashListOrderBy.allCases.map({ $0.rawValue.description }) + UnsplashTopic.allCases.map({ $0.rawValue.description })
+        let segmentedValues = UnsplashListOrderBy.allCases.map({ $0.rawValue.title }) + UnsplashTopic.allCases.map({ $0.rawValue.title })
         self.segmentedControl = HMSegmentedControl(sectionTitles: segmentedValues)
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),

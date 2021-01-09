@@ -81,7 +81,7 @@ class StoreViewController: BaseViewController {
 
         // Bindings.
         // HeaderView.
-        self.headerView.category
+        self.headerView.selectedCategory
             .bind(to: storeViewModel.input.selectedCategory)
             .disposed(by: self.disposeBag)
         
