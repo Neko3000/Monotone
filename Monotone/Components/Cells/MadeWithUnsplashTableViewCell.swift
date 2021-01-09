@@ -18,7 +18,7 @@ class MadeWithUnsplashTableViewCell: UITableViewCell {
 
     // MARK: - Controls
     private var coverImageView: UIImageView!
-    private var enterImageView: UIImageView!
+    private var playImageView: UIImageView!
     private var usernameLabel: UILabel!
     
     // MARK: - Private
@@ -44,6 +44,7 @@ class MadeWithUnsplashTableViewCell: UITableViewCell {
         // CoverImageView.
         self.coverImageView = UIImageView()
         self.coverImageView.contentMode = .scaleAspectFill
+        self.coverImageView.layer.masksToBounds = true
         self.contentView.addSubview(self.coverImageView)
         self.coverImageView.snp.makeConstraints { (make) in
             make.top.equalTo(self.contentView).offset(20.0)
@@ -52,17 +53,18 @@ class MadeWithUnsplashTableViewCell: UITableViewCell {
             make.left.equalTo(self.contentView)
         }
         
-        // EnterImageView.
-        self.enterImageView = UIImageView()
-        self.enterImageView.contentMode = .scaleAspectFill
-        self.contentView.addSubview(self.enterImageView)
-        self.enterImageView.snp.makeConstraints { (make) in
+        // PlayImageView.
+        self.playImageView = UIImageView()
+        self.playImageView.image = UIImage(named: "help-made-item-play")
+        self.contentView.addSubview(self.playImageView)
+        self.playImageView.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.contentView)
             make.width.height.equalTo(39.0)
         }
         
         // UsernameLabel.
         self.usernameLabel = UILabel()
+        self.usernameLabel.textAlignment = .center
         self.usernameLabel.font = UIFont.systemFont(ofSize: 12)
         self.usernameLabel.textColor = ColorPalette.colorWhite
         self.usernameLabel.backgroundColor = ColorPalette.colorBlack
@@ -85,7 +87,7 @@ class MadeWithUnsplashTableViewCell: UITableViewCell {
                 guard let self = self else { return }
                 
                 self.coverImageView.image = madeItem.coverImage
-                self.usernameLabel.text = madeItem.username
+                self.usernameLabel.text = String(format: NSLocalizedString("unsplash_made_category_username_prefix", comment: "by %@"), madeItem.username ?? "")
                 
             })
             .disposed(by: self.disposeBag)

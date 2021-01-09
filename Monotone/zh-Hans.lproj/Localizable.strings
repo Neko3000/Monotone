@@ -86,4 +86,23 @@
 "unsplash_agreement_api_terms_title" = "API条款";
 "unsplash_agreement_api_terms_content" = "这些Unsplash API使用条款的划定了一个您与Unsplash有限公司（“Unsplash”，“我们”）之间的合法协议。并且描述了开发者在使用Unsplash应用接口（“APIs”），以及Unsplash在其开发者网站 - https://unsplash.com/developers（“开发者网站”）所发布的相关文档时，必须遵循的一系列规则。任何使用APIs集成的应用都被称为，开发者应用...";
 
+"unsplash_help_header" = "来自Unsplash团队的建议和回答";
+"unsplash_help_search_placeholder" = "搜索文章...";
+
+"unsplash_help_account_title" = "管理您的账户";
+"unsplash_help_account_description" = "学习如何使用您的Unsplash账户并进行偏好设定";
+
+"unsplash_help_license_title" = "Unsplash许可证";
+"unsplash_help_license_description" = "官方许可指南和FAQ";
+
 "unsplash_help_article_count_suffix" = "包含 %d 篇文章";
+
+"unsplash_made_category_all_title" = "所有";
+"unsplash_made_category_articles_title" = "文章";
+"unsplash_made_category_remixes_title" = "混音";
+"unsplash_made_category_apps_title" = "Apps";
+"unsplash_made_category_products_title" = "产品";
+"unsplash_made_category_websites_title" = "网站";
+"unsplash_made_category_videos_title" = "视频";
+
+"unsplash_made_category_username_prefix" = "by %@";

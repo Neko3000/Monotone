@@ -33,15 +33,15 @@ extension FAQCategory: RawRepresentable, CaseIterable{
         case .account:
             return (key:"account",
                     icon:UIImage(named: "help-category-account")!,
-                    title:"Managing your Unsplash account",
-                    description:"Learn about your Unsplash account and how to manage your preferences",
+                    title:NSLocalizedString("unsplash_help_account_title", comment: "Managing your Unsplash account"),
+                    description:NSLocalizedString("unsplash_help_account_description", comment: "Learn about your Unsplash account and how to manage your preferences"),
                     count:10)
             
         case .licenses:
             return (key:"licenses",
                     icon:UIImage(named: "help-category-licenses")!,
-                    title:"Unsplash License",
-                    description:"The official Unsplash License guide and FAQ",
+                    title:NSLocalizedString("unsplash_help_license_title", comment: "Unsplash Licens"),
+                    description:NSLocalizedString("unsplash_help_license_description", comment: "The official Unsplash License guide and FAQ"),
                     count:10)
 
         }

@@ -36,7 +36,7 @@ class HelpHeaderView: BaseView {
         self.titleLabel = UILabel()
         self.titleLabel.textColor = UIColor.white
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
-        self.titleLabel.text = "Advice and Answers from the Unsplash Team"
+        self.titleLabel.text = NSLocalizedString("unsplash_help_header", comment: "Advice and Answers from the Unsplash Team")
         self.titleLabel.numberOfLines = 0
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
@@ -50,7 +50,7 @@ class HelpHeaderView: BaseView {
         self.keywordSearchBar.backgroundColor = UIColor.white
         self.keywordSearchBar.searchTextPositionAdjustment = UIOffset(horizontal: 15.0, vertical: 0)
         self.keywordSearchBar.setImage(UIImage(named: "header-input-search"), for: .search, state: .normal)
-        self.keywordSearchBar.placeholder = "Search for Articles…"
+        self.keywordSearchBar.placeholder = NSLocalizedString("unsplash_help_search_placeholder", comment: "Search for Articles…")
         self.keywordSearchBar.setSearchFieldBackgroundImage(UIImage(), for: .normal)
         self.keywordSearchBar.layer.cornerRadius = 4.0
         self.keywordSearchBar.layer.masksToBounds = true

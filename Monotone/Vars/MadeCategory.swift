@@ -17,7 +17,7 @@ enum MadeCategory{
     case videos
 }
 
-class MadeItem{
+struct MadeItem{
     public var coverImage: UIImage?
     public var title: String?
     public var description: String?
@@ -25,7 +25,7 @@ class MadeItem{
 }
 
 extension MadeCategory: RawRepresentable, CaseIterable{
-    init?(rawValue: (key:String, title:String, description:String, items:[MadeItem])) {
+    init?(rawValue: (key:String, title:String, items:[MadeItem])) {
         switch rawValue.key {
         
         case "all":
@@ -54,49 +54,45 @@ extension MadeCategory: RawRepresentable, CaseIterable{
         }
     }
     
-    var rawValue: (key:String, title:String, description:String, items:[MadeItem]) {
+    var rawValue: (key:String, title:String, items:[MadeItem]) {
         switch self {
         
         case .all:
             return (key:"all",
-                    title:"All",
-                    description:"Learn about your Unsplash account and how to manage your preferences",
-                    items:MadeCategory.allCases.flatMap({ category in category.rawValue.items }))
+                    title:NSLocalizedString("unsplash_made_category_all_title", comment: "All"),
+                    items:MadeCategory.allCases.filter({ $0 != .all }).flatMap({ category in category.rawValue.items }))
             
         case .articles:
             return (key:"articles",
-                    title:"Articles",
-                    description:"Learn about your Unsplash account and how to manage your preferences",
-                    items:[])
+                    title:NSLocalizedString("unsplash_made_category_articles_title", comment: "All"),
+                    items:[
+                        MadeItem(coverImage: UIImage(named: "help-articles-made-item-a"), title: "", username: "Tommy D"),
+                        MadeItem(coverImage: UIImage(named: "help-articles-made-item-b"), title: "", username: "Dan Christe")
+                    ])
             
         case .remixes:
-            return (key:"articles",
-                    title:"Articles",
-                    description:"Learn about your Unsplash account and how to manage your preferences",
+            return (key:"remixes",
+                    title:NSLocalizedString("unsplash_made_category_remixes_title", comment: "Remixes"),
                     items:[])
             
         case .apps:
-            return (key:"articles",
-                    title:"Articles",
-                    description:"Learn about your Unsplash account and how to manage your preferences",
+            return (key:"apps",
+                    title:NSLocalizedString("unsplash_made_category_apps_title", comment: "Apps"),
                     items:[])
             
         case .products:
-            return (key:"articles",
-                    title:"Articles",
-                    description:"Learn about your Unsplash account and how to manage your preferences",
+            return (key:"products",
+                    title:NSLocalizedString("unsplash_made_category_products_title", comment: "Products"),
                     items:[])
             
         case .websites:
-            return (key:"articles",
-                    title:"Articles",
-                    description:"Learn about your Unsplash account and how to manage your preferences",
+            return (key:"websites",
+                    title:NSLocalizedString("unsplash_made_category_websites_title", comment: "Websites"),
                     items:[])
             
         case .videos:
-            return (key:"articles",
-                    title:"Articles",
-                    description:"Learn about your Unsplash account and how to manage your preferences",
+            return (key:"videos",
+                    title:NSLocalizedString("unsplash_made_category_videos_title", comment: "Videos"),
                     items:[])
 
         }

@@ -94,11 +94,13 @@ class PageSelectionTableViewCell: UITableViewCell {
         
         if(selected){
             self.titleLabel.textColor = ColorPalette.colorBlack
+            self.titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
             self.horizontalLineLong.isHidden = false
             self.horizontalLineShort.isHidden = false
         }
         else{
             self.titleLabel.textColor = ColorPalette.colorGrayLight
+            self.titleLabel.font = UIFont.systemFont(ofSize: 14)
             self.horizontalLineLong.isHidden = true
             self.horizontalLineShort.isHidden = true
         }

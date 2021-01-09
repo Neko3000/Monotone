@@ -164,9 +164,9 @@ extension SceneCoordinator: FactoryCoordinator{
             return vc
             
         case .madeWithUnsplash:
-            let vc = HelpViewController()
-            let helpVM = self.viewModel(sceneContent: .help, with: args)!
-            vc.bind(to: [helpVM])
+            let vc = MadeWithUnsplashViewController()
+            let madeWithUnsplashVM = self.viewModel(sceneContent: .madeWithUnsplash, with: args)!
+            vc.bind(to: [madeWithUnsplashVM])
             
             return vc
 
@@ -231,7 +231,7 @@ extension SceneCoordinator: FactoryCoordinator{
             return vm
             
         case .madeWithUnsplash:
-            let vm: HelpViewModel = HelpViewModel(services: nil, args: args)
+            let vm: MadeWithUnsplashViewModel = MadeWithUnsplashViewModel(services: nil, args: args)
             return vm
             
         default:

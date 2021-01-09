@@ -86,6 +86,7 @@ class MadeWithUnsplashViewController: BaseViewController {
         // TableView.
         self.tableView = UITableView()
         self.tableView.separatorStyle = .none
+        self.tableView.showsVerticalScrollIndicator = false
         self.tableView.register(MadeWithUnsplashTableViewCell.self, forCellReuseIdentifier: "MadeWithUnsplashTableViewCell")
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.tableView)
@@ -128,7 +129,7 @@ class MadeWithUnsplashViewController: BaseViewController {
         // TableView cell.
         madeWithUnsplashViewModel.output.madeItems
             .unwrap()
-            .bind(to: self.tableView.rx.items(cellIdentifier: "AddToCollectionTableViewCell")){
+            .bind(to: self.tableView.rx.items(cellIdentifier: "MadeWithUnsplashTableViewCell")){
                 (row, element, cell) in
                 
                 let pcell: MadeWithUnsplashTableViewCell = cell as! MadeWithUnsplashTableViewCell

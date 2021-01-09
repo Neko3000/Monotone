@@ -37,6 +37,7 @@ class PageSelectionView: BaseView {
         
         // TableView.
         self.tableView = UITableView()
+        self.tableView.showsVerticalScrollIndicator = false
         self.tableView.backgroundColor = UIColor.clear
         self.tableView.separatorStyle = .none
         self.tableView.register(PageSelectionTableViewCell.self, forCellReuseIdentifier: "PageSelectionTableViewCell")

@@ -83,5 +83,23 @@
 "unsplash_agreement_api_terms_title" = "API Terms";
 "unsplash_agreement_api_terms_content" = "These Unsplash API Terms of Use (these “API Terms”) comprise a legal agreement between Unsplash Inc. (“Unsplash,” “us,” “we,” or “our”) and you, and describe the rules developers must follow when accessing or using the Unsplash application programming interfaces (the “APIs”) and related documentation made available by Unsplash through the Unsplash developer website currently located at https://unsplash.com/developers (“Developer Site”). Any application you integrate with the APIs is a “Developer App.”";
 
+"unsplash_help_header" = "Advice and Answers from the Unsplash Team";
+"unsplash_help_search_placeholder" = "Search for Articles…";
+
+"unsplash_help_account_title" = "Managing your Unsplash account";
+"unsplash_help_account_description" = "Learn about your Unsplash account and how to manage your preferences";
+
+"unsplash_help_license_title" = "Unsplash License";
+"unsplash_help_license_description" = "The official Unsplash License guide and FAQ";
+
 "unsplash_help_article_count_suffix" = "%d articles in this collection";
 
+"unsplash_made_category_all_title" = "ALL";
+"unsplash_made_category_articles_title" = "ARTICLES";
+"unsplash_made_category_remixes_title" = "REMIXES";
+"unsplash_made_category_apps_title" = "APPS";
+"unsplash_made_category_products_title" = "PRODUCTS";
+"unsplash_made_category_websites_title" = "WEBSITES";
+"unsplash_made_category_videos_title" = "VIDEOS";
+
+"unsplash_made_category_username_prefix" = "by %@";
