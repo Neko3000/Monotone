@@ -124,7 +124,7 @@ class MadeWithUnsplashViewController: BaseViewController {
                 (row, element, cell) in
                 
                 let pcell: MadeWithUnsplashTableViewCell = cell as! MadeWithUnsplashTableViewCell
-                pcell.madeItem.accept(element)
+                pcell.madeWithUnsplashItem.accept(element)
     
             }
             .disposed(by: self.disposeBag)

@@ -26,7 +26,7 @@ class MadeWithUnsplashViewModel: BaseViewModel, ViewModelStreamable{
         var categories: BehaviorRelay<[MadeCategory]?> = BehaviorRelay<[MadeCategory]?>(value: nil)
         var selectedCategory: BehaviorRelay<MadeCategory?> = BehaviorRelay<MadeCategory?>(value: nil)
         
-        var madeItems: BehaviorRelay<[MadeItem]?> = BehaviorRelay<[MadeItem]?>(value: nil)
+        var madeItems: BehaviorRelay<[MadeWithUnsplashItem]?> = BehaviorRelay<[MadeWithUnsplashItem]?>(value: nil)
     }
     public var output: Output = Output()
     

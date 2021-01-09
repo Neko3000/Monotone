@@ -14,7 +14,7 @@ import RxSwiftExt
 class MadeWithUnsplashTableViewCell: UITableViewCell {
     
     // MARK: - Public
-    public var madeItem: BehaviorRelay<MadeItem?> = BehaviorRelay<MadeItem?>(value: nil)
+    public var madeWithUnsplashItem: BehaviorRelay<MadeWithUnsplashItem?> = BehaviorRelay<MadeWithUnsplashItem?>(value: nil)
 
     // MARK: - Controls
     private var coverImageView: UIImageView!
@@ -80,14 +80,14 @@ class MadeWithUnsplashTableViewCell: UITableViewCell {
     private func buildLogic(){
         
         // Bindings.
-        // MadeItem.
-        self.madeItem
+        // MadeWithUnsplashItem.
+        self.madeWithUnsplashItem
             .unwrap()
-            .subscribe(onNext:{ [weak self] (madeItem) in
+            .subscribe(onNext:{ [weak self] (madeWithUnsplashItem) in
                 guard let self = self else { return }
                 
-                self.coverImageView.image = madeItem.coverImage
-                self.usernameLabel.text = String(format: NSLocalizedString("uns_made_with_uns_category_username_prefix", comment: "by %@"), madeItem.username ?? "")
+                self.coverImageView.image = madeWithUnsplashItem.coverImage
+                self.usernameLabel.text = String(format: NSLocalizedString("uns_made_with_uns_category_username_prefix", comment: "by %@"), madeWithUnsplashItem.username ?? "")
                 
             })
             .disposed(by: self.disposeBag)

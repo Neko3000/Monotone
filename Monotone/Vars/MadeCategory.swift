@@ -17,7 +17,7 @@ enum MadeCategory{
     case videos
 }
 
-struct MadeItem{
+struct MadeWithUnsplashItem{
     public var coverImage: UIImage?
     public var title: String?
     public var description: String?
@@ -25,7 +25,7 @@ struct MadeItem{
 }
 
 extension MadeCategory: RawRepresentable, CaseIterable{
-    init?(rawValue: (key:String, title:String, items:[MadeItem])) {
+    init?(rawValue: (key:String, title:String, items:[MadeWithUnsplashItem])) {
         switch rawValue.key {
         
         case "all":
@@ -54,7 +54,7 @@ extension MadeCategory: RawRepresentable, CaseIterable{
         }
     }
     
-    var rawValue: (key:String, title:String, items:[MadeItem]) {
+    var rawValue: (key:String, title:String, items:[MadeWithUnsplashItem]) {
         switch self {
         
         case .all:
@@ -66,8 +66,8 @@ extension MadeCategory: RawRepresentable, CaseIterable{
             return (key:"articles",
                     title:NSLocalizedString("uns_made_with_uns_category_articles_title", comment: "All"),
                     items:[
-                        MadeItem(coverImage: UIImage(named: "help-articles-made-item-a"), title: "", username: "Tommy D"),
-                        MadeItem(coverImage: UIImage(named: "help-articles-made-item-b"), title: "", username: "Dan Christe")
+                        MadeWithUnsplashItem(coverImage: UIImage(named: "help-articles-made-item-a"), title: "", username: "Tommy D"),
+                        MadeWithUnsplashItem(coverImage: UIImage(named: "help-articles-made-item-b"), title: "", username: "Dan Christe")
                     ])
             
         case .remixes:
