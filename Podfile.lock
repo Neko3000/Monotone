@@ -5,6 +5,7 @@ PODS:
   - Alamofire (5.3.0)
   - anim (1.2.10)
   - BEMCheckBox (1.4.1)
+  - Differentiator (4.0.1)
   - Hero (1.5.0)
   - HMSegmentedControl (1.5.6)
   - Hue (5.0.0)
@@ -19,6 +20,10 @@ PODS:
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
@@ -50,6 +55,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView (= 5.1.1)
   - ObjectMapper (= 4.2.0)
   - RxCocoa (= 5.1.1)
+  - RxDataSources (= 4.0.1)
   - RxRelay (= 5.1.1)
   - RxSwift (= 5.1.1)
   - RxSwiftExt (= 5.2.0)
@@ -59,11 +65,12 @@ DEPENDENCIES:
   - ViewAnimator (= 3.0.1)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Action
     - Alamofire
     - anim
     - BEMCheckBox
+    - Differentiator
     - Hero
     - HMSegmentedControl
     - Hue
@@ -72,6 +79,7 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - ObjectMapper
     - RxCocoa
+    - RxDataSources
     - RxRelay
     - RxSwift
     - RxSwiftExt
@@ -85,6 +93,7 @@ SPEC CHECKSUMS:
   Alamofire: 2c792affbdc2f18016e08fdbcacd60aebe1ba593
   anim: 8603b8aa9f20c26fb04bfc94967f0e942687938d
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Hero: b7385b75e7259da62f4f85462f59a5082d66b058
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
   Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
@@ -93,6 +102,7 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   RxSwiftExt: 4ca80336f43c28f11a2825cdd2fc61dd6c044697
@@ -101,6 +111,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   ViewAnimator: dd18d2f5c1e472f78d0065ff92750fe56cbd2f39
 
-PODFILE CHECKSUM: 2dcedcfd577e85dac07343c2bfad30ca2f124f79
+PODFILE CHECKSUM: 87cc23f2207519098b696ee1a9f0e3aa81626b72
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.10.1
