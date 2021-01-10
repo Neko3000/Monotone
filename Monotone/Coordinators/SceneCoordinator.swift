@@ -29,6 +29,8 @@ enum Scene {
     case licenses
     case help
     case madeWithUnsplash
+    
+    case store
 }
 
 // MARK: - SceneContent
@@ -49,6 +51,8 @@ enum SceneContent {
     case licenses
     case help
     case madeWithUnsplash
+    
+    case store
 
     case empty
 }
@@ -151,12 +155,12 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             
             if(wrapped){
                 let navigationController = MTNavigationController(rootViewController: targetVC)
-                navigationController.modalPresentationStyle = presetationStyle
-                
                 self.configureNavBar(navigationController: navigationController)
                 
                 targetVC = navigationController
             }
+            
+            targetVC.modalPresentationStyle = presetationStyle
         
             currentViewController?.present(targetVC, animated: animated, completion: {
                 subject.onCompleted()

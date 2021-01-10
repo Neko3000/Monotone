@@ -96,10 +96,14 @@ class StoreViewController: BaseViewController {
                 (row, element, cell) in
                 
                 let pcell: StoreTableViewCell = cell as! StoreTableViewCell
+                pcell.alignToRight = !(row % 2 == 0)
                 pcell.storeItem.accept(element)
     
             }
             .disposed(by: self.disposeBag)
+        
+        // First selection.
+        self.headerView.selectedCategory.accept(.home)
     }
 
     /*
@@ -117,6 +121,6 @@ class StoreViewController: BaseViewController {
 extension StoreViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 297.0
+        return 303.0
     }
 }

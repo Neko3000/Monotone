@@ -26,15 +26,15 @@ extension SceneCoordinator: FactoryCoordinator{
         case .tabBar:
             let tabBarController = MTTabBarController()
             
-            // vc1
-            let vc1TabbarItem = UITabBarItem(title: nil,
-                                             image: UIImage(named: "tabbar-shop"),
-                                             selectedImage: UIImage(named: "tabbar-shop-selected"))
+            // StoreViewController.
+            let storeTabBarItem = UITabBarItem(title: nil,
+                                               image: UIImage(named: "tabbar-shop"),
+                                               selectedImage: UIImage(named: "tabbar-shop-selected"))
             
-            let vc1 = UIViewController()
-            vc1.tabBarItem = vc1TabbarItem
-            vc1.view.backgroundColor = UIColor.purple
-            let nav1 = UINavigationController(rootViewController: vc1)
+            let storeVC = self.viewController(scene: .store, with: args)!
+            storeVC.tabBarItem = storeTabBarItem
+            
+            let storeNavVC = MTNavigationController(rootViewController: storeVC)
             
             
             // vc2
@@ -70,7 +70,7 @@ extension SceneCoordinator: FactoryCoordinator{
             let nav4 = UINavigationController(rootViewController: vc4)
             
             tabBarController.viewControllers = [
-                nav1,
+                storeNavVC,
                 nav2,
                 nav3,
                 nav4
@@ -169,6 +169,13 @@ extension SceneCoordinator: FactoryCoordinator{
             vc.bind(to: [madeWithUnsplashVM])
             
             return vc
+            
+        case .store:
+            let vc = StoreViewController()
+            let storeVM = self.viewModel(sceneContent: .store, with: args)!
+            vc.bind(to: [storeVM])
+            
+            return vc
 
         }
     }
@@ -232,6 +239,10 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case .madeWithUnsplash:
             let vm: MadeWithUnsplashViewModel = MadeWithUnsplashViewModel(services: nil, args: args)
+            return vm
+            
+        case .store:
+            let vm: StoreViewModel = StoreViewModel(services: nil, args: args)
             return vm
             
         default:

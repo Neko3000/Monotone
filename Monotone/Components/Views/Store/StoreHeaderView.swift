@@ -36,6 +36,7 @@ class StoreHeaderView: BaseView {
         self.titleLabel = UILabel()
         self.titleLabel.textColor = ColorPalette.colorBlack
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
+        self.titleLabel.text = "Unsplash Store"
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints({ (make) in
             make.top.equalTo(self)
@@ -43,7 +44,7 @@ class StoreHeaderView: BaseView {
             make.right.equalTo(self).offset(-16.0)
         })
         
-        // SegmentedControl
+        // SegmentedControl.
         let segmentedValues = StoreCategory.allCases.map({ $0.rawValue.title })
         self.segmentedControl = HMSegmentedControl(sectionTitles: segmentedValues)
         self.segmentedControl.titleTextAttributes = [
@@ -72,7 +73,7 @@ class StoreHeaderView: BaseView {
         super.buildLogic()
         
         // Bindings.
-        // SegmentedControl
+        // SegmentedControl.
         self.selectedCategory
             .distinctUntilChanged()
             .unwrap()

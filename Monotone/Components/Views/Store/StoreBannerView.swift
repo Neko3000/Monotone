@@ -22,7 +22,7 @@ class StoreBannerView: BaseView {
     // MARK: - Controls
     private var titleLabel: UILabel!
     private var coverImageView: UIImageView!
-    private var stateLabel: UILabel!
+    private var stateLabel: SpaceLabel!
     private var priceLabel: UILabel!
     
     // MARK: - Private
@@ -36,8 +36,8 @@ class StoreBannerView: BaseView {
         
         // CoverImageView.
         self.coverImageView = UIImageView()
-        self.coverImageView.backgroundColor = UIColor.orange
         self.coverImageView.contentMode = .scaleAspectFill
+        self.coverImageView.layer.masksToBounds = true
         self.addSubview(self.coverImageView)
         self.coverImageView.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(14.0)
@@ -52,16 +52,17 @@ class StoreBannerView: BaseView {
         self.titleLabel.numberOfLines = 0
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints({ (make) in
-            make.left.equalTo(self).offset(15.0)
+            make.left.equalTo(self).offset(29.0)
             make.bottom.equalTo(self).offset(-12.0)
-            make.right.equalTo(self.snp.centerY)
+            make.right.equalTo(self).multipliedBy(3.0/5)
         })
         
         // StateLabel.
-        self.stateLabel = UILabel()
-        self.stateLabel.textColor = UIColor.white
+        self.stateLabel = SpaceLabel()
+        self.stateLabel.textColor = ColorPalette.colorWhite
         self.stateLabel.font = UIFont.systemFont(ofSize: 12)
-        self.stateLabel.backgroundColor = UIColor.gray
+        self.stateLabel.backgroundColor = ColorPalette.colorGrayLight
+        self.stateLabel.paddingInsets = UIEdgeInsets(top: 6.0, left: 8.0, bottom: 6.0, right: 8.0)
         self.addSubview(self.stateLabel)
         self.stateLabel.snp.makeConstraints({ (make) in
             make.top.equalTo(self)
@@ -72,7 +73,6 @@ class StoreBannerView: BaseView {
         self.priceLabel = UILabel()
         self.priceLabel.textColor = UIColor.white
         self.priceLabel.font = UIFont.systemFont(ofSize: 14)
-        self.priceLabel.backgroundColor = UIColor.gray
         self.addSubview(self.priceLabel)
         self.priceLabel.snp.makeConstraints({ (make) in
             make.right.equalTo(self).offset(-17.0)

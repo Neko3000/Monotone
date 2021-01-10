@@ -18,7 +18,7 @@ class StoreTableViewCell: UITableViewCell {
     
     public var alignToRight: Bool = false{
         didSet{
-            
+            self.resetLayout()
         }
     }
 
@@ -51,12 +51,39 @@ class StoreTableViewCell: UITableViewCell {
         // CoverImageView.
         self.coverImageView = UIImageView()
         self.coverImageView.contentMode = .scaleAspectFill
+        self.coverImageView.layer.masksToBounds = true
         self.contentView.addSubview(self.coverImageView)
         self.coverImageView.snp.makeConstraints { (make) in
-            make.top.left.equalTo(self.contentView)
-            make.bottom.equalTo(self.contentView).offset(-36.0)
+            make.top.equalTo(self.contentView)
+            make.left.equalTo(self.contentView)
+            make.bottom.equalTo(self.contentView).offset(-76.0)
             make.width.equalTo(self.contentView).multipliedBy(3.0/5)
         }
+        
+        // PriceLabel.
+        self.priceLabel = UILabel()
+        self.priceLabel.textColor = ColorPalette.colorBlack
+        self.priceLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        self.priceLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        self.priceLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        self.addSubview(self.priceLabel)
+        self.priceLabel.snp.makeConstraints({ (make) in
+            make.right.equalTo(self.coverImageView)
+            make.bottom.equalTo(self.contentView).offset(-50.0)
+        })
+        
+        // TitleLabel.
+        self.titleLabel = UILabel()
+        self.titleLabel.textColor = ColorPalette.colorBlack
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        self.titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        self.titleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        self.addSubview(self.titleLabel)
+        self.titleLabel.snp.makeConstraints({ (make) in
+            make.left.equalTo(self.contentView).offset(15.0)
+            make.bottom.equalTo(self.contentView).offset(-50.0)
+            make.right.equalTo(self.priceLabel.snp.left).offset(-15.0)
+        })
         
         // UsernameLabel.
         self.usernameLabel = UILabel()
@@ -64,30 +91,10 @@ class StoreTableViewCell: UITableViewCell {
         self.usernameLabel.font = UIFont.systemFont(ofSize: 8)
         self.addSubview(self.usernameLabel)
         self.usernameLabel.snp.makeConstraints({ (make) in
-            make.bottom.equalTo(self.contentView)
-            make.left.equalTo(self.contentView).offset(15.0)
+            make.top.equalTo(self.titleLabel.snp.bottom)
+            make.left.equalTo(self.titleLabel)
         })
         
-        // PriceLabel.
-        self.priceLabel = UILabel()
-        self.priceLabel.textColor = ColorPalette.colorBlack
-        self.priceLabel.font = UIFont.boldSystemFont(ofSize: 12)
-        self.addSubview(self.priceLabel)
-        self.priceLabel.snp.makeConstraints({ (make) in
-            make.right.equalTo(self.coverImageView)
-            make.bottom.equalTo(self.contentView).offset(-10.0)
-        })
-        
-        // TitleLabel.
-        self.titleLabel = UILabel()
-        self.titleLabel.textColor = ColorPalette.colorBlack
-        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 12)
-        self.addSubview(self.titleLabel)
-        self.titleLabel.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.contentView).offset(15.0)
-            make.bottom.equalTo(self.usernameLabel.snp.top)
-            make.right.lessThanOrEqualTo(self.priceLabel.snp.left).offset(-15.0)
-        })
     }
 
     private func buildLogic(){
@@ -107,5 +114,53 @@ class StoreTableViewCell: UITableViewCell {
             })
             .disposed(by: self.disposeBag)
             
+    }
+    
+    private func resetLayout(){
+        
+        if(self.alignToRight){
+            
+            self.coverImageView.snp.remakeConstraints { (make) in
+                make.top.equalTo(self.contentView)
+                make.right.equalTo(self.contentView)
+                make.bottom.equalTo(self.contentView).offset(-76.0)
+                make.width.equalTo(self.contentView).multipliedBy(3.0/5)
+            }
+            
+            self.priceLabel.snp.remakeConstraints({ (make) in
+                make.right.equalTo(self.coverImageView).offset(-15.0)
+                make.bottom.equalTo(self.contentView).offset(-50.0)
+            })
+            
+            self.titleLabel.snp.remakeConstraints({ (make) in
+                make.left.equalTo(self.coverImageView)
+                make.bottom.equalTo(self.contentView).offset(-50.0)
+                make.right.equalTo(self.priceLabel.snp.left).offset(-15.0)
+            })
+            
+        }
+        else{
+            
+            self.coverImageView.snp.remakeConstraints { (make) in
+                make.top.equalTo(self.contentView)
+                make.left.equalTo(self.contentView)
+                make.bottom.equalTo(self.contentView).offset(-76.0)
+                make.width.equalTo(self.contentView).multipliedBy(3.0/5)
+            }
+            
+            self.priceLabel.snp.remakeConstraints({ (make) in
+                make.right.equalTo(self.coverImageView)
+                make.bottom.equalTo(self.contentView).offset(-50.0)
+            })
+            
+            self.titleLabel.snp.remakeConstraints({ (make) in
+                make.left.equalTo(self.contentView).offset(15.0)
+                make.bottom.equalTo(self.contentView).offset(-50.0)
+                make.right.equalTo(self.priceLabel.snp.left).offset(-15.0)
+            })
+            
+        }
+        
+        self.layoutIfNeeded()
     }
 }
