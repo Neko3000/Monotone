@@ -108,4 +108,9 @@
 "uns_made_with_uns_category_username_prefix" = "by %@";
 
 "uns_store_title" = "Unsplash Store";
-"uns_store_featured_product" = "Featured Products";
+"uns_store_featured_products" = "Featured Products";
+
+"uns_store_category_home" = "Home";
+"uns_store_category_all" = "All Products";
+"uns_store_category_made_by_unsplash" = "Made by Unsplash";
+"uns_store_category_made_with_friends" = "Made with Friends";

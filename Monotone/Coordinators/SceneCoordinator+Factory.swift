@@ -35,7 +35,7 @@ extension SceneCoordinator: FactoryCoordinator{
             storeVC.tabBarItem = storeTabBarItem
             
             let storeNavVC = MTNavigationController(rootViewController: storeVC)
-            
+            self.configureNavBar(navigationController: storeNavVC)
             
             // vc2
             let vc2TabbarItem = UITabBarItem(title: nil,

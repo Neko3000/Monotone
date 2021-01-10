@@ -44,6 +44,7 @@ class StoreViewController: BaseViewController {
         
         // HeaderView.
         self.headerView = StoreHeaderView()
+        self.headerView.layer.applySketchShadow(color: ColorPalette.colorShadow, alpha: 1.0, x: 0, y: 2.0, blur: 10.0, spread: 0)
         self.view.addSubview(self.headerView)
         self.headerView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide)

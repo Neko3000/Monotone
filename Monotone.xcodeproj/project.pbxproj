@@ -173,7 +173,6 @@
 		EB8B90A025A9B01D00336A39 /* license_en.html in Resources */ = {isa = PBXBuildFile; fileRef = EB8B909C25A9B01D00336A39 /* license_en.html */; };
 		EB8B90A125A9B01D00336A39 /* terms_and_conditions_en.html in Resources */ = {isa = PBXBuildFile; fileRef = EB8B909D25A9B01D00336A39 /* terms_and_conditions_en.html */; };
 		EB8B90A225A9B01D00336A39 /* privacy_policy_en.html in Resources */ = {isa = PBXBuildFile; fileRef = EB8B909E25A9B01D00336A39 /* privacy_policy_en.html */; };
-		EB8B90A525A9B07B00336A39 /* Agreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90A425A9B07B00336A39 /* Agreement.swift */; };
 		EB8B90A825AA0C3600336A39 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90A725AA0C3600336A39 /* StoreViewController.swift */; };
 		EB8B90AD25AA0CB600336A39 /* StoreHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90AC25AA0CB600336A39 /* StoreHeaderView.swift */; };
 		EB8B90B025AA0D0600336A39 /* StoreCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90AF25AA0D0600336A39 /* StoreCategory.swift */; };
@@ -372,7 +371,6 @@
 		EB8B909C25A9B01D00336A39 /* license_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license_en.html; sourceTree = "<group>"; };
 		EB8B909D25A9B01D00336A39 /* terms_and_conditions_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms_and_conditions_en.html; sourceTree = "<group>"; };
 		EB8B909E25A9B01D00336A39 /* privacy_policy_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy_policy_en.html; sourceTree = "<group>"; };
-		EB8B90A425A9B07B00336A39 /* Agreement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agreement.swift; sourceTree = "<group>"; };
 		EB8B90A725AA0C3600336A39 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		EB8B90AC25AA0CB600336A39 /* StoreHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreHeaderView.swift; sourceTree = "<group>"; };
 		EB8B90AF25AA0D0600336A39 /* StoreCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCategory.swift; sourceTree = "<group>"; };
@@ -647,7 +645,6 @@
 				14F36F90254D3AB80086B8CC /* ColorPalette.swift */,
 				140158FD258388EF00746563 /* MessageCenter.swift */,
 				14F016B22567981400F60C99 /* RxSwift+Opeartors.swift */,
-				EB8B90A425A9B07B00336A39 /* Agreement.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1304,7 +1301,6 @@
 				143F5678254FEA040038761D /* PhotoListViewController.swift in Sources */,
 				1406E9EB257A05CF0096DE82 /* PhotoShareSMView.swift in Sources */,
 				14F36FB0254D53940086B8CC /* NetworkManager.swift in Sources */,
-				EB8B90A525A9B07B00336A39 /* Agreement.swift in Sources */,
 				140912FC2571333800EEC157 /* BaseScrollView.swift in Sources */,
 				14842E32257E003100364FFF /* PhotoCreateCollectionViewController.swift in Sources */,
 				14D7DBCD2599A39B001BF0CB /* MTTabBarController.swift in Sources */,

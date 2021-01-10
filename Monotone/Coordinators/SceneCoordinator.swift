@@ -210,7 +210,7 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     }
     
     // MARK: - ConfigureNavBar
-    private func configureNavBar(navigationController: MTNavigationController){
+    public func configureNavBar(navigationController: MTNavigationController){
         
         Observable.of(navigationController.closeBtnDidTap,navigationController.backBtnDidTap)
             .merge()

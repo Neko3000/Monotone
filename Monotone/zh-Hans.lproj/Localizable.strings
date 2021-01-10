@@ -111,4 +111,10 @@
 "uns_made_with_uns_category_username_prefix" = "by %@";
 
 "uns_store_title" = "Unsplash商店";
-"uns_store_featured_product" = "热门商品";
+"uns_store_featured_products" = "精选商品";
+
+"uns_store_category_home" = "Home";
+"uns_store_category_all" = "所有";
+"uns_store_category_made_by_unsplash" = "官方制作";
+"uns_store_category_made_with_friends" = "同人周边";
+

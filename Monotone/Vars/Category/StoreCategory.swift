@@ -58,7 +58,7 @@ extension StoreCategory: RawRepresentable, CaseIterable{
             let bannerItems = allItems.choose(1)
             
             return (key:"home",
-                    title:"Home",
+                    title:NSLocalizedString("uns_store_category_home", comment: "Home"),
                     bannerItems:bannerItems,
                     items:allItems)
         
@@ -71,13 +71,13 @@ extension StoreCategory: RawRepresentable, CaseIterable{
             let bannerItems = allItems.choose(1)
 
             return (key:"allProducts",
-                    title:"All Products",
+                    title:NSLocalizedString("uns_store_category_all", comment: "All Products"),
                     bannerItems:bannerItems,
                     items:allItems)
             
         case .madeByUnsplash:
             return (key:"madeByUnsplash",
-                    title:"Made by Unsplash",
+                    title:NSLocalizedString("uns_store_category_made_by_unsplash", comment: "Made by Unsplash"),
                     bannerItems: [],
                     items:[
                         StoreItem(coverImage: UIImage(named: "store-home-list-item-a"),
@@ -103,7 +103,7 @@ extension StoreCategory: RawRepresentable, CaseIterable{
             
         case .madeWithFriends:
             return (key:"madeWithFriends",
-                    title:"Made with Friends",
+                    title:NSLocalizedString("uns_store_category_made_with_friends", comment: "Made with Friends"),
                     bannerItems: [],
                     items:[
                         StoreItem(coverImage: UIImage(named: "store-home-banner-item"),

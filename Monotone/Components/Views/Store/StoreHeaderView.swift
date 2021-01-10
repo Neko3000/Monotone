@@ -30,7 +30,8 @@ class StoreHeaderView: BaseView {
     override func buildSubviews() {
         super.buildSubviews()
         
-        // 
+        //
+        self.backgroundColor = ColorPalette.colorWhite
         
         // TitleLabel.
         self.titleLabel = UILabel()
@@ -56,7 +57,7 @@ class StoreHeaderView: BaseView {
         ]
         self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.bottom
         self.segmentedControl.selectionIndicatorColor = ColorPalette.colorBlack
-        self.segmentedControl.selectionIndicatorHeight = 2.0
+        self.segmentedControl.selectionIndicatorHeight = 1.0
         self.segmentedControl.segmentEdgeInset = UIEdgeInsets(top: 0, left: 8.0, bottom: 0, right: 8.0)
         self.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.dynamic
         self.segmentedControl.addTarget(self, action: #selector(segmentedControlChangedValue(segmentedControl:)), for: .valueChanged)
