@@ -25,9 +25,8 @@ struct StoreItem{
     public var username: String?
 }
 
-
 extension StoreCategory: RawRepresentable, CaseIterable{
-    init?(rawValue: (key:String, title:String, items:[StoreItem])) {
+    init?(rawValue: (key:String, title:String, bannerItems:[StoreItem], items:[StoreItem])) {
         switch rawValue.key {
         
         case "home":
@@ -47,25 +46,43 @@ extension StoreCategory: RawRepresentable, CaseIterable{
         }
     }
     
-    var rawValue: (key:String, title:String, items:[StoreItem]) {
+    var rawValue: (key:String, title:String, bannerItems:[StoreItem], items:[StoreItem]) {
         switch self {
         
         case .home:
+            
+            let allItems = StoreCategory.allCases
+                .filter({ $0 != .home && $0 != .allProducts })
+                .flatMap({ category in category.rawValue.items })
+            
+            let bannerItems = allItems.choose(1)
+            
             return (key:"home",
                     title:"Home",
-                    items:StoreCategory.allCases.filter({ $0 != .home && $0 != .allProducts }).flatMap({ category in category.rawValue.items }))
+                    bannerItems:bannerItems,
+                    items:allItems)
         
         case .allProducts:
+            
+            let allItems = StoreCategory.allCases
+                .filter({ $0 != .home && $0 != .allProducts })
+                .flatMap({ category in category.rawValue.items })
+            
+            let bannerItems = allItems.choose(1)
+
             return (key:"allProducts",
                     title:"All Products",
-                    items:StoreCategory.allCases.filter({ $0 != .home && $0 != .allProducts  }).flatMap({ category in category.rawValue.items }))
+                    bannerItems:bannerItems,
+                    items:allItems)
             
         case .madeByUnsplash:
             return (key:"madeByUnsplash",
                     title:"Made by Unsplash",
+                    bannerItems: [],
                     items:[
                         StoreItem(coverImage: UIImage(named: "store-home-list-item-a"),
                                   title: "Unsplash Sweatshirt",
+                                  state: "For Sale",
                                   price: 95.00,
                                   detailImages: [UIImage(named: "store-details-item-a-image-1"),
                                                  UIImage(named: "store-details-item-a-image-2"),
@@ -75,6 +92,7 @@ extension StoreCategory: RawRepresentable, CaseIterable{
                         
                         StoreItem(coverImage: UIImage(named: "store-home-list-item-b"),
                                   title: "Unsplash Inspish",
+                                  state: "For Sale",
                                   price: 45.00,
                                   detailImages: [UIImage(named: "store-details-item-a-image-1"),
                                                  UIImage(named: "store-details-item-a-image-2"),
@@ -86,6 +104,7 @@ extension StoreCategory: RawRepresentable, CaseIterable{
         case .madeWithFriends:
             return (key:"madeWithFriends",
                     title:"Made with Friends",
+                    bannerItems: [],
                     items:[
                         StoreItem(coverImage: UIImage(named: "store-home-banner-item"),
                                   title: "Limited Edition: The Urban Explorer Sweatshirt",

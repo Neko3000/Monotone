@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -180,6 +180,8 @@
 		EB8B90B325AA145900336A39 /* StoreBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90B225AA145900336A39 /* StoreBannerView.swift */; };
 		EB8B90B625AA191E00336A39 /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90B525AA191D00336A39 /* StoreTableViewCell.swift */; };
 		EB8B90C125AAC62600336A39 /* SpaceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90C025AAC62600336A39 /* SpaceLabel.swift */; };
+		EBD64C3D25AAE0CC009BA055 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD64C3C25AAE0CC009BA055 /* TableViewSection.swift */; };
+		EBE768AE25AAEFB200B0870C /* StoreBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE768AD25AAEFB100B0870C /* StoreBannerTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -377,6 +379,8 @@
 		EB8B90B225AA145900336A39 /* StoreBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreBannerView.swift; sourceTree = "<group>"; };
 		EB8B90B525AA191D00336A39 /* StoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
 		EB8B90C025AAC62600336A39 /* SpaceLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceLabel.swift; sourceTree = "<group>"; };
+		EBD64C3C25AAE0CC009BA055 /* TableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
+		EBE768AD25AAEFB100B0870C /* StoreBannerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreBannerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -705,6 +709,7 @@
 		143FB158255BAE3400D24248 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EBD64C3F25AAE112009BA055 /* DataSources */,
 				148ED1E825591DBF0000146E /* PhotoCollectionViewCell.swift */,
 				1406EAF1257A5C640096DE82 /* AddToCollectionTableViewCell.swift */,
 				14BA299F258CB61000215F03 /* SideMenuPageTableViewCell.swift */,
@@ -712,6 +717,7 @@
 				140F5C2F25A6BA47009A6459 /* HelpCollectionViewCell.swift */,
 				EB8B907525A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift */,
 				EB8B90B525AA191D00336A39 /* StoreTableViewCell.swift */,
+				EBE768AD25AAEFB100B0870C /* StoreBannerTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1007,6 +1013,14 @@
 			path = Labels;
 			sourceTree = "<group>";
 		};
+		EBD64C3F25AAE112009BA055 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				EBD64C3C25AAE0CC009BA055 /* TableViewSection.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
 		F0993FA6A35EE5A3CA4D55B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1171,6 +1185,7 @@
 				1410491C255D3686003312BC /* SceneTransition.swift in Sources */,
 				EB8B907225A79BB900336A39 /* MadeWithUnsplashViewModel.swift in Sources */,
 				14D5E8EE254A589D0021FE3E /* LoginViewController.swift in Sources */,
+				EBE768AE25AAEFB200B0870C /* StoreBannerTableViewCell.swift in Sources */,
 				1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */,
 				14014CEF2581BE1B00746563 /* AuthError.swift in Sources */,
 				1483210B2588DFDE00097F85 /* LikePhotoRequest.swift in Sources */,
@@ -1232,6 +1247,7 @@
 				14104925255D49A5003312BC /* MTNavigationController.swift in Sources */,
 				14FD83CA2567F7CD00D5B575 /* BlurHashDecode.swift in Sources */,
 				EB8B90B625AA191E00336A39 /* StoreTableViewCell.swift in Sources */,
+				EBD64C3D25AAE0CC009BA055 /* TableViewSection.swift in Sources */,
 				EB8B90B325AA145900336A39 /* StoreBannerView.swift in Sources */,
 				14842C69257DCF7C00364FFF /* UserService.swift in Sources */,
 				1409A7972550EAAB0005B702 /* BaseView.swift in Sources */,

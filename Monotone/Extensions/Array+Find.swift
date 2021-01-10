@@ -33,4 +33,11 @@ extension Array{
             return nil
         }
     }
+    
+    // https://stackoverflow.com/questions/27259332/get-random-elements-from-array-in-swift
+    // Leo Dabus, answered Dec 3 '14 at 1:12
+    func choose(_ n: Int) -> Array {
+        
+        return Array(self.shuffled().prefix(n))
+    }
 }

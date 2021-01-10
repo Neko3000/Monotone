@@ -26,7 +26,7 @@ class StoreViewModel: BaseViewModel, ViewModelStreamable{
         var categories: BehaviorRelay<[StoreCategory]?> = BehaviorRelay<[StoreCategory]?>(value: nil)
         var selectedCategory: BehaviorRelay<StoreCategory?> = BehaviorRelay<StoreCategory?>(value: nil)
         
-        var storeItems: BehaviorRelay<[StoreItem]?> = BehaviorRelay<[StoreItem]?>(value: nil)
+        var sections: BehaviorRelay<[TableViewSection]> = BehaviorRelay<[TableViewSection]>(value: [])
     }
     public var output: Output = Output()
     
@@ -58,7 +58,13 @@ class StoreViewModel: BaseViewModel, ViewModelStreamable{
             .subscribe(onNext:{ [weak self] (category) in
                 guard let self = self else { return }
                 
-                self.output.storeItems.accept(category.rawValue.items)
+                self.output.sections.accept(
+                    [
+                        TableViewSection(header:"", items:category.rawValue.bannerItems.map({ $0 as AnyObject })),
+                        TableViewSection(header:"Featured Products", items:category.rawValue.items.map({ $0 as AnyObject }))
+                    ]
+                )
+
             })
             .disposed(by: self.disposeBag)
     }
