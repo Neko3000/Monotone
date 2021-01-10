@@ -58,8 +58,6 @@ class StoreViewController: BaseViewController {
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.register(StoreBannerTableViewCell.self, forCellReuseIdentifier: "StoreBannerTableViewCell")
         self.tableView.register(StoreTableViewCell.self, forCellReuseIdentifier: "StoreTableViewCell")
-        self.tableView.estimatedSectionHeaderHeight = 172.0
-        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in

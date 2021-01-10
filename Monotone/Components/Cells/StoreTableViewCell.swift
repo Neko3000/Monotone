@@ -45,6 +45,7 @@ class StoreTableViewCell: UITableViewCell {
     
     private func buildSubviews(){
         
+        //
         self.selectionStyle = .none
         self.backgroundColor = UIColor.clear
         

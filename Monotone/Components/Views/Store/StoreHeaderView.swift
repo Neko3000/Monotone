@@ -36,7 +36,7 @@ class StoreHeaderView: BaseView {
         self.titleLabel = UILabel()
         self.titleLabel.textColor = ColorPalette.colorBlack
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        self.titleLabel.text = "Unsplash Store"
+        self.titleLabel.text = NSLocalizedString("uns_store_title", comment: "Unsplash Store")
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints({ (make) in
             make.top.equalTo(self)

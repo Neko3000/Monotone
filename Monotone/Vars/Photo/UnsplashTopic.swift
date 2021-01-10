@@ -1,5 +1,5 @@
 //
-//  PhotoVars.swift
+//  UnsplashTopic.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/11/15.

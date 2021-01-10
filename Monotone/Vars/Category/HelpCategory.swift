@@ -1,5 +1,5 @@
 //
-//  HelpCategoryVars.swift
+//  HelpCategory.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2021/1/7.
