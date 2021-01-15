@@ -64,12 +64,12 @@ class CapsuleView: BaseView {
     override func buildSubviews(){
         super.buildSubviews()
         
-        // blurBackgroundView.
+        // BlurBackgroundView.
         let blurEffect = UIBlurEffect(style: .light)
         self.blurBackgroundView = UIVisualEffectView(effect: blurEffect)
         self.blurBackgroundView.isUserInteractionEnabled = false
         
-        // stackView.
+        // StackView.
         self.stackView = UIStackView()
         self.stackView.distribution = .equalSpacing
         self.stackView.axis = .horizontal

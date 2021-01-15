@@ -181,6 +181,8 @@
 		EB8B90C125AAC62600336A39 /* SpaceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90C025AAC62600336A39 /* SpaceLabel.swift */; };
 		EBD64C3D25AAE0CC009BA055 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD64C3C25AAE0CC009BA055 /* TableViewSection.swift */; };
 		EBE768AE25AAEFB200B0870C /* StoreBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE768AD25AAEFB100B0870C /* StoreBannerTableViewCell.swift */; };
+		EBE768EC25B0A50E00B0870C /* StoreDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE768EB25B0A50E00B0870C /* StoreDetailsViewController.swift */; };
+		EBE768EE25B0A63300B0870C /* StoreDetailsPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE768ED25B0A63300B0870C /* StoreDetailsPropertyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -379,6 +381,8 @@
 		EB8B90C025AAC62600336A39 /* SpaceLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceLabel.swift; sourceTree = "<group>"; };
 		EBD64C3C25AAE0CC009BA055 /* TableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
 		EBE768AD25AAEFB100B0870C /* StoreBannerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreBannerTableViewCell.swift; sourceTree = "<group>"; };
+		EBE768EB25B0A50E00B0870C /* StoreDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailsViewController.swift; sourceTree = "<group>"; };
+		EBE768ED25B0A63300B0870C /* StoreDetailsPropertyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailsPropertyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -546,6 +550,7 @@
 				14FEE57725A5E8C200684CC1 /* HelpViewController.swift */,
 				EB8B906E25A79B3F00336A39 /* MadeWithUnsplashViewController.swift */,
 				EB8B90A725AA0C3600336A39 /* StoreViewController.swift */,
+				EBE768EB25B0A50E00B0870C /* StoreDetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -743,6 +748,7 @@
 			children = (
 				EB8B90AC25AA0CB600336A39 /* StoreHeaderView.swift */,
 				EB8B90B225AA145900336A39 /* StoreBannerView.swift */,
+				EBE768ED25B0A63300B0870C /* StoreDetailsPropertyView.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -1178,6 +1184,7 @@
 				EB8B90A825AA0C3600336A39 /* StoreViewController.swift in Sources */,
 				14627A5225A0692B00C1D94E /* UnsplashListOrderBy.swift in Sources */,
 				142BD867259897ED0097F5AC /* PhotoInfoViewController.swift in Sources */,
+				EBE768EE25B0A63300B0870C /* StoreDetailsPropertyView.swift in Sources */,
 				1401547A25831BF600746563 /* CollectionService.swift in Sources */,
 				1410491C255D3686003312BC /* SceneTransition.swift in Sources */,
 				EB8B907225A79BB900336A39 /* MadeWithUnsplashViewModel.swift in Sources */,
@@ -1213,6 +1220,7 @@
 				14FD9B4F257F17B100DEC579 /* LoginViewModel.swift in Sources */,
 				149F921225AA316E00D1A4FC /* StoreViewModel.swift in Sources */,
 				14F3707D254EABDA0086B8CC /* BaseResponse.swift in Sources */,
+				EBE768EC25B0A50E00B0870C /* StoreDetailsViewController.swift in Sources */,
 				140F5C3025A6BA47009A6459 /* HelpCollectionViewCell.swift in Sources */,
 				14FA60832580B2B7004AFBE8 /* AuthArguments.swift in Sources */,
 				143114CC255A794600991676 /* Links.swift in Sources */,

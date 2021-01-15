@@ -19,6 +19,7 @@ struct StoreItem{
     public var title: String?
     public var description: String?
     public var state: String?
+    public var sizes: [String]?
     public var price: Decimal?
     
     public var detailImages: [UIImage?]?

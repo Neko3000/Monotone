@@ -1,8 +1,8 @@
 //
-//  StoreDetailsViewController.swift
+//  StoreViewController.swift
 //  Monotone
 //
-//  Created by Xueliang Chen on 2020/1/15.
+//  Created by Xueliang Chen on 2020/1/6.
 //
 
 import UIKit
@@ -16,20 +16,14 @@ import RxSwiftExt
 
 import RxDataSources
 
-// MARK: - StoreDetailsViewController
-class StoreDetailsViewController: BaseViewController {
+// MARK: - StoreViewController
+class StoreViewController: BaseViewController {
     
     // MARK: - Public
 
     
     // MARK: - Controls
-    private var titleLabel: UILabel!
-    private var descriptionLabel: UILabel!
-    
-    private var photoContainerView: UIView!
-    private var photoAImageView: UIImageView!
-    private var photoBImageView: UIImageView!
-    private var photoCImageView: UIImageView!
+    private var headerView: StoreHeaderView!
     
     private var dataSource:RxTableViewSectionedReloadDataSource<TableViewSection>!
     private var tableView: UITableView!
@@ -131,7 +125,7 @@ class StoreDetailsViewController: BaseViewController {
 
 }
 
-extension StoreDetailsViewController: UITableViewDelegate{
+extension StoreViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
