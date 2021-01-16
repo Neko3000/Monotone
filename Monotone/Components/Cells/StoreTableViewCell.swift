@@ -109,7 +109,7 @@ class StoreTableViewCell: UITableViewCell {
                 
                 self.coverImageView.image = item.coverImage
                 self.titleLabel.text = item.title
-                self.priceLabel.text = "$\(item.price ?? 999.0)"
+                self.priceLabel.text = String(format: "$%@", item.price?.format(digit:2) ?? "999.0") 
                 self.usernameLabel.text = "by \(item.username ?? "")"
                 
             })

@@ -18,6 +18,7 @@ struct StoreItem{
     public var coverImage: UIImage?
     public var title: String?
     public var description: String?
+    public var name: String?
     public var state: String?
     public var sizes: [String]?
     public var price: Decimal?
@@ -83,7 +84,10 @@ extension StoreCategory: RawRepresentable, CaseIterable{
                     items:[
                         StoreItem(coverImage: UIImage(named: "store-home-list-item-a"),
                                   title: "Unsplash Sweatshirt",
+                                  description: "Designed in NYC & Montreal. Handmade in Canada.The Urban Explorer Sweatshirt is made of high-quality 400gsm 100% French terry cotton. French terry is incredibly light and durable without sacrificing that snuggly warm blanket feeling. A tonal black-on-black foil script makes this a subtle piece you can wear for any occasion.Ships in one-of-a-kind packaging designed by us and sealed with a custom sticker, courtesy of our friends at Stickermule.",
+                                  name: "The Urban Explorer Sweatshirt",
                                   state: "For Sale",
+                                  sizes: ["XS","S","M","L","XL"],
                                   price: 95.00,
                                   detailImages: [UIImage(named: "store-details-item-a-image-1"),
                                                  UIImage(named: "store-details-item-a-image-2"),
@@ -93,7 +97,10 @@ extension StoreCategory: RawRepresentable, CaseIterable{
                         
                         StoreItem(coverImage: UIImage(named: "store-home-list-item-b"),
                                   title: "Unsplash Inspish",
+                                  description: "Designed in NYC & Montreal. Handmade in Canada.The Urban Explorer Sweatshirt is made of high-quality 400gsm 100% French terry cotton. French terry is incredibly light and durable without sacrificing that snuggly warm blanket feeling. A tonal black-on-black foil script makes this a subtle piece you can wear for any occasion.Ships in one-of-a-kind packaging designed by us and sealed with a custom sticker, courtesy of our friends at Stickermule.",
+                                  name: "The Urban Explorer Sweatshirt",
                                   state: "For Sale",
+                                  sizes: ["XS","S","M","L","XL"],
                                   price: 45.00,
                                   detailImages: [UIImage(named: "store-details-item-a-image-1"),
                                                  UIImage(named: "store-details-item-a-image-2"),
@@ -109,7 +116,9 @@ extension StoreCategory: RawRepresentable, CaseIterable{
                     items:[
                         StoreItem(coverImage: UIImage(named: "store-home-banner-item"),
                                   title: "Limited Edition: The Urban Explorer Sweatshirt",
+                                  description: "Designed in NYC & Montreal. Handmade in Canada.The Urban Explorer Sweatshirt is made of high-quality 400gsm 100% French terry cotton. French terry is incredibly light and durable without sacrificing that snuggly warm blanket feeling. A tonal black-on-black foil script makes this a subtle piece you can wear for any occasion.Ships in one-of-a-kind packaging designed by us and sealed with a custom sticker, courtesy of our friends at Stickermule.",
                                   state: "Sold Out",
+                                  sizes: ["XS","S","M","L","XL"],
                                   price: 95.00,
                                   detailImages: [UIImage(named: "store-details-item-a-image-1"),
                                                  UIImage(named: "store-details-item-a-image-2"),

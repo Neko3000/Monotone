@@ -176,6 +176,13 @@ extension SceneCoordinator: FactoryCoordinator{
             vc.bind(to: [storeVM])
             
             return vc
+            
+        case .storeDetails:
+            let vc = StoreDetailsViewController()
+            let storeDetailsVM = self.viewModel(sceneContent: .storeDetails, with: args)!
+            vc.bind(to: [storeDetailsVM])
+            
+            return vc
 
         }
     }
@@ -243,6 +250,10 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case .store:
             let vm: StoreViewModel = StoreViewModel(services: nil, args: args)
+            return vm
+            
+        case .storeDetails:
+            let vm: StoreDetailsViewModel = StoreDetailsViewModel(services: nil, args: args)
             return vm
             
         default:

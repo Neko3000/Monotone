@@ -53,15 +53,19 @@ class MTTabBarController: BaseTabBarController {
             let width: CGFloat = self.view.frame.size.width * (3.0 / 4)
             
             var tabFrame = self.tabBar.frame
+            let originTabHeight = tabFrame.height
+            
             tabFrame.size.width = width
             tabFrame.size.height = height
             tabFrame.origin.y = self.view.frame.size.height - height
             self.tabBar.frame = tabFrame
+            
+            var safeArea = UIEdgeInsets()
+            safeArea.bottom += (height - originTabHeight)
+            self.viewControllers?.forEach({$0.additionalSafeAreaInsets = safeArea})
         }
         
         self.updateTabBar()
-        
-
     }
 
     override func viewWillLayoutSubviews() {

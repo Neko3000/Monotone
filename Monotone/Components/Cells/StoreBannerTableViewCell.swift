@@ -100,8 +100,8 @@ class StoreBannerTableViewCell: UITableViewCell {
                 self.coverImageView.image = item.coverImage
                 self.titleLabel.text = item.title
                 self.stateLabel.text = item.state
-                self.priceLabel.text = "$\(item.price ?? 999.0)"
-                
+                self.priceLabel.text = String(format: "$%@", item.price?.format(digit:2) ?? "999.0") 
+
             })
             .disposed(by: self.disposeBag)
             

@@ -31,6 +31,7 @@ enum Scene {
     case madeWithUnsplash
     
     case store
+    case storeDetails
 }
 
 // MARK: - SceneContent
@@ -53,6 +54,7 @@ enum SceneContent {
     case madeWithUnsplash
     
     case store
+    case storeDetails
 
     case empty
 }
