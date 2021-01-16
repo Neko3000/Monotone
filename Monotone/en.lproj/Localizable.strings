@@ -73,15 +73,10 @@
 "uns_hiring_section_content" = "If you want to work with us, all we want to see is a message from you. Please don’t send a resume. Instead, tell us who you are. Show us relevant things you’ve done that you’re excited about.";
 
 "uns_agreement_license_title" = "License";
-"uns_agreement_license_content" = "All photos published on Unsplash can be used for free. You can use them for commercial and noncommercial purposes. You do not need to ask permission from or provide credit to the photographer or Unsplash, although it is appreciated when possible.\nMore precisely, Unsplash grants you an irrevocable, nonexclusive, worldwide copyright license to download, copy, modify, distribute, perform, and use photos from Unsplash for free, including for commercial purposes, without permission from or attributing the photographer or Unsplash. This license does not include the right to compile photos from Unsplash to replicate a similar or competing service.\nQuestions? Read our FAQ.";
 "uns_agreement_privacy_policy_title" = "Privacy Policy";
-"uns_agreement_privacy_policy_content" = "Unsplash Inc. and its affiliates and subsidiaries (“Unsplash”, “we” or “us”) are committed to protecting your privacy and safeguarding your personal information. The purpose of this privacy policy (the “Privacy Policy”) is to inform you about our privacy practices, including how we collect, use and disclose your personal information.\nThis Privacy Policy applies to our website, mobile applications and related services (collectively, the “Unsplash Services”). By visiting, accessing, or using the Unsplash Services, you consent to the policies and practices of this Privacy Policy so please read them carefully. If any policies or practices of this Privacy Policy are unacceptable to you, please do not visit, access, or use the Unsplash Services...";
 "uns_agreement_manifesto_title" = "Manifesto";
-"uns_agreement_manifesto_content" = "Unsplash is a organization which...";
 "uns_agreement_terms_and_conditions_title" = "T&C";
-"uns_agreement_terms_and_conditions_content" = "Unsplash is a photo discovery platform for free to use, high-definition photos. We (Unsplash Inc., a Canadian corporation) operate the Unsplash website at unsplash.com (the “Site”) and all related websites, software, mobile apps, and other services that we provide (together, the “Service”) with the goal of celebrating and enabling contributors and fostering creativity in our community. Your use of the Service, and our provision of the Service to you, constitutes an agreement by you and Unsplash to be bound by the terms and conditions in these Terms of Service...";
 "uns_agreement_api_terms_title" = "API Terms";
-"uns_agreement_api_terms_content" = "These Unsplash API Terms of Use (these “API Terms”) comprise a legal agreement between Unsplash Inc. (“Unsplash,” “us,” “we,” or “our”) and you, and describe the rules developers must follow when accessing or using the Unsplash application programming interfaces (the “APIs”) and related documentation made available by Unsplash through the Unsplash developer website currently located at https://unsplash.com/developers (“Developer Site”). Any application you integrate with the APIs is a “Developer App.”";
 
 "uns_help_title" = "Advice and Answers from the Unsplash Team";
 "uns_help_search_placeholder" = "Search for Articles…";
@@ -114,3 +109,8 @@
 "uns_store_category_all" = "All Products";
 "uns_store_category_made_by_unsplash" = "Made by Unsplash";
 "uns_store_category_made_with_friends" = "Made with Friends";
+
+"uns_store_details_size" = "Size";
+"uns_store_details_quantity" = "Quantity";
+"uns_store_details_add_to_cart" = "Add to Cart";
+"uns_store_details_username_prefix" = "by %@";

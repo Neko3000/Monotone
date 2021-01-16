@@ -195,7 +195,7 @@ class StoreDetailsViewController: BaseViewController {
         self.addToCartBtn.contentEdgeInsets = UIEdgeInsets(top: 14.0, left: 47.0, bottom: 14.0, right: 47.0)
         self.addToCartBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         self.addToCartBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
-        self.addToCartBtn.setTitle("Add to Cart", for: .normal)
+        self.addToCartBtn.setTitle(NSLocalizedString("uns_store_details_add_to_cart", comment: "Add to Cart"), for: .normal)
         self.addToCartBtn.layer.cornerRadius = 4.0
         self.addToCartBtn.layer.masksToBounds = true
         self.containerView.addSubview(self.addToCartBtn)
@@ -231,7 +231,7 @@ class StoreDetailsViewController: BaseViewController {
                 guard let self = self else { return }
                 
                 self.titleLabel.text = storeItem.title
-                self.usernameLabel.text = String(format: "by %@", storeItem.username ?? "")
+                self.usernameLabel.text = String(format: NSLocalizedString("uns_store_details_username_prefix", comment: "by %@"), storeItem.username ?? "")
                 
                 self.photoImageViews.enumerated().forEach { (index, element) in
                     guard let detailImages = storeItem.detailImages else { return }

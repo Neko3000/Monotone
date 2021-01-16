@@ -55,7 +55,7 @@ class StoreDetailsPropertyView: BaseView {
         self.sizeLabel = UILabel()
         self.sizeLabel.textColor = ColorPalette.colorGrayHeavy
         self.sizeLabel.font = UIFont.systemFont(ofSize: 12)
-        self.sizeLabel.text = "Size"
+        self.sizeLabel.text = NSLocalizedString("uns_store_details_size", comment: "Size")
         self.addSubview(self.sizeLabel)
         self.sizeLabel.snp.makeConstraints({ (make) in
             make.top.equalTo(self)
@@ -84,7 +84,7 @@ class StoreDetailsPropertyView: BaseView {
         self.quantityLabel = UILabel()
         self.quantityLabel.textColor = ColorPalette.colorGrayHeavy
         self.quantityLabel.font = UIFont.systemFont(ofSize: 12)
-        self.quantityLabel.text = "Quantity"
+        self.quantityLabel.text = NSLocalizedString("uns_store_details_quantity", comment: "Quantity")
         self.addSubview(self.quantityLabel)
         self.quantityLabel.snp.makeConstraints({ (make) in
             make.top.equalTo(self)
