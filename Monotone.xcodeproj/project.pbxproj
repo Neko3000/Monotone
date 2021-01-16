@@ -541,20 +541,11 @@
 				14D5E8ED254A589D0021FE3E /* LoginViewController.swift */,
 				14CB252E2580687700741537 /* LoginViewControllerV2.swift */,
 				14009AFB2575D69200C70E6E /* HomeViewController.swift */,
-				143F5677254FEA040038761D /* PhotoListViewController.swift */,
-				14104915255D34AE003312BC /* PhotoDetailsViewController.swift */,
-				142BD866259897ED0097F5AC /* PhotoInfoViewController.swift */,
-				1406E9E7257A04EF0096DE82 /* PhotoShareViewController.swift */,
-				14842E31257E003100364FFF /* PhotoCreateCollectionViewController.swift */,
-				14BA3009258CCC6200215F03 /* SideMenuViewController.swift */,
-				14E3046C259AFB5C006BDBDB /* MyPhotosViewController.swift */,
-				14EE8D0F259EED5400132F74 /* HiringViewController.swift */,
-				14EE8D12259F0D7E00132F74 /* LicensesViewController.swift */,
-				1406EADE257A5B9F0096DE82 /* PhotoAddToCollectionViewController.swift */,
-				14FEE57725A5E8C200684CC1 /* HelpViewController.swift */,
-				EB8B906E25A79B3F00336A39 /* MadeWithUnsplashViewController.swift */,
-				EBE768EB25B0A50E00B0870C /* StoreViewController.swift */,
-				EB8B90A725AA0C3600336A39 /* StoreDetailsViewController.swift */,
+				EBA9D37725B2DB05006A7365 /* PhotoList */,
+				EBA9D37A25B2DB0C006A7365 /* PhotoDetails */,
+				EBA9D37E25B2DB6A006A7365 /* Collection */,
+				EBA9D37C25B2DB1B006A7365 /* SideMenu */,
+				EBA9D37D25B2DB22006A7365 /* Store */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -565,19 +556,11 @@
 				14E59DCC2556716400F1FB60 /* BaseViewModel.swift */,
 				14FD9B4E257F17B100DEC579 /* LoginViewModel.swift */,
 				143114C0255A788D00991676 /* SearchPhotosViewModel.swift */,
-				14071B172565FD1C00D418C8 /* PhotoListViewModel.swift */,
-				14BE9F8C256BD8CC00B0DB39 /* PhotoDetailsViewModel.swift */,
-				14009C702575E7E100C70E6E /* PhotoInfoViewModel.swift */,
-				1406E9F0257A11A20096DE82 /* PhotoShareViewModel.swift */,
-				14842D4C257DD3F200364FFF /* PhotoAddToCollectionViewModel.swift */,
-				14842E34257E0F6300364FFF /* PhotoCreateCollectionViewModel.swift */,
-				149EE5F325906C13000230CD /* SideMenuViewModel.swift */,
-				14E30473259AFBB0006BDBDB /* MyPhotosViewModel.swift */,
-				14EE8D38259F2E9000132F74 /* LicensesViewModel.swift */,
-				143BACE325A70AD800FF9D8A /* HelpViewModel.swift */,
-				EB8B907125A79BB900336A39 /* MadeWithUnsplashViewModel.swift */,
-				149F921125AA316E00D1A4FC /* StoreViewModel.swift */,
-				EBFAE80B25B29D4700D7BF4A /* StoreDetailsViewModel.swift */,
+				EBA9D37F25B2DBB6006A7365 /* PhotoList */,
+				EBA9D38025B2DBBD006A7365 /* PhotoDetails */,
+				EBA9D38125B2DBC6006A7365 /* Collection */,
+				EBA9D38225B2DBCC006A7365 /* SideMenu */,
+				EBA9D38325B2DBD2006A7365 /* Store */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1020,6 +1003,103 @@
 				EB8B90C025AAC62600336A39 /* SpaceLabel.swift */,
 			);
 			path = Labels;
+			sourceTree = "<group>";
+		};
+		EBA9D37725B2DB05006A7365 /* PhotoList */ = {
+			isa = PBXGroup;
+			children = (
+				143F5677254FEA040038761D /* PhotoListViewController.swift */,
+			);
+			path = PhotoList;
+			sourceTree = "<group>";
+		};
+		EBA9D37A25B2DB0C006A7365 /* PhotoDetails */ = {
+			isa = PBXGroup;
+			children = (
+				14104915255D34AE003312BC /* PhotoDetailsViewController.swift */,
+				142BD866259897ED0097F5AC /* PhotoInfoViewController.swift */,
+				1406E9E7257A04EF0096DE82 /* PhotoShareViewController.swift */,
+			);
+			path = PhotoDetails;
+			sourceTree = "<group>";
+		};
+		EBA9D37C25B2DB1B006A7365 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				14BA3009258CCC6200215F03 /* SideMenuViewController.swift */,
+				14E3046C259AFB5C006BDBDB /* MyPhotosViewController.swift */,
+				14EE8D0F259EED5400132F74 /* HiringViewController.swift */,
+				14EE8D12259F0D7E00132F74 /* LicensesViewController.swift */,
+				14FEE57725A5E8C200684CC1 /* HelpViewController.swift */,
+				EB8B906E25A79B3F00336A39 /* MadeWithUnsplashViewController.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		EBA9D37D25B2DB22006A7365 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				EBE768EB25B0A50E00B0870C /* StoreViewController.swift */,
+				EB8B90A725AA0C3600336A39 /* StoreDetailsViewController.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		EBA9D37E25B2DB6A006A7365 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				1406EADE257A5B9F0096DE82 /* PhotoAddToCollectionViewController.swift */,
+				14842E31257E003100364FFF /* PhotoCreateCollectionViewController.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		EBA9D37F25B2DBB6006A7365 /* PhotoList */ = {
+			isa = PBXGroup;
+			children = (
+				14071B172565FD1C00D418C8 /* PhotoListViewModel.swift */,
+			);
+			path = PhotoList;
+			sourceTree = "<group>";
+		};
+		EBA9D38025B2DBBD006A7365 /* PhotoDetails */ = {
+			isa = PBXGroup;
+			children = (
+				14BE9F8C256BD8CC00B0DB39 /* PhotoDetailsViewModel.swift */,
+				14009C702575E7E100C70E6E /* PhotoInfoViewModel.swift */,
+				1406E9F0257A11A20096DE82 /* PhotoShareViewModel.swift */,
+			);
+			path = PhotoDetails;
+			sourceTree = "<group>";
+		};
+		EBA9D38125B2DBC6006A7365 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				14842D4C257DD3F200364FFF /* PhotoAddToCollectionViewModel.swift */,
+				14842E34257E0F6300364FFF /* PhotoCreateCollectionViewModel.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		EBA9D38225B2DBCC006A7365 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				149EE5F325906C13000230CD /* SideMenuViewModel.swift */,
+				14E30473259AFBB0006BDBDB /* MyPhotosViewModel.swift */,
+				14EE8D38259F2E9000132F74 /* LicensesViewModel.swift */,
+				143BACE325A70AD800FF9D8A /* HelpViewModel.swift */,
+				EB8B907125A79BB900336A39 /* MadeWithUnsplashViewModel.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		EBA9D38325B2DBD2006A7365 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				149F921125AA316E00D1A4FC /* StoreViewModel.swift */,
+				EBFAE80B25B29D4700D7BF4A /* StoreDetailsViewModel.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		EBD64C3F25AAE112009BA055 /* DataSources */ = {
