@@ -187,8 +187,10 @@ class PhotoCreateCollectionViewController: BaseViewController {
         // Pop.
         photoCreateCollectionViewModel.output.collection
             .unwrap()
-            .subscribe { (_) in
-                SceneCoordinator.shared.pop()
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+                
+                self.pop()
             } onError: { (error) in
                 // TODO: handle error
                 

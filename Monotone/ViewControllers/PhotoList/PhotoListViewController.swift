@@ -192,8 +192,10 @@ class PhotoListViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // ToTabBarBtn.
-        self.toTabBarBtn.rx.tap.subscribe(onNext: { (_) in
-            SceneCoordinator.shared.transition(type: .present(scene: .tabBar), with: nil, animated: true)
+        self.toTabBarBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
+            guard let self = self else { return }
+            
+            self.transition(type: .present(scene: .tabBar), with: nil, animated: true)
         })
         .disposed(by: self.disposeBag)
         

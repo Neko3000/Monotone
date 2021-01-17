@@ -109,7 +109,8 @@ class SideMenuViewController: BaseViewController {
         // SelectedPage.
         pageView.selectedPage
             .unwrap()
-            .subscribe(onNext: { (page) in
+            .subscribe(onNext: { [weak self] (page) in
+                guard let self = self else { return }
                 
                 switch page{
                 case .myPhotos:
@@ -117,40 +118,41 @@ class SideMenuViewController: BaseViewController {
                         "username" : UserManager.shared.currentUser.value?.username,
                     ] as [String : Any?]
                     
-                    SceneCoordinator.shared.transition(type: .present(scene: .myPhotos, wrapped: true),
-                                                       with: args,
-                                                       animated: true)
+                    self.transition(type: .present(scene: .myPhotos, wrapped: true),
+                                    with: args,
+                                    animated: true)
+                    
                     break
                     
                 case .hiring:
                     
-                    SceneCoordinator.shared.transition(type: .present(scene: .hiring, wrapped: true),
-                                                       with: nil,
-                                                       animated: true)
+                    self.transition(type: .present(scene: .hiring, wrapped: true),
+                                    with: nil,
+                                    animated: true)
                     
                     break
                     
                 case .licenses:
                     
-                    SceneCoordinator.shared.transition(type: .present(scene: .licenses, wrapped: true),
-                                                       with: nil,
-                                                       animated: true)
+                    self.transition(type: .present(scene: .licenses, wrapped: true),
+                                    with: nil,
+                                    animated: true)
                     
                     break
                     
                 case .help:
                     
-                    SceneCoordinator.shared.transition(type: .present(scene: .help, wrapped: true),
-                                                       with: nil,
-                                                       animated: true)
+                    self.transition(type: .present(scene: .help, wrapped: true),
+                                    with: nil,
+                                    animated: true)
                     
                     break
                     
                 case .madeWithUnsplash:
                     
-                    SceneCoordinator.shared.transition(type: .present(scene: .madeWithUnsplash, wrapped: true),
-                                                       with: nil,
-                                                       animated: true)
+                    self.transition(type: .present(scene: .madeWithUnsplash, wrapped: true),
+                                    with: nil,
+                                    animated: true)
                     
                     break
                 }

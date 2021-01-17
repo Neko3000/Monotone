@@ -151,10 +151,11 @@ class LoginViewController: BaseViewController {
         // User.
         loginViewModel.output.user
             .unwrap()
-            .subscribe(onNext:{ (user) in
+            .subscribe(onNext:{ [weak self] (user) in
+                guard let self = self else { return }
+                
                 UserManager.shared.currentUser.accept(user)
-
-                SceneCoordinator.shared.transition(type: .root(scene: .home), with: nil)
+                self.transition(type: .root(scene: .home), with: nil)
             })
             .disposed(by: self.disposeBag)
         

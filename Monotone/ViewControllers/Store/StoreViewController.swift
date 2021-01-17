@@ -117,7 +117,7 @@ class StoreViewController: BaseViewController {
                     "storeItem" : storeItem
                 ] as [String : Any?]
                 
-                SceneCoordinator.shared.transition(type: .push(scene: .storeDetails), with: args)
+                self.transition(type: .push(scene: .storeDetails), with: args)
             })
             .disposed(by: self.disposeBag)
         
