@@ -25,7 +25,7 @@ class WallpapersViewController: BaseViewController {
 
     
     // MARK: - Controls
-    private var wallpapersHeaderView: WallpapersHeaderView!
+    private var headerView: WallpapersHeaderView!
         
     private var collectionView: UICollectionView!
     private var topGradientImageView: UIImageView!
@@ -50,10 +50,10 @@ class WallpapersViewController: BaseViewController {
         //
         self.view.backgroundColor = ColorPalette.colorWhite
         
-        // WallpapersHeaderView.
-        self.wallpapersHeaderView = WallpapersHeaderView()
-        self.view.addSubview(self.wallpapersHeaderView)
-        self.wallpapersHeaderView.snp.makeConstraints { (make) in
+        // headerView.
+        self.headerView = WallpapersHeaderView()
+        self.view.addSubview(self.headerView)
+        self.headerView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.left.right.equalTo(self.view)
         }
@@ -65,7 +65,7 @@ class WallpapersViewController: BaseViewController {
         self.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.wallpapersHeaderView.snp.bottom)
+            make.top.equalTo(self.headerView.snp.bottom)
             make.left.right.bottom.equalTo(self.view)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
@@ -147,7 +147,10 @@ class WallpapersViewController: BaseViewController {
             }
             .disposed(by: self.disposeBag)
         
-        //
+        // HeaderView.
+        self.headerView.selectedWallpaperSize
+            .bind(to: wallpapersViewModel.input.selectedWallpaperSize)
+            .disposed(by: self.disposeBag)
         
         // First loading.
         wallpapersViewModel.input.loadMoreAction?.execute()

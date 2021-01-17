@@ -37,9 +37,13 @@ class ElevatorFlowLayout: UICollectionViewFlowLayout {
         
         guard let collectionView = self.collectionView else { return }
         
-        guard collectionView.numberOfItems(inSection: 0) >= cachedAttributes.count
+        let currentItemsCount = collectionView.numberOfItems(inSection: 0)
+        guard  currentItemsCount >= cachedAttributes.count
         else {
-            self.contentHeight = self.cachedAttributes[collectionView.numberOfItems(inSection: 0) - 1].frame.maxY
+            
+            let index = currentItemsCount == 0 ? 0 : currentItemsCount - 1
+            self.contentHeight = self.cachedAttributes[index].frame.maxY
+            
             return
         }
         

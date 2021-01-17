@@ -18,7 +18,7 @@ class WallpapersHeaderView: BaseView {
     
     // MARK: - Public
     public var wallpaperSizes: BehaviorRelay<[WallpaperSize]> = BehaviorRelay<[WallpaperSize]>(value: WallpaperSize.allCases)
-    public var selectedWallpaperSize: BehaviorRelay<WallpaperSize?> = BehaviorRelay<WallpaperSize?>(value: nil)
+    public var selectedWallpaperSize: BehaviorRelay<WallpaperSize> = BehaviorRelay<WallpaperSize>(value: .all)
 
     // MARK: - Controls
     private var titleLabel: UILabel!
@@ -140,7 +140,6 @@ class WallpapersHeaderView: BaseView {
         // SegmentedControl.
         self.selectedWallpaperSize
             .distinctUntilChanged()
-            .unwrap()
             .flatMap { [weak self] (wallpaperSize) -> Observable<Int> in
                 guard let self = self else { return Observable.just(-1) }
                 
