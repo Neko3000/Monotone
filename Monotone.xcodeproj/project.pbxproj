@@ -162,6 +162,9 @@
 		73CFE15CA67265ABCA3CC319 /* Pods_Monotone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22845F1A112B6B6487F0B672 /* Pods_Monotone.framework */; };
 		EB2F87F025A7983700875C83 /* MadeWithUnsplashCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2F87EF25A7983700875C83 /* MadeWithUnsplashCategory.swift */; };
 		EB53EB91259C905B00DE6776 /* ElevatorFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB53EB90259C905B00DE6776 /* ElevatorFlowLayout.swift */; };
+		EB63D5F925B2F6C400C33624 /* WallpapersHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63D5F825B2F6C400C33624 /* WallpapersHeaderCollectionViewCell.swift */; };
+		EB63D5FD25B3DABD00C33624 /* WallpapersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63D5FC25B3DABD00C33624 /* WallpapersViewModel.swift */; };
+		EB63D60725B3ECB000C33624 /* WallpapersHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63D60625B3ECB000C33624 /* WallpapersHeaderView.swift */; };
 		EB8B906F25A79B3F00336A39 /* MadeWithUnsplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B906E25A79B3F00336A39 /* MadeWithUnsplashViewController.swift */; };
 		EB8B907225A79BB900336A39 /* MadeWithUnsplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B907125A79BB900336A39 /* MadeWithUnsplashViewModel.swift */; };
 		EB8B907625A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B907525A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift */; };
@@ -179,6 +182,10 @@
 		EB8B90B325AA145900336A39 /* StoreDetailsPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90B225AA145900336A39 /* StoreDetailsPropertyView.swift */; };
 		EB8B90B625AA191E00336A39 /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90B525AA191D00336A39 /* StoreTableViewCell.swift */; };
 		EB8B90C125AAC62600336A39 /* SpaceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8B90C025AAC62600336A39 /* SpaceLabel.swift */; };
+		EBA9D38525B2E783006A7365 /* WallpaperSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA9D38425B2E783006A7365 /* WallpaperSize.swift */; };
+		EBA9D38A25B2EFE1006A7365 /* WallpapersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA9D38925B2EFE1006A7365 /* WallpapersViewController.swift */; };
+		EBA9D38D25B2F067006A7365 /* ScreenSizeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA9D38C25B2F067006A7365 /* ScreenSizeSelectionView.swift */; };
+		EBAD9B0E25B40FAB00975DEE /* HMSegmentedControl+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAD9B0D25B40FAB00975DEE /* HMSegmentedControl+Selection.swift */; };
 		EBD64C3D25AAE0CC009BA055 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD64C3C25AAE0CC009BA055 /* TableViewSection.swift */; };
 		EBE768AE25AAEFB200B0870C /* StoreBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE768AD25AAEFB100B0870C /* StoreBannerTableViewCell.swift */; };
 		EBE768EC25B0A50E00B0870C /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE768EB25B0A50E00B0870C /* StoreViewController.swift */; };
@@ -364,6 +371,9 @@
 		A1AF9737896258A142CECD23 /* Pods-Monotone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monotone.release.xcconfig"; path = "Target Support Files/Pods-Monotone/Pods-Monotone.release.xcconfig"; sourceTree = "<group>"; };
 		EB2F87EF25A7983700875C83 /* MadeWithUnsplashCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadeWithUnsplashCategory.swift; sourceTree = "<group>"; };
 		EB53EB90259C905B00DE6776 /* ElevatorFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevatorFlowLayout.swift; sourceTree = "<group>"; };
+		EB63D5F825B2F6C400C33624 /* WallpapersHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallpapersHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		EB63D5FC25B3DABD00C33624 /* WallpapersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallpapersViewModel.swift; sourceTree = "<group>"; };
+		EB63D60625B3ECB000C33624 /* WallpapersHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallpapersHeaderView.swift; sourceTree = "<group>"; };
 		EB8B906E25A79B3F00336A39 /* MadeWithUnsplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadeWithUnsplashViewController.swift; sourceTree = "<group>"; };
 		EB8B907125A79BB900336A39 /* MadeWithUnsplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadeWithUnsplashViewModel.swift; sourceTree = "<group>"; };
 		EB8B907525A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadeWithUnsplashTableViewCell.swift; sourceTree = "<group>"; };
@@ -381,6 +391,10 @@
 		EB8B90B225AA145900336A39 /* StoreDetailsPropertyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailsPropertyView.swift; sourceTree = "<group>"; };
 		EB8B90B525AA191D00336A39 /* StoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
 		EB8B90C025AAC62600336A39 /* SpaceLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceLabel.swift; sourceTree = "<group>"; };
+		EBA9D38425B2E783006A7365 /* WallpaperSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallpaperSize.swift; sourceTree = "<group>"; };
+		EBA9D38925B2EFE1006A7365 /* WallpapersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallpapersViewController.swift; sourceTree = "<group>"; };
+		EBA9D38C25B2F067006A7365 /* ScreenSizeSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenSizeSelectionView.swift; sourceTree = "<group>"; };
+		EBAD9B0D25B40FAB00975DEE /* HMSegmentedControl+Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HMSegmentedControl+Selection.swift"; sourceTree = "<group>"; };
 		EBD64C3C25AAE0CC009BA055 /* TableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
 		EBE768AD25AAEFB100B0870C /* StoreBannerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreBannerTableViewCell.swift; sourceTree = "<group>"; };
 		EBE768EB25B0A50E00B0870C /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
@@ -708,6 +722,7 @@
 				EB8B907525A7A1CA00336A39 /* MadeWithUnsplashTableViewCell.swift */,
 				EB8B90B525AA191D00336A39 /* StoreTableViewCell.swift */,
 				EBE768AD25AAEFB100B0870C /* StoreBannerTableViewCell.swift */,
+				EB63D5F825B2F6C400C33624 /* WallpapersHeaderCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -737,6 +752,7 @@
 				EB8B90AC25AA0CB600336A39 /* StoreHeaderView.swift */,
 				EBE768ED25B0A63300B0870C /* StoreBannerView.swift */,
 				EB8B90B225AA145900336A39 /* StoreDetailsPropertyView.swift */,
+				EB63D60625B3ECB000C33624 /* WallpapersHeaderView.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -747,6 +763,7 @@
 				149EE5EA25906817000230CD /* UnsplashTopic.swift */,
 				14627A5125A0692B00C1D94E /* UnsplashListOrderBy.swift */,
 				141B368525A0818400213819 /* UnsplashAgreement.swift */,
+				EBA9D38425B2E783006A7365 /* WallpaperSize.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -836,6 +853,7 @@
 			children = (
 				14009C74257607C300C70E6E /* PageTitleView.swift */,
 				14EE8D1A259F155D00132F74 /* PageSelectionView.swift */,
+				EBA9D38C25B2F067006A7365 /* ScreenSizeSelectionView.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -908,6 +926,7 @@
 				14FD9B67257F4E0C00DEC579 /* String+Split.swift */,
 				1420B297258B72410095FD2E /* UIImage+Reformat.swift */,
 				141B368A25A093C700213819 /* UITableView+Notification.swift */,
+				EBAD9B0D25B40FAB00975DEE /* HMSegmentedControl+Selection.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1032,6 +1051,7 @@
 				14EE8D12259F0D7E00132F74 /* LicensesViewController.swift */,
 				14FEE57725A5E8C200684CC1 /* HelpViewController.swift */,
 				EB8B906E25A79B3F00336A39 /* MadeWithUnsplashViewController.swift */,
+				EBA9D38925B2EFE1006A7365 /* WallpapersViewController.swift */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -1089,6 +1109,7 @@
 				14EE8D38259F2E9000132F74 /* LicensesViewModel.swift */,
 				143BACE325A70AD800FF9D8A /* HelpViewModel.swift */,
 				EB8B907125A79BB900336A39 /* MadeWithUnsplashViewModel.swift */,
+				EB63D5FC25B3DABD00C33624 /* WallpapersViewModel.swift */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -1265,6 +1286,7 @@
 				143F567B254FEF320038761D /* PhotoListJumbotronView.swift in Sources */,
 				14FA70D92580F1D8004AFBE8 /* URL+Find.swift in Sources */,
 				14621CB62587549D00446F5F /* RemoveFromCollectionResponse.swift in Sources */,
+				EBA9D38A25B2EFE1006A7365 /* WallpapersViewController.swift in Sources */,
 				14009CB2257762C600C70E6E /* HistoricalValue.swift in Sources */,
 				149955B025948014008CBB21 /* ListUserLikedPhotosResponse.swift in Sources */,
 				EB8B90A825AA0C3600336A39 /* StoreDetailsViewController.swift in Sources */,
@@ -1317,6 +1339,7 @@
 				14FD9B61257F32CF00DEC579 /* AuthManager.swift in Sources */,
 				14BE9CF1256BAA8500B0DB39 /* PhotoDetailsOperationView.swift in Sources */,
 				14FA60802580AE74004AFBE8 /* AppCredential.swift in Sources */,
+				EB63D5F925B2F6C400C33624 /* WallpapersHeaderCollectionViewCell.swift in Sources */,
 				14E59E312556A0E200F1FB60 /* NetworkService.swift in Sources */,
 				14E30474259AFBB0006BDBDB /* MyPhotosViewModel.swift in Sources */,
 				148321262588E04700097F85 /* UnlikePhotoResponse.swift in Sources */,
@@ -1358,6 +1381,7 @@
 				14E3047C259B2100006BDBDB /* ListUserPhotosResponse.swift in Sources */,
 				1499575525949F4A008CBB21 /* SideMenuProfileLikeView.swift in Sources */,
 				1401548125831FEA00746563 /* CreateCollectionResponse.swift in Sources */,
+				EB63D60725B3ECB000C33624 /* WallpapersHeaderView.swift in Sources */,
 				EBFAE80C25B29D4700D7BF4A /* StoreDetailsViewModel.swift in Sources */,
 				14EE8D0C259EC78900132F74 /* GradientView.swift in Sources */,
 				149CA133258C582800C5B322 /* SideMenuProfileCollectionView.swift in Sources */,
@@ -1385,6 +1409,7 @@
 				1420AC16258B3D2C0095FD2E /* SceneCoordinator+Factory.swift in Sources */,
 				14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */,
 				14E59E912557FC5000F1FB60 /* NetworkError.swift in Sources */,
+				EBA9D38525B2E783006A7365 /* WallpaperSize.swift in Sources */,
 				14F36F91254D3AB80086B8CC /* ColorPalette.swift in Sources */,
 				14009C712575E7E100C70E6E /* PhotoInfoViewModel.swift in Sources */,
 				14842E35257E0F6300364FFF /* PhotoCreateCollectionViewModel.swift in Sources */,
@@ -1402,17 +1427,20 @@
 				14D7DBCD2599A39B001BF0CB /* MTTabBarController.swift in Sources */,
 				14071B1125654A4900D418C8 /* Location.swift in Sources */,
 				14BE99FE256A623400B0DB39 /* GetTopicPhotosRequest.swift in Sources */,
+				EBAD9B0E25B40FAB00975DEE /* HMSegmentedControl+Selection.swift in Sources */,
 				14F3707A254EA9300086B8CC /* BaseRequest.swift in Sources */,
 				14009CA92577604B00C70E6E /* StatisticizePhotoResponse.swift in Sources */,
 				14EE8D13259F0D7E00132F74 /* LicensesViewController.swift in Sources */,
 				14842C75257DD1A200364FFF /* Collection.swift in Sources */,
 				1406E9E2257A02530096DE82 /* FloatBlockButton.swift in Sources */,
 				14FD9C53257F75CC00DEC579 /* BaseService.swift in Sources */,
+				EB63D5FD25B3DABD00C33624 /* WallpapersViewModel.swift in Sources */,
 				143114D1255A797A00991676 /* ProfileImage.swift in Sources */,
 				14104920255D4944003312BC /* BaseNavigationController.swift in Sources */,
 				149EE5F0259068C2000230CD /* SideMenuPage.swift in Sources */,
 				14E59E2E2556A0CA00F1FB60 /* PhotoService.swift in Sources */,
 				149325082585FC20006EB8E3 /* AddToCollectionResponse.swift in Sources */,
+				EBA9D38D25B2F067006A7365 /* ScreenSizeSelectionView.swift in Sources */,
 				14EE8D27259F224600132F74 /* PageSelectionTableViewCell.swift in Sources */,
 				14842C70257DD08100364FFF /* ListUserCollectionsResponse.swift in Sources */,
 				14F37083254ED2F60086B8CC /* SearchPhotosRequest.swift in Sources */,

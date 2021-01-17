@@ -83,11 +83,11 @@ class StoreHeaderView: BaseView {
                 
                 return Observable.just(index)
             }
-            .filter({ NSDecimalNumber(value: $0) !=  NSDecimalNumber(value: self.segmentedControl.selectedSegmentIndex) })
+            .filter({ !self.segmentedControl.equalToSelectedSegmentIndex(index: $0) })
             .subscribe(onNext: { [weak self] (index) in
                 guard let self = self else { return }
                 
-                self.segmentedControl.setSelectedSegmentIndex(index == -1 ? HMSegmentedControlNoSegment : UInt(index), animated: false)
+                self.segmentedControl.setSelectedSegmentIndex(index: index, animated: false)
             })
             .disposed(by: self.disposeBag)
     }

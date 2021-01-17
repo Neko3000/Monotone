@@ -149,9 +149,8 @@ class HiringViewController: BaseViewController {
         self.topGradientImageView.image = UIImage(named: "list-top-gradient")
         self.containerView.insertSubview(self.topGradientImageView, belowSubview: self.titleLabel)
         self.topGradientImageView.snp.makeConstraints { (make) in
-            make.right.left.equalTo(self.view)
-            make.top.equalTo(self.view).offset(-(self.navigationController?.navigationBar.bounds.height ?? 0))
-            make.height.equalTo(256.0)
+            make.top.right.left.equalTo(self.view)
+            make.height.equalTo(92.0)
         }
     }
     

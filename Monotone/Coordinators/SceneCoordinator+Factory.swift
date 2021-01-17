@@ -37,16 +37,16 @@ extension SceneCoordinator: FactoryCoordinator{
             let storeNavVC = MTNavigationController(rootViewController: storeVC)
             self.configureNavBar(navigationController: storeNavVC)
             
-            // vc2
-            let vc2TabbarItem = UITabBarItem(title: nil,
+            // WallpapersViewController.
+            let wallpapersTabBarItem = UITabBarItem(title: nil,
                                              image: UIImage(named: "tabbar-wallpaper"),
                                              selectedImage: UIImage(named: "tabbar-wallpaper-selected"))
             
-            let vc2 = UIViewController()
-            vc2.tabBarItem = vc2TabbarItem
-            vc2.view.backgroundColor = UIColor.yellow
-            let nav2 = UINavigationController(rootViewController: vc2)
-
+            let wallpapersVC = self.viewController(scene: .wallpapers, with: args)!
+            wallpapersVC.tabBarItem = wallpapersTabBarItem
+            
+            let wallpapersNavVC = MTNavigationController(rootViewController: wallpapersVC)
+            self.configureNavBar(navigationController: wallpapersNavVC)
             
             // vc3
             let vc3TabbarItem = UITabBarItem(title: nil,
@@ -71,7 +71,7 @@ extension SceneCoordinator: FactoryCoordinator{
             
             tabBarController.viewControllers = [
                 storeNavVC,
-                nav2,
+                wallpapersNavVC,
                 nav3,
                 nav4
             ]
@@ -183,6 +183,13 @@ extension SceneCoordinator: FactoryCoordinator{
             vc.bind(to: [storeDetailsVM])
             
             return vc
+            
+        case .wallpapers:
+            let vc = WallpapersViewController()
+            let wallpapersVM = self.viewModel(sceneContent: .wallpapers, with: args)!
+            vc.bind(to: [wallpapersVM])
+            
+            return vc
 
         }
     }
@@ -254,6 +261,10 @@ extension SceneCoordinator: FactoryCoordinator{
             
         case .storeDetails:
             let vm: StoreDetailsViewModel = StoreDetailsViewModel(services: nil, args: args)
+            return vm
+            
+        case .wallpapers:
+            let vm: WallpapersViewModel = WallpapersViewModel(services: [TopicService()], args: args)
             return vm
             
         default:

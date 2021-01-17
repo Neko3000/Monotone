@@ -8,7 +8,6 @@
 import UIKit
 
 import SnapKit
-import HMSegmentedControl
 
 import RxSwift
 import RxCocoa

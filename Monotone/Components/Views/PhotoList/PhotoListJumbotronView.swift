@@ -129,7 +129,7 @@ class PhotoListJumbotronView: BaseView {
         super.buildLogic()
         
         // Bindings.
-        // SegmentedControl
+        // SegmentedControl.
         self.listOrderBy
             .unwrap()
             .flatMap { (key) -> Observable<Int> in
@@ -138,14 +138,11 @@ class PhotoListJumbotronView: BaseView {
                 
                 return Observable.just(index)
             }
-            .filter({
-                // HMSegmentedControlNoSegment is not -1, but a really big signed digit.
-                NSDecimalNumber(value: $0) !=  NSDecimalNumber(value: self.segmentedControl.selectedSegmentIndex)
-            })
+            .filter({ !self.segmentedControl.equalToSelectedSegmentIndex(index: $0) })
             .subscribe(onNext: {[weak self] (index) in
                 guard let self = self else { return }
                 
-                self.segmentedControl.setSelectedSegmentIndex(index == -1 ? HMSegmentedControlNoSegment : UInt(index), animated: false)
+                self.segmentedControl.setSelectedSegmentIndex(index: index, animated: false)
             })
             .disposed(by: self.disposeBag)
         

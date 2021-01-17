@@ -1,14 +1,15 @@
 //
-//  MyPhotosViewController.swift
+//  WallpapersViewController.swift
 //  Monotone
 //
-//  Created by Xueliang Chen on 2020/12/29.
+//  Created by Xueliang Chen on 2021/1/16.
 //
 
 import UIKit
 
 import SnapKit
 import MJRefresh
+import HMSegmentedControl
 
 import RxSwift
 import RxRelay
@@ -17,18 +18,17 @@ import RxSwiftExt
 import anim
 import ViewAnimator
 
-// MARK: - MyPhotosViewController
-class MyPhotosViewController: BaseViewController {
+// MARK: - WallpapersViewController
+class WallpapersViewController: BaseViewController {
     
     // MARK: - Public
 
     
     // MARK: - Controls
-    private var titleLabel: UILabel!
+    private var wallpapersHeaderView: WallpapersHeaderView!
+        
     private var collectionView: UICollectionView!
-    
     private var topGradientImageView: UIImageView!
-//    private var gradientView: GradientView!
     
     // MARK: - Priavte
     private let disposeBag: DisposeBag = DisposeBag()
@@ -47,7 +47,16 @@ class MyPhotosViewController: BaseViewController {
     
     override func buildSubviews() {
         
+        //
         self.view.backgroundColor = ColorPalette.colorWhite
+        
+        // WallpapersHeaderView.
+        self.wallpapersHeaderView = WallpapersHeaderView()
+        self.view.addSubview(self.wallpapersHeaderView)
+        self.wallpapersHeaderView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.left.right.equalTo(self.view)
+        }
         
         // CollectionView.
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: ElevatorFlowLayout())
@@ -56,8 +65,9 @@ class MyPhotosViewController: BaseViewController {
         self.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.wallpapersHeaderView.snp.bottom)
             make.left.right.bottom.equalTo(self.view)
-            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(90.0)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
         // MJRefresh.
@@ -79,43 +89,17 @@ class MyPhotosViewController: BaseViewController {
             make.right.left.equalTo(self.view)
             make.height.equalTo(92.0)
         }
-        
-        /*
-        // GradientView.
-        self.gradientView = GradientView()
-        self.gradientView.lightColors = [UIColor.white.cgColor, UIColor.white.alpha(0.8).cgColor, UIColor.white.alpha(0).cgColor]
-        self.gradientView.darkColors = [UIColor.black.cgColor, UIColor.black.alpha(0.8).cgColor, UIColor.black.alpha(0).cgColor]
-        self.gradientView.startPoint = CGPoint(x: 0.5, y: 0)
-        self.gradientView.endPoint = CGPoint(x: 0.5, y: 1.0)
-        self.gradientView.locations = [0, 0.5, 1.0]
-        self.view.addSubview(self.gradientView)
-        self.gradientView.snp.makeConstraints { (make) in
-            make.right.left.equalTo(self.view)
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.height.equalTo(180.0)
-        }
-        */
                 
-        // TitleLabel.
-        self.titleLabel = UILabel()
-        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        self.titleLabel.textColor = ColorPalette.colorBlack
-        self.titleLabel.text = NSLocalizedString("uns_side_menu_option_my_photos", comment: "My Photos")
-        self.view.addSubview(self.titleLabel)
-        self.titleLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view).offset(18.0)
-            make.bottom.equalTo(self.collectionView.snp.top).offset(-25.0)
-        }
     }
     
     override func buildLogic() {
         
         // ViewModel.
-        let myPhotosViewModel = self.viewModel(type:MyPhotosViewModel.self)!
+        let wallpapersViewModel = self.viewModel(type:WallpapersViewModel.self)!
 
         // Bindings.
         // CollectionView.
-        myPhotosViewModel.output.photos
+        wallpapersViewModel.output.photos
             .bind(to: self.collectionView.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
                 (row, element, cell) in
                 
@@ -140,21 +124,21 @@ class MyPhotosViewController: BaseViewController {
 
         // MJRefresh.
         self.collectionView.mj_header!.refreshingBlock = {
-            myPhotosViewModel.input.reloadAction?.execute()
+            wallpapersViewModel.input.reloadAction?.execute()
         }
             
         self.collectionView.mj_footer!.refreshingBlock = {
-            myPhotosViewModel.input.loadMoreAction?.execute()
+            wallpapersViewModel.input.loadMoreAction?.execute()
         }
         
-        myPhotosViewModel.output.reloading
+        wallpapersViewModel.output.reloading
             .ignore(true)
             .subscribe { [weak self] (_) in
                 self?.collectionView.mj_header!.endRefreshing()
             }
             .disposed(by: self.disposeBag)
 
-        myPhotosViewModel.output.loadingMore
+        wallpapersViewModel.output.loadingMore
             .ignore(true)
             .subscribe { [weak self] (_) in
                 guard let self = self else { return }
@@ -163,8 +147,10 @@ class MyPhotosViewController: BaseViewController {
             }
             .disposed(by: self.disposeBag)
         
+        //
+        
         // First loading.
-        myPhotosViewModel.input.loadMoreAction?.execute()
+        wallpapersViewModel.input.loadMoreAction?.execute()
     }
 
     /*
@@ -180,6 +166,7 @@ class MyPhotosViewController: BaseViewController {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension MyPhotosViewController: UICollectionViewDelegateFlowLayout{
+extension WallpapersViewController: UICollectionViewDelegateFlowLayout{
+    
     
 }

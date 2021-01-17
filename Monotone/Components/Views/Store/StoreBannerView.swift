@@ -84,7 +84,7 @@ class StoreBannerView: BaseView {
         super.buildLogic()
         
         // Bindings.
-        // SegmentedControl
+        // SegmentedControl.
         self.storeItem
             .unwrap()
             .subscribe(onNext: { [weak self] (item) in

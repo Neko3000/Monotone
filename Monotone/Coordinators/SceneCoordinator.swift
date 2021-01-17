@@ -32,6 +32,8 @@ enum Scene {
     
     case store
     case storeDetails
+    
+    case wallpapers
 }
 
 // MARK: - SceneContent
@@ -55,6 +57,8 @@ enum SceneContent {
     
     case store
     case storeDetails
+    
+    case wallpapers
 
     case empty
 }
