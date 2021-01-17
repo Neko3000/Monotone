@@ -42,7 +42,7 @@ class WallpapersHeaderView: BaseView {
         self.titleLabel = UILabel()
         self.titleLabel.textColor = ColorPalette.colorBlack
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        self.titleLabel.text = NSLocalizedString("uns_store_title", comment: "Unsplash Store")
+        self.titleLabel.text = NSLocalizedString("uns_wallpapers_title", comment: "HD Wallpapers")
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints({ (make) in
             make.top.equalTo(self)
@@ -54,7 +54,7 @@ class WallpapersHeaderView: BaseView {
         self.descriptionLabel = UILabel()
         self.descriptionLabel.textColor = ColorPalette.colorGrayLight
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 16)
-        self.descriptionLabel.text = NSLocalizedString("uns_made_with_uns_description", comment: "Showcasing the best things being made with Unsplash.")
+        self.descriptionLabel.text = NSLocalizedString("uns_wallpapers_description", comment: "Free HD wallpapers for your mobile and desktop screens.")
         self.descriptionLabel.numberOfLines = 0
         self.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in

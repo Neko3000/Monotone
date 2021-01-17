@@ -117,3 +117,15 @@
 "uns_store_details_quantity" = "数量";
 "uns_store_details_add_to_cart" = "加入购物车";
 "uns_store_details_username_prefix" = "by %@";
+
+"uns_wallpapers_title" = "高清壁纸";
+"uns_wallpapers_description" = "自由地为您的移动端和桌面端选择高清壁纸。";
+
+"uns_wallpapers_size_all" = "全部";
+"uns_wallpapers_size_iphone" = "iPhone";
+"uns_wallpapers_size_android" = "Android";
+"uns_wallpapers_size_mac" = "Mac";
+"uns_wallpapers_size_4k" = "4K";
+"uns_wallpapers_size_lock" = "lock";
+"uns_wallpapers_size_ipad" = "iPad";
+

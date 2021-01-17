@@ -52,49 +52,49 @@ extension WallpaperSize: RawRepresentable, CaseIterable{
         
         case .all:
             return (key:"all",
-                    title:"All Wallpapers",
+                    title:NSLocalizedString("uns_wallpapers_size_all", comment: "All Wallpapers"),
                     aspectRatio: nil,
                     minSize: nil,
                     image: UIImage(named: "wallpaper-size-selection-all"))
         
         case .iphone:
             return (key:"iphone",
-                    title:"iPhone",
+                    title:NSLocalizedString("uns_wallpapers_size_iphone", comment: "iPhone"),
                     aspectRatio: 9.0 / 19.5,
                     minSize: nil,
                     image: UIImage(named: "wallpaper-size-selection-iphone"))
             
         case .android:
             return (key:"android",
-                    title:"Android",
+                    title:NSLocalizedString("uns_wallpapers_size_android", comment: "Android"),
                     aspectRatio: 10.0 / 16.0,
                     minSize: nil,
                     image: UIImage(named: "wallpaper-size-selection-android"))
             
         case .mac:
             return (key:"mac",
-                    title:"Mac",
+                    title:NSLocalizedString("uns_wallpapers_size_mac", comment: "Mac"),
                     aspectRatio: 16.0 / 9.0,
                     minSize: nil,
                     image: UIImage(named: "wallpaper-size-selection-mac"))
             
         case .resolution4K:
             return (key:"resolution4K",
-                    title:"4K",
+                    title:NSLocalizedString("uns_wallpapers_size_4k", comment: "4K"),
                     aspectRatio: 10.0 / 16.0,
                     minSize: CGSize(width:3840.0,height:2160.0),
                     image: UIImage(named: "wallpaper-size-selection-4k"))
             
         case .lock:
             return (key:"lock",
-                    title:"lock",
+                    title:NSLocalizedString("uns_wallpapers_size_lock", comment: "lock"),
                     aspectRatio: 9.0 / 19.5,
                     minSize: nil,
                     image: UIImage(named: "wallpaper-size-selection-lock"))
             
         case .ipad:
             return (key:"ipad",
-                    title:"iPad",
+                    title:NSLocalizedString("uns_wallpapers_size_ipad", comment: "iPad"),
                     aspectRatio: 4.0 / 3.0,
                     minSize: nil,
                     image: UIImage(named: "wallpaper-size-selection-ipad"))
