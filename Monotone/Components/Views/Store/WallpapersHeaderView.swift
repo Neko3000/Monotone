@@ -140,11 +140,10 @@ class WallpapersHeaderView: BaseView {
         // SegmentedControl.
         self.selectedWallpaperSize
             .distinctUntilChanged()
-            .flatMap { [weak self] (wallpaperSize) -> Observable<Int> in
-                guard let self = self else { return Observable.just(-1) }
+            .map { [weak self] (wallpaperSize) -> Int in
+                guard let self = self else { return -1 }
                 
-                let index = self.wallpaperSizes.value.firstIndex { $0 == wallpaperSize } ?? -1
-                return Observable.just(index)
+                return self.wallpaperSizes.value.firstIndex { $0 == wallpaperSize } ?? -1
             }
             .filter({ !self.segmentedControl.equalToSelectedSegmentIndex(index: $0) })
             .subscribe(onNext: { [weak self] (index) in

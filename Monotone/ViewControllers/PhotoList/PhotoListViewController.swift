@@ -210,7 +210,7 @@ class PhotoListViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // First Loading - Latest.
-        self.jumbotronView.listOrderBy.accept("latest")
+        self.jumbotronView.listOrderBy.accept(.latest)
     }
 
     /*

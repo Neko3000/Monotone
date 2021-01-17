@@ -17,7 +17,9 @@ import RxSwiftExt
 class PhotoListJumbotronView: BaseView {
     
     // MARK: - Public
-    public let listOrderBy: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    public let listOrderBy: BehaviorRelay<UnsplashListOrderBy?> = BehaviorRelay<UnsplashListOrderBy?>(value: nil)
+    public let listOrderBys: BehaviorRelay<[UnsplashListOrderBy]> = BehaviorRelay<[UnsplashListOrderBy]>(value: UnsplashListOrderBy.allCases)
+    
     public let menuBtnPressed: PublishRelay<Void> = PublishRelay<Void>()
     public let searchBtnPressed: PublishRelay<Void> = PublishRelay<Void>()
     
@@ -104,7 +106,8 @@ class PhotoListJumbotronView: BaseView {
         let text: String = UnsplashListOrderBy.allCases.map { $0.rawValue.title }.joined()
         let textSize = text.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.0)])
         
-        self.segmentedControl = HMSegmentedControl(sectionTitles: UnsplashListOrderBy.allCases.map({ $0.rawValue.title }))
+        let segments = self.listOrderBys.value.map({ $0.rawValue.title })
+        self.segmentedControl = HMSegmentedControl(sectionTitles: segments)
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
             NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal
@@ -132,11 +135,11 @@ class PhotoListJumbotronView: BaseView {
         // SegmentedControl.
         self.listOrderBy
             .unwrap()
-            .flatMap { (key) -> Observable<Int> in
-                let segmentedKeys = UnsplashListOrderBy.allCases.map({ $0.rawValue.key })
-                let index = segmentedKeys.firstIndex { $0 == key } ?? -1
+            .map { [weak self] (listOrderBy) -> Int in
+                guard let self = self else { return -1 }
                 
-                return Observable.just(index)
+                let keys = self.listOrderBys.value.map({ $0.rawValue.key })
+                return keys.firstIndex { $0 == listOrderBy.rawValue.key } ?? -1
             }
             .filter({ !self.segmentedControl.equalToSelectedSegmentIndex(index: $0) })
             .subscribe(onNext: {[weak self] (index) in
@@ -168,8 +171,8 @@ class PhotoListJumbotronView: BaseView {
         let index = Int(segmentedControl.selectedSegmentIndex)
 
         switch index {
-        case 0..<UnsplashListOrderBy.allCases.count:
-            self.listOrderBy.accept(UnsplashListOrderBy.allCases[index].rawValue.key)
+        case 0..<self.listOrderBys.value.count:
+            self.listOrderBy.accept(self.listOrderBys.value[index])
             break
 
         default:

@@ -17,8 +17,8 @@ class PhotoListViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Input
     struct Input {
         var searchQuery: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
-        var listOrderBy: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
-        var topic: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+        var listOrderBy: BehaviorRelay<UnsplashListOrderBy?> = BehaviorRelay<UnsplashListOrderBy?>(value: nil)
+        var topic: BehaviorRelay<UnsplashTopic?> = BehaviorRelay<UnsplashTopic?>(value: nil)
         var loadMoreAction: Action<Void, [Photo]>?
         var reloadAction: Action<Void, [Photo]>?
     }
@@ -39,12 +39,7 @@ class PhotoListViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Inject
     override func inject(args: [String : Any?]?) {
-        if let searchQuery = args?["searchQuery"]{
-            self.input.searchQuery = BehaviorRelay(value: searchQuery as? String)
-        }
-        if let listOrderBy = args?["listOrderBy"]{
-            self.input.listOrderBy = BehaviorRelay(value: listOrderBy as? String)
-        }
+        //
     }
     
     // MARK: - Bind
@@ -64,14 +59,14 @@ class PhotoListViewModel: BaseViewModel, ViewModelStreamable{
             // Before the request returns.
             self.output.photos.accept((self.currentPhotos) + (self.emptyPhotos))
             
-            if let listOrderBy = self.input.listOrderBy.value{
-                return photoService.listPhotos(page: self.nextLoadPage, perPage: 20, orderBy: listOrderBy)
-            }
-            else if let searchQuery = self.input.searchQuery.value{
+            if let searchQuery = self.input.searchQuery.value{
                 return photoService.searchPhotos(query: searchQuery , page: self.nextLoadPage, perPage: 20)
             }
+            else if let listOrderBy = self.input.listOrderBy.value{
+                return photoService.listPhotos(page: self.nextLoadPage, perPage: 20, orderBy: listOrderBy.rawValue.key)
+            }
             else if let topic = self.input.topic.value{
-                return topicService.getTopicPhotos(idOrSlug: topic, page: self.nextLoadPage, perPage: 20)
+                return topicService.getTopicPhotos(idOrSlug: topic.rawValue.key, page: self.nextLoadPage, perPage: 20)
             }
             else{
                 self.output.loadingMore.accept(false)

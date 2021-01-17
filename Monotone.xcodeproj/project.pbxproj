@@ -742,6 +742,7 @@
 				149F921725AA344500D1A4FC /* Page */,
 				149F921625AA343300D1A4FC /* Photo */,
 				149F921825AA344D00D1A4FC /* Category */,
+				EBAD9B1025B44E8900975DEE /* Wallpapers */,
 			);
 			path = Vars;
 			sourceTree = "<group>";
@@ -763,7 +764,6 @@
 				149EE5EA25906817000230CD /* UnsplashTopic.swift */,
 				14627A5125A0692B00C1D94E /* UnsplashListOrderBy.swift */,
 				141B368525A0818400213819 /* UnsplashAgreement.swift */,
-				EBA9D38425B2E783006A7365 /* WallpaperSize.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -1121,6 +1121,14 @@
 				EBFAE80B25B29D4700D7BF4A /* StoreDetailsViewModel.swift */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		EBAD9B1025B44E8900975DEE /* Wallpapers */ = {
+			isa = PBXGroup;
+			children = (
+				EBA9D38425B2E783006A7365 /* WallpaperSize.swift */,
+			);
+			path = Wallpapers;
 			sourceTree = "<group>";
 		};
 		EBD64C3F25AAE112009BA055 /* DataSources */ = {

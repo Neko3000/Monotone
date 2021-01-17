@@ -18,6 +18,7 @@ class StoreHeaderView: BaseView {
     
     // MARK: - Public
     public let selectedCategory: BehaviorRelay<StoreCategory?> = BehaviorRelay<StoreCategory?>(value: nil)
+    public let categories: BehaviorRelay<[StoreCategory]> = BehaviorRelay<[StoreCategory]>(value: StoreCategory.allCases)
 
     // MARK: - Controls
     private var titleLabel: UILabel!
@@ -46,7 +47,7 @@ class StoreHeaderView: BaseView {
         })
         
         // SegmentedControl.
-        let segmentedValues = StoreCategory.allCases.map({ $0.rawValue.title })
+        let segmentedValues = self.categories.value.map({ $0.rawValue.title })
         self.segmentedControl = HMSegmentedControl(sectionTitles: segmentedValues)
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),
@@ -78,10 +79,11 @@ class StoreHeaderView: BaseView {
         self.selectedCategory
             .distinctUntilChanged()
             .unwrap()
-            .flatMap { (selectedCategory) -> Observable<Int> in
-                let index = StoreCategory.allCases.firstIndex { $0 == selectedCategory } ?? -1
+            .map { [weak self] (category) -> Int in
+                guard let self = self else { return -1 }
                 
-                return Observable.just(index)
+                let keys = self.categories.value.map({ $0.rawValue.key })
+                return keys.firstIndex { $0 == category.rawValue.key } ?? -1
             }
             .filter({ !self.segmentedControl.equalToSelectedSegmentIndex(index: $0) })
             .subscribe(onNext: { [weak self] (index) in
@@ -97,8 +99,8 @@ class StoreHeaderView: BaseView {
         let index = Int(segmentedControl.selectedSegmentIndex)
         
         switch index {
-        case 0..<StoreCategory.allCases.count:
-            self.selectedCategory.accept(StoreCategory.allCases[index])
+        case 0..<self.categories.value.count:
+            self.selectedCategory.accept(self.categories.value[index])
             break
 
         default:

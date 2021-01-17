@@ -18,8 +18,12 @@ class PhotoListHeaderView: BaseView {
     
     // MARK: - Public
     public let searchQuery: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
-    public let listOrderBy: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
-    public let topic: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    
+    public let listOrderBy: BehaviorRelay<UnsplashListOrderBy?> = BehaviorRelay<UnsplashListOrderBy?>(value: nil)
+    public let listOrderBys: BehaviorRelay<[UnsplashListOrderBy]> = BehaviorRelay<[UnsplashListOrderBy]>(value: UnsplashListOrderBy.allCases)
+
+    public let topic: BehaviorRelay<UnsplashTopic?> = BehaviorRelay<UnsplashTopic?>(value: nil)
+    public let topics: BehaviorRelay<[UnsplashTopic]> = BehaviorRelay<[UnsplashTopic]>(value: UnsplashTopic.allCases)
 
     // MARK: - Controls
     private var searchTextField: UITextField!
@@ -58,9 +62,10 @@ class PhotoListHeaderView: BaseView {
             make.height.equalTo(36.0)
         })
         
+        
         // SegmentedControl
-        let segmentedValues = UnsplashListOrderBy.allCases.map({ $0.rawValue.title }) + UnsplashTopic.allCases.map({ $0.rawValue.title })
-        self.segmentedControl = HMSegmentedControl(sectionTitles: segmentedValues)
+        let segments = self.listOrderBys.value.map({ $0.rawValue.title }) + self.topics.value.map({ $0.rawValue.title })
+        self.segmentedControl = HMSegmentedControl(sectionTitles: segments)
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),
             NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal
@@ -101,16 +106,34 @@ class PhotoListHeaderView: BaseView {
             .disposed(by: self.disposeBag)
         
         // SegmentedControl.
-        Observable.of(self.listOrderBy, self.topic)
-            .merge()
+        // ListOrderBy.
+        self.listOrderBy
             .distinctUntilChanged()
             .unwrap()
-            .flatMap { (key) -> Observable<Int> in
-                let segmentedKeys = UnsplashListOrderBy.allCases.map({ $0.rawValue.key }) + UnsplashTopic.allCases.map({ $0.rawValue.key })
-                let index = segmentedKeys.firstIndex { $0 == key } ?? -1
+            .map({ [weak self] (listOrderBy) -> Int in
+                guard let self = self else { return -1 }
                 
-                return Observable.just(index)
-            }
+                let keys = self.listOrderBys.value.map({ $0.rawValue.key }) + self.topics.value.map({ $0.rawValue.key })
+                return keys.firstIndex { $0 == listOrderBy.rawValue.key } ?? -1
+            })
+            .filter({ !self.segmentedControl.equalToSelectedSegmentIndex(index: $0) })
+            .subscribe(onNext: { [weak self] (index) in
+                guard let self = self else { return }
+                
+                self.segmentedControl.setSelectedSegmentIndex(index: index, animated: false)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // ListOrderBy.
+        self.topic
+            .distinctUntilChanged()
+            .unwrap()
+            .map({ [weak self] (topic) -> Int in
+                guard let self = self else { return -1 }
+                
+                let keys = self.listOrderBys.value.map({ $0.rawValue.key }) + self.topics.value.map({ $0.rawValue.key })
+                return keys.firstIndex { $0 == topic.rawValue.key } ?? -1
+            })
             .filter({ !self.segmentedControl.equalToSelectedSegmentIndex(index: $0) })
             .subscribe(onNext: { [weak self] (index) in
                 guard let self = self else { return }
@@ -173,12 +196,12 @@ class PhotoListHeaderView: BaseView {
         let index = Int(segmentedControl.selectedSegmentIndex)
         
         switch index {
-        case 0..<UnsplashListOrderBy.allCases.count:
-            self.listOrderBy.accept(UnsplashListOrderBy.allCases[index].rawValue.key)
+        case 0..<self.listOrderBys.value.count:
+            self.listOrderBy.accept(self.listOrderBys.value[index])
             break
             
-        case UnsplashListOrderBy.allCases.count..<UnsplashListOrderBy.allCases.count + UnsplashTopic.allCases.count:
-            self.topic.accept(UnsplashTopic.allCases[index - UnsplashListOrderBy.allCases.count].rawValue.key)
+        case self.listOrderBys.value.count..<self.listOrderBys.value.count + self.topics.value.count:
+            self.topic.accept(self.topics.value[index - self.listOrderBys.value.count])
             break
 
         default:
