@@ -48,7 +48,6 @@
 		141591D0255E53FE00179ED5 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141591CF255E53FE00179ED5 /* BaseCoordinator.swift */; };
 		141B368625A0818400213819 /* UnsplashAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141B368525A0818400213819 /* UnsplashAgreement.swift */; };
 		141B368B25A093C700213819 /* UITableView+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141B368A25A093C700213819 /* UITableView+Notification.swift */; };
-		1420AC16258B3D2C0095FD2E /* SceneCoordinator+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420AC15258B3D2C0095FD2E /* SceneCoordinator+Factory.swift */; };
 		1420B298258B72420095FD2E /* UIImage+Reformat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B297258B72410095FD2E /* UIImage+Reformat.swift */; };
 		1420B2B0258B7F4C0095FD2E /* CapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B2AF258B7F4C0095FD2E /* CapsuleView.swift */; };
 		1420B2B5258B916C0095FD2E /* Sponsorship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B2B4258B916C0095FD2E /* Sponsorship.swift */; };
@@ -186,6 +185,8 @@
 		EBA9D38A25B2EFE1006A7365 /* WallpapersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA9D38925B2EFE1006A7365 /* WallpapersViewController.swift */; };
 		EBA9D38D25B2F067006A7365 /* ScreenSizeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA9D38C25B2F067006A7365 /* ScreenSizeSelectionView.swift */; };
 		EBAD9B0E25B40FAB00975DEE /* HMSegmentedControl+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAD9B0D25B40FAB00975DEE /* HMSegmentedControl+Selection.swift */; };
+		EBC640BB25B49A35008F0FD5 /* SceneCoordinator+ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC640BA25B49A35008F0FD5 /* SceneCoordinator+ViewControllerFactory.swift */; };
+		EBC640BE25B49A3D008F0FD5 /* SceneCoordinator+ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC640BD25B49A3D008F0FD5 /* SceneCoordinator+ViewModelFactory.swift */; };
 		EBD64C3D25AAE0CC009BA055 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD64C3C25AAE0CC009BA055 /* TableViewSection.swift */; };
 		EBE768AE25AAEFB200B0870C /* StoreBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE768AD25AAEFB100B0870C /* StoreBannerTableViewCell.swift */; };
 		EBE768EC25B0A50E00B0870C /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE768EB25B0A50E00B0870C /* StoreViewController.swift */; };
@@ -249,7 +250,6 @@
 		141591CF255E53FE00179ED5 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		141B368525A0818400213819 /* UnsplashAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashAgreement.swift; sourceTree = "<group>"; };
 		141B368A25A093C700213819 /* UITableView+Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Notification.swift"; sourceTree = "<group>"; };
-		1420AC15258B3D2C0095FD2E /* SceneCoordinator+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneCoordinator+Factory.swift"; sourceTree = "<group>"; };
 		1420B297258B72410095FD2E /* UIImage+Reformat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Reformat.swift"; sourceTree = "<group>"; };
 		1420B2AF258B7F4C0095FD2E /* CapsuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapsuleView.swift; sourceTree = "<group>"; };
 		1420B2B4258B916C0095FD2E /* Sponsorship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sponsorship.swift; sourceTree = "<group>"; };
@@ -395,6 +395,8 @@
 		EBA9D38925B2EFE1006A7365 /* WallpapersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallpapersViewController.swift; sourceTree = "<group>"; };
 		EBA9D38C25B2F067006A7365 /* ScreenSizeSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenSizeSelectionView.swift; sourceTree = "<group>"; };
 		EBAD9B0D25B40FAB00975DEE /* HMSegmentedControl+Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HMSegmentedControl+Selection.swift"; sourceTree = "<group>"; };
+		EBC640BA25B49A35008F0FD5 /* SceneCoordinator+ViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SceneCoordinator+ViewControllerFactory.swift"; sourceTree = "<group>"; };
+		EBC640BD25B49A3D008F0FD5 /* SceneCoordinator+ViewModelFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SceneCoordinator+ViewModelFactory.swift"; sourceTree = "<group>"; };
 		EBD64C3C25AAE0CC009BA055 /* TableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
 		EBE768AD25AAEFB100B0870C /* StoreBannerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreBannerTableViewCell.swift; sourceTree = "<group>"; };
 		EBE768EB25B0A50E00B0870C /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
@@ -429,7 +431,8 @@
 				1410491B255D3686003312BC /* SceneTransition.swift */,
 				141591CF255E53FE00179ED5 /* BaseCoordinator.swift */,
 				14956D31255CC72B0057A4A6 /* SceneCoordinator.swift */,
-				1420AC15258B3D2C0095FD2E /* SceneCoordinator+Factory.swift */,
+				EBC640BD25B49A3D008F0FD5 /* SceneCoordinator+ViewModelFactory.swift */,
+				EBC640BA25B49A35008F0FD5 /* SceneCoordinator+ViewControllerFactory.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1353,6 +1356,7 @@
 				148321262588E04700097F85 /* UnlikePhotoResponse.swift in Sources */,
 				148321232588E01B00097F85 /* LikePhotoResponse.swift in Sources */,
 				14BE9A01256A637C00B0DB39 /* GetTopicPhotosResponse.swift in Sources */,
+				EBC640BE25B49A3D008F0FD5 /* SceneCoordinator+ViewModelFactory.swift in Sources */,
 				EB53EB91259C905B00DE6776 /* ElevatorFlowLayout.swift in Sources */,
 				14009CAC2577625000C70E6E /* StatisticsIndicator.swift in Sources */,
 				140158FE258388EF00746563 /* MessageCenter.swift in Sources */,
@@ -1362,6 +1366,7 @@
 				1441D8092591C319000D49D1 /* GetMineProfileResponse.swift in Sources */,
 				149C9DC5258C3F1400C5B322 /* SideMenuProfileView.swift in Sources */,
 				1406E9F1257A11A20096DE82 /* PhotoShareViewModel.swift in Sources */,
+				EBC640BB25B49A35008F0FD5 /* SceneCoordinator+ViewControllerFactory.swift in Sources */,
 				143BACE025A705BB00FF9D8A /* HelpCategory.swift in Sources */,
 				14842C6C257DD00300364FFF /* ListUserCollectionsRequest.swift in Sources */,
 				1406E9E5257A04370096DE82 /* CALayer+SketchShadow.swift in Sources */,
@@ -1414,7 +1419,6 @@
 				1406E9EE257A0E050096DE82 /* PhotoShareURLView.swift in Sources */,
 				14E59E492557CA6A00F1FB60 /* Photo.swift in Sources */,
 				EB8B906F25A79B3F00336A39 /* MadeWithUnsplashViewController.swift in Sources */,
-				1420AC16258B3D2C0095FD2E /* SceneCoordinator+Factory.swift in Sources */,
 				14D5E8EA254A589D0021FE3E /* AppDelegate.swift in Sources */,
 				14E59E912557FC5000F1FB60 /* NetworkError.swift in Sources */,
 				EBA9D38525B2E783006A7365 /* WallpaperSize.swift in Sources */,

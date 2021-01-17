@@ -13,17 +13,22 @@ import RxSwift
 // MARK: - Coordinator
 protocol Coordinator {
     var childCoordinators: [Coordinator] { get set }
-    
-    var firstViewController: UIViewController { get }
     var currentViewController: UIViewController? { get }
 }
 
-// MARK: - FactoryCoordinator
-protocol FactoryCoordinator {
+// MARK: - ViewControllerFactory
+protocol ViewControllerFactory {
     associatedtype sceneType
     associatedtype sceneContentType
     
     func viewController(scene: sceneType, with args: [String : Any?]?) -> UIViewController?
+}
+
+// MARK: - ViewModelFactory
+protocol ViewModelFactory {
+    associatedtype sceneType
+    associatedtype sceneContentType
+    
     func viewModel(sceneContent: sceneContentType, with args: [String : Any?]?) -> BaseViewModel?
 }
 
@@ -38,11 +43,6 @@ class BaseCoordinator: NSObject, Coordinator {
 
     // MARK: - Public
     var childCoordinators: [Coordinator] = [Coordinator]()
-    var firstViewController: UIViewController{
-        get {
-           return UIViewController()
-        }
-    }
     
     var window: UIWindow
     weak var currentViewController: UIViewController?

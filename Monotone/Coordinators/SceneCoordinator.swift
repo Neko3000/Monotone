@@ -66,6 +66,9 @@ enum SceneContent {
 // MARK: - SceneCoordinator
 class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
     
+    typealias sceneType = Scene
+    typealias sceneContentType = SceneContent
+    
     // MARK: - Single Skeleton
     static var shared: SceneCoordinator!
     
@@ -78,12 +81,6 @@ class SceneCoordinator: BaseCoordinator, CoordinatorTransitionable{
             currentViewController?.presentationController?.delegate = self
             currentViewController?.navigationController?.presentationController?.delegate = self
             currentViewController?.tabBarController?.presentationController?.delegate = self
-        }
-    }
-
-    override var firstViewController: UIViewController {
-        get{
-            return self.viewController(scene: .home, with: nil)!
         }
     }
     
