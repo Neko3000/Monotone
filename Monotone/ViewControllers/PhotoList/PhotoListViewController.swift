@@ -133,9 +133,7 @@ class PhotoListViewController: BaseViewController {
                 (row, element, cell) in
                 
                 let pcell: PhotoCollectionViewCell = cell as! PhotoCollectionViewCell
-                pcell.photoImageView!.kf.setImage(with: URL(string: element.urls?.regular ?? ""),
-                                                  placeholder: UIImage(blurHash: element.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                                  options: [.transition(.fade(0.7)), .originalCache(.default)])
+                pcell.photo.accept(element)
             
             }.disposed(by: self.disposeBag)
         

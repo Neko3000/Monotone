@@ -98,9 +98,9 @@ class PhotoCreateCollectionViewController: BaseViewController {
         self.descriptionTextView.layer.borderColor = ColorPalette.colorGrayHeavy.cgColor
         self.view.addSubview(self.descriptionTextView)
         self.descriptionTextView.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view).offset(16.0)
-            make.right.equalTo(self.view).offset(-16.0)
             make.top.equalTo(self.titleTextField.snp.bottom).offset(61.0)
+            make.left.equalTo(self.view).offset(18.0)
+            make.right.equalTo(self.view).offset(-18.0)
             make.height.equalTo(84.0)
         }
         

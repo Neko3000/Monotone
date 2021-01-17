@@ -77,6 +77,7 @@ class PhotoListJumbotronView: BaseView {
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(18.0)
+            make.right.equalTo(self).offset(-18.0)
             make.top.equalTo(self).offset(91.0)
         }
         

@@ -42,8 +42,8 @@ class StoreHeaderView: BaseView {
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints({ (make) in
             make.top.equalTo(self)
-            make.left.equalTo(self).offset(16.0)
-            make.right.equalTo(self).offset(-16.0)
+            make.left.equalTo(self).offset(18.0)
+            make.right.equalTo(self).offset(-18.0)
         })
         
         // SegmentedControl.

@@ -40,8 +40,8 @@ class HelpHeaderView: BaseView {
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self).offset(12.0)
-            make.right.equalTo(self).offset(-138.0)
             make.left.equalTo(self).offset(18.0)
+            make.right.equalTo(self).offset(-18.0)
         }
         
         // KeywordSearchBar.

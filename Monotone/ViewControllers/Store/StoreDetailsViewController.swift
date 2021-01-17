@@ -84,8 +84,8 @@ class StoreDetailsViewController: BaseViewController {
         self.containerView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints({ (make) in
             make.top.equalTo(self.containerView)
-            make.left.equalTo(self.containerView).offset(17.0)
-            make.right.equalTo(self.containerView).offset(-56.0)
+            make.left.equalTo(self.containerView).offset(18.0)
+            make.right.equalTo(self.containerView).offset(-18.0)
         })
         
         // UsernameLabel.

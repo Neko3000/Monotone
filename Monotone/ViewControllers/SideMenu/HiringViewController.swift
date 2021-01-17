@@ -80,7 +80,7 @@ class HiringViewController: BaseViewController {
         self.titleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.containerView).offset(10.0)
             make.left.equalTo(self.containerView).offset(18.0)
-            make.right.equalTo(self.containerView).offset(-120.0)
+            make.right.equalTo(self.containerView).offset(-18.0)
         }
         
         // SampleAImageView.
@@ -149,7 +149,8 @@ class HiringViewController: BaseViewController {
         self.topGradientImageView.image = UIImage(named: "list-top-gradient")
         self.containerView.insertSubview(self.topGradientImageView, belowSubview: self.titleLabel)
         self.topGradientImageView.snp.makeConstraints { (make) in
-            make.top.right.left.equalTo(self.view)
+            make.top.equalTo(self.sampleAImageView)
+            make.right.left.equalTo(self.view)
             make.height.equalTo(92.0)
         }
     }

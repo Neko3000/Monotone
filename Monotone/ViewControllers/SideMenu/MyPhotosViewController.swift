@@ -104,6 +104,7 @@ class MyPhotosViewController: BaseViewController {
         self.view.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(18.0)
+            make.right.equalTo(self.view).offset(18.0)
             make.bottom.equalTo(self.collectionView.snp.top).offset(-25.0)
         }
     }
@@ -120,9 +121,7 @@ class MyPhotosViewController: BaseViewController {
                 (row, element, cell) in
                 
                 let pcell: PhotoCollectionViewCell = cell as! PhotoCollectionViewCell
-                pcell.photoImageView!.kf.setImage(with: URL(string: element.urls?.regular ?? ""),
-                                                  placeholder: UIImage(blurHash: element.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                                  options: [.transition(.fade(0.7)), .originalCache(.default)])
+                pcell.photo.accept(element)
             
             }.disposed(by: self.disposeBag)
         

@@ -47,7 +47,7 @@ class WallpapersHeaderView: BaseView {
         self.titleLabel.snp.makeConstraints({ (make) in
             make.top.equalTo(self)
             make.left.equalTo(self).offset(18.0)
-            make.right.equalTo(self).offset(-118.0)
+            make.right.equalTo(self).offset(-18.0)
         })
         
         // DescriptionLabel.
@@ -58,7 +58,7 @@ class WallpapersHeaderView: BaseView {
         self.descriptionLabel.numberOfLines = 0
         self.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.titleLabel.snp.bottom)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(6.0)
             make.left.equalTo(self).offset(18.0)
             make.right.equalTo(self).offset(-118.0)
         }

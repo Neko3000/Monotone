@@ -7,17 +7,30 @@
 
 import UIKit
 
+import RxSwift
+import RxRelay
+import RxSwiftExt
+
+import Kingfisher
+
 class PhotoCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - Public
+    public var photo: BehaviorRelay<Photo?> = BehaviorRelay<Photo?>(value: nil)
         
     // MARK: - Controls
-    public var photoImageView: UIImageView!
-    public var defaultImageView: UIImageView!
+    private var photoImageView: UIImageView!
+    private var defaultImageView: UIImageView!
     
+    // MARK: - Private
+    private let disposeBag: DisposeBag = DisposeBag()
+
     // MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.buildSubviews()
+        self.buildLogic()
     }
     
     required init?(coder: NSCoder) {
@@ -44,5 +57,21 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             make.top.right.bottom.left.equalTo(self.contentView)
         }
         
+    }
+    
+    private func buildLogic(){
+        
+        // Bindings.
+        // Photo.
+        self.photo
+            .unwrap()
+            .subscribe(onNext:{ [weak self] (photo) in
+                guard let self = self else { return }
+                
+                self.photoImageView!.kf.setImage(with: URL(string: photo.urls?.regular ?? ""),
+                                                  placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
+                                                  options: [.transition(.fade(0.7)), .originalCache(.default)])
+            })
+            .disposed(by: self.disposeBag)
     }
 }
