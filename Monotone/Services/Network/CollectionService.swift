@@ -11,6 +11,31 @@ import ObjectMapper
 import RxSwift
 
 class CollectionService: NetworkService {
+    
+    public func listCollections(page:Int? = 1,
+                                perPage:Int? = 10) -> Observable<[Collection]>{
+        
+        let request: ListCollectionsRequest = ListCollectionsRequest()
+        request.page = page
+        request.perPage = perPage
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request , method: .get).subscribe { (json) in
+                let response = ListCollectionsResponse(JSON: json)
+                let collections = response!.results!
+                
+                observer.onNext(collections)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
 
     public func createCollection(title: String,
                                  description: String? = "",

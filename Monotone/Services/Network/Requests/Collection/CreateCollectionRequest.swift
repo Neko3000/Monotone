@@ -2,7 +2,7 @@
 //  CreateCollectionRequest.swift
 //  Monotone
 //
-//  Created by Xueliang Chen on 2020/12/11.
+//  Created by Xueliang Chen on 2021/1/18.
 //
 
 import UIKit

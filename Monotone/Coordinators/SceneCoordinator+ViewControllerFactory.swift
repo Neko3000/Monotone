@@ -1,5 +1,5 @@
 //
-//  SceneCoordinator+ViewModelFactory.swift
+//  SceneCoordinator+ViewControllerFactory.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2020/12/17.
@@ -8,84 +8,194 @@
 import UIKit
 import Foundation
 
-// MARK: - ViewModelFactory
-extension SceneCoordinator: ViewModelFactory{
+// MARK: - ViewControllerFactory
+extension SceneCoordinator: ViewControllerFactory{
     
-    // MARK: - ViewModel Factory
-    func viewModel(sceneContent: SceneContent, with args: [String : Any?]?) -> BaseViewModel?{
+    // MARK: - ViewController Factory
+    func viewController(scene: Scene, with args: [String : Any?]?) -> UIViewController?{
         
-        switch sceneContent {
+        switch scene {
         case .login:
-            let vm: LoginViewModel = LoginViewModel(services: [AuthService(),UserService()], args: nil)
-            return vm
+            let vc = LoginViewController()
+            let loginVM = self.viewModel(sceneContent:.login, with: args)!
+            vc.bind(to: [loginVM])
+            return vc
             
         case .tabBar:
-            return nil
+            let tabBarController = MTTabBarController()
+            
+            // StoreViewController.
+            let storeTabBarItem = UITabBarItem(title: nil,
+                                               image: UIImage(named: "tabbar-shop"),
+                                               selectedImage: UIImage(named: "tabbar-shop-selected"))
+            
+            let storeVC = self.viewController(scene: .store, with: args)!
+            storeVC.tabBarItem = storeTabBarItem
+            
+            let storeNavVC = MTNavigationController(rootViewController: storeVC)
+            self.configureNavBar(navigationController: storeNavVC)
+            
+            // WallpapersViewController.
+            let wallpapersTabBarItem = UITabBarItem(title: nil,
+                                             image: UIImage(named: "tabbar-wallpaper"),
+                                             selectedImage: UIImage(named: "tabbar-wallpaper-selected"))
+            
+            let wallpapersVC = self.viewController(scene: .wallpapers, with: args)!
+            wallpapersVC.tabBarItem = wallpapersTabBarItem
+            
+            let wallpapersNavVC = MTNavigationController(rootViewController: wallpapersVC)
+            self.configureNavBar(navigationController: wallpapersNavVC)
+            
+            // CollectionsViewController
+            let collectionsTabBarItem = UITabBarItem(title: nil,
+                                                     image: UIImage(named: "tabbar-collection"),
+                                                     selectedImage: UIImage(named: "tabbar-collection-selected"))
+            
+            let collectionsVC = self.viewController(scene: .collections, with: args)!
+            collectionsVC.tabBarItem = collectionsTabBarItem
+            
+            let collectionsNavVC = MTNavigationController(rootViewController: collectionsVC)
+            self.configureNavBar(navigationController: collectionsNavVC)
+            
+            
+            // vc4
+            let vc4TabbarItem = UITabBarItem(title: nil,
+                                             image: UIImage(named: "tabbar-explore"),
+                                             selectedImage: UIImage(named: "tabbar-explore-selected"))
+            
+            let vc4 = UIViewController()
+            vc4.tabBarItem = vc4TabbarItem
+            vc4.view.backgroundColor = UIColor.orange
+            let nav4 = UINavigationController(rootViewController: vc4)
+            
+            tabBarController.viewControllers = [
+                storeNavVC,
+                wallpapersNavVC,
+                collectionsNavVC,
+                nav4
+            ]
+            
+            return tabBarController
             
         case .home:
-            return nil
+            let vc = HomeViewController()
+            let sideMenuVM = self.viewModel(sceneContent:.sideMenu, with: args)!
+            let photoListVM = self.viewModel(sceneContent:.photoList, with: args)!
+            vc.bind(to: [sideMenuVM, photoListVM])
+
+            return vc
             
         case .sideMenu:
-            let vm: SideMenuViewModel = SideMenuViewModel(services: [UserService()], args: nil)
-            return vm
+            let vc = SideMenuViewController()
+            let sideMenuVM = self.viewModel(sceneContent:.sideMenu,with: args)!
+            vc.bind(to: [sideMenuVM])
+
+            return vc
             
         case .photoList:
-            let vm: PhotoListViewModel = PhotoListViewModel(services: [PhotoService(),TopicService()], args: nil)
-            return vm
+            let vc = PhotoListViewController()
+            let photoListVM = self.viewModel(sceneContent:.photoList, with: args)!
+            vc.bind(to: [photoListVM])
+
+            return vc
             
         case .photoDetails:
-            let vm: PhotoDetailsViewModel = PhotoDetailsViewModel(services: [PhotoService()], args: args)
-            return vm
+            let vc = PhotoDetailsViewController()
+            let photoDetailsVM = self.viewModel(sceneContent: .photoDetails, with: args)!
+            vc.bind(to: [photoDetailsVM])
+            
+            return vc
             
         case .photoInfo:
-            let vm: PhotoInfoViewModel = PhotoInfoViewModel(services: [PhotoService()], args: args)
-            return vm
+            let vc = PhotoInfoViewController()
+            let photoInfoVM = self.viewModel(sceneContent: .photoInfo, with: args)!
+            vc.bind(to: [photoInfoVM])
+            
+            return vc
             
         case .photoShare:
-            let vm: PhotoShareViewModel = PhotoShareViewModel(services: nil, args: args)
-            return vm
+            let vc = PhotoShareViewController()
+            let photoShareVM = self.viewModel(sceneContent: .photoShare, with: args)!
+            vc.bind(to: [photoShareVM])
+            
+            return vc
             
         case .photoAddToCollection:
-            let vm: PhotoAddToCollectionViewModel = PhotoAddToCollectionViewModel(services: [UserService(),CollectionService()], args: args)
-            return vm
+            let vc = PhotoAddToCollectionViewController()
+            let photoAddToCollectionVM = self.viewModel(sceneContent: .photoAddToCollection, with: args)!
+            vc.bind(to: [photoAddToCollectionVM])
+            
+            return vc
             
         case .photoCreateCollection:
-            let vm: PhotoCreateCollectionViewModel = PhotoCreateCollectionViewModel(services: [CollectionService()], args: args)
-            return vm
+            let vc = PhotoCreateCollectionViewController()
+            let photoCreateCollectionVM = self.viewModel(sceneContent: .photoCreateCollection, with: args)!
+            vc.bind(to: [photoCreateCollectionVM])
+            
+            return vc
             
         case .myPhotos:
-            let vm: MyPhotosViewModel = MyPhotosViewModel(services: [UserService()], args: args)
-            return vm
+            let vc = MyPhotosViewController()
+            let myPhotosVM = self.viewModel(sceneContent: .myPhotos, with: args)!
+            vc.bind(to: [myPhotosVM])
+            
+            return vc
             
         case .hiring:
-            return nil
+            let vc = HiringViewController()
+            // let hiringVM = self.viewModel(sceneContent: .hiring, with: args)!
+            // vc.bind(to: [hiringVM])
+            
+            return vc
             
         case .licenses:
-            let vm: LicensesViewModel = LicensesViewModel(services: nil, args: args)
-            return vm
+            let vc = LicensesViewController()
+            let licensesVM = self.viewModel(sceneContent: .licenses, with: args)!
+            vc.bind(to: [licensesVM])
+            
+            return vc
             
         case .help:
-            let vm: HelpViewModel = HelpViewModel(services: nil, args: args)
-            return vm
+            let vc = HelpViewController()
+            let helpVM = self.viewModel(sceneContent: .help, with: args)!
+            vc.bind(to: [helpVM])
+            
+            return vc
             
         case .madeWithUnsplash:
-            let vm: MadeWithUnsplashViewModel = MadeWithUnsplashViewModel(services: nil, args: args)
-            return vm
+            let vc = MadeWithUnsplashViewController()
+            let madeWithUnsplashVM = self.viewModel(sceneContent: .madeWithUnsplash, with: args)!
+            vc.bind(to: [madeWithUnsplashVM])
+            
+            return vc
             
         case .store:
-            let vm: StoreViewModel = StoreViewModel(services: nil, args: args)
-            return vm
+            let vc = StoreViewController()
+            let storeVM = self.viewModel(sceneContent: .store, with: args)!
+            vc.bind(to: [storeVM])
+            
+            return vc
             
         case .storeDetails:
-            let vm: StoreDetailsViewModel = StoreDetailsViewModel(services: nil, args: args)
-            return vm
+            let vc = StoreDetailsViewController()
+            let storeDetailsVM = self.viewModel(sceneContent: .storeDetails, with: args)!
+            vc.bind(to: [storeDetailsVM])
+            
+            return vc
             
         case .wallpapers:
-            let vm: WallpapersViewModel = WallpapersViewModel(services: [TopicService()], args: args)
-            return vm
+            let vc = WallpapersViewController()
+            let wallpapersVM = self.viewModel(sceneContent: .wallpapers, with: args)!
+            vc.bind(to: [wallpapersVM])
             
-        default:
-            return nil
+            return vc
+            
+        case .collections:
+            let vc = CollectionsViewController()
+            let collectionsVM = self.viewModel(sceneContent: .collections, with: args)!
+            vc.bind(to: [collectionsVM])
+            
+            return vc
         }
     }
 }
