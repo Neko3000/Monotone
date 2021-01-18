@@ -52,14 +52,14 @@ class CollectionsViewController: BaseViewController {
         self.titleLabel = UILabel()
         self.titleLabel.textColor = ColorPalette.colorBlack
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        self.titleLabel.text = NSLocalizedString("uns_made_with_uns_title", comment: "Made with Unsplash")
+        self.titleLabel.text = NSLocalizedString("uns_collections_title", comment: "Collections")
         self.titleLabel.numberOfLines = 0
         
         // DescriptionLabel.
         self.descriptionLabel = UILabel()
         self.descriptionLabel.textColor = ColorPalette.colorGrayLight
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 16)
-        self.descriptionLabel.text = NSLocalizedString("uns_made_with_uns_description", comment: "Showcasing the best things being made with Unsplash.")
+        self.descriptionLabel.text = NSLocalizedString("uns_collections_description", comment: "Explore the world through collections of beautiful HD pictures free to use under the Unsplash License.")
         self.descriptionLabel.numberOfLines = 0
                 
         // TableView.

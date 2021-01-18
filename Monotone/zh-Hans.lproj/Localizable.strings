@@ -11,7 +11,7 @@
 "uns_login_description" = "探寻世界上创作性大师的得意之作们。";
 
 "uns_home_title" = "Unsplash";
-"uns_home_description" = "自由并惊艳，\n来见见这些极具天赋的摄影师们为您送上的\n独一无二的礼物。🎁";
+"uns_home_description" = "自由且惊艳，\n来见见这些极具天赋的摄影师们为您送上的\n独一无二的礼物。🎁";
 
 "uns_home_segment_editoral" = "精选";
 "uns_home_segment_following" = "关注";
@@ -93,7 +93,7 @@
 "uns_help_article_count_suffix" = "包含 %d 篇文章";
 
 "uns_made_with_uns_title" = "周边制作";
-"uns_made_with_uns_description" = "一些使用Unsplash制作的最好的例子";
+"uns_made_with_uns_description" = "一些和Unsplash有关的创意作品";
 
 "uns_made_with_uns_category_all_title" = "所有";
 "uns_made_with_uns_category_articles_title" = "文章";
@@ -119,7 +119,7 @@
 "uns_store_details_username_prefix" = "by %@";
 
 "uns_wallpapers_title" = "高清壁纸";
-"uns_wallpapers_description" = "自由地为您的移动端和桌面端选择高清壁纸。";
+"uns_wallpapers_description" = "自由地为您的移动端，还有桌面端，选择合适的高清壁纸。";
 
 "uns_wallpapers_size_all" = "全部";
 "uns_wallpapers_size_iphone" = "iPhone";
@@ -128,4 +128,7 @@
 "uns_wallpapers_size_4k" = "4K";
 "uns_wallpapers_size_lock" = "lock";
 "uns_wallpapers_size_ipad" = "iPad";
+
+"uns_collections_title" = "收藏";
+"uns_collections_description" = "请查收这些Unsplash为您提供的高清照片，它们来自世界各地，并且都是免费使用的。";
 
