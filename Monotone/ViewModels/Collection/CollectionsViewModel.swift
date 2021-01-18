@@ -48,7 +48,7 @@ class CollectionsViewModel: BaseViewModel, ViewModelStreamable{
         self.input.loadMoreAction = Action<Void, [Collection]>(workFactory: { (_) -> Observable<[Collection]> in
             self.output.loadingMore.accept(true)
                         
-            return collectionService.listCollections(page: 1, perPage: 20)
+            return collectionService.listCollections(page: self.nextLoadPage, perPage: 20)
         })
         
         self.input.loadMoreAction?.elements

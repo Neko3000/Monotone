@@ -15,14 +15,22 @@ class CollectionsTableViewCell: UITableViewCell{
     // MARK: - Public
     var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
     
+    public var alignToRight: Bool = false{
+        didSet{
+            self.resetLayout()
+        }
+    }
+    
     // MARK: - Controls
     private var photoContainerView: UIView!
     private var photoAImageView: UIImageView!
     private var photoBImageView: UIImageView!
     private var photoCImageView: UIImageView!
-    
+        
     private var titleLabel: UILabel!
     private var descriptionLabel: UILabel!
+    
+    private var arrowImageView: UIImageView!
 
     // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -55,7 +63,8 @@ class CollectionsTableViewCell: UITableViewCell{
         self.photoContainerView = UIView()
         self.contentView.addSubview(self.photoContainerView)
         self.photoContainerView.snp.makeConstraints { (make) in
-            make.top.right.left.equalTo(self.contentView)
+            make.top.equalTo(self.contentView).offset(33.0)
+            make.right.left.equalTo(self.contentView)
         }
 
         // PhotoAImageView.
@@ -124,6 +133,16 @@ class CollectionsTableViewCell: UITableViewCell{
             make.top.equalTo(self.titleLabel.snp.bottom).offset(7.0)
             make.left.bottom.equalTo(self.contentView)
         }
+        
+        // ArrowImageView.
+        self.arrowImageView = UIImageView()
+        self.arrowImageView.image = UIImage(named: "collections-btn-right-arrow")
+        self.contentView.addSubview(self.arrowImageView)
+        self.arrowImageView.snp.makeConstraints { (make) in
+            make.bottom.equalTo(self.titleLabel)
+            make.right.equalTo(self.contentView)
+            make.width.height.equalTo(50.0)
+        }
     }
     
     private func buildLogic() {
@@ -157,5 +176,97 @@ class CollectionsTableViewCell: UITableViewCell{
                 
             })
             .disposed(by: self.disposeBag)
+    }
+    
+    private func resetLayout(){
+        
+        if(self.alignToRight){
+            
+            self.photoContainerView.snp.remakeConstraints { (make) in
+                make.top.equalTo(self.contentView).offset(33.0)
+                make.right.equalTo(self.contentView)
+                make.left.equalTo(self.contentView).offset(25.0)
+            }
+            
+            self.photoAImageView.snp.remakeConstraints { (make) in
+                make.top.left.equalTo(self.photoContainerView)
+                make.bottom.equalTo(self.photoContainerView.snp.bottom).multipliedBy(1.0/3).offset(-2.0)
+                make.right.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(-2.0)
+            }
+
+            self.photoBImageView.snp.remakeConstraints { (make) in
+                make.left.bottom.equalTo(self.photoContainerView)
+                make.top.equalTo(self.photoContainerView.snp.bottom).multipliedBy(1.0/3).offset(2.0)
+                make.right.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(-2.0)
+            }
+
+            self.photoCImageView.snp.remakeConstraints { (make) in
+                make.top.right.bottom.equalTo(self.photoContainerView)
+                make.left.equalTo(self.photoContainerView.snp.right).multipliedBy(1.0/2).offset(2.0)
+            }
+            
+            self.titleLabel.snp.remakeConstraints { (make) in
+                make.top.equalTo(self.photoContainerView.snp.bottom).offset(7.0)
+                make.right.equalTo(self.contentView)
+            }
+            
+            self.descriptionLabel.snp.remakeConstraints { (make) in
+                make.top.equalTo(self.titleLabel.snp.bottom).offset(7.0)
+                make.right.bottom.equalTo(self.contentView)
+            }
+            
+            self.arrowImageView.image = UIImage(named: "collections-btn-left-arrow")
+            self.arrowImageView.snp.remakeConstraints { (make) in
+                make.bottom.equalTo(self.titleLabel)
+                make.left.equalTo(self.contentView)
+                make.width.height.equalTo(50.0)
+            }
+            
+        }
+        else{
+
+            self.photoContainerView.snp.remakeConstraints { (make) in
+                make.top.equalTo(self.contentView).offset(33.0)
+                make.right.equalTo(self.contentView).offset(-25.0)
+                make.left.equalTo(self.contentView)
+            }
+            
+            self.photoAImageView.snp.remakeConstraints { (make) in
+                make.top.left.equalTo(self.photoContainerView)
+                make.bottom.equalTo(self.photoContainerView.snp.bottom).multipliedBy(1.0/2).offset(-2.0)
+                make.right.equalTo(self.photoContainerView.snp.right).multipliedBy(2.0/3).offset(-2.0)
+            }
+
+            self.photoBImageView.snp.remakeConstraints { (make) in
+                make.left.bottom.equalTo(self.photoContainerView)
+                make.top.equalTo(self.photoContainerView.snp.bottom).multipliedBy(1.0/2).offset(2.0)
+                make.right.equalTo(self.photoContainerView.snp.right).multipliedBy(2.0/3).offset(-2.0)
+            }
+
+            self.photoCImageView.snp.remakeConstraints { (make) in
+                make.top.right.bottom.equalTo(self.photoContainerView)
+                make.left.equalTo(self.photoContainerView.snp.right).multipliedBy(2.0/3).offset(2.0)
+            }
+            
+            self.titleLabel.snp.remakeConstraints { (make) in
+                make.top.equalTo(self.photoContainerView.snp.bottom).offset(7.0)
+                make.left.equalTo(self.contentView)
+            }
+            
+            self.descriptionLabel.snp.remakeConstraints { (make) in
+                make.top.equalTo(self.titleLabel.snp.bottom).offset(7.0)
+                make.left.bottom.equalTo(self.contentView)
+            }
+            
+            self.arrowImageView.image = UIImage(named: "collections-btn-right-arrow")
+            self.arrowImageView.snp.remakeConstraints { (make) in
+                make.bottom.equalTo(self.titleLabel)
+                make.right.equalTo(self.contentView)
+                make.width.height.equalTo(50.0)
+            }
+            
+        }
+        
+        self.layoutIfNeeded()
     }
 }

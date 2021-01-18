@@ -112,6 +112,7 @@ class CollectionsViewController: BaseViewController {
                 (row, element, cell) in
                 
                 let pcell: CollectionsTableViewCell = cell as! CollectionsTableViewCell
+                pcell.alignToRight = !(row % 2 == 0)
                 pcell.collection.accept(element)
             
             }
@@ -187,13 +188,13 @@ extension CollectionsViewController: UITableViewDelegate{
         self.descriptionLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(10.0)
             make.right.left.equalTo(header)
-            make.bottom.equalTo(header).offset(-42.0)
+            make.bottom.equalTo(header)
         }
         
         return header
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 230.0
+        return 252.0
     }
 }
