@@ -13,7 +13,6 @@ import MJRefresh
 import RxSwift
 import RxRelay
 import RxSwiftExt
-
 import RxDataSources
 
 // MARK: - StoreViewController
@@ -98,10 +97,6 @@ class StoreViewController: BaseViewController {
             }
             
             return cell!
-        }
-        
-        self.dataSource.titleForHeaderInSection = { dataSource, index in
-          return dataSource.sectionModels[index].header
         }
         
         // TableView Cell.

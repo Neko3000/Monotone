@@ -88,6 +88,10 @@ extension SceneCoordinator: ViewModelFactory{
             let vm: CollectionsViewModel = CollectionsViewModel(services: [CollectionService()], args: args)
             return vm
             
+        case .collectionDetails:
+            let vm: CollectionDetailsViewModel = CollectionDetailsViewModel(services: [CollectionService()], args: args)
+            return vm
+            
         default:
             return nil
         }

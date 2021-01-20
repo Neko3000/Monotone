@@ -118,15 +118,15 @@ class CollectionsViewController: BaseViewController {
             }
             .disposed(by: self.disposeBag)
         
-        self.tableView.rx.modelSelected(Photo.self)
-            .subscribe(onNext:{ [weak self] (photo) in
+        self.tableView.rx.modelSelected(Collection.self)
+            .subscribe(onNext:{ [weak self] (collection) in
                 guard let self = self else { return }
                 
                 let args = [
-                    "photo" : photo
+                    "collection" : collection
                 ] as [String : Any?]
 
-                self.transition(type: .push(scene: .photoDetails), with: args, animated: true)
+                self.transition(type: .push(scene: .collectionDetails), with: args, animated: true)
 
             }).disposed(by: self.disposeBag)
 

@@ -13,9 +13,14 @@ import MJRefresh
 import RxSwift
 import RxRelay
 import RxSwiftExt
+import RxDataSources
 
 import anim
 import ViewAnimator
+
+class MyFlowLayout: UICollectionViewFlowLayout{
+    
+}
 
 // MARK: - CollectionDetailsViewController
 class CollectionDetailsViewController: BaseViewController {
@@ -24,9 +29,9 @@ class CollectionDetailsViewController: BaseViewController {
 
     
     // MARK: - Controls
-
-    
+    private var dataSource: RxCollectionViewSectionedReloadDataSource<CollectionDetailsSection>!
     private var collectionView: UICollectionView!
+    
     private var topGradientImageView: UIImageView!
     
     // MARK: - Priavte
@@ -48,10 +53,18 @@ class CollectionDetailsViewController: BaseViewController {
         
         self.view.backgroundColor = ColorPalette.colorWhite
         
+        let flowLayout = ElevatorFlowLayout()
+        flowLayout.headerReferenceSize = CGSize(width: 300, height: 1300)
+        flowLayout.itemSize = CGSize(width: 300, height: 100)
+        
         // CollectionView.
-        self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: ElevatorFlowLayout())
+        self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
         self.collectionView.backgroundColor = UIColor.clear
-        self.collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
+        self.collectionView.register(PhotoCollectionViewCell.self,
+                                     forCellWithReuseIdentifier: "PhotoCollectionViewCell")
+        self.collectionView.register(CollectionDetailsHeaderView.self,
+                                     forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                     withReuseIdentifier: "CollectionDetailsHeaderView")
         self.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints { (make) in
@@ -78,26 +91,85 @@ class CollectionDetailsViewController: BaseViewController {
             make.right.left.equalTo(self.view)
             make.height.equalTo(92.0)
         }
-                
-
     }
     
     override func buildLogic() {
         
         // ViewModel.
-        let myPhotosViewModel = self.viewModel(type:MyPhotosViewModel.self)!
+        let collectionDetailsViewModel = self.viewModel(type:CollectionDetailsViewModel.self)!
 
         // Bindings.
-        // CollectionView.
-        myPhotosViewModel.output.photos
-            .bind(to: self.collectionView.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
-                (row, element, cell) in
-                
-                let pcell: PhotoCollectionViewCell = cell as! PhotoCollectionViewCell
-                pcell.photo.accept(element)
+        // DataSource.
+        self.dataSource = RxCollectionViewSectionedReloadDataSource<CollectionDetailsSection>{
+            (dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
             
-            }.disposed(by: self.disposeBag)
+            var cell: UICollectionViewCell? = nil
+            
+            if(indexPath.section == 0){
+                let pcell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as! PhotoCollectionViewCell
+                pcell.photo.accept(item)
+                
+                cell = pcell
+            }
+            
+            return cell!
+        }
         
+        self.dataSource.configureSupplementaryView = {
+            (dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
+            
+            var supplementaryView: UICollectionReusableView? = nil
+            
+            if(kind == UICollectionView.elementKindSectionHeader){
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionDetailsHeaderView", for: indexPath) as! CollectionDetailsHeaderView
+                header.collection.accept(dataSource.sectionModels[indexPath.section].header)
+                
+                supplementaryView = header
+            }
+            else if(kind == UICollectionView.elementKindSectionFooter){
+                let footer = UICollectionReusableView()
+                
+                supplementaryView = footer
+            }
+            else{
+                supplementaryView = UICollectionReusableView()
+            }
+            
+            return supplementaryView!
+        }
+        
+        collectionDetailsViewModel.output.sections
+            .bind(to: collectionView.rx.items(dataSource: self.dataSource))
+            .disposed(by: self.disposeBag)
+
+        // MJRefresh.
+        self.collectionView.mj_header!.refreshingBlock = {
+            collectionDetailsViewModel.input.reloadAction?.execute()
+        }
+            
+        self.collectionView.mj_footer!.refreshingBlock = {
+            collectionDetailsViewModel.input.loadMoreAction?.execute()
+        }
+        
+        collectionDetailsViewModel.output.reloading
+            .ignore(true)
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+                
+                self.collectionView.mj_header!.endRefreshing()
+            }
+            .disposed(by: self.disposeBag)
+
+        collectionDetailsViewModel.output.loadingMore
+            .ignore(true)
+            .subscribe { [weak self] (_) in
+                guard let self = self else { return }
+
+                self.collectionView.mj_footer!.endRefreshing()
+            }
+            .disposed(by: self.disposeBag)
+        
+        // Model Select.
         self.collectionView.rx.modelSelected(Photo.self)
             .subscribe(onNext:{ [weak self] (photo) in
                 guard let self = self else { return }
@@ -109,34 +181,9 @@ class CollectionDetailsViewController: BaseViewController {
                 self.transition(type: .push(scene: .photoDetails), with: args, animated: true)
 
             }).disposed(by: self.disposeBag)
-
-        // MJRefresh.
-        self.collectionView.mj_header!.refreshingBlock = {
-            myPhotosViewModel.input.reloadAction?.execute()
-        }
-            
-        self.collectionView.mj_footer!.refreshingBlock = {
-            myPhotosViewModel.input.loadMoreAction?.execute()
-        }
-        
-        myPhotosViewModel.output.reloading
-            .ignore(true)
-            .subscribe { [weak self] (_) in
-                self?.collectionView.mj_header!.endRefreshing()
-            }
-            .disposed(by: self.disposeBag)
-
-        myPhotosViewModel.output.loadingMore
-            .ignore(true)
-            .subscribe { [weak self] (_) in
-                guard let self = self else { return }
-
-                self.collectionView.mj_footer!.endRefreshing()
-            }
-            .disposed(by: self.disposeBag)
         
         // First loading.
-        myPhotosViewModel.input.loadMoreAction?.execute()
+        collectionDetailsViewModel.input.loadMoreAction?.execute()
     }
 
     /*
@@ -152,6 +199,39 @@ class CollectionDetailsViewController: BaseViewController {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension CollectionDetailsViewController: UICollectionViewDelegateFlowLayout{
+extension CollectionDetailsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        return UICollectionReusableView()
+    }
+    
+    //
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+
+        if let headerView = collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionHeader).first {
+                    // Layout to get the right dimensions
+                    headerView.layoutIfNeeded()
+
+                    // Automagically get the right height
+                    let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize).height
+
+                    // return the correct size
+                    return CGSize(width: collectionView.frame.width, height: height)
+                }
+
+                // You need this because this delegate method will run at least
+                // once before the header is available for sizing.
+                // Returning zero will stop the delegate from trying to get a supplementary view
+                return CGSize(width: 300, height: 300)
+
+    }
+    
     
 }

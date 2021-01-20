@@ -28,7 +28,7 @@
 		<key>Differentiator.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>22</integer>
 		</dict>
 		<key>HMSegmentedControl.xcscheme</key>
 		<dict>
@@ -96,7 +96,7 @@
 		<key>RxDataSources.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>23</integer>
 		</dict>
 		<key>RxRelay.xcscheme</key>
 		<dict>

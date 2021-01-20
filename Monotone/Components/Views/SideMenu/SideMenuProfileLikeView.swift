@@ -105,7 +105,6 @@ class SideMenuProfileLikeView: BaseView{
                                                     editor?.totalPhotos ?? 0,
                                                     photo.exif?.model ?? "")
                 
-                
                 self.avatarImageView.kf.setImage(with: URL(string: editor?.profileImage?.medium ?? ""),
                                             options: [.transition(.fade(0.7)), .originalCache(.default)])
                 

@@ -37,11 +37,14 @@ class ElevatorFlowLayout: UICollectionViewFlowLayout {
         
         guard let collectionView = self.collectionView else { return }
         
-        let currentItemsCount = collectionView.numberOfItems(inSection: 0)
-        guard  currentItemsCount >= cachedAttributes.count
+        guard let sections = self.collectionView?.numberOfSections else { return }
+        guard sections > 0 else { return }
+        
+        let rows = collectionView.numberOfItems(inSection: 0)
+        guard  rows >= cachedAttributes.count
         else {
             
-            let index = currentItemsCount == 0 ? 0 : currentItemsCount - 1
+            let index = rows == 0 ? 0 : rows - 1
             self.contentHeight = self.cachedAttributes[index].frame.maxY
             
             return
@@ -84,14 +87,60 @@ class ElevatorFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        
         var visibleAttributes = [UICollectionViewLayoutAttributes]()
         
         for attribute in self.cachedAttributes{
             if(rect.intersects(attribute.frame)){
                 visibleAttributes.append(attribute)
+                
+                let indexPath = attribute.indexPath
+
+                if(indexPath.item == 0){
+                    // YOU HAVE TO ADD SUPPLEMENTARY HEADER TO THIS LAYOUT ATTRIBUTES
+                    if let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath) {
+                        visibleAttributes.append(supplementaryAttributes)
+                    }
+
+                }
             }
         }
         
         return visibleAttributes
     }
+    
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+
+        return self.cachedAttributes[indexPath.row]
+
+    }
+    
+    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        
+        if elementKind == UICollectionView.elementKindSectionHeader {
+
+            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
+
+            attributes.frame = CGRect(x: 0, y: 0, width: self.contentWidth, height: 155)
+
+            return attributes
+        }
+
+        return nil
+    }
+//
+//    override func initialLayoutAttributesForAppearingSupplementaryElement(ofKind elementKind: String, at elementIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+//        let attribute = UICollectionViewLayoutAttributes(forCellWith: elementIndexPath)
+//        attribute.frame = CGRect(x: 10, y: 10, width: 100, height: 100)
+//
+//        return attribute
+//    }
+//
+//    override func finalLayoutAttributesForDisappearingSupplementaryElement(ofKind elementKind: String, at elementIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+//        let attribute = UICollectionViewLayoutAttributes(forCellWith: elementIndexPath)
+//        attribute.frame = CGRect(x: 10, y: 10, width: 100, height: 100)
+//
+//        return attribute
+//    }
+    
 }

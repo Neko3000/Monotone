@@ -196,6 +196,13 @@ extension SceneCoordinator: ViewControllerFactory{
             vc.bind(to: [collectionsVM])
             
             return vc
+            
+        case .collectionDetails:
+            let vc = CollectionDetailsViewController()
+            let collectionDetailsVM = self.viewModel(sceneContent: .collectionDetails, with: args)!
+            vc.bind(to: [collectionDetailsVM])
+            
+            return vc
         }
     }
 }
