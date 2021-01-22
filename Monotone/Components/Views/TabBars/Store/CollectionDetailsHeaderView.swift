@@ -15,7 +15,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-class CollectionDetailsHeaderView: BaseCollectionReusableView {
+class CollectionDetailsHeaderView: BaseView {
     
     // MARK: - Public
     public let collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)

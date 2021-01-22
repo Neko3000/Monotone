@@ -8,7 +8,7 @@
 import UIKit
 
 class ElevatorFlowLayout: UICollectionViewFlowLayout {
-    
+        
     public var columnCount: Int = 2
     
     public var itemHeight: CGFloat = 296.0
@@ -87,15 +87,14 @@ class ElevatorFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        
         var visibleAttributes = [UICollectionViewLayoutAttributes]()
         
         for attribute in self.cachedAttributes{
             if(rect.intersects(attribute.frame)){
                 visibleAttributes.append(attribute)
                 
+                /*
                 let indexPath = attribute.indexPath
-
                 if(indexPath.item == 0){
                     // YOU HAVE TO ADD SUPPLEMENTARY HEADER TO THIS LAYOUT ATTRIBUTES
                     if let supplementaryAttributes = layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath) {
@@ -103,16 +102,17 @@ class ElevatorFlowLayout: UICollectionViewFlowLayout {
                     }
 
                 }
+                */
             }
         }
         
         return visibleAttributes
     }
     
+    /*
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
 
         return self.cachedAttributes[indexPath.row]
-
     }
     
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -120,7 +120,6 @@ class ElevatorFlowLayout: UICollectionViewFlowLayout {
         if elementKind == UICollectionView.elementKindSectionHeader {
 
             let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
-
             attributes.frame = CGRect(x: 0, y: 0, width: self.contentWidth, height: 155)
 
             return attributes
@@ -128,19 +127,6 @@ class ElevatorFlowLayout: UICollectionViewFlowLayout {
 
         return nil
     }
-//
-//    override func initialLayoutAttributesForAppearingSupplementaryElement(ofKind elementKind: String, at elementIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-//        let attribute = UICollectionViewLayoutAttributes(forCellWith: elementIndexPath)
-//        attribute.frame = CGRect(x: 10, y: 10, width: 100, height: 100)
-//
-//        return attribute
-//    }
-//
-//    override func finalLayoutAttributesForDisappearingSupplementaryElement(ofKind elementKind: String, at elementIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-//        let attribute = UICollectionViewLayoutAttributes(forCellWith: elementIndexPath)
-//        attribute.frame = CGRect(x: 10, y: 10, width: 100, height: 100)
-//
-//        return attribute
-//    }
+    */
     
 }

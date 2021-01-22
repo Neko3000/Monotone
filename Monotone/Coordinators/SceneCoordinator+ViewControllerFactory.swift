@@ -46,7 +46,7 @@ extension SceneCoordinator: ViewControllerFactory{
             let wallpapersNavVC = MTNavigationController(rootViewController: wallpapersVC)
             self.configureNavBar(navigationController: wallpapersNavVC)
             
-            // CollectionsViewController
+            // CollectionsViewController.
             let collectionsTabBarItem = UITabBarItem(title: nil,
                                                      image: UIImage(named: "tabbar-collection"),
                                                      selectedImage: UIImage(named: "tabbar-collection-selected"))
@@ -56,7 +56,6 @@ extension SceneCoordinator: ViewControllerFactory{
             
             let collectionsNavVC = MTNavigationController(rootViewController: collectionsVC)
             self.configureNavBar(navigationController: collectionsNavVC)
-            
             
             // vc4
             let vc4TabbarItem = UITabBarItem(title: nil,
