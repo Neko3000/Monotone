@@ -57,7 +57,7 @@ class PhotoListViewModel: BaseViewModel, ViewModelStreamable{
             self.output.loadingMore.accept(true)
             
             // Before the request returns.
-            self.output.photos.accept((self.currentPhotos) + (self.emptyPhotos))
+            self.output.photos.accept(self.currentPhotos + self.emptyPhotos)
             
             if let searchQuery = self.input.searchQuery.value{
                 return photoService.searchPhotos(query: searchQuery , page: self.nextLoadPage, perPage: 20)
@@ -102,9 +102,8 @@ class PhotoListViewModel: BaseViewModel, ViewModelStreamable{
         self.input.reloadAction = Action<Void, [Photo]>(workFactory: { [weak self](_) -> Observable<[Photo]> in
             guard let self = self else { return Observable.empty() }
             
-            self.output.reloading.accept(true)
-
             if let loadMoreAction = self.input.loadMoreAction{
+                self.output.reloading.accept(true)
                 self.nextLoadPage = 1
                 
                 // Before the request returns.

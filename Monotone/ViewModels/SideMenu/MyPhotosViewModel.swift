@@ -58,7 +58,7 @@ class MyPhotosViewModel: BaseViewModel, ViewModelStreamable{
             self.output.loadingMore.accept(true)
             
             // Before the request returns.
-            self.output.photos.accept((self.currentPhotos) + (self.emptyPhotos))
+            self.output.photos.accept(self.currentPhotos + self.emptyPhotos)
             
             if let username = self.input.username.value{
                 return userService.listUserPhotos(username: username, page: self.nextLoadPage, perPage: 20)

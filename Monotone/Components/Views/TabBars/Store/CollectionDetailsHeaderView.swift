@@ -41,7 +41,7 @@ class CollectionDetailsHeaderView: BaseView {
         self.titleLabel = UILabel()
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
         self.titleLabel.textColor = ColorPalette.colorBlack
-        self.titleLabel.text = NSLocalizedString("uns_side_menu_option_my_photos", comment: "My Photos")
+        self.titleLabel.text = "nil"
         self.titleLabel.numberOfLines = 0
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
@@ -54,7 +54,7 @@ class CollectionDetailsHeaderView: BaseView {
         self.descriptionLabel = UILabel()
         self.descriptionLabel.textColor = ColorPalette.colorGrayLight
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 16)
-        self.descriptionLabel.text = NSLocalizedString("uns_collections_description", comment: "Explore the world through collections of beautiful HD pictures free to use under the Unsplash License.")
+        self.descriptionLabel.text = "nil"
         self.descriptionLabel.numberOfLines = 0
         self.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
@@ -96,7 +96,7 @@ class CollectionDetailsHeaderView: BaseView {
         self.photoCountLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.avatarImageView.snp.bottom).offset(19.0)
             make.left.equalTo(self.avatarImageView)
-            make.bottom.equalTo(self)
+            make.bottom.equalTo(self).offset(-20.0)
         }
     }
     
@@ -110,6 +110,9 @@ class CollectionDetailsHeaderView: BaseView {
             .subscribe(onNext: { [weak self] (collection) in
                 guard let self = self else { return }
                 
+                self.titleLabel.text = collection.title
+                self.descriptionLabel.text = collection.description
+                
                 let editor = collection.sponsorship?.sponsor ?? collection.user
 
                 self.usernameLabel.text = editor?.username ?? ""
@@ -117,7 +120,7 @@ class CollectionDetailsHeaderView: BaseView {
                                                  placeholder: UIImage(),
                                                  options: [.transition(.fade(0.7)),
                                                           .originalCache(.default)])
-                self.photoCountLabel.text = "\(collection.totalPhotos ?? 0)"
+                self.photoCountLabel.text = String(format: NSLocalizedString("uns_collection_details_photo_count_suffix", comment: "%d photos"), collection.totalPhotos ?? 0)
             })
             .disposed(by: self.disposeBag)
     }

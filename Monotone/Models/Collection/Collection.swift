@@ -25,6 +25,10 @@ class Collection:Equatable, Mappable{
     var links: Links?
     var isPrivate: Bool?
     // meta : title description index
+    
+    init() {
+        
+    }
 
     required init?(map: Map) {
         self.mapping(map: map)

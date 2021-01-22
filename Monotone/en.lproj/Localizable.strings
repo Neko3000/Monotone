@@ -129,3 +129,4 @@
 "uns_collections_title" = "Collections";
 "uns_collections_description" = "Explore the world through collections of beautiful HD pictures free to use under the Unsplash License.";
 
+"uns_collection_details_photo_count_suffix" = "%d photos";

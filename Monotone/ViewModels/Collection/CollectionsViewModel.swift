@@ -31,6 +31,7 @@ class CollectionsViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Private
     private var currentCollections: [Collection] = []
     private var nextLoadPage: Int = 1
+    private var emptyCollections: [Collection] = Array(repeating: Collection(), count: 10)
     
     // MARK: - Inject
     override func inject(args: [String : Any?]?) {
@@ -47,6 +48,9 @@ class CollectionsViewModel: BaseViewModel, ViewModelStreamable{
         // LoadMore.
         self.input.loadMoreAction = Action<Void, [Collection]>(workFactory: { (_) -> Observable<[Collection]> in
             self.output.loadingMore.accept(true)
+            
+            // Before the request returns.
+            self.output.collections.accept(self.currentCollections + self.emptyCollections)
                         
             return collectionService.listCollections(page: self.nextLoadPage, perPage: 20)
         })
@@ -80,6 +84,9 @@ class CollectionsViewModel: BaseViewModel, ViewModelStreamable{
                 self.output.reloading.accept(true)
                 self.nextLoadPage = 1
                 
+                // Before the request returns.
+                self.output.collections.accept(self.emptyCollections)
+
                 return loadMoreAction.execute()
             }
 
