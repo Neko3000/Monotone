@@ -58,7 +58,7 @@ class CollectionDetailsHeaderView: BaseView {
         self.descriptionLabel.numberOfLines = 0
         self.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.titleLabel.snp.bottom)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(6.0)
             make.left.equalTo(self).offset(18.0)
             make.right.equalTo(self).offset(-18.0)
         }
@@ -67,19 +67,19 @@ class CollectionDetailsHeaderView: BaseView {
         self.avatarImageView = UIImageView()
         self.avatarImageView.contentMode = .scaleAspectFill
         self.avatarImageView.backgroundColor = ColorPalette.colorGrayLighter
-        self.avatarImageView.layer.cornerRadius = 42.0
+        self.avatarImageView.layer.cornerRadius = 20.0
         self.avatarImageView.layer.masksToBounds = true
         self.addSubview(self.avatarImageView)
         self.avatarImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.descriptionLabel.snp.bottom)
+            make.top.equalTo(self.descriptionLabel.snp.bottom).offset(20.0)
             make.left.equalTo(self).offset(18.0)
             make.width.height.equalTo(40.0)
         }
         
         // UsernameLabel.
         self.usernameLabel = UILabel()
-        self.usernameLabel.textColor = ColorPalette.colorBlack
-        self.usernameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        self.usernameLabel.textColor = ColorPalette.colorGrayHeavy
+        self.usernameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         self.usernameLabel.text = "nil"
         self.addSubview(self.usernameLabel)
         self.usernameLabel.snp.makeConstraints { (make) in
@@ -90,12 +90,12 @@ class CollectionDetailsHeaderView: BaseView {
         // PhotoCountLabel.
         self.photoCountLabel = UILabel()
         self.photoCountLabel.textColor = ColorPalette.colorBlack
-        self.photoCountLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        self.photoCountLabel.font = UIFont.boldSystemFont(ofSize: 16)
         self.photoCountLabel.text = "0"
         self.addSubview(self.photoCountLabel)
         self.photoCountLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.avatarImageView)
-            make.left.equalTo(self.avatarImageView.snp.right)
+            make.top.equalTo(self.avatarImageView.snp.bottom).offset(19.0)
+            make.left.equalTo(self.avatarImageView)
             make.bottom.equalTo(self)
         }
     }
@@ -117,6 +117,7 @@ class CollectionDetailsHeaderView: BaseView {
                                                  placeholder: UIImage(),
                                                  options: [.transition(.fade(0.7)),
                                                           .originalCache(.default)])
+                self.photoCountLabel.text = "\(collection.totalPhotos ?? 0)"
             })
             .disposed(by: self.disposeBag)
     }
