@@ -122,7 +122,7 @@ class SideMenuProfileCollectionView: BaseView{
                     .prefix(self.photoContainerView.subviews.count)
                     .enumerated()
                     .forEach({ (index, element) in
-                        let imageView = self.subviews[index] as! UIImageView
+                        let imageView = self.photoContainerView.subviews[index] as! UIImageView
                         
                         imageView.kf.setImage(with: URL(string: element.urls?.small ?? ""),
                                               placeholder: UIImage(blurHash: element.blurHash ?? "", size: CGSize(width: 10, height: 10)),

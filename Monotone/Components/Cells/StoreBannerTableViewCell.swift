@@ -2,7 +2,7 @@
 //  StoreBannerTableViewCell.swift
 //  Monotone
 //
-//  Created by Xueliang Chen on 2020/1/10.
+//  Created by Xueliang Chen on 2021/1/10.
 //
 
 import UIKit

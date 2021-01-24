@@ -9,7 +9,8 @@ import UIKit
 import RxDataSources
 
 struct TableViewSection{
-    public var header: String
+    public var title: String?
+    public var description: String?
     public var items: [AnyObject]
 }
 

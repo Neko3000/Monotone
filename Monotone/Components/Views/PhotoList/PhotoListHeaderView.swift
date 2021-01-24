@@ -124,7 +124,7 @@ class PhotoListHeaderView: BaseView {
             })
             .disposed(by: self.disposeBag)
         
-        // ListOrderBy.
+        // Topic.
         self.topic
             .distinctUntilChanged()
             .unwrap()
