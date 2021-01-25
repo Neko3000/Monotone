@@ -57,21 +57,22 @@ extension SceneCoordinator: ViewControllerFactory{
             let collectionsNavVC = MTNavigationController(rootViewController: collectionsVC)
             self.configureNavBar(navigationController: collectionsNavVC)
             
-            // vc4
-            let vc4TabbarItem = UITabBarItem(title: nil,
-                                             image: UIImage(named: "tabbar-explore"),
-                                             selectedImage: UIImage(named: "tabbar-explore-selected"))
+            // ExploreViewController.
+            let exploreTabBarItem = UITabBarItem(title: nil,
+                                                 image: UIImage(named: "tabbar-explore"),
+                                                 selectedImage: UIImage(named: "tabbar-explore-selected"))
             
-            let vc4 = UIViewController()
-            vc4.tabBarItem = vc4TabbarItem
-            vc4.view.backgroundColor = UIColor.orange
-            let nav4 = UINavigationController(rootViewController: vc4)
+            let exploreVC = self.viewController(scene: .explore, with: args)!
+            exploreVC.tabBarItem = exploreTabBarItem
+            
+            let exploreNavVC = MTNavigationController(rootViewController: exploreVC)
+            self.configureNavBar(navigationController: exploreNavVC)
             
             tabBarController.viewControllers = [
                 storeNavVC,
                 wallpapersNavVC,
                 collectionsNavVC,
-                nav4
+                exploreNavVC
             ]
             
             return tabBarController
@@ -200,6 +201,13 @@ extension SceneCoordinator: ViewControllerFactory{
             let vc = CollectionDetailsViewController()
             let collectionDetailsVM = self.viewModel(sceneContent: .collectionDetails, with: args)!
             vc.bind(to: [collectionDetailsVM])
+            
+            return vc
+            
+        case .explore:
+            let vc = ExploreViewController()
+            let exploreVM = self.viewModel(sceneContent: .explore, with: args)!
+            vc.bind(to: [exploreVM])
             
             return vc
         }

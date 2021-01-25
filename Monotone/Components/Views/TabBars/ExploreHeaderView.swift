@@ -62,27 +62,29 @@ class ExploreHeaderView: BaseView {
             make.right.equalTo(self).offset(-18.0)
         }
         
-        // SegmentedControl
-        self.segmentedControl = HMSegmentedControl(sectionTitles: self.listOrderBys.value.map({ $0.rawValue.title }))
+        // SegmentedControl.
+        let text: String = UnsplashListOrderBy.allCases.map { $0.rawValue.title }.joined()
+        let textSize = text.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.0)])
+        
+        let segments = self.explores.value.map({ $0.rawValue.title })
+        self.segmentedControl = HMSegmentedControl(sectionTitles: segments)
         self.segmentedControl.titleTextAttributes = [
-            NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),
+            NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
             NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal
         ]
         self.segmentedControl.selectedTitleTextAttributes = [
             NSAttributedString.Key.foregroundColor : ColorPalette.colorBlack
         ]
-        self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.bottom
+        self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.top
         self.segmentedControl.selectionIndicatorColor = ColorPalette.colorBlack
         self.segmentedControl.selectionIndicatorHeight = 1.0
-        self.segmentedControl.segmentEdgeInset = UIEdgeInsets(top: 0, left: 8.0, bottom: 0, right: 8.0)
         self.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.dynamic
         self.segmentedControl.addTarget(self, action: #selector(segmentedControlChangedValue(segmentedControl:)), for: .valueChanged)
         self.addSubview(self.segmentedControl)
         self.segmentedControl.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(15.0)
-            make.right.equalTo(self).offset(-15.0)
-            make.bottom.equalTo(self)
-            make.height.equalTo(40.0)
+            make.right.bottom.equalTo(self)
+            make.height.equalTo(38.0)
+            make.width.equalTo(textSize.width + 50.0)
         }
     }
     
@@ -90,7 +92,6 @@ class ExploreHeaderView: BaseView {
         super.buildLogic()
         
         // Bindings.
-        // SegmentedControl.
         // Explore.
         self.explore
             .distinctUntilChanged()

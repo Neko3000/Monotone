@@ -92,6 +92,10 @@ extension SceneCoordinator: ViewModelFactory{
             let vm: CollectionDetailsViewModel = CollectionDetailsViewModel(services: [CollectionService()], args: args)
             return vm
             
+        case .explore:
+            let vm: ExploreViewModel = ExploreViewModel(services: nil, args: args)
+            return vm
+            
         default:
             return nil
         }

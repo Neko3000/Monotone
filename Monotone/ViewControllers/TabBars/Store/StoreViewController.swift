@@ -132,6 +132,7 @@ class StoreViewController: BaseViewController {
 
 }
 
+// MARK: - UITableViewDelegate
 extension StoreViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -154,7 +155,7 @@ extension StoreViewController: UITableViewDelegate{
 
             let titleLabel = UILabel()
             titleLabel.font = UIFont.boldSystemFont(ofSize: 26)
-            titleLabel.text = self.dataSource[section].header
+            titleLabel.text = self.dataSource[section].title
             headerView.addSubview(titleLabel)
             titleLabel.snp.makeConstraints { (make) in
                 make.top.bottom.equalTo(headerView)

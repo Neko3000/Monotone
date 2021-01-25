@@ -67,7 +67,7 @@ class ExploreViewController: BaseViewController {
         self.tableView.backgroundColor = UIColor.clear
         self.tableView.separatorStyle = .none
         self.tableView.showsVerticalScrollIndicator = false
-        self.tableView.register(StoreBannerTableViewCell.self, forCellReuseIdentifier: "StoreBannerTableViewCell")
+        self.tableView.register(ExplorePhotoTableViewCell.self, forCellReuseIdentifier: "ExplorePhotoTableViewCell")
         self.tableView.register(CollectionsTableViewCell.self, forCellReuseIdentifier: "CollectionsTableViewCell")
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.tableView)
@@ -80,93 +80,34 @@ class ExploreViewController: BaseViewController {
     override func buildLogic() {
         
         // ViewModel.
-        let photoListViewModel = self.viewModel(type:PhotoListViewModel.self)!
+        let exploreViewModel = self.viewModel(type:ExploreViewModel.self)!
 
         // Bindings.
         // CollectionView.
-        photoListViewModel.output.photos
-            .bind(to: self.collectionView.rx.items(cellIdentifier: "PhotoCollectionViewCell")){
-                (row, element, cell) in
-                
-                let pcell: PhotoCollectionViewCell = cell as! PhotoCollectionViewCell
-                pcell.photo.accept(element)
+        self.dataSource = RxTableViewSectionedReloadDataSource<TableViewSection>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
             
-            }.disposed(by: self.disposeBag)
-        
-        self.collectionView.rx.modelSelected(Photo.self)
-            .subscribe(onNext:{ [weak self] (photo) in
-                guard let self = self else { return }
-                
-                let args = [
-                    "photo" : photo
-                ] as [String : Any?]
-
-                self.transition(type: .push(scene: .photoDetails), with: args, animated: true)
-
-            }).disposed(by: self.disposeBag)
-
-        // MJRefresh.
-        self.collectionView.mj_header!.refreshingBlock = {
-            photoListViewModel.input.reloadAction?.execute()
-        }
+            var cell: UITableViewCell? = nil
             
-        self.collectionView.mj_footer!.refreshingBlock = {
-            photoListViewModel.input.loadMoreAction?.execute()
-        }
-        
-        photoListViewModel.output.reloading
-            .ignore(true)
-            .subscribe { [weak self] (_) in
-                guard let self = self else { return }
+            if(exploreViewModel.input.explore.value == .explore){
+                let pcell = tableView.dequeueReusableCell(withIdentifier: "ExplorePhotoTableViewCell", for: indexPath) as! ExplorePhotoTableViewCell
+                pcell.photoType.accept(item as? ExplorePhotoType)
                 
-                self.collectionView.mj_header!.endRefreshing()
+                cell = pcell
             }
-            .disposed(by: self.disposeBag)
+            else if(exploreViewModel.input.explore.value == .popular){
+                let pcell = tableView.dequeueReusableCell(withIdentifier: "CollectionsTableViewCell", for: indexPath) as! CollectionsTableViewCell
+                pcell.collection.accept(item as? Collection)
 
-        photoListViewModel.output.loadingMore
-            .ignore(true)
-            .subscribe { [weak self] (_) in
-                guard let self = self else { return }
-
-                self.collectionView.mj_footer!.endRefreshing()
+                cell = pcell
             }
-            .disposed(by: self.disposeBag)
-        
-        // Animation
-        self.collectionView.rx.contentOffset
-            .flatMap({ (contentOffset) -> Observable<AnimationState> in
-                let animationState: AnimationState = contentOffset.y >= InterfaceGlobalVars.showTopContentOffset ? .showHeaderView : .showJumbotronView
-                return Observable.just(animationState)
-            })
-            .skipWhile({ $0 == .showJumbotronView })
-            .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] (animationState) in
-                guard let self = self else { return }
-                
-                self.animation(animationState: animationState)
-            })
-            .disposed(by: self.disposeBag)
-        
-        // ToTabBarBtn.
-        self.toTabBarBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
-            guard let self = self else { return }
             
-            self.transition(type: .present(scene: .tabBar), with: nil, animated: true)
+            return cell!
         })
-        .disposed(by: self.disposeBag)
         
-        // MenuBtnPressed.
-        self.jumbotronView.menuBtnPressed
-            .bind(to: self.menuBtnPressed)
+        exploreViewModel.output.sections
+            .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
             .disposed(by: self.disposeBag)
         
-        // SearchBtnPressed.
-        self.jumbotronView.searchBtnPressed
-            .bind(to: self.searchBtnPressed)
-            .disposed(by: self.disposeBag)
-        
-        // First Loading - Latest.
-        self.jumbotronView.listOrderBy.accept(.latest)
     }
 
     /*
@@ -181,87 +122,52 @@ class ExploreViewController: BaseViewController {
 
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
-extension ExploreViewController: UICollectionViewDelegateFlowLayout{
+// MARK: - UITableViewDelegate
+extension ExploreViewController: UITableViewDelegate{
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        if(indexPath.row % 4 == 0 || indexPath.row % 4 == 3 ){
-            return CGSize(width: self.collectionView.frame.width, height: 300.0)
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView()
+            
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        titleLabel.textColor = ColorPalette.colorBlack
+        titleLabel.text = self.dataSource[section].title
+        headerView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.top.bottom.equalTo(headerView)
+            make.left.equalTo(headerView).offset(13.0)
+            make.right.equalTo(headerView).offset(-13.0)
+        }
+        
+        let descriptionLabel = UILabel()
+        descriptionLabel.font = UIFont.systemFont(ofSize: 12)
+        descriptionLabel.textColor = ColorPalette.colorGrayLight
+        descriptionLabel.text = self.dataSource[section].description
+        headerView.addSubview(descriptionLabel)
+        descriptionLabel.snp.makeConstraints { (make) in
+            make.top.bottom.equalTo(titleLabel.snp.bottom)
+            make.left.equalTo(headerView).offset(13.0)
+            make.right.equalTo(headerView).offset(-13.0)
+            make.bottom.equalTo(headerView)
+        }
+
+        return headerView
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if(indexPath.section == 0){
+            return 252.0
         }
         else{
-            return CGSize(width: self.collectionView.frame.width / 2.0, height: 300.0)
-        }
-    }
-}
-
-// MARK: - ViewControllerAnimatable
-extension ExploreViewController: ViewControllerAnimatable{
-    
-    // MARK: - Enums
-    enum AnimationState {
-        case showJumbotronView
-        case showHeaderView
-    }
-    
-    // MARK: - Animation
-    // Animation for jumbotronView & headerView
-    func animation(animationState: AnimationState) {
-        switch animationState {
-        case .showHeaderView:
-            
-            anim { (animSettings) -> (animClosure) in
-                animSettings.duration = 0.5
-                animSettings.ease = .easeInOutQuart
-                
-                return {
-                    self.jumbotronView.alpha = 0
-                }
-            }
-            
-            anim(constraintParent: self.view) { (animSettings) -> animClosure in
-                animSettings.duration = 0.5
-                animSettings.ease = .easeInOutQuart
-                
-                return {
-                    self.jumbotronView.snp.updateConstraints({ (make) in
-                        make.height.equalTo(140.0)
-                    })
-                    
-                    self.collectionView.snp.updateConstraints { (make) in
-                        make.top.equalTo(self.view).offset(140.0)
-                    }
-                }
-            }
-            
-            break
-        case .showJumbotronView:
-            
-            anim { (animSettings) -> (animClosure) in
-                animSettings.duration = 0.5
-                animSettings.ease = .easeInOutQuart
-                
-                return {
-                    self.jumbotronView.alpha = 1
-                }
-            }
-            
-            anim(constraintParent: self.view) { (animSettings) -> animClosure in
-                animSettings.duration = 0.5
-                animSettings.ease = .easeInOutQuart
-                
-                return {
-                    self.jumbotronView.snp.updateConstraints({ (make) in
-                        make.height.equalTo(256.0)
-                    })
-                    
-                    self.collectionView.snp.updateConstraints { (make) in
-                        make.top.equalTo(self.view).offset(256.0)
-                    }
-                }
-            }
-            
-            break
+            return 303.0
         }
     }
 }

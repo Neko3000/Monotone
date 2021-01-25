@@ -60,8 +60,8 @@ class StoreViewModel: BaseViewModel, ViewModelStreamable{
                 
                 self.output.sections.accept(
                     [
-                        TableViewSection(header:"", items:category.rawValue.bannerItems.map({ $0 as AnyObject })),
-                        TableViewSection(header:NSLocalizedString("uns_store_featured_products", comment: "Featured Products"), items:category.rawValue.items.map({ $0 as AnyObject }))
+                        TableViewSection(title:"", items:category.rawValue.bannerItems.map({ $0 as AnyObject })),
+                        TableViewSection(title:NSLocalizedString("uns_store_featured_products", comment: "Featured Products"), items:category.rawValue.items.map({ $0 as AnyObject }))
                     ]
                 )
 

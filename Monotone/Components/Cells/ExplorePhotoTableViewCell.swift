@@ -90,33 +90,39 @@ class ExplorePhotoTableViewCell: UITableViewCell {
         // KeywordABtn.
         self.keywordABtn = UIButton()
         self.keywordABtn.backgroundColor = ColorPalette.colorGrayLight
+        self.keywordABtn.layer.cornerRadius = 4.0
+        self.keywordABtn.layer.masksToBounds = true
         self.keywordContainerView.addSubview(self.keywordABtn)
         self.keywordABtn.snp.makeConstraints { (make) in
             make.top.equalTo(self.keywordContainerView)
             make.centerX.equalTo(self.keywordContainerView.snp.right).multipliedBy(1.0/4)
-            make.width.equalTo(self.keywordContainerView).multipliedBy(1.0/4)
+            make.width.equalTo(self.keywordContainerView).multipliedBy(1.0/5)
             make.bottom.equalTo(self.keywordContainerView)
         }
         
         // KeywordBBtn.
         self.keywordBBtn = UIButton()
         self.keywordBBtn.backgroundColor = ColorPalette.colorGrayLight
+        self.keywordBBtn.layer.cornerRadius = 4.0
+        self.keywordBBtn.layer.masksToBounds = true
         self.keywordContainerView.addSubview(self.keywordBBtn)
         self.keywordBBtn.snp.makeConstraints { (make) in
             make.top.equalTo(self.keywordContainerView)
             make.centerX.equalTo(self.keywordContainerView.snp.right).multipliedBy(2.0/4)
-            make.width.equalTo(self.keywordContainerView).multipliedBy(1.0/4)
+            make.width.equalTo(self.keywordContainerView).multipliedBy(1.0/5)
             make.bottom.equalTo(self.keywordContainerView)
         }
         
         // KeywordMoreBtn.
         self.keywordMoreBtn = UIButton()
         self.keywordMoreBtn.backgroundColor = ColorPalette.colorBlack
+        self.keywordMoreBtn.layer.cornerRadius = 4.0
+        self.keywordMoreBtn.layer.masksToBounds = true
         self.contentView.addSubview(self.keywordMoreBtn)
         self.keywordMoreBtn.snp.makeConstraints { (make) in
             make.top.equalTo(self.keywordContainerView)
             make.centerX.equalTo(self.keywordContainerView.snp.right).multipliedBy(3.0/4)
-            make.width.equalTo(self.keywordContainerView).multipliedBy(1.0/4)
+            make.width.equalTo(self.keywordContainerView).multipliedBy(1.0/5)
             make.bottom.equalTo(self.keywordContainerView)
         }
     }
@@ -142,12 +148,12 @@ class ExplorePhotoTableViewCell: UITableViewCell {
                     })
                 
                 photoType.rawValue.keywords?
-                    .prefix(self.keywordContainerView.subviews.count)
+                    .prefix(self.keywordContainerView.subviews.count - 1)
                     .enumerated()
                     .forEach({ (index, element) in
                         let btn = self.keywordContainerView.subviews[index] as! UIButton
                         
-                        // setTitle
+                        btn.setTitle(element, for: .normal)
                     })
 
             })
