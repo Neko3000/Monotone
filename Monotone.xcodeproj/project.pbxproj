@@ -53,6 +53,8 @@
 		1420B298258B72420095FD2E /* UIImage+Reformat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B297258B72410095FD2E /* UIImage+Reformat.swift */; };
 		1420B2B0258B7F4C0095FD2E /* CapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B2AF258B7F4C0095FD2E /* CapsuleView.swift */; };
 		1420B2B5258B916C0095FD2E /* Sponsorship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1420B2B4258B916C0095FD2E /* Sponsorship.swift */; };
+		1421BF5E25C1932E00CC9AE2 /* SearchCollectionsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1421BF5D25C1932E00CC9AE2 /* SearchCollectionsRequest.swift */; };
+		1421BF6125C194F000CC9AE2 /* SearchCollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1421BF6025C194F000CC9AE2 /* SearchCollectionResponse.swift */; };
 		1423202225B5533900ECB33C /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423202125B5533900ECB33C /* CollectionsViewController.swift */; };
 		1423202525B5537D00ECB33C /* CollectionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423202425B5537D00ECB33C /* CollectionsTableViewCell.swift */; };
 		1423A4DD254BA121009DEEA1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423A4DC254BA121009DEEA1 /* BaseViewController.swift */; };
@@ -273,6 +275,8 @@
 		1420B297258B72410095FD2E /* UIImage+Reformat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Reformat.swift"; sourceTree = "<group>"; };
 		1420B2AF258B7F4C0095FD2E /* CapsuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapsuleView.swift; sourceTree = "<group>"; };
 		1420B2B4258B916C0095FD2E /* Sponsorship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sponsorship.swift; sourceTree = "<group>"; };
+		1421BF5D25C1932E00CC9AE2 /* SearchCollectionsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionsRequest.swift; sourceTree = "<group>"; };
+		1421BF6025C194F000CC9AE2 /* SearchCollectionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionResponse.swift; sourceTree = "<group>"; };
 		1423202125B5533900ECB33C /* CollectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = "<group>"; };
 		1423202425B5537D00ECB33C /* CollectionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionsTableViewCell.swift; sourceTree = "<group>"; };
 		1423A4DC254BA121009DEEA1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -519,6 +523,7 @@
 			isa = PBXGroup;
 			children = (
 				1401547D25831ED900746563 /* ListCollectionsRequest.swift */,
+				1421BF5D25C1932E00CC9AE2 /* SearchCollectionsRequest.swift */,
 				1482331225B557C600242CEB /* CreateCollectionRequest.swift */,
 				149325042585FB34006EB8E3 /* AddToCollectionRequest.swift */,
 				14621CB22587546A00446F5F /* RemoveFromCollectionRequest.swift */,
@@ -554,6 +559,7 @@
 			isa = PBXGroup;
 			children = (
 				1482331525B5583E00242CEB /* ListCollectionResponse.swift */,
+				1421BF6025C194F000CC9AE2 /* SearchCollectionResponse.swift */,
 				1401548025831FEA00746563 /* CreateCollectionResponse.swift */,
 				149325072585FC20006EB8E3 /* AddToCollectionResponse.swift */,
 				14621CB52587549D00446F5F /* RemoveFromCollectionResponse.swift */,
@@ -1422,6 +1428,7 @@
 				14E30479259B1E04006BDBDB /* ListUserPhotosRequest.swift in Sources */,
 				14009CB6257775F800C70E6E /* Statistics.swift in Sources */,
 				141B368B25A093C700213819 /* UITableView+Notification.swift in Sources */,
+				1421BF6125C194F000CC9AE2 /* SearchCollectionResponse.swift in Sources */,
 				149EE5EB25906817000230CD /* UnsplashTopic.swift in Sources */,
 				1406EADF257A5B9F0096DE82 /* PhotoAddToCollectionViewController.swift in Sources */,
 				14E3ACD325738413000297CF /* BaseButton.swift in Sources */,
@@ -1532,6 +1539,7 @@
 				142BCC982566374C00B7FB06 /* Array+Find.swift in Sources */,
 				14956D32255CC72B0057A4A6 /* SceneCoordinator.swift in Sources */,
 				14CB252F2580687700741537 /* LoginViewControllerV2.swift in Sources */,
+				1421BF5E25C1932E00CC9AE2 /* SearchCollectionsRequest.swift in Sources */,
 				1482331625B5583E00242CEB /* ListCollectionResponse.swift in Sources */,
 				143F5678254FEA040038761D /* PhotoListViewController.swift in Sources */,
 				1406E9EB257A05CF0096DE82 /* PhotoShareSMView.swift in Sources */,

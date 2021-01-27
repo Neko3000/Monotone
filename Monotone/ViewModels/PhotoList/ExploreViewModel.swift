@@ -33,7 +33,7 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
     private var loadCollectionsAction: Action<String, [Photo]>?
     
     private var photoTypeSections: [TableViewSection]!
-    private var collectionTypeSection: [TableViewSection]!
+    private var collectionTypeSections: [TableViewSection]!
     
     // MARK: - Inject
     override func inject(args: [String : Any?]?) {
@@ -45,13 +45,10 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
         
         // Service.
         let photoService = self.service(type: PhotoService.self)!
+        let collectionService = self.service(type: CollectionService.self)!
         
         // Binding.
-        // LoadPhotosAction.
-//        self.loadPhotosAction = Action<String, [Photo]>(workFactory: { (keyword) -> Observable<[Photo]> in
-//            return photoService.searchPhotos(query: keyword , page: 1)
-//        })
-        
+        // PhotoTypeSections.
         self.photoTypeSections = ExplorePhotoType.allCases.map { (photoType) -> TableViewSection in
             return TableViewSection(key:photoType.rawValue.key,
                                     title: photoType.rawValue.title,
@@ -65,7 +62,7 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
             ExplorePhotoType.allCases.forEach { (photoType) in
                 photoService.searchPhotos(query: photoType.rawValue.key)
                     .subscribe(onNext:{ (photos) in
-                        let index = self.output.sections.value.firstIndex { (section) -> Bool in
+                        let index = self.photoTypeSections.firstIndex { (section) -> Bool in
                             section.key == photoType.rawValue.key
                         }
                         self.photoTypeSections[index!].items = photos
@@ -80,7 +77,8 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
             return Observable.just(Void())
         })
         
-        self.collectionTypeSection = ExploreCollectionType.allCases.map { (collectionType) -> TableViewSection in
+        // CollectionTypeSection.
+        self.collectionTypeSections = ExploreCollectionType.allCases.map { (collectionType) -> TableViewSection in
             return TableViewSection(key:collectionType.rawValue.key,
                                     title: collectionType.rawValue.title,
                                     description: collectionType.rawValue.description,
@@ -90,16 +88,16 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
         self.input.loadCollectionsAction = Action<Void, Void>(workFactory: { [weak self] (_) -> Observable<Void> in
             guard let self = self else { return Observable.empty() }
 
-            ExplorePhotoType.allCases.forEach { (photoType) in
-                photoService.searchPhotos(query: photoType.rawValue.key)
+            ExploreCollectionType.allCases.forEach { (collectionType) in
+                collectionService.searchCollections(query: collectionType.rawValue.key)
                     .subscribe(onNext:{ (photos) in
-                        let index = self.output.sections.value.firstIndex { (section) -> Bool in
-                            section.key == photoType.rawValue.key
+                        let index = self.collectionTypeSections.firstIndex { (section) -> Bool in
+                            section.key == collectionType.rawValue.key
                         }
-                        self.photoTypeSections[index!].items = photos
+                        self.collectionTypeSections[index!].items = photos
                         
-                        if(self.input.explore.value == .explore){
-                            self.output.sections.accept(self.photoTypeSections)
+                        if(self.input.explore.value == .popular){
+                            self.output.sections.accept(self.collectionTypeSections)
                         }
                     })
                     .disposed(by: self.disposeBag)
@@ -107,21 +105,6 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
             
             return Observable.just(Void())
         })
-        
-//        ExploreCollectionType.allCases.forEach { (collectionType) in
-//            photoService.searchPhotos(query: photoType.rawValue.key)
-//                .subscribe(onNext:{ (photos) in
-//                    var index = self.output.sections.value.firstIndex { (section) -> Bool in
-//                        section.key == photoType.rawValue.key
-//                    }
-//                    self.photoTypeSections[index!].items = photos
-//
-//                    if(self.input.explore.value == .explore){
-//                        self.output.sections.accept(self.photoTypeSections)
-//                    }
-//                })
-//                .disposed(by: self.disposeBag)
-        
                 
         // Explore.
         self.input.explore
@@ -132,36 +115,11 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
                     self.output.sections.accept(self.photoTypeSections)
                 }
                 else if(self.input.explore.value == .popular){
-                    self.output.sections.accept(self.collectionTypeSection)
+                    self.output.sections.accept(self.collectionTypeSections)
                 }
                 
             })
             .disposed(by: self.disposeBag)
-        
-//        let photosObservable = Observable.from(ExplorePhotoType.allCases)
-//            .flatMap { (photoType) -> Observable<[Photo]> in
-//                return photoService.searchPhotos(query: "", page: 1)
-//            }
-//
-//
-//        Observable.zip(Observable.from(ExplorePhotoType.allCases)
-//                        .flatMap { (photoType) -> Observable<[Photo]> in
-//                            return photoService.searchPhotos(query: "", page: 1)
-//                        },
-//                       Observable.from(ExplorePhotoType.allCases)){ (photos, photoType) in
-//
-//            return TableViewSection(title: photoType.rawValue.title,
-//                                    description: photoType.rawValue.description,
-//                                    items: photos)
-//        }
-//        .toArray()
-//        .subscribe { [weak self]
-//            (sections) in
-//            guard let self = self else { return }
-//
-//            self.output.sections.accept(sections)
-//        }
-//        .disposed(by: self.disposeBag)
         
     }
 }

@@ -37,6 +37,33 @@ class CollectionService: NetworkService {
         }
     }
     
+    public func searchCollections(query:String,
+                                  page:Int? = 1,
+                                  perPage:Int? = 10) -> Observable<[Collection]>{
+        
+        let request: SearchCollectionsRequest = SearchCollectionsRequest()
+        request.query = query
+        request.page = page
+        request.perPage = perPage
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request , method: .get).subscribe { (json) in
+                let response = SearchCollectionsResponse(JSON: json)
+                let collections = response!.results!
+                
+                observer.onNext(collections)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
+    
     public func getCollectionPhotos(id: String,
                                     page: Int? = 1,
                                     perPage: Int? = 10,
