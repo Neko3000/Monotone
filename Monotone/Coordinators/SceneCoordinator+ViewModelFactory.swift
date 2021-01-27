@@ -93,7 +93,7 @@ extension SceneCoordinator: ViewModelFactory{
             return vm
             
         case .explore:
-            let vm: ExploreViewModel = ExploreViewModel(services: nil, args: args)
+            let vm: ExploreViewModel = ExploreViewModel(services: [CollectionService()], args: args)
             return vm
             
         default:

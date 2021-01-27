@@ -96,6 +96,7 @@ class ExploreViewController: BaseViewController {
             }
             else if(exploreViewModel.input.explore.value == .popular){
                 let pcell = tableView.dequeueReusableCell(withIdentifier: "CollectionsTableViewCell", for: indexPath) as! CollectionsTableViewCell
+                pcell.alignToRight = !(indexPath.row % 2 == 0)
                 pcell.collection.accept(item as? Collection)
 
                 cell = pcell
@@ -108,6 +109,12 @@ class ExploreViewController: BaseViewController {
             .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
             .disposed(by: self.disposeBag)
         
+        // HeaderView.
+        self.headerView.explore
+            .bind(to: exploreViewModel.input.explore)
+            .disposed(by: self.disposeBag)
+        
+        self.headerView.explore.accept(.explore)
     }
 
     /*
@@ -138,23 +145,25 @@ extension ExploreViewController: UITableViewDelegate{
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.textColor = ColorPalette.colorBlack
         titleLabel.text = self.dataSource[section].title
+        titleLabel.numberOfLines = 0
         headerView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
-            make.top.bottom.equalTo(headerView)
-            make.left.equalTo(headerView).offset(13.0)
-            make.right.equalTo(headerView).offset(-13.0)
+            make.top.equalTo(headerView)
+            make.left.equalTo(headerView).offset(18.0)
+            make.right.equalTo(headerView).offset(-18.0)
         }
         
         let descriptionLabel = UILabel()
         descriptionLabel.font = UIFont.systemFont(ofSize: 12)
         descriptionLabel.textColor = ColorPalette.colorGrayLight
         descriptionLabel.text = self.dataSource[section].description
+        descriptionLabel.numberOfLines = 0
         headerView.addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints { (make) in
-            make.top.bottom.equalTo(titleLabel.snp.bottom)
-            make.left.equalTo(headerView).offset(13.0)
-            make.right.equalTo(headerView).offset(-13.0)
-            make.bottom.equalTo(headerView)
+            make.top.equalTo(titleLabel.snp.bottom).offset(6.0)
+            make.left.equalTo(headerView).offset(18.0)
+            make.right.equalTo(headerView).offset(-18.0)
+            make.bottom.equalTo(headerView).offset(-22.0)
         }
 
         return headerView
@@ -163,11 +172,13 @@ extension ExploreViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if(indexPath.section == 0){
+        if(self.headerView.explore.value == .explore){
             return 252.0
         }
-        else{
+        else if(self.headerView.explore.value == .popular){
             return 303.0
         }
+        
+        return 0
     }
 }

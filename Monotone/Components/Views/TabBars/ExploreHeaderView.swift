@@ -40,7 +40,7 @@ class ExploreHeaderView: BaseView {
         self.titleLabel = UILabel()
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
         self.titleLabel.textColor = ColorPalette.colorBlack
-        self.titleLabel.text = "nil"
+        self.titleLabel.text = "Explore"
         self.titleLabel.numberOfLines = 0
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
@@ -53,7 +53,7 @@ class ExploreHeaderView: BaseView {
         self.descriptionLabel = UILabel()
         self.descriptionLabel.textColor = ColorPalette.colorGrayLight
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 16)
-        self.descriptionLabel.text = "nil"
+        self.descriptionLabel.text = "All photos are free to download and use under the  Unsplash License."
         self.descriptionLabel.numberOfLines = 0
         self.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in

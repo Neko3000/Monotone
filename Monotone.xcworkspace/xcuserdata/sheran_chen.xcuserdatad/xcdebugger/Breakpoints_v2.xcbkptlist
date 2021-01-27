@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1D789825-556C-4FCD-9EF1-3C6F569217A6"
-            shouldBeEnabled = "Yes"
+            uuid = "CC3A5B7E-0555-4A6B-A81E-0CDCC49EC21B"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Monotone/Coordinators/SceneCoordinator+ViewModelFactory.swift"
+            filePath = "Monotone/Components/Cells/ExplorePhotoTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "viewModel(sceneContent:with:)"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "buildLogic()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7AA25499-0CF0-48DA-881F-05A2193A67FD"
-            shouldBeEnabled = "Yes"
+            uuid = "0A4FE744-CAA6-482D-8B47-4B9B277C1DBC"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Monotone/Coordinators/SceneCoordinator+ViewControllerFactory.swift"
+            filePath = "Monotone/Components/Cells/ExplorePhotoTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "viewController(scene:with:)"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "buildLogic()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

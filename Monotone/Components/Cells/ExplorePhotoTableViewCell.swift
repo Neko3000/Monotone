@@ -59,10 +59,12 @@ class ExplorePhotoTableViewCell: UITableViewCell {
         self.photoAImageView = UIImageView()
         self.photoAImageView.contentMode = .scaleAspectFill
         self.photoAImageView.backgroundColor = ColorPalette.colorGrayLighter
+        self.photoAImageView.layer.cornerRadius = 4.0
+        self.photoAImageView.layer.masksToBounds = true
         self.photoContainerView.addSubview(self.photoAImageView)
         self.photoAImageView.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.photoContainerView)
-            make.right.equalTo(self.photoContainerView).multipliedBy(2.0/3).offset(-3.0)
+            make.right.equalTo(self.photoContainerView.snp.right).multipliedBy(2.0/3).offset(-3.0)
             make.bottom.equalTo(self.photoContainerView)
         }
         
@@ -70,10 +72,12 @@ class ExplorePhotoTableViewCell: UITableViewCell {
         self.photoBImageView = UIImageView()
         self.photoBImageView.contentMode = .scaleAspectFill
         self.photoBImageView.backgroundColor = ColorPalette.colorGrayLighter
+        self.photoBImageView.layer.cornerRadius = 4.0
+        self.photoBImageView.layer.masksToBounds = true
         self.photoContainerView.addSubview(self.photoBImageView)
         self.photoBImageView.snp.makeConstraints { (make) in
             make.top.right.equalTo(self.photoContainerView)
-            make.left.equalTo(self.photoContainerView).multipliedBy(2.0/3).offset(3.0)
+            make.left.equalTo(self.photoContainerView.snp.right).multipliedBy(2.0/3).offset(3.0)
             make.bottom.equalTo(self.photoContainerView)
         }
         
@@ -89,7 +93,9 @@ class ExplorePhotoTableViewCell: UITableViewCell {
         
         // KeywordABtn.
         self.keywordABtn = UIButton()
-        self.keywordABtn.backgroundColor = ColorPalette.colorGrayLight
+        self.keywordABtn.setTitleColor(ColorPalette.colorBlack, for: .normal)
+        self.keywordABtn.backgroundColor = ColorPalette.colorGrayLighter
+        self.keywordABtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         self.keywordABtn.layer.cornerRadius = 4.0
         self.keywordABtn.layer.masksToBounds = true
         self.keywordContainerView.addSubview(self.keywordABtn)
@@ -102,7 +108,9 @@ class ExplorePhotoTableViewCell: UITableViewCell {
         
         // KeywordBBtn.
         self.keywordBBtn = UIButton()
-        self.keywordBBtn.backgroundColor = ColorPalette.colorGrayLight
+        self.keywordBBtn.setTitleColor(ColorPalette.colorBlack, for: .normal)
+        self.keywordBBtn.backgroundColor = ColorPalette.colorGrayLighter
+        self.keywordBBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         self.keywordBBtn.layer.cornerRadius = 4.0
         self.keywordBBtn.layer.masksToBounds = true
         self.keywordContainerView.addSubview(self.keywordBBtn)
@@ -115,10 +123,13 @@ class ExplorePhotoTableViewCell: UITableViewCell {
         
         // KeywordMoreBtn.
         self.keywordMoreBtn = UIButton()
+        self.keywordMoreBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
         self.keywordMoreBtn.backgroundColor = ColorPalette.colorBlack
+        self.keywordMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         self.keywordMoreBtn.layer.cornerRadius = 4.0
         self.keywordMoreBtn.layer.masksToBounds = true
-        self.contentView.addSubview(self.keywordMoreBtn)
+        self.keywordMoreBtn.setTitle("View More", for: .normal)
+        self.keywordContainerView.addSubview(self.keywordMoreBtn)
         self.keywordMoreBtn.snp.makeConstraints { (make) in
             make.top.equalTo(self.keywordContainerView)
             make.centerX.equalTo(self.keywordContainerView.snp.right).multipliedBy(3.0/4)
@@ -136,15 +147,13 @@ class ExplorePhotoTableViewCell: UITableViewCell {
             .subscribe(onNext:{ [weak self] (photoType) in
                 guard let self = self else { return }
                 
-                photoType.rawValue.previewPhotos?
+                photoType.rawValue.images?
                     .prefix(self.photoContainerView.subviews.count)
                     .enumerated()
                     .forEach({ (index, element) in
-                        let imageView = self.subviews[index] as! UIImageView
+                        let imageView = self.photoContainerView.subviews[index] as! UIImageView
                         
-                        imageView.kf.setImage(with: URL(string: element.urls?.small ?? ""),
-                                              placeholder: UIImage(blurHash: element.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                              options: [.transition(.fade(0.7)), .originalCache(.default)])
+                        imageView.image = element
                     })
                 
                 photoType.rawValue.keywords?

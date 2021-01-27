@@ -74,8 +74,7 @@ class CollectionsViewController: BaseViewController {
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.left.equalTo(self.view).offset(18.0)
-            make.right.equalTo(self.view).offset(-18.0)
+            make.left.right.equalTo(self.view)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
@@ -177,21 +176,24 @@ class CollectionsViewController: BaseViewController {
 extension CollectionsViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView()
+        let headerView = UIView()
         
-        header.addSubview(self.titleLabel)
+        headerView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
-            make.top.right.left.equalTo(header)
+            make.top.equalTo(headerView)
+            make.left.equalTo(headerView).offset(18.0)
+            make.right.equalTo(headerView).offset(-18.0)
         }
         
-        header.addSubview(self.descriptionLabel)
+        headerView.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(10.0)
-            make.right.left.equalTo(header)
-            make.bottom.equalTo(header)
+            make.left.equalTo(headerView).offset(18.0)
+            make.right.equalTo(headerView).offset(-18.0)
+            make.bottom.equalTo(headerView)
         }
         
-        return header
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

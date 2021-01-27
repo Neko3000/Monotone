@@ -13,7 +13,7 @@ enum ExplorePhotoType{
 }
 
 extension ExplorePhotoType: RawRepresentable, CaseIterable{
-    init?(rawValue: (key:String, title:String, description:String, keywords:[String]?, previewPhotos:[Photo]?)) {
+    init?(rawValue: (key:String, title:String, description:String,  keywords:[String]?, images:[UIImage]?)) {
         switch rawValue.key {
         
         case "business":
@@ -27,22 +27,28 @@ extension ExplorePhotoType: RawRepresentable, CaseIterable{
         }
     }
     
-    var rawValue: (key:String, title:String, description:String, keywords:[String]?, previewPhotos:[Photo]?) {
+    var rawValue: (key:String, title:String, description:String, keywords:[String]?, images:[UIImage]?) {
         switch self {
         
         case .business:
             return (key:"business",
                     title:"Business images",
-                    description:"Browse these images",
-                    keywords:["Office","Work"],
-                    previewPhotos:[])
+                    description:"Download free business photos of real people getting ready for work in real life. No cheesy or stocky business pictures here.",
+                    keywords:["Office", "Work"],
+                    images:[
+                        UIImage(named: "explore-photo-type-business-item-1")!,
+                        UIImage(named: "explore-photo-type-business-item-2")!,
+                    ])
             
         case .technology:
             return (key:"technology",
                     title:"Technology images",
-                    description:"Browse these images",
-                    keywords:["iPad","Phone"],
-                    previewPhotos:[])
+                    description:"Browse these technology images featuring workspaces fill with gadgets, MacBooks, iPhones, and cameras.",
+                    keywords:["iPad", "Phone"],
+                    images:[
+                        UIImage(named: "explore-photo-type-technology-item-1")!,
+                        UIImage(named: "explore-photo-type-technology-item-2")!,
+                    ])
 
         }
     }

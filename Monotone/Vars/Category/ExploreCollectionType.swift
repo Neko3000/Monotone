@@ -33,13 +33,13 @@ extension ExploreCollectionType: RawRepresentable, CaseIterable{
         case .celebration:
             return (key:"celebration",
                     title:"celebration",
-                    description:"download the most popular ",
+                    description:"Download the most popular images for your next celebration. From pictures of birthdays to holidays to anniversaries these community curated collections of images have you covered.",
                     collections:[])
             
         case .colors:
             return (key:"colors",
                     title:"colors",
-                    description:"download the most popular ",
+                    description:"Beautiful free photos of every color in the rainbow.",
                     collections:[])
 
         }

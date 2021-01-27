@@ -16,8 +16,8 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var explore: BehaviorRelay<UnsplashExplore> = BehaviorRelay<UnsplashExplore>(value: .explore)
-        var loadPhotosAction: Action<Void, Void>?
+        var explore: BehaviorRelay<UnsplashExplore?> = BehaviorRelay<UnsplashExplore?>(value: nil)
+        // var loadPhotosAction: Action<Void, Void>?
         var loadCollectionsAction: Action<Void, Void>?
     }
     public var input: Input = Input()
@@ -29,9 +29,6 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
     public var output: Output = Output()
     
     // MARK: - Private
-    private var loadPhotosAction: Action<String, [Photo]>?
-    private var loadCollectionsAction: Action<String, [Photo]>?
-    
     private var photoTypeSections: [TableViewSection]!
     private var collectionTypeSections: [TableViewSection]!
     
@@ -44,7 +41,6 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
     override func bind() {
         
         // Service.
-        let photoService = self.service(type: PhotoService.self)!
         let collectionService = self.service(type: CollectionService.self)!
         
         // Binding.
@@ -53,29 +49,10 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
             return TableViewSection(key:photoType.rawValue.key,
                                     title: photoType.rawValue.title,
                                     description: photoType.rawValue.description,
-                                    items: [])
+                                    items: [photoType])
         }
         
-        self.input.loadPhotosAction = Action<Void, Void>(workFactory: { [weak self] (_) -> Observable<Void> in
-            guard let self = self else { return Observable.empty() }
-
-            ExplorePhotoType.allCases.forEach { (photoType) in
-                photoService.searchPhotos(query: photoType.rawValue.key)
-                    .subscribe(onNext:{ (photos) in
-                        let index = self.photoTypeSections.firstIndex { (section) -> Bool in
-                            section.key == photoType.rawValue.key
-                        }
-                        self.photoTypeSections[index!].items = photos
-                        
-                        if(self.input.explore.value == .explore){
-                            self.output.sections.accept(self.photoTypeSections)
-                        }
-                    })
-                    .disposed(by: self.disposeBag)
-            }
-            
-            return Observable.just(Void())
-        })
+        // self.input.loadPhotosAction = ...
         
         // CollectionTypeSection.
         self.collectionTypeSections = ExploreCollectionType.allCases.map { (collectionType) -> TableViewSection in
@@ -94,7 +71,7 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
                         let index = self.collectionTypeSections.firstIndex { (section) -> Bool in
                             section.key == collectionType.rawValue.key
                         }
-                        self.collectionTypeSections[index!].items = photos
+                        self.collectionTypeSections[index!].items = photos.choose(5)
                         
                         if(self.input.explore.value == .popular){
                             self.output.sections.accept(self.collectionTypeSections)
@@ -108,13 +85,16 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
                 
         // Explore.
         self.input.explore
+            .unwrap()
             .subscribe(onNext:{ [weak self] (category) in
                 guard let self = self else { return }
                 
                 if(self.input.explore.value == .explore){
+                    // self.input.loadPhotosAction?.execute()
                     self.output.sections.accept(self.photoTypeSections)
                 }
                 else if(self.input.explore.value == .popular){
+                    self.input.loadCollectionsAction?.execute()
                     self.output.sections.accept(self.collectionTypeSections)
                 }
                 

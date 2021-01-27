@@ -64,7 +64,8 @@ class CollectionsTableViewCell: UITableViewCell{
         self.contentView.addSubview(self.photoContainerView)
         self.photoContainerView.snp.makeConstraints { (make) in
             make.top.equalTo(self.contentView).offset(33.0)
-            make.right.left.equalTo(self.contentView)
+            make.right.equalTo(self.contentView).offset(-42.0)
+            make.left.equalTo(self.contentView).offset(18.0)
         }
 
         // PhotoAImageView.
@@ -118,7 +119,7 @@ class CollectionsTableViewCell: UITableViewCell{
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.photoContainerView.snp.bottom).offset(7.0)
-            make.left.equalTo(self.contentView)
+            make.left.equalTo(self.photoContainerView)
         }
         
         // DescriptionLabel.
@@ -131,7 +132,8 @@ class CollectionsTableViewCell: UITableViewCell{
         self.contentView.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(7.0)
-            make.left.bottom.equalTo(self.contentView)
+            make.left.equalTo(self.photoContainerView)
+            make.bottom.equalTo(self.contentView)
         }
         
         // ArrowImageView.
@@ -139,8 +141,8 @@ class CollectionsTableViewCell: UITableViewCell{
         self.arrowImageView.image = UIImage(named: "collections-btn-right-arrow")
         self.contentView.addSubview(self.arrowImageView)
         self.arrowImageView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.titleLabel)
-            make.right.equalTo(self.contentView)
+            make.centerX.equalTo(self.photoContainerView.snp.right)
+            make.centerY.equalTo(self.photoContainerView.snp.bottom)
             make.width.height.equalTo(50.0)
         }
     }
@@ -184,8 +186,8 @@ class CollectionsTableViewCell: UITableViewCell{
             
             self.photoContainerView.snp.remakeConstraints { (make) in
                 make.top.equalTo(self.contentView).offset(33.0)
-                make.right.equalTo(self.contentView)
-                make.left.equalTo(self.contentView).offset(25.0)
+                make.right.equalTo(self.contentView).offset(-18.0)
+                make.left.equalTo(self.contentView).offset(42.0)
             }
             
             self.photoAImageView.snp.remakeConstraints { (make) in
@@ -207,18 +209,19 @@ class CollectionsTableViewCell: UITableViewCell{
             
             self.titleLabel.snp.remakeConstraints { (make) in
                 make.top.equalTo(self.photoContainerView.snp.bottom).offset(7.0)
-                make.right.equalTo(self.contentView)
+                make.right.equalTo(self.photoContainerView)
             }
             
             self.descriptionLabel.snp.remakeConstraints { (make) in
                 make.top.equalTo(self.titleLabel.snp.bottom).offset(7.0)
-                make.right.bottom.equalTo(self.contentView)
+                make.right.equalTo(self.photoContainerView)
+                make.bottom.equalTo(self.contentView)
             }
             
             self.arrowImageView.image = UIImage(named: "collections-btn-left-arrow")
             self.arrowImageView.snp.remakeConstraints { (make) in
-                make.bottom.equalTo(self.titleLabel)
-                make.left.equalTo(self.contentView)
+                make.centerX.equalTo(self.photoContainerView.snp.left)
+                make.centerY.equalTo(self.photoContainerView.snp.bottom)
                 make.width.height.equalTo(50.0)
             }
             
@@ -227,8 +230,8 @@ class CollectionsTableViewCell: UITableViewCell{
 
             self.photoContainerView.snp.remakeConstraints { (make) in
                 make.top.equalTo(self.contentView).offset(33.0)
-                make.right.equalTo(self.contentView).offset(-25.0)
-                make.left.equalTo(self.contentView)
+                make.right.equalTo(self.contentView).offset(-42.0)
+                make.left.equalTo(self.contentView).offset(18.0)
             }
             
             self.photoAImageView.snp.remakeConstraints { (make) in
@@ -250,18 +253,19 @@ class CollectionsTableViewCell: UITableViewCell{
             
             self.titleLabel.snp.remakeConstraints { (make) in
                 make.top.equalTo(self.photoContainerView.snp.bottom).offset(7.0)
-                make.left.equalTo(self.contentView)
+                make.left.equalTo(self.photoContainerView)
             }
             
             self.descriptionLabel.snp.remakeConstraints { (make) in
                 make.top.equalTo(self.titleLabel.snp.bottom).offset(7.0)
-                make.left.bottom.equalTo(self.contentView)
+                make.left.equalTo(self.photoContainerView)
+                make.bottom.equalTo(self.contentView)
             }
             
             self.arrowImageView.image = UIImage(named: "collections-btn-right-arrow")
             self.arrowImageView.snp.remakeConstraints { (make) in
-                make.bottom.equalTo(self.titleLabel)
-                make.right.equalTo(self.contentView)
+                make.centerX.equalTo(self.photoContainerView.snp.right)
+                make.centerY.equalTo(self.photoContainerView.snp.bottom)
                 make.width.height.equalTo(50.0)
             }
             
