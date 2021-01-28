@@ -116,10 +116,7 @@ class CollectionDetailsHeaderView: BaseView {
                 let editor = collection.sponsorship?.sponsor ?? collection.user
 
                 self.usernameLabel.text = editor?.username ?? ""
-                self.avatarImageView.kf.setImage(with: URL(string: editor?.profileImage?.medium ?? ""),
-                                                 placeholder: UIImage(),
-                                                 options: [.transition(.fade(0.7)),
-                                                          .originalCache(.default)])
+                self.avatarImageView.setUserAvatar(user: editor, size: .medium)
                 self.photoCountLabel.text = String(format: NSLocalizedString("uns_collection_details_photo_count_suffix", comment: "%d photos"), collection.totalPhotos ?? 0)
             })
             .disposed(by: self.disposeBag)

@@ -140,14 +140,10 @@ class PhotoDetailsViewController: BaseViewController {
                 self.likeCapsuleBtn.setTitle("\(photo.likes ?? 0)", for: .normal)
                 self.likeCapsuleBtn.isSelected = photo.likedByUser ?? false
                 
-                let profileImage = photo.sponsorship?.sponsor?.profileImage?.medium ?? ( photo.user?.profileImage?.medium ?? "" )
-                self.avatarImageView.kf.setImage(with: URL(string: profileImage),
-                                                 placeholder: UIImage(),
-                                                 options: [.transition(.fade(0.7)),
-                                                          .originalCache(.default)])
+                let editor = photo.sponsorship?.sponsor ?? photo.user
                 
-                let username = photo.sponsorship?.sponsor?.username ?? (photo.user?.username ?? "" )
-                self.usernameLabel.text = username
+                self.avatarImageView.setUserAvatar(user: editor, size: .medium)
+                self.usernameLabel.text = editor?.username
             })
             .disposed(by: self.disposeBag)
                         

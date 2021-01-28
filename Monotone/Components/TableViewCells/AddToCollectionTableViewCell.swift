@@ -154,9 +154,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
                 self.nameLabel.text = collection.title
                 self.photoCountLabel.text = String(format: NSLocalizedString("uns_add_collection_total_photo_suffix", comment: "%d Photos"), collection.totalPhotos ?? 0)
                 
-                self.coverImageView.kf.setImage(with: URL(string: collection.coverPhoto?.urls?.regular ?? ""),
-                                                 placeholder: UIImage(blurHash: collection.coverPhoto?.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                                 options: [.transition(.fade(0.7)), .originalCache(.default)])
+                self.coverImageView.setPhoto(photo: collection.coverPhoto, size: .regular)
                 
                 self.lockImageView.isHidden = collection.isPrivate ?? true
             })

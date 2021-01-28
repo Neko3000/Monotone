@@ -124,9 +124,7 @@ class SideMenuProfileCollectionView: BaseView{
                     .forEach({ (index, element) in
                         let imageView = self.photoContainerView.subviews[index] as! UIImageView
                         
-                        imageView.kf.setImage(with: URL(string: element.urls?.small ?? ""),
-                                              placeholder: UIImage(blurHash: element.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                              options: [.transition(.fade(0.7)), .originalCache(.default)])
+                        imageView.setPhoto(photo: element, size: .small)
                     })
                 
                 

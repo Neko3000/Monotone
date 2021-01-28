@@ -93,9 +93,7 @@ class SideMenuProfileLikeView: BaseView{
             .subscribe(onNext:{ [weak self] (photo) in
                 guard let self = self else { return }
                 
-                self.photoImageView.kf.setImage(with: URL(string: photo.urls?.small ?? ""),
-                                      placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                      options: [.transition(.fade(0.7)), .originalCache(.default)])
+                self.photoImageView.setPhoto(photo: photo, size: .small)
                 
                 let editor = photo.sponsorship?.sponsor ?? photo.user
 
@@ -105,8 +103,7 @@ class SideMenuProfileLikeView: BaseView{
                                                     editor?.totalPhotos ?? 0,
                                                     photo.exif?.model ?? "")
                 
-                self.avatarImageView.kf.setImage(with: URL(string: editor?.profileImage?.medium ?? ""),
-                                            options: [.transition(.fade(0.7)), .originalCache(.default)])
+                self.avatarImageView.setUserAvatar(user: editor, size: .medium)
                 
             })
             .disposed(by: self.disposeBag)

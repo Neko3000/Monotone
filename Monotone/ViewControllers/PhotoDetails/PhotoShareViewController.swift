@@ -105,9 +105,7 @@ class PhotoShareViewController: BaseViewController {
                 }
                 
                 // PhotoImageView.
-                self.photoImageView.kf.setImage(with: URL(string: photo.urls?.regular ?? ""),
-                                                placeholder: UIImage(blurHash: photo.blurHash ?? "", size: CGSize(width: 10, height: 10)),
-                                                options: [.transition(.fade(0.7)), .originalCache(.default)])
+                self.photoImageView.setPhoto(photo: photo, size: .regular)
             })
             .disposed(by: self.disposeBag)
         
