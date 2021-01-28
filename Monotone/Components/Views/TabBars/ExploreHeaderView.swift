@@ -40,7 +40,7 @@ class ExploreHeaderView: BaseView {
         self.titleLabel = UILabel()
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
         self.titleLabel.textColor = ColorPalette.colorBlack
-        self.titleLabel.text = "Explore"
+        self.titleLabel.text = NSLocalizedString("uns_explore_photos_title", comment: "Explore")
         self.titleLabel.numberOfLines = 0
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
@@ -53,7 +53,7 @@ class ExploreHeaderView: BaseView {
         self.descriptionLabel = UILabel()
         self.descriptionLabel.textColor = ColorPalette.colorGrayLight
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 16)
-        self.descriptionLabel.text = "All photos are free to download and use under the  Unsplash License."
+        self.descriptionLabel.text = NSLocalizedString("uns_explore_photos_description", comment: "All photos are free to download and use under the  Unsplash License.")
         self.descriptionLabel.numberOfLines = 0
         self.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { (make) in
@@ -107,6 +107,22 @@ class ExploreHeaderView: BaseView {
                 guard let self = self else { return }
                 
                 self.segmentedControl.setSelectedSegmentIndex(index: index, animated: false)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.explore
+            .unwrap()
+            .subscribe(onNext:{ [weak self] (explore) in
+                guard let self = self else { return }
+                
+                if(explore == .explore){
+                    self.titleLabel.text = NSLocalizedString("uns_explore_photos_title", comment: "Explore")
+                    self.descriptionLabel.text = NSLocalizedString("uns_explore_photos_description", comment: "All photos are free to download and use under the  Unsplash License.")
+                }
+                else if(explore == .popular){
+                    self.titleLabel.text = NSLocalizedString("uns_explore_collections_title", comment: "Collections")
+                    self.descriptionLabel.text = NSLocalizedString("uns_explore_collections_description", comment: "Explore the world through collections of beautiful HD pictures free to use under the Unsplash License.")
+                }
             })
             .disposed(by: self.disposeBag)
     }

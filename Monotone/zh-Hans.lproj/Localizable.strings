@@ -133,3 +133,8 @@
 "uns_collections_description" = "请查收这些Unsplash为您提供的高清照片，它们来自世界各地，并且都是免费使用的。";
 
 "uns_collection_details_photo_count_suffix" = "%d 照片";
+
+"uns_explore_photos_title"  = "探索";
+"uns_explore_photos_description"  = "在Unsplash的许可证所保证的，为您提供的照片。";
+"uns_explore_collections_title"  = "收藏";
+"uns_explore_collections_description" = "在Unsplash的许可证所保证的，由世界上好看的高清图片组成的收藏。";

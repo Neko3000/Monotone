@@ -30,8 +30,10 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Private
     private var photoTypeSections: [TableViewSection]!
-    private var collectionTypeSections: [TableViewSection]!
     
+    private var collectionTypeSections: [TableViewSection]!
+    private var emptyCollections: [Collection] = Array(repeating: Collection(), count: 10)
+
     // MARK: - Inject
     override func inject(args: [String : Any?]?) {
         //
@@ -59,7 +61,7 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
             return TableViewSection(key:collectionType.rawValue.key,
                                     title: collectionType.rawValue.title,
                                     description: collectionType.rawValue.description,
-                                    items: [])
+                                    items: self.emptyCollections)
         }
         
         self.input.loadCollectionsAction = Action<Void, Void>(workFactory: { [weak self] (_) -> Observable<Void> in
