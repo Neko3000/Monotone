@@ -47,20 +47,6 @@ class CollectionsViewController: BaseViewController {
     override func buildSubviews() {
         
         self.view.backgroundColor = ColorPalette.colorWhite
-        
-        // TitleLabel.
-        self.titleLabel = UILabel()
-        self.titleLabel.textColor = ColorPalette.colorBlack
-        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        self.titleLabel.text = NSLocalizedString("uns_collections_title", comment: "Collections")
-        self.titleLabel.numberOfLines = 0
-        
-        // DescriptionLabel.
-        self.descriptionLabel = UILabel()
-        self.descriptionLabel.textColor = ColorPalette.colorGrayLight
-        self.descriptionLabel.font = UIFont.systemFont(ofSize: 16)
-        self.descriptionLabel.text = NSLocalizedString("uns_collections_description", comment: "Explore the world through collections of beautiful HD pictures free to use under the Unsplash License.")
-        self.descriptionLabel.numberOfLines = 0
                 
         // TableView.
         self.tableView = UITableView(frame: CGRect.zero, style: .grouped)
@@ -178,16 +164,28 @@ extension CollectionsViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         
-        headerView.addSubview(self.titleLabel)
-        self.titleLabel.snp.makeConstraints { (make) in
+        // TitleLabel.
+        let titleLabel = UILabel()
+        titleLabel.textColor = ColorPalette.colorBlack
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
+        titleLabel.text = NSLocalizedString("uns_collections_title", comment: "Collections")
+        titleLabel.numberOfLines = 0
+        headerView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(headerView)
             make.left.equalTo(headerView).offset(18.0)
             make.right.equalTo(headerView).offset(-18.0)
         }
         
-        headerView.addSubview(self.descriptionLabel)
-        self.descriptionLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(10.0)
+        // DescriptionLabel.
+        let descriptionLabel = UILabel()
+        descriptionLabel.textColor = ColorPalette.colorGrayLight
+        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
+        descriptionLabel.text = NSLocalizedString("uns_collections_description", comment: "Explore the world through collections of beautiful HD pictures free to use under the Unsplash License.")
+        descriptionLabel.numberOfLines = 0
+        headerView.addSubview(descriptionLabel)
+        descriptionLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10.0)
             make.left.equalTo(headerView).offset(18.0)
             make.right.equalTo(headerView).offset(-18.0)
             make.bottom.equalTo(headerView)

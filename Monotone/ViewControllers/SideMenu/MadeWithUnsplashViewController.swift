@@ -22,10 +22,6 @@ class MadeWithUnsplashViewController: BaseViewController {
     
     // MARK: - Controls
     private var tableView: UITableView!
-    
-    private var titleLabel: UILabel!
-    private var descriptionLabel: UILabel!
-    
     private var categorySelectionView: PageSelectionView!
 
     // MARK: - Priavte
@@ -56,20 +52,6 @@ class MadeWithUnsplashViewController: BaseViewController {
             make.centerY.equalTo(self.view).offset(10.0)
             make.right.equalTo(self.view).offset(-19.0)
         }
-        
-        // TitleLabel.
-        self.titleLabel = UILabel()
-        self.titleLabel.textColor = ColorPalette.colorBlack
-        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        self.titleLabel.text = NSLocalizedString("uns_made_with_uns_title", comment: "Made with Unsplash")
-        self.titleLabel.numberOfLines = 0
-        
-        // DescriptionLabel.
-        self.descriptionLabel = UILabel()
-        self.descriptionLabel.textColor = ColorPalette.colorGrayLight
-        self.descriptionLabel.font = UIFont.systemFont(ofSize: 16)
-        self.descriptionLabel.text = NSLocalizedString("uns_made_with_uns_description", comment: "Showcasing the best things being made with Unsplash.")
-        self.descriptionLabel.numberOfLines = 0
                 
         // TableView.
         self.tableView = UITableView(frame: CGRect.zero, style: .grouped)
@@ -146,21 +128,33 @@ class MadeWithUnsplashViewController: BaseViewController {
 extension MadeWithUnsplashViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView()
+        let headerView = UIView()
         
-        header.addSubview(self.titleLabel)
-        self.titleLabel.snp.makeConstraints { (make) in
-            make.top.right.left.equalTo(header)
+        // TitleLabel.
+        let titleLabel = UILabel()
+        titleLabel.textColor = ColorPalette.colorBlack
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
+        titleLabel.text = NSLocalizedString("uns_made_with_uns_title", comment: "Made with Unsplash")
+        titleLabel.numberOfLines = 0
+        headerView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.top.right.left.equalTo(headerView)
         }
         
-        header.addSubview(self.descriptionLabel)
-        self.descriptionLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(10.0)
-            make.right.left.equalTo(header)
-            make.bottom.equalTo(header).offset(-42.0)
+        // DescriptionLabel.
+        let descriptionLabel = UILabel()
+        descriptionLabel.textColor = ColorPalette.colorGrayLight
+        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
+        descriptionLabel.text = NSLocalizedString("uns_made_with_uns_description", comment: "Showcasing the best things being made with Unsplash.")
+        descriptionLabel.numberOfLines = 0
+        headerView.addSubview(descriptionLabel)
+        descriptionLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10.0)
+            make.right.left.equalTo(headerView)
+            make.bottom.equalTo(headerView).offset(-42.0)
         }
         
-        return header
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
