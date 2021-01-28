@@ -1,5 +1,5 @@
 //
-//  UnsplashExplore.swift
+//  UnsplashExploreType.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2021/1/24.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-enum UnsplashExplore{
+enum UnsplashExploreType{
     case explore
     case popular
 }
 
-extension UnsplashExplore: RawRepresentable, CaseIterable{
+extension UnsplashExploreType: RawRepresentable, CaseIterable{
     init?(rawValue: (key:String, title:String)) {
         switch rawValue.key {
         

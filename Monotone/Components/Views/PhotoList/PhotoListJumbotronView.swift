@@ -17,8 +17,8 @@ import RxSwiftExt
 class PhotoListJumbotronView: BaseView {
     
     // MARK: - Public
-    public let listOrderBy: BehaviorRelay<UnsplashListOrderBy?> = BehaviorRelay<UnsplashListOrderBy?>(value: nil)
-    public let listOrderBys: BehaviorRelay<[UnsplashListOrderBy]> = BehaviorRelay<[UnsplashListOrderBy]>(value: UnsplashListOrderBy.allCases)
+    public let listOrderBy: BehaviorRelay<ListOrderBy?> = BehaviorRelay<ListOrderBy?>(value: nil)
+    public let listOrderBys: BehaviorRelay<[ListOrderBy]> = BehaviorRelay<[ListOrderBy]>(value: ListOrderBy.allCases)
     
     public let menuBtnPressed: PublishRelay<Void> = PublishRelay<Void>()
     public let searchBtnPressed: PublishRelay<Void> = PublishRelay<Void>()
@@ -104,7 +104,7 @@ class PhotoListJumbotronView: BaseView {
         }
         
         // SegmentedControl.
-        let text: String = UnsplashListOrderBy.allCases.map { $0.rawValue.title }.joined()
+        let text: String = ListOrderBy.allCases.map { $0.rawValue.title }.joined()
         let textSize = text.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.0)])
         
         let segments = self.listOrderBys.value.map({ $0.rawValue.title })

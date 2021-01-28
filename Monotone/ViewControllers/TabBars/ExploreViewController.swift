@@ -110,11 +110,12 @@ class ExploreViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // HeaderView.
-        self.headerView.explore
+        self.headerView.selectedExplore
             .bind(to: exploreViewModel.input.explore)
             .disposed(by: self.disposeBag)
         
-        self.headerView.explore.accept(.explore)
+        // First Loading - Explore.
+        self.headerView.selectedExplore.accept(.explore)
     }
 
     /*
@@ -172,10 +173,10 @@ extension ExploreViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if(self.headerView.explore.value == .explore){
+        if(self.headerView.selectedExplore.value == .explore){
             return 252.0
         }
-        else if(self.headerView.explore.value == .popular){
+        else if(self.headerView.selectedExplore.value == .popular){
             return 303.0
         }
         

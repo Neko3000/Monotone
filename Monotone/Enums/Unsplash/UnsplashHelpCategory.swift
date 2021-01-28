@@ -1,5 +1,5 @@
 //
-//  HelpCategory.swift
+//  UnsplashHelpCategory.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2021/1/7.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-enum HelpCategory{
+enum UnsplashHelpCategory{
     case account
     case licenses
 }
 
-extension HelpCategory: RawRepresentable, CaseIterable{
+extension UnsplashHelpCategory: RawRepresentable, CaseIterable{
     init?(rawValue: (key:String, icon:UIImage, title:String, description:String, count:Int)) {
         switch rawValue.key {
         

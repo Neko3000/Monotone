@@ -16,15 +16,15 @@ class StoreViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var categories: BehaviorRelay<[StoreCategory]?> = BehaviorRelay<[StoreCategory]?>(value: nil)
-        var selectedCategory: BehaviorRelay<StoreCategory?> = BehaviorRelay<StoreCategory?>(value: nil)
+        var categories: BehaviorRelay<[UnsplashStoreCategory]?> = BehaviorRelay<[UnsplashStoreCategory]?>(value: nil)
+        var selectedCategory: BehaviorRelay<UnsplashStoreCategory?> = BehaviorRelay<UnsplashStoreCategory?>(value: nil)
     }
     public var input: Input = Input()
     
     // MARK: - Output
     struct Output {
-        var categories: BehaviorRelay<[StoreCategory]?> = BehaviorRelay<[StoreCategory]?>(value: nil)
-        var selectedCategory: BehaviorRelay<StoreCategory?> = BehaviorRelay<StoreCategory?>(value: nil)
+        var categories: BehaviorRelay<[UnsplashStoreCategory]?> = BehaviorRelay<[UnsplashStoreCategory]?>(value: nil)
+        var selectedCategory: BehaviorRelay<UnsplashStoreCategory?> = BehaviorRelay<UnsplashStoreCategory?>(value: nil)
         
         var sections: BehaviorRelay<[TableViewSection]> = BehaviorRelay<[TableViewSection]>(value: [])
     }

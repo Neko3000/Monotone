@@ -19,8 +19,8 @@ class PhotoListHeaderView: BaseView {
     // MARK: - Public
     public let searchQuery: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     
-    public let listOrderBy: BehaviorRelay<UnsplashListOrderBy?> = BehaviorRelay<UnsplashListOrderBy?>(value: nil)
-    public let listOrderBys: BehaviorRelay<[UnsplashListOrderBy]> = BehaviorRelay<[UnsplashListOrderBy]>(value: UnsplashListOrderBy.allCases)
+    public let listOrderBy: BehaviorRelay<ListOrderBy?> = BehaviorRelay<ListOrderBy?>(value: nil)
+    public let listOrderBys: BehaviorRelay<[ListOrderBy]> = BehaviorRelay<[ListOrderBy]>(value: ListOrderBy.allCases)
 
     public let topic: BehaviorRelay<UnsplashTopic?> = BehaviorRelay<UnsplashTopic?>(value: nil)
     public let topics: BehaviorRelay<[UnsplashTopic]> = BehaviorRelay<[UnsplashTopic]>(value: UnsplashTopic.allCases)

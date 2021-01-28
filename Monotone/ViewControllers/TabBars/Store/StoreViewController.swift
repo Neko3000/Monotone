@@ -19,7 +19,7 @@ import RxDataSources
 class StoreViewController: BaseViewController {
     
     // MARK: - Public
-
+    //
     
     // MARK: - Controls
     private var headerView: StoreHeaderView!
@@ -116,7 +116,7 @@ class StoreViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
-        // First selection.
+        // First Loading - Home.
         self.headerView.selectedCategory.accept(.home)
     }
 

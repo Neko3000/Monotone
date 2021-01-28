@@ -17,7 +17,7 @@ class PhotoListViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Input
     struct Input {
         var searchQuery: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
-        var listOrderBy: BehaviorRelay<UnsplashListOrderBy?> = BehaviorRelay<UnsplashListOrderBy?>(value: nil)
+        var listOrderBy: BehaviorRelay<ListOrderBy?> = BehaviorRelay<ListOrderBy?>(value: nil)
         var topic: BehaviorRelay<UnsplashTopic?> = BehaviorRelay<UnsplashTopic?>(value: nil)
         var loadMoreAction: Action<Void, [Photo]>?
         var reloadAction: Action<Void, [Photo]>?

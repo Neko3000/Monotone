@@ -17,8 +17,8 @@ import RxSwiftExt
 class StoreHeaderView: BaseView {
     
     // MARK: - Public
-    public let selectedCategory: BehaviorRelay<StoreCategory?> = BehaviorRelay<StoreCategory?>(value: nil)
-    public let categories: BehaviorRelay<[StoreCategory]> = BehaviorRelay<[StoreCategory]>(value: StoreCategory.allCases)
+    public let selectedCategory: BehaviorRelay<UnsplashStoreCategory?> = BehaviorRelay<UnsplashStoreCategory?>(value: nil)
+    public let categories: BehaviorRelay<[UnsplashStoreCategory]> = BehaviorRelay<[UnsplashStoreCategory]>(value: UnsplashStoreCategory.allCases)
 
     // MARK: - Controls
     private var titleLabel: UILabel!

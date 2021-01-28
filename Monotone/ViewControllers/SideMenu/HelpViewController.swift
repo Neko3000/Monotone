@@ -87,8 +87,8 @@ class HelpViewController: BaseViewController {
         let helpViewModel = self.viewModel(type: HelpViewModel.self)!
         
         // Bindings.
-        // HelpCategory.
-        helpViewModel.input.categories.accept(HelpCategory.allCases)
+        // UnsplashHelpCategory.
+        helpViewModel.input.categories.accept(UnsplashHelpCategory.allCases)
         
         // CollectionView.
         helpViewModel.output.categories

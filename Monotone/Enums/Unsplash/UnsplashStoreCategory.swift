@@ -1,5 +1,5 @@
 //
-//  StoreCategory.swift
+//  UnsplashStoreCategory.swift
 //  Monotone
 //
 //  Created by Xueliang Chen on 2021/1/10.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum StoreCategory{
+enum UnsplashStoreCategory{
     case home
     case allProducts
     case madeByUnsplash
@@ -27,7 +27,7 @@ struct StoreItem{
     public var username: String?
 }
 
-extension StoreCategory: RawRepresentable, CaseIterable{
+extension UnsplashStoreCategory: RawRepresentable, CaseIterable{
     init?(rawValue: (key:String, title:String, bannerItems:[StoreItem], items:[StoreItem])) {
         switch rawValue.key {
         
@@ -53,7 +53,7 @@ extension StoreCategory: RawRepresentable, CaseIterable{
         
         case .home:
             
-            let allItems = StoreCategory.allCases
+            let allItems = UnsplashStoreCategory.allCases
                 .filter({ $0 != .home && $0 != .allProducts })
                 .flatMap({ category in category.rawValue.items })
             
@@ -66,7 +66,7 @@ extension StoreCategory: RawRepresentable, CaseIterable{
         
         case .allProducts:
             
-            let allItems = StoreCategory.allCases
+            let allItems = UnsplashStoreCategory.allCases
                 .filter({ $0 != .home && $0 != .allProducts })
                 .flatMap({ category in category.rawValue.items })
             

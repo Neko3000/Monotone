@@ -32,7 +32,7 @@ class MTTabBarController: BaseTabBarController {
         self.view.insertSubview(self.tabBarBackgroundView, belowSubview: self.tabBar)
         self.tabBarBackgroundView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(self.view)
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-InterfaceGlobalVars.tabBarHeight)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-InterfaceValues.tabBarHeight)
         }
                 
         self.addBtn = UIButton()
@@ -49,7 +49,7 @@ class MTTabBarController: BaseTabBarController {
         super.viewDidLayoutSubviews()
         
         if let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first{
-            let height: CGFloat = window.safeAreaInsets.bottom + InterfaceGlobalVars.tabBarHeight
+            let height: CGFloat = window.safeAreaInsets.bottom + InterfaceValues.tabBarHeight
             let width: CGFloat = self.view.frame.size.width * (3.0 / 4)
             
             var tabFrame = self.tabBar.frame

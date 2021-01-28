@@ -17,8 +17,8 @@ import RxSwiftExt
 class ExploreHeaderView: BaseView {
     
     // MARK: - Public
-    public let explore: BehaviorRelay<UnsplashExplore?> = BehaviorRelay<UnsplashExplore?>(value: nil)
-    public let explores: BehaviorRelay<[UnsplashExplore]> = BehaviorRelay<[UnsplashExplore]>(value: UnsplashExplore.allCases)
+    public let selectedExplore: BehaviorRelay<UnsplashExploreType?> = BehaviorRelay<UnsplashExploreType?>(value: nil)
+    public let explores: BehaviorRelay<[UnsplashExploreType]> = BehaviorRelay<[UnsplashExploreType]>(value: UnsplashExploreType.allCases)
 
     // MARK: - Controls
     private var titleLabel: UILabel!
@@ -63,7 +63,7 @@ class ExploreHeaderView: BaseView {
         }
         
         // SegmentedControl.
-        let text: String = UnsplashListOrderBy.allCases.map { $0.rawValue.title }.joined()
+        let text: String = ListOrderBy.allCases.map { $0.rawValue.title }.joined()
         let textSize = text.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12.0)])
         
         let segments = self.explores.value.map({ $0.rawValue.title })
@@ -93,7 +93,7 @@ class ExploreHeaderView: BaseView {
         
         // Bindings.
         // Explore.
-        self.explore
+        self.selectedExplore
             .distinctUntilChanged()
             .unwrap()
             .map({ [weak self] (explore) -> Int in
@@ -110,7 +110,7 @@ class ExploreHeaderView: BaseView {
             })
             .disposed(by: self.disposeBag)
         
-        self.explore
+        self.selectedExplore
             .unwrap()
             .subscribe(onNext:{ [weak self] (explore) in
                 guard let self = self else { return }
@@ -133,7 +133,7 @@ class ExploreHeaderView: BaseView {
         
         switch index {
         case 0..<self.explores.value.count:
-            self.explore.accept(self.explores.value[index])
+            self.selectedExplore.accept(self.explores.value[index])
             break
         default:
             break

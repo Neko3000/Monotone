@@ -16,7 +16,7 @@ class ExploreViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Input
     struct Input {
-        var explore: BehaviorRelay<UnsplashExplore?> = BehaviorRelay<UnsplashExplore?>(value: nil)
+        var explore: BehaviorRelay<UnsplashExploreType?> = BehaviorRelay<UnsplashExploreType?>(value: nil)
         // var loadPhotosAction: Action<Void, Void>?
         var loadCollectionsAction: Action<Void, Void>?
     }
