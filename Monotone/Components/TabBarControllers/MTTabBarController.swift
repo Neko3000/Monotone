@@ -36,6 +36,7 @@ class MTTabBarController: BaseTabBarController {
         }
                 
         self.addBtn = UIButton()
+        
         self.addBtn.setImage(UIImage(named: "add-item-btn"), for: .normal)
         self.view.addSubview(self.addBtn)
         self.addBtn.snp.makeConstraints { (make) in

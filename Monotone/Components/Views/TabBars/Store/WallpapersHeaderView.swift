@@ -83,6 +83,7 @@ class WallpapersHeaderView: BaseView {
         
         // SegmentedControl.
         self.segmentedControl = HMSegmentedControl()
+        self.segmentedControl.backgroundColor = UIColor.clear
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),
             NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal

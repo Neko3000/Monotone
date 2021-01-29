@@ -55,7 +55,7 @@ class WallpapersHeaderCollectionViewCell: UICollectionViewCell {
         self.titleLabel = UILabel()
         self.titleLabel.textAlignment = .center
         self.titleLabel.font = UIFont.systemFont(ofSize: 12)
-        self.titleLabel.textColor = ColorPalette.colorWhite
+        self.titleLabel.textColor = UIColor.white
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints({ (make) in
             make.center.equalTo(self.contentView)

@@ -40,7 +40,9 @@ class SideMenuViewController: BaseViewController {
     }
     
     override func buildSubviews() {
-        self.view.backgroundColor = UIColor.white
+        
+        //
+        self.view.backgroundColor = ColorPalette.colorWhite
         
         // UnsplashLabel
         self.unsplashLabel = UILabel()

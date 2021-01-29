@@ -8,7 +8,6 @@
 import UIKit
 
 import SnapKit
-import HMSegmentedControl
 
 import RxSwift
 import RxCocoa
@@ -59,7 +58,7 @@ class StoreBannerView: BaseView {
         
         // StateLabel.
         self.stateLabel = SpaceLabel()
-        self.stateLabel.textColor = ColorPalette.colorWhite
+        self.stateLabel.textColor = UIColor.white
         self.stateLabel.font = UIFont.systemFont(ofSize: 12)
         self.stateLabel.backgroundColor = ColorPalette.colorGrayLight
         self.stateLabel.paddingInsets = UIEdgeInsets(top: 6.0, left: 8.0, bottom: 6.0, right: 8.0)

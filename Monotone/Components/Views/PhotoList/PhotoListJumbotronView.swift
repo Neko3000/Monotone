@@ -109,6 +109,7 @@ class PhotoListJumbotronView: BaseView {
         
         let segments = self.listOrderBys.value.map({ $0.rawValue.title })
         self.segmentedControl = HMSegmentedControl(sectionTitles: segments)
+        self.segmentedControl.backgroundColor = UIColor.clear
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
             NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal

@@ -9,7 +9,6 @@ import UIKit
 
 import SnapKit
 import Kingfisher
-import HMSegmentedControl
 
 import RxSwift
 import RxCocoa

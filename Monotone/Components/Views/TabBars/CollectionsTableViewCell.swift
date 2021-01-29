@@ -58,6 +58,7 @@ class CollectionsTableViewCell: UITableViewCell{
     private func buildSubviews() {
         
         self.selectionStyle = .none
+        self.backgroundColor = UIColor.clear
         
         // PhotoContainerView.
         self.photoContainerView = UIView()

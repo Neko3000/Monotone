@@ -49,6 +49,7 @@ class StoreHeaderView: BaseView {
         // SegmentedControl.
         let segmentedValues = self.categories.value.map({ $0.rawValue.title })
         self.segmentedControl = HMSegmentedControl(sectionTitles: segmentedValues)
+        self.segmentedControl.backgroundColor = UIColor.clear
         self.segmentedControl.titleTextAttributes = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),
             NSAttributedString.Key.foregroundColor : ColorPalette.colorGrayNormal

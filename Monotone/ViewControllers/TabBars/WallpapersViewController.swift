@@ -9,7 +9,6 @@ import UIKit
 
 import SnapKit
 import MJRefresh
-import HMSegmentedControl
 
 import RxSwift
 import RxRelay
