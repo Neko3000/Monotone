@@ -61,23 +61,23 @@ class ColorPalette{
     }
     
     public static var colorGrayLighter:UIColor{
-        // FIXME: waiting dark color
-        return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#ededed")
+        return self.colorWithDarkMode(darkColorHex: "#242424", lightColorHex: "#ededed")
     }
     
     public static var colorGrayLight:UIColor{
-        // FIXME: waiting dark color
-        return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#9b9b9b")
+        return self.colorWithDarkMode(darkColorHex: "#4a4a4a", lightColorHex: "#9b9b9b")
     }
     
     public static var colorGrayNormal:UIColor{
-        // FIXME: waiting dark color
-        return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#999999")
+        return self.colorWithDarkMode(darkColorHex: "#999999", lightColorHex: "#999999")
     }
     
     public static var colorGrayHeavy:UIColor{
-        // FIXME: waiting dark color
-        return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#4a4a4a")
+        return self.colorWithDarkMode(darkColorHex: "#9b9b9b", lightColorHex: "#4a4a4a")
+    }
+    
+    public static var colorGrayHeavier:UIColor{
+        return self.colorWithDarkMode(darkColorHex: "#ededed", lightColorHex: "#242424")
     }
     
     public static var colorWhite:UIColor{
@@ -92,7 +92,6 @@ class ColorPalette{
         return self.colorWithDarkMode(darkColor: UIColor.black.alpha(0.6), lightColor: UIColor.black.alpha(0.4))
     }
     
-    // FIXME: To Archive
     public static var colorDenim:UIColor{
         return self.colorWithDarkMode(darkColorHex: "#3c5080", lightColorHex: "#3c5080")
     }
