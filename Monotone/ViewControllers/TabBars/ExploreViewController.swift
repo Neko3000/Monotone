@@ -149,7 +149,7 @@ extension ExploreViewController: UITableViewDelegate{
         titleLabel.numberOfLines = 0
         headerView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(headerView)
+            make.top.equalTo(headerView).offset(30.0)
             make.left.equalTo(headerView).offset(18.0)
             make.right.equalTo(headerView).offset(-18.0)
         }
