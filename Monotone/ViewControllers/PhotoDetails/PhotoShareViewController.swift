@@ -17,7 +17,7 @@ class PhotoShareViewController: BaseViewController {
     private var pageTitleView: PageTitleView!
     
     private var photoImageView: UIImageView!
-    private var photoShareSMView: PhotoShareSMView!
+    private var photoShareSNSView: PhotoShareSNSView!
     private var photoShareURLView: PhotoShareURLView!
     
     // MARK: - Private
@@ -68,10 +68,10 @@ class PhotoShareViewController: BaseViewController {
             make.bottom.equalTo(self.view).offset(-90.0)
         }
         
-        // PhotoShareSMView.
-        self.photoShareSMView = PhotoShareSMView()
-        self.view.addSubview(self.photoShareSMView)
-        self.photoShareSMView.snp.makeConstraints { (make) in
+        // PhotoShareSNSView.
+        self.photoShareSNSView = PhotoShareSNSView()
+        self.view.addSubview(self.photoShareSNSView)
+        self.photoShareSNSView.snp.makeConstraints { (make) in
             make.top.equalTo(self.photoImageView).offset(10.0)
             make.bottom.equalTo(self.photoImageView).offset(-10.0)
             make.left.equalTo(self.photoImageView.snp.right)

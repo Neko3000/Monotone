@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxRelay
 
-class PhotoShareSMView: BaseView {
+class PhotoShareSNSView: BaseView {
     
     // MARK: - Public
     
