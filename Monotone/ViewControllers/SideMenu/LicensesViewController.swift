@@ -78,7 +78,7 @@ class LicensesViewController: BaseViewController {
             .accept(UnsplashAgreement.allCases)
         
         // AgreementSelectionView.
-        licensesViewModel.output.agreements
+        licensesViewModel.input.agreements
             .unwrap()
             .subscribe(onNext:{ [weak self] (aggrements) in
                 guard let self = self else { return }
@@ -95,7 +95,7 @@ class LicensesViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
             
-        licensesViewModel.output.selectedAgreement
+        licensesViewModel.input.selectedAgreement
             .unwrap()
             .subscribe(onNext:{ [weak self] (agreement) in
                 guard let self = self else { return }

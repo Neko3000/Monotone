@@ -82,7 +82,7 @@ class SideMenuViewController: BaseViewController {
         
         // Bindings.
         // Pages.
-        sideMenuViewModel.output.pages
+        sideMenuViewModel.input.pages
             .bind(to: self.pageView.pages)
             .disposed(by: self.disposeBag)
                 
@@ -91,7 +91,7 @@ class SideMenuViewController: BaseViewController {
             .bind(to: sideMenuViewModel.input.currentUser)
             .disposed(by: self.disposeBag)
         
-        sideMenuViewModel.output.currentUser
+        sideMenuViewModel.input.currentUser
             .bind(to: self.profileView.user)
             .disposed(by: self.disposeBag)
         

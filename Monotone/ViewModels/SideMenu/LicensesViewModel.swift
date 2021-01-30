@@ -23,8 +23,7 @@ class LicensesViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Output
     struct Output {
-        var agreements: BehaviorRelay<[UnsplashAgreement]?> = BehaviorRelay<[UnsplashAgreement]?>(value: nil)
-        var selectedAgreement: BehaviorRelay<UnsplashAgreement?> = BehaviorRelay<UnsplashAgreement?>(value: nil)
+        //
     }
     public var output: Output = Output()
     
@@ -43,13 +42,7 @@ class LicensesViewModel: BaseViewModel, ViewModelStreamable{
         //
         
         // Bindings.
-        self.input.agreements
-            .bind(to: self.output.agreements)
-            .disposed(by: self.disposeBag)
-        
-        self.input.selectedAgreement
-            .bind(to: self.output.selectedAgreement)
-            .disposed(by: self.disposeBag)
+        //
     }
     
 }

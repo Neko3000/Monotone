@@ -24,7 +24,7 @@ class HelpViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Output
     struct Output {
-        var categories: BehaviorRelay<[UnsplashHelpCategory]?> = BehaviorRelay<[UnsplashHelpCategory]?>(value: nil)
+        //
     }
     public var output: Output = Output()
     
@@ -43,9 +43,7 @@ class HelpViewModel: BaseViewModel, ViewModelStreamable{
         //
         
         // Bindings.
-        self.input.categories
-            .bind(to: self.output.categories)
-            .disposed(by: self.disposeBag)
+        //
     }
     
 }

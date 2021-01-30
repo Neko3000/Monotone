@@ -91,7 +91,7 @@ class HelpViewController: BaseViewController {
         helpViewModel.input.categories.accept(UnsplashHelpCategory.allCases)
         
         // CollectionView.
-        helpViewModel.output.categories
+        helpViewModel.input.categories
             .unwrap()
             .bind(to: self.collectionView.rx.items(cellIdentifier: "HelpCollectionViewCell")){
                 (row, element, cell) in

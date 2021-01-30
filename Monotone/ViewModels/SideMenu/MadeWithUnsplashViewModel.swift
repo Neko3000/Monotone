@@ -23,9 +23,6 @@ class MadeWithUnsplashViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Output
     struct Output {
-        var categories: BehaviorRelay<[MadeWithUnsplashCategory]?> = BehaviorRelay<[MadeWithUnsplashCategory]?>(value: nil)
-        var selectedCategory: BehaviorRelay<MadeWithUnsplashCategory?> = BehaviorRelay<MadeWithUnsplashCategory?>(value: nil)
-        
         var madeItems: BehaviorRelay<[MadeWithUnsplashItem]?> = BehaviorRelay<[MadeWithUnsplashItem]?>(value: nil)
     }
     public var output: Output = Output()
@@ -45,14 +42,7 @@ class MadeWithUnsplashViewModel: BaseViewModel, ViewModelStreamable{
         //
         
         // Bindings.
-        self.input.categories
-            .bind(to: self.output.categories)
-            .disposed(by: self.disposeBag)
-        
-        self.input.selectedCategory
-            .bind(to: self.output.selectedCategory)
-            .disposed(by: self.disposeBag)
-        
+        // SelectedCategory.
         self.input.selectedCategory
             .unwrap()
             .subscribe(onNext:{ [weak self] (category) in

@@ -23,9 +23,6 @@ class StoreViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Output
     struct Output {
-        var categories: BehaviorRelay<[UnsplashStoreCategory]?> = BehaviorRelay<[UnsplashStoreCategory]?>(value: nil)
-        var selectedCategory: BehaviorRelay<UnsplashStoreCategory?> = BehaviorRelay<UnsplashStoreCategory?>(value: nil)
-        
         var sections: BehaviorRelay<[TableViewSection]> = BehaviorRelay<[TableViewSection]>(value: [])
     }
     public var output: Output = Output()
@@ -45,14 +42,7 @@ class StoreViewModel: BaseViewModel, ViewModelStreamable{
         //
         
         // Bindings.
-        self.input.categories
-            .bind(to: self.output.categories)
-            .disposed(by: self.disposeBag)
-        
-        self.input.selectedCategory
-            .bind(to: self.output.selectedCategory)
-            .disposed(by: self.disposeBag)
-        
+        // SelectedCategory.
         self.input.selectedCategory
             .unwrap()
             .subscribe(onNext:{ [weak self] (category) in

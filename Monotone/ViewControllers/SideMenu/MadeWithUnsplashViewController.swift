@@ -82,7 +82,7 @@ class MadeWithUnsplashViewController: BaseViewController {
             .accept(MadeWithUnsplashCategory.allCases)
         
         // CategorySelectionView.
-        madeWithUnsplashViewModel.output.categories
+        madeWithUnsplashViewModel.input.categories
             .unwrap()
             .subscribe(onNext:{ [weak self] (categories) in
                 guard let self = self else { return }

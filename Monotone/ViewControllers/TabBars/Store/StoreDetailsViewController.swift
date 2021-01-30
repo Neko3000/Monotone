@@ -225,7 +225,7 @@ class StoreDetailsViewController: BaseViewController {
         
         // Bindings.
         // StoreItem.
-        storeDetailsViewModel.output.storeItem
+        storeDetailsViewModel.input.storeItem
             .unwrap()
             .subscribe(onNext:{ [weak self] (storeItem) in
                 guard let self = self else { return }
@@ -256,7 +256,7 @@ class StoreDetailsViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         // PropertyView.
-        storeDetailsViewModel.output.storeItem
+        storeDetailsViewModel.input.storeItem
             .bind(to: self.propertyView.storeItem)
             .disposed(by: self.disposeBag)
     }

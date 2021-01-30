@@ -22,7 +22,7 @@ class StoreDetailsViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Output
     struct Output {
-        var storeItem: BehaviorRelay<StoreItem?> = BehaviorRelay<StoreItem?>(value: nil)
+        //
     }
     public var output: Output = Output()
     
@@ -43,9 +43,7 @@ class StoreDetailsViewModel: BaseViewModel, ViewModelStreamable{
         //
         
         // Bindings.
-        self.input.storeItem
-            .bind(to: self.output.storeItem)
-            .disposed(by: self.disposeBag)
+        //
     }
     
 }

@@ -103,7 +103,7 @@ class CollectionDetailsViewController: BaseViewController {
         // Bindings.
         // HeaderView.
         self.headerView.collection
-            .accept(collectionDetailsViewModel.output.collection.value)
+            .accept(collectionDetailsViewModel.input.collection.value)
         
         // CollectionView.
         collectionDetailsViewModel.output.photos

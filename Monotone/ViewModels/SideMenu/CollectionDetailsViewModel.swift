@@ -25,8 +25,6 @@ class CollectionDetailsViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Output
     struct Output {
-        var collection: BehaviorRelay<Collection?> = BehaviorRelay<Collection?>(value: nil)
-        
         var loadingMore: PublishRelay<Bool> = PublishRelay<Bool>()
         var reloading: PublishRelay<Bool> = PublishRelay<Bool>()
         
@@ -53,11 +51,6 @@ class CollectionDetailsViewModel: BaseViewModel, ViewModelStreamable{
         let collectionService = self.service(type: CollectionService.self)!
         
         // Binding
-        // Collection.
-        self.input.collection
-            .bind(to: self.output.collection)
-            .disposed(by: self.disposeBag)
-        
         // LoadMore.
         self.input.loadMoreAction = Action<Void, [Photo]>(workFactory: { [weak self] _ -> Observable<[Photo]> in
             guard let self = self else { return Observable.empty() }
