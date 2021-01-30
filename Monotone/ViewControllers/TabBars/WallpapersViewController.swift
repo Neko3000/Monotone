@@ -45,6 +45,7 @@ class WallpapersViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
         //
         self.view.backgroundColor = ColorPalette.colorWhite
@@ -92,6 +93,7 @@ class WallpapersViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let wallpapersViewModel = self.viewModel(type:WallpapersViewModel.self)!

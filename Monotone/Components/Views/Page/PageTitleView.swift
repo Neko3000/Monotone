@@ -42,7 +42,7 @@ class PageTitleView: BaseView {
         self.titleLabel = UILabel()
         self.titleLabel.textColor = ColorPalette.colorBlack
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 26)
-        self.titleLabel.text = "Building West"
+        self.titleLabel.text = "nil"
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self)
@@ -91,7 +91,9 @@ class PageTitleView: BaseView {
         super.buildLogic()
         
         // Bindings
+        // Title.
         self.title.bind(to: self.titleLabel.rx.text).disposed(by: self.disposeBag)
+        // Subtitle.
         self.subtitle.bind(to: self.subtitleLabel.rx.text).disposed(by: self.disposeBag)
     }
 }

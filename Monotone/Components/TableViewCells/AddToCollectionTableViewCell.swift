@@ -92,7 +92,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
         self.nameLabel = UILabel()
         self.nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         self.nameLabel.textColor = UIColor.white
-        self.nameLabel.text = "Tora"
+        self.nameLabel.text = "nil"
         self.contentView.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints({ (make) in
             make.left.equalTo(self.lockImageView.snp.right)
@@ -103,7 +103,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
         self.photoCountLabel = UILabel()
         self.photoCountLabel.font = UIFont.boldSystemFont(ofSize: 8)
         self.photoCountLabel.textColor = UIColor.white
-        self.photoCountLabel.text = "12 Photos"
+        self.photoCountLabel.text = "0 Photos"
         self.contentView.addSubview(self.photoCountLabel)
         self.photoCountLabel.snp.makeConstraints({ (make) in
             make.left.equalTo(self.nameLabel).offset(-10.0)

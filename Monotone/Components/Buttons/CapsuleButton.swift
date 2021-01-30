@@ -42,7 +42,7 @@ class CapsuleButton: BaseButton {
         self.contentEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 25.0)
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10.0, bottom: 0, right: -10.0)
         
-        // blurBackgroundView.
+        // BlurBackgroundView.
         let blurEffect = UIBlurEffect(style: .light)
         self.blurBackgroundView = UIVisualEffectView(effect: blurEffect)
         self.blurBackgroundView.isUserInteractionEnabled = false

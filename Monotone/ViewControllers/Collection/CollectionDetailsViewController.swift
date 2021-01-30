@@ -50,6 +50,7 @@ class CollectionDetailsViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
         //
         self.view.backgroundColor = ColorPalette.colorWhite
@@ -96,6 +97,7 @@ class CollectionDetailsViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let collectionDetailsViewModel = self.viewModel(type:CollectionDetailsViewModel.self)!

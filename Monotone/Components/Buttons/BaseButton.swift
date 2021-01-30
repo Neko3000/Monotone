@@ -29,10 +29,10 @@ class BaseButton: UIButton {
     }
     
     func buildSubviews(){
-        
+        // Implemented by subclass.
     }
     
     func buildLogic(){
-        
+        // Implemented by subclass.
     }
 }

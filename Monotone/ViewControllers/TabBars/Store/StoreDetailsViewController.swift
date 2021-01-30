@@ -54,6 +54,7 @@ class StoreDetailsViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
         //
         self.view.backgroundColor = ColorPalette.colorWhite
@@ -92,7 +93,7 @@ class StoreDetailsViewController: BaseViewController {
         self.usernameLabel = UILabel()
         self.usernameLabel.textColor = ColorPalette.colorGrayHeavy
         self.usernameLabel.font = UIFont.systemFont(ofSize: 14)
-        self.usernameLabel.text = "By Unsplash x van Sc"
+        self.usernameLabel.text = "nil"
         self.usernameLabel.numberOfLines = 0
         self.containerView.addSubview(self.usernameLabel)
         self.usernameLabel.snp.makeConstraints({ (make) in
@@ -161,7 +162,7 @@ class StoreDetailsViewController: BaseViewController {
         self.priceLabel = UILabel()
         self.priceLabel.textColor = ColorPalette.colorBlack
         self.priceLabel.font = UIFont.boldSystemFont(ofSize: 30)
-        self.priceLabel.text = "$95.00"
+        self.priceLabel.text = "$999.00"
         self.containerView.addSubview(self.priceLabel)
         self.priceLabel.snp.makeConstraints({ (make) in
             make.top.equalTo(self.photoAImageView.snp.bottom).offset(18.0)
@@ -172,7 +173,7 @@ class StoreDetailsViewController: BaseViewController {
         self.nameLabel = UILabel()
         self.nameLabel.textColor = ColorPalette.colorGrayHeavy
         self.nameLabel.font = UIFont.systemFont(ofSize: 10)
-        self.nameLabel.text = "The Urban Explorer Sweatshirt"
+        self.nameLabel.text = "nil"
         self.containerView.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints({ (make) in
             make.centerY.equalTo(self.priceLabel)
@@ -219,6 +220,7 @@ class StoreDetailsViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let storeDetailsViewModel = self.viewModel(type: StoreDetailsViewModel.self)!

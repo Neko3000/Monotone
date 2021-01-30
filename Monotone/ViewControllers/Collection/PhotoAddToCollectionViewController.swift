@@ -43,6 +43,9 @@ class PhotoAddToCollectionViewController: BaseViewController {
     */
     
     override func buildSubviews() {
+        super.buildSubviews()
+
+        //
         self.view.backgroundColor = UIColor.white
         
         // PageTitleView.
@@ -93,6 +96,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let photoAddToCollectionViewModel = self.viewModel(type: PhotoAddToCollectionViewModel.self)!

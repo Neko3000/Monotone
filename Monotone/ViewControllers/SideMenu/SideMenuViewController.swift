@@ -40,6 +40,7 @@ class SideMenuViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
         //
         self.view.backgroundColor = ColorPalette.colorWhite

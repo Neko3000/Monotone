@@ -41,6 +41,9 @@ class PhotoDetailsViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
+
+        //
         self.view.backgroundColor = UIColor.black
         
         // NavBar.
@@ -124,6 +127,7 @@ class PhotoDetailsViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
                 
         // ViewModel.
         let photoDetailsViewModel = self.viewModel(type:PhotoDetailsViewModel.self)!

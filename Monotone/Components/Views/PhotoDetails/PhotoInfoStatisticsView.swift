@@ -65,6 +65,7 @@ class PhotoInfoStatisticsView: BaseView {
             make.left.right.equalTo(self)
         }
         
+        // ViewCountImageView.
         self.viewCountImageView = UIImageView()
         self.viewCountImageView.image = UIImage(named: "info-view")
         self.viewCountContainterView.addSubview(self.viewCountImageView)
@@ -74,8 +75,9 @@ class PhotoInfoStatisticsView: BaseView {
             make.width.height.equalTo(30.0)
         }
         
+        // ViewCountLabel.
         self.viewCountLabel = UILabel()
-        self.viewCountLabel.text = "660,031"
+        self.viewCountLabel.text = "0"
         self.viewCountLabel.textColor = ColorPalette.colorBlack
         self.viewCountLabel.font = UIFont.boldSystemFont(ofSize: 24)
         self.viewCountContainterView.addSubview(self.viewCountLabel)
@@ -84,11 +86,11 @@ class PhotoInfoStatisticsView: BaseView {
             make.centerX.equalTo(self.viewCountImageView)
             make.left.greaterThanOrEqualTo(self.viewCountContainterView.snp.left).offset(10.0)
             make.right.lessThanOrEqualTo(self.viewCountContainterView.snp.right).offset(-10.0)
-
         }
         
+        // ViewCountCompareLabel.
         self.viewCountCompareLabel = UILabel()
-        self.viewCountCompareLabel.text = "+173,817"
+        self.viewCountCompareLabel.text = "+0"
         self.viewCountCompareLabel.textColor = ColorPalette.colorBlack
         self.viewCountCompareLabel.font = UIFont.systemFont(ofSize: 10)
         self.viewCountContainterView.addSubview(self.viewCountCompareLabel)
@@ -99,6 +101,7 @@ class PhotoInfoStatisticsView: BaseView {
             make.right.lessThanOrEqualTo(self.viewCountContainterView.snp.right).offset(-10.0)
         }
         
+        // ViewSinceLastMonthLabel.
         self.viewSinceLastMonthLabel = UILabel()
         self.viewSinceLastMonthLabel.text = NSLocalizedString("uns_info_since_to_last_month", comment: "since last month")
         self.viewSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight
@@ -122,6 +125,7 @@ class PhotoInfoStatisticsView: BaseView {
             make.left.right.equalTo(self)
         }
         
+        // LikeCountImageView.
         self.likeCountImageView = UIImageView()
         self.likeCountImageView.image = UIImage(named: "info-like")
         self.likeCountContainterView.addSubview(self.likeCountImageView)
@@ -131,8 +135,9 @@ class PhotoInfoStatisticsView: BaseView {
             make.width.height.equalTo(30.0)
         }
         
+        // LikeCountLabel.
         self.likeCountLabel = UILabel()
-        self.likeCountLabel.text = "1455"
+        self.likeCountLabel.text = "0"
         self.likeCountLabel.textColor = ColorPalette.colorBlack
         self.likeCountLabel.font = UIFont.boldSystemFont(ofSize: 24)
         self.likeCountContainterView.addSubview(self.likeCountLabel)
@@ -144,8 +149,9 @@ class PhotoInfoStatisticsView: BaseView {
 
         }
         
+        // LikeCountCompareLabel.
         self.likeCountCompareLabel = UILabel()
-        self.likeCountCompareLabel.text = "+1817"
+        self.likeCountCompareLabel.text = "+0"
         self.likeCountCompareLabel.textColor = ColorPalette.colorBlack
         self.likeCountCompareLabel.font = UIFont.systemFont(ofSize: 10)
         self.likeCountContainterView.addSubview(self.likeCountCompareLabel)
@@ -156,6 +162,7 @@ class PhotoInfoStatisticsView: BaseView {
             make.right.lessThanOrEqualTo(self.likeCountContainterView.snp.right).offset(-10.0)
         }
         
+        // LikeSinceLastMonthLabel.
         self.likeSinceLastMonthLabel = UILabel()
         self.likeSinceLastMonthLabel.text = NSLocalizedString("uns_info_since_to_last_month", comment: "since last month")
         self.likeSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight
@@ -179,6 +186,7 @@ class PhotoInfoStatisticsView: BaseView {
             make.left.right.equalTo(self)
         }
         
+        // DownloadCountImageView.
         self.downloadCountImageView = UIImageView()
         self.downloadCountImageView.image = UIImage(named: "info-download")
         self.downloadCountContainterView.addSubview(self.downloadCountImageView)
@@ -188,8 +196,9 @@ class PhotoInfoStatisticsView: BaseView {
             make.width.height.equalTo(30.0)
         }
         
+        // DownloadCountLabel.
         self.downloadCountLabel = UILabel()
-        self.downloadCountLabel.text = "79"
+        self.downloadCountLabel.text = "0"
         self.downloadCountLabel.textColor = ColorPalette.colorBlack
         self.downloadCountLabel.font = UIFont.boldSystemFont(ofSize: 24)
         self.downloadCountContainterView.addSubview(self.downloadCountLabel)
@@ -200,8 +209,9 @@ class PhotoInfoStatisticsView: BaseView {
             make.right.lessThanOrEqualTo(self.downloadCountContainterView.snp.right).offset(-10.0)
         }
         
+        // DownloadCountCompareLabel.
         self.downloadCountCompareLabel = UILabel()
-        self.downloadCountCompareLabel.text = "+17"
+        self.downloadCountCompareLabel.text = "+0"
         self.downloadCountCompareLabel.textColor = ColorPalette.colorBlack
         self.downloadCountCompareLabel.font = UIFont.systemFont(ofSize: 10)
         self.downloadCountContainterView.addSubview(self.downloadCountCompareLabel)
@@ -212,6 +222,7 @@ class PhotoInfoStatisticsView: BaseView {
             make.right.lessThanOrEqualTo(self.downloadCountContainterView.snp.right).offset(-10.0)
         }
         
+        // DownloadSinceLastMonthLabel.
         self.downloadSinceLastMonthLabel = UILabel()
         self.downloadSinceLastMonthLabel.text = NSLocalizedString("uns_info_since_to_last_month", comment: "since last month")
         self.downloadSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight

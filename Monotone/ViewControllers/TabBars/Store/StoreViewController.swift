@@ -38,7 +38,9 @@ class StoreViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
+        //
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // HeaderView.
@@ -67,6 +69,7 @@ class StoreViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let storeViewModel = self.viewModel(type: StoreViewModel.self)!

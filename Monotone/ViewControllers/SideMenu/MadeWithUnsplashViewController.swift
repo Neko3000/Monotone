@@ -40,7 +40,9 @@ class MadeWithUnsplashViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
+        //
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // CategorySelectionView.
@@ -72,6 +74,7 @@ class MadeWithUnsplashViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let madeWithUnsplashViewModel = self.viewModel(type: MadeWithUnsplashViewModel.self)!

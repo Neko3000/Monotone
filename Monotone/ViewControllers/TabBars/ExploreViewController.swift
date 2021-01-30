@@ -50,7 +50,9 @@ class ExploreViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
+        //
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // HeaderView.
@@ -78,6 +80,7 @@ class ExploreViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let exploreViewModel = self.viewModel(type:ExploreViewModel.self)!

@@ -41,6 +41,7 @@ class PhotoShareViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
         //
         self.view.backgroundColor = ColorPalette.colorForeground
@@ -90,6 +91,7 @@ class PhotoShareViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let photoShareViewModel = self.viewModel(type: PhotoShareViewModel.self)!

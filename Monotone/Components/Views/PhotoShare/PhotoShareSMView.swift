@@ -36,6 +36,7 @@ class PhotoShareSNSView: BaseView {
     override func buildSubviews() {
         super.buildSubviews()
         
+        // StackView.
         self.stackView = UIStackView()
         self.stackView.axis = .vertical
         self.stackView.alignment = .center
@@ -45,6 +46,7 @@ class PhotoShareSNSView: BaseView {
             make.left.top.right.bottom.equalTo(self)
         }
         
+        // PinterestBtn.
         self.pinterestBtn = FloatBlockButton()
         self.pinterestBtn.setTitle("pinterest", for: .normal)
         self.pinterestBtn.setImage(UIImage(named: "social-pinterest"), for: .normal)
@@ -53,6 +55,7 @@ class PhotoShareSNSView: BaseView {
             make.width.height.equalTo(80.0)
         }
         
+        // InstagramBtn.
         self.instagramBtn = FloatBlockButton()
         self.instagramBtn.setTitle("instagram", for: .normal)
         self.instagramBtn.setImage(UIImage(named: "social-instagram"), for: .normal)
@@ -61,6 +64,7 @@ class PhotoShareSNSView: BaseView {
             make.width.height.equalTo(80.0)
         }
         
+        // FacebookBtn.
         self.facebookBtn = FloatBlockButton()
         self.facebookBtn.setTitle("facebook", for: .normal)
         self.facebookBtn.setImage(UIImage(named: "social-facebook"), for: .normal)
@@ -69,6 +73,7 @@ class PhotoShareSNSView: BaseView {
             make.width.height.equalTo(80.0)
         }
         
+        // EmailBtn.
         self.emailBtn = FloatBlockButton()
         self.emailBtn.setTitle("email", for: .normal)
         self.emailBtn.setImage(UIImage(named: "social-email"), for: .normal)
@@ -77,6 +82,7 @@ class PhotoShareSNSView: BaseView {
             make.width.height.equalTo(80.0)
         }
         
+        // TwitterBtn.
         self.twitterBtn = FloatBlockButton()
         self.twitterBtn.setTitle("twitter", for: .normal)
         self.twitterBtn.setImage(UIImage(named: "social-twitter"), for: .normal)
@@ -90,6 +96,6 @@ class PhotoShareSNSView: BaseView {
         super.buildLogic()
         
         // Bindings
-        
+        //
     }
 }

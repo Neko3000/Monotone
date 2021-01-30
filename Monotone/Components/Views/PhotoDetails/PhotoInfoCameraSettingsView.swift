@@ -98,7 +98,7 @@ class PhotoInfoCameraSettingsView: BaseView {
         
         // MakeContentLabel.
         self.makeContentLabel = UILabel()
-        self.makeContentLabel.text = "NIKON CORPORATION"
+        self.makeContentLabel.text = "nil"
         self.makeContentLabel.textColor = ColorPalette.colorGrayHeavy
         self.makeContentLabel.font = UIFont.boldSystemFont(ofSize: 16)
         self.addSubview(self.makeContentLabel)
@@ -120,7 +120,7 @@ class PhotoInfoCameraSettingsView: BaseView {
         
         // ModelContentLabel.
         self.modelContentLabel = UILabel()
-        self.modelContentLabel.text = "NIKON D300"
+        self.modelContentLabel.text = "nil"
         self.modelContentLabel.textColor = ColorPalette.colorGrayHeavy
         self.modelContentLabel.font = UIFont.boldSystemFont(ofSize: 16)
         self.addSubview(self.modelContentLabel)
@@ -188,7 +188,7 @@ class PhotoInfoCameraSettingsView: BaseView {
         
         // ApertureContentLabel
         self.apertureContentLabel = UILabel()
-        self.apertureContentLabel.text = "ƒ/5.6"
+        self.apertureContentLabel.text = "ƒ/7.0"
         self.apertureContentLabel.textColor = ColorPalette.colorGrayHeavy
         self.apertureContentLabel.font = UIFont.boldSystemFont(ofSize: 16)
         self.addSubview(self.apertureContentLabel)
@@ -233,7 +233,7 @@ class PhotoInfoCameraSettingsView: BaseView {
         
         // DimensionsContentLabel.
         self.dimensionsContentLabel = UILabel()
-        self.dimensionsContentLabel.text = "2648 × 3310"
+        self.dimensionsContentLabel.text = "1920 × 1080"
         self.dimensionsContentLabel.textColor = ColorPalette.colorGrayHeavy
         self.dimensionsContentLabel.font = UIFont.boldSystemFont(ofSize: 16)
         self.addSubview(self.dimensionsContentLabel)

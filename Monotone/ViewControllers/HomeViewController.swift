@@ -45,7 +45,9 @@ class HomeViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
+        //
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // SideMenuViewController.
@@ -78,8 +80,10 @@ class HomeViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
+        //
         
         // Bindings.
         // SwipeGestureRecognizer.
@@ -92,7 +96,7 @@ class HomeViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        //
+        // MenuBtnPressed.
         self.photoListViewController.menuBtnPressed
             .ignoreWhen({ _ in self.animationState == .showSideMenu })
             .subscribe(onNext: { [weak self] _ in

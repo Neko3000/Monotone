@@ -20,6 +20,7 @@ class MTTabBarController: BaseTabBarController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
         self.tabBar.tintColor = ColorPalette.colorBlack
         

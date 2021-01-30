@@ -51,7 +51,9 @@ class PhotoListViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
+        //
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // PhotoListHeaderView.
@@ -109,6 +111,7 @@ class PhotoListViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let photoListViewModel = self.viewModel(type:PhotoListViewModel.self)!

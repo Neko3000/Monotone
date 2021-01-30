@@ -37,6 +37,7 @@ class HelpViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
         // NavBar.
         self.navBarTransparent = true
@@ -82,6 +83,7 @@ class HelpViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let helpViewModel = self.viewModel(type: HelpViewModel.self)!

@@ -46,7 +46,9 @@ class MyPhotosViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
+        //
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // CollectionView.
@@ -110,6 +112,7 @@ class MyPhotosViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let myPhotosViewModel = self.viewModel(type:MyPhotosViewModel.self)!

@@ -41,7 +41,9 @@ class LicensesViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
         
+        //
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // AgreementSelectionView.
@@ -68,6 +70,7 @@ class LicensesViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let licensesViewModel = self.viewModel(type: LicensesViewModel.self)!

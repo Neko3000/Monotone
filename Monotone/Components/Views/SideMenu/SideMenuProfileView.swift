@@ -98,6 +98,7 @@ class SideMenuProfileView: BaseView{
             make.centerY.equalTo(self.editBtn)
         }
         
+        // ContainerView.
         self.containerView = UIView()
         self.containerView.layer.masksToBounds = true
         self.addSubview(self.containerView)

@@ -52,6 +52,9 @@ class PhotoCreateCollectionViewController: BaseViewController {
     
     // MARK: - Life Cycle
     override func buildSubviews() {
+        super.buildSubviews()
+
+        //
         self.view.backgroundColor = ColorPalette.colorWhite
         
         // PageTitleView.
@@ -159,6 +162,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
                 
         // ViewModel.
         let photoCreateCollectionViewModel = self.viewModel(type: PhotoCreateCollectionViewModel.self)!

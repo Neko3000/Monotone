@@ -47,6 +47,8 @@ class PhotoInfoViewController: BaseViewController {
     }
     
     override func buildSubviews() {
+        super.buildSubviews()
+
         // 
         self.view.backgroundColor = ColorPalette.colorForeground
         
@@ -94,6 +96,7 @@ class PhotoInfoViewController: BaseViewController {
     }
     
     override func buildLogic() {
+        super.buildLogic()
         
         // ViewModel.
         let photoInfoViewModel = self.viewModel(type: PhotoInfoViewModel.self)!
