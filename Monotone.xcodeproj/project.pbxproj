@@ -623,11 +623,10 @@
 		1423201F25B552EB00ECB33C /* TabBars */ = {
 			isa = PBXGroup;
 			children = (
-				1423202125B5533900ECB33C /* CollectionsViewController.swift */,
-				141F931425B679FB008E8224 /* CollectionDetailsViewController.swift */,
-				EBA9D38925B2EFE1006A7365 /* WallpapersViewController.swift */,
-				1431462025BD7B3700D9717D /* ExploreViewController.swift */,
 				EBA9D37D25B2DB22006A7365 /* Store */,
+				EBA9D38925B2EFE1006A7365 /* WallpapersViewController.swift */,
+				1423202125B5533900ECB33C /* CollectionsViewController.swift */,
+				1431462025BD7B3700D9717D /* ExploreViewController.swift */,
 			);
 			path = TabBars;
 			sourceTree = "<group>";
@@ -635,8 +634,10 @@
 		1423202025B5531100ECB33C /* TabBars */ = {
 			isa = PBXGroup;
 			children = (
-				EB63D5FC25B3DABD00C33624 /* WallpapersViewModel.swift */,
 				EBA9D38325B2DBD2006A7365 /* Store */,
+				EB63D5FC25B3DABD00C33624 /* WallpapersViewModel.swift */,
+				1482330F25B556DF00242CEB /* CollectionsViewModel.swift */,
+				144DF50125BD97610058FE14 /* ExploreViewModel.swift */,
 			);
 			path = TabBars;
 			sourceTree = "<group>";
@@ -1180,6 +1181,7 @@
 		EBA9D37E25B2DB6A006A7365 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
+				141F931425B679FB008E8224 /* CollectionDetailsViewController.swift */,
 				1406EADE257A5B9F0096DE82 /* PhotoAddToCollectionViewController.swift */,
 				14842E31257E003100364FFF /* PhotoCreateCollectionViewController.swift */,
 			);
@@ -1190,7 +1192,6 @@
 			isa = PBXGroup;
 			children = (
 				14071B172565FD1C00D418C8 /* PhotoListViewModel.swift */,
-				144DF50125BD97610058FE14 /* ExploreViewModel.swift */,
 			);
 			path = PhotoList;
 			sourceTree = "<group>";
@@ -1208,7 +1209,7 @@
 		EBA9D38125B2DBC6006A7365 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				1482330F25B556DF00242CEB /* CollectionsViewModel.swift */,
+				14CE3F1A25B7FDA000AC10C6 /* CollectionDetailsViewModel.swift */,
 				14842D4C257DD3F200364FFF /* PhotoAddToCollectionViewModel.swift */,
 				14842E34257E0F6300364FFF /* PhotoCreateCollectionViewModel.swift */,
 			);
@@ -1223,7 +1224,6 @@
 				14EE8D38259F2E9000132F74 /* LicensesViewModel.swift */,
 				143BACE325A70AD800FF9D8A /* HelpViewModel.swift */,
 				EB8B907125A79BB900336A39 /* MadeWithUnsplashViewModel.swift */,
-				14CE3F1A25B7FDA000AC10C6 /* CollectionDetailsViewModel.swift */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
