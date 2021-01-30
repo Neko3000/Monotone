@@ -42,6 +42,9 @@
 
 "uns_share_title" = "Share";
 "uns_share_subtitle_prefix" = "Photo by %@";
+"uns_share_copy_btn_title" = "Copy Link";
+"uns_share_copy_message_title" = "Copied";
+"uns_share_copy_message_description" = "The URL of this photo has been copied to clipboard successfully.";
 
 "uns_add_collection_title" = "Add to collection";
 "uns_add_collection_total_photo_suffix" = "%d Photos";

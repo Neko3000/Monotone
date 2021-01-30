@@ -45,6 +45,9 @@
 
 "uns_share_title" = "分享";
 "uns_share_subtitle_prefix" = "由 %@ 拍摄";
+"uns_share_copy_btn_title" = "拷贝";
+"uns_share_copy_message_title" = "已拷贝";
+"uns_share_copy_message_description" = "这张照片的URL已经被成功拷贝到剪贴板.";
 
 "uns_add_collection_title" = "添加到收藏";
 "uns_add_collection_total_photo_suffix" = "%d 张图片";

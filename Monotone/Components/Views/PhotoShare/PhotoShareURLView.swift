@@ -43,7 +43,6 @@ class PhotoShareURLView: BaseView{
         self.urlLabel = UILabel()
         self.urlLabel.font = UIFont.systemFont(ofSize: 12)
         self.urlLabel.textColor = ColorPalette.colorGrayLight
-        self.urlLabel.text = "https://unsplash.com/photos/3wKKpxlZr1Q"
         self.urlLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         self.urlLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         self.addSubview(self.urlLabel)
@@ -57,7 +56,7 @@ class PhotoShareURLView: BaseView{
         self.copyBtn.backgroundColor = ColorPalette.colorBlack
         self.copyBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12.0)
         self.copyBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
-        self.copyBtn.setTitle("Copy Link", for: .normal)
+        self.copyBtn.setTitle(NSLocalizedString("uns_share_copy_btn_title", comment: "Copy Link"), for: .normal)
         self.copyBtn.layer.cornerRadius = 2.0
         self.copyBtn.layer.masksToBounds = true
         self.copyBtn.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
@@ -75,6 +74,21 @@ class PhotoShareURLView: BaseView{
         super.buildLogic()
         
         // Bindings.
-        self.url.bind(to: self.urlLabel.rx.text).disposed(by: self.disposeBag)
+        // URL.
+        self.url
+            .bind(to: self.urlLabel.rx.text)
+            .disposed(by: self.disposeBag)
+        
+        // CopyBtn.
+        self.copyBtn.rx.tap
+            .subscribe(onNext:{ [weak self] (_) in
+                guard let self = self else { return }
+                
+                UIPasteboard.general.string = self.url.value
+                MessageCenter.shared.showMessage(title: NSLocalizedString("uns_share_copy_message_title", comment: "Copied"),
+                                                 body: NSLocalizedString("uns_share_copy_message_description", comment: "The URL of this photo has been copied to clipboard successfully."),
+                                                 theme: .success)
+            })
+            .disposed(by: self.disposeBag)
     }
 }
