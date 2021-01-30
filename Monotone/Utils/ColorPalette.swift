@@ -84,6 +84,14 @@ class ColorPalette{
         return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#ffffff")
     }
     
+    public static var colorForeground:UIColor{
+        return self.colorWithDarkMode(darkColorHex: "#151515", lightColorHex: "#ffffff")
+    }
+    
+    public static var colorBackground:UIColor{
+        return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#f1f1f1")
+    }
+    
     public static var colorShadow:UIColor{
         return UIColor.black.alpha(0.09)
     }

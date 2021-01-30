@@ -56,6 +56,7 @@ class PhotoShareURLView: BaseView{
         self.copyBtn = UIButton()
         self.copyBtn.backgroundColor = ColorPalette.colorBlack
         self.copyBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12.0)
+        self.copyBtn.setTitleColor(ColorPalette.colorWhite, for: .normal)
         self.copyBtn.setTitle("Copy Link", for: .normal)
         self.copyBtn.layer.cornerRadius = 2.0
         self.copyBtn.layer.masksToBounds = true

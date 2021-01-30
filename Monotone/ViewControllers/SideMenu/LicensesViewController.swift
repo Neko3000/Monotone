@@ -56,6 +56,7 @@ class LicensesViewController: BaseViewController {
         
         // WebView.
         self.webView = WKWebView()
+        self.webView.backgroundColor = UIColor.clear
         self.webView.navigationDelegate = self
         self.view.addSubview(self.webView)
         self.webView.snp.makeConstraints { (make) in
@@ -121,12 +122,29 @@ class LicensesViewController: BaseViewController {
 
 // MARK: - WKNavigationDelegate
 extension LicensesViewController: WKNavigationDelegate{
-    
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
+        
+        // Forbid <a>.
         guard navigationAction.navigationType == .other || navigationAction.navigationType == .reload  else {
             decisionHandler(.cancel)
             return
         }
+        
+        webView.isHidden = true
         decisionHandler(.allow)
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+
+        // DarkMode.
+        if(UITraitCollection.current.userInterfaceStyle == .dark){
+            let cssString = "@media (prefers-color-scheme: dark) {body { background-color: black; color: white;} a:link {color: #0096e2;} a:visited {color: #9d57df;}}"
+            let jsString = "var style = document.createElement('style'); style.innerHTML = '\(cssString)'; document.head.appendChild(style);"
+            webView.evaluateJavaScript(jsString, completionHandler: nil)
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            webView.isHidden = false
+        }
     }
 }

@@ -61,6 +61,10 @@ class PhotoInfoCameraSettingsView: BaseView {
     override func buildSubviews() {
         super.buildSubviews()
         
+        //
+        //
+        
+        // CameraImageView.
         self.cameraImageView = UIImageView()
         self.cameraImageView.image = UIImage(named: "info-camera")
         self.addSubview(self.cameraImageView)
@@ -69,6 +73,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.left.equalTo(self)
         }
         
+        // CameraLabel.
         self.cameraLabel = UILabel()
         self.cameraLabel.text = NSLocalizedString("uns_info_camera_settings", comment: "Camera")
         self.cameraLabel.textColor = ColorPalette.colorBlack
@@ -79,6 +84,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.left.equalTo(self.cameraImageView.snp.right).offset(3.0)
         }
         
+        // MakeLabel.
         self.makeLabel = UILabel()
         self.makeLabel.text = NSLocalizedString("uns_info_camera_settings_make", comment: "Make")
         self.makeLabel.textColor = ColorPalette.colorGrayLight
@@ -90,6 +96,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.snp.bottom).multipliedBy(1/5.0)
         }
         
+        // MakeContentLabel.
         self.makeContentLabel = UILabel()
         self.makeContentLabel.text = "NIKON CORPORATION"
         self.makeContentLabel.textColor = ColorPalette.colorGrayHeavy
@@ -100,6 +107,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.makeLabel.snp.bottom).offset(6.0)
         }
         
+        // ModelLabel.
         self.modelLabel = UILabel()
         self.modelLabel.text = NSLocalizedString("uns_info_camera_settings_model", comment: "Model")
         self.modelLabel.textColor = ColorPalette.colorGrayLight
@@ -110,6 +118,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.snp.bottom).multipliedBy(1/5.0)
         }
         
+        // ModelContentLabel.
         self.modelContentLabel = UILabel()
         self.modelContentLabel.text = "NIKON D300"
         self.modelContentLabel.textColor = ColorPalette.colorGrayHeavy
@@ -120,6 +129,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.modelLabel.snp.bottom).offset(6.0)
         }
         
+        // FocalLengthLabel.
         self.focalLengthLabel = UILabel()
         self.focalLengthLabel.text = NSLocalizedString("uns_info_camera_settings_focal_length", comment: "Focal Length")
         self.focalLengthLabel.textColor = ColorPalette.colorGrayLight
@@ -131,6 +141,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.snp.bottom).multipliedBy(2/5.0)
         }
         
+        // FocalLengthContentLabel.
         self.focalLengthContentLabel = UILabel()
         self.focalLengthContentLabel.text = "50.0mm"
         self.focalLengthContentLabel.textColor = ColorPalette.colorGrayHeavy
@@ -141,6 +152,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.focalLengthLabel.snp.bottom).offset(6.0)
         }
         
+        // ShutterSpeedLabel.
         self.shutterSpeedLabel = UILabel()
         self.shutterSpeedLabel.text = NSLocalizedString("uns_info_camera_settings_shutter_speed", comment: "Shutter Speed")
         self.shutterSpeedLabel.textColor = ColorPalette.colorGrayLight
@@ -151,6 +163,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.snp.bottom).multipliedBy(2/5.0)
         }
         
+        // ShutterSpeedContentLabel.
         self.shutterSpeedContentLabel = UILabel()
         self.shutterSpeedContentLabel.text = "1/250s"
         self.shutterSpeedContentLabel.textColor = ColorPalette.colorGrayHeavy
@@ -161,6 +174,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.shutterSpeedLabel.snp.bottom).offset(6.0)
         }
         
+        // ApertureLabel.
         self.apertureLabel = UILabel()
         self.apertureLabel.text = NSLocalizedString("uns_info_camera_settings_aperture", comment: "Aperture")
         self.apertureLabel.textColor = ColorPalette.colorGrayLight
@@ -172,6 +186,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.snp.bottom).multipliedBy(3/5.0)
         }
         
+        // ApertureContentLabel
         self.apertureContentLabel = UILabel()
         self.apertureContentLabel.text = "ƒ/5.6"
         self.apertureContentLabel.textColor = ColorPalette.colorGrayHeavy
@@ -182,6 +197,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.apertureLabel.snp.bottom).offset(6.0)
         }
         
+        // ISOLabel
         self.isoLabel = UILabel()
         self.isoLabel.text = NSLocalizedString("uns_info_camera_settings_iso", comment: "ISO")
         self.isoLabel.textColor = ColorPalette.colorGrayLight
@@ -192,6 +208,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.snp.bottom).multipliedBy(3/5.0)
         }
         
+        // ISOContentLabel.
         self.isoContentLabel = UILabel()
         self.isoContentLabel.text = "400"
         self.isoContentLabel.textColor = ColorPalette.colorGrayHeavy
@@ -202,6 +219,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.isoLabel.snp.bottom).offset(6.0)
         }
         
+        // DimensionsLabel.
         self.dimensionsLabel = UILabel()
         self.dimensionsLabel.text = NSLocalizedString("uns_info_camera_settings_dimensions", comment: "Dimensions")
         self.dimensionsLabel.textColor = ColorPalette.colorGrayLight
@@ -213,6 +231,7 @@ class PhotoInfoCameraSettingsView: BaseView {
             make.top.equalTo(self.snp.bottom).multipliedBy(4/5.0)
         }
         
+        // DimensionsContentLabel.
         self.dimensionsContentLabel = UILabel()
         self.dimensionsContentLabel.text = "2648 × 3310"
         self.dimensionsContentLabel.textColor = ColorPalette.colorGrayHeavy
@@ -228,6 +247,7 @@ class PhotoInfoCameraSettingsView: BaseView {
         super.buildLogic()
         
         // Bindings
+        // Photo.
         self.photo
             .unwrap()
             .subscribe(onNext: { [weak self] (photo) in

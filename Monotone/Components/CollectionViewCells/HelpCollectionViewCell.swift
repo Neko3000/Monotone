@@ -40,8 +40,8 @@ class HelpCollectionViewCell: UICollectionViewCell {
     
     private func buildSubviews(){
         
-        self.backgroundColor = ColorPalette.colorWhite
-        
+        //
+        self.backgroundColor = ColorPalette.colorForeground
         self.layer.cornerRadius = 8.0
         
         // TitleLabel.

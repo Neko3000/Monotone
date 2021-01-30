@@ -47,7 +47,8 @@ class PhotoInfoViewController: BaseViewController {
     }
     
     override func buildSubviews() {
-        self.view.backgroundColor = UIColor.white
+        // 
+        self.view.backgroundColor = ColorPalette.colorForeground
         
         // PageTitleView.
         self.pageTitleView = PageTitleView()

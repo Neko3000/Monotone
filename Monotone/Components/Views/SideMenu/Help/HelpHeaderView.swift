@@ -46,7 +46,8 @@ class HelpHeaderView: BaseView {
         
         // KeywordSearchBar.
         self.keywordSearchBar = UISearchBar()
-        self.keywordSearchBar.backgroundColor = UIColor.white
+        self.keywordSearchBar.searchBarStyle = .minimal
+        self.keywordSearchBar.backgroundColor = ColorPalette.colorForeground
         self.keywordSearchBar.searchTextPositionAdjustment = UIOffset(horizontal: 15.0, vertical: 0)
         self.keywordSearchBar.setImage(UIImage(named: "header-input-search"), for: .search, state: .normal)
         self.keywordSearchBar.placeholder = NSLocalizedString("uns_help_search_placeholder", comment: "Search for Articles…")
