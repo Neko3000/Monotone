@@ -138,3 +138,5 @@
 "uns_explore_photos_description"  = "All photos are free to download and use under the  Unsplash License.";
 "uns_explore_collections_title"  = "Collections";
 "uns_explore_collections_description" = "Explore the world through collections of beautiful HD pictures free to use under the Unsplash License.";
+"uns_explore_type_explore"  = "Explore";
+"uns_explore_type_popular"  = "Popular";

@@ -141,3 +141,5 @@
 "uns_explore_photos_description"  = "在Unsplash的许可证所保证的，为您提供的照片。";
 "uns_explore_collections_title"  = "收藏";
 "uns_explore_collections_description" = "在Unsplash的许可证所保证的，由世界上好看的高清图片组成的收藏。";
+"uns_explore_type_explore"  = "探索";
+"uns_explore_type_popular"  = "人气";

@@ -32,11 +32,11 @@ extension UnsplashExploreType: RawRepresentable, CaseIterable{
             
         case .explore:
             return (key: "explore",
-                    title : "explore")
+                    title : NSLocalizedString("uns_explore_type_explore",comment:"Explore"))
             
         case .popular:
             return (key: "popular",
-                    title : "popular")
+                    title : NSLocalizedString("uns_explore_type_popular",comment:"Popular"))
         }
     }
 }
