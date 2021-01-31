@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import Kingfisher
 
-// MARK: - PhotoDetailsViewController
+// MARK: - PhotoInfoViewController
 class PhotoInfoViewController: BaseViewController {
     
     // MARK: - Controls
@@ -70,7 +70,7 @@ class PhotoInfoViewController: BaseViewController {
         self.view.addSubview(self.photoImageView)
         self.photoImageView.snp.makeConstraints { (make) in
             make.top.equalTo(self.pageTitleView.snp.bottom).offset(30.0)
-            make.left.equalTo(15.0)
+            make.left.equalTo(self.view).offset(15.0)
             make.right.equalTo(self.view.snp.right).multipliedBy(4.0/7)
             make.bottom.equalTo(self.view).multipliedBy(1/2.0)
         }
