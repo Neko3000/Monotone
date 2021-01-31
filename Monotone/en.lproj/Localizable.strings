@@ -66,6 +66,10 @@
 "uns_side_menu_like_count_suffix" = "%d Liked";
 "uns_side_menu_like_description" = "%d Photos · %@";
 
+"uns_side_menu_view_count_title" = "Views";
+"uns_side_menu_like_count_title" = "Likes";
+"uns_side_menu_download_count_title" = "Downloads";
+
 "uns_side_menu_option_my_photos" = "My Photos";
 "uns_side_menu_option_hiring" = "Hiring";
 "uns_side_menu_option_licenses" = "Licenses";

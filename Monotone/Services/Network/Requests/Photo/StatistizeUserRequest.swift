@@ -1,22 +1,22 @@
 //
-//  StatisticizePhotoRequest.swift
+//  StatisticizeUserRequest.swift
 //  Monotone
 //
-//  Created by Xueliang Chen on 2020/12/2.
+//  Created by Xueliang Chen on 2021/1/31.
 //
 
 import Foundation
 import ObjectMapper
 
-class StatisticizePhotoRequest: BaseRequest {
+class StatisticizeUserRequest: BaseRequest {
 
     override var api: String?{
         get{
-            return "photos/\(self.id ?? "")/statistics"
+            return "users/\(self.username ?? "")/statistics"
         }
     }
     
-    public var id: String?
+    public var username: String?
     public var resolution: String?
     public var quantity: Int?
     

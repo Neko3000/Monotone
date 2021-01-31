@@ -69,6 +69,10 @@
 "uns_side_menu_like_count_suffix" = "%d 喜爱";
 "uns_side_menu_like_description" = "%d 照片 · %@";
 
+"uns_side_menu_view_count_title" = "查看";
+"uns_side_menu_like_count_title" = "喜爱";
+"uns_side_menu_download_count_title" = "下载";
+
 "uns_side_menu_option_my_photos" = "我的照片";
 "uns_side_menu_option_hiring" = "应募";
 "uns_side_menu_option_licenses" = "许可条例";

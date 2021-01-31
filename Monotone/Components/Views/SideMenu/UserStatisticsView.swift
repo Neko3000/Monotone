@@ -61,7 +61,7 @@ class UserStatisticsView: BaseView {
         
         // ViewCountTitleLabel.
         self.viewCountTitleLabel = UILabel()
-        self.viewCountTitleLabel.text = "Views"
+        self.viewCountTitleLabel.text = NSLocalizedString("uns_side_menu_view_count_title", comment: "Views")
         self.viewCountTitleLabel.textColor = ColorPalette.colorGrayHeavy
         self.viewCountTitleLabel.font = UIFont.systemFont(ofSize: 12)
         self.viewCountContainterView.addSubview(self.viewCountTitleLabel)
@@ -119,7 +119,7 @@ class UserStatisticsView: BaseView {
         
         // LikeCountTitleLabel.
         self.likeCountTitleLabel = UILabel()
-        self.likeCountTitleLabel.text = "Likes"
+        self.likeCountTitleLabel.text = NSLocalizedString("uns_side_menu_like_count_title", comment: "Likes")
         self.likeCountTitleLabel.textColor = ColorPalette.colorGrayHeavy
         self.likeCountTitleLabel.font = UIFont.systemFont(ofSize: 12)
         self.likeCountContainterView.addSubview(self.likeCountTitleLabel)
@@ -177,7 +177,7 @@ class UserStatisticsView: BaseView {
         
         // DownloadCountTitleLabel.
         self.downloadCountTitleLabel = UILabel()
-        self.downloadCountTitleLabel.text = "Downloads"
+        self.downloadCountTitleLabel.text = NSLocalizedString("uns_side_menu_download_count_title", comment: "Downloads")
         self.downloadCountTitleLabel.textColor = ColorPalette.colorGrayHeavy
         self.downloadCountTitleLabel.font = UIFont.systemFont(ofSize: 12)
         self.downloadCountContainterView.addSubview(self.downloadCountTitleLabel)

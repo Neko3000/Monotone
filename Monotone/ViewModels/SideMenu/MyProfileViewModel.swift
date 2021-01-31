@@ -27,7 +27,7 @@ class MyProfileViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Output
     struct Output {
         var user: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
-        // var statistics: BehaviorRelay<Statistics?> = BehaviorRelay<Statistics?>(value: nil)
+        var statistics: BehaviorRelay<Statistics?> = BehaviorRelay<Statistics?>(value: nil)
 
         var photos: BehaviorRelay<[Photo]> = BehaviorRelay<[Photo]>(value: [])
         var collections: BehaviorRelay<[Collection]> = BehaviorRelay<[Collection]>(value: [])
@@ -65,7 +65,20 @@ class MyProfileViewModel: BaseViewModel, ViewModelStreamable{
         let userService = self.service(type: UserService.self)!
         
         // Binding.
-        userService.getMineProfile()
+        // User.
+        self.input.username
+            .unwrap()
+            .flatMap({ (username) -> Observable<Statistics> in
+                return userService.statisticizeUser(username: username)
+            })
+            .bind(to: self.output.statistics)
+            .disposed(by: self.disposeBag)
+        
+        self.input.username
+            .unwrap()
+            .flatMap({ (username) -> Observable<User> in
+                return userService.getMineProfile()
+            })
             .bind(to: self.output.user)
             .disposed(by: self.disposeBag)
         
@@ -109,12 +122,12 @@ class MyProfileViewModel: BaseViewModel, ViewModelStreamable{
                     self.photoNextLoadPage += 1
                     self.output.photos.accept(self.currentPhotos)
                 }
-                else if let collections = elements as? [Collection], let collections = elements as? [Collection]{
+                else if self.input.profileContent.value == .collections, let collections = elements as? [Collection]{
                     self.currentCollections = self.collectionNextLoadPage == 1 ? collections : self.currentCollections + collections
                     self.collectionNextLoadPage += 1
                     self.output.collections.accept(self.currentCollections)
                 }
-                else if let likedPhotos = elements as? [Photo],, let likedPhotos = elements as? [Photo]{
+                else if self.input.profileContent.value == .likedPhotos, let likedPhotos = elements as? [Photo]{
                     self.currentLikedPhotos = self.likedPhotoNextLoadPage == 1 ? likedPhotos : self.currentLikedPhotos + likedPhotos
                     self.likedPhotoNextLoadPage += 1
                     self.output.likedPhotos.accept(self.currentLikedPhotos)

@@ -124,5 +124,32 @@ class UserService: NetworkService {
             return Disposables.create()
         }
     }
+    
+    public func statisticizeUser(username: String,
+                                 resolution: String? = "days",
+                                 quantity: Int? = 30) -> Observable<Statistics>{
+        
+        let request: StatisticizeUserRequest = StatisticizeUserRequest()
+        request.username = username
+        request.resolution = resolution
+        request.quantity = quantity
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            NetworkManager.shared.request(request: request, method: .get).subscribe { (json) in
+                let response = StatisticizeUserResponse(JSON: json)
+                let statistics = response!.statistics!
+                
+                observer.onNext(statistics)
+                observer.onCompleted()
+
+            } onError: { (error) in
+                
+                observer.onError(error)
+            }.disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
 
 }

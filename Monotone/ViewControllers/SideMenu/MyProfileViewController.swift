@@ -71,7 +71,7 @@ class MyProfileViewController: BaseViewController {
             make.left.right.bottom.equalTo(self.view)
         }
         
-        // MJRefresh.
+        // PhotosCollectionView MJRefresh.
         let photosHeader = MJRefreshNormalHeader()
         photosHeader.stateLabel!.font = UIFont.systemFont(ofSize: 12)
         photosHeader.lastUpdatedTimeLabel!.font = UIFont.systemFont(ofSize: 10)
@@ -81,7 +81,7 @@ class MyProfileViewController: BaseViewController {
         photosFooter.stateLabel!.font = UIFont.systemFont(ofSize: 12)
         self.photosCollectionView.mj_footer = photosFooter
         
-        // TableView.
+        // CollectionsTableView.
         self.collectionsTableView = UITableView(frame: CGRect.zero, style: .grouped)
         self.collectionsTableView.backgroundColor = UIColor.clear
         self.collectionsTableView.separatorStyle = .none
@@ -96,7 +96,7 @@ class MyProfileViewController: BaseViewController {
             make.left.right.bottom.equalTo(self.view)
         }
         
-        // MJRefresh.
+        // CollectionsTableView MJRefresh.
         let collectionsHeader = MJRefreshNormalHeader()
         collectionsHeader.stateLabel!.font = UIFont.systemFont(ofSize: 12)
         collectionsHeader.lastUpdatedTimeLabel!.font = UIFont.systemFont(ofSize: 10)
@@ -117,7 +117,7 @@ class MyProfileViewController: BaseViewController {
             make.left.right.bottom.equalTo(self.view)
         }
         
-        // MJRefresh.
+        // LikePhotosCollectionsView MJRefresh.
         let likedPhotosHeader = MJRefreshNormalHeader()
         likedPhotosHeader.stateLabel!.font = UIFont.systemFont(ofSize: 12)
         likedPhotosHeader.lastUpdatedTimeLabel!.font = UIFont.systemFont(ofSize: 10)
@@ -157,7 +157,7 @@ class MyProfileViewController: BaseViewController {
 
             }).disposed(by: self.disposeBag)
 
-        // MJRefresh.
+        // PhotosCollectionView MJRefresh.
         self.photosCollectionView.mj_header!.refreshingBlock = {
             myProfileViewModel.input.reloadAction?.execute()
         }
@@ -190,7 +190,7 @@ class MyProfileViewController: BaseViewController {
 
             }).disposed(by: self.disposeBag)
 
-        // MJRefresh.
+        // CollectionsTableView MJRefresh.
         self.collectionsTableView.mj_header!.refreshingBlock = {
             myProfileViewModel.input.reloadAction?.execute()
         }
@@ -221,7 +221,7 @@ class MyProfileViewController: BaseViewController {
 
             }).disposed(by: self.disposeBag)
 
-        // MJRefresh.
+        // LikedPhotosCollectionView MJRefresh.
         self.likedPhotosCollectionView.mj_header!.refreshingBlock = {
             myProfileViewModel.input.reloadAction?.execute()
         }
@@ -279,6 +279,17 @@ class MyProfileViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
+        // User.
+        myProfileViewModel.output.user
+            .bind(to: self.headerView.user)
+            .disposed(by: self.disposeBag)
+        
+        // Statistics.
+        myProfileViewModel.output.statistics
+            .bind(to: self.headerView.statistics)
+            .disposed(by: self.disposeBag)
+        
+        // First Loading.
         self.headerView.profileContent.accept(.photos)
     }
 
@@ -296,8 +307,7 @@ class MyProfileViewController: BaseViewController {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MyProfileViewController: UICollectionViewDelegateFlowLayout{
-    
-
+    //
 }
 
 // MARK: - UITableViewDelegate

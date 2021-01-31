@@ -24,6 +24,7 @@ class MyProfileHeaderView: BaseView {
     // MARK: - Controls
     private var avatarImageView: UIImageView!
     private var statisticsView: UserStatisticsView!
+    private var usernameLabel: UILabel!
     
     private var currentSelectionLabel: UILabel!
     
@@ -31,6 +32,9 @@ class MyProfileHeaderView: BaseView {
     private var photoBtn: UIButton!
     private var collectionBtn: UIButton!
     private var likeBtn: UIButton!
+    
+    private var horizontalLineLong: UIView!
+    private var horizontalLineShort: UIView!
     
     // MARK: - Private
     private let disposeBag: DisposeBag = DisposeBag()
@@ -54,6 +58,17 @@ class MyProfileHeaderView: BaseView {
             make.left.equalTo(self).offset(18.0)
             make.right.equalTo(self.snp.right).multipliedBy(4.0/7)
             make.bottom.equalTo(self).offset(-48.0)
+        }
+        
+        // UsernameLabel.
+        self.usernameLabel = UILabel()
+        self.usernameLabel.textColor = ColorPalette.colorGrayLighter
+        self.usernameLabel.font = UIFont.boldSystemFont(ofSize: 72)
+        self.usernameLabel.text = "nil"
+        self.insertSubview(self.usernameLabel, belowSubview: self.avatarImageView)
+        self.usernameLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(self.avatarImageView.snp.top).offset(-20.0)
+            make.left.equalTo(self.avatarImageView)
         }
         
         // StatisticsView.
@@ -92,8 +107,8 @@ class MyProfileHeaderView: BaseView {
         
         // LikeBtn.
         self.likeBtn = UIButton()
-        self.likeBtn.setImage(UIImage(named: "profile-like"), for: .normal)
-        self.likeBtn.setImage(UIImage(named: "profile-like-selected"), for: .selected)
+        self.likeBtn.setImage(UIImage(named: "profile-details-like"), for: .normal)
+        self.likeBtn.setImage(UIImage(named: "profile-details-like-selected"), for: .selected)
         self.stackView.addArrangedSubview(self.likeBtn)
         self.likeBtn.snp.makeConstraints { (make) in
             make.height.width.equalTo(30.0)
@@ -101,8 +116,8 @@ class MyProfileHeaderView: BaseView {
         
         // CollectionBtn.
         self.collectionBtn = UIButton()
-        self.collectionBtn.setImage(UIImage(named: "profile-collection"), for: .normal)
-        self.collectionBtn.setImage(UIImage(named: "profile-collection-selected"), for: .selected)
+        self.collectionBtn.setImage(UIImage(named: "profile-details-collection"), for: .normal)
+        self.collectionBtn.setImage(UIImage(named: "profile-details-collection-selected"), for: .selected)
         self.stackView.addArrangedSubview(self.collectionBtn)
         self.collectionBtn.snp.makeConstraints { (make) in
             make.height.width.equalTo(30.0)
@@ -110,11 +125,33 @@ class MyProfileHeaderView: BaseView {
         
         // PhotoBtn.
         self.photoBtn = UIButton()
-        self.photoBtn.setImage(UIImage(named: "profile-photo"), for: .normal)
-        self.photoBtn.setImage(UIImage(named: "profile-photo-selected"), for: .selected)
+        self.photoBtn.setImage(UIImage(named: "profile-details-photo"), for: .normal)
+        self.photoBtn.setImage(UIImage(named: "profile-details-photo-selected"), for: .selected)
         self.stackView.addArrangedSubview(self.photoBtn)
         self.photoBtn.snp.makeConstraints { (make) in
             make.height.width.equalTo(30.0)
+        }
+        
+        // HorizontalLineShort.
+        self.horizontalLineShort = UIView()
+        self.horizontalLineShort.backgroundColor = ColorPalette.colorBlack
+        self.addSubview(self.horizontalLineShort)
+        self.horizontalLineShort.snp.makeConstraints { (make) in
+            make.bottom.equalTo(self.avatarImageView)
+            make.right.equalTo(self).offset(-20.0)
+            make.width.equalTo(8.0)
+            make.height.equalTo(1.0)
+        }
+        
+        // HorizontalLineLong.
+        self.horizontalLineLong = UIView()
+        self.horizontalLineLong.backgroundColor = ColorPalette.colorBlack
+        self.addSubview(self.horizontalLineLong)
+        self.horizontalLineLong.snp.makeConstraints { (make) in
+            make.bottom.equalTo(self.avatarImageView)
+            make.left.equalTo(self.avatarImageView.snp.right).offset(20.0)
+            make.right.equalTo(self.horizontalLineShort.snp.left).offset(-8.0)
+            make.height.equalTo(1.0)
         }
     }
     
@@ -128,6 +165,7 @@ class MyProfileHeaderView: BaseView {
             .subscribe(onNext:{ [weak self] (user) in
                 guard let self = self else { return }
                 
+                self.usernameLabel.text = user.username
                 self.avatarImageView.setUserAvatar(user: user, size: .large)
             })
             .disposed(by: self.disposeBag)
@@ -141,11 +179,6 @@ class MyProfileHeaderView: BaseView {
         self.photoBtn.rx.tap
             .subscribe(onNext:{ [weak self] (_) in
                 guard let self = self else { return }
-                
-                self.currentSelectionLabel.text = String(format: "%d photos", self.user.value?.totalPhotos ?? 0)
-                
-                self.deselectAllBtns()
-                self.photoBtn.isSelected = true
                 self.profileContent.accept(.photos)
             })
             .disposed(by: self.disposeBag)
@@ -154,11 +187,6 @@ class MyProfileHeaderView: BaseView {
         self.collectionBtn.rx.tap
             .subscribe(onNext:{ [weak self] (_) in
                 guard let self = self else { return }
-                
-                self.currentSelectionLabel.text = String(format: "%d collections", self.user.value?.totalCollections ?? 0)
-                
-                self.deselectAllBtns()
-                self.collectionBtn.isSelected = true
                 self.profileContent.accept(.collections)
             })
             .disposed(by: self.disposeBag)
@@ -167,12 +195,32 @@ class MyProfileHeaderView: BaseView {
         self.likeBtn.rx.tap
             .subscribe(onNext:{ [weak self] (_) in
                 guard let self = self else { return }
-                
-                self.currentSelectionLabel.text = String(format: "%d likes", self.user.value?.totalLikes ?? 0)
+                self.profileContent.accept(.likedPhotos)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // ProfileContent.
+        self.profileContent
+            .unwrap()
+            .subscribe(onNext:{ [weak self] (profileContent) in
+                guard let self = self else { return }
                 
                 self.deselectAllBtns()
-                self.likeBtn.isSelected = true
-                self.profileContent.accept(.likedPhotos)
+                if(profileContent == .photos){
+                    self.photoBtn.isSelected = true
+                    self.currentSelectionLabel.text = String(format: NSLocalizedString("uns_side_menu_photo_count_suffix",comment: "%d Photos"),
+                                                             self.user.value?.totalPhotos ?? 0)
+                }
+                else if(profileContent == .collections){
+                    self.collectionBtn.isSelected = true
+                    self.currentSelectionLabel.text = String(format: NSLocalizedString("uns_side_menu_collection_count_suffix",comment: "%d Collections"),
+                                                             self.user.value?.totalCollections ?? 0)
+                }
+                else if(profileContent == .likedPhotos){
+                    self.likeBtn.isSelected = true
+                    self.currentSelectionLabel.text = String(format: NSLocalizedString("uns_side_menu_like_count_suffix",comment: "%d Likes"),
+                                                             self.user.value?.totalLikes ?? 0)
+                }
             })
             .disposed(by: self.disposeBag)
     }
