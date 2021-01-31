@@ -63,6 +63,7 @@
 "uns_network_error_title" = "天哪，网络上有个错误...";
 
 "uns_side_menu_edit_profile" = "编辑";
+"uns_side_menu_photo_count_suffix" = "%d 照片";
 "uns_side_menu_collection_count_suffix" = "%d 收藏";
 "uns_side_menu_collection_description" = "%d 照片 · 由 %@ 建立";
 "uns_side_menu_like_count_suffix" = "%d 喜爱";

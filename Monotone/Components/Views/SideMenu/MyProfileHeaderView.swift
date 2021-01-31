@@ -18,6 +18,7 @@ class MyProfileHeaderView: BaseView {
     
     // MARK: - Public
     public var profileContent: BehaviorRelay<ProfileContent?> = BehaviorRelay<ProfileContent?>(value: nil)
+    public var user: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
     public var statistics: BehaviorRelay<Statistics?> = BehaviorRelay<Statistics?>(value: nil)
 
     // MARK: - Controls
@@ -89,39 +90,48 @@ class MyProfileHeaderView: BaseView {
             make.top.bottom.equalTo(self.currentSelectionLabel)
         }
         
-        // PhotoBtn.
-        self.photoBtn = UIButton()
-        self.photoBtn.setImage(UIImage(named: "profile-photo"), for: .normal)
-        self.photoBtn.setImage(UIImage(named: "profile-photo-selected"), for: .normal)
-        self.stackView.addArrangedSubview(self.photoBtn)
-        self.photoBtn.snp.makeConstraints { (make) in
+        // LikeBtn.
+        self.likeBtn = UIButton()
+        self.likeBtn.setImage(UIImage(named: "profile-like"), for: .normal)
+        self.likeBtn.setImage(UIImage(named: "profile-like-selected"), for: .selected)
+        self.stackView.addArrangedSubview(self.likeBtn)
+        self.likeBtn.snp.makeConstraints { (make) in
             make.height.width.equalTo(30.0)
         }
         
         // CollectionBtn.
         self.collectionBtn = UIButton()
         self.collectionBtn.setImage(UIImage(named: "profile-collection"), for: .normal)
-        self.collectionBtn.setImage(UIImage(named: "profile-collection-selected"), for: .normal)
+        self.collectionBtn.setImage(UIImage(named: "profile-collection-selected"), for: .selected)
         self.stackView.addArrangedSubview(self.collectionBtn)
         self.collectionBtn.snp.makeConstraints { (make) in
             make.height.width.equalTo(30.0)
         }
         
-        // LikeBtn.
-        self.likeBtn = UIButton()
-        self.likeBtn.setImage(UIImage(named: "profile-like"), for: .normal)
-        self.likeBtn.setImage(UIImage(named: "profile-like-selected"), for: .normal)
-        self.stackView.addArrangedSubview(self.likeBtn)
-        self.likeBtn.snp.makeConstraints { (make) in
+        // PhotoBtn.
+        self.photoBtn = UIButton()
+        self.photoBtn.setImage(UIImage(named: "profile-photo"), for: .normal)
+        self.photoBtn.setImage(UIImage(named: "profile-photo-selected"), for: .selected)
+        self.stackView.addArrangedSubview(self.photoBtn)
+        self.photoBtn.snp.makeConstraints { (make) in
             make.height.width.equalTo(30.0)
         }
-        
     }
     
     override func buildLogic() {
         super.buildLogic()
         
         // Bindings.
+        // User.
+        self.user
+            .unwrap()
+            .subscribe(onNext:{ [weak self] (user) in
+                guard let self = self else { return }
+                
+                self.avatarImageView.setUserAvatar(user: user, size: .large)
+            })
+            .disposed(by: self.disposeBag)
+        
         // Statistics.
         self.statistics
             .bind(to: self.statisticsView.statistics)
@@ -131,6 +141,8 @@ class MyProfileHeaderView: BaseView {
         self.photoBtn.rx.tap
             .subscribe(onNext:{ [weak self] (_) in
                 guard let self = self else { return }
+                
+                self.currentSelectionLabel.text = String(format: "%d photos", self.user.value?.totalPhotos ?? 0)
                 
                 self.deselectAllBtns()
                 self.photoBtn.isSelected = true
@@ -143,6 +155,8 @@ class MyProfileHeaderView: BaseView {
             .subscribe(onNext:{ [weak self] (_) in
                 guard let self = self else { return }
                 
+                self.currentSelectionLabel.text = String(format: "%d collections", self.user.value?.totalCollections ?? 0)
+                
                 self.deselectAllBtns()
                 self.collectionBtn.isSelected = true
                 self.profileContent.accept(.collections)
@@ -153,6 +167,8 @@ class MyProfileHeaderView: BaseView {
         self.likeBtn.rx.tap
             .subscribe(onNext:{ [weak self] (_) in
                 guard let self = self else { return }
+                
+                self.currentSelectionLabel.text = String(format: "%d likes", self.user.value?.totalLikes ?? 0)
                 
                 self.deselectAllBtns()
                 self.likeBtn.isSelected = true

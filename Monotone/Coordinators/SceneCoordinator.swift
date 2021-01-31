@@ -29,6 +29,7 @@ enum Scene {
     case licenses
     case help
     case madeWithUnsplash
+    case myProfile
     
     case store
     case storeDetails
@@ -56,6 +57,7 @@ enum SceneContent {
     case licenses
     case help
     case madeWithUnsplash
+    case myProfile
     
     case store
     case storeDetails

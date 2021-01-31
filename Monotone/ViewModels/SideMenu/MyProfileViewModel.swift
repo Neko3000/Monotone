@@ -26,6 +26,9 @@ class MyProfileViewModel: BaseViewModel, ViewModelStreamable{
     
     // MARK: - Output
     struct Output {
+        var user: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
+        // var statistics: BehaviorRelay<Statistics?> = BehaviorRelay<Statistics?>(value: nil)
+
         var photos: BehaviorRelay<[Photo]> = BehaviorRelay<[Photo]>(value: [])
         var collections: BehaviorRelay<[Collection]> = BehaviorRelay<[Collection]>(value: [])
         var likedPhotos: BehaviorRelay<[Photo]> = BehaviorRelay<[Photo]>(value: [])
@@ -44,7 +47,7 @@ class MyProfileViewModel: BaseViewModel, ViewModelStreamable{
     private var currentCollections: [Collection] = []
     private var emptyCollections: [Collection] = Array(repeating: Collection(), count: 10)
     
-    private var likePhotoNextLoadPage: Int = 1
+    private var likedPhotoNextLoadPage: Int = 1
     private var currentLikedPhotos: [Photo] = []
     private var emptyLikedPhotos: [Photo] = Array(repeating: Photo(), count: 10)
     
@@ -58,10 +61,14 @@ class MyProfileViewModel: BaseViewModel, ViewModelStreamable{
     // MARK: - Bind
     override func bind() {
         
-        // Service
+        // Service.
         let userService = self.service(type: UserService.self)!
         
-        // Binding
+        // Binding.
+        userService.getMineProfile()
+            .bind(to: self.output.user)
+            .disposed(by: self.disposeBag)
+        
         // LoadMore.
         self.input.loadMoreAction = Action<Void, [Any]>(workFactory: { [weak self] _ -> Observable<[Any]> in
             guard let self = self else { return Observable.empty() }
@@ -84,7 +91,7 @@ class MyProfileViewModel: BaseViewModel, ViewModelStreamable{
                 else if(self.input.profileContent.value == .likedPhotos){
                     
                     self.output.likedPhotos.accept(self.currentLikedPhotos + self.emptyLikedPhotos)
-                    return userService.listUserLikedPhotos(username: username, page: self.likePhotoNextLoadPage, perPage: 20)
+                    return userService.listUserLikedPhotos(username: username, page: self.likedPhotoNextLoadPage, perPage: 20)
                         .map({ $0 as [Any] })
                 }
 
@@ -97,19 +104,19 @@ class MyProfileViewModel: BaseViewModel, ViewModelStreamable{
             .subscribe(onNext: { [weak self] (elements) in
                 guard let self = self else { return }
                 
-                if let photos = elements as? [Photo]{
+                if self.input.profileContent.value == .photos, let photos = elements as? [Photo]{
                     self.currentPhotos = self.photoNextLoadPage == 1 ? photos : self.currentPhotos + photos
                     self.photoNextLoadPage += 1
                     self.output.photos.accept(self.currentPhotos)
                 }
-                else if let collections = elements as? [Collection]{
+                else if let collections = elements as? [Collection], let collections = elements as? [Collection]{
                     self.currentCollections = self.collectionNextLoadPage == 1 ? collections : self.currentCollections + collections
                     self.collectionNextLoadPage += 1
                     self.output.collections.accept(self.currentCollections)
                 }
-                else if let likedPhotos = elements as? [Photo]{
-                    self.currentLikedPhotos = self.likePhotoNextLoadPage == 1 ? likedPhotos : self.currentLikedPhotos + likedPhotos
-                    self.likePhotoNextLoadPage += 1
+                else if let likedPhotos = elements as? [Photo],, let likedPhotos = elements as? [Photo]{
+                    self.currentLikedPhotos = self.likedPhotoNextLoadPage == 1 ? likedPhotos : self.currentLikedPhotos + likedPhotos
+                    self.likedPhotoNextLoadPage += 1
                     self.output.likedPhotos.accept(self.currentLikedPhotos)
                 }
                                 
@@ -144,7 +151,7 @@ class MyProfileViewModel: BaseViewModel, ViewModelStreamable{
                     self.collectionNextLoadPage = 1
                 }
                 else if(self.input.profileContent.value == .likedPhotos){
-                    self.likePhotoNextLoadPage = 1
+                    self.likedPhotoNextLoadPage = 1
                 }
  
                 return loadMoreAction.execute()

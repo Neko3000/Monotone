@@ -60,6 +60,7 @@
 "uns_network_error_title" = "Oops, there was a problem on network...";
 
 "uns_side_menu_edit_profile" = "Edit Profile";
+"uns_side_menu_photo_count_suffix" = "%d Photos";
 "uns_side_menu_collection_count_suffix" = "%d Collections";
 "uns_side_menu_collection_description" = "%d Photos · Curated by %@";
 "uns_side_menu_like_count_suffix" = "%d Liked";

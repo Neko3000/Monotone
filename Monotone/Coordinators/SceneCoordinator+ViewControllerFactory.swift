@@ -169,6 +169,13 @@ extension SceneCoordinator: ViewControllerFactory{
             
             return vc
             
+        case .myProfile:
+            let vc = MyProfileViewController()
+            let myProfileVM = self.viewModel(sceneContent: .myProfile, with: args)!
+            vc.bind(to: [myProfileVM])
+            
+            return vc
+            
         case .store:
             let vc = StoreViewController()
             let storeVM = self.viewModel(sceneContent: .store, with: args)!

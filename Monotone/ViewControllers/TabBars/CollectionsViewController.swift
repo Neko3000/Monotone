@@ -21,7 +21,7 @@ import ViewAnimator
 class CollectionsViewController: BaseViewController {
     
     // MARK: - Public
-
+    //
     
     // MARK: - Controls
     private var titleLabel: UILabel!

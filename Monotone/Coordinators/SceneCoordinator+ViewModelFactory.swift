@@ -72,6 +72,10 @@ extension SceneCoordinator: ViewModelFactory{
             let vm: MadeWithUnsplashViewModel = MadeWithUnsplashViewModel(services: nil, args: args)
             return vm
             
+        case .myProfile:
+            let vm: MyProfileViewModel = MyProfileViewModel(services: [UserService()], args: args)
+            return vm
+            
         case .store:
             let vm: StoreViewModel = StoreViewModel(services: nil, args: args)
             return vm

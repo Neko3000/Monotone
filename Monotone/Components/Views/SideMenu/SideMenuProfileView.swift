@@ -16,9 +16,11 @@ import RxRelay
 class SideMenuProfileView: BaseView{
     
     // MARK: - Public
-    var user: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
-    var collections: BehaviorRelay<[Collection]?> = BehaviorRelay<[Collection]?>(value: nil)
-    var photos: BehaviorRelay<[Photo]?> = BehaviorRelay<[Photo]?>(value: nil)
+    public let user: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
+    public let collections: BehaviorRelay<[Collection]?> = BehaviorRelay<[Collection]?>(value: nil)
+    public let photos: BehaviorRelay<[Photo]?> = BehaviorRelay<[Photo]?>(value: nil)
+    
+    public let editBtnPressed: PublishRelay<Void> = PublishRelay<Void>()
     
     // MARK: - Controls
     private var avatarImageView: UIImageView!
@@ -197,6 +199,15 @@ class SideMenuProfileView: BaseView{
                 return Observable.just(photos.first)
             })
             .bind(to: self.likeView.photo)
+            .disposed(by: self.disposeBag)
+        
+        // EditBtn.
+        self.editBtn.rx.tap
+            .subscribe(onNext:{ [weak self] (_) in
+                guard let self = self else { return }
+                
+                self.editBtnPressed.accept(Void())
+            })
             .disposed(by: self.disposeBag)
 
         // Animation.

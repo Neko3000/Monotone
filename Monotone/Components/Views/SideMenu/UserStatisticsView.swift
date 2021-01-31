@@ -62,10 +62,10 @@ class UserStatisticsView: BaseView {
         // ViewCountTitleLabel.
         self.viewCountTitleLabel = UILabel()
         self.viewCountTitleLabel.text = "Views"
-        self.viewCountTitleLabel.textColor = ColorPalette.colorBlack
+        self.viewCountTitleLabel.textColor = ColorPalette.colorGrayHeavy
         self.viewCountTitleLabel.font = UIFont.systemFont(ofSize: 12)
         self.viewCountContainterView.addSubview(self.viewCountTitleLabel)
-        self.viewCountLabel.snp.makeConstraints { (make) in
+        self.viewCountTitleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.viewCountContainterView)
             make.left.equalTo(self.viewCountContainterView).offset(20.0)
             make.right.equalTo(self.viewCountContainterView).offset(-20.0)
@@ -88,6 +88,8 @@ class UserStatisticsView: BaseView {
         self.viewCountCompareLabel.text = "+0"
         self.viewCountCompareLabel.textColor = ColorPalette.colorBlack
         self.viewCountCompareLabel.font = UIFont.systemFont(ofSize: 10)
+        self.viewCountCompareLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        self.viewCountCompareLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         self.viewCountContainterView.addSubview(self.viewCountCompareLabel)
         self.viewCountCompareLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.viewCountLabel.snp.bottom).offset(4.0)
@@ -99,7 +101,6 @@ class UserStatisticsView: BaseView {
         self.viewSinceLastMonthLabel.text = NSLocalizedString("uns_info_since_to_last_month", comment: "since last month")
         self.viewSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight
         self.viewSinceLastMonthLabel.font = UIFont.systemFont(ofSize: 8)
-        self.viewSinceLastMonthLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.viewCountContainterView.addSubview(self.viewSinceLastMonthLabel)
         self.viewSinceLastMonthLabel.snp.makeConstraints { (make) in
             make.bottom.equalTo(self.viewCountCompareLabel)
@@ -119,7 +120,7 @@ class UserStatisticsView: BaseView {
         // LikeCountTitleLabel.
         self.likeCountTitleLabel = UILabel()
         self.likeCountTitleLabel.text = "Likes"
-        self.likeCountTitleLabel.textColor = ColorPalette.colorBlack
+        self.likeCountTitleLabel.textColor = ColorPalette.colorGrayHeavy
         self.likeCountTitleLabel.font = UIFont.systemFont(ofSize: 12)
         self.likeCountContainterView.addSubview(self.likeCountTitleLabel)
         self.likeCountTitleLabel.snp.makeConstraints { (make) in
@@ -145,6 +146,8 @@ class UserStatisticsView: BaseView {
         self.likeCountCompareLabel.text = "+0"
         self.likeCountCompareLabel.textColor = ColorPalette.colorBlack
         self.likeCountCompareLabel.font = UIFont.systemFont(ofSize: 10)
+        self.likeCountCompareLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        self.likeCountCompareLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         self.likeCountContainterView.addSubview(self.likeCountCompareLabel)
         self.likeCountCompareLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.likeCountLabel.snp.bottom).offset(4.0)
@@ -156,7 +159,6 @@ class UserStatisticsView: BaseView {
         self.likeSinceLastMonthLabel.text = NSLocalizedString("uns_info_since_to_last_month", comment: "since last month")
         self.likeSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight
         self.likeSinceLastMonthLabel.font = UIFont.systemFont(ofSize: 8)
-        self.likeSinceLastMonthLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.likeCountContainterView.addSubview(self.likeSinceLastMonthLabel)
         self.likeSinceLastMonthLabel.snp.makeConstraints { (make) in
             make.bottom.equalTo(self.likeCountCompareLabel)
@@ -176,7 +178,7 @@ class UserStatisticsView: BaseView {
         // DownloadCountTitleLabel.
         self.downloadCountTitleLabel = UILabel()
         self.downloadCountTitleLabel.text = "Downloads"
-        self.downloadCountTitleLabel.textColor = ColorPalette.colorBlack
+        self.downloadCountTitleLabel.textColor = ColorPalette.colorGrayHeavy
         self.downloadCountTitleLabel.font = UIFont.systemFont(ofSize: 12)
         self.downloadCountContainterView.addSubview(self.downloadCountTitleLabel)
         self.downloadCountTitleLabel.snp.makeConstraints { (make) in
@@ -202,6 +204,8 @@ class UserStatisticsView: BaseView {
         self.downloadCountCompareLabel.text = "+0"
         self.downloadCountCompareLabel.textColor = ColorPalette.colorBlack
         self.downloadCountCompareLabel.font = UIFont.systemFont(ofSize: 10)
+        self.downloadCountCompareLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        self.downloadCountCompareLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         self.downloadCountContainterView.addSubview(self.downloadCountCompareLabel)
         self.downloadCountCompareLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.downloadCountLabel.snp.bottom).offset(4.0)
@@ -213,11 +217,10 @@ class UserStatisticsView: BaseView {
         self.downloadSinceLastMonthLabel.text = NSLocalizedString("uns_info_since_to_last_month", comment: "since last month")
         self.downloadSinceLastMonthLabel.textColor = ColorPalette.colorGrayLight
         self.downloadSinceLastMonthLabel.font = UIFont.systemFont(ofSize: 8)
-        self.downloadSinceLastMonthLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.downloadCountContainterView.addSubview(self.downloadSinceLastMonthLabel)
         self.downloadSinceLastMonthLabel.snp.makeConstraints { (make) in
             make.bottom.equalTo(self.downloadCountCompareLabel)
-            make.left.equalTo(self.downloadCountContainterView).offset(20.0)
+            make.left.equalTo(self.downloadCountCompareLabel.snp.right).offset(5.0)
             make.right.equalTo(self.downloadCountContainterView).offset(-20.0)
         }
     }

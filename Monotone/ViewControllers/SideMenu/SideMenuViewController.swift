@@ -96,6 +96,21 @@ class SideMenuViewController: BaseViewController {
             .bind(to: self.profileView.user)
             .disposed(by: self.disposeBag)
         
+        // EditBtnPressed.
+        self.profileView.editBtnPressed
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
+                
+                let args = [
+                    "username" : UserManager.shared.currentUser.value?.username,
+                ] as [String : Any?]
+                
+                self.transition(type: .present(scene: .myProfile, wrapped: true),
+                                with: args,
+                                animated: true)
+            })
+            .disposed(by: self.disposeBag)
+
         // Collections.
         sideMenuViewModel.output.collections
             .bind(to: self.profileView.collections)
