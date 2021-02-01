@@ -330,6 +330,7 @@ extension MyProfileViewController: ViewControllerAnimatable{
     // MARK: - BuildAnimation
     @objc func buildAnimation() {
         
+        // AnimationState.
         self.animationState
             .skipWhile({ $0 == .showHeaderDetails })
             .distinctUntilChanged()
@@ -340,6 +341,7 @@ extension MyProfileViewController: ViewControllerAnimatable{
             })
             .disposed(by: self.disposeBag)
         
+        // ProfileContent & PhotosCollectionView & CollectionsTableView & LikedPhotosCollectionView.
         Observable.combineLatest(self.headerView.profileContent,
                                  self.photosCollectionView.rx.contentOffset,
                                  self.collectionsTableView.rx.contentOffset,

@@ -24,6 +24,7 @@ class PhotoListViewController: BaseViewController {
     // MARK: - Public
     public let menuBtnPressed: PublishRelay<Void> = PublishRelay<Void>()
     public let searchBtnPressed: PublishRelay<Void> = PublishRelay<Void>()
+    public var animationState: BehaviorRelay<AnimationState> = BehaviorRelay<AnimationState>(value: .showJumbotronView)
     
     // MARK: - Controls
     private var jumbotronView: PhotoListJumbotronView!
@@ -179,21 +180,6 @@ class PhotoListViewController: BaseViewController {
             }
             .disposed(by: self.disposeBag)
         
-        // Animation
-        self.collectionView.rx.contentOffset
-            .flatMap({ (contentOffset) -> Observable<AnimationState> in
-                let animationState: AnimationState = contentOffset.y >= InterfaceValues.showTopContentOffset ? .showHeaderView : .showJumbotronView
-                return Observable.just(animationState)
-            })
-            .skipWhile({ $0 == .showJumbotronView })
-            .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] (animationState) in
-                guard let self = self else { return }
-                
-                self.animation(animationState: animationState)
-            })
-            .disposed(by: self.disposeBag)
-        
         // ToTabBarBtn.
         self.toTabBarBtn.rx.tap.subscribe(onNext: { [weak self] (_) in
             guard let self = self else { return }
@@ -249,6 +235,30 @@ extension PhotoListViewController: ViewControllerAnimatable{
     enum AnimationState {
         case showJumbotronView
         case showHeaderView
+    }
+    
+    // MARK: - BuildAnimation
+    @objc func buildAnimation() {
+        
+        // AnimationState.
+        self.animationState
+            .skipWhile({ $0 == .showJumbotronView })
+            .distinctUntilChanged()
+            .subscribe(onNext:{ [weak self] (animationState) in
+                guard let self = self else { return }
+
+                self.animation(animationState: animationState)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // CollectionView ContentOffset.
+        self.collectionView.rx.contentOffset
+            .map({ (contentOffset) -> AnimationState in
+                
+                return contentOffset.y >= InterfaceValues.showTopContentOffset ? .showHeaderView : .showJumbotronView
+            })
+            .bind(to: self.animationState)
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: - Animation

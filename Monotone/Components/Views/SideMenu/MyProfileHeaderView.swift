@@ -250,6 +250,8 @@ extension MyProfileHeaderView: ViewAnimatable{
     
     // MARK: - BuildAnimation
     @objc func buildAnimation() {
+        
+        // AnimationState.
         self.animationState
             .skipWhile({ $0 == .showDetails })
             .distinctUntilChanged()

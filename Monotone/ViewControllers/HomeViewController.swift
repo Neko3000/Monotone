@@ -8,6 +8,7 @@
 import UIKit
 
 import RxSwift
+import RxRelay
 import Kingfisher
 
 import anim
@@ -16,6 +17,7 @@ import anim
 class HomeViewController: BaseViewController {
     
     // MARK: - Public
+    public var animationState: BehaviorRelay<AnimationState> = BehaviorRelay<AnimationState>(value: .showPhotoList)
     
     // MARK: - Controls
     private var sideMenuViewController: SideMenuViewController!
@@ -24,7 +26,6 @@ class HomeViewController: BaseViewController {
     private var menuBtn: UIButton!
     
     // MARK: - Private
-    private var animationState: AnimationState = .showPhotoList
     private var swipeGestureRecognizer: UISwipeGestureRecognizer!
     
     private let disposeBag: DisposeBag = DisposeBag()
@@ -88,25 +89,7 @@ class HomeViewController: BaseViewController {
         //
         
         // Bindings.
-        // SwipeGestureRecognizer.
-        self.swipeGestureRecognizer.rx.event
-            .ignoreWhen({ _ in self.animationState == .showPhotoList })
-            .subscribe(onNext: { [weak self] recognizer in
-                guard let self = self else { return }
-                
-                self.animation(animationState: .showPhotoList)
-            })
-            .disposed(by: disposeBag)
-        
-        // MenuBtnPressed.
-        self.photoListViewController.menuBtnPressed
-            .ignoreWhen({ _ in self.animationState == .showSideMenu })
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                
-                self.animation(animationState: .showSideMenu)
-            })
-            .disposed(by: disposeBag)
+        //
     }
     
 }
@@ -119,13 +102,45 @@ extension HomeViewController: ViewControllerAnimatable{
         case showPhotoList
         case showSideMenu
     }
+    
+    // MARK: - BuildAnimation
+    @objc func buildAnimation() {
+        
+        // AnimationState.
+        self.animationState
+            .skipWhile({ $0 == .showPhotoList })
+            .distinctUntilChanged()
+            .subscribe(onNext:{ [weak self] (animationState) in
+                guard let self = self else { return }
+
+                self.animation(animationState: animationState)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // SwipeGestureRecognizer.
+        self.swipeGestureRecognizer.rx.event
+            .subscribe(onNext: { [weak self] recognizer in
+                guard let self = self else { return }
+                
+                self.animationState.accept(.showPhotoList)
+            })
+            .disposed(by: disposeBag)
+        
+        // MenuBtnPressed.
+        self.photoListViewController.menuBtnPressed
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                
+                self.animationState.accept(.showSideMenu)
+            })
+            .disposed(by: disposeBag)
+    }
         
     // MARK: - Animation
     // Animation for PhotoListViewController & SideMenuViewController
     func animation(animationState: AnimationState) {
         switch animationState {
         case .showPhotoList:
-            self.animationState = .showPhotoList
             
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 0.5
@@ -157,7 +172,6 @@ extension HomeViewController: ViewControllerAnimatable{
             
             break
         case .showSideMenu:
-            self.animationState = .showSideMenu
             
             anim { (animSettings) -> (animClosure) in
                 animSettings.duration = 0.5

@@ -8,12 +8,18 @@
 import UIKit
 
 import SnapKit
+
 import RxSwift
+import RxRelay
+
 import Kingfisher
 import anim
 
 // MARK: - PhotoDetailsViewController
 class PhotoDetailsViewController: BaseViewController {
+    
+    // MARK: - Public
+    public var animationState: BehaviorRelay<AnimationState> = BehaviorRelay<AnimationState>(value: .normal)
 
     // MARK: - Controls
     private var avatarImageView: UIImageView!
@@ -28,8 +34,6 @@ class PhotoDetailsViewController: BaseViewController {
     private var expandBtn: UIButton!
     
     // MARK: - Priavte
-    private var animationState: AnimationState = .normal
-
     private let disposeBag: DisposeBag = DisposeBag()
     
     // MARK: - Life Cycle
@@ -209,22 +213,6 @@ class PhotoDetailsViewController: BaseViewController {
                 self.transition(type: .present(scene: .photoAddToCollection, presentationStyle: .pageSheet), with: args, animated: true)
             })
             .disposed(by: self.disposeBag)
-        
-        // ExpandBtn.
-        self.expandBtn.rx.tap
-            .subscribe(onNext: { [weak self] (_) in
-                guard let self = self else { return }
-                
-                if(self.animationState == .normal){
-                    self.animation(animationState: .expanded)
-                }
-                else if(self.animationState == .expanded){
-                    self.animation(animationState: .normal)
-                }
-                
-            })
-            .disposed(by: self.disposeBag)
-        
     }
 
     /*
@@ -248,11 +236,33 @@ extension PhotoDetailsViewController: ViewControllerAnimatable{
         case expanded
     }
     
+    // MARK: - BuildAnimation
+    @objc func buildAnimation() {
+        
+        // AnimationState.
+        self.animationState
+            .skipWhile({ $0 == .normal })
+            .distinctUntilChanged()
+            .subscribe(onNext:{ [weak self] (animationState) in
+                guard let self = self else { return }
+
+                self.animation(animationState: animationState)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // ExpandBtn.
+        self.expandBtn.rx.tap
+            .map({ (_) -> AnimationState in
+                return self.animationState.value == .normal ? .expanded : .normal
+            })
+            .bind(to: self.animationState)
+            .disposed(by: self.disposeBag)
+    }
+    
     // MARK: - Animation
     func animation(animationState: AnimationState) {
         switch animationState {
         case .normal:
-            self.animationState = .normal
             
             self.expandBtn.isSelected = false
             self.userCapsuleView.backgroundStyle = .normal
@@ -289,7 +299,6 @@ extension PhotoDetailsViewController: ViewControllerAnimatable{
             
             break
         case .expanded:
-            self.animationState = .expanded
             
             self.expandBtn.isSelected = true
             self.userCapsuleView.backgroundStyle = .blur
