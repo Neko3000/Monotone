@@ -97,6 +97,7 @@
 		146DA14025C65B83007A8533 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146DA13F25C65B83007A8533 /* MyProfileViewController.swift */; };
 		146DA14425C65BDE007A8533 /* UserStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146DA14325C65BDE007A8533 /* UserStatisticsView.swift */; };
 		146DA14725C67361007A8533 /* MyProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146DA14625C67361007A8533 /* MyProfileHeaderView.swift */; };
+		147C4F5C25C7FE7900F8D8DD /* AnimatorTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147C4F5B25C7FE7900F8D8DD /* AnimatorTrigger.swift */; };
 		1482331025B556DF00242CEB /* CollectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1482330F25B556DF00242CEB /* CollectionsViewModel.swift */; };
 		1482331325B557C600242CEB /* CreateCollectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1482331225B557C600242CEB /* CreateCollectionRequest.swift */; };
 		1482331625B5583E00242CEB /* ListCollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1482331525B5583E00242CEB /* ListCollectionResponse.swift */; };
@@ -327,6 +328,7 @@
 		146DA13F25C65B83007A8533 /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		146DA14325C65BDE007A8533 /* UserStatisticsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStatisticsView.swift; sourceTree = "<group>"; };
 		146DA14625C67361007A8533 /* MyProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileHeaderView.swift; sourceTree = "<group>"; };
+		147C4F5B25C7FE7900F8D8DD /* AnimatorTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorTrigger.swift; sourceTree = "<group>"; };
 		1482330F25B556DF00242CEB /* CollectionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionsViewModel.swift; sourceTree = "<group>"; };
 		1482331225B557C600242CEB /* CreateCollectionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCollectionRequest.swift; sourceTree = "<group>"; };
 		1482331525B5583E00242CEB /* ListCollectionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCollectionResponse.swift; sourceTree = "<group>"; };
@@ -781,6 +783,7 @@
 			children = (
 				14FD83C72567F7B000D5B575 /* BlurHash */,
 				14F36F90254D3AB80086B8CC /* ColorPalette.swift */,
+				147C4F5B25C7FE7900F8D8DD /* AnimatorTrigger.swift */,
 				140158FD258388EF00746563 /* MessageCenter.swift */,
 				14F016B22567981400F60C99 /* RxSwift+Opeartors.swift */,
 			);
@@ -1542,6 +1545,7 @@
 				14842D51257DF5E900364FFF /* UIView+Border.swift in Sources */,
 				149325052585FB34006EB8E3 /* AddToCollectionRequest.swift in Sources */,
 				14D7DBD12599A3D4001BF0CB /* BaseTabBarController.swift in Sources */,
+				147C4F5C25C7FE7900F8D8DD /* AnimatorTrigger.swift in Sources */,
 				14009AFC2575D69200C70E6E /* HomeViewController.swift in Sources */,
 				EB2F87F025A7983700875C83 /* MadeWithUnsplashCategory.swift in Sources */,
 				14EE8D10259EED5400132F74 /* HiringViewController.swift in Sources */,

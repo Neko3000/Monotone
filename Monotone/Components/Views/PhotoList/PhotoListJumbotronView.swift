@@ -14,6 +14,9 @@ import RxSwift
 import RxRelay
 import RxSwiftExt
 
+import ViewAnimator
+
+// MARK: - PhotoListJumbotronView
 class PhotoListJumbotronView: BaseView {
     
     // MARK: - Public
@@ -182,4 +185,29 @@ class PhotoListJumbotronView: BaseView {
         }
     }
     
+}
+
+// MARK: - ViewAnimatable
+extension PhotoListJumbotronView: ViewAnimatable{
+    
+    // MARK: - Enums
+    enum AnimationState {
+        //
+    }
+    
+    // MARK: - BuildAnimation
+    @objc func buildAnimation(){
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+                                self.titleLabel,
+                                self.descriptionLabel,
+                                self.segmentedControl
+        ])
+    }
+    
+    // MARK: - Animation
+    func animation(animationState: AnimationState) {
+        //
+    }
 }
