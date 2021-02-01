@@ -14,12 +14,16 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
+import anim
+
 class MyProfileHeaderView: BaseView {
     
     // MARK: - Public
     public var profileContent: BehaviorRelay<ProfileContent?> = BehaviorRelay<ProfileContent?>(value: nil)
     public var user: BehaviorRelay<User?> = BehaviorRelay<User?>(value: nil)
     public var statistics: BehaviorRelay<Statistics?> = BehaviorRelay<Statistics?>(value: nil)
+    
+    public var animationState: BehaviorRelay<AnimationState> = BehaviorRelay<AnimationState>(value: .showDetails)
 
     // MARK: - Controls
     private var avatarImageView: UIImageView!
@@ -199,10 +203,9 @@ class MyProfileHeaderView: BaseView {
             })
             .disposed(by: self.disposeBag)
         
-        // ProfileContent.
-        self.profileContent
-            .unwrap()
-            .subscribe(onNext:{ [weak self] (profileContent) in
+        // ProfileContent & User.
+        Observable.combineLatest(self.profileContent, self.user)
+            .subscribe(onNext: { [weak self] (profileContent, user) in
                 guard let self = self else { return }
                 
                 self.deselectAllBtns()
@@ -232,6 +235,106 @@ class MyProfileHeaderView: BaseView {
             if let btn = view as? UIButton{
                 btn.isSelected = false
             }
+        }
+    }
+}
+
+// MARK: - ViewAnimatable
+extension MyProfileHeaderView: ViewAnimatable{
+    
+    // MARK: - Enums
+    enum AnimationState {
+        case showDetails
+        case showSummary
+    }
+    
+    // MARK: - BuildAnimation
+    @objc func buildAnimation() {
+        self.animationState
+            .skipWhile({ $0 == .showDetails })
+            .distinctUntilChanged()
+            .subscribe(onNext:{ [weak self] (animationState) in
+                guard let self = self else { return }
+
+                self.animation(animationState: animationState)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    // MARK: - Animation
+    func animation(animationState: AnimationState) {
+        switch animationState {
+        case .showDetails:
+            
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.statisticsView.alpha = 1.0
+                    self.horizontalLineLong.alpha = 1.0
+                    self.horizontalLineShort.alpha = 1.0
+                    
+                    self.avatarImageView.layer.cornerRadius = 6.0
+                }
+            }
+            
+            anim(constraintParent: self) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+
+                    self.avatarImageView.snp.remakeConstraints { (make) in
+                        make.top.equalTo(self).offset(50.0)
+                        make.left.equalTo(self).offset(18.0)
+                        make.right.equalTo(self.snp.right).multipliedBy(4.0/7)
+                        make.bottom.equalTo(self).offset(-48.0)
+                    }
+                    
+                    self.usernameLabel.snp.remakeConstraints { (make) in
+                        make.centerY.equalTo(self.avatarImageView.snp.top).offset(-20.0)
+                        make.left.equalTo(self.avatarImageView)
+                    }
+                }
+            }
+            
+            break
+            
+        case .showSummary:
+            
+            anim { (animSettings) -> (animClosure) in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    self.statisticsView.alpha = 0
+                    self.horizontalLineLong.alpha = 0
+                    self.horizontalLineShort.alpha = 0
+                    
+                    self.avatarImageView.layer.cornerRadius = 60.0
+                }
+            }
+            
+            anim(constraintParent: self) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    
+                    self.avatarImageView.snp.remakeConstraints { (make) in
+                        make.centerX.centerY.equalTo(self)
+                        make.width.height.equalTo(120.0)
+                    }
+                    
+                    self.usernameLabel.snp.remakeConstraints { (make) in
+                        make.left.right.equalTo(self)
+                        make.centerY.equalTo(self.snp.bottom).multipliedBy(1.0/4)
+                    }
+                }
+            }
+            
+            break
         }
     }
 }

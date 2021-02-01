@@ -15,6 +15,8 @@ import anim
 // MARK: - HomeViewController
 class HomeViewController: BaseViewController {
     
+    // MARK: - Public
+    
     // MARK: - Controls
     private var sideMenuViewController: SideMenuViewController!
     private var photoListViewController: PhotoListViewController!

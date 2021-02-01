@@ -21,7 +21,7 @@ import ViewAnimator
 class MyProfileViewController: BaseViewController {
     
     // MARK: - Public
-    //
+    public var animationState: BehaviorRelay<AnimationState> = BehaviorRelay<AnimationState>(value: .showHeaderDetails)
     
     // MARK: - Controls
     private var headerView: MyProfileHeaderView!
@@ -67,7 +67,7 @@ class MyProfileViewController: BaseViewController {
         self.photosCollectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.photosCollectionView)
         self.photosCollectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.snp.bottom).multipliedBy(1.0/2).offset(24.0)
+            make.top.equalTo(self.headerView.snp.bottom).offset(24.0)
             make.left.right.bottom.equalTo(self.view)
         }
         
@@ -92,7 +92,7 @@ class MyProfileViewController: BaseViewController {
         self.collectionsTableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.collectionsTableView)
         self.collectionsTableView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.snp.bottom).multipliedBy(1.0/2).offset(24.0)
+            make.top.equalTo(self.headerView.snp.bottom).offset(24.0)
             make.left.right.bottom.equalTo(self.view)
         }
         
@@ -113,7 +113,7 @@ class MyProfileViewController: BaseViewController {
         self.likedPhotosCollectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
         self.view.addSubview(self.likedPhotosCollectionView)
         self.likedPhotosCollectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.snp.bottom).multipliedBy(1.0/2).offset(24.0)
+            make.top.equalTo(self.headerView.snp.bottom).offset(24.0)
             make.left.right.bottom.equalTo(self.view)
         }
         
@@ -317,3 +317,96 @@ extension MyProfileViewController: UITableViewDelegate{
         return 252.0
     }
 }
+
+// MARK: - ViewControllerAnimatable
+extension MyProfileViewController: ViewControllerAnimatable{
+    
+    // MARK: - Enums
+    enum AnimationState {
+        case showHeaderDetails
+        case showHeaderSummary
+    }
+    
+    // MARK: - BuildAnimation
+    @objc func buildAnimation() {
+        
+        self.animationState
+            .skipWhile({ $0 == .showHeaderDetails })
+            .distinctUntilChanged()
+            .subscribe(onNext:{ [weak self] (animationState) in
+                guard let self = self else { return }
+
+                self.animation(animationState: animationState)
+            })
+            .disposed(by: self.disposeBag)
+        
+        Observable.combineLatest(self.headerView.profileContent,
+                                 self.photosCollectionView.rx.contentOffset,
+                                 self.collectionsTableView.rx.contentOffset,
+                                 self.likedPhotosCollectionView.rx.contentOffset)
+            .subscribe(onNext: { (profileContent, photosContentOffset, collectionsContentOffset, likedPhotosContentOffset) in
+                
+                var animationState: AnimationState = .showHeaderDetails
+                if(profileContent == .photos){
+                    animationState = photosContentOffset.y >= InterfaceValues.showTopContentOffset ? .showHeaderSummary : .showHeaderDetails
+                }
+                else if(profileContent == .collections){
+                    animationState = collectionsContentOffset.y >= InterfaceValues.showTopContentOffset ? .showHeaderSummary : .showHeaderDetails
+                }
+                else if(profileContent == .likedPhotos){
+                    animationState = likedPhotosContentOffset.y >= InterfaceValues.showTopContentOffset ? .showHeaderSummary : .showHeaderDetails
+                }
+                
+                self.animationState.accept(animationState)
+            })
+            .disposed(by: self.disposeBag)
+    }
+        
+    // MARK: - Animation
+    func animation(animationState: AnimationState) {
+        switch animationState {
+        case .showHeaderDetails:
+            
+            self.headerView.animationState.accept(.showDetails)
+            
+            anim(constraintParent: self.view) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+                    
+                    self.headerView.snp.remakeConstraints { (make) in
+                        make.top.equalTo(self.view.safeAreaLayoutGuide)
+                        make.left.right.equalTo(self.view)
+                        make.bottom.equalTo(self.view).multipliedBy(1/2.0)
+                    }
+                }
+            }
+            
+            break
+            
+        case .showHeaderSummary:
+            
+            self.headerView.animationState.accept(.showSummary)
+            
+            anim(constraintParent: self.view) { (animSettings) -> animClosure in
+                animSettings.duration = 0.5
+                animSettings.ease = .easeInOutQuart
+                
+                return {
+
+                    self.headerView.snp.remakeConstraints { (make) in
+                        make.top.equalTo(self.view.safeAreaLayoutGuide)
+                        make.left.right.equalTo(self.view)
+                        make.bottom.equalTo(self.view).multipliedBy(1/4.0)
+                    }
+                }
+            }
+            
+            break
+        }
+    }
+}
+
+
+

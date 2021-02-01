@@ -30,6 +30,11 @@ class BaseView: UIView {
         
         self.buildSubviews()
         self.buildLogic()
+        
+        // Call buildAnimation method of the subclass.
+        if(self.responds(to: Selector(("buildAnimation")))){
+            self.perform(Selector(("buildAnimation")))
+        }
     }
     
     required init?(coder: NSCoder) {

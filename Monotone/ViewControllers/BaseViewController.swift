@@ -90,20 +90,26 @@ class BaseViewController: UIViewController, ViewControllerBindable, ViewControll
         
         self.buildSubviews()
         self.buildLogic()
+
+        // Call buildAnimation method of the subclass.
+        if(self.responds(to: Selector(("buildAnimation")))){
+            self.perform(Selector(("buildAnimation")))
+        }
     }
     
-    func buildSubviews() {
+    @objc func buildSubviews() {
         // Implemented by subclass.
     }
     
-    func buildLogic() {
+    @objc func buildLogic() {
         // Implemented by subclass.
     }
     
-    // MARK: - touchesBegan
+    // MARK: - TouchesBegan
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
+        // Resign keyword when touched.
         UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 
