@@ -200,10 +200,11 @@ extension PhotoListJumbotronView: ViewAnimatable{
         
         // AnimatorTrigger.
         AnimatorTrigger.float(views: [
-                                self.titleLabel,
-                                self.descriptionLabel,
-                                self.segmentedControl
-        ])
+            self.titleLabel,
+            self.descriptionLabel,
+            self.segmentedControl
+        ],
+        direction: .toTop)
     }
     
     // MARK: - Animation

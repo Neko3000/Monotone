@@ -261,7 +261,11 @@ extension PhotoListViewController: ViewControllerAnimatable{
             .disposed(by: self.disposeBag)
         
         // AnimatorTrigger.
-        AnimatorTrigger.float(views: [self.collectionView])
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.collectionView
+        ],
+        direction: .toTop)
     }
     
     // MARK: - Animation

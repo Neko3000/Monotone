@@ -263,5 +263,47 @@ class PhotoInfoCameraSettingsView: BaseView {
         })
             .disposed(by: self.disposeBag)
     }
+}
 
+// MARK: - ViewAnimatable
+extension PhotoInfoCameraSettingsView: ViewAnimatable{
+    
+    // MARK: - Enums
+    enum AnimationState {
+        //
+    }
+    
+    // MARK: - BuildAnimation
+    @objc func buildAnimation() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.makeLabel,
+            self.modelLabel,
+            self.focalLengthLabel,
+            self.shutterSpeedLabel,
+            self.apertureLabel,
+            self.isoLabel,
+            self.dimensionsLabel
+        ],
+        direction: .toTop,
+        delay: 0.3)
+
+        AnimatorTrigger.float(views: [
+            self.makeContentLabel,
+            self.modelContentLabel,
+            self.focalLengthContentLabel,
+            self.shutterSpeedContentLabel,
+            self.apertureContentLabel,
+            self.isoContentLabel,
+            self.dimensionsContentLabel
+        ],
+        direction: .toTop,
+        delay: 0.3)
+    }
+    
+    // MARK: - Animation
+    func animation(animationState: AnimationState) {
+       //
+    }
 }
