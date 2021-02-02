@@ -13,6 +13,7 @@ import RxRelay
 class PhotoShareSNSView: BaseView {
     
     // MARK: - Public
+    //
     
     // MARK: - Controls
     private var pinterestBtn: FloatBlockButton!
@@ -95,7 +96,7 @@ class PhotoShareSNSView: BaseView {
     override func buildLogic() {
         super.buildLogic()
         
-        // Bindings
+        // Bindings.
         //
     }
 }

@@ -26,7 +26,7 @@ class PhotoShareViewModel: BaseViewModel, ViewModelStreamable{
     public var output: Output = Output()
     
     // MARK: - Private
-
+    //
     
     // MARK: - Inject
     override func inject(args: [String : Any?]?) {

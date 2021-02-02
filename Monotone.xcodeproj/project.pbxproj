@@ -27,7 +27,7 @@
 		1406E9E2257A02530096DE82 /* FloatBlockButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9E1257A02530096DE82 /* FloatBlockButton.swift */; };
 		1406E9E5257A04370096DE82 /* CALayer+SketchShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9E4257A04370096DE82 /* CALayer+SketchShadow.swift */; };
 		1406E9E8257A04EF0096DE82 /* PhotoShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9E7257A04EF0096DE82 /* PhotoShareViewController.swift */; };
-		1406E9EB257A05CF0096DE82 /* PhotoShareSMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9EA257A05CF0096DE82 /* PhotoShareSMView.swift */; };
+		1406E9EB257A05CF0096DE82 /* PhotoShareSNSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9EA257A05CF0096DE82 /* PhotoShareSNSView.swift */; };
 		1406E9EE257A0E050096DE82 /* PhotoShareURLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9ED257A0E050096DE82 /* PhotoShareURLView.swift */; };
 		1406E9F1257A11A20096DE82 /* PhotoShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406E9F0257A11A20096DE82 /* PhotoShareViewModel.swift */; };
 		1406EADF257A5B9F0096DE82 /* PhotoAddToCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406EADE257A5B9F0096DE82 /* PhotoAddToCollectionViewController.swift */; };
@@ -258,7 +258,7 @@
 		1406E9E1257A02530096DE82 /* FloatBlockButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatBlockButton.swift; sourceTree = "<group>"; };
 		1406E9E4257A04370096DE82 /* CALayer+SketchShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+SketchShadow.swift"; sourceTree = "<group>"; };
 		1406E9E7257A04EF0096DE82 /* PhotoShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoShareViewController.swift; sourceTree = "<group>"; };
-		1406E9EA257A05CF0096DE82 /* PhotoShareSMView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoShareSMView.swift; sourceTree = "<group>"; };
+		1406E9EA257A05CF0096DE82 /* PhotoShareSNSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoShareSNSView.swift; sourceTree = "<group>"; };
 		1406E9ED257A0E050096DE82 /* PhotoShareURLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoShareURLView.swift; sourceTree = "<group>"; };
 		1406E9F0257A11A20096DE82 /* PhotoShareViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoShareViewModel.swift; sourceTree = "<group>"; };
 		1406EADE257A5B9F0096DE82 /* PhotoAddToCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAddToCollectionViewController.swift; sourceTree = "<group>"; };
@@ -1021,7 +1021,7 @@
 		14EE8D2E259F273400132F74 /* PhotoShare */ = {
 			isa = PBXGroup;
 			children = (
-				1406E9EA257A05CF0096DE82 /* PhotoShareSMView.swift */,
+				1406E9EA257A05CF0096DE82 /* PhotoShareSNSView.swift */,
 				1406E9ED257A0E050096DE82 /* PhotoShareURLView.swift */,
 			);
 			path = PhotoShare;
@@ -1601,7 +1601,7 @@
 				1482331625B5583E00242CEB /* ListCollectionResponse.swift in Sources */,
 				143F5678254FEA040038761D /* PhotoListViewController.swift in Sources */,
 				146DA14725C67361007A8533 /* MyProfileHeaderView.swift in Sources */,
-				1406E9EB257A05CF0096DE82 /* PhotoShareSMView.swift in Sources */,
+				1406E9EB257A05CF0096DE82 /* PhotoShareSNSView.swift in Sources */,
 				14F36FB0254D53940086B8CC /* NetworkManager.swift in Sources */,
 				140912FC2571333800EEC157 /* BaseScrollView.swift in Sources */,
 				14842E32257E003100364FFF /* PhotoCreateCollectionViewController.swift in Sources */,

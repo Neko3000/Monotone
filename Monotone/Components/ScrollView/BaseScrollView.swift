@@ -29,10 +29,10 @@ class BaseScrollView: UIScrollView {
     }
     
     func buildSubviews(){
-        
+        // Implemented by subclass.
     }
     
     func buildLogic(){
-        
+        // Implemented by subclass.
     }
 }
