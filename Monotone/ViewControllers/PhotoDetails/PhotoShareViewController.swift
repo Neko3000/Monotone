@@ -127,3 +127,29 @@ class PhotoShareViewController: BaseViewController {
     }
     
 }
+
+// MARK: - ViewControllerAnimatable
+extension PhotoShareViewController: ViewControllerAnimatable{
+    
+    // MARK: - Enums
+    enum AnimationState {
+        //
+    }
+    
+    // MARK: - BuildAnimation
+    @objc func buildAnimation() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.photoImageView,
+            self.photoShareURLView
+        ],
+        direction: .toLeft,
+        delay: 0.3)
+    }
+    
+    // MARK: - Animation
+    func animation(animationState: AnimationState) {
+        //
+    }
+}

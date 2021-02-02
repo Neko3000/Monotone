@@ -120,7 +120,7 @@ extension PhotoShareSNSView: ViewAnimatable{
             self.emailBtn,
             self.twitterBtn
         ],
-        direction: .toRight,
+        direction: .toLeft,
         delay: 0.3)
     }
     
