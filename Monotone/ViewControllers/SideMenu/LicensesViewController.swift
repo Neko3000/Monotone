@@ -151,3 +151,22 @@ extension LicensesViewController: WKNavigationDelegate{
         }
     }
 }
+
+// MARK: - ViewControllerWithAnimator
+extension LicensesViewController: ViewControllerWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.agreementSelectionView
+        ],
+        direction: .toLeft)
+        
+        AnimatorTrigger.float(views: [
+            self.webView
+        ],
+        direction: .toRight,
+        delay: 0.8)
+    }
+}

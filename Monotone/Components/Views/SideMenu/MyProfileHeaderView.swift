@@ -340,3 +340,25 @@ extension MyProfileHeaderView: ViewAnimatable{
         }
     }
 }
+
+// MARK: - ViewWithAnimator
+extension MyProfileHeaderView: ViewWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.usernameLabel,
+            self.avatarImageView,
+            self.currentSelectionLabel
+        ],
+        direction: .toTop)
+        
+        AnimatorTrigger.float(views: [
+            self.photoBtn,
+            self.collectionBtn,
+            self.likeBtn
+        ],
+        direction: .toLeft)
+    }
+}

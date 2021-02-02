@@ -186,3 +186,17 @@ extension ExploreViewController: UITableViewDelegate{
         return 0
     }
 }
+
+// MARK: - ViewControllerWithAnimator
+extension ExploreViewController: ViewControllerWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.headerView,
+            self.tableView
+        ],
+        direction: .toLeft)
+    }
+}

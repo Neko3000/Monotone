@@ -57,6 +57,14 @@ protocol ViewControllerAnimatable {
     
     func animation(animationState: AnimationStateType)
 }
+let viewControllerBuildAnimation = "buildAnimation"
+
+// MARK: - ViewControllerWithAnimator
+protocol ViewControllerWithAnimator {
+    
+    func buildAnimator()
+}
+let viewControllerBuildAnimator = "buildAnimator"
 
 // MARK: - ViewControllerPresentable
 protocol ViewControllerPresentable {
@@ -90,10 +98,15 @@ class BaseViewController: UIViewController, ViewControllerBindable, ViewControll
         
         self.buildSubviews()
         self.buildLogic()
-
+        
         // Call buildAnimation method of the subclass.
-        if(self.responds(to: Selector(("buildAnimation")))){
-            self.perform(Selector(("buildAnimation")))
+        if(self.responds(to: Selector(viewControllerBuildAnimation))){
+            self.perform(Selector(viewControllerBuildAnimation))
+        }
+
+        // Call buildAnimator method of the subclass.
+        if(self.responds(to: Selector(viewControllerBuildAnimator))){
+            self.perform(Selector(viewControllerBuildAnimator))
         }
     }
     

@@ -134,3 +134,16 @@ extension HelpViewController: UICollectionViewDelegateFlowLayout{
         return CGSize(width: width, height: height)
     }
 }
+
+// MARK: - ViewControllerWithAnimator
+extension HelpViewController: ViewControllerWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.collectionView
+        ],
+        direction: .toLeft)
+    }
+}

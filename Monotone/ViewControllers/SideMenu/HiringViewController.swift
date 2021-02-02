@@ -177,3 +177,23 @@ class HiringViewController: BaseViewController {
     */
 
 }
+
+// MARK: - ViewControllerWithAnimator
+extension HiringViewController: ViewControllerWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.sampleAImageView,
+            self.sampleBImageView
+        ],
+        direction: .toBottom)
+        
+        AnimatorTrigger.float(views: [
+            self.sectionTitleLabel,
+            self.sectionContentLabel
+        ],
+        direction: .toBottom)
+    }
+}

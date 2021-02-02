@@ -28,7 +28,7 @@ class AnimatorTrigger{
     
     public static func float(views:[UIView],
                              direction: FloatDirection = .toTop,
-                             delay: Double = 0,
+                             delay: Double = 0.1,
                              animationInterval:TimeInterval = animationInterval,
                              duration:TimeInterval = duration){
         
@@ -40,13 +40,13 @@ class AnimatorTrigger{
             vector = CGVector(dx: 0, dy: volumn)
             break
         case .toRight:
-            vector = CGVector(dx: volumn, dy: 0)
+            vector = CGVector(dx: -volumn, dy: 0)
             break
         case .toBottom:
             vector = CGVector(dx: 0, dy: -volumn)
             break
         case .toLeft:
-            vector = CGVector(dx: -volumn, dy: 0)
+            vector = CGVector(dx: volumn, dy: 0)
             break
         }
         

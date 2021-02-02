@@ -13,6 +13,14 @@ protocol ViewAnimatable {
     
     func animation(animationState: AnimationStateType)
 }
+let viewBuildAnimation = "buildAnimation"
+
+// MARK: - ViewWithAnimator
+protocol ViewWithAnimator {
+    
+    func buildAnimator()
+}
+let viewBuildAnimator = "buildAnimator"
 
 // MARK: - BaseView
 class BaseView: UIView {
@@ -32,8 +40,13 @@ class BaseView: UIView {
         self.buildLogic()
         
         // Call buildAnimation method of the subclass.
-        if(self.responds(to: Selector(("buildAnimation")))){
-            self.perform(Selector(("buildAnimation")))
+        if(self.responds(to: Selector(viewBuildAnimation))){
+            self.perform(Selector(viewBuildAnimation))
+        }
+
+        // Call buildAnimator method of the subclass.
+        if(self.responds(to: Selector(viewBuildAnimator))){
+            self.perform(Selector(viewBuildAnimator))
         }
     }
     

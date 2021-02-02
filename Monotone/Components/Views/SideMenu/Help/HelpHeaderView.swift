@@ -71,3 +71,17 @@ class HelpHeaderView: BaseView {
         
     }
 }
+
+// MARK: - ViewWithAnimator
+extension HelpHeaderView: ViewWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.titleLabel,
+            self.keywordSearchBar
+        ],
+        direction: .toLeft)
+    }
+}

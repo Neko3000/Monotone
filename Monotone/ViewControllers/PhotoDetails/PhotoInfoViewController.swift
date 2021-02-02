@@ -133,27 +133,15 @@ class PhotoInfoViewController: BaseViewController {
     
 }
 
-// MARK: - ViewControllerAnimatable
-extension PhotoInfoViewController: ViewControllerAnimatable{
+// MARK: - ViewControllerWithAnimator
+extension PhotoInfoViewController: ViewControllerWithAnimator{
     
-    // MARK: - Enums
-    enum AnimationState {
-        //
-    }
-    
-    // MARK: - BuildAnimation
-    @objc func buildAnimation() {
+    @objc func buildAnimator() {
         
         // AnimatorTrigger.
         AnimatorTrigger.float(views: [
             self.photoImageView,
         ],
-        direction: .toRight,
-        delay: 0.3)
-    }
-    
-    // MARK: - Animation
-    func animation(animationState: AnimationState) {
-        //
+        direction: .toRight)
     }
 }

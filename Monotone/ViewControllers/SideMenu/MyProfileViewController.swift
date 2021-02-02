@@ -410,5 +410,18 @@ extension MyProfileViewController: ViewControllerAnimatable{
     }
 }
 
+// MARK: - ViewControllerWithAnimator
+extension MyProfileViewController: ViewControllerWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.photosCollectionView
+        ],
+        direction: .toTop)
+    }
+}
+
 
 

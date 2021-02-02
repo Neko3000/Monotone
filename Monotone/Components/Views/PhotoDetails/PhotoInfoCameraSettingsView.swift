@@ -265,16 +265,10 @@ class PhotoInfoCameraSettingsView: BaseView {
     }
 }
 
-// MARK: - ViewAnimatable
-extension PhotoInfoCameraSettingsView: ViewAnimatable{
+// MARK: - ViewWithAnimator
+extension PhotoInfoCameraSettingsView: ViewWithAnimator{
     
-    // MARK: - Enums
-    enum AnimationState {
-        //
-    }
-    
-    // MARK: - BuildAnimation
-    @objc func buildAnimation() {
+    @objc func buildAnimator() {
         
         // AnimatorTrigger.
         AnimatorTrigger.float(views: [
@@ -286,8 +280,7 @@ extension PhotoInfoCameraSettingsView: ViewAnimatable{
             self.isoLabel,
             self.dimensionsLabel
         ],
-        direction: .toTop,
-        delay: 0.3)
+        direction: .toTop)
 
         AnimatorTrigger.float(views: [
             self.makeContentLabel,
@@ -298,12 +291,6 @@ extension PhotoInfoCameraSettingsView: ViewAnimatable{
             self.isoContentLabel,
             self.dimensionsContentLabel
         ],
-        direction: .toTop,
-        delay: 0.3)
-    }
-    
-    // MARK: - Animation
-    func animation(animationState: AnimationState) {
-       //
+        direction: .toTop)
     }
 }

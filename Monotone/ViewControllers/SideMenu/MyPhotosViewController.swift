@@ -185,3 +185,17 @@ class MyPhotosViewController: BaseViewController {
 extension MyPhotosViewController: UICollectionViewDelegateFlowLayout{
     
 }
+
+// MARK: - ViewControllerWithAnimator
+extension MyPhotosViewController: ViewControllerWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.titleLabel,
+            self.collectionView
+        ],
+        direction: .toTop)
+    }
+}

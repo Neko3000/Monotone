@@ -101,16 +101,10 @@ class PhotoShareSNSView: BaseView {
     }
 }
 
-// MARK: - ViewAnimatable
-extension PhotoShareSNSView: ViewAnimatable{
+// MARK: - ViewWithAnimator
+extension PhotoShareSNSView: ViewWithAnimator{
     
-    // MARK: - Enums
-    enum AnimationState {
-        //
-    }
-    
-    // MARK: - BuildAnimation
-    @objc func buildAnimation() {
+    @objc func buildAnimator() {
         
         // AnimatorTrigger.
         AnimatorTrigger.float(views: [
@@ -120,12 +114,6 @@ extension PhotoShareSNSView: ViewAnimatable{
             self.emailBtn,
             self.twitterBtn
         ],
-        direction: .toLeft,
-        delay: 0.3)
-    }
-    
-    // MARK: - Animation
-    func animation(animationState: AnimationState) {
-        //
+        direction: .toLeft)
     }
 }

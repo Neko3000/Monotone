@@ -187,16 +187,10 @@ class PhotoListJumbotronView: BaseView {
     
 }
 
-// MARK: - ViewAnimatable
-extension PhotoListJumbotronView: ViewAnimatable{
+// MARK: - ViewWithAnimator
+extension PhotoListJumbotronView: ViewWithAnimator{
     
-    // MARK: - Enums
-    enum AnimationState {
-        //
-    }
-    
-    // MARK: - BuildAnimation
-    @objc func buildAnimation(){
+    @objc func buildAnimator() {
         
         // AnimatorTrigger.
         AnimatorTrigger.float(views: [
@@ -206,9 +200,6 @@ extension PhotoListJumbotronView: ViewAnimatable{
         ],
         direction: .toTop)
     }
-    
-    // MARK: - Animation
-    func animation(animationState: AnimationState) {
-        //
-    }
 }
+
+

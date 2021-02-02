@@ -280,16 +280,10 @@ class PhotoInfoStatisticsView: BaseView {
     }
 }
 
-// MARK: - ViewAnimatable
-extension PhotoInfoStatisticsView: ViewAnimatable{
+// MARK: - ViewWithAnimator
+extension PhotoInfoStatisticsView: ViewWithAnimator{
     
-    // MARK: - Enums
-    enum AnimationState {
-        //
-    }
-    
-    // MARK: - BuildAnimation
-    @objc func buildAnimation() {
+    @objc func buildAnimator() {
         
         // AnimatorTrigger.
         AnimatorTrigger.float(views: [
@@ -297,12 +291,6 @@ extension PhotoInfoStatisticsView: ViewAnimatable{
             self.likeCountContainterView,
             self.downloadCountContainterView
         ],
-        direction: .toLeft,
-        delay: 0.3)
-    }
-    
-    // MARK: - Animation
-    func animation(animationState: AnimationState) {
-       //
+        direction: .toLeft)
     }
 }

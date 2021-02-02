@@ -169,6 +169,19 @@ class WallpapersViewController: BaseViewController {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension WallpapersViewController: UICollectionViewDelegateFlowLayout{
+    //
+}
+
+// MARK: - ViewControllerWithAnimator
+extension WallpapersViewController: ViewControllerWithAnimator{
     
-    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.headerView,
+            self.collectionView
+        ],
+        direction: .toLeft)
+    }
 }

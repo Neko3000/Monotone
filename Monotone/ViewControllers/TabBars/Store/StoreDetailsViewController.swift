@@ -274,3 +274,28 @@ class StoreDetailsViewController: BaseViewController {
     */
 
 }
+
+// MARK: - ViewControllerWithAnimator
+extension StoreDetailsViewController: ViewControllerWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.photoAImageView,
+            self.photoBImageView,
+            self.photoCImageView,
+            self.photoDImageView
+        ],
+        direction: .toBottom)
+        
+        AnimatorTrigger.float(views: [
+            self.titleLabel,
+            self.nameLabel,
+            self.propertyView,
+            self.addToCartBtn,
+            self.descriptionLabel
+        ],
+        direction: .toTop)
+    }
+}

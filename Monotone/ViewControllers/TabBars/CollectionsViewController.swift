@@ -201,3 +201,16 @@ extension CollectionsViewController: UITableViewDelegate{
         return 252.0
     }
 }
+
+// MARK: - ViewControllerWithAnimator
+extension CollectionsViewController: ViewControllerWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.tableView
+        ],
+        direction: .toLeft)
+    }
+}

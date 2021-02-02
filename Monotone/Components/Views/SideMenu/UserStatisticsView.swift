@@ -266,3 +266,18 @@ class UserStatisticsView: BaseView {
 
     }
 }
+
+// MARK: - ViewWithAnimator
+extension UserStatisticsView: ViewWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.viewCountContainterView,
+            self.likeCountContainterView,
+            self.downloadCountContainterView
+        ],
+        direction: .toTop)
+    }
+}

@@ -180,3 +180,17 @@ extension StoreViewController: UITableViewDelegate{
         }
     }
 }
+
+// MARK: - ViewControllerWithAnimator
+extension StoreViewController: ViewControllerWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.headerView,
+            self.tableView
+        ],
+        direction: .toTop)
+    }
+}

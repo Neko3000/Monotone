@@ -164,3 +164,17 @@ extension MadeWithUnsplashViewController: UITableViewDelegate{
         return 469.0
     }
 }
+
+// MARK: - ViewControllerWithAnimator
+extension MadeWithUnsplashViewController: ViewControllerWithAnimator{
+    
+    @objc func buildAnimator() {
+        
+        // AnimatorTrigger.
+        AnimatorTrigger.float(views: [
+            self.categorySelectionView,
+            self.tableView
+        ],
+        direction: .toRight)
+    }
+}
