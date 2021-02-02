@@ -22,7 +22,7 @@ target 'Monotone' do
   pod 'HMSegmentedControl', '1.5.6'
   pod 'anim', '1.2.10'
   pod 'ViewAnimator', '3.0.1'
-  pod 'Hero', '1.5.0'
+  # pod 'Hero', '1.5.0'
   pod 'BEMCheckBox', '1.4.1'
   pod 'SwiftMessages', '8.0.3'
   pod 'NVActivityIndicatorView', '5.1.1'
