@@ -141,13 +141,25 @@ extension LicensesViewController: WKNavigationDelegate{
 
         // DarkMode.
         if(UITraitCollection.current.userInterfaceStyle == .dark){
-            let cssString = "@media (prefers-color-scheme: dark) {body { background-color: black; color: white;} a:link {color: #0096e2;} a:visited {color: #9d57df;}}"
-            let jsString = "var style = document.createElement('style'); style.innerHTML = '\(cssString)'; document.head.appendChild(style);"
-            webView.evaluateJavaScript(jsString, completionHandler: nil)
+            self.webView.toDark()
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             webView.isHidden = false
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        // DarkMode.
+        if(UITraitCollection.current.userInterfaceStyle == .dark){
+            self.webView.isHidden = true
+            self.webView.toDark()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.webView.isHidden = false
+            }
         }
     }
 }

@@ -128,6 +128,7 @@
 		149EE5F0259068C2000230CD /* SideMenuPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149EE5EF259068C2000230CD /* SideMenuPage.swift */; };
 		149EE5F425906C13000230CD /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149EE5F325906C13000230CD /* SideMenuViewModel.swift */; };
 		149F921225AA316E00D1A4FC /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F921125AA316E00D1A4FC /* StoreViewModel.swift */; };
+		14B78A5C25C9B3C000FF48F3 /* WKWebView+DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B78A5B25C9B3C000FF48F3 /* WKWebView+DarkMode.swift */; };
 		14BA29A0258CB61000215F03 /* SideMenuPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BA299F258CB61000215F03 /* SideMenuPageTableViewCell.swift */; };
 		14BA300A258CCC6200215F03 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BA3009258CCC6200215F03 /* SideMenuViewController.swift */; };
 		14BE99FE256A623400B0DB39 /* GetTopicPhotosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */; };
@@ -364,6 +365,7 @@
 		149EE5EF259068C2000230CD /* SideMenuPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuPage.swift; sourceTree = "<group>"; };
 		149EE5F325906C13000230CD /* SideMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 		149F921125AA316E00D1A4FC /* StoreViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
+		14B78A5B25C9B3C000FF48F3 /* WKWebView+DarkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+DarkMode.swift"; sourceTree = "<group>"; };
 		14BA299F258CB61000215F03 /* SideMenuPageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuPageTableViewCell.swift; sourceTree = "<group>"; };
 		14BA3009258CCC6200215F03 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		14BE99FD256A623400B0DB39 /* GetTopicPhotosRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTopicPhotosRequest.swift; sourceTree = "<group>"; };
@@ -1061,6 +1063,7 @@
 				14FD9B67257F4E0C00DEC579 /* String+Split.swift */,
 				1420B297258B72410095FD2E /* UIImage+Reformat.swift */,
 				140DCD1225C329CA00CCC477 /* UIImageView+Set.swift */,
+				14B78A5B25C9B3C000FF48F3 /* WKWebView+DarkMode.swift */,
 				141B368A25A093C700213819 /* UITableView+Notification.swift */,
 				EBAD9B0D25B40FAB00975DEE /* HMSegmentedControl+Selection.swift */,
 			);
@@ -1497,6 +1500,7 @@
 				14FA60832580B2B7004AFBE8 /* AuthArguments.swift in Sources */,
 				143114CC255A794600991676 /* Links.swift in Sources */,
 				EB8B90C125AAC62600336A39 /* SpaceLabel.swift in Sources */,
+				14B78A5C25C9B3C000FF48F3 /* WKWebView+DarkMode.swift in Sources */,
 				14FA648E2580C1D7004AFBE8 /* URLScheme.swift in Sources */,
 				144DF50825BDBB590058FE14 /* ExploreCollectionType.swift in Sources */,
 				148ED1E925591DBF0000146E /* PhotoCollectionViewCell.swift in Sources */,
