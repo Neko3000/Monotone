@@ -145,3 +145,7 @@
 "uns_explore_collections_description" = "Explore the world through collections of beautiful HD pictures free to use under the Unsplash License.";
 "uns_explore_type_explore"  = "Explore";
 "uns_explore_type_popular"  = "Popular";
+
+"uns_photo_ablum_no_authoration_title"  = "Oops, there was a problem of authentication...";
+"uns_photo_ablum_no_authoration_description"  = "Allow Monotone to access your photos in \"Settings > Privacy > Photos\".";
+"uns_photo_ablum_no_authoration_btn_to_system_settings"  = "Settings";

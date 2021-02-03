@@ -148,3 +148,7 @@
 "uns_explore_collections_description" = "在Unsplash的许可证所保证的，由世界上好看的高清图片组成的收藏。";
 "uns_explore_type_explore"  = "探索";
 "uns_explore_type_popular"  = "人气";
+
+"uns_photo_ablum_no_authoration_title"  = "天哪，授权上有个错误...";
+"uns_photo_ablum_no_authoration_description"  = "通过\"设置 > 隐私 > 照片\"来允许Monotone访问您的相册。";
+"uns_photo_ablum_no_authoration_btn_to_system_settings"  = "设置";

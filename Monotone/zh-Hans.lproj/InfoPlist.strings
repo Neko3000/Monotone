@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Monotone
+
+  Created by Xueliang Chen on 2021/2/3.
+  
+*/
+
+NSPhotoLibraryUsageDescription = "将会创建名为<Monotone>的相册用于保存照片";

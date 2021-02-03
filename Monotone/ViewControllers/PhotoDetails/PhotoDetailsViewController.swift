@@ -186,6 +186,16 @@ class PhotoDetailsViewController: BaseViewController {
             })
             .disposed(by: self.disposeBag)
         
+        // DownloadBtn.
+        self.operationView.downloadBtn.rx.tap
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
+                
+                let image = self.scrollView.photoImageView.image!
+                PhotoAlbum.shared.save(image:image)
+            })
+            .disposed(by: self.disposeBag)
+        
         // LikeCapsuleBtn.
         self.likeCapsuleBtn.rx.tap
             .subscribe(onNext: { [weak self] (_) in

@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Monotone
+
+  Created by Xueliang Chen on 2021/2/3.
+  
+*/
+
+NSPhotoLibraryUsageDescription = "It will create a photo library named <Monotone> to save photos.";
