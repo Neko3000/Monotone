@@ -53,22 +53,19 @@ class PhotoAlbum{
                     self.createAlbum()
                 }
                 else{
-                    MessageCenter.shared.showMessage(title: NSLocalizedString("uns_photo_ablum_no_authoration_title", comment: "Oops, there was a problem of authentication..."),
-                                                     body: NSLocalizedString("uns_photo_ablum_no_authoration_description", comment: "Allow Monotone to access your photos in \"Settings > Privacy > Photos\""),
+                    MessageCenter.shared.showMessage(title: NSLocalizedString("uns_photo_ablum_no_authoration_title",
+                                                                              comment: "Oops, there was a problem of authentication..."),
+                                                     body: NSLocalizedString("uns_photo_ablum_no_authoration_description",
+                                                                             comment: "Allow Monotone to access your photos in \"Settings > Privacy > Photos\""),
                                                      theme: .error,
-                                                     buttonText: NSLocalizedString("uns_photo_ablum_no_authoration_btn_to_system_settings", comment: "Settings"),
+                                                     buttonText: NSLocalizedString("uns_photo_ablum_no_authoration_btn_to_system_settings",
+                                                                                   comment: "Settings"),
                                                      buttonTapHandler: {
                                                         
-                                                        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                                                             return
-                                                        }
+                                                        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
 
                                                         if UIApplication.shared.canOpenURL(settingsUrl) {
-                                                            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                                                                
-                                                                // Do nothing.
-                                                                
-                                                            })
+                                                            UIApplication.shared.open(settingsUrl, completionHandler: nil)
                                                         }
                                                      })
                     
@@ -95,6 +92,7 @@ class PhotoAlbum{
     }
     
     private func createAlbum() {
+        
         PHPhotoLibrary.shared().performChanges {
             PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: PhotoAlbum.name)
         } completionHandler: { (success, _) in

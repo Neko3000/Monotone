@@ -547,7 +547,6 @@
 				14FA607F2580AE74004AFBE8 /* AppCredential.swift */,
 				14FD9C58257F7AE800DEC579 /* AppManager.swift */,
 				14DE10AD2592D9C700503FB0 /* UserManager.swift */,
-				14CCDC5C25CA431E00638FDF /* PhotoAlbum.swift */,
 				14FA648D2580C1D7004AFBE8 /* URLScheme.swift */,
 			);
 			path = Application;
@@ -793,6 +792,7 @@
 				14F36F90254D3AB80086B8CC /* ColorPalette.swift */,
 				147C4F5B25C7FE7900F8D8DD /* AnimatorTrigger.swift */,
 				140158FD258388EF00746563 /* MessageCenter.swift */,
+				14CCDC5C25CA431E00638FDF /* PhotoAlbum.swift */,
 				14F016B22567981400F60C99 /* RxSwift+Opeartors.swift */,
 			);
 			path = Utils;
