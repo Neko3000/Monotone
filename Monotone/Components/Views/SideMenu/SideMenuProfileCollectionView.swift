@@ -49,6 +49,9 @@ class SideMenuProfileCollectionView: BaseView{
         self.photoAImageView = UIImageView()
         self.photoAImageView.contentMode = .scaleAspectFill
         self.photoAImageView.backgroundColor = ColorPalette.colorGrayLighter
+        self.photoAImageView.layer.masksToBounds = true
+        self.photoAImageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        self.photoAImageView.setContentHuggingPriority(.defaultLow, for: .vertical)
         self.photoContainerView.addSubview(self.photoAImageView)
         self.photoAImageView.snp.makeConstraints { (make) in
             make.top.left.equalTo(self.photoContainerView)
@@ -60,6 +63,9 @@ class SideMenuProfileCollectionView: BaseView{
         self.photoBImageView = UIImageView()
         self.photoBImageView.contentMode = .scaleAspectFill
         self.photoBImageView.backgroundColor = ColorPalette.colorGrayLighter
+        self.photoBImageView.layer.masksToBounds = true
+        self.photoBImageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        self.photoBImageView.setContentHuggingPriority(.defaultLow, for: .vertical)
         self.photoContainerView.addSubview(self.photoBImageView)
         self.photoBImageView.snp.makeConstraints { (make) in
             make.left.bottom.equalTo(self.photoContainerView)
@@ -71,6 +77,9 @@ class SideMenuProfileCollectionView: BaseView{
         self.photoCImageView = UIImageView()
         self.photoCImageView.contentMode = .scaleAspectFill
         self.photoCImageView.backgroundColor = ColorPalette.colorGrayLighter
+        self.photoCImageView.layer.masksToBounds = true
+        self.photoCImageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        self.photoCImageView.setContentHuggingPriority(.defaultLow, for: .vertical)
         self.photoContainerView.addSubview(self.photoCImageView)
         self.photoCImageView.snp.makeConstraints { (make) in
             make.top.right.bottom.equalTo(self.photoContainerView)
