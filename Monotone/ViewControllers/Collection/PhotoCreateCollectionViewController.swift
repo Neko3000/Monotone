@@ -55,7 +55,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
         super.buildSubviews()
 
         //
-        self.view.backgroundColor = ColorPalette.colorWhite
+        self.view.backgroundColor = ColorPalette.colorForeground
         
         // PageTitleView.
         self.pageTitleView = PageTitleView()
@@ -69,6 +69,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
         
         // TitleTextField
         self.titleTextField = MTTextField()
+        self.titleTextField.backgroundColor = ColorPalette.colorWhite
         self.titleTextField.iconLeftMargin = 0
         self.titleTextField.layer.cornerRadius = 6.0
         self.titleTextField.layer.masksToBounds = true
@@ -95,6 +96,7 @@ class PhotoCreateCollectionViewController: BaseViewController {
         
         // DescriptionTextView
         self.descriptionTextView = UITextView()
+        self.descriptionTextView.backgroundColor = ColorPalette.colorWhite
         self.descriptionTextView.layer.cornerRadius = 6.0
         self.descriptionTextView.layer.masksToBounds = true
         self.descriptionTextView.layer.borderWidth = 1.0

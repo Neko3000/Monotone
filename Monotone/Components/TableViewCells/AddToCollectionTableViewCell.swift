@@ -53,6 +53,7 @@ class AddToCollectionTableViewCell: UITableViewCell {
     private func buildSubviews(){
         
         self.selectionStyle = .none
+        self.backgroundColor = UIColor.clear
                 
         // CoverImageView.
         self.coverImageView = UIImageView()

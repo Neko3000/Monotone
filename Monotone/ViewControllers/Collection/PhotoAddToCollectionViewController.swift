@@ -46,7 +46,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
         super.buildSubviews()
 
         //
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = ColorPalette.colorForeground
         
         // PageTitleView.
         self.pageTitleView = PageTitleView()
@@ -60,6 +60,7 @@ class PhotoAddToCollectionViewController: BaseViewController {
         
         // TableView.
         self.tableView = UITableView()
+        self.tableView.backgroundColor = UIColor.clear
         self.tableView.separatorStyle = .none
         self.tableView.register(AddToCollectionTableViewCell.self, forCellReuseIdentifier: "AddToCollectionTableViewCell")
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
