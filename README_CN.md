@@ -225,7 +225,7 @@
 **Monotone**由Unsplash官方API进行数据驱动，为了使它正常运作，首先您需要申请一对OAuth密钥。
 1. 访问 [Unsplash官方站点](https://unsplash.com)，注册并登录（如果您有已登录的账号，可以跳过这一步）；
 2. 访问 [Unsplash应用程序注册平台](https://unsplash.com/oauth/applications/new) 同意条款并新建一个APP项目，表单中的名字（Application Name）与描述（Description）可以随意填写；
-3. 在APP建立完成后，会自动跳转到APP详情页（您也可以在 <https://unsplash.com/oauth/applications> 中找到它）。在页面下方的”Redirect URI & Permissions - Redirect URI“中填写”monotone://unsplash“，并勾选相应许可，如下图所示，并保存；
+3. 在APP建立完成后，会自动跳转到APP详情页（您也可以在 <https://unsplash.com/oauth/applications> 中找到它）。在页面下方的 `Redirect URI & Permissions - Redirect URI` 中填写 `monotone://unsplash` ，并勾选相应许可，如下图所示，并保存；
 
 <p align="center">
 <img width="500" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/app-redirect.png">
@@ -240,15 +240,18 @@
 
 1. 在终端执行如下命令：
 ``` bash
+# Clone到本地
 git clone https://github.com/Neko3000/Monotone.git
 
+# 定位到工程目录内
 cd Monotone
 
+# 安装Pod（因为Pod目前没有移除出版本控制，理论上也可以跳过这一步）
 pod install
 ```
 
-2. 在**Monotone**根目录下拷贝一份名为```api_keys_sample.json```的文件，并把它重命名为```api_keys_debug.json```（这个文件被.gitignore所忽略）；
-3. 打开```api_keys_debug.json```，填写您的”Access Key“与”Secret Key“，在运行时它们将会自动被拷贝至APP目录（具体请参考*Project->Build Phases->Run Script*以及*APPCredential.swift*内的内容）。
+2. 在**Monotone**根目录下拷贝一份名为 `api_keys_sample.json` 的文件，并把它重命名为 `api_keys_debug.json`（这个文件被.gitignore所忽略）；
+3. 打开 `api_keys_debug.json` ，填写您的”Access Key“与”Secret Key“，在运行时它们将会自动被拷贝至APP目录（具体请参考 *Project->Build Phases->Run Script* 以及 *APPCredential.swift* 内的内容）。
 4. 完成，<kbd>command</kbd> + <kbd>R</kbd>。
 
 <br/>
@@ -338,10 +341,10 @@ Monotone
 <br/>
 
 ## 设计
-您所看到界面布局均由[Addie Design Co](https://dribbble.com/addiedesign)进行设计，并在互联网上免费共享了[这一份文稿](https://dribbble.com/shots/7232794-Unsplash-iOS-UI-Kit-Sketch-Invision-Studio)。不管是设计元素，还是完成度都是值得令人惊叹的。  
+您所看到界面布局均由 [Addie Design Co](https://dribbble.com/addiedesign) 进行设计，并在互联网上免费共享了 [这一份文稿](https://dribbble.com/shots/7232794-Unsplash-iOS-UI-Kit-Sketch-Invision-Studio)。不管是设计元素，还是完成度都是值得令人惊叹的。  
 可以说没有这份免费共享的设计文稿，就没有这个应用程序的编写。  
 
-感谢[Addie Design Co](https://dribbble.com/addiedesign)所提供的这份漂亮的设计文稿。
+感谢 [Addie Design Co](https://dribbble.com/addiedesign) 所提供的这份漂亮的设计文稿。
 
 <br/>
 <br/>
