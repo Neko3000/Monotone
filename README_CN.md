@@ -54,8 +54,6 @@
 
 ## 已完成的开发项
 
-<br/>
-
 ### 特性
 - [x] 纯代码编写的界面
 - [x] 深色模式支持
@@ -63,8 +61,6 @@
 - [x] 本地化
 - [x] 由Unsplash官方API进行数据驱动
 - [X] 更多...
-
-<br/>
 
 ### 功能
 目前所支持的功能列表：
@@ -83,138 +79,138 @@
         <td align="center" rowspan="7">主要</td>
         <td align="center" rowspan="1">登录</td>
         <td align="center">登录 & 注册</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center" rowspan="6">照片</td>
         <td align="center">列表（搜索 & 主题）</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center">阅览</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center">相机参数</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center">收藏（添加 & 移除）</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center">分享至社交媒体</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled />         </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">⬜️ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center">保存至相册</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr >
         <td align="center" rowspan="6">侧边栏</td>
         <td align="center" rowspan="1">个人中心</td>
         <td align="center">详情</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center" rowspan="5">菜单</td>
         <td align="center">我的照片</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center">应募</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled />         </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">⬜️ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center">许可条例</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center">帮助</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled />         </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">⬜️ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center">周边制作</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled />         </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">⬜️ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr >
-        <td align="center" rowspan="6">底边栏</td>
+        <td align="center" rowspan="5">底边栏</td>
         <td align="center" rowspan="2">商店</td>
         <td align="center">首页</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled />         </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">⬜️ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
         <tr>
         <td align="center">详情</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled />         </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">⬜️ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center" rowspan="1">壁纸</td>
         <td align="center">列表（按屏幕大小）</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled />         </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">⬜️ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center" rowspan="1">收藏</td>
         <td align="center">列表</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
     <tr>
         <td align="center" rowspan="1">探索</td>
         <td align="center">列表（照片 & 收藏）</td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled />         </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
-        <td align="center"><input type="checkbox" disabled checked /> </td>
+        <td align="center">✅ </td>
+        <td align="center">⬜️ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
     </tr>
 </table>
 
@@ -364,8 +360,6 @@ Monotone
 ## 持续贡献
 受限于 [Unsplash官方API](https://unsplash.com/developers) 所提供的数据，该应用程序中的部分页面仅完成了样式布局，并没有使用真实数据（集中于商店，探索等模块），后续如果官方API提供了这些内容的数据源，也会第一时间添加新的功能。  
 同时，针对已经完成的该应用程序，也会持续性的改进一些内容。
-
-<br/>
 
 ### 如何参与开源项目
 如果您对移动端应用程序的编写具有一定经验，并且想要改进这个应用程序，非常欢迎您参与这个开源项目。发挥您的构想，改进甚至重构这个应用程序。  
