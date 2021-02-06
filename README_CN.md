@@ -9,8 +9,9 @@
 ![Version: v1.00](https://img.shields.io/badge/version-v1.0-lightgrey)
 
 # Monotone
-**Monotone** 是一个现代化的移动端应用程序，与 [Unsplash](https://unsplash.com) 所提供的强大的 [Unsplash API](https://unsplash.com/developers) 所集成。实现了其大部分功能，使用它可以轻松地进行照片的浏览，搜索，收藏，以及个人中心，许可证，FAQ等查阅等功能。  
-这是一个**非官方**的应用程序，主要目的是发挥一些构想的可行性。  
+**Monotone** 是一个现代化的移动端应用程序，与 [Unsplash](https://unsplash.com) 所提供的强大的 [Unsplash API](https://unsplash.com/developers) 所集成。实现了其大部分功能，使用它可以轻松地进行照片的浏览，搜索，收藏，以及个人中心，许可证，FAQ等查阅等功能。
+
+这是一个 **非官方** 的应用程序，主要目的是发挥一些构想的可行性。  
 它主要由Swift进行编写，使用RxSwift进行数据驱动，基于SnapKit绘制可响应式的约束布局。
 
 如果您喜欢这个项目，或者被这个项目所启发创意，请毫不犹豫地点上一颗小星星。（笔者狂喜）
@@ -257,7 +258,7 @@ pod install
 ```
 
 2. 在 **Monotone** 根目录下拷贝一份名为 `api_keys_sample.json` 的文件，并把它重命名为 `api_keys_debug.json`（这个文件被.gitignore所忽略）；
-3. 打开 `api_keys_debug.json` ，填写您的”Access Key“与”Secret Key“，在运行时它们将会自动被拷贝至APP目录（具体请参考 *Project->Build Phases->Run Script* 以及 *APPCredential.swift* 内的内容）。
+3. 打开 `api_keys_debug.json` ，填写您的”Access Key“与”Secret Key“，在运行时它们将会自动被拷贝至APP目录（具体请参考 *Project->Build Phases->Run Script* 以及 *APPCredential.swift* 内的内容）；
 4. 完成，<kbd>command</kbd> + <kbd>R</kbd>。
 
 <br/>
@@ -348,7 +349,7 @@ Monotone
 
 ## 设计
 您所看到界面布局均由 [Addie Design Co](https://dribbble.com/addiedesign) 进行设计，并在互联网上免费共享了 [这一份文稿](https://dribbble.com/shots/7232794-Unsplash-iOS-UI-Kit-Sketch-Invision-Studio)。不管是设计元素，还是完成度都是值得令人惊叹的。  
-可以说没有这份免费共享的设计文稿，就没有这个应用程序的编写。  
+可以说没有这份免费共享的设计文稿，就没有这个应用程序的编写过程。  
 
 感谢 [Addie Design Co](https://dribbble.com/addiedesign) 所提供的这份漂亮的设计文稿。
 
@@ -365,18 +366,29 @@ Monotone
 <br/>
 
 ## 持续贡献
-受限于 [Unsplash API](https://unsplash.com/developers) 所提供的数据，该应用程序中的部分页面仅完成了样式布局，并没有使用真实数据（集中于商店，探索等模块），后续如果官方API提供了这些内容的数据源，也会第一时间添加新的功能。  
+受限于 [Unsplash API](https://unsplash.com/developers) 所提供的数据，该应用程序中的一部分页面仅完成了样式布局，并没有使用真实数据（集中于商店，探索等模块），后续如果API提供了这些内容的数据源，也会第一时间添加新的功能。  
+
 同时，针对已经完成的该应用程序，也会持续性的改进一些内容。
 
 ### 如何参与开源项目
-如果您对移动端应用程序的编写具有一定经验，并且想要改进这个应用程序，非常欢迎您参与这个开源项目。发挥您的构想，改进甚至重构这个应用程序。  
+如果您对移动端应用程序的编写具有一定经验，并且想要改进这个应用程序，非常欢迎您参与这个开源项目。发挥您的构想，改进甚至重构这个应用程序。 
+
+您可以遵循标准步骤：
+
+1. `Fork` 这个仓库；
+2. 创建您的 `Branch` (`git checkout -b feature/AmazingFeature`)；
+3. 创建 `Commit` (`git commit -m 'Add some AmazingFeature'`)；
+4. `Push` 到远程 `Branch` (`git push origin feature/AmazingFeature`)；
+5. 打开一个 `Pull Request`。
+
 欢迎任何开发者对本项目提出ISSUE或者PR。
 
 <br/>
 <br/>
 
 ## 许可证
-本应用程序项目基于 [MIT许可证](https://github.com/Neko3000/Monotone/blob/master/LICENSE) 进行分发。
+本应用程序项目基于 **MIT许可证** 进行分发。
+查看 [MIT许可证](https://github.com/Neko3000/Monotone/blob/master/LICENSE) 来获取更多细节。
 
 <br/>
 <br/>
