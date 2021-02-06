@@ -3,6 +3,11 @@
 <img width="600" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/poster.png">
 </p>
 
+![License: MIT](https://img.shields.io/github/license/Neko3000/Monotone)
+![Platforms: iOS](https://img.shields.io/badge/Platform-iOS-lightgrey)
+![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)
+![Version: v0.90](https://img.shields.io/badge/version-v1.0-lightgrey)
+
 # Monotone
 **Monotone**是一个现代化的移动端应用程序，与Unsplash.Inc所提供的强大的 [Unsplash官方API](https://unsplash.com/developers) 所集成。利用它可以轻松地进行照片的浏览，搜索，收藏，以及个人中心，许可证，FAQ等查阅等功能。  
 这是一个**非官方**的应用程序，主要目的是发挥一些构想的可行性。它主要由Swift进行编写，使用RxSwift进行数据驱动，基于SnapKit绘制可响应式的约束布局。
