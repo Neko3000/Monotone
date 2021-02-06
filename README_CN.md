@@ -6,11 +6,12 @@
 ![License: MIT](https://img.shields.io/github/license/Neko3000/Monotone)
 ![Platforms: iOS](https://img.shields.io/badge/Platform-iOS-lightgrey)
 ![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)
-![Version: v0.90](https://img.shields.io/badge/version-v1.0-lightgrey)
+![Version: v1.00](https://img.shields.io/badge/version-v1.0-lightgrey)
 
 # Monotone
-**Monotone**是一个现代化的移动端应用程序，与Unsplash.Inc所提供的强大的 [Unsplash官方API](https://unsplash.com/developers) 所集成。利用它可以轻松地进行照片的浏览，搜索，收藏，以及个人中心，许可证，FAQ等查阅等功能。  
-这是一个**非官方**的应用程序，主要目的是发挥一些构想的可行性。它主要由Swift进行编写，使用RxSwift进行数据驱动，基于SnapKit绘制可响应式的约束布局。
+**Monotone** 是一个现代化的移动端应用程序，与 [Unsplash](https://unsplash.com) 所提供的强大的 [Unsplash API](https://unsplash.com/developers) 所集成。实现了其大部分功能，使用它可以轻松地进行照片的浏览，搜索，收藏，以及个人中心，许可证，FAQ等查阅等功能。  
+这是一个**非官方**的应用程序，主要目的是发挥一些构想的可行性。  
+它主要由Swift进行编写，使用RxSwift进行数据驱动，基于SnapKit绘制可响应式的约束布局。
 
 如果您喜欢这个项目，或者被这个项目所启发创意，请毫不犹豫地点上一颗小星星。（笔者狂喜）
 
@@ -64,7 +65,7 @@
 - [x] 深色模式支持
 - [x] 动画效果
 - [x] 本地化
-- [x] 由Unsplash官方API进行数据驱动
+- [x] 由 [Unsplash API](https://unsplash.com/developers) 进行数据驱动
 - [X] 更多...
 
 ### 功能
@@ -223,12 +224,12 @@
 <br/>
 
 ## 上手指南
-本应用程序使用Cocoapods进行依赖项的管理。  
-请首先参照 [Cocoapods官方网站](https://cocoapods.org/) 的指引进行安装配置（如果您已经安装Cocoapods，可以跳过这一步）。
+本应用程序使用 `Cocoapods` 进行依赖项的管理。  
+请首先参照 [Cocoapods官方网站](https://cocoapods.org/) 的指引进行安装配置（如果您已经安装 `Cocoapods`，可以跳过这一步）。
 
 ### 前置要求
-**Monotone**由Unsplash官方API进行数据驱动，为了使它正常运作，首先您需要申请一对OAuth密钥。
-1. 访问 [Unsplash官方站点](https://unsplash.com)，注册并登录（如果您有已登录的账号，可以跳过这一步）；
+**Monotone** 由 [Unsplash API](https://unsplash.com/developers) 进行数据驱动，为了使它正常运作，首先您需要申请一对OAuth密钥。
+1. 访问 [Unsplash](https://unsplash.com)，注册并登录（如果您有已登录的账号，可以跳过这一步）；
 2. 访问 [Unsplash应用程序注册平台](https://unsplash.com/oauth/applications/new) 同意条款并新建一个APP项目，表单中的名字（Application Name）与描述（Description）可以随意填写；
 3. 在APP建立完成后，会自动跳转到APP详情页（您也可以在 <https://unsplash.com/oauth/applications> 中找到它）。在页面下方的 `Redirect URI & Permissions - Redirect URI` 中填写 `monotone://unsplash` ，并勾选相应许可，如下图所示，并保存；
 
@@ -255,7 +256,7 @@ cd Monotone
 pod install
 ```
 
-2. 在**Monotone**根目录下拷贝一份名为 `api_keys_sample.json` 的文件，并把它重命名为 `api_keys_debug.json`（这个文件被.gitignore所忽略）；
+2. 在 **Monotone** 根目录下拷贝一份名为 `api_keys_sample.json` 的文件，并把它重命名为 `api_keys_debug.json`（这个文件被.gitignore所忽略）；
 3. 打开 `api_keys_debug.json` ，填写您的”Access Key“与”Secret Key“，在运行时它们将会自动被拷贝至APP目录（具体请参考 *Project->Build Phases->Run Script* 以及 *APPCredential.swift* 内的内容）。
 4. 完成，<kbd>command</kbd> + <kbd>R</kbd>。
 
@@ -364,7 +365,7 @@ Monotone
 <br/>
 
 ## 持续贡献
-受限于 [Unsplash官方API](https://unsplash.com/developers) 所提供的数据，该应用程序中的部分页面仅完成了样式布局，并没有使用真实数据（集中于商店，探索等模块），后续如果官方API提供了这些内容的数据源，也会第一时间添加新的功能。  
+受限于 [Unsplash API](https://unsplash.com/developers) 所提供的数据，该应用程序中的部分页面仅完成了样式布局，并没有使用真实数据（集中于商店，探索等模块），后续如果官方API提供了这些内容的数据源，也会第一时间添加新的功能。  
 同时，针对已经完成的该应用程序，也会持续性的改进一些内容。
 
 ### 如何参与开源项目
