@@ -221,8 +221,6 @@
 本应用程序使用Cocoapods进行依赖项的管理。  
 请首先参照 [Cocoapods官方网站](https://cocoapods.org/) 的指引进行安装配置（如果您已经安装Cocoapods，可以跳过这一步）。
 
-<br/>
-
 ### 前置要求
 **Monotone**由Unsplash官方API进行数据驱动，为了使它正常运作，首先您需要申请一对OAuth密钥。
 1. 访问 [Unsplash官方站点](https://unsplash.com)，注册并登录（如果您有已登录的账号，可以跳过这一步）；
@@ -312,7 +310,7 @@ pod install
 Monotone 
 ├── Monotone
 │   ├── /Vars  #全局变量
-│   ├── /Enums  #枚举声明（包括了一些伪数据）
+│   ├── /Enums  #枚举声明（包括了一些非真实数据）
 │   ├── /Application
 │   │   ├── AppCredential  #授权凭证
 │   │   ...
@@ -352,7 +350,7 @@ Monotone
 [Unsplash](https://unsplash.com) 是一个拥有较为自由的著作权许可条款的免费照片共享网站，具有非常高的质量。摄影师可以将照片上传，照片编辑者们会对用户上传的照片进行整理并归纳。
 
 也是笔者本人非常钟爱的一个高质量照片网站，非常推崇这种富有艺术感的共享精神。  
-笔者的主页在[这里](https://unsplash.com/@neko3000)，但是自从2020年初以后就减少了外出摄影次数。
+笔者的主页在 [这里](https://unsplash.com/@neko3000)（~~但是自从2020年初以后就懒得外出摄影~~）。
 
 <br/>
 <br/>
