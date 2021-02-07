@@ -1,15 +1,28 @@
 
-<p align="center">
-<img width="600" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/poster.png">
-</p>
-
 ![License: MIT](https://img.shields.io/github/license/Neko3000/Monotone)
 ![Platforms: iOS](https://img.shields.io/badge/Platform-iOS-lightgrey)
 ![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)
 ![Version: v1.0](https://img.shields.io/badge/version-v1.0-lightgrey)
 
-# Monotone
-English, [中文](https://github.com/Neko3000/Monotone/blob/master/README_CN.md)  
+<h1 align="left">Monotone</h1>
+<p align="center">
+    <img width="600" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/poster.png">
+</p>
+<p align="center">
+    <p align="center">
+        <span href="#">English</span>
+        ·
+        <a href="https://github.com/Neko3000/Monotone/blob/master/README_CN.md">中文</a>
+    </p>
+    <p align="center">
+        <a href="https://github.com/Neko3000/Monotone/issues">Report Bug</a>
+        ·
+        <a href="https://github.com/Neko3000/Monotone/issues">Request Feature</a>
+    </p>
+</p>
+
+<br/>
+<br/>
 
 **Monotone** is a Modern Mobile Application, integrated with powerful [Unsplash API](https://unsplash.com/developers) provided by [Unsplash](https://unsplash.com). It implemented almost all features including viewing, searching, collecting photos. And other features, such as profile, license, FAQ are supported as well.
 
@@ -376,7 +389,7 @@ Thanks again to [Addie Design Co](https://dribbble.com/addiedesign) and this bea
 [Unsplash](https://unsplash.com) is a website dedicated to sharing high-quality stock photography under the Unsplash license. All photos uploaded by photographers will be organized and archived by editors.
 
 And this website is one of my favorites, admired for its artistic, the spirit of sharing.  
-You will find my home page here. (~~ Had not been updated frequently since 2020~~)
+You will find my home page here. (~~Not updated frequently since 2020~~)
 
 <br/>
 <br/>
@@ -410,7 +423,7 @@ Weibo: @一只妖艳的绀色布
 <br/>
 
 ## License
-Distributed under the MIT License. 
+Distributed under the MIT License.  
 See [LICENSE](https://github.com/Neko3000/Monotone/blob/master/LICENSE) for more information.
 
 <br/>

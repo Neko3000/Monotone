@@ -1,15 +1,28 @@
 
-<p align="center">
-<img width="600" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/poster.png">
-</p>
-
 ![License: MIT](https://img.shields.io/github/license/Neko3000/Monotone)
 ![Platforms: iOS](https://img.shields.io/badge/Platform-iOS-lightgrey)
 ![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)
 ![Version: v1.0](https://img.shields.io/badge/version-v1.0-lightgrey)
 
-# Monotone
-[English](https://github.com/Neko3000/Monotone), 中文 
+<h1 align="left">Monotone</h1>
+<p align="center">
+    <img width="600" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/poster.png">
+</p>
+<p align="center">
+    <p align="center">
+        <a href="https://github.com/Neko3000/Monotone">English</a>
+        ·
+        <span href="#">中文</span>
+    </p>
+    <p align="center">
+        <a href="https://github.com/Neko3000/Monotone/issues">报告问题</a>
+        ·
+        <a href="https://github.com/Neko3000/Monotone/issues">新功能建议</a>
+    </p>
+</p>
+
+<br/>
+<br/>
 
 **Monotone** 是一个现代化的移动端应用程序，与 [Unsplash](https://unsplash.com) 所提供的强大的 [Unsplash API](https://unsplash.com/developers) 所集成。实现了其大部分功能，使用它可以轻松地进行照片的浏览，搜索，收藏，以及个人中心，许可证，FAQ等查阅等功能。
 
