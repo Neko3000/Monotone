@@ -9,7 +9,7 @@
 ![Version: v1.00](https://img.shields.io/badge/version-v1.0-lightgrey)
 
 # Monotone
-[English](https://github.com/Neko3000/Monotone/blob/master/README_CN.md), 中文 
+[English](https://github.com/Neko3000/Monotone), 中文 
 
 **Monotone** 是一个现代化的移动端应用程序，与 [Unsplash](https://unsplash.com) 所提供的强大的 [Unsplash API](https://unsplash.com/developers) 所集成。实现了其大部分功能，使用它可以轻松地进行照片的浏览，搜索，收藏，以及个人中心，许可证，FAQ等查阅等功能。
 
