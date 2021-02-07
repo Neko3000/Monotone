@@ -6,7 +6,7 @@
 ![License: MIT](https://img.shields.io/github/license/Neko3000/Monotone)
 ![Platforms: iOS](https://img.shields.io/badge/Platform-iOS-lightgrey)
 ![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)
-![Version: v1.00](https://img.shields.io/badge/version-v1.0-lightgrey)
+![Version: v1.0](https://img.shields.io/badge/version-v1.0-lightgrey)
 
 # Monotone
 [English](https://github.com/Neko3000/Monotone), 中文 
@@ -22,21 +22,21 @@
 <br/>
 
 ## 目录
-- [预览](#预览)
-- [已完成的开发项](#已完成的开发项)
+1. [预览](#预览)
+2. [已完成的开发项](#已完成的开发项)
     - [特性](#特性)
     - [功能](#功能)
-- [上手指南](#上手指南)
+3. [上手指南](#上手指南)
     - [前置要求](#前置要求)
     - [安装工程](#安装工程)
-- [依赖项](#依赖项)
-- [工程结构](#工程结构)
-- [设计](#设计)
-- [关于Unsplash](#关于Unsplash)
-- [持续贡献](#持续贡献)
+4. [依赖项](#依赖项)
+5. [工程结构](#工程结构)
+6. [设计](#设计)
+7. [关于Unsplash](#关于Unsplash)
+8. [持续贡献](#持续贡献)
     - [如何参与开源项目](#如何参与开源项目)
-- [联系我](#联系我)
-- [许可证](#许可证)
+9. [联系我](#联系我)
+10. [许可证](#许可证)
 
 <br/>
 <br/>

@@ -6,7 +6,7 @@
 ![License: MIT](https://img.shields.io/github/license/Neko3000/Monotone)
 ![Platforms: iOS](https://img.shields.io/badge/Platform-iOS-lightgrey)
 ![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)
-![Version: v1.00](https://img.shields.io/badge/version-v1.0-lightgrey)
+![Version: v1.0](https://img.shields.io/badge/version-v1.0-lightgrey)
 
 # Monotone
 English, [中文](https://github.com/Neko3000/Monotone/blob/master/README_CN.md)  
@@ -16,27 +16,41 @@ English, [中文](https://github.com/Neko3000/Monotone/blob/master/README_CN.md)
 This is an **un-official** application, exploring the feasibility of some conceptions is the goal of this project.
 Written in Swift, triggered by RxSwift, draw responsive constraints using SnapKit.
 
-If you like this project or inspired by any ideas of this project, please star it without any hesitation. (LOL)
+If you like this project or inspired by any ideas of this project, please star it without any hesitation. (ヽ(✿ﾟ▽ﾟ)ノ)
 
 <br/>
 <br/>
 
 ## Table of Contents
-- [Overview](#Overview)
-- [Development Progress](#Development%20Progress)
-    - [Features](#Features)
-    - [Tasks](#Tasks)
-- [Getting Started](#Getting%20Started)
-    - [Prerequisites](#Prerequisites)
-    - [Installation](#Installation)
-- [Dependencies](#Dependencies)
-- [Sturcture](#Sturcture)
-- [Design](#Design)
-- [About Unsplash](#About%20Unsplash)
-- [Contributing](#Contributing)
-    - [How to Participate in](#How%20to%20Participate%20in)
-- [Contact on Me](#Contact%20on%20Me)
-- [License](#License)
+<ol>
+    <li><a href="#overview">Overview</a></li>
+    <li>
+      <a href="#development-progress">Development Progress</a>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#tasks">Tasks</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#dependencies">Dependencies</a></li>
+    <li><a href="#sturcture">Sturcture</a></li>
+    <li><a href="#design">Design</a></li>
+    <li><a href="#about-unsplash">About Unsplash</a></li>
+    <li>
+      <a href="#contributing">Contributing</a>
+      <ul>
+        <li><a href="#how-to-participate-in">How to Participate in</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact-on-me">Contact on Me</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
 
 <br/>
 <br/>
