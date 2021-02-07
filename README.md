@@ -417,7 +417,8 @@ Follow standard steps:
 
 ## Contact on Me
 E-mail: sheran_chen@outlook.com  
-Weibo: @一只妖艳的绀色布
+Blog: chienerrant.com  
+Weibo: @一只妖艳的绀色布  
 
 <br/>
 <br/>

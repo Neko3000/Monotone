@@ -403,8 +403,9 @@ Monotone
 <br/>
 
 ## 联系我
-E-mail: sheran_chen@outlook.com  
-Weibo: @一只妖艳的绀色布
+电子邮件: sheran_chen@outlook.com  
+Blog: chienerrant.com  
+微博: @一只妖艳的绀色布  
 
 <br/>
 <br/>
