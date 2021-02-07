@@ -9,36 +9,38 @@
 ![Version: v1.00](https://img.shields.io/badge/version-v1.0-lightgrey)
 
 # Monotone
-**Monotone** 是一个现代化的移动端应用程序，与 [Unsplash](https://unsplash.com) 所提供的强大的 [Unsplash API](https://unsplash.com/developers) 所集成。实现了其大部分功能，使用它可以轻松地进行照片的浏览，搜索，收藏，以及个人中心，许可证，FAQ等查阅等功能。
+English, [中文](https://github.com/Neko3000/Monotone/blob/master/README_CN.md)  
 
-这是一个 **非官方** 的应用程序，主要目的是发挥一些构想的可行性。  
-它主要由Swift进行编写，使用RxSwift进行数据驱动，基于SnapKit绘制可响应式的约束布局。
+**Monotone** is a Modern Mobile Application, integrated with powerful [Unsplash API](https://unsplash.com/developers) provided by [Unsplash](https://unsplash.com). It implemented almost all features including viewing, searching, collecting photos. And other features, such as profile, license, FAQ are supported as well.
 
-如果您喜欢这个项目，或者被这个项目所启发创意，请毫不犹豫地点上一颗小星星。（笔者狂喜）
+This is an **un-official** application, exploring the feasibility of some conceptions is the goal of this project.
+Written in Swift, triggered by RxSwift, draw responsive constraints using SnapKit.
 
-<br/>
-<br/>
-
-## 目录
-- [预览](#预览)
-- [已完成的开发项](#已完成的开发项)
-    - [特性](#特性)
-    - [功能](#功能)
-- [上手指南](#上手指南)
-    - [前置要求](#前置要求)
-    - [安装工程](#安装工程)
-- [依赖项](#依赖项)
-- [工程结构](#工程结构)
-- [设计](#设计)
-- [关于Unsplash](#关于Unsplash)
-- [持续贡献](#持续贡献)
-    - [如何参与开源项目](#如何参与开源项目)
-- [许可证](#许可证)
+If you like this project or inspired by any ideas of this project, please star it without any hesitation. (LOL)
 
 <br/>
 <br/>
 
-## 预览
+## Table of Contents
+- [Overview](#Overview)
+- [Development Progress](#Development%20Progress)
+    - [Features](#Features)
+    - [Tasks](#Tasks)
+- [Getting Started](#Getting%20Started)
+    - [Prerequisites](#Prerequisites)
+    - [Installation](#Installation)
+- [Dependencies](#Dependencies)
+- [Sturcture](#Sturcture)
+- [Design](#Design)
+- [About Unsplash](#About%20Unsplash)
+- [Contributing](#Contributing)
+    - [How to Participate in](#How%20to%20Participate%20in)
+- [License](#License)
+
+<br/>
+<br/>
+
+## Overview
 
 <p align="center"> 
 <img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-record-1.gif">
@@ -59,161 +61,161 @@
 <br/>
 <br/>
 
-## 已完成的开发项
+## Development Progress
 
-### 特性
-- [x] 纯代码编写的界面
-- [x] 深色模式支持
-- [x] 动画效果
-- [x] 本地化
-- [x] 由 [Unsplash API](https://unsplash.com/developers) 进行数据驱动
-- [X] 更多...
+### Features
+- [x] Write Interfaces Programmatically
+- [x] Dark Mode Support
+- [x] Animation Effects
+- [x] Localization
+- [x] Triggered by [Unsplash API](https://unsplash.com/developers)
+- [X] More...
 
-### 功能
-目前所支持的功能列表：
+### Tasks
+Currently supported tasks:
 
 <table align="center">
     <tr>
-        <th style="text-align:center">位置</th>
-        <th style="text-align:center">模块</th>
-        <th style="text-align:center">页面</th>
-        <th style="text-align:center">样式布局</th>
-        <th style="text-align:center">数据驱动</th>
-        <th style="text-align:center">动画效果</th>
-        <th style="text-align:center">本地化</th>
+        <th style="text-align:center">Position</th>
+        <th style="text-align:center">Module</th>
+        <th style="text-align:center">Page</th>
+        <th style="text-align:center">Style & Layout</th>
+        <th style="text-align:center">Triggered by Data</th>
+        <th style="text-align:center">Animation Effects</th>
+        <th style="text-align:center">Localization</th>
     </tr>
     <tr >
-        <td align="center" rowspan="7">主要</td>
-        <td align="center" rowspan="1">登录</td>
-        <td align="center">登录 & 注册</td>
+        <td align="center" rowspan="7">Main</td>
+        <td align="center" rowspan="1">Login</td>
+        <td align="center">Sign Up & Sign In</td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
     </tr>
     <tr>
-        <td align="center" rowspan="6">照片</td>
-        <td align="center">列表（搜索 & 主题）</td>
+        <td align="center" rowspan="6">Photo</td>
+        <td align="center">List (Search & Topic)</td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
     </tr>
     <tr>
-        <td align="center">阅览</td>
+        <td align="center">View</td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
     </tr>
     <tr>
-        <td align="center">相机参数</td>
+        <td align="center">Camera Settings</td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
     </tr>
     <tr>
-        <td align="center">收藏（添加 & 移除）</td>
+        <td align="center">Collect（Add & Remove）</td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
     </tr>
     <tr>
-        <td align="center">分享至社交媒体</td>
+        <td align="center">Share to SNS</td>
         <td align="center">✅ </td>
         <td align="center">⬜️ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
     </tr>
     <tr>
-        <td align="center">保存至相册</td>
+        <td align="center">Save to Album</td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-    </tr>
-    <tr >
-        <td align="center" rowspan="6">侧边栏</td>
-        <td align="center" rowspan="1">个人中心</td>
-        <td align="center">详情</td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-    </tr>
-    <tr>
-        <td align="center" rowspan="5">菜单</td>
-        <td align="center">我的照片</td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-    </tr>
-    <tr>
-        <td align="center">应募</td>
-        <td align="center">✅ </td>
-        <td align="center">⬜️ </td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-    </tr>
-    <tr>
-        <td align="center">许可条例</td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-    </tr>
-    <tr>
-        <td align="center">帮助</td>
-        <td align="center">✅ </td>
-        <td align="center">⬜️ </td>
-        <td align="center">✅ </td>
-        <td align="center">✅ </td>
-    </tr>
-    <tr>
-        <td align="center">周边制作</td>
-        <td align="center">✅ </td>
-        <td align="center">⬜️ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
     </tr>
     <tr >
-        <td align="center" rowspan="5">底边栏</td>
-        <td align="center" rowspan="2">商店</td>
-        <td align="center">首页</td>
+        <td align="center" rowspan="6">Side Menu</td>
+        <td align="center" rowspan="1">Profile</td>
+        <td align="center">Details</td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+    </tr>
+    <tr>
+        <td align="center" rowspan="5">Menu</td>
+        <td align="center">My Photos</td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+    </tr>
+    <tr>
+        <td align="center">Hiring</td>
+        <td align="center">✅ </td>
+        <td align="center">⬜️ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+    </tr>
+    <tr>
+        <td align="center">Licenses</td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+    </tr>
+    <tr>
+        <td align="center">Help</td>
+        <td align="center">✅ </td>
+        <td align="center">⬜️ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+    </tr>
+    <tr>
+        <td align="center">Made with Unsplash</td>
+        <td align="center">✅ </td>
+        <td align="center">⬜️ </td>
+        <td align="center">✅ </td>
+        <td align="center">✅ </td>
+    </tr>
+    <tr >
+        <td align="center" rowspan="5">Tab Bar</td>
+        <td align="center" rowspan="2">Store</td>
+        <td align="center">Home</td>
         <td align="center">✅ </td>
         <td align="center">⬜️ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
     </tr>
         <tr>
-        <td align="center">详情</td>
+        <td align="center">Details</td>
         <td align="center">✅ </td>
         <td align="center">⬜️ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
     </tr>
     <tr>
-        <td align="center" rowspan="1">壁纸</td>
-        <td align="center">列表（按屏幕大小）</td>
+        <td align="center" rowspan="1">Wallpaper</td>
+        <td align="center">List(Adapt Screen Size)</td>
         <td align="center">✅ </td>
         <td align="center">⬜️ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
     </tr>
     <tr>
-        <td align="center" rowspan="1">收藏</td>
-        <td align="center">列表</td>
+        <td align="center" rowspan="1">Collection</td>
+        <td align="center">List</td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
     </tr>
     <tr>
-        <td align="center" rowspan="1">探索</td>
-        <td align="center">列表（照片 & 收藏）</td>
+        <td align="center" rowspan="1">Explore</td>
+        <td align="center">List (Photo & Collection)</td>
         <td align="center">✅ </td>
         <td align="center">⬜️ </td>
         <td align="center">✅ </td>
@@ -224,83 +226,82 @@
 <br/>
 <br/>
 
-## 上手指南
-本应用程序使用 `Cocoapods` 进行依赖项的管理。  
-请首先参照 [Cocoapods官方网站](https://cocoapods.org/) 的指引进行安装配置（如果您已经安装 `Cocoapods`，可以跳过这一步）。
+## Getting Started
+This application use `Cocoapods` to manage dependencies.
+Please refer to [Cocoapods Offical Website](https://cocoapods.org/) to install & configure(If you already installed `Cocoapods`, skip this).
 
-### 前置要求
-**Monotone** 由 [Unsplash API](https://unsplash.com/developers) 进行数据驱动，为了使它正常运作，首先您需要申请一对OAuth密钥。
-1. 访问 [Unsplash](https://unsplash.com)，注册并登录（如果您有已登录的账号，可以跳过这一步）；
-2. 访问 [Unsplash应用程序注册平台](https://unsplash.com/oauth/applications/new) 同意条款并新建一个APP项目，表单中的名字（Application Name）与描述（Description）可以随意填写；
-3. 在APP建立完成后，会自动跳转到APP详情页（您也可以在 <https://unsplash.com/oauth/applications> 中找到它）。在页面下方的 `Redirect URI & Permissions - Redirect URI` 中填写 `monotone://unsplash` ，并勾选相应许可，如下图所示，并保存；
+### Prerequisites
+**Monotone** is trigged by [Unsplash API](https://unsplash.com/developers) . The very first thing must be done is applying a pair of OAuth key to run it.
+1. Visit [Unsplash](https://unsplash.com), sign up then sign in.（If you already have an account, skip this）；
+2. Visit [Unsplash Application Registration Platform](https://unsplash.com/oauth/applications/new) agree with terms and create a new application, the application name and description can be anything.
+3. After the application was created，it will redirect to the application details page automatically（Also can be found from <https://unsplash.com/oauth/applications>). At `Redirect URI & Permissions - Redirect URI` section, input `monotone://unsplash`, make sure all authentication options are checked, just like the image shown below.
 
 <p align="center">
 <img width="500" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/app-redirect.png">
 </p>
 
-4. 完成以上工作后，记录页面中的”Access Key“与”Secret Key“，稍后会用到这对密钥。
+4. After the work is finished, check ”Access Key“ and ”Secret Key“ on this page, they will be used soon.
 
 <br/>
 
-### 安装工程
-请通过以下步骤进行安装。
+### Installation
 
-1. 在终端执行如下命令：
+1. Execute the following commands in the terminal:
 ``` bash
-# Clone到本地
+# Clone to a local folder
 git clone https://github.com/Neko3000/Monotone.git
 
-# 定位到工程目录内
+# Direct to Project folder
 cd Monotone
 
-# 安装Pod（因为Pod目前没有移除出版本控制，理论上也可以跳过这一步）
+# Install Pod（Cause Pod is still under Version Control, you can skip this step）
 pod install
 ```
 
-2. 在 **Monotone** 根目录下拷贝一份名为 `api_keys_sample.json` 的文件，并把它重命名为 `api_keys_debug.json`（这个文件被.gitignore所忽略）；
-3. 打开 `api_keys_debug.json` ，填写您的”Access Key“与”Secret Key“，在运行时它们将会自动被拷贝至APP目录（具体请参考 *Project->Build Phases->Run Script* 以及 *APPCredential.swift* 内的内容）；
-4. 完成，<kbd>command</kbd> + <kbd>R</kbd>。
+2. Under **Monotone** folder, duplicate `api_keys_sample.json` file，and rename it to `api_keys_debug.json`（This file is ignored by .gitignore）；
+3. Open `api_keys_debug.json` ，input your ”Access Key“ and ”Secret Key“，they will be copyed to APP folder when running.(For more information, please refer to the content in *Project->Build Phases->Run Script* and *APPCredential.swift* )；
+4. Done，<kbd>command</kbd> + <kbd>R</kbd>。
 
 <br/>
 <br/>
 
-## 依赖项
+## Dependencies
 <table>
     <tr>
-        <th>项目</th>
-        <th>简述</th>
+        <th>Project</th>
+        <th>Description</th>
     </tr>
     <tr >
         <td>RxSwift</td>
-        <td>响应式异步编程的框架。</td>
+        <td>Framework for Reactive Async Programming.</td>
     </tr>
     <tr>
         <td>Action</td>
-        <td>基于RxSwift，进一步封装Action来进行调用。</td>
+        <td>Based on RxSwift，encapsulate actions for calling。</td>
     </tr>
     <tr>
         <td>DataSources</td>
-        <td>基于RxSwift，扩展TableView和CollectionView的业务逻辑交互。</td>
+        <td>Based on RxSwift，extend logic interaction of tableview and collectionview。</td>
     </tr>
     <tr>
         <td>Alamofire</td>
-        <td>HTTP网络库。</td>
+        <td>HTTP network library.</td>
     </tr>
     <tr>
         <td>SwiftyJSON</td>
-        <td>高效的处理JSON数据格式。</td>
+        <td>Handle JSON format data effectively.</td>
     </tr>
     <tr>
         <td>ObjectMapper</td>
-        <td>完成Model与JSON之间的映射。</td>
+        <td>Map data between models and JSON.</td>
     </tr>
     <tr>
         <td>Kingfisher</td>
-        <td>网络图片缓存与多种附加功能。</td>
+        <td>Network image cache libray with many functions.</td>
     </tr>
     <tr>
         <td>SnapKit</td>
-        <td>高效的约束布局。</td>
+        <td>Make constraints effectively.</td>
     </tr>
     <tr>
         <td>...</td>
@@ -308,38 +309,38 @@ pod install
     </tr>
 </table>
 
-更多依赖项，请查看 [Podfile](https://github.com/Neko3000/Monotone/blob/master/Podfile)。
+For more information，please check [Podfile](https://github.com/Neko3000/Monotone/blob/master/Podfile)。
 
 <br/>
 <br/>
 
-## 工程结构
-基本的工程结构文件树如下。
+## Project Structure
+The basic structure of this project.
 
 ```
 Monotone 
 ├── Monotone
-│   ├── /Vars  #全局变量
-│   ├── /Enums  #枚举声明（包括了一些非真实数据）
+│   ├── /Vars  #Global Variables
+│   ├── /Enums  #Enums（Includes some dummy data）
 │   ├── /Application
-│   │   ├── AppCredential  #授权凭证
+│   │   ├── AppCredential  #Authentication Credential
 │   │   ...
-│   │   └── UserManager  #用户管理
-│   ├── /Utils  #工具
-│   │   ├── /BlurHash  #照片加载模糊效果
-│   │   ├── ColorPalette  #全局颜色
-│   │   ├── AnimatorTrigger  #动画效果
-│   │   └── MessageCenter  #通知栏
-│   │── /Extension  #扩展
-│   │── /Services  #服务
-│   │   ├── /Authentication  #授权相关请求
-│   │   └── /Network  #数据相关请求
-│   │── /Components  #视图类
-│   │── /ViewModels  #视图模型类
-│   │── /ViewControllers  #视图控制器类
-│   │── /Models  #数据模型类
-│   │── /Coordinators  #页面跳转
-│   └── /Resource  #资源文件
+│   │   └── UserManager  #User Managment
+│   ├── /Utils  #Utils
+│   │   ├── /BlurHash  #Photo Hash
+│   │   ├── ColorPalette  #Global Colors
+│   │   ├── AnimatorTrigger  #Animation Effects
+│   │   └── MessageCenter  #Message Notification
+│   │── /Extension  #Extensions
+│   │── /Services  #Services
+│   │   ├── /Authentication  #Requests of Authentication
+│   │   └── /Network  #Requesets of Data
+│   │── /Components  #View Classes
+│   │── /ViewModels  #View Models
+│   │── /ViewControllers  #View Controllers
+│   │── /Models  #Data Models
+│   │── /Coordinators  #Segues
+│   └── /Resource  #Resource
 └── Pods
 
 ```
@@ -347,48 +348,48 @@ Monotone
 <br/>
 <br/>
 
-## 设计
-您所看到界面布局均由 [Addie Design Co](https://dribbble.com/addiedesign) 进行设计，并在互联网上免费共享了 [这一份文稿](https://dribbble.com/shots/7232794-Unsplash-iOS-UI-Kit-Sketch-Invision-Studio)。不管是设计元素，还是完成度都是值得令人惊叹的。  
-可以说没有这份免费共享的设计文稿，就没有这个应用程序的编写过程。  
+## Design
+The interface you are seeing are all designed by [Addie Design Co](https://dribbble.com/addiedesign). They shared this [document](https://dribbble.com/shots/7232794-Unsplash-iOS-UI-Kit-Sketch-Invision-Studio), everyone can free download it and use it. Those design elements and their level of completion are astonishing. 
+This application would not be here without this design document.
 
-感谢 [Addie Design Co](https://dribbble.com/addiedesign) 所提供的这份漂亮的设计文稿。
-
-<br/>
-<br/>
-
-## 关于Unsplash
-[Unsplash](https://unsplash.com) 是一个拥有较为自由的著作权许可条款的免费照片共享网站，具有非常高的质量。摄影师可以将照片上传，照片编辑者们会对用户上传的照片进行整理并归纳。
-
-也是笔者本人非常钟爱的一个高质量照片网站，非常推崇这种富有艺术感的共享精神。  
-笔者的主页在 [这里](https://unsplash.com/@neko3000)（~~但是自从2020年初以后就懒得外出摄影~~）。
+Thanks again to [Addie Design Co](https://dribbble.com/addiedesign) and this beautiful design document.
 
 <br/>
 <br/>
 
-## 持续贡献
-受限于 [Unsplash API](https://unsplash.com/developers) 所提供的数据，该应用程序中的一部分页面仅完成了样式布局，并没有使用真实数据（集中于商店，探索等模块），后续如果API提供了这些内容的数据源，也会第一时间添加新的功能。  
+## About Unsplash
+[Unsplash](https://unsplash.com) is a website dedicated to sharing high-quality stock photography under the Unsplash license. All photos uploaded by photographers will be organized and archived by editors.
 
-同时，针对已经完成的该应用程序，也会持续性的改进一些内容。
-
-### 如何参与开源项目
-如果您对移动端应用程序的编写具有一定经验，并且想要改进这个应用程序，非常欢迎您参与这个开源项目。发挥您的构想，改进甚至重构这个应用程序。 
-
-您可以遵循标准步骤：
-
-1. `Fork` 这个仓库；
-2. 创建您的 `Branch` (`git checkout -b feature/AmazingFeature`)；
-3. 创建 `Commit` (`git commit -m 'Add some AmazingFeature'`)；
-4. `Push` 到远程 `Branch` (`git push origin feature/AmazingFeature`)；
-5. 打开一个 `Pull Request`。
-
-欢迎任何开发者对本项目提出ISSUE或者PR。
+And this website is one of my favorites, admired for its artistic, the spirit of sharing.  
+You will find my home page here. (~~ Had not been updated frequently since 2020~~)
 
 <br/>
 <br/>
 
-## 许可证
-本应用程序项目基于 **MIT许可证** 进行分发。
-查看 [MIT许可证](https://github.com/Neko3000/Monotone/blob/master/LICENSE) 来获取更多细节。
+## Contributing
+Limited by data [Unsplash API](https://unsplash.com/developers) provides, some parts of this application only finished their styles and layouts(Almost in store, explore, etc). If the API provides more detailed data on these parts in the future, we will add new features as soon as possible.
+
+Meanwhile, focusing on the current application, we will improve it continuously.
+
+### How to Participate in
+If you are an experienced mobile application developer and want to improve this application. You are welcomed to participate in this open-source project. Practice your ideas, improve even refactor this application.
+
+Follow standard steps:
+
+1. `Fork` this repo;
+2. Create your new `Branch` (`git checkout -b feature/AmazingFeature`);
+3. Add `Commit` (`git commit -m 'Add some AmazingFeature'`);
+4. `Push` to remote `Branch` (`git push origin feature/AmazingFeature`);
+5. Open a `Pull Request`.
+
+For anyone, open an issue if you find any problems. PRs are welcome. 
+
+<br/>
+<br/>
+
+## License
+Distributed under the MIT License. 
+See [LICENSE](https://github.com/Neko3000/Monotone/blob/master/LICENSE) for more information.
 
 <br/>
 <br/>
