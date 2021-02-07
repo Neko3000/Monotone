@@ -35,6 +35,7 @@ If you like this project or inspired by any ideas of this project, please star i
 - [About Unsplash](#About%20Unsplash)
 - [Contributing](#Contributing)
     - [How to Participate in](#How%20to%20Participate%20in)
+- [Contact on Me](#Contact%20on%20Me)
 - [License](#License)
 
 <br/>
@@ -382,7 +383,14 @@ Follow standard steps:
 4. `Push` to remote `Branch` (`git push origin feature/AmazingFeature`);
 5. Open a `Pull Request`.
 
-For anyone, open an issue if you find any problems. PRs are welcome. 
+*For anyone, open an issue if you find any problems. PRs are welcome.*
+
+<br/>
+<br/>
+
+## Contact on Me
+E-mail: sheran_chen@outlook.com  
+Weibo: @一只妖艳的绀色布
 
 <br/>
 <br/>

@@ -9,6 +9,8 @@
 ![Version: v1.00](https://img.shields.io/badge/version-v1.0-lightgrey)
 
 # Monotone
+[English](https://github.com/Neko3000/Monotone/blob/master/README_CN.md), 中文 
+
 **Monotone** 是一个现代化的移动端应用程序，与 [Unsplash](https://unsplash.com) 所提供的强大的 [Unsplash API](https://unsplash.com/developers) 所集成。实现了其大部分功能，使用它可以轻松地进行照片的浏览，搜索，收藏，以及个人中心，许可证，FAQ等查阅等功能。
 
 这是一个 **非官方** 的应用程序，主要目的是发挥一些构想的可行性。  
@@ -33,6 +35,7 @@
 - [关于Unsplash](#关于Unsplash)
 - [持续贡献](#持续贡献)
     - [如何参与开源项目](#如何参与开源项目)
+- [联系我](#联系我)
 - [许可证](#许可证)
 
 <br/>
@@ -381,7 +384,14 @@ Monotone
 4. `Push` 到远程 `Branch` (`git push origin feature/AmazingFeature`)；
 5. 打开一个 `Pull Request`。
 
-欢迎任何开发者对本项目提出ISSUE或者PR。
+*欢迎任何开发者对本项目提出Issue或者PRs。*
+
+<br/>
+<br/>
+
+## 联系我
+E-mail: sheran_chen@outlook.com  
+Weibo: @一只妖艳的绀色布
 
 <br/>
 <br/>
