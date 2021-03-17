@@ -71,19 +71,19 @@ If you like this project or inspired by any ideas of this project, please star i
 ## Overview
 
 <p align="center"> 
-<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-record-1.gif">
-<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-record-2.gif">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_en/screen-record-1.gif">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_en/screen-record-2.gif">
 </p>
 
 <p align="center"> 
-<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-1.png">
-<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-2.png">
-<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-3.png">
-<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-4.png">
-<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-5.png">
-<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-6.png">
-<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-7.png">
-<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-8.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_en/screen-shot-1.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_en/screen-shot-2.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_en/screen-shot-3.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_en/screen-shot-4.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_en/screen-shot-5.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_en/screen-shot-6.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_en/screen-shot-7.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_en/screen-shot-8.png">
 </p>
 
 <br/>
@@ -417,8 +417,8 @@ Follow standard steps:
 
 ## Contact on Me
 E-mail: sheran_chen@outlook.com  
-Blog: chienerrant.com  
-Weibo: @一只妖艳的绀色布  
+Blog: [chienerrant.com](https://chienerrant.com)  
+Weibo: [@一只妖艳的绀色布](https://weibo.com/u/7386133210)
 
 <br/>
 <br/>
