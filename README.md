@@ -96,7 +96,7 @@ If you like this project or inspired by any ideas of this project, please star i
 - [x] Dark Mode Support
 - [x] Animation Effects
 - [x] Localization
-- [x] Triggered by [Unsplash API](https://unsplash.com/developers)
+- [x] Powered by [Unsplash API](https://unsplash.com/developers)
 - [X] More...
 
 ### Tasks
@@ -108,7 +108,7 @@ Currently supported tasks:
         <th style="text-align:center">Module</th>
         <th style="text-align:center">Page</th>
         <th style="text-align:center">Style & Layout</th>
-        <th style="text-align:center">Triggered by Data</th>
+        <th style="text-align:center">Powered by Data</th>
         <th style="text-align:center">Animation Effects</th>
         <th style="text-align:center">Localization</th>
     </tr>
@@ -227,7 +227,7 @@ Currently supported tasks:
     </tr>
     <tr>
         <td align="center" rowspan="1">Wallpaper</td>
-        <td align="center">List(Adapt Screen Size)</td>
+        <td align="center">List (Adapt Screen Size)</td>
         <td align="center">✅ </td>
         <td align="center">⬜️ </td>
         <td align="center">✅ </td>
