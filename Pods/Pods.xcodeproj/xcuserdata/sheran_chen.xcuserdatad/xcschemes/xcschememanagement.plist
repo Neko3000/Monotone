@@ -28,7 +28,7 @@
 		<key>BEMCheckBox.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>13</integer>
 		</dict>
 		<key>Differentiator.xcscheme</key>
 		<dict>
@@ -38,7 +38,7 @@
 		<key>Differentiator.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>22</integer>
 		</dict>
 		<key>HMSegmentedControl.xcscheme</key>
 		<dict>
@@ -69,7 +69,7 @@
 		<key>Kingfisher.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>20</integer>
+			<integer>19</integer>
 		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
@@ -88,7 +88,7 @@
 		<key>NVActivityIndicatorView.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>14</integer>
 		</dict>
 		<key>ObjectMapper.xcscheme</key>
 		<dict>
@@ -119,7 +119,7 @@
 		<key>RxDataSources.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>15</integer>
 		</dict>
 		<key>RxRelay.xcscheme</key>
 		<dict>
@@ -145,7 +145,7 @@
 		<key>RxSwiftExt.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>20</integer>
 		</dict>
 		<key>SnapKit.xcscheme</key>
 		<dict>
@@ -164,7 +164,7 @@
 		<key>SwiftMessages-SwiftMessages.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>18</integer>
 		</dict>
 		<key>SwiftMessages.xcscheme</key>
 		<dict>
@@ -195,7 +195,7 @@
 		<key>ViewAnimator.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>17</integer>
 		</dict>
 		<key>anim.xcscheme</key>
 		<dict>
@@ -207,7 +207,7 @@
 		<key>anim.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>16</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

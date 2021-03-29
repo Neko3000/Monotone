@@ -376,7 +376,7 @@ Monotone
 <br/>
 <br/>
 
-## Design
+## Designing
 The interface you are seeing are all designed by [Addie Design Co](https://dribbble.com/addiedesign). They shared this [document](https://dribbble.com/shots/7232794-Unsplash-iOS-UI-Kit-Sketch-Invision-Studio), everyone can free download it and use it. Those design elements and their level of completion are astonishing. 
 This application would not be here without this design document.
 
