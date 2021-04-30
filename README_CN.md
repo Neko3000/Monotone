@@ -263,18 +263,18 @@
 
 1. 在终端执行如下命令：
 ``` bash
-# Clone到本地
+# 克隆到本地
 git clone https://github.com/Neko3000/Monotone.git
 
 # 定位到工程目录内
 cd Monotone
 
-# 安装Pod（因为Pod目前没有移除出版本控制，理论上也可以跳过这一步）
+# 安装组件
 pod install
 ```
 
-2. 在 **Monotone** 根目录下拷贝一份名为 `api_keys_sample.json` 的文件，并把它重命名为 `api_keys_debug.json`（这个文件被.gitignore所忽略）；
-3. 打开 `api_keys_debug.json` ，填写您的”Access Key“与”Secret Key“，在运行时它们将会自动被拷贝至APP目录（具体请参考 *Project->Build Phases->Run Script* 以及 *APPCredential.swift* 内的内容）；
+2. 在 **Monotone** 根目录下拷贝一份名为 `config_debug.json` 的文件，并把它重命名为 `config.json`（这个文件被.gitignore所忽略）；
+3. 打开 `config.json` ，填写您的”Access Key“与”Secret Key“，在运行时它们将会自动被拷贝至APP目录（具体请参考 *Project->Build Phases->Run Script* 以及 *APPCredential.swift* 内的内容）；
 4. 完成，<kbd>command</kbd> + <kbd>R</kbd>。
 
 <br/>

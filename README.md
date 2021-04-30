@@ -282,12 +282,12 @@ git clone https://github.com/Neko3000/Monotone.git
 # Direct to Project folder
 cd Monotone
 
-# Install Pod（Cause Pod is still under Version Control, you can skip this step）
+# Install Pods
 pod install
 ```
 
-2. Under **Monotone** folder, duplicate `api_keys_sample.json` file，and rename it to `api_keys_debug.json`（This file is ignored by .gitignore）；
-3. Open `api_keys_debug.json` ，input your ”Access Key“ and ”Secret Key“，they will be copyed to APP folder when running.(For more information, please refer to the content in *Project->Build Phases->Run Script* and *APPCredential.swift* )；
+2. Under **Monotone** folder, duplicate `config_debug.json` file，and rename it to `config.json`（This file is ignored by .gitignore）；
+3. Open `config.json` ，input your ”Access Key“ and ”Secret Key“，they will be copyed to APP folder when running.(For more information, please refer to the content in *Project->Build Phases->Run Script* and *APPCredential.swift* )；
 4. Done，<kbd>command</kbd> + <kbd>R</kbd>。
 
 <br/>
