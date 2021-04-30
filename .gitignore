@@ -1,5 +1,5 @@
-# API Keys
-api_keys_debug*.json
+# config
+config.json
 
 # xcuserstate
 *.xcuserstate  
