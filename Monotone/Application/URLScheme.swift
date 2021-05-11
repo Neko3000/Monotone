@@ -8,5 +8,7 @@
 import Foundation
 
 class URLScheme{
-    public static let main = "monotone://"
+    // For XCode 12.5 or later, the scheme for ASWebAuthenticationSession should be written like this instead of "monotone://".
+    // Otherwise, a error rises - "A scheme should not include special characters such as..."
+    public static let main = "monotone"
 }
