@@ -19,13 +19,13 @@ class GetTopicPhotosRequest: BaseRequest{
     public var idOrSlug: String?
     public var page: Int?
     public var perPage: Int?
-    public var oritentation: String?
+    public var orientation: String?
     public var orderBy: String?
     
     override func mapping(map: Map) {
         page            <- map["page"]
         perPage         <- map["per_page"]
-        oritentation    <- map["oritentation"]
+        orientation     <- map["orientation"]
         orderBy         <- map["order_by"]
     }
 }

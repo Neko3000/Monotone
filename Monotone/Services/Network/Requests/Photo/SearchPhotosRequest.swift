@@ -23,7 +23,7 @@ class SearchPhotosRequest: BaseRequest {
     public var collections: [String]?
     public var contentFilter: String?
     public var color: String?
-    public var oritentation: String?
+    public var orientation: String?
     
     override func mapping(map: Map) {
         query           <- map["query"]
@@ -33,6 +33,6 @@ class SearchPhotosRequest: BaseRequest {
         collections     <- map["query"]
         contentFilter   <- map["content_filter"]
         color           <- map["color"]
-        oritentation    <- map["oritentation"]
+        orientation     <- map["orientation"]
     }
 }

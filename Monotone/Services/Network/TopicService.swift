@@ -23,14 +23,14 @@ class TopicService: NetworkService{
     public func getTopicPhotos(idOrSlug: String,
                                page: Int? = 1,
                                perPage: Int? = 10,
-                               oritentation: String? = "",
+                               orientation: String? = "",
                                orderBy: String? = "latest")  -> Observable<[Photo]>{
         
         let request = GetTopicPhotosRequest()
         request.idOrSlug = idOrSlug
         request.page = page
         request.perPage = perPage
-        request.oritentation = oritentation
+        request.orientation = orientation
         request.orderBy = orderBy
                 
         return Observable.create { (observer) -> Disposable in
