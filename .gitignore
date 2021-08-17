@@ -10,3 +10,6 @@ project.xcworkspace/
 xcuserdata/  
 UserInterface.xcuserstate
 *xcworkspace/xcuserdata/*
+
+# pods
+Pods
