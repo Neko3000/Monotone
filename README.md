@@ -144,7 +144,7 @@ Currently supported tasks:
         <td align="center">✅ </td>
     </tr>
     <tr>
-        <td align="center">Collect（Add & Remove）</td>
+        <td align="center">Collect (Add & Remove) </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
         <td align="center">✅ </td>
@@ -255,14 +255,14 @@ Currently supported tasks:
 <br/>
 
 ## Getting Started
-This application use `Cocoapods` to manage dependencies.
+This application uses `Cocoapods` to manage dependencies.
 Please refer to [Cocoapods Offical Website](https://cocoapods.org/) to install & configure(If you already installed `Cocoapods`, skip this).
 
 ### Prerequisites
 **Monotone** is trigged by [Unsplash API](https://unsplash.com/developers) . The very first thing must be done is applying a pair of OAuth key to run it.
-1. Visit [Unsplash](https://unsplash.com), sign up then sign in.（If you already have an account, skip this）；
+1. Visit [Unsplash](https://unsplash.com), sign up then sign in.(If you already have an account, skip this).
 2. Visit [Unsplash Application Registration Platform](https://unsplash.com/oauth/applications/new) agree with terms and create a new application, the application name and description can be anything.
-3. After the application was created，it will redirect to the application details page automatically（Also can be found from <https://unsplash.com/oauth/applications>). At `Redirect URI & Permissions - Redirect URI` section, input `monotone://unsplash`, make sure all authentication options are checked, just like the image shown below.
+3. After the application was created，it will redirect to the application details page automatically (Also can be found from <https://unsplash.com/oauth/applications>). At `Redirect URI & Permissions - Redirect URI` section, input `monotone://unsplash`, make sure all authentication options are checked, just like the image shown below.
 
 <p align="center">
 <img width="500" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/app-redirect.png">
@@ -286,7 +286,7 @@ cd Monotone
 pod install
 ```
 
-2. Under **Monotone** folder, duplicate `config_debug.json` file，and rename it to `config.json`（This file is ignored by .gitignore）；
+2. Under **Monotone** folder, duplicate `config_debug.json` file，and rename it to `config.json`(This file is ignored by .gitignore)；
 3. Open `config.json` ，input your ”Access Key“ and ”Secret Key“，they will be copyed to APP folder when running.(For more information, please refer to the content in *Project->Build Phases->Run Script* and *APPCredential.swift* )；
 4. Done，<kbd>command</kbd> + <kbd>R</kbd>。
 
@@ -349,7 +349,7 @@ The basic structure of this project.
 Monotone 
 ├── Monotone
 │   ├── /Vars  #Global Variables
-│   ├── /Enums  #Enums（Includes some dummy data）
+│   ├── /Enums  #Enums (Includes some dummy data)
 │   ├── /Application
 │   │   ├── AppCredential  #Authentication Credential
 │   │   ...
