@@ -6,7 +6,7 @@
 
 <h1 align="left">Monotone</h1>
 <p align="center">
-    <img width="600" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_cn/poster.png">
+    <img width="600" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/poster.png">
 </p>
 <p align="center">
     <p align="center">
@@ -57,19 +57,19 @@
 ## 预览
 
 <p align="center"> 
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_cn/screen-record-1.gif">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_cn/screen-record-2.gif">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-record-1.gif">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-record-2.gif">
 </p>
 
 <p align="center"> 
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_cn/screen-shot-1.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_cn/screen-shot-2.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_cn/screen-shot-3.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_cn/screen-shot-4.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_cn/screen-shot-5.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_cn/screen-shot-6.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_cn/screen-shot-7.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_cn/screen-shot-8.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-1.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-2.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-3.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-4.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-5.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-6.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-7.png">
+<img width="200" src="https://raw.githubusercontent.com/Neko3000/resource-storage/master/projects/monotone/screens_cn/screen-shot-8.png">
 </p>
 
 <br/>
