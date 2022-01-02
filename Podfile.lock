@@ -35,9 +35,9 @@ PODS:
     - RxCocoa (~> 5.0)
     - RxSwiftExt/Core
   - SnapKit (5.0.1)
-  - SwiftMessages (8.0.3):
-    - SwiftMessages/App (= 8.0.3)
-  - SwiftMessages/App (8.0.3)
+  - SwiftMessages (9.0.5):
+    - SwiftMessages/App (= 9.0.5)
+  - SwiftMessages/App (9.0.5)
   - SwiftyJSON (4.3.0)
   - ViewAnimator (3.0.1)
 
@@ -58,7 +58,7 @@ DEPENDENCIES:
   - RxSwift (= 5.1.1)
   - RxSwiftExt (= 5.2.0)
   - SnapKit (= 5.0.1)
-  - SwiftMessages (= 8.0.3)
+  - SwiftMessages (= 9.0.5)
   - SwiftyJSON (= 4.3.0)
   - ViewAnimator (= 3.0.1)
 
@@ -103,10 +103,10 @@ SPEC CHECKSUMS:
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   RxSwiftExt: 4ca80336f43c28f11a2825cdd2fc61dd6c044697
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SwiftMessages: 063ec9ffea3ffa7d17ba595157a9ec78e4fe045f
+  SwiftMessages: 9cca50659fa22bb523b4dd2a958d4442e843a354
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   ViewAnimator: dd18d2f5c1e472f78d0065ff92750fe56cbd2f39
 
-PODFILE CHECKSUM: 4c5cd56949cf4ea15ce44e90209ca49ee7748079
+PODFILE CHECKSUM: 26a6a871042fa8ee73477874069094ebde43ffdf
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

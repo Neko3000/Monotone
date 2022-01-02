@@ -114,38 +114,6 @@
             endingLineNumber = "57"
             landmarkName = "authorize()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "040311FC-27A2-4981-BC80-06405289BD26 - 2f97f346de7f4c85"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Monotone.AuthManager.authorize() -&gt; RxSwift.Observable&lt;Swift.String&gt;"
-                  moduleName = "Monotone"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Services/Authentication/AuthManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "1344">
-               </Location>
-               <Location
-                  uuid = "040311FC-27A2-4981-BC80-06405289BD26 - bb4bbbe9fbf0e8e9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (RxSwift.AnyObserver&lt;Swift.String&gt;) -&gt; RxSwift.Disposable in Monotone.AuthManager.authorize() -&gt; RxSwift.Observable&lt;Swift.String&gt;"
-                  moduleName = "Monotone"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Services/Authentication/AuthManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "62">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -162,38 +130,6 @@
             endingLineNumber = "59"
             landmarkName = "authorize()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "837834CE-AAB9-42D3-BB9E-1DDC09FCBD67 - bb4bbbe9fbf0eb0c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (RxSwift.AnyObserver&lt;Swift.String&gt;) -&gt; RxSwift.Disposable in Monotone.AuthManager.authorize() -&gt; RxSwift.Observable&lt;Swift.String&gt;"
-                  moduleName = "Monotone"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Services/Authentication/AuthManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "146">
-               </Location>
-               <Location
-                  uuid = "837834CE-AAB9-42D3-BB9E-1DDC09FCBD67 - 173449b58030390d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.URL&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (RxSwift.AnyObserver&lt;Swift.String&gt;) -&gt; RxSwift.Disposable in Monotone.AuthManager.authorize() -&gt; RxSwift.Observable&lt;Swift.String&gt;"
-                  moduleName = "Monotone"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sheran_chen/Projects/Monotone/Monotone/Services/Authentication/AuthManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "214">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
