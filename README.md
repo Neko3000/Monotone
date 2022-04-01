@@ -6,7 +6,7 @@
 
 <h1 align="left">Monotone</h1>
 <p align="center">
-    <img width="600" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_en/poster.png">
+    <img width="600" src="https://github.com/Neko3000/Monotone/blob/master/doc/screens_en/poster.png">
 </p>
 <p align="center">
     <p align="center">
@@ -71,19 +71,19 @@ If you like this project or inspired by any ideas of this project, please star i
 ## Overview
 
 <p align="center"> 
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_en/screen-record-1.gif">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_en/screen-record-2.gif">
+<img width="200" src="https://github.com/Neko3000/Monotone/blob/master/doc/screens_en/screen-record-1.gif">
+<img width="200" src="https://github.com/Neko3000/Monotone/blob/master/doc/screens_en/screen-record-2.gif">
 </p>
 
 <p align="center"> 
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_en/screen-shot-1.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_en/screen-shot-2.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_en/screen-shot-3.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_en/screen-shot-4.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_en/screen-shot-5.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_en/screen-shot-6.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_en/screen-shot-7.png">
-<img width="200" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/screens_en/screen-shot-8.png">
+<img width="200" src="https://github.com/Neko3000/Monotone/blob/master/doc/screens_en/screen-shot-1.png">
+<img width="200" src="https://github.com/Neko3000/Monotone/blob/master/doc/screens_en/screen-shot-2.png">
+<img width="200" src="https://github.com/Neko3000/Monotone/blob/master/doc/screens_en/screen-shot-3.png">
+<img width="200" src="https://github.com/Neko3000/Monotone/blob/master/doc/screens_en/screen-shot-4.png">
+<img width="200" src="https://github.com/Neko3000/Monotone/blob/master/doc/screens_en/screen-shot-5.png">
+<img width="200" src="https://github.com/Neko3000/Monotone/blob/master/doc/screens_en/screen-shot-6.png">
+<img width="200" src="https://github.com/Neko3000/Monotone/blob/master/doc/screens_en/screen-shot-7.png">
+<img width="200" src="https://github.com/Neko3000/Monotone/blob/master/doc/screens_en/screen-shot-8.png">
 </p>
 
 <br/>
@@ -265,7 +265,7 @@ Please refer to [Cocoapods Offical Website](https://cocoapods.org/) to install &
 3. After the application was created，it will redirect to the application details page automatically (Also can be found from <https://unsplash.com/oauth/applications>). At `Redirect URI & Permissions - Redirect URI` section, input `monotone://unsplash`, make sure all authentication options are checked, just like the image shown below.
 
 <p align="center">
-<img width="500" src="https://neko3000-resource-storage.oss-cn-beijing.aliyuncs.com/resource-storage/projects/monotone/app-redirect.png">
+<img width="500" src="https://github.com/Neko3000/Monotone/blob/master/doc/app-redirect.png">
 </p>
 
 4. After the work is finished, check ”Access Key“ and ”Secret Key“ on this page, they will be used soon.
