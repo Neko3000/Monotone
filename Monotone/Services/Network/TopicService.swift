@@ -23,7 +23,7 @@ class TopicService: NetworkService{
     public func getTopicPhotos(idOrSlug: String,
                                page: Int? = 1,
                                perPage: Int? = 10,
-                               orientation: String? = "",
+                               orientation: String? = nil,
                                orderBy: String? = "latest")  -> Observable<[Photo]>{
         
         let request = GetTopicPhotosRequest()

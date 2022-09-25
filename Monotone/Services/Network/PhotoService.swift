@@ -19,7 +19,7 @@ class PhotoService: NetworkService {
                              collections:[String]? = [],
                              contentFilter:String? = "low",
                              color:String? = "",
-                             orientation:String? = "") -> Observable<[Photo]>{
+                             orientation:String? = nil) -> Observable<[Photo]>{
         
         let request: SearchPhotosRequest = SearchPhotosRequest()
         request.query = query
